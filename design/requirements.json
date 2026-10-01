@@ -51,6 +51,18 @@
       "docs/evidence/M1/screenshots/desktop-l2-game.jpg"
      ],
      "status": "terverifikasi"
+    },
+    {
+     "scope": "Q-01 (ADR-008): 27 fungsi program PRD v0.1 bagian 5 terlacak ke 38 ruang dan sebaliknya; ruang/fungsi tanpa pasangan menggagalkan test",
+     "tests": [
+      "tools/prd_trace.py",
+      "tests/py/test_prd_trace.py"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/prd-trace.json",
+      "docs/evidence/HARDENING/pytest.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -99,10 +111,21 @@
      "status": "terverifikasi"
     },
     {
-     "scope": "LOD1 NPC <= 5k triangle, sheet ekspresi, atlas",
-     "tests": [],
-     "evidence": [],
-     "status": "target"
+     "scope": "Hardening: atlas 1 material per karakter, LOD1 <= 5k triangle (4799-4800), 5 ekspresi wajah (blink, smile, talk, surprised, frown) sebagai morph target; dieksekusi, blend/GLB dibuka ulang dan divalidasi; runtime memakai LOD1 > 8 m dan ekspresi saat bicara",
+     "tests": [
+      "blender/validate_assets.py",
+      "tests/py/test_assets.py",
+      "app/tests/e2e/npc.spec.ts",
+      "app/tests/e2e/budget.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/blender-characters-validate.txt",
+      "docs/evidence/HARDENING/pytest-blender.txt",
+      "assets/previews/character-expressions.png",
+      "assets/previews/character-lod.png",
+      "docs/evidence/HARDENING/e2e-all.txt"
+     ],
+     "status": "terverifikasi"
     },
     {
      "scope": "M3: 54 keluarga furniture original + shell bangunan, registry 63 aset generated+validated",
@@ -187,6 +210,17 @@
      ],
      "evidence": [
       "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Hardening: CEO dan persona tidak saling tembus; NPC memberi jalan, detour, reservasi kursi tetap saat menunggu; tidak ada NPC diam > 10 s (seed 3/11/23, soak 2 jam); bug lama NPC membeku di sel sudut diperbaiki",
+     "tests": [
+      "app/tests/unit/collision.test.ts",
+      "app/tests/unit/idle.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/vitest.txt"
      ],
      "status": "terverifikasi"
     }
@@ -290,6 +324,23 @@
       "drawings/register.json"
      ],
      "status": "terverifikasi"
+    },
+    {
+     "scope": "P03: arah bukaan pintu dan 39 jendela konsep satu sumber di world.json, dibaca CAD (denah, tampak, potongan, jadwal pintu/jendela), Blender (bukaan, kaca, daun pintu) dan runtime (dinding terpotong jendela)",
+     "tests": [
+      "tests/py/test_openings.py",
+      "tests/py/test_cad_openings.py",
+      "tests/py/test_building.py",
+      "blender/building/validate_building.py",
+      "app/tests/unit/openings.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/pytest.txt",
+      "docs/evidence/HARDENING/pytest-cad.txt",
+      "docs/evidence/HARDENING/blender-building-validate.txt",
+      "docs/evidence/HARDENING/vitest.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -338,6 +389,20 @@
      ],
      "evidence": [
       "docs/evidence/M3/cad-pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Outlet ICT ikut furniture di Office Studio: pindah/hapus/tambah, undo/redo, export v2 + import menolak outlet yang diedit, publish/rollback; paritas Python/TS; ict_derive.py --layout",
+     "tests": [
+      "tests/py/test_ict_follow.py",
+      "app/tests/unit/ict.test.ts",
+      "app/tests/e2e/studio.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/pytest.txt",
+      "docs/evidence/HARDENING/vitest.txt",
+      "docs/evidence/HARDENING/e2e-all.txt"
      ],
      "status": "terverifikasi"
     }
@@ -447,14 +512,16 @@
      "status": "belum diuji"
     },
     {
-     "scope": "Anggaran draw call mobile <= 150: TARGET BELUM TERPENUHI, terukur 161 di koridor L1 (furniture GLB + 7 karakter multi-material); mitigasi atlas material karakter/LOD1",
+     "scope": "Anggaran draw call mobile <= 150 dan triangle <= 250k: puncak per frame selama rute tetap 25 s, desktop/tablet/mobile (draw call dan triangle tidak bergantung kecepatan GPU)",
      "tests": [
-      "app/tests/e2e/perf.spec.ts"
+      "app/tests/e2e/budget.spec.ts"
      ],
      "evidence": [
-      "docs/evidence/M3/perf-route-desktop.json"
+      "docs/evidence/HARDENING/budget-desktop.json",
+      "docs/evidence/HARDENING/budget-tablet.json",
+      "docs/evidence/HARDENING/budget-mobile.json"
      ],
-     "status": "target"
+     "status": "terverifikasi"
     }
    ]
   },
@@ -494,6 +561,30 @@
      ],
      "evidence": [
       "docs/evidence/M3/license-audit.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Provenance: setiap file app/public dipetakan ke generator repo (GLB registry, artwork make_signage, PDF hasil generate, teks lisensi); file asing gagal",
+     "tests": [
+      "tests/py/test_provenance.py"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Keamanan: safety scan teks repo, npm audit runtime + dev, audit lisensi",
+     "tests": [
+      "tools/safety_scan.py",
+      "tools/license_audit.py"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/safety-scan.txt",
+      "docs/evidence/HARDENING/npm-audit-runtime.txt",
+      "docs/evidence/HARDENING/npm-audit-all.txt",
+      "docs/evidence/HARDENING/license-audit.json"
      ],
      "status": "terverifikasi"
     }

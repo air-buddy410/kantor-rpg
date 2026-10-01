@@ -1,0 +1,10 @@
+
+ RUN  v5.0.3 /home/user/kantor-rpg/app
+
+
+ Test Files  7 passed (7)
+      Tests  53 passed (53)
+   Start at  16:20:27
+   Duration  15.55s (tests 91%, transform 5%, import 3%)
+
+exit=0
