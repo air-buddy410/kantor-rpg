@@ -1,0 +1,129 @@
+
+Running 25 tests using 1 worker
+
+  ✓   1 [desktop] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (1.7s)
+  ✓   2 [desktop] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (3.4s)
+  ✓   3 [desktop] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (3.4s)
+  ✓   4 [desktop] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (3.6s)
+  ✓   5 [desktop] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (13.2s)
+  ✓   6 [desktop] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (5.0s)
+  ✓   7 [desktop] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (13.7s)
+  ✓   8 [desktop] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (6.7s)
+  ✓   9 [desktop] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (9.2s)
+  ✓  10 [desktop] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (8.5s)
+  ✓  11 [desktop] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (12.7s)
+  ✓  12 [desktop] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (4.4s)
+  ✓  13 [desktop] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.5s)
+  ✘  14 [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (5.0s)
+  ✓  15 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (6.1s)
+  ✓  16 [desktop] › tests/e2e/world.spec.ts:44:3 › world vertical slice › stair interaction changes floor only at the marked point (33.4s)
+  ✓  17 [desktop] › tests/e2e/world.spec.ts:66:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (28.6s)
+  ✓  18 [desktop] › tests/e2e/world.spec.ts:80:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (3.7s)
+  ✓  19 [desktop] › tests/e2e/world.spec.ts:101:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (7.1s)
+  ✓  20 [desktop] › tests/e2e/world.spec.ts:114:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (4.8s)
+  -  21 [desktop] › tests/e2e/world.spec.ts:130:3 › world vertical slice › touch joystick walks the CEO
+  ✓  22 [desktop] › tests/e2e/world.spec.ts:149:3 › world vertical slice › dark theme renders with computed token colours (4.6s)
+  ✓  23 [desktop] › tests/e2e/world.spec.ts:158:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (12.4s)
+  ✘  24 [desktop] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) (4.7s)
+  ✓  25 [desktop] › tests/e2e/world.spec.ts:185:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (771ms)
+
+
+  1) [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected  -  1[39m
+    [31m+ Received  + 30[39m
+
+    [32m- Array [][39m
+    [31m+ Array [[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/db1f0b56-c1fa-47ec-88fe-e4acee4266c4' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/db1f0b56-c1fa-47ec-88fe-e4acee4266c4. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/db1f0b56-c1fa-47ec-88fe-e4acee4266c4",[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/71358a7f-ebee-4618-960e-e6c2679f30de' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/71358a7f-ebee-4618-960e-e6c2679f30de. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/71358a7f-ebee-4618-960e-e6c2679f30de",[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/f72a858e-6909-426e-ba4e-5c937f036fe6' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/f72a858e-6909-426e-ba4e-5c937f036fe6. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/f72a858e-6909-426e-ba4e-5c937f036fe6",[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/72d6a0dc-3303-434e-901d-5715c7e03e84' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/72d6a0dc-3303-434e-901d-5715c7e03e84. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/72d6a0dc-3303-434e-901d-5715c7e03e84",[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/4c186ffb-f4f2-4f97-a43c-c54f9ae97fae' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/4c186ffb-f4f2-4f97-a43c-c54f9ae97fae. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/4c186ffb-f4f2-4f97-a43c-c54f9ae97fae",[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/db0b4204-404b-4ef5-b331-7133437ba8d6' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/db0b4204-404b-4ef5-b331-7133437ba8d6. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/db0b4204-404b-4ef5-b331-7133437ba8d6",[39m
+    [31m+   "console: Refused to connect to 'blob:http://127.0.0.1:4180/4f8ebb6a-0a32-4d7a-8251-53e011bc60d6' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "console: Fetch API cannot load blob:http://127.0.0.1:4180/4f8ebb6a-0a32-4d7a-8251-53e011bc60d6. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "console: THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:4180/4f8ebb6a-0a32-4d7a-8251-53e011bc60d6",[39m
+    [31m+ ][39m
+
+      10 |     await page.waitForTimeout(1500);
+      11 |     await shot(page, info, 'spawn');
+    > 12 |     expect(errors).toEqual([]);
+         |                    ^
+      13 |   });
+      14 |
+      15 |   test('keyboard walking moves the CEO and the reception desk collider stops it', async ({ page }, info) => {
+        at /home/user/kantor-rpg/app/tests/e2e/world.spec.ts:12:20
+
+    Error Context: test-results/world-world-vertical-slice-ec18d-on-badge-and-no-page-errors-desktop/error-context.md
+
+  2) [desktop] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected  -  1[39m
+    [31m+ Received  + 23[39m
+
+    [32m- Array [][39m
+    [31m+ Array [[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/1b7ffbe5-56bc-49ed-8ec6-fa94be47b478' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/1b7ffbe5-56bc-49ed-8ec6-fa94be47b478. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/9a2e902d-265b-4a0c-b593-12a603bd83bb' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/9a2e902d-265b-4a0c-b593-12a603bd83bb. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/f120066a-2e97-4e79-b0e3-30b8241aca88' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/f120066a-2e97-4e79-b0e3-30b8241aca88. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/7ee9b9b5-c469-441a-b64e-cbcad72bca88' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/7ee9b9b5-c469-441a-b64e-cbcad72bca88. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/1755c7cf-16e3-4ea9-bdcc-9d23a8d970ff' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/1755c7cf-16e3-4ea9-bdcc-9d23a8d970ff. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/2acc376b-6f33-409e-9d3b-5cb690084b84' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/2acc376b-6f33-409e-9d3b-5cb690084b84. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+   "Refused to connect to 'blob:http://127.0.0.1:4180/74245b6d-7dd0-459e-884c-9373c242cd05' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback.[39m
+    [31m+ ",[39m
+    [31m+   "Fetch API cannot load blob:http://127.0.0.1:4180/74245b6d-7dd0-459e-884c-9373c242cd05. Refused to connect because it violates the document's Content Security Policy.",[39m
+    [31m+ ][39m
+
+      178 |     await page.waitForTimeout(1500);
+      179 |     expect([...hosts]).toEqual([new URL(page.url()).host]);
+    > 180 |     expect(csp).toEqual([]);
+          |                 ^
+      181 |   });
+      182 | });
+      183 |
+        at /home/user/kantor-rpg/app/tests/e2e/world.spec.ts:180:17
+
+    Error Context: test-results/world-world-vertical-slice-15244-made-no-external-endpoints--desktop/error-context.md
+
+  2 failed
+    [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors 
+    [desktop] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) 
+  1 skipped
+  22 passed (3.4m)
+exit=1

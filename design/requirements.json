@@ -122,7 +122,8 @@
       "docs/evidence/HARDENING/blender-characters-validate.txt",
       "docs/evidence/HARDENING/pytest-blender.txt",
       "assets/previews/character-expressions.png",
-      "assets/previews/character-lod.png"
+      "assets/previews/character-lod.png",
+      "docs/evidence/HARDENING/e2e-all.txt"
      ],
      "status": "terverifikasi"
     },
@@ -400,7 +401,8 @@
      ],
      "evidence": [
       "docs/evidence/HARDENING/pytest.txt",
-      "docs/evidence/HARDENING/vitest.txt"
+      "docs/evidence/HARDENING/vitest.txt",
+      "docs/evidence/HARDENING/e2e-all.txt"
      ],
      "status": "terverifikasi"
     }
@@ -516,7 +518,9 @@
      ],
      "evidence": [
       "docs/evidence/HARDENING/budget-desktop.json",
-      "docs/evidence/HARDENING/budget-mobile.json"
+      "docs/evidence/HARDENING/budget-mobile.json",
+      "docs/evidence/HARDENING/budget-tablet.json",
+      "docs/evidence/HARDENING/e2e-unskipped-touch.txt"
      ],
      "status": "terverifikasi"
     }
@@ -581,7 +585,9 @@
       "docs/evidence/HARDENING/safety-scan.txt",
       "docs/evidence/HARDENING/npm-audit-runtime.txt",
       "docs/evidence/HARDENING/npm-audit-all.txt",
-      "docs/evidence/HARDENING/license-audit.json"
+      "docs/evidence/HARDENING/license-audit.json",
+      "docs/evidence/HARDENING/e2e-csp-desktop.txt",
+      "docs/evidence/HARDENING/e2e-csp-desktop-run1.txt"
      ],
      "status": "terverifikasi"
     }

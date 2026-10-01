@@ -22,7 +22,7 @@ Output statis ada di `app/dist/` (HTML, JS, CSS, font OFL, GLB, JPG artwork, PDF
 
 - Sajikan `app/dist/` apa adanya; path relatif, jadi subpath juga bisa.
 - MIME `model/gltf-binary` untuk `.glb` dan `application/pdf` untuk `.pdf` (keduanya default di hosting statis umum).
-- Header yang disarankan (belum diuji pelaksana karena `vite preview` tidak memasang header; jalankan smoke test di bawah setelah header dipasang): `Content-Security-Policy: default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:` (GLTFLoader memakai blob URL untuk tekstur tertanam), `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`.
+- Header yang disarankan (diuji lokal dengan `app/scripts/serve-csp.mjs` + suite desktop, lihat `docs/evidence/HARDENING/e2e-csp-desktop.txt`; host nyata tetap perlu smoke test di bawah): `Content-Security-Policy: default-src 'self'; connect-src 'self' blob:; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:` (GLTFLoader mengambil tekstur tertanam lewat blob URL; tanpa connect-src blob: tekstur karakter gagal dimuat, terbukti di e2e-csp-desktop-run1.txt), `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`.
 - Cache panjang hanya untuk `assets/*-<hash>.js|css`; GLB dan PDF tanpa hash, jadi cache pendek atau revalidasi.
 
 ## Cek sebelum ganti SHA (di mesin build)
