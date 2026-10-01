@@ -1,0 +1,22 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main, "claude/**"]
+permissions:
+  contents: read
+jobs:
+  design:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements-dev.txt
+      - name: Safety scan
+        run: python3 tools/safety_scan.py
+      - name: Validate world dataset
+        run: python3 tools/validate_world.py
+      - name: Python tests
+        run: python3 -m pytest tests/py -q

@@ -1,0 +1,33 @@
+# Progress checkpoint
+
+Log untuk supervisor (Max). Entri terbaru di atas. Status memakai DONE_Mx / NEEDS_INPUT / BLOCKED; angka test adalah hasil eksekusi, bukan target.
+
+## M0 (branch claude/kantor-rpg-m0)
+
+Status: DONE_M0 untuk lingkup data/dokumen; native DWG BLOCKED (AutoCAD tidak tersedia); NEEDS_INPUT Q-01 sampai Q-04 (tidak memblokir M1).
+
+Hasil:
+- Capability report: `docs/evidence/M0/capability-report.md` (Blender 4.0.2 tersedia; AutoCAD tidak ada; Chromium 141; Node 22).
+- Dataset: `design/world.json` revisi P02 + `design/world.schema.json`; editor-of-record `design/authoring/seed_world.py`.
+- Validator: `tools/validate_world.py` 40 pemeriksaan, 40 lolos (`docs/evidence/M0/validate-world.txt`, `.json`).
+- Room schedule + adjacency: `docs/room-schedule.md`, `design/derived/room-schedule.{json,csv}`; 10/10 aturan adjacency lolos.
+- Kapasitas: `tools/capacity.py` -> `design/derived/capacity.json`, `docs/capacity.md`.
+- ICT: `tools/ict_derive.py` -> `design/derived/ict-portmap.{json,csv}`; 45 outlet, 72 port, 0 error.
+- Requirement matrix: `design/requirements.json` -> `docs/requirements-matrix.md` (8 bagian terverifikasi, 11 belum diuji, 2 asumsi, 2 tidak didukung).
+- Sheet register target: `design/sheets.json`.
+- PRD v0.2: `PRD/PRD-v0.2.md` + `PRD/PRD-v0.2.pdf` (7 halaman A4).
+- Asumsi: `docs/assumptions.md`; keputusan teknis: `docs/decisions.md`.
+- Rebuild: `python3 tools/build_design.py`; receipts: `./tools/evidence_m0.sh`.
+
+Failure/boundary paths yang dieksekusi:
+- Validator pertama kali menemukan 7 kegagalan nyata pada layout awal (fixture menembus dinding, pintu terhalang, tangga menutup jalur, kunci visitor bocor karena dinding sudah terpotong di pintu). Semua diperbaiki di data/algoritma, bukan dengan melonggarkan check.
+- `docs/evidence/M0/failure-paths/ict-switch-spare-below-target.txt`: dua switch hanya memberi spare 18 persen, derivasi keluar dengan exit 1; desain ditambah switch ketiga.
+- Test negatif pytest: overlap ruang, ruang di luar envelope, pintu bukan di dinding, fixture menghalangi pintu, clearance biliar, ruang tersegel, server bocor ke visitor, kamera di shower, outlet orphan, tabrakan U rack, drift dataset, spare switch, panjang link berlebih.
+
+Known issues:
+- Rasio eksplorasi 0,72 ruang terhadap 47 area pixel (Q-01).
+- L2 hanya satu tangga dalam envelope (AS-EXIT-01, Q-02).
+- Budget PoE switch, rating UPS, thermal belum divalidasi (butuh datasheet).
+- Rate limit runtime menampilkan status "rejected" jendela 7 hari (reset 2026-10-03 16:00 UTC); belum menghentikan kerja.
+
+Next safe action: M1 vertical slice di branch claude/kantor-rpg-m1.
