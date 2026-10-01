@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="kantor-rpg: kantor virtual dua lantai, demo simulasi offline." />
+  <title>kantor-rpg</title>
+</head>
+<body>
+  <a class="skip-link" href="#directory-panel">Lewati ke direktori</a>
+  <div id="app" class="app" data-mode="loading">
+    <div id="stage" class="stage" aria-hidden="true"></div>
+    <div id="labels" class="labels" aria-hidden="true"></div>
+
+    <header class="hud-top" aria-label="Status dunia">
+      <div class="hud-brand"><span class="brand-text">kantor-rpg</span></div>
+      <div class="hud-place">
+        <span class="floor-chip" id="floor-chip">L1</span>
+        <span class="room-name" id="room-name" aria-live="polite">Memuat dunia</span>
+        <span class="sim-clock" id="sim-clock" title="Jam simulasi untuk jadwal aktivitas NPC, bukan waktu kerja nyata"></span>
+      </div>
+      <span class="sim-badge" id="sim-badge" title="Semua aktivitas dan status adalah fixture demo, bukan data kerja nyata">SIMULASI: data demo</span>
+      <nav class="hud-actions" aria-label="Menu">
+        <button type="button" class="btn" id="btn-directory" aria-controls="directory-panel" aria-expanded="false"><span>Direktori</span><kbd>M</kbd></button>
+        <button type="button" class="btn" id="btn-settings" aria-haspopup="dialog"><span>Pengaturan</span></button>
+        <button type="button" class="btn" id="btn-help" aria-haspopup="dialog"><span>Kontrol</span><kbd>H</kbd></button>
+      </nav>
+    </header>
+
+    <div class="prompt" id="prompt" role="status" aria-live="polite" hidden></div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <div class="activity-chip" id="activity" role="status" hidden>
+      <span id="activity-text"></span>
+      <button type="button" class="btn" id="activity-end">Selesai <kbd>Esc</kbd></button>
+    </div>
+    <div class="fade" id="fade" aria-hidden="true"></div>
+
+    <div class="touch" id="touch" aria-hidden="true">
+      <div class="joystick" id="joystick"><div class="joystick-knob" id="joystick-knob"></div></div>
+      <div class="touch-buttons">
+        <button type="button" class="touch-btn" id="touch-run" aria-pressed="false">Lari</button>
+        <button type="button" class="touch-btn primary" id="touch-interact">Aksi</button>
+      </div>
+    </div>
+
+    <aside class="panel directory" id="directory-panel" aria-label="Direktori ruang dan persona" hidden tabindex="-1">
+      <div class="panel-head">
+        <h2>Direktori</h2>
+        <button type="button" class="btn icon" id="directory-close" aria-label="Tutup direktori">Tutup</button>
+      </div>
+      <div class="directory-body" id="directory-body">
+        <p class="muted" id="directory-state">Memuat data ruang...</p>
+      </div>
+    </aside>
+
+    <section class="fallback" id="fallback" hidden aria-labelledby="fallback-title">
+      <h1 id="fallback-title">kantor-rpg tanpa 3D</h1>
+      <p id="fallback-reason"></p>
+      <p>Direktori ruang, persona dan dokumen tetap dapat dipakai dengan keyboard atau sentuhan.</p>
+    </section>
+  </div>
+
+  <dialog class="dialog" id="dlg-help" aria-labelledby="dlg-help-title">
+    <h2 id="dlg-help-title">Kontrol</h2>
+    <dl class="keys">
+      <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / panah</dt><dd>Berjalan relatif kamera</dd>
+      <dt><kbd>Shift</kbd></dt><dd>Lari</dd>
+      <dt><kbd>E</kbd> / <kbd>Enter</kbd></dt><dd>Interaksi (tangga, lift, meja denah, papan)</dd>
+      <dt><kbd>R</kbd></dt><dd>Kembalikan kamera ke belakang avatar</dd>
+      <dt><kbd>Q</kbd> <kbd>Z</kbd></dt><dd>Putar kamera</dd>
+      <dt>Roda mouse / <kbd>+</kbd> <kbd>-</kbd></dt><dd>Zoom (terbatas)</dd>
+      <dt>Seret di dunia</dt><dd>Putar kamera</dd>
+      <dt><kbd>M</kbd></dt><dd>Buka/tutup direktori (Tab tetap untuk berpindah fokus)</dd>
+      <dt><kbd>Esc</kbd></dt><dd>Tutup dialog atau panel</dd>
+      <dt>Sentuh</dt><dd>Joystick kiri untuk berjalan, tombol Aksi di kanan, seret sisi kanan untuk kamera</dd>
+    </dl>
+    <form method="dialog"><button class="btn primary" value="close">Mengerti</button></form>
+  </dialog>
+
+  <dialog class="dialog" id="dlg-settings" aria-labelledby="dlg-settings-title">
+    <h2 id="dlg-settings-title">Pengaturan</h2>
+    <form method="dialog" class="settings">
+      <fieldset>
+        <legend>Tema</legend>
+        <label><input type="radio" name="theme" value="system" /> Ikuti sistem</label>
+        <label><input type="radio" name="theme" value="light" /> Terang</label>
+        <label><input type="radio" name="theme" value="dark" /> Gelap</label>
+      </fieldset>
+      <fieldset>
+        <legend>Kualitas grafis</legend>
+        <label><input type="radio" name="quality" value="auto" /> Otomatis</label>
+        <label><input type="radio" name="quality" value="low" /> Ringan (tanpa bayangan)</label>
+        <label><input type="radio" name="quality" value="high" /> Tinggi</label>
+      </fieldset>
+      <fieldset>
+        <legend>Gerak dan akses</legend>
+        <label><input type="checkbox" name="reducedMotion" /> Kurangi gerak (animasi sekunder dimatikan)</label>
+        <label><input type="checkbox" name="visitor" /> Mode visitor (ruang terbatas terkunci)</label>
+      </fieldset>
+      <p class="muted small" id="settings-renderer"></p>
+      <div class="row"><button class="btn primary" value="close">Selesai</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog wide" id="dlg-info" aria-labelledby="dlg-info-title">
+    <h2 id="dlg-info-title"></h2>
+    <div id="dlg-info-body"></div>
+    <form method="dialog"><button class="btn primary" value="close">Tutup</button></form>
+  </dialog>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

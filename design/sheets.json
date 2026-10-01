@@ -1,0 +1,22 @@
+{
+ "project": "kantor-rpg",
+ "status": "register target; status per sheet diperbarui oleh generator CAD",
+ "titleblock": {"watermark": "KONSEP - BUKAN UNTUK KONSTRUKSI", "units": "mm (DXF), m (label)", "north": "Y+ = utara"},
+ "sheets": [
+  {"id": "A-001", "title": "Cover, indeks dan catatan umum", "discipline": "A", "size": "A3", "scale": "NTS", "content": "index", "milestone": "M3"},
+  {"id": "A-101", "title": "Denah Lantai 1", "discipline": "A", "size": "A2", "scale": "1:100", "floor": "L1", "content": "plan", "milestone": "M1"},
+  {"id": "A-102", "title": "Denah Lantai 2", "discipline": "A", "size": "A2", "scale": "1:100", "floor": "L2", "content": "plan", "milestone": "M3"},
+  {"id": "A-103", "title": "Room schedule", "discipline": "A", "size": "A3", "scale": "NTS", "content": "room_schedule", "milestone": "M3"},
+  {"id": "A-201", "title": "Layout furniture Lantai 1", "discipline": "A", "size": "A2", "scale": "1:100", "floor": "L1", "content": "furniture", "milestone": "M3"},
+  {"id": "A-202", "title": "Layout furniture Lantai 2", "discipline": "A", "size": "A2", "scale": "1:100", "floor": "L2", "content": "furniture", "milestone": "M3"},
+  {"id": "A-301", "title": "Tampak", "discipline": "A", "size": "A3", "scale": "1:200", "content": "elevations", "milestone": "M3"},
+  {"id": "A-401", "title": "Potongan", "discipline": "A", "size": "A3", "scale": "1:100", "content": "sections", "milestone": "M3"},
+  {"id": "I-101", "title": "Finish interior dan material", "discipline": "I", "size": "A3", "scale": "1:200", "content": "finishes", "milestone": "M3"},
+  {"id": "ICT-001", "title": "Topologi jaringan (virtual)", "discipline": "ICT", "size": "A3", "scale": "NTS", "content": "topology", "milestone": "M3"},
+  {"id": "ICT-101", "title": "Outlet, AP dan kamera Lantai 1", "discipline": "ICT", "size": "A2", "scale": "1:100", "floor": "L1", "content": "ict_plan", "milestone": "M3"},
+  {"id": "ICT-102", "title": "Outlet, AP dan kamera Lantai 2", "discipline": "ICT", "size": "A2", "scale": "1:100", "floor": "L2", "content": "ict_plan", "milestone": "M3"},
+  {"id": "ICT-201", "title": "Elevasi rack", "discipline": "ICT", "size": "A3", "scale": "1:20", "content": "rack_elevation", "milestone": "M3"},
+  {"id": "ICT-301", "title": "Pathway dan riser", "discipline": "ICT", "size": "A3", "scale": "1:200", "content": "pathways", "milestone": "M3"},
+  {"id": "ICT-401", "title": "Port dan device schedule", "discipline": "ICT", "size": "A3", "scale": "NTS", "content": "port_schedule", "milestone": "M3"}
+ ]
+}

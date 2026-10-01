@@ -1,0 +1,331 @@
+{
+ "pairs": [
+  {
+   "theme": "light",
+   "fg": "ink",
+   "bg": "bg",
+   "fgHex": "#1d2a23",
+   "bgHex": "#f4ecdc",
+   "ratio": 12.7,
+   "need": 4.5,
+   "what": "teks utama di latar",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "ink",
+   "bg": "surface",
+   "fgHex": "#1d2a23",
+   "bgHex": "#fffaf0",
+   "ratio": 14.34,
+   "need": 4.5,
+   "what": "teks utama di panel",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "ink",
+   "bg": "surface-2",
+   "fgHex": "#1d2a23",
+   "bgHex": "#efe3cc",
+   "ratio": 11.74,
+   "need": 4.5,
+   "what": "teks di tag/hover",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "ink-2",
+   "bg": "surface",
+   "fgHex": "#4b5a51",
+   "bgHex": "#fffaf0",
+   "ratio": 7.01,
+   "need": 4.5,
+   "what": "teks sekunder di panel",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "ink-2",
+   "bg": "bg",
+   "fgHex": "#4b5a51",
+   "bgHex": "#f4ecdc",
+   "ratio": 6.21,
+   "need": 4.5,
+   "what": "teks sekunder di latar",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "on-green",
+   "bg": "green",
+   "fgHex": "#fffaf0",
+   "bgHex": "#1f4d3a",
+   "ratio": 9.26,
+   "need": 4.5,
+   "what": "teks tombol utama / chip lantai",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "green",
+   "bg": "surface",
+   "fgHex": "#1f4d3a",
+   "bgHex": "#fffaf0",
+   "ratio": 9.26,
+   "need": 4.5,
+   "what": "judul hijau di panel",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "on-accent",
+   "bg": "accent",
+   "fgHex": "#fffaf0",
+   "bgHex": "#a34a27",
+   "ratio": 5.66,
+   "need": 4.5,
+   "what": "badge SIMULASI / tag terkunci",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "accent-ink",
+   "bg": "surface",
+   "fgHex": "#9a4322",
+   "bgHex": "#fffaf0",
+   "ratio": 6.31,
+   "need": 4.5,
+   "what": "tautan dokumen",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "control-border",
+   "bg": "surface",
+   "fgHex": "#7d6a4f",
+   "bgHex": "#fffaf0",
+   "ratio": 4.99,
+   "need": 3.0,
+   "what": "batas kontrol",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "control-border",
+   "bg": "bg",
+   "fgHex": "#7d6a4f",
+   "bgHex": "#f4ecdc",
+   "ratio": 4.42,
+   "need": 3.0,
+   "what": "batas kontrol di latar",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "focus",
+   "bg": "bg",
+   "fgHex": "#b8571f",
+   "bgHex": "#f4ecdc",
+   "ratio": 4.04,
+   "need": 3.0,
+   "what": "cincin fokus di latar",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "focus",
+   "bg": "surface",
+   "fgHex": "#b8571f",
+   "bgHex": "#fffaf0",
+   "ratio": 4.57,
+   "need": 3.0,
+   "what": "cincin fokus di panel",
+   "ok": true
+  },
+  {
+   "theme": "light",
+   "fg": "accent",
+   "bg": "surface",
+   "fgHex": "#a34a27",
+   "bgHex": "#fffaf0",
+   "ratio": 5.66,
+   "need": 3.0,
+   "what": "garis prompt interaksi",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "ink",
+   "bg": "bg",
+   "fgHex": "#f2e9d6",
+   "bgHex": "#121d18",
+   "ratio": 14.33,
+   "need": 4.5,
+   "what": "teks utama di latar",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "ink",
+   "bg": "surface",
+   "fgHex": "#f2e9d6",
+   "bgHex": "#1b2a22",
+   "ratio": 12.42,
+   "need": 4.5,
+   "what": "teks utama di panel",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "ink",
+   "bg": "surface-2",
+   "fgHex": "#f2e9d6",
+   "bgHex": "#24372d",
+   "ratio": 10.49,
+   "need": 4.5,
+   "what": "teks di tag/hover",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "ink-2",
+   "bg": "surface",
+   "fgHex": "#c2b8a2",
+   "bgHex": "#1b2a22",
+   "ratio": 7.62,
+   "need": 4.5,
+   "what": "teks sekunder di panel",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "ink-2",
+   "bg": "bg",
+   "fgHex": "#c2b8a2",
+   "bgHex": "#121d18",
+   "ratio": 8.79,
+   "need": 4.5,
+   "what": "teks sekunder di latar",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "on-green",
+   "bg": "green",
+   "fgHex": "#10201a",
+   "bgHex": "#9bd0b1",
+   "ratio": 9.69,
+   "need": 4.5,
+   "what": "teks tombol utama / chip lantai",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "green",
+   "bg": "surface",
+   "fgHex": "#9bd0b1",
+   "bgHex": "#1b2a22",
+   "ratio": 8.6,
+   "need": 4.5,
+   "what": "judul hijau di panel",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "on-accent",
+   "bg": "accent",
+   "fgHex": "#1b120c",
+   "bgHex": "#e48b62",
+   "ratio": 7.17,
+   "need": 4.5,
+   "what": "badge SIMULASI / tag terkunci",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "accent-ink",
+   "bg": "surface",
+   "fgHex": "#f0a07a",
+   "bgHex": "#1b2a22",
+   "ratio": 7.15,
+   "need": 4.5,
+   "what": "tautan dokumen",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "control-border",
+   "bg": "surface",
+   "fgHex": "#8e9f94",
+   "bgHex": "#1b2a22",
+   "ratio": 5.38,
+   "need": 3.0,
+   "what": "batas kontrol",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "control-border",
+   "bg": "bg",
+   "fgHex": "#8e9f94",
+   "bgHex": "#121d18",
+   "ratio": 6.21,
+   "need": 3.0,
+   "what": "batas kontrol di latar",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "focus",
+   "bg": "bg",
+   "fgHex": "#f2b36b",
+   "bgHex": "#121d18",
+   "ratio": 9.41,
+   "need": 3.0,
+   "what": "cincin fokus di latar",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "focus",
+   "bg": "surface",
+   "fgHex": "#f2b36b",
+   "bgHex": "#1b2a22",
+   "ratio": 8.16,
+   "need": 3.0,
+   "what": "cincin fokus di panel",
+   "ok": true
+  },
+  {
+   "theme": "dark",
+   "fg": "accent",
+   "bg": "surface",
+   "fgHex": "#e48b62",
+   "bgHex": "#1b2a22",
+   "ratio": 5.83,
+   "need": 3.0,
+   "what": "garis prompt interaksi",
+   "ok": true
+  },
+  {
+   "theme": "both",
+   "fg": "#1d2a23",
+   "bg": "#fffaf0",
+   "ratio": 14.34,
+   "need": 4.5,
+   "what": "label ruang",
+   "ok": true
+  },
+  {
+   "theme": "both",
+   "fg": "#8a3b1c",
+   "bg": "#fffaf0",
+   "ratio": 7.41,
+   "need": 4.5,
+   "what": "label ruang terkunci",
+   "ok": true
+  }
+ ],
+ "mediaDarkMismatch": {}
+}

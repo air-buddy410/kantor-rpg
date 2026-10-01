@@ -1,0 +1,40 @@
+{
+ "label": "fixed route benchmark; client-specific measurement",
+ "seconds": 60.2,
+ "frames": 340,
+ "fpsAverage": 5.6,
+ "frameMsMedian": 166.4,
+ "frameMsP95": 395.6,
+ "frameMsMax": 678.9,
+ "framesOver33ms": 298,
+ "dropRate": 0.876,
+ "distanceM": 42.8,
+ "floorSwitches": 1,
+ "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+ "lowQuality": true,
+ "pixelRatio": 1,
+ "viewport": [
+  1366,
+  820
+ ],
+ "jsHeapMB": 14.5,
+ "stats": {
+  "drawCalls": 53,
+  "triangles": 39716,
+  "geometries": 98,
+  "textures": 18,
+  "floorTriangles": {
+   "L1": 25044,
+   "L2": 25066
+  }
+ },
+ "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36",
+ "environment": "Claude Code cloud container, headless Chromium 141, SwiftShader software WebGL, no GPU",
+ "loadMsUntilAppReady": 828,
+ "navigation": {
+  "domContentLoadedMs": 690.1000000005588,
+  "transferBytes": 1192618,
+  "resources": 7
+ },
+ "measuredAt": "2026-10-01T11:16:51.524Z"
+}

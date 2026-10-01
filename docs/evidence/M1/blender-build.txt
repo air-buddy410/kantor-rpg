@@ -1,0 +1,40 @@
+# kantor-rpg M1 character build log (trimmed: glTF exporter INFO lines and Blender banner removed)
+# date_utc=2026-10-01T11:04:01Z git_head=e1d5ecefe63b8c30e981a169cb0b23f57755d6e8 branch=claude/kantor-rpg-m2 (generated files uncommitted on top of HEAD)
+# blender=Blender 4.0.2 host_python=Python 3.11.15
+$ blender -b --factory-startup -noaudio --python blender/characters/build_characters.py -- --variants
+blender 4.0.2; building ['CH-CEO', 'CH-SUPERVISOR', 'CH-ARCHITECT', 'CH-ICTSPEC', 'CH-NETINSTALL', 'CH-VISUAL', 'CH-QA']
+BUILD CH-CEO: tris={'body': 11028, 'hair_short_tuft': 3760, 'hair_swept': 3152, 'hair_spiky_soft': 3456} visible_lod0=14788 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.845, 'run_native_speed_mps': 2.416, 'walk_stance_travel_m': 0.49, 'run_stance_travel_m': 0.551} glb_bytes=909716 blend=blender/out/ch-ceo.blend glb=app/public/assets/characters/ch-ceo.glb secs=4.3
+BUILD CH-SUPERVISOR: tris={'body': 11732, 'hair_swept': 3152} visible_lod0=14884 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.835, 'run_native_speed_mps': 2.388, 'walk_stance_travel_m': 0.485, 'run_stance_travel_m': 0.545} glb_bytes=720136 blend=blender/out/ch-supervisor.blend glb=app/public/assets/characters/ch-supervisor.glb secs=3.2
+BUILD CH-ARCHITECT: tris={'body': 10240, 'hair_bun': 3060} visible_lod0=13300 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.873, 'run_native_speed_mps': 2.499, 'walk_stance_travel_m': 0.507, 'run_stance_travel_m': 0.57} glb_bytes=676244 blend=blender/out/ch-architect.blend glb=app/public/assets/characters/ch-architect.glb secs=3.0
+BUILD CH-ICTSPEC: tris={'body': 10272, 'hair_bob': 3536, 'prop_tablet': 484} visible_lod0=14292 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.795, 'run_native_speed_mps': 2.274, 'walk_stance_travel_m': 0.461, 'run_stance_travel_m': 0.519} glb_bytes=703484 blend=blender/out/ch-ictspec.blend glb=app/public/assets/characters/ch-ictspec.glb secs=2.9
+BUILD CH-NETINSTALL: tris={'body': 11780, 'hair_cap': 1956} visible_lod0=13736 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.818, 'run_native_speed_mps': 2.338, 'walk_stance_travel_m': 0.475, 'run_stance_travel_m': 0.533} glb_bytes=692452 blend=blender/out/ch-netinstall.blend glb=app/public/assets/characters/ch-netinstall.glb secs=3.1
+BUILD CH-VISUAL: tris={'body': 10644, 'hair_spiky_soft': 3456, 'prop_sketchbook': 412} visible_lod0=14512 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.811, 'run_native_speed_mps': 2.32, 'walk_stance_travel_m': 0.47, 'run_stance_travel_m': 0.529} glb_bytes=710520 blend=blender/out/ch-visual.blend glb=app/public/assets/characters/ch-visual.glb secs=2.8
+BUILD CH-QA: tris={'body': 10952, 'hair_side_part': 3356, 'prop_clipboard': 604} visible_lod0=14912 actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.826, 'run_native_speed_mps': 2.361, 'walk_stance_travel_m': 0.479, 'run_stance_travel_m': 0.538} glb_bytes=723692 blend=blender/out/ch-qa.blend glb=app/public/assets/characters/ch-qa.glb secs=3.0
+VARIANTS CH-CEO hair=['short_tuft', 'swept', 'spiky_soft'] palettes=['forest', 'terracotta', 'oat'] (embedded in ch-ceo.glb)
+BUILD_DONE failures=0
+exit_code=0 wall_seconds=23
+# note: 'Draco mesh compression is not available' is printed by the 4.0 exporter on load; Draco is not used
+$ (idempotency) second identical build, compare GLB sha256
+second_build_exit_code=0
+IDEMPOTENT: all GLB sha256 identical across two builds
+8109d390fe6346101afbfbcc0bdc715aaed3b81aecbb54a5bc6b55520e1dcad0  app/public/assets/characters/ch-architect.glb
+c1a8c8401795e0b13a2d70e62957076d73707ad4e72de40ca7efb4fd298bf07a  app/public/assets/characters/ch-ceo.glb
+4076090da806ecf01898f3d5f2bf3e670ec4453913556a10b828ba37f4cbe33a  app/public/assets/characters/ch-ictspec.glb
+b824cc786bd1b88ce7c6269b3d517abe67aa2bda67fa2dd3742e8780ce6f5e5e  app/public/assets/characters/ch-netinstall.glb
+44f2357bff55de35596c49137d989a73590edcb59e4c026304390bafe437f480  app/public/assets/characters/ch-qa.glb
+ec6e0b613a4a3193aa5e74509d0e0023f87638e6eede39b7c6b97f758498adbb  app/public/assets/characters/ch-supervisor.glb
+387cc101819f0750bfd9df5ac26176f24c37e0b2cef4acdad654fcfd92b21e11  app/public/assets/characters/ch-visual.glb
+676244 app/public/assets/characters/ch-architect.glb
+909716 app/public/assets/characters/ch-ceo.glb
+703484 app/public/assets/characters/ch-ictspec.glb
+692452 app/public/assets/characters/ch-netinstall.glb
+723692 app/public/assets/characters/ch-qa.glb
+720136 app/public/assets/characters/ch-supervisor.glb
+710520 app/public/assets/characters/ch-visual.glb
+651616 blender/out/ch-architect.blend
+776097 blender/out/ch-ceo.blend
+663504 blender/out/ch-ictspec.blend
+651297 blender/out/ch-netinstall.blend
+674435 blender/out/ch-qa.blend
+670516 blender/out/ch-supervisor.blend
+671764 blender/out/ch-visual.blend
