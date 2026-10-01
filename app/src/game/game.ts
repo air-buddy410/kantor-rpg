@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { buildFloor, MaterialCache, toThree, type FloorBuild } from '../world/build';
 import { NavGrid } from '../world/navgrid';
-import type { AccessMode, DerivedWalls, Fixture, FloorId, Room, Vec2, VerticalLink, World } from '../world/types';
+import type { AccessMode, ActivitySlot, DerivedWalls, Fixture, FloorId, Room, Vec2, VerticalLink, World } from '../world/types';
 import { $, anyDialogOpen, el, openDialog, toast } from '../ui/dom';
 import { renderDirectory } from '../ui/directory';
 import type { Settings } from '../ui/settings';
@@ -160,6 +160,9 @@ export class Game {
         });
       }
     }
+    for (const slot of this.world.activitySlots) {
+      list.push({ id: `slot:${slot.id}`, kind: 'fixture', floor: slot.floor, pos: slot.pos, radius: 0.85, label: slotVerb(slot), run: () => this.startActivity(slot) });
+    }
     for (const fx of this.world.fixtures) {
       const inter = this.world.catalog[fx.type]?.interaction;
       if (!inter) continue;
@@ -191,8 +194,10 @@ export class Game {
       else if (k === '-') this.rig.zoom(1.18);
       else if (k === 'm') this.toggleDirectory();
       else if (k === 'h') openDialog($('dlg-help') as HTMLDialogElement);
+      else if (k === 'escape' && this.activity) this.endActivity(true);
     };
     $('touch-interact').addEventListener('click', () => this.interact());
+    $('activity-end').addEventListener('click', () => this.endActivity(true));
     $('touch-run').addEventListener('click', (e) => {
       this.input.runToggle = !this.input.runToggle;
       (e.currentTarget as HTMLElement).setAttribute('aria-pressed', String(this.input.runToggle));
@@ -271,17 +276,76 @@ export class Game {
     if (inter === 'directory') { this.toggleDirectory(true); return; }
     if (inter === 'blueprint') { showBlueprintCard(this.world); return; }
     if (inter === 'artwork') { showArtworkCard(fx); return; }
-    // Activities without a backend are labelled virtual and give real feedback.
-    const anim: Record<string, string> = { coffee: 'coffee', billiards: 'billiards', game: 'game', exercise: 'exercise' };
-    const name = anim[inter];
-    if (name && this.player.avatar.has(name)) {
-      this.player.avatar.play(name);
-      this.activityUntil = performance.now() + 3500;
-    }
-    toast(`${this.fixtureLabel(fx, inter)}: dimulai. Aktivitas virtual, tidak mengubah status kerja.`);
+    // Activities without a backend run on the fixture's own slots so NPCs see
+    // the reservation; feedback is labelled virtual.
+    const slots = this.world.activitySlots.filter((sl) => sl.fixture === fx.id);
+    const free = slots.find((sl) => !this.slotTakenBy(sl.id));
+    if (free) this.startActivity(free);
+    else if (slots.length) toast(`Sedang dipakai ${this.slotTakenBy(slots[0].id)}. Coba lagi nanti.`);
+    else toast(`${this.fixtureLabel(fx, inter)}: aktivitas virtual, tidak mengubah status kerja.`);
   }
 
   private activityUntil = 0;
+  activity: { slot: ActivitySlot; startedAt: number; shots: number; pots: number; seed: number } | null = null;
+
+  /** Name of the NPC holding a slot reservation, or null when free. */
+  private slotTakenBy(slotId: string): string | null {
+    const r = this.npcs.sim.reservations.get(slotId);
+    if (!r || r.npc === PLAYER_ID || r.expires <= this.npcs.sim.time) return null;
+    return this.npcs.sim.npcs.find((n) => n.id === r.npc)?.name ?? 'persona lain';
+  }
+
+  startActivity(slot: ActivitySlot) {
+    if (this.activity?.slot.id === slot.id) { this.activityAction(); return; }
+    if (this.activity) this.endActivity(false);
+    const taker = this.slotTakenBy(slot.id);
+    if (taker) { toast(`Sedang dipakai ${taker}.`); return; }
+    const fr = this.floors.get(slot.floor)!;
+    const spot = fr.nav[this.mode].nearestWalkable(slot.pos, 0.9, fr.reach[this.mode]);
+    if (!spot) { toast('Tempat ini tidak dapat dicapai.'); return; }
+    this.player.pos = spot;
+    this.player.facing = slot.facing;
+    this.npcs.sim.reservations.set(slot.id, { npc: PLAYER_ID, expires: Number.POSITIVE_INFINITY });
+    this.activity = { slot, startedAt: performance.now(), shots: 0, pots: 0, seed: hashString(slot.id) };
+    $('activity').hidden = false;
+    this.renderActivity();
+  }
+
+  /** E while busy: billiards and games have a small action, others finish. */
+  private activityAction() {
+    const a = this.activity;
+    if (!a) return;
+    if (a.slot.activity === 'billiards') {
+      a.shots++;
+      // Deterministic pseudo-random outcome per slot and shot; labelled simulation.
+      const roll = ((a.seed ^ (a.shots * 2654435761)) >>> 0) % 100;
+      if (roll < 38) a.pots++;
+      toast(roll < 38 ? `Masuk! ${a.pots} dari ${a.shots} pukulan (simulasi)` : `Meleset. ${a.pots} dari ${a.shots} pukulan (simulasi)`);
+      this.renderActivity();
+    } else if (a.slot.activity === 'game') {
+      a.shots++;
+      toast(`Level ${a.shots + 1} (permainan virtual, tanpa skor tersimpan)`);
+      this.renderActivity();
+    } else this.endActivity(true);
+  }
+
+  endActivity(announce: boolean) {
+    const a = this.activity;
+    if (!a) return;
+    const r = this.npcs.sim.reservations.get(a.slot.id);
+    if (r?.npc === PLAYER_ID) this.npcs.sim.reservations.delete(a.slot.id);
+    this.activity = null;
+    $('activity').hidden = true;
+    if (announce) toast('Aktivitas selesai.');
+  }
+
+  private renderActivity() {
+    const a = this.activity;
+    if (!a) return;
+    const secs = Math.floor((performance.now() - a.startedAt) / 1000);
+    const extra = a.slot.activity === 'billiards' ? ` · ${a.pots}/${a.shots} masuk` : a.slot.activity === 'game' ? ` · level ${a.shots + 1}` : '';
+    $('activity-text').textContent = `${slotVerb(a.slot)} · ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}${extra} (aktivitas virtual)`;
+  }
 
   private transition(fn: () => void, holdMs = 220) {
     if (this.transitioning) return;
@@ -336,6 +400,7 @@ export class Game {
 
   private interact() {
     if (anyDialogOpen() || this.transitioning) return;
+    if (this.activity) { this.activityAction(); return; }
     if (this.focusTarget) this.focusTarget.run();
     else toast('Tidak ada yang bisa dipakai di dekat sini.');
   }
@@ -458,15 +523,24 @@ export class Game {
         if (this.input.held('z')) this.rig.rotate(dt * 1.6);
       }
     }
-    const moved = this.player.step(dt, dir, run, nav);
+    if (this.activity && Math.hypot(dir[0], dir[1]) > 0.1) this.endActivity(false);
+    const moved = this.activity ? 0 : this.player.step(dt, dir, run, nav);
     const speed = moved / Math.max(dt, 1e-4);
-    if (performance.now() > this.activityUntil || speed > 0.2) {
+    if (this.activity) {
+      this.player.avatar.play(slotClip(this.activity.slot));
+      this.player.avatar.setFacing(this.activity.slot.facing);
+      if (Math.floor(performance.now() / 500) !== Math.floor((performance.now() - dt * 1000) / 500)) this.renderActivity();
+    } else if (performance.now() > this.activityUntil || speed > 0.2) {
       this.player.avatar.play(speed > 2.4 ? 'run' : speed > 0.2 ? 'walk' : 'idle');
     }
     this.player.avatar.setGroundSpeed(speed);
     this.player.avatar.update(dt, Math.min(1, speed / 2), this.settings.reducedMotion);
     const pv = this.playerVec();
     this.player.avatar.root.position.copy(pv);
+    if (this.activity?.slot.pose === 'sit') {
+      const el = this.world.floors.find((f) => f.id === this.activity!.slot.floor)!.elevation;
+      this.player.avatar.root.position.copy(toThree(this.activity.slot.pos[0], this.activity.slot.pos[1], el));
+    }
     this.rig.update(pv, dt);
     this.materials.cutaway.uPlayer.value.set(pv.x, pv.y + 0.9, pv.z);
     this.materials.cutaway.uCamera.value.copy(this.rig.camera.position);
@@ -482,9 +556,18 @@ export class Game {
   }
 
   private updateFocus(dt: number) {
-    const it = this.nearestInteractable();
     const prompt = $('prompt');
-    if (it !== this.focusTarget) {
+    if (this.activity) {
+      const act = this.activity.slot.activity;
+      const key = matchMedia('(pointer: coarse)').matches ? 'Aksi' : 'E';
+      prompt.textContent = `${key}: ${act === 'billiards' ? 'Pukul bola' : act === 'game' ? 'Main ronde berikut' : 'Selesai'}`;
+      prompt.hidden = false;
+      this.focusTarget = null;
+      this.marker.visible = false;
+      return;
+    }
+    const it = this.nearestInteractable();
+    if (it !== this.focusTarget || prompt.hidden === !!it) {
       this.focusTarget = it;
       if (it) {
         prompt.textContent = `${matchMedia('(pointer: coarse)').matches ? 'Aksi' : 'E'}: ${it.label}`;
@@ -547,6 +630,36 @@ export class Game {
       floorTriangles: Object.fromEntries([...this.floors].map(([k, v]) => [k, Math.round(v.build.triangles)])),
     };
   }
+}
+
+const PLAYER_ID = 'ACT-BUDI';
+
+const VERB: Record<string, string> = {
+  desk: 'Pakai workstation', coffee: 'Bikin kopi', chat: 'Diskusi', read: 'Membaca', stretch: 'Peregangan',
+  game: 'Main game', billiards: 'Main biliar', exercise: 'Olahraga', rest: 'Istirahat',
+};
+
+export function slotVerb(slot: ActivitySlot): string {
+  if (slot.pose === 'sit' && (slot.activity === 'chat' || slot.activity === 'rest' || slot.activity === 'read')) return 'Duduk';
+  return VERB[slot.activity] ?? 'Pakai';
+}
+
+export function slotClip(slot: ActivitySlot): string {
+  const sit = slot.pose === 'sit';
+  switch (slot.activity) {
+    case 'desk': return sit ? 'type' : 'read';
+    case 'chat': return sit ? 'sit' : 'talk';
+    case 'read': return sit ? 'sit' : 'read';
+    case 'rest': return 'sit';
+    case 'game': return sit ? 'game' : 'talk';
+    default: return slot.activity;
+  }
+}
+
+function hashString(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
+  return h >>> 0;
 }
 
 export function insidePoly(p: Vec2, poly: Vec2[]): boolean {

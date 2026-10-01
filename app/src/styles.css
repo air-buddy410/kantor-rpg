@@ -149,6 +149,12 @@ kbd {
   position: absolute; left: 50%; top: 84px; transform: translateX(-50%);
   background: var(--green); color: var(--on-green); padding: 8px 16px; border-radius: 12px; box-shadow: var(--shadow); max-width: min(90vw, 520px);
 }
+.activity-chip {
+  position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px; background: var(--surface); color: var(--ink);
+  border: 2px solid var(--green); border-radius: 999px; padding: 6px 6px 6px 16px; box-shadow: var(--shadow); max-width: calc(100vw - 24px);
+}
+.activity-chip .btn { box-shadow: none; }
 .fade { position: absolute; inset: 0; background: #1d2a23; opacity: 0; pointer-events: none; transition: opacity 260ms ease; }
 .fade.on { opacity: 1; }
 
@@ -233,6 +239,7 @@ kbd {
   .hud-actions .btn { flex: 1; justify-content: center; padding: 6px 8px; }
   .sim-badge { font-size: 0.8rem; }
   .toast { top: auto; bottom: 180px; }
+  .activity-chip { bottom: 240px; font-size: 0.9rem; }
   .directory { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 72vh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
 }
 /* Tablet: side sheet on the left so the right-hand thumb keeps the action button. */

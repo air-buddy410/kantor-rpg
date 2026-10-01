@@ -15,9 +15,11 @@ export class Input {
       const k = e.key.toLowerCase();
       if (anyDialogOpen()) return;
       if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(k)) e.preventDefault();
-      if (!e.repeat && (k === 'e' || k === 'enter') && !(document.activeElement instanceof HTMLButtonElement) && !(document.activeElement instanceof HTMLAnchorElement)) {
-        this.onInteract();
-      }
+      // Enter on a focused button/link must activate that control, not the world;
+      // E has no native meaning, so it always interacts (focus often rests on a
+      // HUD button after using the directory).
+      const onControl = document.activeElement instanceof HTMLButtonElement || document.activeElement instanceof HTMLAnchorElement;
+      if (!e.repeat && (k === 'e' || (k === 'enter' && !onControl))) this.onInteract();
       if (!e.repeat) this.onKey(k);
       this.keys.add(k);
     });

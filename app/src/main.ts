@@ -118,6 +118,9 @@ function boot() {
     stats: () => game.stats(),
     npcs: () => game.npcs.sim.npcs.map((n) => ({ id: n.id, floor: n.floor, pos: n.pos, phase: n.phase, activity: n.activity, slot: n.slot, workStatus: n.workStatus })),
     simTime: () => game.npcs.sim.time,
+    // Test-only boundary helper: occupies a slot as an NPC would.
+    reserveForTest: (slot: string, npc: string) => game.npcs.sim.reservations.set(slot, { npc, expires: game.npcs.sim.time + 600 }),
+    reservations: () => [...game.npcs.sim.reservations.entries()].map(([k, r]) => [k, r.npc]),
     renderer: game.rendererName,
     // Test/benchmark helper: drives the CEO with the normal movement code along
     // a navgrid path (no teleport). Resolves false when no path exists.
