@@ -43,5 +43,10 @@ jobs:
         run: npm run build
       - name: Install Chromium for Playwright
         run: npx playwright install --with-deps chromium
-      - name: E2E (desktop, tablet, mobile viewports)
+      - name: E2E world (desktop, tablet, mobile viewports)
         run: npx playwright test tests/e2e/world.spec.ts
+      - name: E2E NPC, activities, studios, states, axe (desktop)
+        run: npx playwright test tests/e2e/npc.spec.ts tests/e2e/activity.spec.ts tests/e2e/studio.spec.ts tests/e2e/states.spec.ts tests/e2e/a11y.spec.ts --project=desktop
+      - name: Licence audit
+        working-directory: .
+        run: python3 tools/license_audit.py --out /tmp/license-audit.json
