@@ -246,8 +246,7 @@ def test_plan_origin_maps_world_metres_to_paper(built):
     assert lay["frame"][1] + 30 < oy and oy + 240 < lay["frame"][3]
 
 
-def test_unimplemented_content_is_refused():
-    assert gen.main(["--sheets", "A-103"]) == 2
+def test_unknown_sheet_is_refused():
     assert gen.main(["--sheets", "X-999"]) == 2
 
 

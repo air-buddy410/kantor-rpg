@@ -84,7 +84,7 @@ def poster_pdf(out_pdf: Path, out_png: Path) -> dict:
     cap = json.loads((ROOT / "design" / "derived" / "capacity.json").read_text(encoding="utf-8"))
     ict = json.loads((ROOT / "design" / "derived" / "ict-portmap.json").read_text(encoding="utf-8"))
     reg = json.loads((ROOT / "drawings" / "register.json").read_text(encoding="utf-8"))
-    produced = [s for s in reg.get("sheets", []) if s.get("status") == "produced"]
+    produced = [s for s in reg.get("sheets", []) if str(s.get("status", "")).startswith("produced")]
     facts = [
         ("2 lantai", f"{int(cap['gross_m2'])} m2 gross (proposal konsep)"),
         (f"{sum(1 for r in world['rooms'] if r['category'] != 'shaft')} ruang", "kerja di L1, rekreasi di L2"),

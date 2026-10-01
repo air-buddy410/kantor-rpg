@@ -15,18 +15,20 @@ Aturan:
 
 | Hal | Nilai |
 |---|---|
-| File | `cad/out/<ID>.dxf` (contoh `A-101.dxf`), pasangan hitungan `cad/out/<ID>.counts.json` |
+| File | 15 lembar `cad/out/<ID>.dxf` (A-001 sampai ICT-401, daftar di `drawings/register.json`), pasangan hitungan `cad/out/<ID>.counts.json` |
 | Versi | DXF R2018 (AC1032) |
 | Unit | milimeter, `$INSUNITS = 4`; model space 1:1 (world meter x 1000) |
 | Origin | (0,0) sudut barat daya L1, X timur, Y utara (Y+ = utara) |
-| Layout | tab paper space bernama sama dengan ID lembar, kertas A2 lanskap 594 x 420 mm, satu viewport skala 1:100 |
-| Title block | block `KR-TTLB` dengan atribut `KR_SHEET_ID`, `KR_TITLE`, `KR_REVISION`, `KR_SCALE`, `KR_STATUS` dan lain-lain; nilai yang sama ada sebagai custom property (DWGPROPS) |
-| Text style | `KR-SANS` dengan font `DejaVuSans.ttf`. Bila font tidak ada, AutoCAD memakai pengganti (`FONTALT`); catat font pengganti di evidence |
+| Layout | tab paper space bernama sama dengan ID lembar (lembar multi halaman: `<ID>-1`, `<ID>-2`, ...), kertas A2 594 x 420 mm atau A3 420 x 297 mm lanskap sesuai register. Gambar berskala (denah 1:100/1:200, tampak 1:200, potongan 1:100, rack 1:20) memakai satu viewport per gambar; lembar tabel (A-001, A-103, ICT-001, ICT-401) tidak punya viewport dan isinya langsung di paper space |
+| Title block | block `KR-TTLB` (A-101/A-102) atau `KR-TTLB-G` (lembar lain, satu per layout) dengan atribut `KR_SHEET_ID`, `KR_TITLE`, `KR_REVISION`, `KR_SCALE`, `KR_STATUS`, `KR_PAGE` dan lain-lain; nilai yang sama ada sebagai custom property (DWGPROPS) |
+| Text style | `KR-SANS` dengan font `DejaVuSans.ttf`, width factor 0,8 agar teks tabel muat di kolom yang diukur untuk PDF. Bila font tidak ada, AutoCAD memakai pengganti (`FONTALT`); catat font pengganti di evidence |
 | Dimstyle | `KR-100` (DIMSCALE 100, tick arsitektural, angka mm) |
 
-Layer: `A-WALL`, `A-DOOR`, `A-DOOR-IDEN`, `A-AREA` (non-plot), `A-ANNO-RMNM`, `A-FURN`, `A-FURN-IDEN` (frozen di viewport), `A-STRS`, `A-ANNO-DIMS`, `A-GRID`, `A-GRID-IDEN`, `A-ANNO-TTLB`, `A-ANNO-NOTE`, `A-ANNO-WMRK`, `A-ANNO-VPRT` (non-plot).
+Layer denah: `A-WALL`, `A-DOOR`, `A-DOOR-IDEN`, `A-AREA` (non-plot), `A-ANNO-RMNM`, `A-FURN`, `A-FURN-IDEN` (frozen di viewport), `A-STRS`, `A-ANNO-DIMS`, `A-GRID`, `A-GRID-IDEN`, `A-ANNO-TTLB`, `A-ANNO-NOTE`, `A-ANNO-WMRK`, `A-ANNO-VPRT` (non-plot).
 
-ID ruang, pintu dan fixture juga tersimpan sebagai XDATA aplikasi `KANTOR_RPG` (lihat dengan `LIST` atau `XDLIST` bila Express Tools terpasang).
+Layer lembar lain memakai awalan yang sama: `A-ELEV-*` (tampak), `A-SECT-*` (potongan), `I-FLOR-PATT` (finish), `ICT-*` (outlet, AP, kamera, tray, riser, rack, rute kabel), `A-ANNO-SCHD` (tabel). Hitungan per layer selalu ada di `<ID>.counts.json`.
+
+ID ruang, pintu, fixture, outlet, perangkat, perangkat rack dan kabel juga tersimpan sebagai XDATA aplikasi `KANTOR_RPG` (lihat dengan `LIST` atau `XDLIST` bila Express Tools terpasang).
 
 ## Prasyarat
 
@@ -64,6 +66,8 @@ Centang semua sebelum menyebut DWG "native, terverifikasi":
 - [ ] `APPLOAD` lalu muat `cad/autocad/count_by_layer.lsp`, jalankan `KRCOUNT`. File `A-101.autocad-counts.txt` terbentuk di `cad/out/`.
 - [ ] Bandingkan hitungan: `python3 cad/autocad/compare_counts.py cad/out/A-101.counts.json cad/out/A-101.autocad-counts.txt` harus "HASIL: cocok". Untuk A-101 revisi P02 contoh nilainya: `A-WALL LWPOLYLINE 50`, `A-WALL HATCH 50`, `A-ANNO-DIMS DIMENSION 28`, `A-ANNO-RMNM MTEXT 20`; angka acuan selalu dari file counts.json, bukan dari runbook ini.
 - [ ] `LIST` pada dimensi total bawah: 32000; dimensi total kiri: 24000.
+- [ ] Lembar tabel (A-001, A-103, ICT-001, ICT-401) isinya di paper space, jadi `KRCOUNT` (model space) memberi 0 untuknya: cek jumlah tab layout dan entitas paper space terhadap bagian `paperspace` di `<ID>.counts.json` secara manual (`QSELECT` per layout).
+- [ ] Ulangi checklist ini untuk setiap lembar di `drawings/register.json`; A-101 hanya contoh.
 - [ ] `ATTEDIT` / Properties pada title block: `KR_SHEET_ID` = A-101, `KR_REVISION` = revisi di `design/world.json`, `KR_STATUS` = KONSEP.
 - [ ] `DWGPROPS` tab Custom: properti `KR_*` sama dengan atribut title block.
 - [ ] Layout `A-101` viewport skala 1:100; plot ke PDF A2 tidak memotong frame.
