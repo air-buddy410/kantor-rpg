@@ -1,8 +1,65 @@
-# QA report (M0 sampai M3)
+# QA report (M0 sampai M3 + hardening)
 
-Disusun oleh pelaksana (Claude Code cloud) dari hasil eksekusi di container ini, bukan verdict review. Max dan CI memeriksa ulang. Semua angka di bawah berasal dari file evidence yang disebut.
+Disusun oleh pelaksana (Claude Code cloud) dari hasil eksekusi di container ini, bukan verdict review. Max dan CI memeriksa ulang. Semua angka di bawah berasal dari file evidence yang disebut. CI hijau bukan acceptance.
 
-## Gerbang mutu CLAUDE.md
+## Hardening (branch claude/kantor-rpg-m3-hardening, PR draft air-buddy410/kantor-rpg#5)
+
+Basis c9c278a. SHA yang diuji tercatat di `docs/progress.md` bagian Hardening dan di kepala `docs/evidence/HARDENING/clean-clone-rebuild.txt`.
+
+### Terverifikasi (dieksekusi, evidence di repo)
+
+| Item | Hasil | Evidence |
+|---|---|---|
+| Clean clone + `tools/rebuild_all.sh` (Python, CAD, signage, Blender build + validate, test, app, E2E) | exit 0, 19 menit | `docs/evidence/HARDENING/clean-clone-rebuild.txt` |
+| Validator dataset P03 | 46/46 | `docs/evidence/HARDENING/validate-world.txt` |
+| Python | 316 lolos | `docs/evidence/HARDENING/pytest.txt` |
+| Vitest | 53 lolos | `docs/evidence/HARDENING/vitest.txt` |
+| Playwright penuh desktop/tablet/mobile | 117 lolos, 0 gagal, 9 skip | `docs/evidence/HARDENING/e2e-all.txt` |
+| Test yang sebelumnya di-skip (sapa NPC di sentuh, budget tablet) | 10/10 lolos | `docs/evidence/HARDENING/e2e-unskipped-touch.txt` |
+| Rebuild clean clone E2E (termasuk states + budget) | 120 lolos, 3 skip | `clean-clone-rebuild.txt` |
+| axe WCAG 2.1 A/AA tiga viewport, dua tema | 0 pelanggaran | `docs/evidence/HARDENING/axe/` |
+| Contrast dihitung | 31/31 | `docs/evidence/HARDENING/contrast.json` |
+| Safety scan, npm audit runtime + dev, audit lisensi | 0 temuan, 0 kerentanan, 0 masalah runtime | `safety-scan.txt`, `npm-audit-*.txt`, `license-audit.json` |
+| Provenance file yang dikirim app | setiap file `app/public` terpetakan ke generator; file asing gagal | `tests/py/test_provenance.py` |
+| CSP preview yang diusulkan | versi 1 salah (memblokir tekstur blob GLTF, 2 gagal); diperbaiki, 24/24 | `e2e-csp-desktop-run1.txt`, `e2e-csp-desktop.txt` |
+| Draw call dan triangle puncak, rute tetap 25 s | desktop 53 / 185k, tablet 49 / 185k, mobile 50 / 189k (target 150 / 250k) | `budget-*.json` |
+| Karakter: 1 material atlas, LOD1, 5 ekspresi, dibuka ulang | 1151 cek lolos; LOD0 7 karakter 125 draw call menjadi 17 | `blender-characters-validate.txt`, `assets/previews/character-*.png` |
+| Bangunan: jendela + daun pintu dari dataset | 1529 cek lolos | `blender-building-validate.txt` |
+| CAD: arah bukaan + jendela + jadwal pintu/jendela dari dataset | 107 test CAD lolos (7 negatif) | `pytest-cad.txt`, `cad-generate.txt` |
+| Outlet ICT ikut furniture (Studio undo/export/rollback, paritas Python/TS) | lolos | `tests/py/test_ict_follow.py`, `app/tests/unit/ict.test.ts`, E2E studio |
+| Collision CEO/persona, tidak ada NPC beku | lolos; bug lama NPC beku di sel sudut (seed 11) ditemukan dan diperbaiki | `app/tests/unit/collision.test.ts` |
+| Q-01 trace fungsi PRD ke ruang | 27 fungsi, 38 ruang, 0 masalah | `prd-trace.json` |
+
+### Target (belum terbukti, berlabel)
+
+- FPS perangkat: harness 60 s di container SwiftShader memberi 5,6 FPS rata-rata, median 160 ms (M3: 3,2 FPS, 320 ms); ini bukan FPS perangkat (ADR-011). Target 60/30 FPS tetap target sampai diukur di perangkat Budi.
+- Transfer awal 9,73 MB (M3: 7,83 MB), masih di bawah anggaran 10 MB tetapi dekat; kenaikan dari UV atlas, LOD1 dan data morph karakter.
+
+### Blocked / tidak didukung
+
+- DWG native: BLOCKED (AutoCAD tidak tersedia); DXF + runbook.
+- M4 data private: disabled.
+
+### Belum diuji
+
+- Perangkat mobile/tablet nyata dan screen reader.
+- Header CSP di host nyata (hanya diuji di server lokal `app/scripts/serve-csp.mjs`).
+
+### Reproducibility clean clone
+
+Rebuild menghasilkan perbedaan terhadap tree commit hanya pada: timestamp/GUID di DXF, PDF dan register; baris commit di requirements matrix; urutan entri registry aset (isi identik, urutan rebuild diadopsi); dan noise float pada 2 GLB karakter (sekitar 10 nilai vertex supervisor dan 2 visual, selisih maksimum 0,008 mm, struktur JSON identik). Path absolut di laporan validator diganti path relatif repo.
+
+### Known issues hardening
+
+- Daun pintu ada di DXF dan Blender, belum di runtime (runtime hanya ambang + jendela) agar navgrid Python/TS tetap paritas.
+- Tiga karakter (Nova, Kevin, Rex) punya 3 primitive LOD0 karena prop dipegang terpisah.
+- LOD1 menghilangkan highlight mata; CEO LOD1 selalu rambut default (CEO selalu LOD0 di runtime).
+- NPC prioritas tinggi yang sedang berjalan tidak menunggu NPC prioritas rendah yang berjalan; tumpang tindih singkat masih mungkin tetapi dibatasi test soak (<= 0,2 persen langkah pasangan).
+- Tag jendela 5 pt di tampak 1:200 kecil saat dicetak A3.
+
+## M3 (arsip)
+
+### Gerbang mutu CLAUDE.md (M3)
 
 | Gerbang | Status | Bukti |
 |---|---|---|

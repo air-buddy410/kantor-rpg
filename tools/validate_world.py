@@ -601,7 +601,11 @@ def main():
     args = ap.parse_args()
     world = json.loads(Path(args.world).read_text(encoding="utf-8"))
     rep, adjacency = run(world, args.skip_seed)
-    out = {"world": args.world, "revision": world["revision"], "checks": rep.checks,
+    wp = Path(args.world).resolve()
+    root = Path(__file__).resolve().parents[1]
+    # Repo-relative so reports do not record the machine's checkout path.
+    world_label = str(wp.relative_to(root)) if wp.is_relative_to(root) else wp.name
+    out = {"world": world_label, "revision": world["revision"], "checks": rep.checks,
            "passed": sum(c["ok"] for c in rep.checks), "failed": len(rep.failures), "adjacency": adjacency}
     text = json.dumps(out, indent=1, ensure_ascii=False)
     if args.report:

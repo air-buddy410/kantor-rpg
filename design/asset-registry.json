@@ -1652,6 +1652,126 @@
       "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
     },
     {
+      "id": "BLD-L1",
+      "kind": "building",
+      "displayName": "Lantai 1 - Kerja & Kunjungan",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/building/build_building.py",
+      "sourceData": "design/world.json + design/derived/walls.json",
+      "blend": "blender/out/building.blend",
+      "glb": "app/public/assets/building/building-L1.glb",
+      "preview": "assets/previews/building-L1-interior.png",
+      "previewsExtra": [
+        "assets/previews/building-exterior.png"
+      ],
+      "dimensions": [
+        32,
+        24,
+        4.0
+      ],
+      "pivot": "world origin (south-west corner of L1)",
+      "collider": {
+        "type": "derived",
+        "source": "design/derived/walls.json"
+      },
+      "materials": [
+        "accent",
+        "door_leaf",
+        "fascia",
+        "floor_epoxy",
+        "floor_karpet_tile_matte",
+        "floor_keramik_anti_slip",
+        "floor_none",
+        "floor_vinyl_anti_statik_target",
+        "floor_vinyl_motif_kayu",
+        "glass_clear",
+        "glass_obscured",
+        "lift_door",
+        "lift_frame",
+        "lift_shaft",
+        "slab",
+        "stair_core",
+        "stair_nosing",
+        "stair_tread",
+        "threshold",
+        "wall_exterior",
+        "wall_interior",
+        "wall_top",
+        "window_frame"
+      ],
+      "triangles": {
+        "lod0Visible": 4446
+      },
+      "lod": "LOD0 only",
+      "status": "generated+validated",
+      "validatedBy": "blender/building/validate_building.py",
+      "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
+      "windows": 20,
+      "doorLeaves": 23,
+      "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"
+    },
+    {
+      "id": "BLD-L2",
+      "kind": "building",
+      "displayName": "Lantai 2 - Rekreasi",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/building/build_building.py",
+      "sourceData": "design/world.json + design/derived/walls.json",
+      "blend": "blender/out/building.blend",
+      "glb": "app/public/assets/building/building-L2.glb",
+      "preview": "assets/previews/building-L2-interior.png",
+      "previewsExtra": [
+        "assets/previews/building-exterior.png"
+      ],
+      "dimensions": [
+        32,
+        24,
+        4.0
+      ],
+      "pivot": "world origin (south-west corner of L1)",
+      "collider": {
+        "type": "derived",
+        "source": "design/derived/walls.json"
+      },
+      "materials": [
+        "accent",
+        "door_leaf",
+        "fascia",
+        "floor_deck_komposit",
+        "floor_epoxy",
+        "floor_karpet_tile_matte",
+        "floor_keramik_anti_slip",
+        "floor_lantai_karet_olahraga",
+        "floor_none",
+        "floor_vinyl_motif_kayu",
+        "glass_clear",
+        "glass_obscured",
+        "guard",
+        "lift_door",
+        "lift_frame",
+        "lift_shaft",
+        "roof",
+        "slab",
+        "threshold",
+        "wall_exterior",
+        "wall_interior",
+        "wall_top",
+        "window_frame"
+      ],
+      "triangles": {
+        "lod0Visible": 3746
+      },
+      "lod": "LOD0 only",
+      "status": "generated+validated",
+      "validatedBy": "blender/building/validate_building.py",
+      "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
+      "windows": 19,
+      "doorLeaves": 15,
+      "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"
+    },
+    {
       "id": "AST-ARCADE-CABINET",
       "kind": "furniture",
       "catalogType": "arcade_cabinet",
@@ -4085,126 +4205,6 @@
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
       "evidence": "docs/evidence/M3/furniture-validate.json"
-    },
-    {
-      "id": "BLD-L1",
-      "kind": "building",
-      "displayName": "Lantai 1 - Kerja & Kunjungan",
-      "creator": "kantor-rpg procedural script (Claude Code)",
-      "license": "original, project license TBD by owner",
-      "source": "blender/building/build_building.py",
-      "sourceData": "design/world.json + design/derived/walls.json",
-      "blend": "blender/out/building.blend",
-      "glb": "app/public/assets/building/building-L1.glb",
-      "preview": "assets/previews/building-L1-interior.png",
-      "previewsExtra": [
-        "assets/previews/building-exterior.png"
-      ],
-      "dimensions": [
-        32,
-        24,
-        4.0
-      ],
-      "pivot": "world origin (south-west corner of L1)",
-      "collider": {
-        "type": "derived",
-        "source": "design/derived/walls.json"
-      },
-      "materials": [
-        "accent",
-        "door_leaf",
-        "fascia",
-        "floor_epoxy",
-        "floor_karpet_tile_matte",
-        "floor_keramik_anti_slip",
-        "floor_none",
-        "floor_vinyl_anti_statik_target",
-        "floor_vinyl_motif_kayu",
-        "glass_clear",
-        "glass_obscured",
-        "lift_door",
-        "lift_frame",
-        "lift_shaft",
-        "slab",
-        "stair_core",
-        "stair_nosing",
-        "stair_tread",
-        "threshold",
-        "wall_exterior",
-        "wall_interior",
-        "wall_top",
-        "window_frame"
-      ],
-      "triangles": {
-        "lod0Visible": 4446
-      },
-      "lod": "LOD0 only",
-      "status": "generated+validated",
-      "validatedBy": "blender/building/validate_building.py",
-      "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
-      "windows": 20,
-      "doorLeaves": 23,
-      "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"
-    },
-    {
-      "id": "BLD-L2",
-      "kind": "building",
-      "displayName": "Lantai 2 - Rekreasi",
-      "creator": "kantor-rpg procedural script (Claude Code)",
-      "license": "original, project license TBD by owner",
-      "source": "blender/building/build_building.py",
-      "sourceData": "design/world.json + design/derived/walls.json",
-      "blend": "blender/out/building.blend",
-      "glb": "app/public/assets/building/building-L2.glb",
-      "preview": "assets/previews/building-L2-interior.png",
-      "previewsExtra": [
-        "assets/previews/building-exterior.png"
-      ],
-      "dimensions": [
-        32,
-        24,
-        4.0
-      ],
-      "pivot": "world origin (south-west corner of L1)",
-      "collider": {
-        "type": "derived",
-        "source": "design/derived/walls.json"
-      },
-      "materials": [
-        "accent",
-        "door_leaf",
-        "fascia",
-        "floor_deck_komposit",
-        "floor_epoxy",
-        "floor_karpet_tile_matte",
-        "floor_keramik_anti_slip",
-        "floor_lantai_karet_olahraga",
-        "floor_none",
-        "floor_vinyl_motif_kayu",
-        "glass_clear",
-        "glass_obscured",
-        "guard",
-        "lift_door",
-        "lift_frame",
-        "lift_shaft",
-        "roof",
-        "slab",
-        "threshold",
-        "wall_exterior",
-        "wall_interior",
-        "wall_top",
-        "window_frame"
-      ],
-      "triangles": {
-        "lod0Visible": 3746
-      },
-      "lod": "LOD0 only",
-      "status": "generated+validated",
-      "validatedBy": "blender/building/validate_building.py",
-      "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
-      "windows": 19,
-      "doorLeaves": 15,
-      "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"
     }
   ]
 }

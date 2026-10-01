@@ -2,15 +2,34 @@
 
 Log untuk supervisor (Max). Entri terbaru di atas. Status memakai DONE_Mx / NEEDS_INPUT / BLOCKED; angka test adalah hasil eksekusi, bukan target.
 
-## Hardening (branch claude/kantor-rpg-m3-hardening, basis c9c278a1e5afdca4547a36fb49b1f0ad0dd61e42)
+## Hardening (branch claude/kantor-rpg-m3-hardening, basis c9c278a1e5afdca4547a36fb49b1f0ad0dd61e42, PR draft air-buddy410/kantor-rpg#5)
 
-Status: berjalan. Runtime sesi: model claude-opus-5-5, effort high (dibaca dari get_session, last_served_model sama); jendela rate limit 7 hari berstatus "rejected" (reset 2026-10-03 16:00 UTC) tetapi sesi masih melayani; tanpa fallback berbayar. Preview yang dipin ke c9c278a milik tugas Bruno t_99cdde23; branch ini tidak menyentuh deploy.
+Status: DONE_HARDENING untuk item Max yang dapat dikerjakan di cloud; native DWG BLOCKED; M4 disabled; FPS perangkat dan screen reader belum diuji. Tidak ada merge atau deploy. Runtime sesi: model claude-opus-5-5, effort high (get_session; last_served_model sama). Jendela rate limit 7 hari tetap "rejected" (reset 2026-10-03 16:00 UTC) tetapi sesi tetap melayani; tanpa fallback berbayar. Preview yang dipin ke c9c278a milik tugas Bruno t_99cdde23 dan tidak disentuh; runbook pergantian SHA ada di `docs/PREVIEW-HANDOFF.md`.
 
-Checkpoint 1 (dataset P03):
-- `design/world.json` P03: arah bukaan pintu (`swing.into`, `swing.hinge`) untuk 35 pintu swing, 39 jendela konsep di dinding luar (aturan generator di seed), ADJ-11 gym tidak di atas ruang sensitif.
-- Validator 46 pemeriksaan lolos; test negatif baru `tests/py/test_openings.py` (12) dan `tests/py/test_prd_trace.py` (4).
-- ADR-008 sampai ADR-011 (Q-01 sampai Q-04 provisional) di `docs/decisions.md`; PRD v0.2 + PDF diperbarui.
-- pytest 235 lolos, vitest 36 lolos, tsc bersih (lokal, sebelum commit).
+SHA kandidat untuk review: commit HEAD branch ini setelah commit "QA report + progress hardening" (lihat `git log`); SHA yang direbuild dari clean clone: 185b46286a1656b1341ad62c78d67f954da81e70 (kepala `docs/evidence/HARDENING/clean-clone-rebuild.txt`); commit sesudahnya hanya evidence, dokumen, urutan registry dan path relatif di laporan validator.
+
+Hasil (detail dan evidence: `docs/QA-REPORT.md` bagian Hardening):
+- ADR-008 sampai ADR-011 (Q-01 sampai Q-04 provisional). Q-01 didukung trace 27 fungsi PRD ke 38 ruang (`tools/prd_trace.py`).
+- Dataset P03: arah bukaan 35 pintu swing, 39 jendela konsep, ADJ-11 gym; validator 46 cek.
+- CAD membaca swing + jendela (denah, furniture/ICT, tampak, potongan, jadwal pintu/jendela A-103 hal. 2); 107 test CAD.
+- Blender: 1 material atlas per karakter, LOD1 <= 4800 tris, 5 ekspresi morph; bangunan dengan jendela dan daun pintu; 1151 + 1529 cek.
+- Runtime: draw call puncak 49 sampai 53 (target 150), LOD1 > 8 m, ekspresi saat bicara, jendela di dinding, collision CEO/persona, outlet ICT ikut furniture di Studio (undo/export v2/rollback).
+- Clean clone + `tools/rebuild_all.sh`: exit 0 (19 menit).
+- Angka akhir: pytest 316, vitest 53, Playwright penuh 117 lolos/0 gagal/9 skip + 10/10 test yang di-unskip, rebuild E2E 120 lolos/3 skip, axe 0 pelanggaran (24 laporan), contrast 31/31, safety 0, npm audit 0, CSP 24/24.
+
+Failure/boundary yang tercatat:
+- Soak seed 11 menemukan bug lama: NPC membeku permanen karena langkah memotong sudut sel terblokir (lineWalkable sampling). Diperbaiki dengan traversal sel eksak + slide sumbu; test multi-seed.
+- Soak 2 jam menemukan dua NPC memesan kursi sama setelah menunggu melebihi TTL reservasi; reservasi kini diperpanjang selama NPC bergerak atau memberi jalan.
+- CI c29fa8a gagal: test jalan keyboard terhalang persona di lobby (collision baru); test kini membedakan blok persona dari collider meja (4b10b0b, CI hijau).
+- CI b23a0ea gagal: matrix menunjuk evidence yang belum ada; diperbaiki 65d9513.
+- CSP usulan versi 1 memblokir tekstur blob GLTF (2 test gagal); `connect-src 'self' blob:` ditambahkan, 24/24.
+- Rebuild clean clone: noise float pada 2 GLB karakter (maks 0,008 mm) dan urutan registry; path absolut di laporan validator diganti relatif.
+
+Skip yang tersisa dan alasannya: benchmark 60 s (KANTOR_PERF, dijalankan terpisah: 5,6 FPS container), joystick sentuh di desktop, jalan keyboard di tablet/mobile (lokomosi sentuh diuji joystick).
+
+Known issues: lihat `docs/QA-REPORT.md` (daun pintu belum di runtime, 3 karakter 3 primitive, LOD1 tanpa highlight mata, tumpang tindih singkat antar-NPC berjalan, tag jendela kecil saat cetak, transfer awal 9,73 MB mendekati 10 MB).
+
+Next safe action: review Max atas PR #5; setelah deployment awal Bruno selesai, pemilik hosting menjalankan `docs/PREVIEW-HANDOFF.md` dengan SHA kandidat; ukur FPS di perangkat Budi dengan `KANTOR_PERF=1` (ADR-011).
 
 ## M3 (branch claude/kantor-rpg-m3)
 
