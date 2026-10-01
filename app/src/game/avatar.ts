@@ -28,6 +28,10 @@ export class Avatar {
   private t = 0;
   isPlaceholder = true;
   clipNames: string[] = [];
+  /** Native locomotion speeds baked by the Blender pipeline (rig extras). */
+  walkNative = 0.85;
+  runNative = 2.4;
+  defaultHair: string | null = null;
 
   constructor(readonly label: string, color = 0x1f4d3a) {
     this.root.name = `avatar-${label}`;
@@ -45,12 +49,20 @@ export class Avatar {
     });
     if (this.body) this.root.remove(this.body);
     this.body = model;
+    model.traverse((o) => {
+      const x = o.userData as Record<string, unknown>;
+      if (typeof x.kantor_walk_native_speed_mps === 'number') this.walkNative = x.kantor_walk_native_speed_mps;
+      if (typeof x.kantor_run_native_speed_mps === 'number') this.runNative = x.kantor_run_native_speed_mps;
+      if (typeof x.kantor_default_hair === 'string') this.defaultHair = x.kantor_default_hair.replace(/^hair_/, '');
+    });
     this.root.add(model);
     this.mixer = new THREE.AnimationMixer(model);
     this.actions.clear();
     for (const clip of asset.animations) this.actions.set(clip.name, this.mixer.clipAction(clip));
     this.clipNames = [...this.actions.keys()];
     this.isPlaceholder = false;
+    // Variant GLBs ship every hair style; exactly one may be visible.
+    if (this.defaultHair) this.applyVariant(this.defaultHair, null);
     const prev = this.current;
     this.current = '';
     this.play(prev || 'idle');
@@ -72,6 +84,14 @@ export class Avatar {
   }
 
   setFacing(deg: number): void { this.root.rotation.y = THREE.MathUtils.degToRad(deg) + Math.PI / 2; }
+
+  /** Match stride to ground speed so feet do not slide (m/s). */
+  setGroundSpeed(speed: number): void {
+    const walk = this.actions.get('walk');
+    const run = this.actions.get('run');
+    if (walk) walk.timeScale = THREE.MathUtils.clamp(speed / this.walkNative, 0.5, 2.6);
+    if (run) run.timeScale = THREE.MathUtils.clamp(speed / this.runNative, 0.6, 2.0);
+  }
 
   update(dt: number, moving: number, reducedMotion: boolean): void {
     this.t += dt;

@@ -380,8 +380,9 @@ export class Game {
     const moved = this.player.step(dt, dir, run, nav);
     const speed = moved / Math.max(dt, 1e-4);
     if (performance.now() > this.activityUntil || speed > 0.2) {
-      this.player.avatar.play(speed > 2.6 ? 'run' : speed > 0.2 ? 'walk' : 'idle');
+      this.player.avatar.play(speed > 2.4 ? 'run' : speed > 0.2 ? 'walk' : 'idle');
     }
+    this.player.avatar.setGroundSpeed(speed);
     this.player.avatar.update(dt, Math.min(1, speed / 2), this.settings.reducedMotion);
     const pv = this.playerVec();
     this.player.avatar.root.position.copy(pv);

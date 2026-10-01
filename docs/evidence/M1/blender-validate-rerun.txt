@@ -1,0 +1,30 @@
+Blender 4.0.2
+Read blend: "/home/user/kantor-rpg/blender/out/ch-ceo.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.14s
+VALIDATE CH-CEO: PASS checks=83 failed=0 tris_lod0=14788 tris_all=21396 height=1.6412 glb_bytes=909716
+Read blend: "/home/user/kantor-rpg/blender/out/ch-supervisor.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.15s
+VALIDATE CH-SUPERVISOR: PASS checks=80 failed=0 tris_lod0=14884 tris_all=14884 height=1.5844 glb_bytes=720136
+Read blend: "/home/user/kantor-rpg/blender/out/ch-architect.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.19s
+VALIDATE CH-ARCHITECT: PASS checks=80 failed=0 tris_lod0=13300 tris_all=13300 height=1.6305 glb_bytes=676244
+Read blend: "/home/user/kantor-rpg/blender/out/ch-ictspec.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.12s
+VALIDATE CH-ICTSPEC: PASS checks=80 failed=0 tris_lod0=14292 tris_all=14292 height=1.4939 glb_bytes=703484
+Read blend: "/home/user/kantor-rpg/blender/out/ch-netinstall.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.14s
+VALIDATE CH-NETINSTALL: PASS checks=80 failed=0 tris_lod0=13736 tris_all=13736 height=1.562 glb_bytes=692452
+Read blend: "/home/user/kantor-rpg/blender/out/ch-visual.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.17s
+VALIDATE CH-VISUAL: PASS checks=80 failed=0 tris_lod0=14512 tris_all=14512 height=1.5612 glb_bytes=710520
+Read blend: "/home/user/kantor-rpg/blender/out/ch-qa.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.13s
+VALIDATE CH-QA: PASS checks=80 failed=0 tris_lod0=14912 tris_all=14912 height=1.5543 glb_bytes=723692
+VALIDATE_DONE passed=True characters=7 seconds=30.0
