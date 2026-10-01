@@ -64,7 +64,9 @@ test.describe('persona NPCs (M2)', () => {
     await expect(page.locator('#dlg-info')).toContainText('KONSEP');
     await expect(page.locator('#dlg-info a[href="docs/A-101.pdf"]')).toBeVisible();
     await page.keyboard.press('Escape');
+    // The coffee bar now runs on its activity slots (shared with NPCs): either
+    // the CEO gets a free slot (labelled virtual) or a busy-by-name message.
     await page.evaluate(() => (window.__kantor!.useInteractable as (id: string) => void)('FX-L2-014'));
-    await expect(page.locator('#toast')).toContainText('Aktivitas virtual');
+    await expect.poll(async () => `${await page.locator('#activity-text').textContent()} ${await page.locator('#toast').textContent()}`).toMatch(/aktivitas virtual|Sedang dipakai/);
   });
 });

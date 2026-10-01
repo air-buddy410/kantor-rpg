@@ -91,8 +91,12 @@
      "tests": [
       "app/tests/e2e/npc.spec.ts"
      ],
-     "evidence": [],
-     "status": "belum diuji"
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/screenshots/desktop-npcs.jpg",
+      "docs/evidence/M2/e2e-npc-blueprint-rerun.txt"
+     ],
+     "status": "terverifikasi"
     },
     {
      "scope": "LOD1 NPC <= 5k triangle, sheet ekspresi, atlas",
@@ -111,12 +115,38 @@
    "boundary": "public hanya fixture",
    "parts": [
     {
-     "scope": "M2 runtime",
+     "scope": "M2: E/Aksi/Temui membuka satu panel persona, locomotion berhenti, Escape menutup dan focus kembali, NPC pause/resume",
      "tests": [
-      "tests/e2e/interact.spec.ts"
+      "app/tests/e2e/npc.spec.ts",
+      "app/tests/e2e/world.spec.ts"
      ],
-     "evidence": [],
-     "status": "belum diuji"
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/screenshots/desktop-npc-dialog.jpg",
+      "docs/evidence/M2/e2e-npc-blueprint-rerun.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M2: interaksi furnitur (duduk, workstation, biliar, game, gym) dengan reservasi bersama NPC; kursi terpakai ditolak dengan pesan",
+     "tests": [
+      "app/tests/e2e/activity.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/screenshots/desktop-billiards.jpg"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Boundary: public hanya fixture; adapter private M4 melempar AdapterDisabledError",
+     "tests": [
+      "app/tests/unit/adapter.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -139,12 +169,14 @@
      "status": "terverifikasi"
     },
     {
-     "scope": "M2 simulasi berseed + soak",
+     "scope": "M2: simulasi berseed, reservasi tanpa overcapacity (soak 2 jam), cap aktivitas, stuck recovery, nol fetch",
      "tests": [
       "app/tests/unit/idle.test.ts"
      ],
-     "evidence": [],
-     "status": "belum diuji"
+     "evidence": [
+      "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -305,6 +337,19 @@
      "status": "terverifikasi"
     },
     {
+     "scope": "M2: axe-core WCAG 2.1 A/AA tanpa pelanggaran (dunia, direktori, dialog, fallback; terang dan gelap)",
+     "tests": [
+      "app/tests/e2e/a11y.spec.ts",
+      "tools/contrast.py"
+     ],
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/axe/desktop-light-world.json",
+      "docs/evidence/M2/contrast.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
      "scope": "Perangkat mobile/tablet nyata dan screen reader",
      "tests": [],
      "evidence": [],
@@ -325,6 +370,16 @@
      "tests": [],
      "evidence": [],
      "status": "tidak didukung"
+    },
+    {
+     "scope": "Kontrak adapter (sanitasi allowlist, stale -> unknown) diuji dengan fixture; tanpa sumber nyata",
+     "tests": [
+      "app/tests/unit/adapter.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },

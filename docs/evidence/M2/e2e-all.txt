@@ -1,0 +1,173 @@
+
+Running 81 tests using 1 worker
+
+  ✓   1 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light world (4.3s)
+  ✓   2 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (4.8s)
+  ✓   3 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (5.3s)
+  ✓   4 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (4.8s)
+  ✓   5 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (4.6s)
+  ✓   6 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (5.1s)
+  ✓   7 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (5.2s)
+  ✓   8 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (5.2s)
+  ✓   9 [desktop] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.7s)
+  ✓  10 [desktop] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (5.9s)
+  ✓  11 [desktop] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (6.4s)
+  ✓  12 [desktop] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (21.6s)
+  ✓  13 [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (8.9s)
+  ✓  14 [desktop] › tests/e2e/npc.spec.ts:47:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E greets it (19.6s)
+  ✘  15 [desktop] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (32.1s)
+  ✓  16 [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (5.3s)
+  ✓  17 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (7.2s)
+  ✓  18 [desktop] › tests/e2e/world.spec.ts:39:3 › world vertical slice › stair interaction changes floor only at the marked point (39.1s)
+  ✓  19 [desktop] › tests/e2e/world.spec.ts:61:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (27.1s)
+  ✓  20 [desktop] › tests/e2e/world.spec.ts:75:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (4.2s)
+  ✓  21 [desktop] › tests/e2e/world.spec.ts:96:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (8.9s)
+  ✓  22 [desktop] › tests/e2e/world.spec.ts:109:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (5.9s)
+  -  23 [desktop] › tests/e2e/world.spec.ts:125:3 › world vertical slice › touch joystick walks the CEO
+  ✓  24 [desktop] › tests/e2e/world.spec.ts:144:3 › world vertical slice › dark theme renders with computed token colours (4.4s)
+  ✓  25 [desktop] › tests/e2e/world.spec.ts:153:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (14.1s)
+  ✓  26 [desktop] › tests/e2e/world.spec.ts:163:3 › world vertical slice › only same-origin requests are made (no external endpoints) (5.6s)
+  ✓  27 [desktop] › tests/e2e/world.spec.ts:174:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (2.5s)
+  ✓  28 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light world (4.4s)
+  ✓  29 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (4.9s)
+  ✓  30 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (4.2s)
+  ✓  31 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (4.2s)
+  ✓  32 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (4.4s)
+  ✓  33 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (5.3s)
+  ✓  34 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (4.3s)
+  ✓  35 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (4.1s)
+  ✓  36 [tablet] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.5s)
+  ✓  37 [tablet] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (5.0s)
+  ✓  38 [tablet] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (5.6s)
+  ✓  39 [tablet] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (18.8s)
+  ✓  40 [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (7.8s)
+  -  41 [tablet] › tests/e2e/npc.spec.ts:47:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E greets it
+  ✘  42 [tablet] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (28.1s)
+  ✓  43 [tablet] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.9s)
+  -  44 [tablet] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+  ✓  45 [tablet] › tests/e2e/world.spec.ts:39:3 › world vertical slice › stair interaction changes floor only at the marked point (31.0s)
+  ✓  46 [tablet] › tests/e2e/world.spec.ts:61:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (22.3s)
+  ✓  47 [tablet] › tests/e2e/world.spec.ts:75:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (3.2s)
+  ✓  48 [tablet] › tests/e2e/world.spec.ts:96:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (7.4s)
+  ✓  49 [tablet] › tests/e2e/world.spec.ts:109:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (5.4s)
+  ✓  50 [tablet] › tests/e2e/world.spec.ts:125:3 › world vertical slice › touch joystick walks the CEO (7.4s)
+  ✓  51 [tablet] › tests/e2e/world.spec.ts:144:3 › world vertical slice › dark theme renders with computed token colours (5.7s)
+  ✓  52 [tablet] › tests/e2e/world.spec.ts:153:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (12.9s)
+  ✓  53 [tablet] › tests/e2e/world.spec.ts:163:3 › world vertical slice › only same-origin requests are made (no external endpoints) (4.4s)
+  ✓  54 [tablet] › tests/e2e/world.spec.ts:174:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (2.4s)
+  ✓  55 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light world (3.2s)
+  ✓  56 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (4.2s)
+  ✓  57 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (4.0s)
+  ✓  58 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (4.1s)
+  ✓  59 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (3.6s)
+  ✓  60 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (4.3s)
+  ✓  61 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (3.6s)
+  ✓  62 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (3.6s)
+  ✓  63 [mobile] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.4s)
+  ✓  64 [mobile] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (3.8s)
+  ✓  65 [mobile] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (3.9s)
+  ✓  66 [mobile] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (13.0s)
+  ✓  67 [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (6.3s)
+  -  68 [mobile] › tests/e2e/npc.spec.ts:47:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E greets it
+  ✘  69 [mobile] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (24.0s)
+  ✓  70 [mobile] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.3s)
+  -  71 [mobile] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+  ✓  72 [mobile] › tests/e2e/world.spec.ts:39:3 › world vertical slice › stair interaction changes floor only at the marked point (23.8s)
+  ✓  73 [mobile] › tests/e2e/world.spec.ts:61:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (14.5s)
+  ✓  74 [mobile] › tests/e2e/world.spec.ts:75:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.9s)
+  ✓  75 [mobile] › tests/e2e/world.spec.ts:96:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (5.8s)
+  ✓  76 [mobile] › tests/e2e/world.spec.ts:109:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (3.7s)
+  ✓  77 [mobile] › tests/e2e/world.spec.ts:125:3 › world vertical slice › touch joystick walks the CEO (5.4s)
+  ✓  78 [mobile] › tests/e2e/world.spec.ts:144:3 › world vertical slice › dark theme renders with computed token colours (4.1s)
+  ✓  79 [mobile] › tests/e2e/world.spec.ts:153:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (8.2s)
+  ✓  80 [mobile] › tests/e2e/world.spec.ts:163:3 › world vertical slice › only same-origin requests are made (no external endpoints) (3.4s)
+  ✓  81 [mobile] › tests/e2e/world.spec.ts:174:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.4s)
+
+
+  1) [desktop] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#toast')
+    Expected substring: [32m"Aktivitas virtual"[39m
+    Received string:    [31m""[39m
+    Timeout: 15000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 15000ms[22m
+    [2m  - waiting for locator('#toast')[22m
+    [2m    19 × locator resolved to <div hidden="" id="toast" class="toast" role="status" aria-live="polite"></div>[22m
+    [2m       - unexpected value ""[22m
+
+
+      66 |     await page.keyboard.press('Escape');
+      67 |     await page.evaluate(() => (window.__kantor!.useInteractable as (id: string) => void)('FX-L2-014'));
+    > 68 |     await expect(page.locator('#toast')).toContainText('Aktivitas virtual');
+         |                                          ^
+      69 |   });
+      70 | });
+      71 |
+        at /home/user/kantor-rpg/app/tests/e2e/npc.spec.ts:68:42
+
+    Error Context: test-results/npc-persona-NPCs-M2-bluepr-6447b-tivities-give-real-feedback-desktop/error-context.md
+
+  2) [tablet] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#toast')
+    Expected substring: [32m"Aktivitas virtual"[39m
+    Received string:    [31m""[39m
+    Timeout: 15000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 15000ms[22m
+    [2m  - waiting for locator('#toast')[22m
+    [2m    19 × locator resolved to <div hidden="" id="toast" class="toast" role="status" aria-live="polite"></div>[22m
+    [2m       - unexpected value ""[22m
+
+
+      66 |     await page.keyboard.press('Escape');
+      67 |     await page.evaluate(() => (window.__kantor!.useInteractable as (id: string) => void)('FX-L2-014'));
+    > 68 |     await expect(page.locator('#toast')).toContainText('Aktivitas virtual');
+         |                                          ^
+      69 |   });
+      70 | });
+      71 |
+        at /home/user/kantor-rpg/app/tests/e2e/npc.spec.ts:68:42
+
+    Error Context: test-results/npc-persona-NPCs-M2-bluepr-6447b-tivities-give-real-feedback-tablet/error-context.md
+
+  3) [mobile] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#toast')
+    Expected substring: [32m"Aktivitas virtual"[39m
+    Received string:    [31m""[39m
+    Timeout: 15000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 15000ms[22m
+    [2m  - waiting for locator('#toast')[22m
+    [2m    19 × locator resolved to <div hidden="" id="toast" class="toast" role="status" aria-live="polite"></div>[22m
+    [2m       - unexpected value ""[22m
+
+
+      66 |     await page.keyboard.press('Escape');
+      67 |     await page.evaluate(() => (window.__kantor!.useInteractable as (id: string) => void)('FX-L2-014'));
+    > 68 |     await expect(page.locator('#toast')).toContainText('Aktivitas virtual');
+         |                                          ^
+      69 |   });
+      70 | });
+      71 |
+        at /home/user/kantor-rpg/app/tests/e2e/npc.spec.ts:68:42
+
+    Error Context: test-results/npc-persona-NPCs-M2-bluepr-6447b-tivities-give-real-feedback-mobile/error-context.md
+
+  3 failed
+    [desktop] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback 
+    [tablet] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback 
+    [mobile] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback 
+  5 skipped
+  73 passed (10.8m)

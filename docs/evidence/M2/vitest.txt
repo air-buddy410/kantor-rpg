@@ -1,0 +1,6 @@
+
+ Test Files  3 passed (3)
+      Tests  15 passed (15)
+   Start at  11:25:27
+   Duration  34.30s (tests 96%, transform 3%, import 1%)
+

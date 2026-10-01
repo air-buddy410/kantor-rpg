@@ -2,6 +2,23 @@
 
 Log untuk supervisor (Max). Entri terbaru di atas. Status memakai DONE_Mx / NEEDS_INPUT / BLOCKED; angka test adalah hasil eksekusi, bukan target.
 
+## M2 (branch claude/kantor-rpg-m2)
+
+Status: DONE_M2 untuk persona/idle/interaksi/aksesibilitas otomatis; uji perangkat nyata dan screen reader belum dilakukan.
+
+Hasil:
+- IdleSim berseed (`app/src/sim/idle.ts`): utility selection hanya saat aktivitas selesai, reservasi slot ber-TTL, cap aktivitas setengah tim, rute lintas lantai, stuck detection dengan release/retry/safe waypoint, pause saat CEO menyapa. workStatus tetap unknown.
+- 6 NPC Blender GLB hidup di dunia, label nama/aktivitas, dialog persona statis (`design/dialogue.json`), direktori "Temui".
+- Aktivitas CEO di semua slot (duduk, workstation, biliar, game, gym, kopi) memakai tabel reservasi yang sama dengan NPC.
+- Adapter data: demo saja; private (M4) melempar AdapterDisabledError; sanitasi allowlist; stale -> unknown.
+- Vitest 15 lolos (`docs/evidence/M2/vitest.txt`): navgrid parity, idle soak 2 jam, failure path seal mid-route, adapter.
+- E2E: run penuh 73 lolos, 3 gagal, 5 skip (`docs/evidence/M2/e2e-all.txt`); 3 kegagalan = assertion lama test kopi yang belum mengikuti perilaku slot baru, plus strict-mode locator; test diperbaiki dan dijalankan ulang 3/3 lolos (`docs/evidence/M2/e2e-npc-blueprint-rerun.txt`).
+- axe-core WCAG 2.1 A/AA: 0 pelanggaran di dunia, direktori, dialog, fallback, tema terang dan gelap (`docs/evidence/M2/axe/`). Contrast 31/31.
+
+Failure/boundary yang tercatat: bug fokus (E diabaikan setelah tombol direktori) ditemukan oleh test aktivitas dan diperbaiki; kursi yang dipakai NPC ditolak dengan nama; herding dibatasi cap keras setelah soak menemukan 4/6 NPC pada aktivitas sama.
+
+Known issues: player dan NPC saling tembus (tanpa collision antar-agent); NPC hanya 6 dari maksimum 12; tidak ada suara (sengaja, opt-in belum dibuat).
+
 ## M1 (branch claude/kantor-rpg-m1, PR air-buddy410/kantor-rpg#2)
 
 Status: DONE_M1 untuk vertical slice; native DWG tetap BLOCKED; target FPS perangkat nyata belum diuji (container tanpa GPU).

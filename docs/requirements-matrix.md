@@ -1,6 +1,6 @@
 # Matriks requirement
 
-Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 912435c; evidence menunjuk file di repo).
+Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 09fd2d9; evidence menunjuk file di repo).
 Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi pada commit tercatat. Evidence kosong = belum diuji.
 
 | REQ | Milestone | Bagian | Test | Evidence | Status |
@@ -10,11 +10,13 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-WORLD-01 | M1 | M1 runtime: CEO berjalan, collider, transisi lantai, safe waypoint | app/tests/unit/navgrid.test.ts<br>app/tests/e2e/world.spec.ts | docs/evidence/M1/e2e-world.txt<br>docs/evidence/M1/vitest.txt<br>docs/evidence/M1/screenshots/desktop-l2-game.jpg | terverifikasi |
 | REQ-CHAR-01 | M1/M2 | M0 data: actor record, role, homeSeat, simulated=true | tools/validate_world.py::actors_home_seats_exist<br>design/world.schema.json | docs/evidence/M0/validate-world.json | terverifikasi |
 | REQ-CHAR-01 | M1/M2 | M1 asset: 7 GLB karakter original, registry, 13 animasi, reopen/validate | blender/validate_assets.py<br>tests/py/test_assets.py | docs/evidence/M1/blender-validate.json<br>docs/evidence/M1/blender-validate-rerun.txt<br>assets/previews/ch-ceo-sheet.png | terverifikasi |
-| REQ-CHAR-01 | M1/M2 | M2 runtime: NPC spawn, label peran, animasi per aktivitas | app/tests/e2e/npc.spec.ts | - | belum diuji |
+| REQ-CHAR-01 | M1/M2 | M2 runtime: NPC spawn, label peran, animasi per aktivitas | app/tests/e2e/npc.spec.ts | docs/evidence/M2/e2e-all.txt<br>docs/evidence/M2/screenshots/desktop-npcs.jpg<br>docs/evidence/M2/e2e-npc-blueprint-rerun.txt | terverifikasi |
 | REQ-CHAR-01 | M1/M2 | LOD1 NPC <= 5k triangle, sheet ekspresi, atlas | - | - | target |
-| REQ-INTERACT-01 | M2 | M2 runtime | tests/e2e/interact.spec.ts | - | belum diuji |
+| REQ-INTERACT-01 | M2 | M2: E/Aksi/Temui membuka satu panel persona, locomotion berhenti, Escape menutup dan focus kembali, NPC pause/resume | app/tests/e2e/npc.spec.ts<br>app/tests/e2e/world.spec.ts | docs/evidence/M2/e2e-all.txt<br>docs/evidence/M2/screenshots/desktop-npc-dialog.jpg<br>docs/evidence/M2/e2e-npc-blueprint-rerun.txt | terverifikasi |
+| REQ-INTERACT-01 | M2 | M2: interaksi furnitur (duduk, workstation, biliar, game, gym) dengan reservasi bersama NPC; kursi terpakai ditolak dengan pesan | app/tests/e2e/activity.spec.ts | docs/evidence/M2/e2e-all.txt<br>docs/evidence/M2/screenshots/desktop-billiards.jpg | terverifikasi |
+| REQ-INTERACT-01 | M2 | Boundary: public hanya fixture; adapter private M4 melempar AdapterDisabledError | app/tests/unit/adapter.test.ts | docs/evidence/M2/vitest.txt | terverifikasi |
 | REQ-IDLE-01 | M2 | M0 data: activity slots ber-capacity dan approachable | tools/validate_world.py::nav_activity_slots_approachable | docs/evidence/M0/validate-world.json | terverifikasi |
-| REQ-IDLE-01 | M2 | M2 simulasi berseed + soak | app/tests/unit/idle.test.ts | - | belum diuji |
+| REQ-IDLE-01 | M2 | M2: simulasi berseed, reservasi tanpa overcapacity (soak 2 jam), cap aktivitas, stuck recovery, nol fetch | app/tests/unit/idle.test.ts | docs/evidence/M2/vitest.txt | terverifikasi |
 | REQ-STUDIO-01 | M3 | M3 Office Studio | app/tests/unit/studio.test.ts<br>tests/e2e/studio.spec.ts | - | belum diuji |
 | REQ-AVATAR-01 | M3 | M3 Avatar Studio | tests/e2e/avatar.spec.ts | - | belum diuji |
 | REQ-BLUEPRINT-01 | M0/M3 | M0: schema satu sumber, ruang tanpa overlap/gap, pintu di dinding bersama, fixture dalam ruang | tools/validate_world.py<br>tests/py/test_world.py | docs/evidence/M0/validate-world.json<br>docs/evidence/M0/pytest.txt | terverifikasi |
@@ -26,8 +28,10 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-ICT-01 | M0/M3 | PoE budget switch, rating UPS, thermal | - | - | asumsi |
 | REQ-ICT-01 | M0/M3 | M3: gambar ICT PDF + review | tests/py/test_cad.py | - | belum diuji |
 | REQ-ACCESS-01 | M1/M2 | M1: fallback ?nogl=1, direktori keyboard, focus kembali, reduced motion (viewport emulasi) | app/tests/e2e/world.spec.ts | docs/evidence/M1/e2e-world.txt<br>docs/evidence/M1/screenshots/desktop-fallback.jpg<br>docs/evidence/M1/contrast.json | terverifikasi |
+| REQ-ACCESS-01 | M1/M2 | M2: axe-core WCAG 2.1 A/AA tanpa pelanggaran (dunia, direktori, dialog, fallback; terang dan gelap) | app/tests/e2e/a11y.spec.ts<br>tools/contrast.py | docs/evidence/M2/e2e-all.txt<br>docs/evidence/M2/axe/desktop-light-world.json<br>docs/evidence/M2/contrast.json | terverifikasi |
 | REQ-ACCESS-01 | M1/M2 | Perangkat mobile/tablet nyata dan screen reader | - | - | belum diuji |
 | REQ-DATA-01 | M4 gated | M4 disabled sampai izin Budi | - | - | tidak didukung |
+| REQ-DATA-01 | M4 gated | Kontrak adapter (sanitasi allowlist, stale -> unknown) diuji dengan fixture; tanpa sumber nyata | app/tests/unit/adapter.test.ts | docs/evidence/M2/vitest.txt | terverifikasi |
 | REQ-PERF-01 | M1-M3 | M0: anggaran transfer/triangle dihitung | tools/capacity.py | design/derived/capacity.json | asumsi |
 | REQ-PERF-01 | M1-M3 | M1: harness rute tetap 60 s berjalan dan tercatat (container SwiftShader) | app/tests/e2e/perf.spec.ts | docs/evidence/M1/perf-route-desktop.json | terverifikasi |
 | REQ-PERF-01 | M1-M3 | Target 60 FPS desktop / 30 FPS mobile pada perangkat pilihan Budi | app/tests/e2e/perf.spec.ts | - | belum diuji |
@@ -35,7 +39,7 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-SAFE-01 | semua | M1: runtime hanya request same-origin; safety scan | app/tests/e2e/world.spec.ts<br>tools/safety_scan.py | docs/evidence/M1/e2e-world.txt | terverifikasi |
 | REQ-SAFE-01 | semua | Audit lisensi dependency npm/pip | tools/license_audit.py | - | belum diuji |
 
-Ringkasan status bagian: asumsi 2, belum diuji 10, target 1, terverifikasi 14, tidak didukung 2.
+Ringkasan status bagian: asumsi 2, belum diuji 7, target 1, terverifikasi 21, tidak didukung 2.
 
 ## Story, AC, failure dan boundary
 
