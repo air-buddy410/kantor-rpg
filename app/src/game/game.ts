@@ -1,6 +1,7 @@
 // Game orchestrator: renderer, floors, CEO, interactions and HUD wiring.
 import * as THREE from 'three';
-import { buildFloor, MaterialCache, toThree, type FloorBuild } from '../world/build';
+import { buildFixturesInto, buildFloor, MaterialCache, toThree, type FloorBuild } from '../world/build';
+import { withFixtures } from '../world/slots';
 import { NavGrid } from '../world/navgrid';
 import type { AccessMode, ActivitySlot, DerivedWalls, Fixture, FloorId, Room, Vec2, VerticalLink, World } from '../world/types';
 import { $, anyDialogOpen, el, openDialog, toast } from '../ui/dom';
@@ -51,13 +52,19 @@ export class Game {
   onFrame: ((dt: number) => void) | null = null;
   autopilot: { dir: Vec2; run: boolean } | null = null;
   npcs!: NpcLayer;
+  studioOpen = false;
+  onAvatarLoaded: (() => void) | null = null;
+  studioFocus: THREE.Vector3 | null = null;
+  /** world.json fixtures before any local layout was applied */
+  readonly baseFixtures: Fixture[];
   private npcInteractables = new Map<string, Interactable>();
   private talkingTo: string | null = null;
   private lineIndex = new Map<string, number>();
   roomId: string | null = null;
   floorSwitches = 0;
 
-  constructor(private stage: HTMLElement, readonly world: World, readonly walls: DerivedWalls, public settings: Settings) {
+  constructor(private stage: HTMLElement, public world: World, readonly walls: DerivedWalls, public settings: Settings) {
+    this.baseFixtures = world.fixtures;
     this.renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
     const gl = this.renderer.getContext();
     const dbg = gl.getExtension('WEBGL_debug_renderer_info');
@@ -126,6 +133,30 @@ export class Game {
   }
 
   /** Flood from the spawn across floors through vertical links, per access mode. */
+  /** Swap the active fixture layout (Studio preview or publish): rebuild
+   * furniture meshes, nav grids, reachability, interactables and NPC plans. */
+  applyFixtures(fixtures: Fixture[]) {
+    this.endActivity(false);
+    this.world = withFixtures(this.world, fixtures);
+    for (const f of this.world.floors) {
+      const fr = this.floors.get(f.id)!;
+      const old = fr.build.fixtureGroup;
+      fr.build.group.remove(old);
+      old.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) m.geometry.dispose(); });
+      const g = new THREE.Group();
+      g.name = `fixtures-${f.id}`;
+      buildFixturesInto(fixtures, f.id, f.elevation, this.materials, g, !this.lowQuality);
+      fr.build.group.add(g);
+      fr.build.fixtureGroup = g;
+      fr.nav = { staff: new NavGrid(this.world, this.walls, f.id, fixtures, 'staff'), visitor: new NavGrid(this.world, this.walls, f.id, fixtures, 'visitor') };
+    }
+    this.computeReach();
+    this.collectInteractables();
+    this.npcInteractables.clear();
+    this.npcs.sim.updateLayout(this.world, { L1: this.floors.get('L1')!.nav.staff, L2: this.floors.get('L2')!.nav.staff });
+    this.renderDirectory();
+  }
+
   private computeReach() {
     for (const mode of ['staff', 'visitor'] as AccessMode[]) {
       const l1 = this.floors.get('L1')!;
@@ -399,7 +430,7 @@ export class Game {
   }
 
   private interact() {
-    if (anyDialogOpen() || this.transitioning) return;
+    if (anyDialogOpen() || this.transitioning || this.studioOpen) return;
     if (this.activity) { this.activityAction(); return; }
     if (this.focusTarget) this.focusTarget.run();
     else toast('Tidak ada yang bisa dipakai di dekat sini.');
@@ -488,6 +519,7 @@ export class Game {
   start() {
     this.player.avatar.load('assets/characters/ch-ceo.glb').then((ok) => {
       if (!ok) toast('Model karakter belum tersedia: memakai placeholder berlabel.', 4000);
+      else this.onAvatarLoaded?.();
     });
     this.rig.update(this.playerVec(), 0, true);
     const loop = () => {
@@ -513,7 +545,7 @@ export class Game {
     if (this.player.ensureWalkable(nav, safe.pos)) toast('Posisi tidak valid, kembali ke titik aman.');
     let dir: Vec2 = [0, 0];
     let run = false;
-    if (!this.transitioning) {
+    if (!this.transitioning && !this.studioOpen) {
       if (this.autopilot) { dir = this.autopilot.dir; run = this.autopilot.run; }
       else {
         const m = this.input.move();
@@ -541,7 +573,7 @@ export class Game {
       const el = this.world.floors.find((f) => f.id === this.activity!.slot.floor)!.elevation;
       this.player.avatar.root.position.copy(toThree(this.activity.slot.pos[0], this.activity.slot.pos[1], el));
     }
-    this.rig.update(pv, dt);
+    this.rig.update(this.studioOpen && this.studioFocus ? this.studioFocus : pv, dt);
     this.materials.cutaway.uPlayer.value.set(pv.x, pv.y + 0.9, pv.z);
     this.materials.cutaway.uCamera.value.copy(this.rig.camera.position);
     this.sun.position.set(pv.x - 14, pv.y + 22, pv.z + 10);
@@ -557,6 +589,7 @@ export class Game {
 
   private updateFocus(dt: number) {
     const prompt = $('prompt');
+    if (this.studioOpen) { prompt.hidden = true; this.marker.visible = false; this.focusTarget = null; return; }
     if (this.activity) {
       const act = this.activity.slot.activity;
       const key = matchMedia('(pointer: coarse)').matches ? 'Aksi' : 'E';

@@ -8,6 +8,9 @@ import { $, openDialog, toast } from './ui/dom';
 import { applyTheme, loadSettings, saveSettings, type Settings } from './ui/settings';
 import type { DerivedWalls, World } from './world/types';
 import { showPersonaCard, showRoomCard } from './game/game';
+import { StudioUI } from './studio/ui';
+import { AvatarStudio, availableHair, loadChoice, paletteColors } from './studio/avatar-studio';
+import { store } from './studio/layout';
 
 const world = worldJson as unknown as World;
 const walls = wallsJson as unknown as DerivedWalls;
@@ -35,6 +38,9 @@ function enterFallback(reason: string) {
   app.dataset.mode = 'fallback';
   $('stage').replaceChildren();
   $('touch').hidden = true;
+  // Studio and Avatar Studio need the 3D view; hide them instead of leaving dead buttons.
+  $('btn-studio').hidden = true;
+  $('btn-avatar').hidden = true;
   $('fallback').hidden = false;
   $('fallback-reason').textContent = reason;
   $('room-name').textContent = 'Mode direktori';
@@ -108,6 +114,20 @@ function boot() {
     return;
   }
   $('app').dataset.mode = 'world';
+  // A locally published Office Studio layout replaces world.json fixtures for
+  // this browser only; an unreadable one is ignored and reported.
+  const pub = store.loadPublished(world);
+  if (pub.doc) game.applyFixtures(pub.doc.fixtures);
+  else if (pub.error) setTimeout(() => toast(`Layout lokal diabaikan: ${pub.error}`, 5000), 500);
+  const studio = new StudioUI(game);
+  $('btn-studio').addEventListener('click', () => (studio.isOpen ? studio.close() : studio.open()));
+  const applyAvatar = (c: { hair: string; palette: string }) => game.player.avatar.applyVariant(c.hair, paletteColors(c.palette));
+  const avatarStudio = new AvatarStudio(applyAvatar, () => game.player.avatar.model);
+  game.onAvatarLoaded = () => applyAvatar(loadChoice(availableHair(game.player.avatar.model)));
+  $('btn-avatar').addEventListener('click', (e) => void avatarStudio.open(e.currentTarget as HTMLElement));
+  $('avatar-save').addEventListener('click', () => avatarStudio.save());
+  $('avatar-reset').addEventListener('click', () => avatarStudio.reset());
+  $('avatar-cancel').addEventListener('click', () => ($('dlg-avatar') as HTMLDialogElement).close());
   wireSettings(game, settings);
   $('btn-directory').addEventListener('click', () => game.toggleDirectory());
   window.addEventListener('kantor:fallback', (e) => enterFallback((e as CustomEvent<string>).detail));
@@ -116,6 +136,10 @@ function boot() {
     mode: 'world',
     state: () => ({ floor: game.player.floor, pos: game.player.pos, facing: game.player.facing, room: game.roomId, visitor: game.settings.visitor, avatarPlaceholder: game.player.avatar.isPlaceholder, clips: game.player.avatar.clipNames, recoveries: game.player.stuckRecoveries, floorSwitches: game.floorSwitches }),
     stats: () => game.stats(),
+    studioOpen: () => studio.isOpen,
+    studioFixtures: () => studio.editor?.fixtures.length ?? null,
+    fixtures: () => game.world.fixtures.map((f) => ({ id: f.id, pos: f.pos, rot: f.rot, floor: f.floor, room: f.room })),
+    avatar: () => { let hair = ''; game.player.avatar.model?.traverse((o) => { if (o.name.startsWith('hair_') && o.visible) hair = o.name; }); return { hair, choice: loadChoice() }; },
     npcs: () => game.npcs.sim.npcs.map((n) => ({ id: n.id, floor: n.floor, pos: n.pos, phase: n.phase, activity: n.activity, slot: n.slot, workStatus: n.workStatus })),
     simTime: () => game.npcs.sim.time,
     // Test-only boundary helper: occupies a slot as an NPC would.

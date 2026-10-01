@@ -11,10 +11,13 @@ export class CameraRig {
   maxDistance = 32;
   private target = new THREE.Vector3();
   private drag: { id: number; x: number; y: number } | null = null;
+  /** false while Office Studio owns pointer input */
+  enabled = true;
 
   constructor(dom: HTMLElement, aspect: number) {
     this.camera = new THREE.PerspectiveCamera(38, aspect, 0.1, 200);
     dom.addEventListener('pointerdown', (e) => {
+      if (!this.enabled) return;
       // Touch on the left third belongs to the joystick area.
       if (e.pointerType === 'touch' && e.clientX < window.innerWidth * 0.4) return;
       this.drag = { id: e.pointerId, x: e.clientX, y: e.clientY };
@@ -23,7 +26,7 @@ export class CameraRig {
     dom.addEventListener('pointermove', (e) => {
       if (!this.drag || e.pointerId !== this.drag.id) return;
       this.yaw -= (e.clientX - this.drag.x) * 0.006;
-      this.pitch = THREE.MathUtils.clamp(this.pitch + (e.clientY - this.drag.y) * 0.004, 0.55, 1.35);
+      this.pitch = THREE.MathUtils.clamp(this.pitch + (e.clientY - this.drag.y) * 0.004, 0.55, 1.45);
       this.drag.x = e.clientX;
       this.drag.y = e.clientY;
     });
@@ -31,6 +34,7 @@ export class CameraRig {
     dom.addEventListener('pointerup', end);
     dom.addEventListener('pointercancel', end);
     dom.addEventListener('wheel', (e) => { e.preventDefault(); this.zoom(e.deltaY > 0 ? 1.1 : 0.9); }, { passive: false });
+    this.maxDistance = 34;
   }
 
   zoom(f: number) { this.distance = THREE.MathUtils.clamp(this.distance * f, this.minDistance, this.maxDistance); }

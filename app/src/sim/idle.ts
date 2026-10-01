@@ -115,6 +115,15 @@ export class IdleSim {
     });
   }
 
+  /** New fixture layout (Office Studio): slots and nav both change. */
+  updateLayout(world: World, nav: Record<FloorId, NavGrid>): void {
+    this.world = world;
+    this.slotById.clear();
+    for (const s of world.activitySlots) this.slotById.set(s.id, s);
+    // NPCs whose home desk vanished keep working from wherever they are.
+    this.updateNav(nav);
+  }
+
   /** Layout changed (Office Studio publish): rebuild reachability and replan travellers. */
   updateNav(nav: Record<FloorId, NavGrid>): void {
     this.nav = nav;

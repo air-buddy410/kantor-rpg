@@ -23,6 +23,8 @@
       <span class="sim-badge" id="sim-badge" title="Semua aktivitas dan status adalah fixture demo, bukan data kerja nyata">SIMULASI: data demo</span>
       <nav class="hud-actions" aria-label="Menu">
         <button type="button" class="btn" id="btn-directory" aria-controls="directory-panel" aria-expanded="false"><span>Direktori</span><kbd>M</kbd></button>
+        <button type="button" class="btn" id="btn-studio" aria-controls="studio-panel"><span>Studio</span></button>
+        <button type="button" class="btn" id="btn-avatar" aria-haspopup="dialog"><span>Avatar</span></button>
         <button type="button" class="btn" id="btn-settings" aria-haspopup="dialog"><span>Pengaturan</span></button>
         <button type="button" class="btn" id="btn-help" aria-haspopup="dialog"><span>Kontrol</span><kbd>H</kbd></button>
       </nav>
@@ -52,6 +54,12 @@
       <div class="directory-body" id="directory-body">
         <p class="muted" id="directory-state">Memuat data ruang...</p>
       </div>
+    </aside>
+
+    <aside class="panel studio" id="studio-panel" aria-label="Office Studio" hidden>
+      <div class="panel-head"><h2>Office Studio</h2><span class="tag">draft lokal</span></div>
+      <div class="studio-body" id="studio-body"></div>
+      <div class="studio-status" id="studio-status" role="status" aria-live="polite"></div>
     </aside>
 
     <section class="fallback" id="fallback" hidden aria-labelledby="fallback-title">
@@ -101,6 +109,20 @@
       <p class="muted small" id="settings-renderer"></p>
       <div class="row"><button class="btn primary" value="close">Selesai</button></div>
     </form>
+  </dialog>
+
+  <dialog class="dialog wide" id="dlg-avatar" aria-labelledby="dlg-avatar-title">
+    <h2 id="dlg-avatar-title">Avatar Studio</h2>
+    <div class="avatar-layout">
+      <div><div class="avatar-preview" id="avatar-preview"></div><p class="muted small" id="avatar-preview-state" role="status"></p></div>
+      <form class="settings" id="avatar-form"></form>
+    </div>
+    <p class="muted small">Karakter original kantor-rpg. Hanya varian yang ada di model yang ditampilkan.</p>
+    <div class="row">
+      <button type="button" class="btn" id="avatar-reset">Reset ke default</button>
+      <button type="button" class="btn" id="avatar-cancel">Batal</button>
+      <button type="button" class="btn primary" id="avatar-save">Simpan</button>
+    </div>
   </dialog>
 
   <dialog class="dialog wide" id="dlg-info" aria-labelledby="dlg-info-title">

@@ -202,6 +202,7 @@ kbd {
 .settings legend { font-weight: 700; padding: 0 4px; }
 .settings label { display: flex; align-items: center; gap: 10px; min-height: 44px; }
 .settings input { width: 22px; height: 22px; accent-color: var(--green); }
+.settings select { font: inherit; min-height: 44px; border-radius: 10px; border: 2px solid var(--control-border); background: var(--surface); color: var(--ink); padding: 4px 8px; }
 .row { display: flex; gap: 8px; justify-content: flex-end; }
 .info-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0 0 12px; }
 .info-grid dt { color: var(--ink-2); }
@@ -222,6 +223,21 @@ kbd {
 .touch-btn.primary { min-width: 84px; min-height: 84px; background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .touch-btn[aria-pressed='true'] { background: var(--green); color: var(--on-green); }
 
+.studio { top: 72px; left: 12px; bottom: 12px; width: min(380px, calc(100vw - 24px)); border-radius: var(--radius); }
+.studio-body { overflow: auto; padding: 10px 16px; display: grid; gap: 10px; }
+.studio-body select { font: inherit; min-height: 44px; border-radius: 10px; border: 2px solid var(--control-border); background: var(--surface); color: var(--ink); padding: 4px 8px; }
+.studio-status { padding: 8px 16px 14px; border-top: 1px solid var(--surface-2); max-height: 30vh; overflow: auto; }
+.studio-status p { margin: 0 0 4px; font-weight: 500; }
+.issues { margin: 0; padding-left: 18px; color: var(--accent-ink); font-size: 0.92rem; }
+.seg { display: flex; gap: 6px; }
+.seg .btn[aria-pressed='true'] { background: var(--green); color: var(--on-green); border-color: var(--green); }
+.tool-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.tool-grid .btn { justify-content: center; box-shadow: none; padding: 6px; }
+.add-row { display: grid; grid-template-columns: 1fr auto; gap: 6px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.avatar-layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: start; }
+.avatar-preview { width: 260px; min-height: 312px; border-radius: 12px; overflow: hidden; background: var(--surface-2); }
+.swatch { display: inline-block; width: 28px; height: 18px; border-radius: 6px; border: 1px solid var(--control-border); }
 .fallback { position: absolute; inset: 72px 12px 12px 12px; max-width: 640px; padding: 20px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: auto; }
 .app[data-mode='fallback'] .directory { top: auto; position: relative; width: auto; right: auto; bottom: auto; margin-top: 12px; box-shadow: none; }
 
@@ -240,11 +256,15 @@ kbd {
   .sim-badge { font-size: 0.8rem; }
   .toast { top: auto; bottom: 180px; }
   .activity-chip { bottom: 240px; font-size: 0.9rem; }
-  .directory { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 72vh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  .directory, .studio { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 72vh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  .tool-grid { grid-template-columns: repeat(4, 1fr); }
+  .avatar-layout { grid-template-columns: 1fr; }
+  .avatar-preview { width: 100%; }
 }
 /* Tablet: side sheet on the left so the right-hand thumb keeps the action button. */
 @media (min-width: 600px) and (max-width: 1024px) {
   .directory { left: 12px; right: auto; width: min(380px, 46vw); }
+  .studio { left: auto; right: 12px; width: min(380px, 46vw); }
   .hud-brand { display: none; }
 }
 
