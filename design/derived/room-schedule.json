@@ -1,5 +1,5 @@
 {
- "worldRevision": "P02",
+ "worldRevision": "P03",
  "status": "proposal konsep, bukan program ruang yang disahkan",
  "rooms": [
   {
@@ -2500,6 +2500,18 @@
     "exits": 4
    },
    "text": "Dua jalur keluar konsep L1 (perlu kajian profesional)"
+  },
+  {
+   "id": "ADJ-11",
+   "ok": true,
+   "detail": {
+    "below": [
+     "L1-BRUNO",
+     "L1-KEVIN"
+    ],
+    "sensitive": []
+   },
+   "text": "Gym provisional (Q-03) tidak di atas ruang sensitif (tenang, rapat, server); risiko getaran/akustik ke studio di bawah tetap perlu kajian"
   }
  ]
 }

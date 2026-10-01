@@ -1,11 +1,11 @@
 {
  "$schema": "./world.schema.json",
- "schemaVersion": "1.0.0",
+ "schemaVersion": "1.1.0",
  "project": "kantor-rpg",
  "revision": {
-  "id": "P02",
+  "id": "P03",
   "date": "2026-10-01",
-  "note": "M0 seed layout dua lantai, konsep untuk review"
+  "note": "Hardening: arah bukaan pintu dan jendela konsep di dataset; gym provisional (Q-03)"
  },
  "status": "KONSEP - bukan untuk konstruksi. Semua ukuran proposal untuk review.",
  "units": {
@@ -1682,7 +1682,11 @@
    "type": "double",
    "access": "public",
    "exit": true,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "EXT",
+    "hinge": "both"
+   }
   },
   {
    "id": "D-L1-01",
@@ -1716,7 +1720,11 @@
    "type": "double",
    "access": "public",
    "exit": false,
-   "wallAxis": "y"
+   "wallAxis": "y",
+   "swing": {
+    "into": "L1-MEET",
+    "hinge": "both"
+   }
   },
   {
    "id": "D-L1-03",
@@ -1733,7 +1741,11 @@
    "type": "single",
    "access": "public",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-MEET",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-04",
@@ -1767,7 +1779,11 @@
    "type": "single",
    "access": "public",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-GALLERY",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-06",
@@ -1784,7 +1800,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-PANTRY",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-07",
@@ -1801,7 +1821,11 @@
    "type": "single",
    "access": "public",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-WC",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-08",
@@ -1835,7 +1859,11 @@
    "type": "single",
    "access": "public",
    "exit": true,
-   "wallAxis": "y"
+   "wallAxis": "y",
+   "swing": {
+    "into": "EXT",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-EXE",
@@ -1852,7 +1880,11 @@
    "type": "single",
    "access": "public",
    "exit": true,
-   "wallAxis": "y"
+   "wallAxis": "y",
+   "swing": {
+    "into": "EXT",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-09",
@@ -1869,7 +1901,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-DISC",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-10",
@@ -1886,7 +1922,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-IMPL",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-11",
@@ -1920,7 +1960,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-NOVA",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-13",
@@ -1937,7 +1981,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-LAB",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-14",
@@ -1954,7 +2002,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-NCORR",
+    "hinge": "high"
+   }
   },
   {
    "id": "D-L1-22",
@@ -1971,7 +2023,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-LAB",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-EXN",
@@ -1988,7 +2044,11 @@
    "type": "single",
    "access": "staff",
    "exit": true,
-   "wallAxis": "y"
+   "wallAxis": "y",
+   "swing": {
+    "into": "EXT",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-15",
@@ -2005,7 +2065,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-CEO",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-16",
@@ -2022,7 +2086,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-HUGO",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-17",
@@ -2039,7 +2107,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-KEVIN",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-18",
@@ -2056,7 +2128,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-BRUNO",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-19",
@@ -2073,7 +2149,11 @@
    "type": "single",
    "access": "restricted",
    "exit": false,
-   "wallAxis": "y"
+   "wallAxis": "y",
+   "swing": {
+    "into": "L1-SERVER",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L1-20",
@@ -2107,7 +2187,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L1-STORE",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-01",
@@ -2141,7 +2225,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-READ",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-03",
@@ -2158,7 +2246,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-DINE",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-04",
@@ -2192,7 +2284,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-SHOWER",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-06",
@@ -2209,7 +2305,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-WC",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-07",
@@ -2243,7 +2343,11 @@
    "type": "single",
    "access": "staff",
    "exit": true,
-   "wallAxis": "y"
+   "wallAxis": "y",
+   "swing": {
+    "into": "EXT",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-08",
@@ -2260,7 +2364,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-CHAT",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-09",
@@ -2311,7 +2419,11 @@
    "type": "double",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-GAME",
+    "hinge": "both"
+   }
   },
   {
    "id": "D-L2-12",
@@ -2328,7 +2440,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-NCORR",
+    "hinge": "high"
+   }
   },
   {
    "id": "D-L2-19",
@@ -2345,7 +2461,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-GAME",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-13",
@@ -2379,7 +2499,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-BILLIARD",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-15",
@@ -2396,7 +2520,11 @@
    "type": "double",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-GYM",
+    "hinge": "both"
+   }
   },
   {
    "id": "D-L2-16",
@@ -2413,7 +2541,11 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-STORE",
+    "hinge": "low"
+   }
   },
   {
    "id": "D-L2-17",
@@ -2447,7 +2579,637 @@
    "type": "single",
    "access": "staff",
    "exit": false,
-   "wallAxis": "x"
+   "wallAxis": "x",
+   "swing": {
+    "into": "L2-SERVICE",
+    "hinge": "low"
+   }
+  }
+ ],
+ "windows": [
+  {
+   "id": "W-L1-001",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    2.5,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-002",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    5.5,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-003",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "wallAxis": "y",
+   "at": 0,
+   "center": [
+    0,
+    2.05
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-004",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "wallAxis": "y",
+   "at": 0,
+   "center": [
+    0,
+    6.25
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-005",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    10.8,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-006",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    17.2,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-007",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    27.75,
+    0
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-008",
+   "floor": "L1",
+   "room": "L1-WC",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    2.238
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-009",
+   "floor": "L1",
+   "room": "L1-WC",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    4.638
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-010",
+   "floor": "L1",
+   "room": "L1-WC",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    6.463
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-011",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "wallAxis": "y",
+   "at": 0,
+   "center": [
+    0,
+    14.4
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-012",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    2.2,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-013",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    5.2,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-014",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    8.9,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-015",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    11.9,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-016",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    15.5,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-017",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    18.5,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-018",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    22.5,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-019",
+   "floor": "L1",
+   "room": "L1-STORE",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    19.75
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L1-020",
+   "floor": "L1",
+   "room": "L1-STORE",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    22.9
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-021",
+   "floor": "L2",
+   "room": "L2-READ",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    2.4,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-022",
+   "floor": "L2",
+   "room": "L2-READ",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    5.4,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-023",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    10.4,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-024",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    13.4,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-025",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    21.5,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-026",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "wallAxis": "x",
+   "at": 0,
+   "center": [
+    24.5,
+    0
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-027",
+   "floor": "L2",
+   "room": "L2-WC",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    2.238
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-028",
+   "floor": "L2",
+   "room": "L2-WC",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    4.638
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-029",
+   "floor": "L2",
+   "room": "L2-WC",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    6.463
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-030",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "wallAxis": "y",
+   "at": 0,
+   "center": [
+    0,
+    12.1
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-031",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "wallAxis": "y",
+   "at": 0,
+   "center": [
+    0,
+    15.1
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-032",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    14.438
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-033",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    9.0,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-034",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    12.0,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-035",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    20.5,
+    24
+   ],
+   "width": 1.5,
+   "sill": 0.9,
+   "head": 2.4,
+   "glazing": "clear",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-036",
+   "floor": "L2",
+   "room": "L2-STORE",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    24.3,
+    24
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-037",
+   "floor": "L2",
+   "room": "L2-STORE",
+   "wallAxis": "x",
+   "at": 24,
+   "center": [
+    27.7,
+    24
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-038",
+   "floor": "L2",
+   "room": "L2-SERVICE",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    20.05
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
+  },
+  {
+   "id": "W-L2-039",
+   "floor": "L2",
+   "room": "L2-SERVICE",
+   "wallAxis": "y",
+   "at": 32,
+   "center": [
+    32,
+    22.45
+   ],
+   "width": 0.9,
+   "sill": 1.6,
+   "head": 2.4,
+   "glazing": "obscured",
+   "status": "konsep"
   }
  ],
  "verticalLinks": [
@@ -10275,6 +11037,19 @@
    "floor": "L1",
    "min_count": 2,
    "text": "Dua jalur keluar konsep L1 (perlu kajian profesional)"
+  },
+  {
+   "id": "ADJ-11",
+   "rule": "not_stacked_over",
+   "a": "L2-GYM",
+   "b_categories": [
+    "quiet",
+    "restricted"
+   ],
+   "b_ids": [
+    "L1-MEET"
+   ],
+   "text": "Gym provisional (Q-03) tidak di atas ruang sensitif (tenang, rapat, server); risiko getaran/akustik ke studio di bawah tetap perlu kajian"
   }
  ],
  "occupantLoadFactors": {

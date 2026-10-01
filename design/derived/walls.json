@@ -1,5 +1,5 @@
 {
- "worldRevision": "P02",
+ "worldRevision": "P03",
  "note": "derived by tools/kantor/geometry.py::derive_walls; do not edit",
  "floors": {
   "L1": {

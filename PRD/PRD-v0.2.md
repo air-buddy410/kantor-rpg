@@ -8,9 +8,9 @@ Status v0.2: dataset dunia, room schedule, adjacency, perhitungan kapasitas, por
 
 ## 0. Perubahan dari v0.1
 
-- Dataset satu sumber `design/world.json` (revisi P02) dan schema `design/world.schema.json` dibuat; CAD, Blender, runtime dan ICT wajib membacanya.
+- Dataset satu sumber `design/world.json` (revisi P03: P02 ditambah arah bukaan pintu, 39 jendela konsep dan aturan ADJ-11) dan schema `design/world.schema.json` dibuat; CAD, Blender, runtime dan ICT wajib membacanya.
 - Program ruang dua lantai dikunci sebagai proposal: 20 ruang di L1, 18 ruang di L2, termasuk sirkulasi, shaft dan riser, total 1536 m2 gross.
-- Validator `tools/validate_world.py` menjalankan 40 pemeriksaan (schema, overlap, coverage, pintu, fixture, clearance, navigasi staff/visitor, adjacency, foreign key ICT). Test negatif membuktikan validator menolak data rusak.
+- Validator `tools/validate_world.py` menjalankan 46 pemeriksaan (schema, overlap, coverage, pintu, arah bukaan, jendela, fixture, clearance, navigasi staff/visitor, adjacency, foreign key ICT). Test negatif membuktikan validator menolak data rusak.
 - Kapasitas dihitung oleh `tools/capacity.py`; temuan baru: target cold start 8 s pada 10 Mbps hanya mengizinkan sekitar 10 MB awal, bukan 25 MB.
 - ICT diturunkan oleh `tools/ict_derive.py`: 45 outlet, 72 port, panjang kabel dari route tray, tiga access switch agar spare tetap di atas 20 persen.
 - Audit tool: Blender 4.0.2 tersedia di container; AutoCAD tidak tersedia sehingga native DWG BLOCKED.
@@ -28,17 +28,17 @@ D-01 sampai D-07 dari v0.1 tetap berlaku: dua lantai dengan kerja terpisah dari 
 
 Belum diputuskan dan tetap terbuka: lahan fisik, lokasi, luas yang disahkan, target okupansi manusia, biaya pembangunan, client benchmark, hosting publik dan izin integrasi data real Hermes. Default aman: demo simulasi offline; integrasi private disabled.
 
-Butuh masukan Budi (NEEDS_INPUT, tidak memblokir M1 sampai M3):
-- Q-01: apakah 34 ruang bernama (tanpa shaft) dan 117 slot aktivitas cukup mewakili "keragaman setara" 47 area kantor pixel, atau perlu sub-zona tambahan?
-- Q-02: apakah L2 boleh bergantung pada satu tangga utama, lift dan penanda tangga darurat konsep di sisi timur, atau perlu tangga kedua di dalam envelope?
-- Q-03: apakah ruang gym di atas studio Kevin/area Bruno dapat diterima secara konsep, mengingat isu getaran/akustik yang harus dikaji profesional?
-- Q-04: perangkat client benchmark untuk target FPS (desktop dan mobile).
+Butuh masukan Budi (NEEDS_INPUT, tidak memblokir M1 sampai M3). Max mencatat keputusan provisional untuk keempatnya (ADR-008 sampai ADR-011 di `docs/decisions.md`); Budi tetap dapat membatalkannya:
+- Q-01: apakah 34 ruang bernama (tanpa shaft) dan 117 slot aktivitas cukup mewakili "keragaman setara" 47 area kantor pixel, atau perlu sub-zona tambahan? Provisional: keragaman ruang dipertahankan karena 27 fungsi PRD bagian 5 terlacak ke 38 ruang dan sebaliknya (`tools/prd_trace.py`).
+- Q-02: apakah L2 boleh bergantung pada satu tangga utama, lift dan penanda tangga darurat konsep di sisi timur, atau perlu tangga kedua di dalam envelope? Provisional: tangga dan lift internal untuk gameplay; tangga darurat timur hanya penanda konsep tertaut, tanpa klaim kepatuhan peraturan.
+- Q-03: apakah ruang gym di atas studio Kevin/area Bruno dapat diterima secara konsep, mengingat isu getaran/akustik yang harus dikaji profesional? Provisional: gym tetap, dengan risiko getaran/akustik tercatat dan aturan ADJ-11 (tidak di atas ruang tenang, rapat atau server).
+- Q-04: perangkat client benchmark untuk target FPS (desktop dan mobile). Provisional: harness performa reproducible; FPS perangkat nyata belum diuji sampai diukur.
 
 ## 3. Riset dan batas bukti
 
 Holixora menampilkan kontrol WASD, Shift, E, drag kamera, R, panduan teks, mode ringan, departemen dan akses ruang terbatas; halaman demo menyatakan tidak ada pekerjaan atau data pelanggan asli [1]. Pembuat menyebut prototype/data contoh serta tur 3D, percakapan persona, Office Studio dan Avatar Studio [2]. Fitur tersebut menjadi target proyek ini, bukan klaim sudah berjalan, dan tidak ada kode/aset Holixora yang disalin.
 
-Baseline kantor pixel lokal: 77 kolom, 44 baris (3388 sel), 47 area, 297 instance furniture. Dataset P02 memiliki 34 ruang non-shaft (rasio 0,72), 199 fixture (rasio 0,67), 117 slot aktivitas dan sekitar 1000 m2 area walkable pada navgrid. Angka ini perbandingan kompleksitas eksplorasi, bukan spesifikasi bangunan.
+Baseline kantor pixel lokal: 77 kolom, 44 baris (3388 sel), 47 area, 297 instance furniture. Dataset P03 memiliki 34 ruang non-shaft (rasio 0,72), 199 fixture (rasio 0,67), 117 slot aktivitas dan sekitar 1000 m2 area walkable pada navgrid. Angka ini perbandingan kompleksitas eksplorasi, bukan spesifikasi bangunan.
 
 Pokopia memberi referensi dunia yang dibangun bersama dan suasana santai [7]. Story of Seasons memberi referensi keseharian komunitas [5]. Final Fantasy adalah arahan rasa RPG dari pemilik, bukan sumber aset. Blender mendukung ekspor glTF dengan animasi keyframe, shape key dan skinning [3]. Three.js GLTFLoader dan AnimationMixer adalah kandidat pipeline [8]. Ketersediaan WebGL bergantung client [4], maka fallback DOM wajib.
 
@@ -60,7 +60,7 @@ Lantai 2 (rekreasi): reading nook, lounge dengan coffee bar, ruang makan dan pan
 
 Room schedule lengkap ada di `docs/room-schedule.md` dan `design/derived/room-schedule.csv`: ID stabil, nama, lantai, polygon, luas, fungsi, kursi, pintu, furnishing, ICT, finish, adjacency dan status asumsi. Ukuran meja biliar, rack clearance dan tangga ditandai target konsep (AS-DIM-04, AS-DIM-05, AS-ICT-06). Tidak ada radius Wi-Fi efektif dan tidak ada klaim tangga layak konstruksi.
 
-Aturan adjacency yang diuji: ADJ-01 resepsi di entrance; ADJ-02 jalur visitor lobby ke rapat menghindari server; ADJ-03 Bruno ke server maksimal 6 m jalan; ADJ-04 Bruno ke lab maksimal 12 m; ADJ-05 ruang basah minimal 8 m dari server; ADJ-06 ruang bising tidak berbagi dinding dengan ruang tenang; ADJ-07 dan ADJ-08 ruang basah bertumpuk; ADJ-09 pintu server hanya dari area Bruno; ADJ-10 minimal dua exit konsep L1. Hasil: 10 dari 10 lolos pada revisi P02.
+Aturan adjacency yang diuji: ADJ-01 resepsi di entrance; ADJ-02 jalur visitor lobby ke rapat menghindari server; ADJ-03 Bruno ke server maksimal 6 m jalan; ADJ-04 Bruno ke lab maksimal 12 m; ADJ-05 ruang basah minimal 8 m dari server; ADJ-06 ruang bising tidak berbagi dinding dengan ruang tenang; ADJ-07 dan ADJ-08 ruang basah bertumpuk; ADJ-09 pintu server hanya dari area Bruno; ADJ-10 minimal dua exit konsep L1; ADJ-11 gym tidak di atas ruang sensitif (Q-03). Hasil: 11 dari 11 lolos pada revisi P03.
 
 ## 6. Art direction, karakter dan aset
 
@@ -102,7 +102,7 @@ Drawing register (target, `design/sheets.json`): A-001 cover/index/catatan (A3);
 
 ## 11. ICT sebagai rancangan virtual
 
-Hasil derivasi P02: 45 outlet, 72 port (desk 2 port, bench lab 4 port, AP dan kamera 1 port), 4 patch panel 24 port (96 port, 72 terpakai), 3 access switch 48 port PoE dengan 4 uplink dicadangkan per switch (spare 45,5 persen per switch), 11 AP placeholder (AS-ICT-01), 5 kamera konsep opsional tanpa kamera di toilet/shower. Panjang kabel = route tray + naik rack 1,2 m + riser 4,0 m untuk L2 + drop ke outlet + slack 3,3 m (AS-ICT-02); total 2074,8 m, terpanjang 50,6 m, semua di bawah target 90 m (AS-ICT-03). PoE worst-case 407 W dari kelas IEEE (AS-ICT-04); budget PoE switch belum divalidasi karena datasheet belum dipilih. Tidak ada harga (AS-ICT-05).
+Hasil derivasi P03: 45 outlet, 72 port (desk 2 port, bench lab 4 port, AP dan kamera 1 port), 4 patch panel 24 port (96 port, 72 terpakai), 3 access switch 48 port PoE dengan 4 uplink dicadangkan per switch (spare 45,5 persen per switch), 11 AP placeholder (AS-ICT-01), 5 kamera konsep opsional tanpa kamera di toilet/shower. Panjang kabel = route tray + naik rack 1,2 m + riser 4,0 m untuk L2 + drop ke outlet + slack 3,3 m (AS-ICT-02); total 2074,8 m, terpanjang 50,6 m, semua di bawah target 90 m (AS-ICT-03). PoE worst-case 407 W dari kelas IEEE (AS-ICT-04); budget PoE switch belum divalidasi karena datasheet belum dipilih. Tidak ada harga (AS-ICT-05).
 
 Domain jaringan office/demo/guest/lab/server adalah ID abstrak (AS-NET-01), bukan subnet atau VLAN produksi. Port map, label dua ujung dan BOM ada di `design/derived/ict-portmap.json` dan `.csv`.
 

@@ -34,7 +34,7 @@ def run(cmd):
 def main():
     py = sys.executable
     run([py, "design/authoring/seed_world.py"])
-    run([py, "tools/validate_world.py", "--report", "docs/evidence/M0/validate-world.json"])
+    run([py, "tools/validate_world.py", "--report", "design/derived/validate-world.json"])
     run([py, "tools/export_runtime.py"])
     run([py, "tools/capacity.py"])
     run([py, "tools/room_schedule.py"])

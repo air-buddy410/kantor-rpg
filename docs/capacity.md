@@ -1,6 +1,6 @@
 # Kapasitas dan sizing (dihitung)
 
-Sumber: `design/world.json` revisi P02; script `tools/capacity.py`. Status: asumsi/target dihitung dari dataset, bukan observed usage.
+Sumber: `design/world.json` revisi P03; script `tools/capacity.py`. Status: asumsi/target dihitung dari dataset, bukan observed usage.
 
 ## Luas per lantai
 

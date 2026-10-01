@@ -1,6 +1,6 @@
 {
  "status": "rancangan virtual; panjang dari route tray + vertikal + slack berlabel",
- "worldRevision": "P02",
+ "worldRevision": "P03",
  "assumptions": [
   "AS-ICT-02",
   "AS-ICT-03"

@@ -1,6 +1,6 @@
 # Room schedule dan adjacency
 
-Turunan `design/world.json` revisi P02 oleh `tools/room_schedule.py`. Status: proposal konsep, bukan program ruang yang disahkan.
+Turunan `design/world.json` revisi P03 oleh `tools/room_schedule.py`. Status: proposal konsep, bukan program ruang yang disahkan.
 Luas diukur pada garis as dinding (AS-DIM-02). Kursi = slot duduk dari fixture (AS-OCC-02).
 
 ## Lantai 1 (kerja & kunjungan)
@@ -102,5 +102,6 @@ Luas diukur pada garis as dinding (AS-DIM-02). Kursi = slot duduk dari fixture (
 | ADJ-08 | Pantry L1 di bawah shower L2 (zona basah) | lolos | {"overlap_m2": 28.0} |
 | ADJ-09 | Pintu server hanya dari area Bruno | lolos | [] |
 | ADJ-10 | Dua jalur keluar konsep L1 (perlu kajian profesional) | lolos | {"exits": 4} |
+| ADJ-11 | Gym provisional (Q-03) tidak di atas ruang sensitif (tenang, rapat, server); risiko getaran/akustik ke studio di bawah tetap perlu kajian | lolos | {"below": ["L1-BRUNO", "L1-KEVIN"], "sensitive": []} |
 
 Aturan jalur keluar hanya menghitung pintu exit konsep; kepatuhan peraturan tidak diklaim (AS-EXIT-01).

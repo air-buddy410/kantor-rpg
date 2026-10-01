@@ -144,6 +144,108 @@ def check_doors(world, rep):
     return rep.check("doors_on_shared_walls", not problems, problems)
 
 
+def _door_span(d):
+    c = d["center"][0] if d["wallAxis"] == "x" else d["center"][1]
+    return c - d["width"] / 2, c + d["width"] / 2
+
+
+def swing_boxes(world, d):
+    """Plan rectangles swept by each leaf (leaf length square on the 'into' side)."""
+    sw = d.get("swing")
+    if not sw or sw["into"] == "EXT":
+        return []
+    rooms = room_by_id(world)
+    lo, hi = _door_span(d)
+    at = d["center"][1] if d["wallAxis"] == "x" else d["center"][0]
+    mid = (lo + hi) / 2
+    probe = (mid, at + 0.05) if d["wallAxis"] == "x" else (at + 0.05, mid)
+    sign = 1 if point_in_polygon(probe, rooms[sw["into"]]["polygon"]) else -1
+    leaves = [(lo, lo + (hi - lo) / 2), (lo + (hi - lo) / 2, hi)] if sw["hinge"] == "both" else \
+        [(lo, hi)]
+    out = []
+    for u0, u1 in leaves:
+        v0, v1 = sorted((at, at + sign * (u1 - u0)))
+        out.append((u0, v0, u1, v1) if d["wallAxis"] == "x" else (v0, u0, v1, u1))
+    return out
+
+
+def check_openings(world, rep):
+    """Door swing metadata and concept windows (P03)."""
+    rooms = room_by_id(world)
+    bad_swing, blocked_swing = [], []
+    for d in world["doors"]:
+        sw = d.get("swing")
+        if d["type"] in ("single", "double"):
+            if not sw:
+                bad_swing.append(f"{d['id']}: swing door without swing data")
+                continue
+            if sw["into"] not in d["rooms"]:
+                bad_swing.append(f"{d['id']}: swings into {sw['into']} which it does not connect")
+            if (d["type"] == "double") != (sw["hinge"] == "both"):
+                bad_swing.append(f"{d['id']}: hinge {sw['hinge']} does not match type {d['type']}")
+            if d["exit"] and "EXT" in d["rooms"] and sw["into"] != "EXT":
+                bad_swing.append(f"{d['id']}: exit door does not open in the egress direction")
+        elif sw:
+            bad_swing.append(f"{d['id']}: {d['type']} has swing data")
+        for box in swing_boxes(world, d):
+            room = rooms[sw["into"]]["polygon"]
+            x0, y0, x1, y1 = box
+            if not all(point_in_polygon(pt, room) or _on_boundary(pt, room) for pt in _rect_poly(x0, y0, x1, y1)):
+                blocked_swing.append(f"{d['id']}: swing leaves {sw['into']}")
+            for f in world["fixtures"]:
+                if f["floor"] == d["floor"] and f["collider"] and _sat_overlap(_rect_poly(x0, y0, x1, y1), fixture_corners(f)):
+                    blocked_swing.append(f"{d['id']}: swing hits {f['id']}")
+    rep.check("door_swing_metadata", not bad_swing, bad_swing)
+    rep.check("door_swing_clear_of_fixtures", not blocked_swing, blocked_swing)
+
+    ceiling = world["building"]["ceilingHeight"]
+    bad, overlaps, blocked = [], [], []
+    for w in world["windows"]:
+        r = rooms.get(w["room"])
+        if not r or r["floor"] != w["floor"]:
+            bad.append(f"{w['id']}: bad room")
+            continue
+        env = next(f for f in world["floors"] if f["id"] == w["floor"])["envelope"]
+        half = w["width"] / 2
+        c = w["center"][0] if w["wallAxis"] == "x" else w["center"][1]
+        a, b = ((c - half, w["at"]), (c + half, w["at"])) if w["wallAxis"] == "x" else ((w["at"], c - half), (w["at"], c + half))
+        if not (_on_boundary(a, env) and _on_boundary(b, env) and _on_boundary(a, r["polygon"]) and _on_boundary(b, r["polygon"])):
+            bad.append(f"{w['id']}: not on an exterior wall of {w['room']}")
+        if r["category"] in ("shaft", "restricted"):
+            bad.append(f"{w['id']}: window in {r['category']} room")
+        if r["category"] == "wet" and w["glazing"] != "obscured":
+            bad.append(f"{w['id']}: wet room needs obscured glazing")
+        if not (0 <= w["sill"] < w["head"] <= ceiling):
+            bad.append(f"{w['id']}: sill/head outside 0..ceiling")
+        for d in world["doors"]:
+            if d["floor"] == w["floor"] and d["wallAxis"] == w["wallAxis"] and \
+                    abs((d["center"][1] if d["wallAxis"] == "x" else d["center"][0]) - w["at"]) < 1e-6:
+                lo, hi = _door_span(d)
+                if lo < c + half and hi > c - half:
+                    overlaps.append(f"{w['id']}|{d['id']}")
+        for o in world["windows"]:
+            if o["id"] < w["id"] and o["floor"] == w["floor"] and o["wallAxis"] == w["wallAxis"] and o["at"] == w["at"]:
+                oc = o["center"][0] if o["wallAxis"] == "x" else o["center"][1]
+                if abs(oc - c) < (o["width"] + w["width"]) / 2:
+                    overlaps.append(f"{w['id']}|{o['id']}")
+        for f in world["fixtures"]:
+            if f["floor"] != w["floor"] or f["size"][2] <= w["sill"] - 0.05:
+                continue
+            xs = [p[0] for p in fixture_corners(f)]
+            ys = [p[1] for p in fixture_corners(f)]
+            if w["wallAxis"] == "x":
+                near = min(abs(min(ys) - w["at"]), abs(max(ys) - w["at"])) <= 0.5
+                hit = near and min(xs) < c + half and max(xs) > c - half
+            else:
+                near = min(abs(min(xs) - w["at"]), abs(max(xs) - w["at"])) <= 0.5
+                hit = near and min(ys) < c + half and max(ys) > c - half
+            if hit:
+                blocked.append(f"{w['id']}: {f['id']} ({f['type']}, h {f['size'][2]} m) stands in front")
+    rep.check("windows_on_exterior_walls", not bad, bad)
+    rep.check("windows_clear_of_doors_and_each_other", not overlaps, overlaps)
+    rep.check("windows_not_blocked_by_tall_fixtures", not blocked, blocked)
+
+
 def _on_boundary(pt, poly):
     from tools.kantor.geometry import point_on_segment
     return any(point_on_segment(pt, a, b) for a, b in zip(poly, poly[1:] + poly[:1]))
@@ -355,6 +457,11 @@ def check_adjacency(world, rep, grids):
             bad = [d["id"] for d in world["doors"] if rule["a"] in d["rooms"]
                    and not set(d["rooms"]) - {rule["a"]} <= set(rule["allowed"])]
             ok, detail = not bad, bad
+        elif kind == "not_stacked_over":
+            a = rooms[rule["a"]]
+            under = [r for r in world["rooms"] if r["floor"] != a["floor"] and _overlap_area(a["polygon"], r["polygon"]) > 1e-6]
+            bad = [r["id"] for r in under if r["category"] in rule.get("b_categories", []) or r["id"] in rule.get("b_ids", [])]
+            ok, detail = not bad, {"below": sorted(r["id"] for r in under), "sensitive": bad}
         elif kind == "exits":
             n = sum(1 for d in world["doors"] if d["floor"] == rule["floor"] and d["exit"])
             ok, detail = n >= rule["min_count"], {"exits": n}
@@ -475,6 +582,7 @@ def run(world, skip_seed=False):
     check_rooms(world, rep)
     check_doors(world, rep)
     check_fixtures(world, rep)
+    check_openings(world, rep)
     grids, _ = check_navigation(world, rep)
     adjacency = check_adjacency(world, rep, grids)
     check_ict(world, rep)

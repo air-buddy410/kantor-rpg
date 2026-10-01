@@ -2,6 +2,16 @@
 
 Log untuk supervisor (Max). Entri terbaru di atas. Status memakai DONE_Mx / NEEDS_INPUT / BLOCKED; angka test adalah hasil eksekusi, bukan target.
 
+## Hardening (branch claude/kantor-rpg-m3-hardening, basis c9c278a1e5afdca4547a36fb49b1f0ad0dd61e42)
+
+Status: berjalan. Runtime sesi: model claude-opus-5-5, effort high (dibaca dari get_session, last_served_model sama); jendela rate limit 7 hari berstatus "rejected" (reset 2026-10-03 16:00 UTC) tetapi sesi masih melayani; tanpa fallback berbayar. Preview yang dipin ke c9c278a milik tugas Bruno t_99cdde23; branch ini tidak menyentuh deploy.
+
+Checkpoint 1 (dataset P03):
+- `design/world.json` P03: arah bukaan pintu (`swing.into`, `swing.hinge`) untuk 35 pintu swing, 39 jendela konsep di dinding luar (aturan generator di seed), ADJ-11 gym tidak di atas ruang sensitif.
+- Validator 46 pemeriksaan lolos; test negatif baru `tests/py/test_openings.py` (12) dan `tests/py/test_prd_trace.py` (4).
+- ADR-008 sampai ADR-011 (Q-01 sampai Q-04 provisional) di `docs/decisions.md`; PRD v0.2 + PDF diperbarui.
+- pytest 235 lolos, vitest 36 lolos, tsc bersih (lokal, sebelum commit).
+
 ## M3 (branch claude/kantor-rpg-m3)
 
 Status: DONE_M3 untuk authoring + deliverables yang dapat dibuat di cloud; native DWG BLOCKED; target draw call mobile belum terpenuhi (161 > 150 terukur); uji perangkat nyata belum.
