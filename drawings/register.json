@@ -1,0 +1,212 @@
+{
+ "project": "kantor-rpg",
+ "source": "design/sheets.json",
+ "generated_utc": "2026-10-01T10:40:48Z",
+ "note": "Dibuat oleh cad/generate.py. Status 'produced (konsep)' = DXF/PDF dihasilkan dan dibaca ulang; native DWG BLOCKED.",
+ "sheets": [
+  {
+   "id": "A-001",
+   "title": "Cover, indeks dan catatan umum",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "index",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "A-101",
+   "title": "Denah Lantai 1",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "plan",
+   "milestone": "M1",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T10:40:48Z",
+   "generator_command": "python3 cad/generate.py --sheets A-101 A-102",
+   "pdf_pages": 1,
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-101.dxf",
+     "sha256": "d48de23cc4c026b5cc5029e0b3997c90b6e9e7fc2098e5e10047430274fdc4ed"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-101.pdf",
+     "sha256": "12eb7c3d056261ba8bbbc26daa148653951e6a71eb94ac2f00de0fd6c707d348"
+    },
+    "counts": {
+     "path": "cad/out/A-101.counts.json",
+     "sha256": "b33f7e3ff12936505dc0b06ce3774c75851f9a76e1948dbd1eab378c172616cf"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-101.png",
+     "sha256": "16435b402142f2f1768369b254ce2b936028b4ce26921e535948cf81dab5cd70"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-101-dxf.png",
+     "sha256": "eac3738783094f64f1d949e00563529b9cb3e2e6748dc9daa15e8a88011b4587"
+    }
+   }
+  },
+  {
+   "id": "A-102",
+   "title": "Denah Lantai 2",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "plan",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T10:40:48Z",
+   "generator_command": "python3 cad/generate.py --sheets A-101 A-102",
+   "pdf_pages": 1,
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-102.dxf",
+     "sha256": "e9f79ef38566fb81ee019d9597bd38836338b873e119e152b6b998aa31c75b54"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-102.pdf",
+     "sha256": "f3623d24d1e13f639cfd243435bf6c4ed48b0a52d97fd9875070f249d62e19e9"
+    },
+    "counts": {
+     "path": "cad/out/A-102.counts.json",
+     "sha256": "4e872deb601b75a621102e1d9a282124f5e0b255b7ca9bb09ba47f6f6e5caf58"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-102.png",
+     "sha256": "aa73f1951a62e9fb10105e994429801885615fc896c6d39e5981bc6f931826c9"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-102-dxf.png",
+     "sha256": "10dc631d65d75029cca7829e9da3408b7222253728dbe95a08e4f77506c0eb23"
+    }
+   }
+  },
+  {
+   "id": "A-103",
+   "title": "Room schedule",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "room_schedule",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "A-201",
+   "title": "Layout furniture Lantai 1",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "furniture",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "A-202",
+   "title": "Layout furniture Lantai 2",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "furniture",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "A-301",
+   "title": "Tampak",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "1:200",
+   "content": "elevations",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "A-401",
+   "title": "Potongan",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "1:100",
+   "content": "sections",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "I-101",
+   "title": "Finish interior dan material",
+   "discipline": "I",
+   "size": "A3",
+   "scale": "1:200",
+   "content": "finishes",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "ICT-001",
+   "title": "Topologi jaringan (virtual)",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "topology",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "ICT-101",
+   "title": "Outlet, AP dan kamera Lantai 1",
+   "discipline": "ICT",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "ict_plan",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "ICT-102",
+   "title": "Outlet, AP dan kamera Lantai 2",
+   "discipline": "ICT",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "ict_plan",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "ICT-201",
+   "title": "Elevasi rack",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "1:20",
+   "content": "rack_elevation",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "ICT-301",
+   "title": "Pathway dan riser",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "1:200",
+   "content": "pathways",
+   "milestone": "M3",
+   "status": "target"
+  },
+  {
+   "id": "ICT-401",
+   "title": "Port dan device schedule",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "port_schedule",
+   "milestone": "M3",
+   "status": "target"
+  }
+ ]
+}
