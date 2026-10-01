@@ -102,7 +102,45 @@ function fixtureMatrix(fx: Fixture, elevation: number): THREE.Matrix4 {
   return m;
 }
 
+const textureLoader = new THREE.TextureLoader();
+const artCache = new Map<string, THREE.MeshLambertMaterial>();
+
+/** Front face of artwork-bearing fixtures, in the fixture's local frame (see furniture.ts panel()). */
+function artworkFace(fx: Fixture): { w: number; h: number; y: number; z: number } | null {
+  const [w, d, h] = fx.size;
+  if (fx.type === 'poster') return { w: w * 0.88, h: h * 0.84, y: 1.2 + h * 0.08 + (h * 0.84) / 2, z: d / 2 + 0.02 };
+  if (fx.type === 'gallery_panel') { const ph = h - 0.15; return { w: w * 0.88, h: ph * 0.84, y: 0.12 + ph * 0.08 + (ph * 0.84) / 2, z: (d * 0.4) / 2 + 0.02 }; }
+  return null;
+}
+
+/** Generated original artwork (tools/make_signage.py) as textured planes; a
+ * missing image removes the plane so the procedural composition shows. */
+function addArtwork(fixtures: Fixture[], floor: FloorId, elevation: number, group: THREE.Group) {
+  for (const fx of fixtures) {
+    if (fx.floor !== floor || !fx.artwork) continue;
+    const face = artworkFace(fx);
+    if (!face) continue;
+    let mat = artCache.get(fx.artwork);
+    if (!mat) {
+      mat = new THREE.MeshLambertMaterial({ color: 0xffffff });
+      const m = mat;
+      textureLoader.load(`assets/signage/${fx.artwork}.jpg`, (t) => { t.colorSpace = THREE.SRGBColorSpace; m.map = t; m.needsUpdate = true; }, undefined, () => {
+        group.traverse((o) => { if ((o as THREE.Mesh).material === m) o.visible = false; });
+      });
+      artCache.set(fx.artwork, mat);
+    }
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(face.w, face.h), mat);
+    plane.position.set(0, face.y, face.z);
+    const holder = new THREE.Group();
+    holder.applyMatrix4(fixtureMatrix(fx, elevation));
+    holder.add(plane);
+    holder.name = `art-${fx.id}`;
+    group.add(holder);
+  }
+}
+
 export function buildFixturesInto(fixtures: Fixture[], floor: FloorId, elevation: number, materials: MaterialCache, group: THREE.Group, castShadow: boolean) {
+  addArtwork(fixtures, floor, elevation, group);
   const batch = new Batcher();
   for (const fx of fixtures) {
     if (fx.floor !== floor) continue;
