@@ -1,4 +1,5 @@
 # Kantor RPG
+
 ## PRD v0.1: brief implementasi dan gerbang pembuktian
 
 Pemilik produk: Budi. Penulis: Max (Air Buddy). Badan usaha: PRIBADI, eksperimen visual kantor tim. Bukan aplikasi operasi ISP, bukan paket gambar konstruksi yang disahkan. Pelaksana berikutnya: Claude Code cloud, Opus 5.5, effort High. Semua hasil berada dalam repo kantor-rpg. Versi ini adalah baseline perencanaan; app, CAD, Blender dan koneksi Hermes belum diuji.
