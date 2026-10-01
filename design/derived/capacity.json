@@ -1,0 +1,540 @@
+{
+ "status": "asumsi/target dihitung dari dataset, bukan observed usage",
+ "world_revision": "P02",
+ "gross_m2": 1536.0,
+ "floors": {
+  "L1": {
+   "gross_m2": 768.0,
+   "rooms": 20,
+   "area_by_category_m2": {
+    "work": 283.0,
+    "public": 144.0,
+    "wet": 45.5,
+    "shaft": 4.0,
+    "circulation": 180.0,
+    "quiet": 74.5,
+    "restricted": 22.0,
+    "service": 15.0
+   },
+   "circulation_ratio": 0.234,
+   "seats_from_fixtures": 41,
+   "workstations": 13,
+   "occupant_load_comparison": 110,
+   "walkable_m2_navgrid": 494.0,
+   "exits_on_floor": 4
+  },
+  "L2": {
+   "gross_m2": 768.0,
+   "rooms": 18,
+   "area_by_category_m2": {
+    "quiet": 100.0,
+    "recreation": 352.0,
+    "wet": 45.5,
+    "shaft": 4.0,
+    "circulation": 180.0,
+    "outdoor": 38.5,
+    "service": 48.0
+   },
+   "circulation_ratio": 0.234,
+   "seats_from_fixtures": 42,
+   "workstations": 0,
+   "occupant_load_comparison": 302,
+   "walkable_m2_navgrid": 506.3,
+   "exits_on_floor": 1
+  }
+ },
+ "rooms": [
+  {
+   "id": "L1-MEET",
+   "floor": "L1",
+   "name": "Ruang rapat besar",
+   "category": "work",
+   "area_m2": 64.0,
+   "seats_from_fixtures": 10,
+   "workstations": 0,
+   "occupant_load_comparison": 47,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L1-LOBBY",
+   "floor": "L1",
+   "name": "Lobby & resepsi",
+   "category": "public",
+   "area_m2": 96.0,
+   "seats_from_fixtures": 5,
+   "workstations": 0,
+   "occupant_load_comparison": 7,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-GALLERY",
+   "floor": "L1",
+   "name": "Galeri portofolio",
+   "category": "public",
+   "area_m2": 48.0,
+   "seats_from_fixtures": 2,
+   "workstations": 0,
+   "occupant_load_comparison": 4,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-PANTRY",
+   "floor": "L1",
+   "name": "Pantry kerja",
+   "category": "wet",
+   "area_m2": 28.0,
+   "seats_from_fixtures": 2,
+   "workstations": 0,
+   "occupant_load_comparison": 3,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-SHAFT-W",
+   "floor": "L1",
+   "name": "Shaft basah",
+   "category": "shaft",
+   "area_m2": 2.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L1-WC",
+   "floor": "L1",
+   "name": "Toilet aksesibel",
+   "category": "wet",
+   "area_m2": 17.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L1-CORR",
+   "floor": "L1",
+   "name": "Koridor utama L1",
+   "category": "circulation",
+   "area_m2": 80.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L1-DISC",
+   "floor": "L1",
+   "name": "Ruang diskusi",
+   "category": "quiet",
+   "area_m2": 36.0,
+   "seats_from_fixtures": 4,
+   "workstations": 0,
+   "occupant_load_comparison": 26,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L1-IMPL",
+   "floor": "L1",
+   "name": "Ruang implementasi & review",
+   "category": "work",
+   "area_m2": 48.0,
+   "seats_from_fixtures": 6,
+   "workstations": 6,
+   "occupant_load_comparison": 4,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-CORE",
+   "floor": "L1",
+   "name": "Inti tangga & lift L1",
+   "category": "circulation",
+   "area_m2": 36.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L1-NOVA",
+   "floor": "L1",
+   "name": "Area Nova (spesifikasi ICT)",
+   "category": "work",
+   "area_m2": 36.0,
+   "seats_from_fixtures": 2,
+   "workstations": 2,
+   "occupant_load_comparison": 3,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-LAB",
+   "floor": "L1",
+   "name": "Lab ICT",
+   "category": "work",
+   "area_m2": 36.0,
+   "seats_from_fixtures": 1,
+   "workstations": 0,
+   "occupant_load_comparison": 3,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-NCORR",
+   "floor": "L1",
+   "name": "Koridor utara L1",
+   "category": "circulation",
+   "area_m2": 64.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L1-CEO",
+   "floor": "L1",
+   "name": "Ruang CEO",
+   "category": "quiet",
+   "area_m2": 38.5,
+   "seats_from_fixtures": 5,
+   "workstations": 1,
+   "occupant_load_comparison": 3,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-HUGO",
+   "floor": "L1",
+   "name": "Studio Hugo",
+   "category": "work",
+   "area_m2": 38.5,
+   "seats_from_fixtures": 2,
+   "workstations": 2,
+   "occupant_load_comparison": 3,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-KEVIN",
+   "floor": "L1",
+   "name": "Studio Kevin",
+   "category": "work",
+   "area_m2": 33.0,
+   "seats_from_fixtures": 1,
+   "workstations": 1,
+   "occupant_load_comparison": 3,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-BRUNO",
+   "floor": "L1",
+   "name": "Area Bruno",
+   "category": "work",
+   "area_m2": 27.5,
+   "seats_from_fixtures": 1,
+   "workstations": 1,
+   "occupant_load_comparison": 2,
+   "load_factor": "business"
+  },
+  {
+   "id": "L1-SERVER",
+   "floor": "L1",
+   "name": "Ruang server",
+   "category": "restricted",
+   "area_m2": 22.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 1,
+   "load_factor": "storage"
+  },
+  {
+   "id": "L1-RISER",
+   "floor": "L1",
+   "name": "Riser ICT",
+   "category": "shaft",
+   "area_m2": 1.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L1-STORE",
+   "floor": "L1",
+   "name": "Gudang & utilitas",
+   "category": "service",
+   "area_m2": 15.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 1,
+   "load_factor": "storage"
+  },
+  {
+   "id": "L2-READ",
+   "floor": "L2",
+   "name": "Perpustakaan / reading nook",
+   "category": "quiet",
+   "area_m2": 64.0,
+   "seats_from_fixtures": 4,
+   "workstations": 0,
+   "occupant_load_comparison": 14,
+   "load_factor": "library"
+  },
+  {
+   "id": "L2-LOUNGE",
+   "floor": "L2",
+   "name": "Lounge & coffee bar",
+   "category": "recreation",
+   "area_m2": 96.0,
+   "seats_from_fixtures": 9,
+   "workstations": 0,
+   "occupant_load_comparison": 70,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-DINE",
+   "floor": "L2",
+   "name": "Ruang makan & pantry",
+   "category": "recreation",
+   "area_m2": 48.0,
+   "seats_from_fixtures": 8,
+   "workstations": 0,
+   "occupant_load_comparison": 35,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-SHOWER",
+   "floor": "L2",
+   "name": "Shower & ruang ganti",
+   "category": "wet",
+   "area_m2": 28.0,
+   "seats_from_fixtures": 2,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-SHAFT-W",
+   "floor": "L2",
+   "name": "Shaft basah L2",
+   "category": "shaft",
+   "area_m2": 2.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-WC",
+   "floor": "L2",
+   "name": "Toilet L2",
+   "category": "wet",
+   "area_m2": 17.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-CORR",
+   "floor": "L2",
+   "name": "Koridor utama L2",
+   "category": "circulation",
+   "area_m2": 80.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-CHAT",
+   "floor": "L2",
+   "name": "Diskusi santai",
+   "category": "quiet",
+   "area_m2": 36.0,
+   "seats_from_fixtures": 4,
+   "workstations": 0,
+   "occupant_load_comparison": 26,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-GARDEN",
+   "floor": "L2",
+   "name": "Taman dalam",
+   "category": "recreation",
+   "area_m2": 48.0,
+   "seats_from_fixtures": 2,
+   "workstations": 0,
+   "occupant_load_comparison": 35,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-CORE",
+   "floor": "L2",
+   "name": "Inti tangga & lift L2",
+   "category": "circulation",
+   "area_m2": 36.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-GAME",
+   "floor": "L2",
+   "name": "Ruang game",
+   "category": "recreation",
+   "area_m2": 72.0,
+   "seats_from_fixtures": 8,
+   "workstations": 0,
+   "occupant_load_comparison": 52,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-NCORR",
+   "floor": "L2",
+   "name": "Koridor utara L2",
+   "category": "circulation",
+   "area_m2": 64.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-BALCONY",
+   "floor": "L2",
+   "name": "Balkon taman",
+   "category": "outdoor",
+   "area_m2": 38.5,
+   "seats_from_fixtures": 2,
+   "workstations": 0,
+   "occupant_load_comparison": 28,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-BILLIARD",
+   "floor": "L2",
+   "name": "Ruang biliar",
+   "category": "recreation",
+   "area_m2": 38.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 28,
+   "load_factor": "assembly_tables"
+  },
+  {
+   "id": "L2-GYM",
+   "floor": "L2",
+   "name": "Ruang olahraga",
+   "category": "recreation",
+   "area_m2": 49.5,
+   "seats_from_fixtures": 3,
+   "workstations": 0,
+   "occupant_load_comparison": 11,
+   "load_factor": "exercise"
+  },
+  {
+   "id": "L2-STORE",
+   "floor": "L2",
+   "name": "Gudang L2",
+   "category": "service",
+   "area_m2": 33.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 2,
+   "load_factor": "storage"
+  },
+  {
+   "id": "L2-RISER",
+   "floor": "L2",
+   "name": "Riser ICT L2",
+   "category": "shaft",
+   "area_m2": 1.5,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 0,
+   "load_factor": null
+  },
+  {
+   "id": "L2-SERVICE",
+   "floor": "L2",
+   "name": "Area servis L2",
+   "category": "service",
+   "area_m2": 15.0,
+   "seats_from_fixtures": 0,
+   "workstations": 0,
+   "occupant_load_comparison": 1,
+   "load_factor": "storage"
+  }
+ ],
+ "exploration_vs_pixel_baseline": {
+  "tile_baseline_cells": 3388,
+  "pixel_areas": 47,
+  "pixel_furniture": 297,
+  "world_rooms_non_shaft": 34,
+  "world_fixtures": 199,
+  "world_activity_slots": 117,
+  "world_walkable_m2": 1000.3,
+  "note": "Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).",
+  "rooms_vs_pixel_areas_ratio": 0.72,
+  "fixtures_vs_pixel_furniture_ratio": 0.67
+ },
+ "private_snapshot_egress": {
+  "formula": "actors * bytes_per_actor * viewers / interval_s",
+  "inputs": {
+   "actors": 12,
+   "bytes_per_actor": 1024,
+   "interval_s": 5,
+   "viewers": [
+    40,
+    200
+   ],
+   "status": "asumsi perencanaan private, M4 disabled"
+  },
+  "by_viewers": {
+   "40": {
+    "bytes_per_second": 98304.0,
+    "GB_per_hour": 0.354,
+    "GB_per_30d_if_continuous": 254.8
+   },
+   "200": {
+    "bytes_per_second": 491520.0,
+    "GB_per_hour": 1.769,
+    "GB_per_30d_if_continuous": 1274.0
+   }
+  },
+  "shared_source_reads_per_hour": 720.0
+ },
+ "transfer": {
+  "inputs": {
+   "initial_mb_mobile_target": 25,
+   "initial_mb_desktop_target": 60,
+   "link_mbps": 10,
+   "cold_start_target_s": 8,
+   "mb_definition": "1 MB = 10^6 byte (desimal)"
+  },
+  "mobile_initial_seconds": 20.0,
+  "desktop_initial_seconds": 48.0,
+  "max_initial_MB_for_cold_start_target": 10.0,
+  "finding": "25 MB pada 10 Mbps butuh 20 s > target 8 s; first playable harus <= 10 MB, sisanya lazy load."
+ },
+ "triangles": {
+  "inputs": {
+   "scene_mobile_max": 250000,
+   "player_max": 25000,
+   "npc_lod0_max": 15000,
+   "npc_lod1_max": 5000,
+   "prop_small_max": 2000,
+   "draw_calls_mobile_max": 150
+  },
+  "npc_count": 6,
+  "characters_lod0_budget": 115000,
+  "environment_remaining_mobile": 135000
+ },
+ "maintenance_hours_monthly": {
+  "items": {
+   "dependency_security_review": 2,
+   "asset_perf_regression": 2,
+   "layout_ict_consistency": 1,
+   "backup_restore_design_source": 1
+  },
+  "total": 6,
+  "status": "proposal, bukan jam teramati"
+ }
+}

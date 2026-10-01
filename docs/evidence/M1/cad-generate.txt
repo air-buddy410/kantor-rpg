@@ -1,0 +1,120 @@
+# kantor-rpg M1 CAD generator evidence (real execution in cloud container)
+# host: Linux 6.18.44-fc-v50 x86_64; python 3.11.15; ezdxf 1.4.4; reportlab 5.0.1; pypdf 6.19.0; matplotlib 3.11.2
+# git HEAD 93d2ec5 on branch claude/kantor-rpg-m1 (outputs not yet committed)
+# started 2026-10-01T10:40:48Z
+
+$ python3 cad/generate.py --sheets A-101 A-102
+generator cad/generate.py v1  utc 2026-10-01T10:40:48Z
+world design/world.json revision P02 sha256 ac39b320919d6410f01d798ea0af1508e8c37de5e08f0e72047b9bf11e1f4afa
+Huruf: KantorRPG Sans, turunan Alegreya Sans karya Juan Pablo del Peral (SIL OFL 1.1, paket Debian fonts-alegreya-sans), subset tertanam.
+contrast INK #22302a on white = 13.78:1
+contrast GREEN #1f4d3a on white = 9.63:1
+contrast GREY_TEXT #5a524b on white = 7.66:1
+contrast TERRA #b5532f on white = 4.95:1
+contrast DIM #2f4238 on white = 10.73:1
+contrast white on GREEN status band = 9.63:1
+
+[A-101] Denah Lantai 1  floor L1  scale 1:100 @ A2
+  dxf cad/out/A-101.dxf  243582 bytes  sha256 d48de23cc4c026b5cc5029e0b3997c90b6e9e7fc2098e5e10047430274fdc4ed
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  ms A-ANNO-DIMS   DIMENSION 28
+  ms A-ANNO-RMNM   MTEXT 20
+  ms A-AREA        LWPOLYLINE 20
+  ms A-DOOR        ARC 23, LINE 33, LWPOLYLINE 2
+  ms A-DOOR-IDEN   TEXT 26
+  ms A-FURN        LWPOLYLINE 106
+  ms A-FURN-IDEN   TEXT 108
+  ms A-GRID        LINE 11
+  ms A-GRID-IDEN   CIRCLE 22, TEXT 22
+  ms A-STRS        LINE 29, LWPOLYLINE 5, SOLID 1, TEXT 2
+  ms A-WALL        HATCH 50, LWPOLYLINE 50
+  paperspace:A-101 total 23
+  expected {'walls': 50, 'doors': 26, 'rooms': 20, 'fixtures': 108, 'dimension_segments': 28}
+  pdf drawings/pdf/A-101.pdf  51617 bytes  page 1683.78 x 1190.55 pt  sha256 12eb7c3d056261ba8bbbc26daa148653951e6a71eb94ac2f00de0fd6c707d348
+  scale bar [0, 1, 2, 5, 10] m -> 100.00 mm = 283.46 pt
+  room tags forced (no clean fit): none; residual overlap m2: {'L1-NCORR': 0.002}
+  previews drawings/previews/A-101.png, drawings/previews/A-101-dxf.png
+
+[A-102] Denah Lantai 2  floor L2  scale 1:100 @ A2
+  dxf cad/out/A-102.dxf  223793 bytes  sha256 e9f79ef38566fb81ee019d9597bd38836338b873e119e152b6b998aa31c75b54
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  ms A-ANNO-DIMS   DIMENSION 27
+  ms A-ANNO-RMNM   MTEXT 18
+  ms A-AREA        LWPOLYLINE 18
+  ms A-DOOR        ARC 15, LINE 27, LWPOLYLINE 4
+  ms A-DOOR-IDEN   TEXT 20
+  ms A-FURN        LWPOLYLINE 89
+  ms A-FURN-IDEN   TEXT 91
+  ms A-GRID        LINE 11
+  ms A-GRID-IDEN   CIRCLE 22, TEXT 22
+  ms A-STRS        LINE 29, LWPOLYLINE 4, SOLID 1, TEXT 2
+  ms A-WALL        HATCH 42, LWPOLYLINE 42
+  paperspace:A-102 total 23
+  expected {'walls': 42, 'doors': 20, 'rooms': 18, 'fixtures': 91, 'dimension_segments': 27}
+  pdf drawings/pdf/A-102.pdf  49616 bytes  page 1683.78 x 1190.55 pt  sha256 f3623d24d1e13f639cfd243435bf6c4ed48b0a52d97fd9875070f249d62e19e9
+  scale bar [0, 1, 2, 5, 10] m -> 100.00 mm = 283.46 pt
+  room tags forced (no clean fit): none; residual overlap m2: none
+  previews drawings/previews/A-102.png, drawings/previews/A-102-dxf.png
+
+register drawings/register.json: 2 produced, 13 target
+native DWG: BLOCKED (AutoCAD tidak tersedia di container); tidak ada file .dwg dibuat
+exit code: 0
+
+$ python3 cad/generate.py --sheets A-103   (negative: content room_schedule not implemented yet, must refuse)
+ERROR content not implemented yet for: A-103 (status tetap target)
+exit code: 2
+
+$ pdfinfo drawings/pdf/A-101.pdf (selected fields)
+Title:           A-101 Denah Lantai 1 (P02)
+Creator:         cad/generate.py v1 (ReportLab)
+Producer:        ReportLab PDF Library - (opensource)
+Pages:           1
+Page size:       1683.78 x 1190.55 pts (A2)
+exit code: 0
+
+$ pdfinfo drawings/pdf/A-102.pdf | grep "Page size"
+Pages:           1
+Page size:       1683.78 x 1190.55 pts (A2)
+exit code: 0
+
+$ pdffonts drawings/pdf/A-101.pdf
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+AAAAAA+KantorRPGSans-Bold            TrueType          WinAnsi          yes yes yes      6  0
+AAAAAA+KantorRPGSans-Medium          TrueType          WinAnsi          yes yes yes     10  0
+AAAAAA+KantorRPGSans-Regular         TrueType          WinAnsi          yes yes yes     14  0
+exit code: 0
+
+$ pdfimages -list drawings/pdf/A-101.pdf   (expect header only, no raster images: vector drawing)
+page   num  type   width height color comp bpc  enc interp  object ID x-ppi y-ppi size ratio
+--------------------------------------------------------------------------------------------
+exit code: 0
+
+$ pdftotext drawings/pdf/A-101.pdf - | grep -o -E "(D-)?L1-[A-Z0-9-]+" | sort -u   (room and door IDs as extractable text)
+D-L1-01 D-L1-02 D-L1-03 D-L1-04 D-L1-05 D-L1-06 D-L1-07 D-L1-08 D-L1-09 D-L1-10 D-L1-11 D-L1-12 D-L1-13 D-L1-14 D-L1-15 D-L1-16 D-L1-17 D-L1-18 D-L1-19 D-L1-20 D-L1-21 D-L1-22 D-L1-ENT D-L1-EXE D-L1-EXN D-L1-EXW L1-BRUNO L1-CEO L1-CORE L1-CORR L1-DISC L1-GALLERY L1-HUGO L1-IMPL L1-KEVIN L1-LAB L1-LOBBY L1-MEET L1-NCORR L1-NOVA L1-PANTRY L1-RISER L1-SERVER L1-SHAFT-W L1-STORE L1-WC 
+exit code: 0
+
+$ file drawings/previews/*.png
+drawings/previews/A-101-dxf.png: PNG image data, 1760 x 1419, 8-bit/color RGBA, non-interlaced
+drawings/previews/A-101.png:     PNG image data, 1170 x 827, 8-bit/color RGB, non-interlaced
+drawings/previews/A-102-dxf.png: PNG image data, 1760 x 1419, 8-bit/color RGBA, non-interlaced
+drawings/previews/A-102.png:     PNG image data, 1170 x 827, 8-bit/color RGB, non-interlaced
+exit code: 0
+
+$ find . -iname "*.dwg" -not -path "*/node_modules/*"   (expect nothing: native DWG BLOCKED)
+exit code: 0
+
+$ sha256sum cad/out/* drawings/pdf/* drawings/previews/* drawings/register.json
+b33f7e3ff12936505dc0b06ce3774c75851f9a76e1948dbd1eab378c172616cf  cad/out/A-101.counts.json
+d48de23cc4c026b5cc5029e0b3997c90b6e9e7fc2098e5e10047430274fdc4ed  cad/out/A-101.dxf
+4e872deb601b75a621102e1d9a282124f5e0b255b7ca9bb09ba47f6f6e5caf58  cad/out/A-102.counts.json
+e9f79ef38566fb81ee019d9597bd38836338b873e119e152b6b998aa31c75b54  cad/out/A-102.dxf
+12eb7c3d056261ba8bbbc26daa148653951e6a71eb94ac2f00de0fd6c707d348  drawings/pdf/A-101.pdf
+f3623d24d1e13f639cfd243435bf6c4ed48b0a52d97fd9875070f249d62e19e9  drawings/pdf/A-102.pdf
+eac3738783094f64f1d949e00563529b9cb3e2e6748dc9daa15e8a88011b4587  drawings/previews/A-101-dxf.png
+16435b402142f2f1768369b254ce2b936028b4ce26921e535948cf81dab5cd70  drawings/previews/A-101.png
+10dc631d65d75029cca7829e9da3408b7222253728dbe95a08e4f77506c0eb23  drawings/previews/A-102-dxf.png
+aa73f1951a62e9fb10105e994429801885615fc896c6d39e5981bc6f931826c9  drawings/previews/A-102.png
+dbff7fc1d86db3190b50740526f2f6c0ceedd0d60f2c3c948216a65b426893d5  drawings/register.json
+exit code: 0
+# finished 2026-10-01T10:41:07Z

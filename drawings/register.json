@@ -1,0 +1,801 @@
+{
+ "project": "kantor-rpg",
+ "source": "design/sheets.json",
+ "generated_utc": "2026-10-01T12:12:53Z",
+ "note": "Dibuat oleh cad/generate.py. Status 'produced (konsep)' = DXF/PDF dihasilkan dan dibaca ulang; native DWG BLOCKED.",
+ "sheets": [
+  {
+   "id": "A-001",
+   "title": "Cover, indeks dan catatan umum",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "index",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-001.dxf",
+     "sha256": "2863b71039f9d60f2bef1380d8ceb138983087db4d1ba6f501b132222d518881"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-001.pdf",
+     "sha256": "48441eed9e5808e6af63b191a66882294f604b30aeff7c487f4bdfc8ccb0e678"
+    },
+    "counts": {
+     "path": "cad/out/A-001.counts.json",
+     "sha256": "7f5de55eb754659cdd3f594190ee57fa240389bbdf49b64ce1d59c9ba6a2dc9f"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-001.png",
+     "sha256": "545a36d6c81d8a9e4c5f9e622cea37bc217c7ba4627541f17d9144b161d8e2e1"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-001-dxf.png",
+     "sha256": "64a5f7eeedeb0a577cc625e1f72222469e7941c8bf5be32ee356c272bdd82cef"
+    }
+   }
+  },
+  {
+   "id": "A-101",
+   "title": "Denah Lantai 1",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "plan",
+   "milestone": "M1",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    594,
+    420
+   ],
+   "page_size_pt": [
+    1683.78,
+    1190.55
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-101.dxf",
+     "sha256": "8e43305f84caaa96cc29bb1cec9d3c05815dbad6aca5f2b0bf9830aefc29d7b3"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-101.pdf",
+     "sha256": "a1aaad4c2872a7958a36a312396fac5437bcad035619add7dffb2034225a3aae"
+    },
+    "counts": {
+     "path": "cad/out/A-101.counts.json",
+     "sha256": "b33f7e3ff12936505dc0b06ce3774c75851f9a76e1948dbd1eab378c172616cf"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-101.png",
+     "sha256": "841b3bde808c85e1866b37c4f76604c9a1f891ce5351738f80f3ab7568951f9d"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-101-dxf.png",
+     "sha256": "01f3e7da50536e965a7e9d7d564b1d7041fa3a48c91e3d52b2078c6c208f88e0"
+    }
+   }
+  },
+  {
+   "id": "A-102",
+   "title": "Denah Lantai 2",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "plan",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    594,
+    420
+   ],
+   "page_size_pt": [
+    1683.78,
+    1190.55
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-102.dxf",
+     "sha256": "68eeb355aacef92deffe1c009c4093d03ee4c2db815717936d461958e76f90e3"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-102.pdf",
+     "sha256": "a91f9ae59bd0e01fefd740cfee7e00d53d8b75c4635302bb72ace3d0c31a85b5"
+    },
+    "counts": {
+     "path": "cad/out/A-102.counts.json",
+     "sha256": "4e872deb601b75a621102e1d9a282124f5e0b255b7ca9bb09ba47f6f6e5caf58"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-102.png",
+     "sha256": "aca0b10d5cf40ff39d0d8e398e80e1328c264883c6e1dc7ea02228d838149eb0"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-102-dxf.png",
+     "sha256": "39baad7b1dc63a1a43ceb8bcc78026a6f00c27e019d172c86f946aae516405f1"
+    }
+   }
+  },
+  {
+   "id": "A-103",
+   "title": "Room schedule",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "room_schedule",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-103.dxf",
+     "sha256": "b303567ab775cc7e040c97c90dc711977dae663e0e7d28e61b504007bfb8607e"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-103.pdf",
+     "sha256": "aaf279561a21b0818503fb920c3c98983ca193c0bda3ee02abcb142db3d23182"
+    },
+    "counts": {
+     "path": "cad/out/A-103.counts.json",
+     "sha256": "1c0b322e8ddb1c57286c9ba2b170482347bc0bc17d059c92580b5bc282a6c2c1"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-103.png",
+     "sha256": "c33f1f973937a3d03f9f700856a0420bf56d3c955c13a53328197cdaba8ba168"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-103-dxf.png",
+     "sha256": "69c654a1d6709fed361cd1e0e399f4d2bc327d6534353999489354aefafc2a58"
+    }
+   }
+  },
+  {
+   "id": "A-201",
+   "title": "Layout furniture Lantai 1",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "furniture",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    594,
+    420
+   ],
+   "page_size_pt": [
+    1683.78,
+    1190.55
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-201.dxf",
+     "sha256": "c9ce90c0f29057104e2d0e81dda0d78fcd3a72d3cfc4045cc061f5aa1144eb1b"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-201.pdf",
+     "sha256": "e0a6fa9b3d196d5bd345ee6c3c1a2210e8dbb1c51817c262fa45e20b088fd3a3"
+    },
+    "counts": {
+     "path": "cad/out/A-201.counts.json",
+     "sha256": "9e2b452d9c3cd0ce075024c4bbca37dc4d88a1a0aedbcf681e485f954bfbea21"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-201.png",
+     "sha256": "f0da8762b7c791a4c109372b87feba2841ba41717dda07b924ebf1b7788d5b22"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-201-dxf.png",
+     "sha256": "eabd7914a8f5aace1fde1f1efbc085596668bd155fc5134b45adcc2769bb3e13"
+    }
+   }
+  },
+  {
+   "id": "A-202",
+   "title": "Layout furniture Lantai 2",
+   "discipline": "A",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "furniture",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    594,
+    420
+   ],
+   "page_size_pt": [
+    1683.78,
+    1190.55
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-202.dxf",
+     "sha256": "02d681fc57ec845e9f3c78179858770e35ad0461762a6a1bb712fc51251c3291"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-202.pdf",
+     "sha256": "04bb3edcbd33e8ba01b369e26ef58bf3d072e3373b4dcdc5d8baae2f0a9ad08e"
+    },
+    "counts": {
+     "path": "cad/out/A-202.counts.json",
+     "sha256": "b05ca635bbbf4ee2c776fd15d27fdc3df7193f177d88fc86c0ef0c259bcc8920"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-202.png",
+     "sha256": "dcdb7f86b8f4950a7a5f25f5a1d7e1e8fb7260c3ea90bc210014339477de3ecf"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-202-dxf.png",
+     "sha256": "5cc0c4d000c3826e14e559d5fea34ed9effbde46f5420e9a141a94efc02e2d1b"
+    }
+   }
+  },
+  {
+   "id": "A-301",
+   "title": "Tampak",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "1:200",
+   "content": "elevations",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-301.dxf",
+     "sha256": "d4c038343cad0455d8250babc2c49004440ecc854beb24ce3187ab9e45fda3f6"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-301.pdf",
+     "sha256": "bbacbb6cd065af3d428929cf46cfd89d3f0dd77abb62ad606a00423a04c9e1ab"
+    },
+    "counts": {
+     "path": "cad/out/A-301.counts.json",
+     "sha256": "093e6d551823fab94da9e6ae38dde5c6fbb583e63993e8278855d42c597f5e2c"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-301.png",
+     "sha256": "1e30f3d2aac04fe75e7572b1f9bdf79aa93c9f9d5ce30e9538de3d497350510f"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-301-dxf.png",
+     "sha256": "99e8ae7ec6fbed6b6dddeee4dd6a60cbcc1d419f453d436c82a63a889642d415"
+    }
+   }
+  },
+  {
+   "id": "A-401",
+   "title": "Potongan",
+   "discipline": "A",
+   "size": "A3",
+   "scale": "1:100",
+   "content": "sections",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/A-401.dxf",
+     "sha256": "86a7950eee381f3f96ef48a26554f55ad37a782abd2a7d520f27cc2c0d9e24ca"
+    },
+    "pdf": {
+     "path": "drawings/pdf/A-401.pdf",
+     "sha256": "c3ee2180b7d44e5a9bd92a8883b325f88d9c8a2047caa8727f06fc9560078ef9"
+    },
+    "counts": {
+     "path": "cad/out/A-401.counts.json",
+     "sha256": "a8d738009116ed39515bbe15f7910824055f800c9ea7b04056ce4ded0a7d6944"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/A-401.png",
+     "sha256": "42bcb13da941f75fac9d00c78fb8b42d90d4419db3ba129db531c5ca80a89f67"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/A-401-dxf.png",
+     "sha256": "d18b1663f7611361e678d6c6ee29d0a82bb14ffaefda617d0428bf22f88eecbb"
+    }
+   }
+  },
+  {
+   "id": "I-101",
+   "title": "Finish interior dan material",
+   "discipline": "I",
+   "size": "A3",
+   "scale": "1:200",
+   "content": "finishes",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/I-101.dxf",
+     "sha256": "a8a0fe348e3e35e3764365173fe6c72da26c86a1c74c3e88d22b2f51127de25d"
+    },
+    "pdf": {
+     "path": "drawings/pdf/I-101.pdf",
+     "sha256": "630bc0d004678aa18a7f2c11d74008661d7f0c5ebc8dd255b808bc6db1c26cc6"
+    },
+    "counts": {
+     "path": "cad/out/I-101.counts.json",
+     "sha256": "ff0eefe0ab977a7d61b75eff80aabeb7e479ba9a94ea95a5bc2ab08215361024"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/I-101.png",
+     "sha256": "1db6ec8cd368ce7f835d1e6afb9e657d673970bdd3cc549bc045113bfacfbfc4"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/I-101-dxf.png",
+     "sha256": "4e32e9a28614ad55a4670b000cdd9c337cb47bf795f52517bd8e7729346e3ffc"
+    }
+   }
+  },
+  {
+   "id": "ICT-001",
+   "title": "Topologi jaringan (virtual)",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "topology",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/ICT-001.dxf",
+     "sha256": "b6e24f155e91488cc737c9eec5674cfe7df7f589cdaaff5a213267f5e55c0b35"
+    },
+    "pdf": {
+     "path": "drawings/pdf/ICT-001.pdf",
+     "sha256": "a9e85e2062bd0b68121729e9177228686a9aecefe236792c13d22557b71c595b"
+    },
+    "counts": {
+     "path": "cad/out/ICT-001.counts.json",
+     "sha256": "6956459aace7d9cbe63bd76a97deb93473ed316972e9a9bb0b91bf8ab9eba3c2"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/ICT-001.png",
+     "sha256": "28a3ef76ca87b06d543b2300d6aaf80e54d2613d5712561c518e8edcb251c959"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/ICT-001-dxf.png",
+     "sha256": "06cdddcb623867b3d88fb96d187343c010fcd152fb85a7aed7131aff48bc7c24"
+    }
+   }
+  },
+  {
+   "id": "ICT-101",
+   "title": "Outlet, AP dan kamera Lantai 1",
+   "discipline": "ICT",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "ict_plan",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    594,
+    420
+   ],
+   "page_size_pt": [
+    1683.78,
+    1190.55
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/ICT-101.dxf",
+     "sha256": "9b4f343ebb44adad6d4411facf7da5c7f05257e73df681fa78476fb3137079cb"
+    },
+    "pdf": {
+     "path": "drawings/pdf/ICT-101.pdf",
+     "sha256": "307329d33147ea76ebfbc9ba204e166164b15ad2a999a0238f04b08be282cd97"
+    },
+    "counts": {
+     "path": "cad/out/ICT-101.counts.json",
+     "sha256": "79f99793d106b4053579bb046e7da50081d75abbe6a39ab32a8af48df319d075"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/ICT-101.png",
+     "sha256": "04f8bc204472e6742a05227b2a6fc5af7969a980129f4d02c080cde8b543ba98"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/ICT-101-dxf.png",
+     "sha256": "eea8739dca6ad8d8298d7bfe9f1226937ac733b732d696cde5d0a878c82293c6"
+    }
+   }
+  },
+  {
+   "id": "ICT-102",
+   "title": "Outlet, AP dan kamera Lantai 2",
+   "discipline": "ICT",
+   "size": "A2",
+   "scale": "1:100",
+   "content": "ict_plan",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    594,
+    420
+   ],
+   "page_size_pt": [
+    1683.78,
+    1190.55
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/ICT-102.dxf",
+     "sha256": "cfd7f251d158dcca947a5442c361ed2701532eadd40fbe697914d5c26cfc156f"
+    },
+    "pdf": {
+     "path": "drawings/pdf/ICT-102.pdf",
+     "sha256": "d347d246a5030c401b2ee81220bcff15ab809304cd156883c52686b1fd950e3d"
+    },
+    "counts": {
+     "path": "cad/out/ICT-102.counts.json",
+     "sha256": "f9259caef5af9310a9b237c403344387692a55e250de1b7b95852f1ec11d1e5b"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/ICT-102.png",
+     "sha256": "1838c46ab8677707412ae7458ae73e36a123ca05e7d7e05f3a80f923a6b7a879"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/ICT-102-dxf.png",
+     "sha256": "5599a041ebcefab8174229d8863d750e342e56ee450661ca6dfae85d6846b556"
+    }
+   }
+  },
+  {
+   "id": "ICT-201",
+   "title": "Elevasi rack",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "1:20",
+   "content": "rack_elevation",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/ICT-201.dxf",
+     "sha256": "57e1fbfe600476fcf7e8d85215311cb218f3fc12fd5159375d31d58c094d7a43"
+    },
+    "pdf": {
+     "path": "drawings/pdf/ICT-201.pdf",
+     "sha256": "55d8da307b05dc40b367780900c9a217914592f8c9621bde1c570def23eeb986"
+    },
+    "counts": {
+     "path": "cad/out/ICT-201.counts.json",
+     "sha256": "4c963bc78e63cdeb0f78ae47f4c95a3321fe48ad4491c0fd380d720aa8d3bb76"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/ICT-201.png",
+     "sha256": "b9b94eb15ee9f82918bbb25861e81489062c2b65bf0422a4e79fc464ddad080a"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/ICT-201-dxf.png",
+     "sha256": "e4053e24887f34c6f631382453a0dafe254edc1f242710398a312e7e04560a6b"
+    }
+   }
+  },
+  {
+   "id": "ICT-301",
+   "title": "Pathway dan riser",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "1:200",
+   "content": "pathways",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 1,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/ICT-301.dxf",
+     "sha256": "a18a1d131bbab52822971b1959118ba3195566146069c5a2f7623675cf341b8d"
+    },
+    "pdf": {
+     "path": "drawings/pdf/ICT-301.pdf",
+     "sha256": "10575851db01edafbf21ed32872a69f7dc52863061bca388bf7e062cd5f1b033"
+    },
+    "counts": {
+     "path": "cad/out/ICT-301.counts.json",
+     "sha256": "b683fbe615d9f5acb02b5c1e1f9185e162f419fb3604cd3bc284c82ff8421f63"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/ICT-301.png",
+     "sha256": "38804906537d87c2636e3e51327b6483e21ca2bc4948d2a507c077d0040e87d8"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/ICT-301-dxf.png",
+     "sha256": "f02b1798f1bf2af15a9ef5d27891e09cc08748a57ce4b9adf1277b99b623eb21"
+    }
+   }
+  },
+  {
+   "id": "ICT-401",
+   "title": "Port dan device schedule",
+   "discipline": "ICT",
+   "size": "A3",
+   "scale": "NTS",
+   "content": "port_schedule",
+   "milestone": "M3",
+   "status": "produced (konsep)",
+   "revision": "P02",
+   "generated_utc": "2026-10-01T12:12:53Z",
+   "generator_command": "python3 cad/generate.py --all-available",
+   "pdf_pages": 3,
+   "page_size_mm": [
+    420,
+    297
+   ],
+   "page_size_pt": [
+    1190.55,
+    841.89
+   ],
+   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "files": {
+    "dxf": {
+     "path": "cad/out/ICT-401.dxf",
+     "sha256": "94baab5fbe1989ad75bb42c80b006207e91253b1a834d1819c6e2b314a81eec6"
+    },
+    "pdf": {
+     "path": "drawings/pdf/ICT-401.pdf",
+     "sha256": "a903039fe15d7fa3a738b548d7fd1f379819ffbfc0373a12102e53fa6b5626bf"
+    },
+    "counts": {
+     "path": "cad/out/ICT-401.counts.json",
+     "sha256": "3f50f4107491bfd3774e165fccf7a35f7384cc17f49c1d2b9c0c69e4d2d458f5"
+    },
+    "preview_pdf": {
+     "path": "drawings/previews/ICT-401.png",
+     "sha256": "5edf3ce8206d698d988b37a141411f2c026eeefe390027ecd7e002b55861bf61"
+    },
+    "preview_dxf": {
+     "path": "drawings/previews/ICT-401-dxf.png",
+     "sha256": "2f03853edbbb45344fedfdb6e463553ac95267d067c6c1cc9b9b91638bbc6986"
+    },
+    "preview_pdf_p2": {
+     "path": "drawings/previews/ICT-401-p2.png",
+     "sha256": "b98dd102ddc3276e5662ab11bc4560905053758413eced0cb34221625203b479"
+    },
+    "preview_pdf_p3": {
+     "path": "drawings/previews/ICT-401-p3.png",
+     "sha256": "2c1e0af5e350414491d82a306508f6513c54222609fbfbc304db0ae3b5498593"
+    }
+   }
+  }
+ ],
+ "sets": [
+  {
+   "file": "drawings/pdf/kantor-rpg-sheets-all.pdf",
+   "discipline": "all",
+   "sheets": [
+    "A-001",
+    "A-101",
+    "A-102",
+    "A-103",
+    "A-201",
+    "A-202",
+    "A-301",
+    "A-401",
+    "I-101",
+    "ICT-001",
+    "ICT-101",
+    "ICT-102",
+    "ICT-201",
+    "ICT-301",
+    "ICT-401"
+   ],
+   "pages": 17,
+   "page_labels": [
+    "A-001",
+    "A-101",
+    "A-102",
+    "A-103",
+    "A-201",
+    "A-202",
+    "A-301",
+    "A-401",
+    "I-101",
+    "ICT-001",
+    "ICT-101",
+    "ICT-102",
+    "ICT-201",
+    "ICT-301",
+    "ICT-401-1",
+    "ICT-401-2",
+    "ICT-401-3"
+   ],
+   "bookmarks": 15,
+   "sha256": "70158fa1d71a06d6cc52df6495d170366611936c173809c2f4cf932170b902ba"
+  },
+  {
+   "file": "drawings/pdf/kantor-rpg-sheets-A.pdf",
+   "discipline": "A",
+   "sheets": [
+    "A-001",
+    "A-101",
+    "A-102",
+    "A-103",
+    "A-201",
+    "A-202",
+    "A-301",
+    "A-401"
+   ],
+   "pages": 8,
+   "page_labels": [
+    "A-001",
+    "A-101",
+    "A-102",
+    "A-103",
+    "A-201",
+    "A-202",
+    "A-301",
+    "A-401"
+   ],
+   "bookmarks": 8,
+   "sha256": "e583fdaa91d434d335ceee305b3063031d1e08a3e0ddcc0ac87d7d16f35ce07f"
+  },
+  {
+   "file": "drawings/pdf/kantor-rpg-sheets-I.pdf",
+   "discipline": "I",
+   "sheets": [
+    "I-101"
+   ],
+   "pages": 1,
+   "page_labels": [
+    "I-101"
+   ],
+   "bookmarks": 1,
+   "sha256": "10bfd039dbe3616e1980f2a2840fb8ef0b206b26f4132658d924a311be36bc1b"
+  },
+  {
+   "file": "drawings/pdf/kantor-rpg-sheets-ICT.pdf",
+   "discipline": "ICT",
+   "sheets": [
+    "ICT-001",
+    "ICT-101",
+    "ICT-102",
+    "ICT-201",
+    "ICT-301",
+    "ICT-401"
+   ],
+   "pages": 8,
+   "page_labels": [
+    "ICT-001",
+    "ICT-101",
+    "ICT-102",
+    "ICT-201",
+    "ICT-301",
+    "ICT-401-1",
+    "ICT-401-2",
+    "ICT-401-3"
+   ],
+   "bookmarks": 6,
+   "sha256": "31e5c4892d82d99fbd85c26047c2d093df164499239914659875ec1f2f9edd1b"
+  }
+ ]
+}
