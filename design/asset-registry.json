@@ -744,6 +744,2549 @@
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
       "evidence": "docs/evidence/M1/blender-validate.json"
+    },
+    {
+      "id": "BLD-L1",
+      "kind": "building",
+      "displayName": "Lantai 1 - Kerja & Kunjungan",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/building/build_building.py",
+      "sourceData": "design/world.json + design/derived/walls.json",
+      "blend": "blender/out/building.blend",
+      "glb": "app/public/assets/building/building-L1.glb",
+      "preview": "assets/previews/building-L1-interior.png",
+      "previewsExtra": [
+        "assets/previews/building-exterior.png"
+      ],
+      "dimensions": [
+        32,
+        24,
+        4.0
+      ],
+      "pivot": "world origin (south-west corner of L1)",
+      "collider": {
+        "type": "derived",
+        "source": "design/derived/walls.json"
+      },
+      "materials": [
+        "accent",
+        "fascia",
+        "floor_epoxy",
+        "floor_karpet_tile_matte",
+        "floor_keramik_anti_slip",
+        "floor_none",
+        "floor_vinyl_anti_statik_target",
+        "floor_vinyl_motif_kayu",
+        "lift_door",
+        "lift_frame",
+        "lift_shaft",
+        "slab",
+        "stair_core",
+        "stair_nosing",
+        "stair_tread",
+        "threshold",
+        "wall_exterior",
+        "wall_interior",
+        "wall_top"
+      ],
+      "triangles": {
+        "lod0Visible": 2082
+      },
+      "lod": "LOD0 only",
+      "status": "generated+validated",
+      "validatedBy": "blender/building/validate_building.py",
+      "evidence": "docs/evidence/M3/building-validate.json",
+      "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away)"
+    },
+    {
+      "id": "BLD-L2",
+      "kind": "building",
+      "displayName": "Lantai 2 - Rekreasi",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/building/build_building.py",
+      "sourceData": "design/world.json + design/derived/walls.json",
+      "blend": "blender/out/building.blend",
+      "glb": "app/public/assets/building/building-L2.glb",
+      "preview": "assets/previews/building-L2-interior.png",
+      "previewsExtra": [
+        "assets/previews/building-exterior.png"
+      ],
+      "dimensions": [
+        32,
+        24,
+        4.0
+      ],
+      "pivot": "world origin (south-west corner of L1)",
+      "collider": {
+        "type": "derived",
+        "source": "design/derived/walls.json"
+      },
+      "materials": [
+        "accent",
+        "fascia",
+        "floor_deck_komposit",
+        "floor_epoxy",
+        "floor_karpet_tile_matte",
+        "floor_keramik_anti_slip",
+        "floor_lantai_karet_olahraga",
+        "floor_none",
+        "floor_vinyl_motif_kayu",
+        "guard",
+        "lift_door",
+        "lift_frame",
+        "lift_shaft",
+        "roof",
+        "slab",
+        "threshold",
+        "wall_exterior",
+        "wall_interior",
+        "wall_top"
+      ],
+      "triangles": {
+        "lod0Visible": 1598
+      },
+      "lod": "LOD0 only",
+      "status": "generated+validated",
+      "validatedBy": "blender/building/validate_building.py",
+      "evidence": "docs/evidence/M3/building-validate.json",
+      "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away)"
+    },
+    {
+      "id": "AST-ARCADE-CABINET",
+      "kind": "furniture",
+      "catalogType": "arcade_cabinet",
+      "displayName": "Kabinet arcade",
+      "family": "recreation",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/arcade_cabinet.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.75,
+        0.85,
+        1.8
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.75,
+          0.85,
+          1.8
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricCream",
+        "fabricGreen",
+        "fabricMustard",
+        "fabricTerracotta",
+        "metal",
+        "paper",
+        "screen",
+        "screenGlow",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1020,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 41532,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-ARMCHAIR",
+      "kind": "furniture",
+      "catalogType": "armchair",
+      "displayName": "Kursi santai",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/armchair.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.9,
+        0.9,
+        0.85
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.9,
+          0.9,
+          0.85
+        ]
+      },
+      "materials": [
+        "fabricCream",
+        "fabricSage",
+        "fabricTerracotta",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1536,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 36444,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-BEANBAG",
+      "kind": "furniture",
+      "catalogType": "beanbag",
+      "displayName": "Beanbag",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/beanbag.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.79,
+        0.7895,
+        0.5
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.8,
+          0.8,
+          0.5
+        ]
+      },
+      "materials": [
+        "fabricMustard",
+        "fabricTerracotta"
+      ],
+      "triangles": {
+        "lod0Visible": 712,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 15568,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-BENCH",
+      "kind": "furniture",
+      "catalogType": "bench",
+      "displayName": "Bangku",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/bench.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.6,
+        0.441,
+        0.45
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.6,
+          0.45,
+          0.45
+        ]
+      },
+      "materials": [
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 756,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 23032,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-BILLIARD-TABLE",
+      "kind": "furniture",
+      "catalogType": "billiard_table",
+      "displayName": "Meja biliar 9 ft",
+      "family": "recreation",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/billiard_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        2.84,
+        1.57,
+        0.816
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          2.84,
+          1.57,
+          0.8
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricGreen",
+        "fabricMustard",
+        "felt",
+        "rubber",
+        "screen",
+        "white",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 3532,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 94028,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-BOARD-TABLE",
+      "kind": "furniture",
+      "catalogType": "board_table",
+      "displayName": "Meja board game",
+      "family": "recreation",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/board_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        1.2,
+        0.766
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          1.2,
+          0.75
+        ]
+      },
+      "materials": [
+        "accent",
+        "white",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1152,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 49788,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-BOOKSHELF",
+      "kind": "furniture",
+      "catalogType": "bookshelf",
+      "displayName": "Rak buku",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/bookshelf.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        0.4,
+        2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          0.4,
+          2.0
+        ]
+      },
+      "materials": [
+        "fabricBlue",
+        "fabricCream",
+        "fabricGreen",
+        "fabricMustard",
+        "fabricSage",
+        "fabricTerracotta",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 2048,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 95804,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-CHAIR",
+      "kind": "furniture",
+      "catalogType": "chair",
+      "displayName": "Kursi kerja",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/chair.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        0.5988,
+        0.9
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          0.6,
+          0.9
+        ]
+      },
+      "materials": [
+        "fabricGreen",
+        "metal",
+        "rubber"
+      ],
+      "triangles": {
+        "lod0Visible": 1312,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 40464,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-CHAIR-GUEST",
+      "kind": "furniture",
+      "catalogType": "chair_guest",
+      "displayName": "Kursi tamu",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/chair_guest.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.55,
+        0.55,
+        0.85
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.55,
+          0.55,
+          0.85
+        ]
+      },
+      "materials": [
+        "fabricSage",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 792,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 27668,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-COFFEE-BAR",
+      "kind": "furniture",
+      "catalogType": "coffee_bar",
+      "displayName": "Coffee bar",
+      "family": "pantry",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/coffee_bar.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        2.4,
+        0.6,
+        1
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          2.4,
+          0.6,
+          1.0
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricCream",
+        "metal",
+        "metalLight",
+        "pot",
+        "screenGlow",
+        "white",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1894,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 66704,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-COFFEE-TABLE",
+      "kind": "furniture",
+      "catalogType": "coffee_table",
+      "displayName": "Meja kopi",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/coffee_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.0,
+        0.6,
+        0.4
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.0,
+          0.6,
+          0.4
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricMustard",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 492,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 24644,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-CUE-RACK",
+      "kind": "furniture",
+      "catalogType": "cue_rack",
+      "displayName": "Rak stik",
+      "family": "recreation",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/cue_rack.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        0.119,
+        1.4
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          0.12,
+          1.4
+        ]
+      },
+      "materials": [
+        "white",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 660,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 28936,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-DESK",
+      "kind": "furniture",
+      "catalogType": "desk",
+      "displayName": "Meja kerja + monitor",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/desk.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.6,
+        0.8,
+        0.764
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.6,
+          0.8,
+          0.75
+        ]
+      },
+      "materials": [
+        "fabricSage",
+        "metalLight",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 976,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 38240,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-DESK-EXEC",
+      "kind": "furniture",
+      "catalogType": "desk_exec",
+      "displayName": "Meja CEO",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/desk_exec.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.9,
+        0.764
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.9,
+          0.75
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricGreen",
+        "metalLight",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1476,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 57924,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-DINING-TABLE",
+      "kind": "furniture",
+      "catalogType": "dining_table",
+      "displayName": "Meja makan",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/dining_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.9,
+        0.762
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.9,
+          0.75
+        ]
+      },
+      "materials": [
+        "fabricSage",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 452,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 16756,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-DIRECTORY-SIGN",
+      "kind": "furniture",
+      "catalogType": "directory_sign",
+      "displayName": "Papan direktori",
+      "family": "signage",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/directory_sign.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        0.078,
+        0.9
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          0.08,
+          0.9
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricCream",
+        "wallCap"
+      ],
+      "triangles": {
+        "lod0Visible": 504,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 29436,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "mountHeightM": 1.0
+    },
+    {
+      "id": "AST-DRAFTING-TABLE",
+      "kind": "furniture",
+      "catalogType": "drafting_table",
+      "displayName": "Meja gambar",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/drafting_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.4,
+        1.0,
+        0.9494
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.4,
+          1.0,
+          0.95
+        ]
+      },
+      "materials": [
+        "metal",
+        "paper",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 660,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 27380,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-DUMBBELL-RACK",
+      "kind": "furniture",
+      "catalogType": "dumbbell_rack",
+      "displayName": "Rak dumbbell",
+      "family": "sport",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/dumbbell_rack.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        0.4985,
+        0.9062
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          0.5,
+          0.9
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricGreen",
+        "fabricMustard",
+        "metal",
+        "metalLight",
+        "rubber"
+      ],
+      "triangles": {
+        "lod0Visible": 2024,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 83104,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-EASEL",
+      "kind": "furniture",
+      "catalogType": "easel",
+      "displayName": "Easel",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/easel.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.7988,
+        0.7989,
+        1.7095
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.8,
+          0.8,
+          1.7
+        ]
+      },
+      "materials": [
+        "art_a",
+        "art_b",
+        "art_c",
+        "paper",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 448,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 22232,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-EXERCISE-BIKE",
+      "kind": "furniture",
+      "catalogType": "exercise_bike",
+      "displayName": "Sepeda statis",
+      "family": "sport",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/exercise_bike.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        1.2,
+        1.1902
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          1.2,
+          1.2
+        ]
+      },
+      "materials": [
+        "accent",
+        "metal",
+        "metalLight",
+        "rubber",
+        "screen",
+        "screenGlow"
+      ],
+      "triangles": {
+        "lod0Visible": 1152,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 43216,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-EXERCISE-MAT",
+      "kind": "furniture",
+      "catalogType": "exercise_mat",
+      "displayName": "Matras",
+      "family": "sport",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/exercise_mat.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.6,
+        0.0205
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.6,
+          0.02
+        ]
+      },
+      "materials": [
+        "fabricCream",
+        "fabricSage"
+      ],
+      "triangles": {
+        "lod0Visible": 176,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 12636,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-FRIDGE",
+      "kind": "furniture",
+      "catalogType": "fridge",
+      "displayName": "Kulkas",
+      "family": "pantry",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/fridge.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.7,
+        0.7,
+        1.8
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.7,
+          0.7,
+          1.8
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricMustard",
+        "metal",
+        "metalLight",
+        "white"
+      ],
+      "triangles": {
+        "lod0Visible": 596,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 24828,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-GALLERY-PANEL",
+      "kind": "furniture",
+      "catalogType": "gallery_panel",
+      "displayName": "Panel galeri",
+      "family": "signage",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/gallery_panel.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.5,
+        0.3,
+        2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.5,
+          0.3,
+          2.0
+        ]
+      },
+      "materials": [
+        "art_a",
+        "art_b",
+        "art_c",
+        "fabricCream",
+        "paper",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 532,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 23620,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-HIGH-TABLE",
+      "kind": "furniture",
+      "catalogType": "high_table",
+      "displayName": "Meja tinggi",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/high_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        0.7,
+        1.05
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          0.7,
+          1.05
+        ]
+      },
+      "materials": [
+        "metal",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 552,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 19260,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-LAB-BENCH",
+      "kind": "furniture",
+      "catalogType": "lab_bench",
+      "displayName": "Meja lab ICT",
+      "family": "ict",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/lab_bench.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.75,
+        0.904
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.75,
+          0.9
+        ]
+      },
+      "materials": [
+        "fabricBlue",
+        "fabricSage",
+        "metal",
+        "metalLight",
+        "screen",
+        "screenGlow",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1068,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 51264,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-LAB-RACK-OPEN",
+      "kind": "furniture",
+      "catalogType": "lab_rack_open",
+      "displayName": "Rack lab terbuka 12U",
+      "family": "ict",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/lab_rack_open.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        0.6,
+        1.2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          0.6,
+          1.2
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricCream",
+        "metal",
+        "metalLight",
+        "screen",
+        "screenGlow"
+      ],
+      "triangles": {
+        "lod0Visible": 1624,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 79360,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-LIFT",
+      "kind": "furniture",
+      "catalogType": "lift",
+      "displayName": "Lift (konsep)",
+      "family": "shell",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/lift.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.9,
+        2.2,
+        3
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.9,
+          2.2,
+          3.0
+        ]
+      },
+      "materials": [
+        "accent",
+        "metal",
+        "metalLight",
+        "wallExterior"
+      ],
+      "triangles": {
+        "lod0Visible": 154,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 11200,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-LOCKER",
+      "kind": "furniture",
+      "catalogType": "locker",
+      "displayName": "Loker",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/locker.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        0.499,
+        1.8
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          0.5,
+          1.8
+        ]
+      },
+      "materials": [
+        "fabricBlue",
+        "metal",
+        "metalLight",
+        "paper",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 2184,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 104148,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-MEDIA-CONSOLE",
+      "kind": "furniture",
+      "catalogType": "media_console",
+      "displayName": "Konsol game + layar",
+      "family": "recreation",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/media_console.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        2,
+        0.5,
+        1.6
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          2.0,
+          0.5,
+          1.6
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricMustard",
+        "metal",
+        "screen",
+        "screenGlow",
+        "white",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1116,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 39688,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-MEETING-TABLE",
+      "kind": "furniture",
+      "catalogType": "meeting_table",
+      "displayName": "Meja rapat",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/meeting_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        4,
+        1.4,
+        0.766
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          4.0,
+          1.4,
+          0.75
+        ]
+      },
+      "materials": [
+        "accent",
+        "metal",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 768,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 28384,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-MODEL-SHELF",
+      "kind": "furniture",
+      "catalogType": "model_shelf",
+      "displayName": "Rak model",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/model_shelf.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        0.4,
+        1.8
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          0.4,
+          1.8
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricSage",
+        "plantLeaf",
+        "white",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 2000,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 65180,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-PANTRY-COUNTER",
+      "kind": "furniture",
+      "catalogType": "pantry_counter",
+      "displayName": "Counter pantry",
+      "family": "pantry",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/pantry_counter.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        3.0,
+        0.65,
+        0.915
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          3.0,
+          0.65,
+          0.9
+        ]
+      },
+      "materials": [
+        "fabricCream",
+        "metal",
+        "metalLight",
+        "white",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1214,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 51316,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-PARTITION",
+      "kind": "furniture",
+      "catalogType": "partition",
+      "displayName": "Partisi bilik",
+      "family": "sanitary",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/partition.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.5,
+        0.05,
+        2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.5,
+          0.05,
+          2.0
+        ]
+      },
+      "materials": [
+        "fabricSage",
+        "metal",
+        "metalLight"
+      ],
+      "triangles": {
+        "lod0Visible": 176,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 13128,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-PLAN-TABLE",
+      "kind": "furniture",
+      "catalogType": "plan_table",
+      "displayName": "Meja denah (blueprint)",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/plan_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.9,
+        0.904
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.9,
+          0.9
+        ]
+      },
+      "materials": [
+        "fabricBlue",
+        "white",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1152,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 48944,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-PLANT-LARGE",
+      "kind": "furniture",
+      "catalogType": "plant_large",
+      "displayName": "Tanaman besar",
+      "family": "plant",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/plant_large.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        0.5949,
+        1.6
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          0.6,
+          1.6
+        ]
+      },
+      "materials": [
+        "plantLeaf",
+        "plantLeafDark",
+        "pot",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1820,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 40112,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-PLANT-SMALL",
+      "kind": "furniture",
+      "catalogType": "plant_small",
+      "displayName": "Tanaman kecil",
+      "family": "plant",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/plant_small.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.4,
+        0.4,
+        0.9
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.4,
+          0.4,
+          0.9
+        ]
+      },
+      "materials": [
+        "plantLeaf",
+        "plantLeafDark",
+        "pot",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1048,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 29960,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-PLANTER-BOX",
+      "kind": "furniture",
+      "catalogType": "planter_box",
+      "displayName": "Planter",
+      "family": "plant",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/planter_box.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.6,
+        0.6,
+        0.7
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.6,
+          0.6,
+          0.7
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricMustard",
+        "plantLeaf",
+        "plantLeafDark",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1312,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 35848,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-POSTER",
+      "kind": "furniture",
+      "catalogType": "poster",
+      "displayName": "Poster/pamflet",
+      "family": "signage",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/poster.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.7,
+        0.05,
+        1
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.7,
+          0.05,
+          1.0
+        ]
+      },
+      "materials": [
+        "art_a",
+        "art_b",
+        "art_c",
+        "paper",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 316,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 17428,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "mountHeightM": 1.2
+    },
+    {
+      "id": "AST-RACK-42U",
+      "kind": "furniture",
+      "catalogType": "rack_42u",
+      "displayName": "Rack 42U (target)",
+      "family": "ict",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/rack_42u.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        0.99,
+        2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          1.0,
+          2.0
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricCream",
+        "metal",
+        "metalLight",
+        "rubber",
+        "screen",
+        "screenGlow"
+      ],
+      "triangles": {
+        "lod0Visible": 2736,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 158380,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-RECEPTION-DESK",
+      "kind": "furniture",
+      "catalogType": "reception_desk",
+      "displayName": "Meja resepsi",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/reception_desk.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        3.0,
+        0.91,
+        1.1
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          3.0,
+          0.9,
+          1.1
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricCream",
+        "metalLight",
+        "wallCap",
+        "wood",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1216,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 49992,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-ROUND-TABLE",
+      "kind": "furniture",
+      "catalogType": "round_table",
+      "displayName": "Meja bundar",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/round_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        1.2,
+        0.75
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          1.2,
+          0.75
+        ]
+      },
+      "materials": [
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 620,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 16644,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-SHOWER-STALL",
+      "kind": "furniture",
+      "catalogType": "shower_stall",
+      "displayName": "Bilik shower",
+      "family": "sanitary",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/shower_stall.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.9,
+        0.9,
+        2.1
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.9,
+          0.9,
+          2.1
+        ]
+      },
+      "materials": [
+        "glass",
+        "metal",
+        "metalLight",
+        "white"
+      ],
+      "triangles": {
+        "lod0Visible": 476,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 25208,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-SINK",
+      "kind": "furniture",
+      "catalogType": "sink",
+      "displayName": "Wastafel",
+      "family": "sanitary",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/sink.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.6,
+        0.4525,
+        0.865
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.6,
+          0.45,
+          0.85
+        ]
+      },
+      "materials": [
+        "metalLight",
+        "white",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 464,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 16868,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-SOFA",
+      "kind": "furniture",
+      "catalogType": "sofa",
+      "displayName": "Sofa",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/sofa.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        2,
+        0.9,
+        0.8
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          2.0,
+          0.9,
+          0.8
+        ]
+      },
+      "materials": [
+        "fabricCream",
+        "fabricGreen",
+        "fabricMustard",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1944,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 38796,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-STAIR-U",
+      "kind": "furniture",
+      "catalogType": "stair_u",
+      "displayName": "Tangga U (konsep)",
+      "family": "shell",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/stair_u.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        2.6,
+        4.4,
+        4
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          2.6,
+          4.4,
+          4.0
+        ]
+      },
+      "materials": [
+        "wallInterior",
+        "wood",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 600,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 34672,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-STOOL",
+      "kind": "furniture",
+      "catalogType": "stool",
+      "displayName": "Bangku tinggi",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/stool.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.4456,
+        0.4456,
+        0.7041
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.45,
+          0.45,
+          0.7
+        ]
+      },
+      "materials": [
+        "fabricMustard",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 516,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 18140,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-STORAGE-SHELF",
+      "kind": "furniture",
+      "catalogType": "storage_shelf",
+      "displayName": "Rak gudang",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/storage_shelf.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.5,
+        2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.5,
+          2.0
+        ]
+      },
+      "materials": [
+        "fabricCream",
+        "fabricSage",
+        "metal",
+        "paper",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 3148,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 118496,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-TOOL-CABINET",
+      "kind": "furniture",
+      "catalogType": "tool_cabinet",
+      "displayName": "Lemari alat",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/tool_cabinet.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.0,
+        0.5,
+        1.2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.0,
+          0.5,
+          1.2
+        ]
+      },
+      "materials": [
+        "metal",
+        "metalLight",
+        "rubber",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 1208,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 49488,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-TREADMILL",
+      "kind": "furniture",
+      "catalogType": "treadmill",
+      "displayName": "Treadmill",
+      "family": "sport",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/treadmill.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.9,
+        2,
+        1.4
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.9,
+          2.0,
+          1.4
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricGreen",
+        "metal",
+        "metalLight",
+        "rubber",
+        "screen",
+        "screenGlow",
+        "woodDark"
+      ],
+      "triangles": {
+        "lod0Visible": 864,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 34516,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-TREE-PLANTER",
+      "kind": "furniture",
+      "catalogType": "tree_planter",
+      "displayName": "Pohon dalam pot",
+      "family": "plant",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/tree_planter.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.2,
+        1.2,
+        2.6
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.2,
+          1.2,
+          2.6
+        ]
+      },
+      "materials": [
+        "plantLeaf",
+        "plantLeafDark",
+        "woodDark",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 1960,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 38700,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-WALL-DISPLAY",
+      "kind": "furniture",
+      "catalogType": "wall_display",
+      "displayName": "Layar dinding",
+      "family": "ict",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/wall_display.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.6,
+        0.098,
+        0.95
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.6,
+          0.1,
+          0.95
+        ]
+      },
+      "materials": [
+        "fabricCream",
+        "screen",
+        "screenGlow",
+        "white"
+      ],
+      "triangles": {
+        "lod0Visible": 240,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 14232,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "mountHeightM": 1.1
+    },
+    {
+      "id": "AST-WC",
+      "kind": "furniture",
+      "catalogType": "wc",
+      "displayName": "Kloset",
+      "family": "sanitary",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/wc.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        0.4,
+        0.6959,
+        0.8
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          0.4,
+          0.7,
+          0.8
+        ]
+      },
+      "materials": [
+        "metalLight",
+        "rubber",
+        "white"
+      ],
+      "triangles": {
+        "lod0Visible": 560,
+        "budget": 2000,
+        "class": "small"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 17876,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
+    },
+    {
+      "id": "AST-WHITEBOARD",
+      "kind": "furniture",
+      "catalogType": "whiteboard",
+      "displayName": "Papan tulis",
+      "family": "signage",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/whiteboard.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.8,
+        0.1,
+        1.2
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.8,
+          0.1,
+          1.2
+        ]
+      },
+      "materials": [
+        "accent",
+        "fabricBlue",
+        "fabricGreen",
+        "metal",
+        "metalLight",
+        "white"
+      ],
+      "triangles": {
+        "lod0Visible": 524,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 28900,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "mountHeightM": 0.9
+    },
+    {
+      "id": "AST-WORK-TABLE",
+      "kind": "furniture",
+      "catalogType": "work_table",
+      "displayName": "Meja kerja berdiri",
+      "family": "furniture",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/furniture/build_furniture.py",
+      "sourceData": "design/world.json#catalog",
+      "blend": "blender/out/furniture.blend",
+      "glb": "app/public/assets/furniture/work_table.glb",
+      "preview": "assets/previews/furniture-sheet.png",
+      "dimensions": [
+        1.6,
+        0.8,
+        0.9
+      ],
+      "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
+      "collider": {
+        "type": "box",
+        "size": [
+          1.6,
+          0.8,
+          0.9
+        ]
+      },
+      "materials": [
+        "metal",
+        "woodLight"
+      ],
+      "triangles": {
+        "lod0Visible": 648,
+        "budget": 5000,
+        "class": "large"
+      },
+      "lod": "LOD0 only",
+      "glbBytes": 20080,
+      "status": "generated+validated",
+      "validatedBy": "blender/furniture/validate_furniture.py",
+      "evidence": "docs/evidence/M3/furniture-validate.json"
     }
   ]
 }
