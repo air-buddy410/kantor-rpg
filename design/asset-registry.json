@@ -1,0 +1,749 @@
+{
+  "schemaVersion": 1,
+  "description": "Asset registry (PRD section 6). Paths are repo-relative. Measured fields come from blender/validate_assets.py; do not edit them by hand.",
+  "assets": [
+    {
+      "id": "CH-CEO",
+      "kind": "character",
+      "displayName": "Budi",
+      "role": "CEO",
+      "actor": "ACT-BUDI",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-ceo.blend",
+      "glb": "app/public/assets/characters/ch-ceo.glb",
+      "preview": "assets/previews/ch-ceo-sheet.png",
+      "previewsExtra": [
+        "assets/previews/ch-ceo-deform.png",
+        "assets/previews/ch-ceo-variants.png"
+      ],
+      "dimensions": [
+        0.495,
+        0.428,
+        1.641
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.6412
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 14788,
+        "allNodes": 21396,
+        "perNode": {
+          "body": 11028,
+          "hair_short_tuft": 3760,
+          "hair_spiky_soft": 3456,
+          "hair_swept": 3152
+        },
+        "budget": 25000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.845,
+        "kantor_run_native_speed_mps": 2.416
+      },
+      "nodes": {
+        "hair": [
+          "hair_short_tuft",
+          "hair_spiky_soft",
+          "hair_swept"
+        ],
+        "defaultHair": "hair_short_tuft",
+        "props": []
+      },
+      "glbBytes": 909716,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json",
+      "avatarVariants": {
+        "approach": "single GLB; show exactly one hair_<style> node; recolor materials by name",
+        "hairNodes": [
+          "hair_short_tuft",
+          "hair_swept",
+          "hair_spiky_soft"
+        ],
+        "palettes": [
+          "forest",
+          "oat",
+          "terracotta"
+        ],
+        "paletteMaterials": [
+          "outfit_main",
+          "outfit_inner",
+          "outfit_bottom",
+          "outfit_accent"
+        ],
+        "source": "design/characters.json#avatarVariants"
+      }
+    },
+    {
+      "id": "CH-SUPERVISOR",
+      "kind": "character",
+      "displayName": "Max",
+      "role": "Supervisor",
+      "actor": "ACT-MAX",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-supervisor.blend",
+      "glb": "app/public/assets/characters/ch-supervisor.glb",
+      "preview": "assets/previews/ch-supervisor-sheet.png",
+      "previewsExtra": [],
+      "dimensions": [
+        0.53,
+        0.421,
+        1.584
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.5844
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 14884,
+        "allNodes": 14884,
+        "perNode": {
+          "body": 11732,
+          "hair_swept": 3152
+        },
+        "budget": 15000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.835,
+        "kantor_run_native_speed_mps": 2.388
+      },
+      "nodes": {
+        "hair": [
+          "hair_swept"
+        ],
+        "defaultHair": "hair_swept",
+        "props": []
+      },
+      "glbBytes": 720136,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json"
+    },
+    {
+      "id": "CH-ARCHITECT",
+      "kind": "character",
+      "displayName": "Hugo",
+      "role": "Karakter, aset & arsitektur",
+      "actor": "ACT-HUGO",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-architect.blend",
+      "glb": "app/public/assets/characters/ch-architect.glb",
+      "preview": "assets/previews/ch-architect-sheet.png",
+      "previewsExtra": [],
+      "dimensions": [
+        0.485,
+        0.435,
+        1.631
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.6305
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 13300,
+        "allNodes": 13300,
+        "perNode": {
+          "body": 10240,
+          "hair_bun": 3060
+        },
+        "budget": 15000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.873,
+        "kantor_run_native_speed_mps": 2.499
+      },
+      "nodes": {
+        "hair": [
+          "hair_bun"
+        ],
+        "defaultHair": "hair_bun",
+        "props": []
+      },
+      "glbBytes": 676244,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json"
+    },
+    {
+      "id": "CH-ICTSPEC",
+      "kind": "character",
+      "displayName": "Nova",
+      "role": "Spesifikasi ICT",
+      "actor": "ACT-NOVA",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-ictspec.blend",
+      "glb": "app/public/assets/characters/ch-ictspec.glb",
+      "preview": "assets/previews/ch-ictspec-sheet.png",
+      "previewsExtra": [],
+      "dimensions": [
+        0.514,
+        0.453,
+        1.494
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.4939
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 14292,
+        "allNodes": 14292,
+        "perNode": {
+          "body": 10272,
+          "hair_bob": 3536,
+          "prop_tablet": 484
+        },
+        "budget": 15000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.795,
+        "kantor_run_native_speed_mps": 2.274
+      },
+      "nodes": {
+        "hair": [
+          "hair_bob"
+        ],
+        "defaultHair": "hair_bob",
+        "props": [
+          "prop_tablet"
+        ]
+      },
+      "glbBytes": 703484,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json"
+    },
+    {
+      "id": "CH-NETINSTALL",
+      "kind": "character",
+      "displayName": "Bruno",
+      "role": "Instalasi jaringan & server",
+      "actor": "ACT-BRUNO",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-netinstall.blend",
+      "glb": "app/public/assets/characters/ch-netinstall.glb",
+      "preview": "assets/previews/ch-netinstall-sheet.png",
+      "previewsExtra": [],
+      "dimensions": [
+        0.514,
+        0.616,
+        1.562
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.562
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 13736,
+        "allNodes": 13736,
+        "perNode": {
+          "body": 11780,
+          "hair_cap": 1956
+        },
+        "budget": 15000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.818,
+        "kantor_run_native_speed_mps": 2.338
+      },
+      "nodes": {
+        "hair": [
+          "hair_cap"
+        ],
+        "defaultHair": "hair_cap",
+        "props": []
+      },
+      "glbBytes": 692452,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json"
+    },
+    {
+      "id": "CH-VISUAL",
+      "kind": "character",
+      "displayName": "Kevin",
+      "role": "Pamflet & materi visual",
+      "actor": "ACT-KEVIN",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-visual.blend",
+      "glb": "app/public/assets/characters/ch-visual.glb",
+      "preview": "assets/previews/ch-visual-sheet.png",
+      "previewsExtra": [],
+      "dimensions": [
+        0.45,
+        0.416,
+        1.561
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.5612
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 14512,
+        "allNodes": 14512,
+        "perNode": {
+          "body": 10644,
+          "hair_spiky_soft": 3456,
+          "prop_sketchbook": 412
+        },
+        "budget": 15000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.811,
+        "kantor_run_native_speed_mps": 2.32
+      },
+      "nodes": {
+        "hair": [
+          "hair_spiky_soft"
+        ],
+        "defaultHair": "hair_spiky_soft",
+        "props": [
+          "prop_sketchbook"
+        ]
+      },
+      "glbBytes": 710520,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json"
+    },
+    {
+      "id": "CH-QA",
+      "kind": "character",
+      "displayName": "Rex",
+      "role": "Review & QA",
+      "actor": "ACT-REX",
+      "creator": "kantor-rpg procedural script (Claude Code)",
+      "license": "original, project license TBD by owner",
+      "source": "blender/characters/build_characters.py",
+      "sourceData": "design/characters.json",
+      "blend": "blender/out/ch-qa.blend",
+      "glb": "app/public/assets/characters/ch-qa.glb",
+      "preview": "assets/previews/ch-qa-sheet.png",
+      "previewsExtra": [],
+      "dimensions": [
+        0.55,
+        0.43,
+        1.554
+      ],
+      "dimensionsNote": "[w, d, h] metres, rest pose, visible nodes only (default hair)",
+      "pivot": "feet center",
+      "facing": "-Y Blender / +Z glTF",
+      "collider": {
+        "type": "capsule",
+        "radius": 0.25,
+        "height": 1.5543
+      },
+      "materials": [
+        "blush",
+        "eye_highlight",
+        "eye_iris",
+        "eyes",
+        "hair",
+        "mouth",
+        "outfit_accent",
+        "outfit_bottom",
+        "outfit_inner",
+        "outfit_main",
+        "prop_accent",
+        "prop_detail",
+        "prop_main",
+        "shoe_sole",
+        "shoes",
+        "skin"
+      ],
+      "triangles": {
+        "lod0Visible": 14912,
+        "allNodes": 14912,
+        "perNode": {
+          "body": 10952,
+          "hair_side_part": 3356,
+          "prop_clipboard": 604
+        },
+        "budget": 15000
+      },
+      "lod": "LOD0 only",
+      "animations": [
+        "billiards",
+        "coffee",
+        "exercise",
+        "game",
+        "idle",
+        "read",
+        "run",
+        "sit",
+        "stretch",
+        "talk",
+        "type",
+        "walk",
+        "wave"
+      ],
+      "animationDurationsS": {
+        "billiards": 2.4,
+        "coffee": 3,
+        "exercise": 0.8,
+        "game": 1.6,
+        "idle": 2,
+        "read": 2.4,
+        "run": 0.6,
+        "sit": 2,
+        "stretch": 3,
+        "talk": 2.4,
+        "type": 1,
+        "walk": 1,
+        "wave": 1.6
+      },
+      "locomotion": {
+        "kantor_walk_native_speed_mps": 0.826,
+        "kantor_run_native_speed_mps": 2.361
+      },
+      "nodes": {
+        "hair": [
+          "hair_side_part"
+        ],
+        "defaultHair": "hair_side_part",
+        "props": [
+          "prop_clipboard"
+        ]
+      },
+      "glbBytes": 723692,
+      "status": "generated+validated",
+      "validatedBy": "blender/validate_assets.py",
+      "evidence": "docs/evidence/M1/blender-validate.json"
+    }
+  ]
+}

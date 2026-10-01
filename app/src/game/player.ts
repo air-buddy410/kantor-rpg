@@ -6,8 +6,10 @@ import type { NavGrid } from '../world/navgrid';
 import type { FloorId, Vec2 } from '../world/types';
 import { Avatar } from './avatar';
 
-export const WALK_SPEED = 2.0;
-export const RUN_SPEED = 4.0;
+// Chibi legs: native walk ~0.85 m/s; 1.6 m/s walk plays the clip at ~1.9x,
+// which reads as brisk steps without visible sliding (timeScale follows speed).
+export const WALK_SPEED = 1.6;
+export const RUN_SPEED = 3.4;
 
 export class Player {
   pos: Vec2;

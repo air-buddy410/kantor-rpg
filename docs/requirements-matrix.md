@@ -1,15 +1,17 @@
 # Matriks requirement
 
-Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 8522f03; evidence menunjuk file di repo).
+Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 912435c; evidence menunjuk file di repo).
 Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi pada commit tercatat. Evidence kosong = belum diuji.
 
 | REQ | Milestone | Bagian | Test | Evidence | Status |
 |---|---|---|---|---|---|
 | REQ-WORLD-01 | M1 | M0 data: reachability semua ruang non-shaft lewat navgrid + vertical link | tools/validate_world.py::nav_all_rooms_reachable_staff<br>tests/py/test_world.py::test_nav_detects_blocked_room | docs/evidence/M0/validate-world.json<br>docs/evidence/M0/pytest.txt | terverifikasi |
 | REQ-WORLD-01 | M1 | M0 data: server terkunci untuk visitor | tools/validate_world.py::nav_restricted_locked_for_visitor<br>tests/py/test_world.py::test_visitor_cannot_reach_server_even_if_door_public_elsewhere | docs/evidence/M0/validate-world.json | terverifikasi |
-| REQ-WORLD-01 | M1 | M1 runtime: CEO berjalan, collider, transisi lantai, safe waypoint | app/tests/unit/navgrid.test.ts<br>tests/e2e/world.spec.ts | - | belum diuji |
+| REQ-WORLD-01 | M1 | M1 runtime: CEO berjalan, collider, transisi lantai, safe waypoint | app/tests/unit/navgrid.test.ts<br>app/tests/e2e/world.spec.ts | docs/evidence/M1/e2e-world.txt<br>docs/evidence/M1/vitest.txt<br>docs/evidence/M1/screenshots/desktop-l2-game.jpg | terverifikasi |
 | REQ-CHAR-01 | M1/M2 | M0 data: actor record, role, homeSeat, simulated=true | tools/validate_world.py::actors_home_seats_exist<br>design/world.schema.json | docs/evidence/M0/validate-world.json | terverifikasi |
-| REQ-CHAR-01 | M1/M2 | M1/M2 asset: GLB karakter original, registry, animasi | tests/py/test_assets.py<br>tests/e2e/npc.spec.ts | - | belum diuji |
+| REQ-CHAR-01 | M1/M2 | M1 asset: 7 GLB karakter original, registry, 13 animasi, reopen/validate | blender/validate_assets.py<br>tests/py/test_assets.py | docs/evidence/M1/blender-validate.json<br>docs/evidence/M1/blender-validate-rerun.txt<br>assets/previews/ch-ceo-sheet.png | terverifikasi |
+| REQ-CHAR-01 | M1/M2 | M2 runtime: NPC spawn, label peran, animasi per aktivitas | app/tests/e2e/npc.spec.ts | - | belum diuji |
+| REQ-CHAR-01 | M1/M2 | LOD1 NPC <= 5k triangle, sheet ekspresi, atlas | - | - | target |
 | REQ-INTERACT-01 | M2 | M2 runtime | tests/e2e/interact.spec.ts | - | belum diuji |
 | REQ-IDLE-01 | M2 | M0 data: activity slots ber-capacity dan approachable | tools/validate_world.py::nav_activity_slots_approachable | docs/evidence/M0/validate-world.json | terverifikasi |
 | REQ-IDLE-01 | M2 | M2 simulasi berseed + soak | app/tests/unit/idle.test.ts | - | belum diuji |
@@ -17,19 +19,23 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-AVATAR-01 | M3 | M3 Avatar Studio | tests/e2e/avatar.spec.ts | - | belum diuji |
 | REQ-BLUEPRINT-01 | M0/M3 | M0: schema satu sumber, ruang tanpa overlap/gap, pintu di dinding bersama, fixture dalam ruang | tools/validate_world.py<br>tests/py/test_world.py | docs/evidence/M0/validate-world.json<br>docs/evidence/M0/pytest.txt | terverifikasi |
 | REQ-BLUEPRINT-01 | M0/M3 | M0: capability CAD dilaporkan; native DWG | docs/evidence/M0/capability-report.md | docs/evidence/M0/capability-report.md | tidak didukung |
-| REQ-BLUEPRINT-01 | M0/M3 | M1/M3: DXF/PDF/GLB konsisten | tests/py/test_cad.py<br>tests/py/test_blender.py | - | belum diuji |
+| REQ-BLUEPRINT-01 | M0/M3 | M1: A-101/A-102 DXF+PDF konsisten dengan dataset (reopen, audit, luas, ID pintu/fixture, skala) | tests/py/test_cad.py | docs/evidence/M1/cad-pytest.txt<br>drawings/register.json | terverifikasi |
+| REQ-BLUEPRINT-01 | M0/M3 | M3: GLB bangunan dari Blender konsisten dengan DXF/PDF; sheet lain | tests/py/test_blender.py | - | belum diuji |
 | REQ-ICT-01 | M0/M3 | M0: FK outlet/device/rack, rack U collision, kamera tidak di area basah | tools/validate_world.py::ict_foreign_keys<br>tests/py/test_ict.py | docs/evidence/M0/validate-world.json<br>docs/evidence/M0/pytest.txt | terverifikasi |
 | REQ-ICT-01 | M0/M3 | M0: port map tanpa duplikat, panjang dari route tray, <= 90 m target, spare switch >= 20% | tools/ict_derive.py<br>tests/py/test_ict.py | design/derived/ict-portmap.json<br>docs/evidence/M0/failure-paths/ict-switch-spare-below-target.txt | terverifikasi |
 | REQ-ICT-01 | M0/M3 | PoE budget switch, rating UPS, thermal | - | - | asumsi |
 | REQ-ICT-01 | M0/M3 | M3: gambar ICT PDF + review | tests/py/test_cad.py | - | belum diuji |
-| REQ-ACCESS-01 | M1/M2 | M1 runtime fallback | tests/e2e/fallback.spec.ts | - | belum diuji |
+| REQ-ACCESS-01 | M1/M2 | M1: fallback ?nogl=1, direktori keyboard, focus kembali, reduced motion (viewport emulasi) | app/tests/e2e/world.spec.ts | docs/evidence/M1/e2e-world.txt<br>docs/evidence/M1/screenshots/desktop-fallback.jpg<br>docs/evidence/M1/contrast.json | terverifikasi |
+| REQ-ACCESS-01 | M1/M2 | Perangkat mobile/tablet nyata dan screen reader | - | - | belum diuji |
 | REQ-DATA-01 | M4 gated | M4 disabled sampai izin Budi | - | - | tidak didukung |
 | REQ-PERF-01 | M1-M3 | M0: anggaran transfer/triangle dihitung | tools/capacity.py | design/derived/capacity.json | asumsi |
-| REQ-PERF-01 | M1-M3 | M1: perf harness rute tetap | tests/e2e/perf.spec.ts | - | belum diuji |
+| REQ-PERF-01 | M1-M3 | M1: harness rute tetap 60 s berjalan dan tercatat (container SwiftShader) | app/tests/e2e/perf.spec.ts | docs/evidence/M1/perf-route-desktop.json | terverifikasi |
+| REQ-PERF-01 | M1-M3 | Target 60 FPS desktop / 30 FPS mobile pada perangkat pilihan Budi | app/tests/e2e/perf.spec.ts | - | belum diuji |
 | REQ-SAFE-01 | semua | M0: secret/URL/file allowlist scan repo | tools/safety_scan.py | docs/evidence/M0/safety-scan.txt | terverifikasi |
-| REQ-SAFE-01 | semua | M1+: build output network assertions, license audit dependency | tests/e2e/network.spec.ts<br>tools/license_audit.py | - | belum diuji |
+| REQ-SAFE-01 | semua | M1: runtime hanya request same-origin; safety scan | app/tests/e2e/world.spec.ts<br>tools/safety_scan.py | docs/evidence/M1/e2e-world.txt | terverifikasi |
+| REQ-SAFE-01 | semua | Audit lisensi dependency npm/pip | tools/license_audit.py | - | belum diuji |
 
-Ringkasan status bagian: asumsi 2, belum diuji 11, terverifikasi 8, tidak didukung 2.
+Ringkasan status bagian: asumsi 2, belum diuji 10, target 1, terverifikasi 14, tidak didukung 2.
 
 ## Story, AC, failure dan boundary
 

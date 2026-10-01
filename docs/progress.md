@@ -2,6 +2,26 @@
 
 Log untuk supervisor (Max). Entri terbaru di atas. Status memakai DONE_Mx / NEEDS_INPUT / BLOCKED; angka test adalah hasil eksekusi, bukan target.
 
+## M1 (branch claude/kantor-rpg-m1, PR air-buddy410/kantor-rpg#2)
+
+Status: DONE_M1 untuk vertical slice; native DWG tetap BLOCKED; target FPS perangkat nyata belum diuji (container tanpa GPU).
+
+Hasil:
+- Runtime `app/` (Vite 8.3.1, TypeScript 5.9.3, three 0.186.1): dua lantai dari `design/world.json`, kontrol CEO + collision navgrid, tangga/lift bertanda, cutaway dinding, direktori DOM + fallback tanpa WebGL, tema terang/gelap, joystick, mode visitor, harness perf.
+- Navgrid TS = Python (parity count + probe): `docs/evidence/M1/vitest.txt`.
+- E2E desktop/tablet/mobile: 33 lolos, 3 skip by design (`docs/evidence/M1/e2e-world.txt`, screenshot di `docs/evidence/M1/screenshots/`).
+- Karakter original: 7 GLB dari `blender/characters/build_characters.py`, reopen/validate 83/80 cek per karakter lolos, dijalankan ulang oleh pelaksana (`docs/evidence/M1/blender-validate-rerun.txt`); sheet di `assets/previews/`.
+- CAD: A-101 dan A-102 DXF + PDF A2 1:100 (`drawings/`, `cad/out/`), 16 test CAD lolos; runbook AutoCAD.
+- Benchmark 60 s rute tetap (SwiftShader, tanpa GPU): 5,6 FPS rata-rata, median 166 ms, p95 396 ms; angka container, bukan perangkat (`docs/evidence/M1/perf-route-desktop.json`).
+- Python tests: 93 lolos. Contrast: 31/31 pasangan lolos di kedua tema.
+
+Failure/boundary yang tercatat:
+- CI pertama gagal karena runner tidak punya `pdftoppm`; diperbaiki dengan instalasi poppler-utils di workflow.
+- Run perf pertama dibuang: frame time ter-clamp 100 ms (bug metrik), diperbaiki memakai delta mentah.
+- Triangle L1 awal 188k (melebihi anggaran lingkungan 135k) diturunkan ke 25k per lantai.
+
+Known issues: walk native karakter 0,85 m/s sehingga clip dipercepat sesuai kecepatan; LOD1 NPC, sheet ekspresi dan atlas belum ada; kaki menggantung saat duduk (stilisasi); preview sheet memakai outline Freestyle yang tidak ada di runtime.
+
 ## M0 (branch claude/kantor-rpg-m0)
 
 Status: DONE_M0 untuk lingkup data/dokumen; native DWG BLOCKED (AutoCAD tidak tersedia); NEEDS_INPUT Q-01 sampai Q-04 (tidak memblokir M1).
