@@ -1,0 +1,5318 @@
+{
+  "tool": "blender/validate_assets.py",
+  "blender": "4.0.2",
+  "gitHead": "912435cc81bf7b417c58572d61702fc1e61920da",
+  "worktreeNote": "gitHead is the commit the files were validated on top of; generated files may be uncommitted",
+  "seconds": 30.0,
+  "passed": true,
+  "characters": {
+    "CH-CEO": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-ceo.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_short_tuft",
+            "hair_spiky_soft",
+            "hair_swept"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_short_tuft"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 14788,
+            "budget": 25000
+          }
+        },
+        {
+          "check": "all-variant triangles within player budget",
+          "ok": true,
+          "detail": 21396
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.6412,
+            "spec": 1.58
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              0.0,
+              -0.1888,
+              1.2833
+            ],
+            "body": [
+              0.0002,
+              -0.0495,
+              0.8665
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.002
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.002
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.002,
+            "native_speed_mps": 0.845,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.845,
+            "slip_ratio": 0.0005
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0033
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0033
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0033,
+            "native_speed_mps": 2.416,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.416,
+            "slip_ratio": 0.0
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0012
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0012
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-ceo.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 909716
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_short_tuft",
+            "hair_spiky_soft",
+            "hair_swept",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.6412
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            0.0,
+            -0.1888,
+            1.2833
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-ceo-sheet.png",
+          "ok": true,
+          "detail": 147700
+        },
+        {
+          "check": "preview ch-ceo-deform.png",
+          "ok": true,
+          "detail": 274216
+        },
+        {
+          "check": "preview ch-ceo-variants.png",
+          "ok": true,
+          "detail": 216938
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-ceo.blend",
+        "static": {
+          "bbox_min": [
+            -0.2476,
+            -0.2081,
+            -0.0
+          ],
+          "bbox_max": [
+            0.2476,
+            0.2203,
+            1.6412
+          ],
+          "height": 1.6412,
+          "feet_z": -0.0,
+          "dimensions": [
+            0.495,
+            0.428,
+            1.641
+          ],
+          "eye_centroid": [
+            0.0,
+            -0.1888,
+            1.2833
+          ],
+          "body_centroid": [
+            0.0002,
+            -0.0495,
+            0.8665
+          ],
+          "tri_visible": 14788,
+          "tri_total": 21396,
+          "per_node": {
+            "body": 11028,
+            "hair_short_tuft": 3760,
+            "hair_spiky_soft": 3456,
+            "hair_swept": 3152
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.002,
+            "native_speed_mps": 0.845,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.845,
+            "slip_ratio": 0.0005
+          },
+          "run": {
+            "min_z": -0.0033,
+            "native_speed_mps": 2.416,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.416,
+            "slip_ratio": 0.0
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.1811,
+            "pelvis_underside_z": 0.442
+          },
+          "type": {
+            "min_z": 0.2,
+            "pelvis_underside_z": 0.442
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.0012
+          },
+          "exercise": {
+            "min_z": -0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.2,
+            "pelvis_underside_z": 0.442
+          }
+        },
+        "default_hair": "hair_short_tuft",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.845,
+          "kantor_run_native_speed_mps": 2.416
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-ceo.glb",
+        "bytes": 909716,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_short_tuft",
+          "hair_spiky_soft",
+          "hair_swept",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.6412,
+          "feet_z": -0.0,
+          "tri_visible": 14788,
+          "tri_total": 21396,
+          "eye_centroid": [
+            0.0,
+            -0.1888,
+            1.2833
+          ],
+          "dimensions": [
+            0.495,
+            0.428,
+            1.641
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-ceo-sheet.png",
+        "assets/previews/ch-ceo-deform.png",
+        "assets/previews/ch-ceo-variants.png"
+      ]
+    },
+    "CH-SUPERVISOR": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-supervisor.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_swept"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_swept"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 14884,
+            "budget": 15000
+          }
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.5844,
+            "spec": 1.56
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              -0.0,
+              -0.1841,
+              1.2707
+            ],
+            "body": [
+              0.0023,
+              -0.0388,
+              0.913
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0019
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0019
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0019,
+            "native_speed_mps": 0.835,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.835,
+            "slip_ratio": 0.0007
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0033
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0033
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0033,
+            "native_speed_mps": 2.388,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.388,
+            "slip_ratio": 0.0002
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0012
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0012
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-supervisor.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 720136
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_swept",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.5844
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            -0.0,
+            -0.1841,
+            1.2707
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-supervisor-sheet.png",
+          "ok": true,
+          "detail": 156968
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-supervisor.blend",
+        "static": {
+          "bbox_min": [
+            -0.2652,
+            -0.2031,
+            0.0
+          ],
+          "bbox_max": [
+            0.2652,
+            0.2175,
+            1.5844
+          ],
+          "height": 1.5844,
+          "feet_z": 0.0,
+          "dimensions": [
+            0.53,
+            0.421,
+            1.584
+          ],
+          "eye_centroid": [
+            -0.0,
+            -0.1841,
+            1.2707
+          ],
+          "body_centroid": [
+            0.0023,
+            -0.0388,
+            0.913
+          ],
+          "tri_visible": 14884,
+          "tri_total": 14884,
+          "per_node": {
+            "body": 11732,
+            "hair_swept": 3152
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.0019,
+            "native_speed_mps": 0.835,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.835,
+            "slip_ratio": 0.0007
+          },
+          "run": {
+            "min_z": -0.0033,
+            "native_speed_mps": 2.388,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.388,
+            "slip_ratio": 0.0002
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.1844,
+            "pelvis_underside_z": 0.442
+          },
+          "type": {
+            "min_z": 0.2031,
+            "pelvis_underside_z": 0.442
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.0012
+          },
+          "exercise": {
+            "min_z": 0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.2031,
+            "pelvis_underside_z": 0.442
+          }
+        },
+        "default_hair": "hair_swept",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.835,
+          "kantor_run_native_speed_mps": 2.388
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-supervisor.glb",
+        "bytes": 720136,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_swept",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.5844,
+          "feet_z": 0.0,
+          "tri_visible": 14884,
+          "tri_total": 14884,
+          "eye_centroid": [
+            -0.0,
+            -0.1841,
+            1.2707
+          ],
+          "dimensions": [
+            0.53,
+            0.421,
+            1.584
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-supervisor-sheet.png"
+      ]
+    },
+    "CH-ARCHITECT": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-architect.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_bun"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_bun"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 13300,
+            "budget": 15000
+          }
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.6305,
+            "spec": 1.6
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              0.0,
+              -0.1837,
+              1.3106
+            ],
+            "body": [
+              -0.0021,
+              -0.0347,
+              0.8909
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0018,
+            "native_speed_mps": 0.873,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.873,
+            "slip_ratio": 0.0007
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0032
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0032
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0032,
+            "native_speed_mps": 2.499,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.499,
+            "slip_ratio": 0.0
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0011
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0011
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-architect.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 676244
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_bun",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.6305
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            0.0,
+            -0.1837,
+            1.3106
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-architect-sheet.png",
+          "ok": true,
+          "detail": 170341
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-architect.blend",
+        "static": {
+          "bbox_min": [
+            -0.2425,
+            -0.2026,
+            0.0
+          ],
+          "bbox_max": [
+            0.2425,
+            0.2325,
+            1.6305
+          ],
+          "height": 1.6305,
+          "feet_z": 0.0,
+          "dimensions": [
+            0.485,
+            0.435,
+            1.631
+          ],
+          "eye_centroid": [
+            0.0,
+            -0.1837,
+            1.3106
+          ],
+          "body_centroid": [
+            -0.0021,
+            -0.0347,
+            0.8909
+          ],
+          "tri_visible": 13300,
+          "tri_total": 13300,
+          "per_node": {
+            "body": 10240,
+            "hair_bun": 3060
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.0018,
+            "native_speed_mps": 0.873,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.873,
+            "slip_ratio": 0.0007
+          },
+          "run": {
+            "min_z": -0.0032,
+            "native_speed_mps": 2.499,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.499,
+            "slip_ratio": 0.0
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.1665,
+            "pelvis_underside_z": 0.442
+          },
+          "type": {
+            "min_z": 0.1851,
+            "pelvis_underside_z": 0.442
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.0011
+          },
+          "exercise": {
+            "min_z": 0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.1851,
+            "pelvis_underside_z": 0.442
+          }
+        },
+        "default_hair": "hair_bun",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.873,
+          "kantor_run_native_speed_mps": 2.499
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-architect.glb",
+        "bytes": 676244,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_bun",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.6305,
+          "feet_z": 0.0,
+          "tri_visible": 13300,
+          "tri_total": 13300,
+          "eye_centroid": [
+            0.0,
+            -0.1837,
+            1.3106
+          ],
+          "dimensions": [
+            0.485,
+            0.435,
+            1.631
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-architect-sheet.png"
+      ]
+    },
+    "CH-ICTSPEC": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-ictspec.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_bob",
+            "prop_tablet"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_bob"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 14292,
+            "budget": 15000
+          }
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.4939,
+            "spec": 1.49
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              0.0,
+              -0.181,
+              1.2064
+            ],
+            "body": [
+              0.0018,
+              -0.0411,
+              0.833
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0015
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0015
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0015,
+            "native_speed_mps": 0.795,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.795,
+            "slip_ratio": 0.0006
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0028
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0028
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0028,
+            "native_speed_mps": 2.274,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.274,
+            "slip_ratio": 0.0001
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0009
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0009
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-ictspec.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 703484
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_bob",
+            "prop_tablet",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.4939
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            0.0,
+            -0.181,
+            1.2064
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-ictspec-sheet.png",
+          "ok": true,
+          "detail": 131680
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-ictspec.blend",
+        "static": {
+          "bbox_min": [
+            -0.2814,
+            -0.2265,
+            -0.0
+          ],
+          "bbox_max": [
+            0.2321,
+            0.2265,
+            1.4939
+          ],
+          "height": 1.4939,
+          "feet_z": -0.0,
+          "dimensions": [
+            0.514,
+            0.453,
+            1.494
+          ],
+          "eye_centroid": [
+            0.0,
+            -0.181,
+            1.2064
+          ],
+          "body_centroid": [
+            0.0018,
+            -0.0411,
+            0.833
+          ],
+          "tri_visible": 14292,
+          "tri_total": 14292,
+          "per_node": {
+            "body": 10272,
+            "hair_bob": 3536,
+            "prop_tablet": 484
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.0015,
+            "native_speed_mps": 0.795,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.795,
+            "slip_ratio": 0.0006
+          },
+          "run": {
+            "min_z": -0.0028,
+            "native_speed_mps": 2.274,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.274,
+            "slip_ratio": 0.0001
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.2011,
+            "pelvis_underside_z": 0.442
+          },
+          "type": {
+            "min_z": 0.2178,
+            "pelvis_underside_z": 0.442
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.0009
+          },
+          "exercise": {
+            "min_z": -0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.2178,
+            "pelvis_underside_z": 0.442
+          }
+        },
+        "default_hair": "hair_bob",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.795,
+          "kantor_run_native_speed_mps": 2.274
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-ictspec.glb",
+        "bytes": 703484,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_bob",
+          "prop_tablet",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.4939,
+          "feet_z": 0.0,
+          "tri_visible": 14292,
+          "tri_total": 14292,
+          "eye_centroid": [
+            0.0,
+            -0.181,
+            1.2064
+          ],
+          "dimensions": [
+            0.514,
+            0.453,
+            1.494
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-ictspec-sheet.png"
+      ]
+    },
+    "CH-NETINSTALL": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-netinstall.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_cap"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_cap"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 13736,
+            "budget": 15000
+          }
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.562,
+            "spec": 1.55
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              -0.0,
+              -0.1855,
+              1.2589
+            ],
+            "body": [
+              0.0048,
+              -0.0366,
+              0.8214
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0023
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0023
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0023,
+            "native_speed_mps": 0.818,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.818,
+            "slip_ratio": 0.0005
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0037
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0037
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0037,
+            "native_speed_mps": 2.338,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.338,
+            "slip_ratio": 0.0002
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.4305
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.4305
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0015
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0015
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.4305
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-netinstall.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 692452
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_cap",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.562
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            -0.0,
+            -0.1855,
+            1.2589
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-netinstall-sheet.png",
+          "ok": true,
+          "detail": 159124
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-netinstall.blend",
+        "static": {
+          "bbox_min": [
+            -0.2569,
+            -0.3935,
+            0.0
+          ],
+          "bbox_max": [
+            0.2576,
+            0.2229,
+            1.562
+          ],
+          "height": 1.562,
+          "feet_z": 0.0,
+          "dimensions": [
+            0.514,
+            0.616,
+            1.562
+          ],
+          "eye_centroid": [
+            -0.0,
+            -0.1855,
+            1.2589
+          ],
+          "body_centroid": [
+            0.0048,
+            -0.0366,
+            0.8214
+          ],
+          "tri_visible": 13736,
+          "tri_total": 13736,
+          "per_node": {
+            "body": 11780,
+            "hair_cap": 1956
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.0023,
+            "native_speed_mps": 0.818,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.818,
+            "slip_ratio": 0.0005
+          },
+          "run": {
+            "min_z": -0.0037,
+            "native_speed_mps": 2.338,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.338,
+            "slip_ratio": 0.0002
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.192,
+            "pelvis_underside_z": 0.4305
+          },
+          "type": {
+            "min_z": 0.212,
+            "pelvis_underside_z": 0.4305
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.0015
+          },
+          "exercise": {
+            "min_z": 0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.212,
+            "pelvis_underside_z": 0.4305
+          }
+        },
+        "default_hair": "hair_cap",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.818,
+          "kantor_run_native_speed_mps": 2.338
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-netinstall.glb",
+        "bytes": 692452,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_cap",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.562,
+          "feet_z": 0.0,
+          "tri_visible": 13736,
+          "tri_total": 13736,
+          "eye_centroid": [
+            -0.0,
+            -0.1855,
+            1.2589
+          ],
+          "dimensions": [
+            0.514,
+            0.616,
+            1.562
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-netinstall-sheet.png"
+      ]
+    },
+    "CH-VISUAL": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-visual.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_spiky_soft",
+            "prop_sketchbook"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_spiky_soft"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 14512,
+            "budget": 15000
+          }
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.5612,
+            "spec": 1.51
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              -0.0,
+              -0.1833,
+              1.2226
+            ],
+            "body": [
+              -0.0009,
+              -0.0493,
+              0.8385
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0017
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0017
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0017,
+            "native_speed_mps": 0.811,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.811,
+            "slip_ratio": 0.0003
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.003
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.003
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.003,
+            "native_speed_mps": 2.32,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.32,
+            "slip_ratio": 0.0001
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.001
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.001
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-visual.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 710520
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_spiky_soft",
+            "prop_sketchbook",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.5612
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            -0.0,
+            -0.1833,
+            1.2226
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-visual-sheet.png",
+          "ok": true,
+          "detail": 164760
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-visual.blend",
+        "static": {
+          "bbox_min": [
+            -0.2249,
+            -0.2022,
+            0.0
+          ],
+          "bbox_max": [
+            0.2249,
+            0.2141,
+            1.5612
+          ],
+          "height": 1.5612,
+          "feet_z": 0.0,
+          "dimensions": [
+            0.45,
+            0.416,
+            1.561
+          ],
+          "eye_centroid": [
+            -0.0,
+            -0.1833,
+            1.2226
+          ],
+          "body_centroid": [
+            -0.0009,
+            -0.0493,
+            0.8385
+          ],
+          "tri_visible": 14512,
+          "tri_total": 14512,
+          "per_node": {
+            "body": 10644,
+            "hair_spiky_soft": 3456,
+            "prop_sketchbook": 412
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.0017,
+            "native_speed_mps": 0.811,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.811,
+            "slip_ratio": 0.0003
+          },
+          "run": {
+            "min_z": -0.003,
+            "native_speed_mps": 2.32,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.32,
+            "slip_ratio": 0.0001
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.1934,
+            "pelvis_underside_z": 0.442
+          },
+          "type": {
+            "min_z": 0.2109,
+            "pelvis_underside_z": 0.442
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.001
+          },
+          "exercise": {
+            "min_z": 0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.2109,
+            "pelvis_underside_z": 0.442
+          }
+        },
+        "default_hair": "hair_spiky_soft",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.811,
+          "kantor_run_native_speed_mps": 2.32
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-visual.glb",
+        "bytes": 710520,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_spiky_soft",
+          "prop_sketchbook",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.5612,
+          "feet_z": 0.0,
+          "tri_visible": 14512,
+          "tri_total": 14512,
+          "eye_centroid": [
+            -0.0,
+            -0.1833,
+            1.2226
+          ],
+          "dimensions": [
+            0.45,
+            0.416,
+            1.561
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-visual-sheet.png"
+      ]
+    },
+    "CH-QA": {
+      "ok": true,
+      "checks": [
+        {
+          "check": "blend exists",
+          "ok": true,
+          "detail": "blender/out/ch-qa.blend"
+        },
+        {
+          "check": "armature present",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "bone set matches shared skeleton",
+          "ok": true,
+          "detail": [
+            "root",
+            "hips",
+            "spine",
+            "chest",
+            "neck",
+            "head",
+            "upper_arm_L",
+            "forearm_L",
+            "hand_L",
+            "upper_arm_R",
+            "forearm_R",
+            "hand_R",
+            "thigh_L",
+            "shin_L",
+            "foot_L",
+            "thigh_R",
+            "shin_R",
+            "foot_R"
+          ]
+        },
+        {
+          "check": "hair nodes",
+          "ok": true,
+          "detail": [
+            "body",
+            "hair_side_part",
+            "prop_clipboard"
+          ]
+        },
+        {
+          "check": "default hair extra",
+          "ok": true,
+          "detail": "hair_side_part"
+        },
+        {
+          "check": "every mesh skinned to rig",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "no unweighted vertices",
+          "ok": true,
+          "detail": 0
+        },
+        {
+          "check": "vertex groups are bones",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "action names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "clip length idle",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length walk",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "clip length wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "clip length talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length sit",
+          "ok": true,
+          "detail": 2.0
+        },
+        {
+          "check": "clip length type",
+          "ok": true,
+          "detail": 1.0
+        },
+        {
+          "check": "clip length read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length coffee",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length stretch",
+          "ok": true,
+          "detail": 3.0
+        },
+        {
+          "check": "clip length exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "clip length billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "clip length game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "NLA tracks hold every clip",
+          "ok": true,
+          "detail": [
+            "idle",
+            "walk",
+            "run",
+            "wave",
+            "talk",
+            "sit",
+            "type",
+            "read",
+            "coffee",
+            "stretch",
+            "exercise",
+            "billiards",
+            "game"
+          ]
+        },
+        {
+          "check": "LOD0 triangles within budget",
+          "ok": true,
+          "detail": {
+            "visible": 14912,
+            "budget": 15000
+          }
+        },
+        {
+          "check": "height within tolerance",
+          "ok": true,
+          "detail": {
+            "measured": 1.5543,
+            "spec": 1.54
+          }
+        },
+        {
+          "check": "feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "faces -Y",
+          "ok": true,
+          "detail": {
+            "eyes": [
+              -0.0,
+              -0.1819,
+              1.2544
+            ],
+            "body": [
+              -0.0,
+              -0.0519,
+              0.9003
+            ]
+          }
+        },
+        {
+          "check": "required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "idle: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "idle: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0029
+        },
+        {
+          "check": "walk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "walk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "walk: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0018,
+            "native_speed_mps": 0.826,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.825,
+            "slip_ratio": 0.0007
+          }
+        },
+        {
+          "check": "run: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0031
+        },
+        {
+          "check": "run: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0031
+        },
+        {
+          "check": "run: planted foot speed matches root speed (slip < 5%)",
+          "ok": true,
+          "detail": {
+            "min_z": -0.0031,
+            "native_speed_mps": 2.361,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.361,
+            "slip_ratio": 0.0
+          }
+        },
+        {
+          "check": "wave: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "wave: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0018
+        },
+        {
+          "check": "talk: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "talk: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "sit: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "type: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "read: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "read: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0021
+        },
+        {
+          "check": "coffee: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "coffee: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0024
+        },
+        {
+          "check": "stretch: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0011
+        },
+        {
+          "check": "stretch: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0011
+        },
+        {
+          "check": "exercise: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "exercise: a foot touches the floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "billiards: no floor penetration (6 mm tolerance)",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "billiards: a foot touches the floor",
+          "ok": true,
+          "detail": -0.0
+        },
+        {
+          "check": "game: pelvis on 0.45 m seat",
+          "ok": true,
+          "detail": 0.442
+        },
+        {
+          "check": "glb exists",
+          "ok": true,
+          "detail": "app/public/assets/characters/ch-qa.glb"
+        },
+        {
+          "check": "glb size within target",
+          "ok": true,
+          "detail": 723692
+        },
+        {
+          "check": "glb has BIN chunk",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "glb animation names exact",
+          "ok": true,
+          "detail": [
+            "billiards",
+            "coffee",
+            "exercise",
+            "game",
+            "idle",
+            "read",
+            "run",
+            "sit",
+            "stretch",
+            "talk",
+            "type",
+            "walk",
+            "wave"
+          ]
+        },
+        {
+          "check": "glb has a skin",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb joints are the shared skeleton",
+          "ok": true,
+          "detail": [
+            "chest",
+            "foot_L",
+            "foot_R",
+            "forearm_L",
+            "forearm_R",
+            "hand_L",
+            "hand_R",
+            "head",
+            "hips",
+            "neck",
+            "root",
+            "shin_L",
+            "shin_R",
+            "spine",
+            "thigh_L",
+            "thigh_R",
+            "upper_arm_L",
+            "upper_arm_R"
+          ]
+        },
+        {
+          "check": "glb hair nodes",
+          "ok": true,
+          "detail": [
+            "head",
+            "neck",
+            "hand_L",
+            "forearm_L",
+            "upper_arm_L",
+            "hand_R",
+            "forearm_R",
+            "upper_arm_R",
+            "chest",
+            "spine",
+            "foot_L",
+            "shin_L",
+            "thigh_L",
+            "foot_R",
+            "shin_R",
+            "thigh_R",
+            "hips",
+            "root",
+            "body",
+            "hair_side_part",
+            "prop_clipboard",
+            "rig"
+          ]
+        },
+        {
+          "check": "glb required materials",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "check": "glb clip duration billiards",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration coffee",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration exercise",
+          "ok": true,
+          "detail": 0.8
+        },
+        {
+          "check": "glb clip duration game",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "glb clip duration idle",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration read",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration run",
+          "ok": true,
+          "detail": 0.6
+        },
+        {
+          "check": "glb clip duration sit",
+          "ok": true,
+          "detail": 2
+        },
+        {
+          "check": "glb clip duration stretch",
+          "ok": true,
+          "detail": 3
+        },
+        {
+          "check": "glb clip duration talk",
+          "ok": true,
+          "detail": 2.4
+        },
+        {
+          "check": "glb clip duration type",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration walk",
+          "ok": true,
+          "detail": 1
+        },
+        {
+          "check": "glb clip duration wave",
+          "ok": true,
+          "detail": 1.6
+        },
+        {
+          "check": "reimport: one armature",
+          "ok": true,
+          "detail": [
+            "rig"
+          ]
+        },
+        {
+          "check": "reimport: height within tolerance",
+          "ok": true,
+          "detail": 1.5543
+        },
+        {
+          "check": "reimport: feet on floor",
+          "ok": true,
+          "detail": 0.0
+        },
+        {
+          "check": "reimport: faces -Y (glTF +Z)",
+          "ok": true,
+          "detail": [
+            -0.0,
+            -0.1819,
+            1.2544
+          ]
+        },
+        {
+          "check": "reimport: actions present",
+          "ok": true,
+          "detail": 13
+        },
+        {
+          "check": "preview ch-qa-sheet.png",
+          "ok": true,
+          "detail": 153424
+        }
+      ],
+      "blend_report": {
+        "blend": "blender/out/ch-qa.blend",
+        "static": {
+          "bbox_min": [
+            -0.2407,
+            -0.2187,
+            0.0
+          ],
+          "bbox_max": [
+            0.3094,
+            0.2112,
+            1.5543
+          ],
+          "height": 1.5543,
+          "feet_z": 0.0,
+          "dimensions": [
+            0.55,
+            0.43,
+            1.554
+          ],
+          "eye_centroid": [
+            -0.0,
+            -0.1819,
+            1.2544
+          ],
+          "body_centroid": [
+            -0.0,
+            -0.0519,
+            0.9003
+          ],
+          "tri_visible": 14912,
+          "tri_total": 14912,
+          "per_node": {
+            "body": 10952,
+            "hair_side_part": 3356,
+            "prop_clipboard": 604
+          },
+          "materials": [
+            "blush",
+            "eye_highlight",
+            "eye_iris",
+            "eyes",
+            "hair",
+            "mouth",
+            "outfit_accent",
+            "outfit_bottom",
+            "outfit_inner",
+            "outfit_main",
+            "prop_accent",
+            "prop_detail",
+            "prop_main",
+            "shoe_sole",
+            "shoes",
+            "skin"
+          ],
+          "missing_materials": []
+        },
+        "clips": {
+          "idle": {
+            "min_z": -0.0029
+          },
+          "walk": {
+            "min_z": -0.0018,
+            "native_speed_mps": 0.826,
+            "planted_frames": 12,
+            "mean_stance_speed_mps": 0.825,
+            "slip_ratio": 0.0007
+          },
+          "run": {
+            "min_z": -0.0031,
+            "native_speed_mps": 2.361,
+            "planted_frames": 5,
+            "mean_stance_speed_mps": 2.361,
+            "slip_ratio": 0.0
+          },
+          "wave": {
+            "min_z": -0.0018
+          },
+          "talk": {
+            "min_z": -0.0024
+          },
+          "sit": {
+            "min_z": 0.1881,
+            "pelvis_underside_z": 0.442
+          },
+          "type": {
+            "min_z": 0.2062,
+            "pelvis_underside_z": 0.442
+          },
+          "read": {
+            "min_z": -0.0021
+          },
+          "coffee": {
+            "min_z": -0.0024
+          },
+          "stretch": {
+            "min_z": -0.0011
+          },
+          "exercise": {
+            "min_z": 0.0
+          },
+          "billiards": {
+            "min_z": -0.0
+          },
+          "game": {
+            "min_z": 0.2062,
+            "pelvis_underside_z": 0.442
+          }
+        },
+        "default_hair": "hair_side_part",
+        "loco": {
+          "kantor_walk_native_speed_mps": 0.826,
+          "kantor_run_native_speed_mps": 2.361
+        }
+      },
+      "glb_report": {
+        "glb": "app/public/assets/characters/ch-qa.glb",
+        "bytes": 723692,
+        "animations": [
+          "billiards",
+          "coffee",
+          "exercise",
+          "game",
+          "idle",
+          "read",
+          "run",
+          "sit",
+          "stretch",
+          "talk",
+          "type",
+          "walk",
+          "wave"
+        ],
+        "durations": {
+          "billiards": 2.4,
+          "coffee": 3,
+          "exercise": 0.8,
+          "game": 1.6,
+          "idle": 2,
+          "read": 2.4,
+          "run": 0.6,
+          "sit": 2,
+          "stretch": 3,
+          "talk": 2.4,
+          "type": 1,
+          "walk": 1,
+          "wave": 1.6
+        },
+        "nodes": [
+          "head",
+          "neck",
+          "hand_L",
+          "forearm_L",
+          "upper_arm_L",
+          "hand_R",
+          "forearm_R",
+          "upper_arm_R",
+          "chest",
+          "spine",
+          "foot_L",
+          "shin_L",
+          "thigh_L",
+          "foot_R",
+          "shin_R",
+          "thigh_R",
+          "hips",
+          "root",
+          "body",
+          "hair_side_part",
+          "prop_clipboard",
+          "rig"
+        ],
+        "materials": [
+          "blush",
+          "eye_highlight",
+          "eye_iris",
+          "eyes",
+          "hair",
+          "mouth",
+          "outfit_accent",
+          "outfit_bottom",
+          "outfit_inner",
+          "outfit_main",
+          "prop_accent",
+          "prop_detail",
+          "prop_main",
+          "shoe_sole",
+          "shoes",
+          "skin"
+        ],
+        "reimport": {
+          "height": 1.5543,
+          "feet_z": 0.0,
+          "tri_visible": 14912,
+          "tri_total": 14912,
+          "eye_centroid": [
+            -0.0,
+            -0.1819,
+            1.2544
+          ],
+          "dimensions": [
+            0.55,
+            0.43,
+            1.554
+          ]
+        }
+      },
+      "previews": [
+        "assets/previews/ch-qa-sheet.png"
+      ]
+    }
+  }
+}

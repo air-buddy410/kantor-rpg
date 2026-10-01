@@ -1,0 +1,2 @@
+{"totals": {"outlets": 45, "ports": 72, "cable_m": 2074.8, "max_length_m": 50.6, "min_length_m": 12.7, "patchPanelPorts": 96, "patchPanelPortsUsed": 72}, "poeTotalWorstCaseW": 407.0, "switches": [["SW-ACC-01", 36, 0.182], ["SW-ACC-02", 36, 0.182]], "errors": ["switch spare below 20%: 16/88"]}
+exit=1

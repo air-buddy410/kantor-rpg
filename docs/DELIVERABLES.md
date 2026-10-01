@@ -1,5 +1,5 @@
 # Register deliverable dan brief spesialis
-Status semuanya: target, belum dibuat kecuali PRD/PDF perencanaan yang ada. Claude mengerjakan; nama spesialis adalah reviewer/keahlian acuan, bukan task bot yang telah dikirim.
+Status per milestone dicatat di [progress](progress.md) dan [matriks requirement](requirements-matrix.md). M0: selesai untuk lingkup data/dokumen (native DWG BLOCKED). M1 sampai M3: target. Claude mengerjakan; nama spesialis adalah reviewer/keahlian acuan, bukan task bot yang telah dikirim.
 
 M0: PRD v0.2 + PDF; keputusan/asumsi; room schedule dan adjacency; design/world.json + schema + validators; sheet register; capability-report (OS, Blender, CAD/native DWG, browsers, libraries); capacity.json dengan perhitungan runnable; requirement matrix.
 M1: runnable vertical slice dua lantai, CEO controls/collision/floor links, original avatar source + GLB, directory fallback; satu sample drawing dari schema; perf harness.

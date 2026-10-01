@@ -1,0 +1,10394 @@
+{
+ "$schema": "./world.schema.json",
+ "schemaVersion": "1.0.0",
+ "project": "kantor-rpg",
+ "revision": {
+  "id": "P02",
+  "date": "2026-10-01",
+  "note": "M0 seed layout dua lantai, konsep untuk review"
+ },
+ "status": "KONSEP - bukan untuk konstruksi. Semua ukuran proposal untuk review.",
+ "units": {
+  "length": "m",
+  "cadExportUnit": "mm",
+  "cadScale": 1000,
+  "angle": "deg"
+ },
+ "coordinates": {
+  "origin": "sudut barat daya lantai jadi L1",
+  "axes": {
+   "x": "timur",
+   "y": "utara",
+   "z": "atas"
+  },
+  "runtimeThree": "three = [x, z, -y] (Y-up); rotasi world rot -> three rotation.y = rad(rot)",
+  "blender": "identik dengan world (Z-up); exporter glTF mengubah ke Y-up: gltf = [x, z, -y]",
+  "cad": "DXF WCS = world * 1000 (mm), Z = elevasi lantai",
+  "fixtureFront": "lokal -Y pada rot 0; rot CCW derajat"
+ },
+ "building": {
+  "id": "KRPG-01",
+  "name": "kantor-rpg",
+  "footprint": [
+   32,
+   24
+  ],
+  "floorToFloor": 4.0,
+  "ceilingHeight": 3.0,
+  "slab": 0.3,
+  "wall": {
+   "exterior": 0.3,
+   "interior": 0.15
+  },
+  "assumptions": [
+   "AS-DIM-01",
+   "AS-DIM-03"
+  ]
+ },
+ "floors": [
+  {
+   "id": "L1",
+   "name": "Lantai 1 - Kerja & Kunjungan",
+   "level": 1,
+   "elevation": 0.0,
+   "envelope": [
+    [
+     0,
+     0
+    ],
+    [
+     32,
+     0
+    ],
+    [
+     32,
+     24
+    ],
+    [
+     0,
+     24
+    ]
+   ],
+   "spawn": "WP-L1-SPAWN",
+   "safePoint": "WP-L1-SAFE"
+  },
+  {
+   "id": "L2",
+   "name": "Lantai 2 - Rekreasi",
+   "level": 2,
+   "elevation": 4.0,
+   "envelope": [
+    [
+     0,
+     0
+    ],
+    [
+     32,
+     0
+    ],
+    [
+     32,
+     24
+    ],
+    [
+     0,
+     24
+    ]
+   ],
+   "spawn": "WP-L2-SAFE",
+   "safePoint": "WP-L2-SAFE"
+  }
+ ],
+ "rooms": [
+  {
+   "id": "L1-MEET",
+   "floor": "L1",
+   "name": "Ruang rapat besar",
+   "category": "work",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Rapat tim dan tamu, presentasi",
+   "polygon": [
+    [
+     0,
+     0
+    ],
+    [
+     8,
+     0
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     0,
+     8
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [
+    "layar dinding",
+    "outlet meja rapat",
+    "AP coverage"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-LOBBY",
+   "floor": "L1",
+   "name": "Lobby & resepsi",
+   "category": "public",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Kedatangan, resepsi, titik spawn CEO",
+   "polygon": [
+    [
+     8,
+     0
+    ],
+    [
+     20,
+     0
+    ],
+    [
+     20,
+     8
+    ],
+    [
+     8,
+     8
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "outlet resepsi",
+    "papan direktori",
+    "AP",
+    "kamera konsep pintu masuk"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-GALLERY",
+   "floor": "L1",
+   "name": "Galeri portofolio",
+   "category": "public",
+   "access": "public",
+   "noise": "quiet",
+   "function": "Pameran karya tim (artwork original)",
+   "polygon": [
+    [
+     20,
+     0
+    ],
+    [
+     26,
+     0
+    ],
+    [
+     26,
+     8
+    ],
+    [
+     20,
+     8
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "outlet display galeri"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-PANTRY",
+   "floor": "L1",
+   "name": "Pantry kerja",
+   "category": "wet",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Kopi/air untuk area kerja",
+   "polygon": [
+    [
+     26,
+     0
+    ],
+    [
+     29.5,
+     0
+    ],
+    [
+     29.5,
+     8
+    ],
+    [
+     26,
+     8
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-SHAFT-W",
+   "floor": "L1",
+   "name": "Shaft basah",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Shaft plumbing (konsep, belum desain MEP)",
+   "polygon": [
+    [
+     29.5,
+     0
+    ],
+    [
+     32,
+     0
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     29.5,
+     1
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-WC",
+   "floor": "L1",
+   "name": "Toilet aksesibel",
+   "category": "wet",
+   "access": "public",
+   "noise": "quiet",
+   "function": "Toilet + wastafel; aksesibilitas perlu kajian",
+   "polygon": [
+    [
+     29.5,
+     1
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     29.5,
+     8
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "ict": [
+    "tidak ada kamera (privasi)"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-CORR",
+   "floor": "L1",
+   "name": "Koridor utama L1",
+   "category": "circulation",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Sirkulasi timur-barat, dua pintu keluar konsep",
+   "polygon": [
+    [
+     0,
+     8
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     0,
+     10.5
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "AP",
+    "kamera konsep koridor"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-DISC",
+   "floor": "L1",
+   "name": "Ruang diskusi",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Diskusi kecil 4 orang",
+   "polygon": [
+    [
+     0,
+     10.5
+    ],
+    [
+     6,
+     10.5
+    ],
+    [
+     6,
+     16.5
+    ],
+    [
+     0,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-IMPL",
+   "floor": "L1",
+   "name": "Ruang implementasi & review",
+   "category": "work",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Workstation implementasi/review (Rex, Max)",
+   "polygon": [
+    [
+     6,
+     10.5
+    ],
+    [
+     14,
+     10.5
+    ],
+    [
+     14,
+     16.5
+    ],
+    [
+     6,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [
+    "2 port per workstation",
+    "layar review",
+    "AP"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-CORE",
+   "floor": "L1",
+   "name": "Inti tangga & lift L1",
+   "category": "circulation",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Tangga U dan lift konsep ke L2",
+   "polygon": [
+    [
+     14,
+     10.5
+    ],
+    [
+     20,
+     10.5
+    ],
+    [
+     20,
+     16.5
+    ],
+    [
+     14,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-NOVA",
+   "floor": "L1",
+   "name": "Area Nova (spesifikasi ICT)",
+   "category": "work",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Spesifikasi ICT, meja denah",
+   "polygon": [
+    [
+     20,
+     10.5
+    ],
+    [
+     26,
+     10.5
+    ],
+    [
+     26,
+     16.5
+    ],
+    [
+     20,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [
+    "2 port per workstation"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-LAB",
+   "floor": "L1",
+   "name": "Lab ICT",
+   "category": "work",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Bench uji perangkat virtual, terpisah dari server",
+   "polygon": [
+    [
+     26,
+     10.5
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     26,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "vinyl anti-statik (target)",
+    "wall": "cat matte",
+    "ceiling": "gypsum + akses tray"
+   },
+   "ict": [
+    "4 port per bench",
+    "rack lab terbuka (bukan produksi)"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-NCORR",
+   "floor": "L1",
+   "name": "Koridor utara L1",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Akses sayap kerja tenang",
+   "polygon": [
+    [
+     0,
+     16.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     0,
+     18.5
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "AP",
+    "kamera konsep pintu server"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-CEO",
+   "floor": "L1",
+   "name": "Ruang CEO",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Ruang Budi (CEO)",
+   "polygon": [
+    [
+     0,
+     18.5
+    ],
+    [
+     7,
+     18.5
+    ],
+    [
+     7,
+     24
+    ],
+    [
+     0,
+     24
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [
+    "2 port meja CEO"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-HUGO",
+   "floor": "L1",
+   "name": "Studio Hugo",
+   "category": "work",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Karakter, aset, arsitektur/interior",
+   "polygon": [
+    [
+     7,
+     18.5
+    ],
+    [
+     14,
+     18.5
+    ],
+    [
+     14,
+     24
+    ],
+    [
+     7,
+     24
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "2 port per workstation"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-KEVIN",
+   "floor": "L1",
+   "name": "Studio Kevin",
+   "category": "work",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Pamflet, signage, artwork",
+   "polygon": [
+    [
+     14,
+     18.5
+    ],
+    [
+     20,
+     18.5
+    ],
+    [
+     20,
+     24
+    ],
+    [
+     14,
+     24
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "2 port per workstation"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-BRUNO",
+   "floor": "L1",
+   "name": "Area Bruno",
+   "category": "work",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Instalasi jaringan/server/workstation",
+   "polygon": [
+    [
+     20,
+     18.5
+    ],
+    [
+     25,
+     18.5
+    ],
+    [
+     25,
+     24
+    ],
+    [
+     20,
+     24
+    ]
+   ],
+   "occupantLoadKey": "business",
+   "finish": {
+    "floor": "vinyl anti-statik (target)",
+    "wall": "cat matte",
+    "ceiling": "gypsum + akses tray"
+   },
+   "ict": [
+    "2 port workstation"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-SERVER",
+   "floor": "L1",
+   "name": "Ruang server",
+   "category": "restricted",
+   "access": "restricted",
+   "noise": "moderate",
+   "function": "Rack virtual; akses terbatas, bukan jalur umum",
+   "polygon": [
+    [
+     25,
+     18.5
+    ],
+    [
+     29,
+     18.5
+    ],
+    [
+     29,
+     24
+    ],
+    [
+     25,
+     24
+    ]
+   ],
+   "occupantLoadKey": "storage",
+   "finish": {
+    "floor": "vinyl anti-statik (target)",
+    "wall": "cat matte",
+    "ceiling": "gypsum + akses tray"
+   },
+   "ict": [
+    "2 rack 42U target",
+    "UPS (rating TBD)",
+    "patch panel"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-RISER",
+   "floor": "L1",
+   "name": "Riser ICT",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Riser kabel vertikal L1-L2",
+   "polygon": [
+    [
+     29,
+     18.5
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     29,
+     20
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "ict": [
+    "riser kabel ke L2"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-STORE",
+   "floor": "L1",
+   "name": "Gudang & utilitas",
+   "category": "service",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Gudang, panel utilitas (konsep)",
+   "polygon": [
+    [
+     29,
+     20
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     32,
+     24
+    ],
+    [
+     29,
+     24
+    ]
+   ],
+   "occupantLoadKey": "storage",
+   "finish": {
+    "floor": "epoxy",
+    "wall": "cat matte",
+    "ceiling": "gypsum"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-READ",
+   "floor": "L2",
+   "name": "Perpustakaan / reading nook",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Baca tenang",
+   "polygon": [
+    [
+     0,
+     0
+    ],
+    [
+     8,
+     0
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     0,
+     8
+    ]
+   ],
+   "occupantLoadKey": "library",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-LOUNGE",
+   "floor": "L2",
+   "name": "Lounge & coffee bar",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Santai, kopi, ngobrol",
+   "polygon": [
+    [
+     8,
+     0
+    ],
+    [
+     20,
+     0
+    ],
+    [
+     20,
+     8
+    ],
+    [
+     8,
+     8
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "AP"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-DINE",
+   "floor": "L2",
+   "name": "Ruang makan & pantry",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Makan bersama, pantry",
+   "polygon": [
+    [
+     20,
+     0
+    ],
+    [
+     26,
+     0
+    ],
+    [
+     26,
+     8
+    ],
+    [
+     20,
+     8
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "ict": [
+    "AP",
+    "signage display"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-SHOWER",
+   "floor": "L2",
+   "name": "Shower & ruang ganti",
+   "category": "wet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Shower; tanpa kamera (privasi)",
+   "polygon": [
+    [
+     26,
+     0
+    ],
+    [
+     29.5,
+     0
+    ],
+    [
+     29.5,
+     8
+    ],
+    [
+     26,
+     8
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "ict": [
+    "tidak ada kamera (privasi)"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-SHAFT-W",
+   "floor": "L2",
+   "name": "Shaft basah L2",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Lanjutan shaft basah",
+   "polygon": [
+    [
+     29.5,
+     0
+    ],
+    [
+     32,
+     0
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     29.5,
+     1
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-WC",
+   "floor": "L2",
+   "name": "Toilet L2",
+   "category": "wet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Toilet + wastafel",
+   "polygon": [
+    [
+     29.5,
+     1
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     29.5,
+     8
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "ict": [
+    "tidak ada kamera (privasi)"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-CORR",
+   "floor": "L2",
+   "name": "Koridor utama L2",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Sirkulasi rekreasi",
+   "polygon": [
+    [
+     0,
+     8
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     0,
+     10.5
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "AP",
+    "kamera konsep koridor"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-CHAT",
+   "floor": "L2",
+   "name": "Diskusi santai",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Ngobrol santai, jauh dari game",
+   "polygon": [
+    [
+     0,
+     10.5
+    ],
+    [
+     6,
+     10.5
+    ],
+    [
+     6,
+     16.5
+    ],
+    [
+     0,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-GARDEN",
+   "floor": "L2",
+   "name": "Taman dalam",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Penyangga akustik hijau antara area tenang dan ramai",
+   "polygon": [
+    [
+     6,
+     10.5
+    ],
+    [
+     14,
+     10.5
+    ],
+    [
+     14,
+     16.5
+    ],
+    [
+     6,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "deck komposit",
+    "wall": "panel tanaman",
+    "ceiling": "terbuka/pergola"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-CORE",
+   "floor": "L2",
+   "name": "Inti tangga & lift L2",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Kedatangan dari L1",
+   "polygon": [
+    [
+     14,
+     10.5
+    ],
+    [
+     20,
+     10.5
+    ],
+    [
+     20,
+     16.5
+    ],
+    [
+     14,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-GAME",
+   "floor": "L2",
+   "name": "Ruang game",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "loud",
+   "function": "Konsol, arcade, board game",
+   "polygon": [
+    [
+     20,
+     10.5
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     20,
+     16.5
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "2 port per konsol",
+    "1 port per arcade",
+    "AP"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-NCORR",
+   "floor": "L2",
+   "name": "Koridor utara L2",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Akses biliar, gym, balkon",
+   "polygon": [
+    [
+     0,
+     16.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     0,
+     18.5
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "ict": [
+    "AP"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-BALCONY",
+   "floor": "L2",
+   "name": "Balkon taman",
+   "category": "outdoor",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Teras semi-terbuka, tanaman",
+   "polygon": [
+    [
+     0,
+     18.5
+    ],
+    [
+     7,
+     18.5
+    ],
+    [
+     7,
+     24
+    ],
+    [
+     0,
+     24
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "deck komposit",
+    "wall": "panel tanaman",
+    "ceiling": "terbuka/pergola"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-BILLIARD",
+   "floor": "L2",
+   "name": "Ruang biliar",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "loud",
+   "function": "Meja biliar 9 ft + clearance stik",
+   "polygon": [
+    [
+     7,
+     18.5
+    ],
+    [
+     14,
+     18.5
+    ],
+    [
+     14,
+     24
+    ],
+    [
+     7,
+     24
+    ]
+   ],
+   "occupantLoadKey": "assembly_tables",
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "ict": [
+    "layar skor"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-GYM",
+   "floor": "L2",
+   "name": "Ruang olahraga",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "loud",
+   "function": "Treadmill, sepeda, matras",
+   "polygon": [
+    [
+     14,
+     18.5
+    ],
+    [
+     23,
+     18.5
+    ],
+    [
+     23,
+     24
+    ],
+    [
+     14,
+     24
+    ]
+   ],
+   "occupantLoadKey": "exercise",
+   "finish": {
+    "floor": "lantai karet olahraga",
+    "wall": "cat matte",
+    "ceiling": "akustik panel"
+   },
+   "ict": [
+    "AP",
+    "layar olahraga"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-STORE",
+   "floor": "L2",
+   "name": "Gudang L2",
+   "category": "service",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Perlengkapan rekreasi",
+   "polygon": [
+    [
+     23,
+     18.5
+    ],
+    [
+     29,
+     18.5
+    ],
+    [
+     29,
+     24
+    ],
+    [
+     23,
+     24
+    ]
+   ],
+   "occupantLoadKey": "storage",
+   "finish": {
+    "floor": "epoxy",
+    "wall": "cat matte",
+    "ceiling": "gypsum"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-RISER",
+   "floor": "L2",
+   "name": "Riser ICT L2",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Lanjutan riser",
+   "polygon": [
+    [
+     29,
+     18.5
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     29,
+     20
+    ]
+   ],
+   "occupantLoadKey": null,
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "ict": [
+    "riser kabel dari L1"
+   ],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-SERVICE",
+   "floor": "L2",
+   "name": "Area servis L2",
+   "category": "service",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Kebersihan, utilitas",
+   "polygon": [
+    [
+     29,
+     20
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     32,
+     24
+    ],
+    [
+     29,
+     24
+    ]
+   ],
+   "occupantLoadKey": "storage",
+   "finish": {
+    "floor": "epoxy",
+    "wall": "cat matte",
+    "ceiling": "gypsum"
+   },
+   "ict": [],
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "id": "D-L1-ENT",
+   "floor": "L1",
+   "rooms": [
+    "EXT",
+    "L1-LOBBY"
+   ],
+   "center": [
+    14,
+    0
+   ],
+   "width": 2.0,
+   "type": "double",
+   "access": "public",
+   "exit": true,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-01",
+   "floor": "L1",
+   "rooms": [
+    "L1-LOBBY",
+    "L1-CORR"
+   ],
+   "center": [
+    17,
+    8
+   ],
+   "width": 3.0,
+   "type": "opening",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-02",
+   "floor": "L1",
+   "rooms": [
+    "L1-LOBBY",
+    "L1-MEET"
+   ],
+   "center": [
+    8,
+    4
+   ],
+   "width": 1.8,
+   "type": "double",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L1-03",
+   "floor": "L1",
+   "rooms": [
+    "L1-MEET",
+    "L1-CORR"
+   ],
+   "center": [
+    4,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-04",
+   "floor": "L1",
+   "rooms": [
+    "L1-LOBBY",
+    "L1-GALLERY"
+   ],
+   "center": [
+    20,
+    4
+   ],
+   "width": 2.4,
+   "type": "opening",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L1-05",
+   "floor": "L1",
+   "rooms": [
+    "L1-GALLERY",
+    "L1-CORR"
+   ],
+   "center": [
+    23,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-06",
+   "floor": "L1",
+   "rooms": [
+    "L1-PANTRY",
+    "L1-CORR"
+   ],
+   "center": [
+    27.75,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-07",
+   "floor": "L1",
+   "rooms": [
+    "L1-WC",
+    "L1-CORR"
+   ],
+   "center": [
+    30.75,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-08",
+   "floor": "L1",
+   "rooms": [
+    "L1-WC",
+    "L1-SHAFT-W"
+   ],
+   "center": [
+    30.75,
+    1
+   ],
+   "width": 0.6,
+   "type": "hatch",
+   "access": "restricted",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-EXW",
+   "floor": "L1",
+   "rooms": [
+    "EXT",
+    "L1-CORR"
+   ],
+   "center": [
+    0,
+    9.25
+   ],
+   "width": 1.2,
+   "type": "single",
+   "access": "public",
+   "exit": true,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L1-EXE",
+   "floor": "L1",
+   "rooms": [
+    "EXT",
+    "L1-CORR"
+   ],
+   "center": [
+    32,
+    9.25
+   ],
+   "width": 1.2,
+   "type": "single",
+   "access": "public",
+   "exit": true,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L1-09",
+   "floor": "L1",
+   "rooms": [
+    "L1-CORR",
+    "L1-DISC"
+   ],
+   "center": [
+    3,
+    10.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-10",
+   "floor": "L1",
+   "rooms": [
+    "L1-CORR",
+    "L1-IMPL"
+   ],
+   "center": [
+    10,
+    10.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-11",
+   "floor": "L1",
+   "rooms": [
+    "L1-CORR",
+    "L1-CORE"
+   ],
+   "center": [
+    18.4,
+    10.5
+   ],
+   "width": 2.4,
+   "type": "opening",
+   "access": "public",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-12",
+   "floor": "L1",
+   "rooms": [
+    "L1-CORR",
+    "L1-NOVA"
+   ],
+   "center": [
+    23,
+    10.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-13",
+   "floor": "L1",
+   "rooms": [
+    "L1-CORR",
+    "L1-LAB"
+   ],
+   "center": [
+    29,
+    10.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-14",
+   "floor": "L1",
+   "rooms": [
+    "L1-CORE",
+    "L1-NCORR"
+   ],
+   "center": [
+    17.35,
+    16.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-22",
+   "floor": "L1",
+   "rooms": [
+    "L1-LAB",
+    "L1-NCORR"
+   ],
+   "center": [
+    28,
+    16.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-EXN",
+   "floor": "L1",
+   "rooms": [
+    "EXT",
+    "L1-NCORR"
+   ],
+   "center": [
+    0,
+    17.5
+   ],
+   "width": 1.2,
+   "type": "single",
+   "access": "staff",
+   "exit": true,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L1-15",
+   "floor": "L1",
+   "rooms": [
+    "L1-NCORR",
+    "L1-CEO"
+   ],
+   "center": [
+    3.5,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-16",
+   "floor": "L1",
+   "rooms": [
+    "L1-NCORR",
+    "L1-HUGO"
+   ],
+   "center": [
+    10.5,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-17",
+   "floor": "L1",
+   "rooms": [
+    "L1-NCORR",
+    "L1-KEVIN"
+   ],
+   "center": [
+    17,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-18",
+   "floor": "L1",
+   "rooms": [
+    "L1-NCORR",
+    "L1-BRUNO"
+   ],
+   "center": [
+    22.5,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-19",
+   "floor": "L1",
+   "rooms": [
+    "L1-BRUNO",
+    "L1-SERVER"
+   ],
+   "center": [
+    25,
+    20.25
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "restricted",
+   "exit": false,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L1-20",
+   "floor": "L1",
+   "rooms": [
+    "L1-NCORR",
+    "L1-RISER"
+   ],
+   "center": [
+    29.5,
+    18.5
+   ],
+   "width": 0.8,
+   "type": "hatch",
+   "access": "restricted",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L1-21",
+   "floor": "L1",
+   "rooms": [
+    "L1-NCORR",
+    "L1-STORE"
+   ],
+   "center": [
+    31,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-01",
+   "floor": "L2",
+   "rooms": [
+    "L2-LOUNGE",
+    "L2-CORR"
+   ],
+   "center": [
+    17,
+    8
+   ],
+   "width": 3.0,
+   "type": "opening",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-02",
+   "floor": "L2",
+   "rooms": [
+    "L2-READ",
+    "L2-CORR"
+   ],
+   "center": [
+    4,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-03",
+   "floor": "L2",
+   "rooms": [
+    "L2-DINE",
+    "L2-CORR"
+   ],
+   "center": [
+    23,
+    8
+   ],
+   "width": 1.2,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-04",
+   "floor": "L2",
+   "rooms": [
+    "L2-LOUNGE",
+    "L2-DINE"
+   ],
+   "center": [
+    20,
+    4
+   ],
+   "width": 2.0,
+   "type": "opening",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L2-05",
+   "floor": "L2",
+   "rooms": [
+    "L2-SHOWER",
+    "L2-CORR"
+   ],
+   "center": [
+    27.75,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-06",
+   "floor": "L2",
+   "rooms": [
+    "L2-WC",
+    "L2-CORR"
+   ],
+   "center": [
+    30.75,
+    8
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-07",
+   "floor": "L2",
+   "rooms": [
+    "L2-WC",
+    "L2-SHAFT-W"
+   ],
+   "center": [
+    30.75,
+    1
+   ],
+   "width": 0.6,
+   "type": "hatch",
+   "access": "restricted",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-EXE",
+   "floor": "L2",
+   "rooms": [
+    "EXT",
+    "L2-CORR"
+   ],
+   "center": [
+    32,
+    9.25
+   ],
+   "width": 1.2,
+   "type": "single",
+   "access": "staff",
+   "exit": true,
+   "wallAxis": "y"
+  },
+  {
+   "id": "D-L2-08",
+   "floor": "L2",
+   "rooms": [
+    "L2-CORR",
+    "L2-CHAT"
+   ],
+   "center": [
+    3,
+    10.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-09",
+   "floor": "L2",
+   "rooms": [
+    "L2-CORR",
+    "L2-GARDEN"
+   ],
+   "center": [
+    10,
+    10.5
+   ],
+   "width": 2.0,
+   "type": "opening",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-10",
+   "floor": "L2",
+   "rooms": [
+    "L2-CORR",
+    "L2-CORE"
+   ],
+   "center": [
+    18.4,
+    10.5
+   ],
+   "width": 2.4,
+   "type": "opening",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-11",
+   "floor": "L2",
+   "rooms": [
+    "L2-CORR",
+    "L2-GAME"
+   ],
+   "center": [
+    24,
+    10.5
+   ],
+   "width": 1.6,
+   "type": "double",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-12",
+   "floor": "L2",
+   "rooms": [
+    "L2-CORE",
+    "L2-NCORR"
+   ],
+   "center": [
+    17.35,
+    16.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-19",
+   "floor": "L2",
+   "rooms": [
+    "L2-GAME",
+    "L2-NCORR"
+   ],
+   "center": [
+    26,
+    16.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-13",
+   "floor": "L2",
+   "rooms": [
+    "L2-NCORR",
+    "L2-BALCONY"
+   ],
+   "center": [
+    3.5,
+    18.5
+   ],
+   "width": 1.6,
+   "type": "sliding",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-14",
+   "floor": "L2",
+   "rooms": [
+    "L2-NCORR",
+    "L2-BILLIARD"
+   ],
+   "center": [
+    10.5,
+    18.5
+   ],
+   "width": 1.2,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-15",
+   "floor": "L2",
+   "rooms": [
+    "L2-NCORR",
+    "L2-GYM"
+   ],
+   "center": [
+    18.5,
+    18.5
+   ],
+   "width": 1.6,
+   "type": "double",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-16",
+   "floor": "L2",
+   "rooms": [
+    "L2-NCORR",
+    "L2-STORE"
+   ],
+   "center": [
+    26,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-17",
+   "floor": "L2",
+   "rooms": [
+    "L2-NCORR",
+    "L2-RISER"
+   ],
+   "center": [
+    29.5,
+    18.5
+   ],
+   "width": 0.8,
+   "type": "hatch",
+   "access": "restricted",
+   "exit": false,
+   "wallAxis": "x"
+  },
+  {
+   "id": "D-L2-18",
+   "floor": "L2",
+   "rooms": [
+    "L2-NCORR",
+    "L2-SERVICE"
+   ],
+   "center": [
+    31,
+    18.5
+   ],
+   "width": 1.0,
+   "type": "single",
+   "access": "staff",
+   "exit": false,
+   "wallAxis": "x"
+  }
+ ],
+ "verticalLinks": [
+  {
+   "id": "VL-STAIR-A",
+   "type": "stair",
+   "fixtureRoom": {
+    "L1": "L1-CORE",
+    "L2": "L2-CORE"
+   },
+   "ends": [
+    {
+     "floor": "L1",
+     "point": [
+      14.8,
+      11.25
+     ],
+     "facing": 90,
+     "arrive": [
+      14.8,
+      11.25
+     ]
+    },
+    {
+     "floor": "L2",
+     "point": [
+      16.2,
+      11.25
+     ],
+     "facing": 270,
+     "arrive": [
+      16.2,
+      11.25
+     ]
+    }
+   ],
+   "prompt": "Tangga ke lantai lain",
+   "travelSeconds": 2.5,
+   "status": "konsep"
+  },
+  {
+   "id": "VL-LIFT-A",
+   "type": "lift",
+   "fixtureRoom": {
+    "L1": "L1-CORE",
+    "L2": "L2-CORE"
+   },
+   "ends": [
+    {
+     "floor": "L1",
+     "point": [
+      18.875,
+      13.65
+     ],
+     "facing": 90,
+     "arrive": [
+      18.875,
+      13.55
+     ]
+    },
+    {
+     "floor": "L2",
+     "point": [
+      18.875,
+      13.65
+     ],
+     "facing": 90,
+     "arrive": [
+      18.875,
+      13.55
+     ]
+    }
+   ],
+   "prompt": "Lift ke lantai lain",
+   "travelSeconds": 3.0,
+   "status": "konsep"
+  },
+  {
+   "id": "VL-ESC-E",
+   "type": "escape_concept",
+   "playable": false,
+   "ends": [
+    {
+     "floor": "L2",
+     "point": [
+      32,
+      9.25
+     ]
+    }
+   ],
+   "prompt": "Tangga darurat luar (penanda konsep, perlu kajian)",
+   "status": "konsep, di luar envelope"
+  }
+ ],
+ "catalog": {
+  "desk": {
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "label": "Meja kerja + monitor",
+   "collider": true,
+   "family": "furniture"
+  },
+  "desk_exec": {
+   "size": [
+    1.8,
+    0.9,
+    0.75
+   ],
+   "label": "Meja CEO",
+   "collider": true,
+   "family": "furniture"
+  },
+  "chair": {
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "label": "Kursi kerja",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "desk",
+     "dx": 0,
+     "dy": 0,
+     "pose": "sit"
+    }
+   ]
+  },
+  "chair_guest": {
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "label": "Kursi tamu",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "chat",
+     "dx": 0,
+     "dy": 0,
+     "pose": "sit"
+    }
+   ]
+  },
+  "stool": {
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "label": "Bangku tinggi",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "chat",
+     "dx": 0,
+     "dy": 0,
+     "pose": "sit"
+    }
+   ]
+  },
+  "meeting_table": {
+   "size": [
+    4.0,
+    1.4,
+    0.75
+   ],
+   "label": "Meja rapat",
+   "collider": true,
+   "family": "furniture"
+  },
+  "round_table": {
+   "size": [
+    1.2,
+    1.2,
+    0.75
+   ],
+   "label": "Meja bundar",
+   "collider": true,
+   "family": "furniture"
+  },
+  "high_table": {
+   "size": [
+    1.2,
+    0.7,
+    1.05
+   ],
+   "label": "Meja tinggi",
+   "collider": true,
+   "family": "furniture"
+  },
+  "dining_table": {
+   "size": [
+    1.8,
+    0.9,
+    0.75
+   ],
+   "label": "Meja makan",
+   "collider": true,
+   "family": "furniture"
+  },
+  "coffee_table": {
+   "size": [
+    1.0,
+    0.6,
+    0.4
+   ],
+   "label": "Meja kopi",
+   "collider": true,
+   "family": "furniture"
+  },
+  "work_table": {
+   "size": [
+    1.6,
+    0.8,
+    0.9
+   ],
+   "label": "Meja kerja berdiri",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.7,
+     "pose": "stand"
+    }
+   ]
+  },
+  "plan_table": {
+   "size": [
+    1.8,
+    0.9,
+    0.9
+   ],
+   "label": "Meja denah (blueprint)",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.75,
+     "pose": "stand"
+    }
+   ],
+   "interaction": "blueprint"
+  },
+  "drafting_table": {
+   "size": [
+    1.4,
+    1.0,
+    0.95
+   ],
+   "label": "Meja gambar",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.8,
+     "pose": "stand"
+    }
+   ]
+  },
+  "reception_desk": {
+   "size": [
+    3.0,
+    0.9,
+    1.1
+   ],
+   "label": "Meja resepsi",
+   "collider": true,
+   "family": "furniture",
+   "interaction": "directory"
+  },
+  "sofa": {
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "label": "Sofa",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "rest",
+     "dx": -0.5,
+     "dy": -0.05,
+     "pose": "sit"
+    },
+    {
+     "activity": "rest",
+     "dx": 0.5,
+     "dy": -0.05,
+     "pose": "sit"
+    }
+   ]
+  },
+  "armchair": {
+   "size": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "label": "Kursi santai",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.05,
+     "pose": "sit"
+    }
+   ]
+  },
+  "beanbag": {
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "label": "Beanbag",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "game",
+     "dx": 0,
+     "dy": 0,
+     "pose": "sit"
+    }
+   ]
+  },
+  "bench": {
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "label": "Bangku",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "rest",
+     "dx": -0.4,
+     "dy": 0,
+     "pose": "sit"
+    },
+    {
+     "activity": "rest",
+     "dx": 0.4,
+     "dy": 0,
+     "pose": "sit"
+    }
+   ]
+  },
+  "bookshelf": {
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "label": "Rak buku",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.6,
+     "pose": "stand"
+    }
+   ]
+  },
+  "model_shelf": {
+   "size": [
+    1.2,
+    0.4,
+    1.8
+   ],
+   "label": "Rak model",
+   "collider": true,
+   "family": "furniture"
+  },
+  "tool_cabinet": {
+   "size": [
+    1.0,
+    0.5,
+    1.2
+   ],
+   "label": "Lemari alat",
+   "collider": true,
+   "family": "furniture"
+  },
+  "storage_shelf": {
+   "size": [
+    1.8,
+    0.5,
+    2.0
+   ],
+   "label": "Rak gudang",
+   "collider": true,
+   "family": "furniture"
+  },
+  "locker": {
+   "size": [
+    1.2,
+    0.5,
+    1.8
+   ],
+   "label": "Loker",
+   "collider": true,
+   "family": "furniture"
+  },
+  "whiteboard": {
+   "size": [
+    1.8,
+    0.1,
+    1.2
+   ],
+   "label": "Papan tulis",
+   "collider": false,
+   "family": "signage",
+   "slots": [
+    {
+     "activity": "chat",
+     "dx": 0,
+     "dy": -0.8,
+     "pose": "stand"
+    }
+   ]
+  },
+  "wall_display": {
+   "size": [
+    1.6,
+    0.1,
+    0.95
+   ],
+   "label": "Layar dinding",
+   "collider": false,
+   "family": "ict"
+  },
+  "gallery_panel": {
+   "size": [
+    1.5,
+    0.3,
+    2.0
+   ],
+   "label": "Panel galeri",
+   "collider": true,
+   "family": "signage",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.9,
+     "pose": "stand"
+    }
+   ],
+   "interaction": "artwork"
+  },
+  "poster": {
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "label": "Poster/pamflet",
+   "collider": false,
+   "family": "signage",
+   "interaction": "artwork"
+  },
+  "directory_sign": {
+   "size": [
+    1.2,
+    0.08,
+    0.9
+   ],
+   "label": "Papan direktori",
+   "collider": false,
+   "family": "signage",
+   "interaction": "directory"
+  },
+  "easel": {
+   "size": [
+    0.8,
+    0.8,
+    1.7
+   ],
+   "label": "Easel",
+   "collider": true,
+   "family": "furniture",
+   "slots": [
+    {
+     "activity": "read",
+     "dx": 0,
+     "dy": -0.7,
+     "pose": "stand"
+    }
+   ]
+  },
+  "plant_large": {
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "label": "Tanaman besar",
+   "collider": true,
+   "family": "plant"
+  },
+  "plant_small": {
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "label": "Tanaman kecil",
+   "collider": true,
+   "family": "plant"
+  },
+  "planter_box": {
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "label": "Planter",
+   "collider": true,
+   "family": "plant"
+  },
+  "tree_planter": {
+   "size": [
+    1.2,
+    1.2,
+    2.6
+   ],
+   "label": "Pohon dalam pot",
+   "collider": true,
+   "family": "plant"
+  },
+  "pantry_counter": {
+   "size": [
+    3.0,
+    0.65,
+    0.9
+   ],
+   "label": "Counter pantry",
+   "collider": true,
+   "family": "pantry",
+   "slots": [
+    {
+     "activity": "coffee",
+     "dx": -0.8,
+     "dy": -0.7,
+     "pose": "stand"
+    },
+    {
+     "activity": "coffee",
+     "dx": 0.8,
+     "dy": -0.7,
+     "pose": "stand"
+    }
+   ]
+  },
+  "coffee_bar": {
+   "size": [
+    2.4,
+    0.6,
+    1.0
+   ],
+   "label": "Coffee bar",
+   "collider": true,
+   "family": "pantry",
+   "slots": [
+    {
+     "activity": "coffee",
+     "dx": -0.6,
+     "dy": -0.7,
+     "pose": "stand"
+    },
+    {
+     "activity": "coffee",
+     "dx": 0.6,
+     "dy": -0.7,
+     "pose": "stand"
+    }
+   ],
+   "interaction": "coffee"
+  },
+  "fridge": {
+   "size": [
+    0.7,
+    0.7,
+    1.8
+   ],
+   "label": "Kulkas",
+   "collider": true,
+   "family": "pantry"
+  },
+  "sink": {
+   "size": [
+    0.6,
+    0.45,
+    0.85
+   ],
+   "label": "Wastafel",
+   "collider": true,
+   "family": "sanitary"
+  },
+  "wc": {
+   "size": [
+    0.4,
+    0.7,
+    0.8
+   ],
+   "label": "Kloset",
+   "collider": true,
+   "family": "sanitary"
+  },
+  "partition": {
+   "size": [
+    1.5,
+    0.05,
+    2.0
+   ],
+   "label": "Partisi bilik",
+   "collider": true,
+   "family": "sanitary"
+  },
+  "shower_stall": {
+   "size": [
+    0.9,
+    0.9,
+    2.1
+   ],
+   "label": "Bilik shower",
+   "collider": true,
+   "family": "sanitary"
+  },
+  "rack_42u": {
+   "size": [
+    0.6,
+    1.0,
+    2.0
+   ],
+   "label": "Rack 42U (target)",
+   "collider": true,
+   "family": "ict",
+   "clearance": {
+    "front": 1.2,
+    "rear": 0.9
+   }
+  },
+  "lab_bench": {
+   "size": [
+    1.8,
+    0.75,
+    0.9
+   ],
+   "label": "Meja lab ICT",
+   "collider": true,
+   "family": "ict",
+   "slots": [
+    {
+     "activity": "desk",
+     "dx": 0,
+     "dy": -0.7,
+     "pose": "stand"
+    }
+   ]
+  },
+  "lab_rack_open": {
+   "size": [
+    0.6,
+    0.6,
+    1.2
+   ],
+   "label": "Rack lab terbuka 12U",
+   "collider": true,
+   "family": "ict"
+  },
+  "billiard_table": {
+   "size": [
+    2.84,
+    1.57,
+    0.8
+   ],
+   "label": "Meja biliar 9 ft",
+   "collider": true,
+   "family": "recreation",
+   "clearance": {
+    "cue": 1.47,
+    "playing": [
+     2.54,
+     1.27
+    ]
+   },
+   "slots": [
+    {
+     "activity": "billiards",
+     "dx": -1.75,
+     "dy": 0,
+     "pose": "stand",
+     "facingRel": 90
+    },
+    {
+     "activity": "billiards",
+     "dx": 1.75,
+     "dy": 0,
+     "pose": "stand",
+     "facingRel": -90
+    }
+   ],
+   "interaction": "billiards"
+  },
+  "cue_rack": {
+   "size": [
+    0.6,
+    0.12,
+    1.4
+   ],
+   "label": "Rak stik",
+   "collider": false,
+   "family": "recreation"
+  },
+  "media_console": {
+   "size": [
+    2.0,
+    0.5,
+    1.6
+   ],
+   "label": "Konsol game + layar",
+   "collider": true,
+   "family": "recreation",
+   "interaction": "game"
+  },
+  "arcade_cabinet": {
+   "size": [
+    0.75,
+    0.85,
+    1.8
+   ],
+   "label": "Kabinet arcade",
+   "collider": true,
+   "family": "recreation",
+   "slots": [
+    {
+     "activity": "game",
+     "dx": 0,
+     "dy": -0.75,
+     "pose": "stand"
+    }
+   ],
+   "interaction": "game"
+  },
+  "board_table": {
+   "size": [
+    1.2,
+    1.2,
+    0.75
+   ],
+   "label": "Meja board game",
+   "collider": true,
+   "family": "recreation"
+  },
+  "treadmill": {
+   "size": [
+    0.9,
+    2.0,
+    1.4
+   ],
+   "label": "Treadmill",
+   "collider": true,
+   "family": "sport",
+   "slots": [
+    {
+     "activity": "exercise",
+     "dx": 0,
+     "dy": 0.2,
+     "pose": "stand",
+     "facingRel": 180
+    }
+   ],
+   "interaction": "exercise"
+  },
+  "exercise_bike": {
+   "size": [
+    0.6,
+    1.2,
+    1.2
+   ],
+   "label": "Sepeda statis",
+   "collider": true,
+   "family": "sport",
+   "slots": [
+    {
+     "activity": "exercise",
+     "dx": 0,
+     "dy": 0.1,
+     "pose": "sit",
+     "facingRel": 180
+    }
+   ],
+   "interaction": "exercise"
+  },
+  "exercise_mat": {
+   "size": [
+    1.8,
+    0.6,
+    0.02
+   ],
+   "label": "Matras",
+   "collider": false,
+   "family": "sport",
+   "slots": [
+    {
+     "activity": "stretch",
+     "dx": 0,
+     "dy": 0,
+     "pose": "stand"
+    }
+   ]
+  },
+  "dumbbell_rack": {
+   "size": [
+    1.2,
+    0.5,
+    0.9
+   ],
+   "label": "Rak dumbbell",
+   "collider": true,
+   "family": "sport"
+  },
+  "stair_u": {
+   "size": [
+    2.6,
+    4.4,
+    4.0
+   ],
+   "label": "Tangga U (konsep)",
+   "collider": true,
+   "family": "shell"
+  },
+  "lift": {
+   "size": [
+    1.9,
+    2.2,
+    3.0
+   ],
+   "label": "Lift (konsep)",
+   "collider": true,
+   "family": "shell"
+  }
+ },
+ "fixtures": [
+  {
+   "id": "FX-L1-001",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "reception_desk",
+   "asset": "AST-RECEPTION-DESK",
+   "pos": [
+    14,
+    5.0
+   ],
+   "rot": 0,
+   "size": [
+    3.0,
+    0.9,
+    1.1
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-002",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    14,
+    5.85
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-003",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "sofa",
+   "asset": "AST-SOFA",
+   "pos": [
+    9.0,
+    2.0
+   ],
+   "rot": 270,
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-004",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "coffee_table",
+   "asset": "AST-COFFEE-TABLE",
+   "pos": [
+    10.3,
+    2.0
+   ],
+   "rot": 90,
+   "size": [
+    1.0,
+    0.6,
+    0.4
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-005",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "sofa",
+   "asset": "AST-SOFA",
+   "pos": [
+    18.6,
+    1.8
+   ],
+   "rot": 90,
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-006",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "plant_large",
+   "asset": "AST-PLANT-LARGE",
+   "pos": [
+    8.6,
+    0.6
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-007",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "plant_large",
+   "asset": "AST-PLANT-LARGE",
+   "pos": [
+    19.4,
+    0.6
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-008",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "plant_large",
+   "asset": "AST-PLANT-LARGE",
+   "pos": [
+    8.6,
+    7.4
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-009",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "directory_sign",
+   "asset": "AST-DIRECTORY-SIGN",
+   "pos": [
+    11.5,
+    7.88
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    0.08,
+    0.9
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L1-010",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "type": "poster",
+   "asset": "AST-POSTER",
+   "pos": [
+    19.9,
+    6.0
+   ],
+   "rot": 270,
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "collider": false,
+   "artwork": "ART-01"
+  },
+  {
+   "id": "FX-L1-011",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "meeting_table",
+   "asset": "AST-MEETING-TABLE",
+   "pos": [
+    4.0,
+    4.2
+   ],
+   "rot": 0,
+   "size": [
+    4.0,
+    1.4,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-012",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    2.5,
+    3.15
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-013",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    2.5,
+    5.25
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-014",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    3.5,
+    3.15
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-015",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    3.5,
+    5.25
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-016",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    4.5,
+    3.15
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-017",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    4.5,
+    5.25
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-018",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    5.5,
+    3.15
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-019",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    5.5,
+    5.25
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-020",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    1.55,
+    4.2
+   ],
+   "rot": 90,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-021",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    6.45,
+    4.2
+   ],
+   "rot": 270,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-022",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "wall_display",
+   "asset": "AST-WALL-DISPLAY",
+   "pos": [
+    0.2,
+    4.2
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.1,
+    0.95
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L1-023",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "whiteboard",
+   "asset": "AST-WHITEBOARD",
+   "pos": [
+    6.4,
+    7.88
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.1,
+    1.2
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L1-024",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    0.5,
+    0.5
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-025",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    7.5,
+    0.5
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-026",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "gallery_panel",
+   "asset": "AST-GALLERY-PANEL",
+   "pos": [
+    21.5,
+    0.3
+   ],
+   "rot": 180,
+   "size": [
+    1.5,
+    0.3,
+    2.0
+   ],
+   "collider": true,
+   "artwork": "ART-02"
+  },
+  {
+   "id": "FX-L1-027",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "gallery_panel",
+   "asset": "AST-GALLERY-PANEL",
+   "pos": [
+    24.3,
+    0.3
+   ],
+   "rot": 180,
+   "size": [
+    1.5,
+    0.3,
+    2.0
+   ],
+   "collider": true,
+   "artwork": "ART-03"
+  },
+  {
+   "id": "FX-L1-028",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "gallery_panel",
+   "asset": "AST-GALLERY-PANEL",
+   "pos": [
+    25.7,
+    3.0
+   ],
+   "rot": 270,
+   "size": [
+    1.5,
+    0.3,
+    2.0
+   ],
+   "collider": true,
+   "artwork": "ART-04"
+  },
+  {
+   "id": "FX-L1-029",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "gallery_panel",
+   "asset": "AST-GALLERY-PANEL",
+   "pos": [
+    25.7,
+    5.6
+   ],
+   "rot": 270,
+   "size": [
+    1.5,
+    0.3,
+    2.0
+   ],
+   "collider": true,
+   "artwork": "ART-05"
+  },
+  {
+   "id": "FX-L1-030",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "bench",
+   "asset": "AST-BENCH",
+   "pos": [
+    23.2,
+    3.6
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-031",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "gallery_panel",
+   "asset": "AST-GALLERY-PANEL",
+   "pos": [
+    23.2,
+    6.2
+   ],
+   "rot": 0,
+   "size": [
+    1.5,
+    0.3,
+    2.0
+   ],
+   "collider": true,
+   "artwork": "ART-06"
+  },
+  {
+   "id": "FX-L1-032",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    20.5,
+    7.5
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-033",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "type": "pantry_counter",
+   "asset": "AST-PANTRY-COUNTER",
+   "pos": [
+    27.75,
+    0.5
+   ],
+   "rot": 180,
+   "size": [
+    3.0,
+    0.65,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-034",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "type": "fridge",
+   "asset": "AST-FRIDGE",
+   "pos": [
+    29.05,
+    2.2
+   ],
+   "rot": 270,
+   "size": [
+    0.7,
+    0.7,
+    1.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-035",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "type": "high_table",
+   "asset": "AST-HIGH-TABLE",
+   "pos": [
+    27.4,
+    4.6
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    0.7,
+    1.05
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-036",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    27.0,
+    3.95
+   ],
+   "rot": 180,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-037",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    27.8,
+    5.25
+   ],
+   "rot": 0,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-038",
+   "floor": "L1",
+   "room": "L1-WC",
+   "type": "wc",
+   "asset": "AST-WC",
+   "pos": [
+    31.45,
+    2.2
+   ],
+   "rot": 270,
+   "size": [
+    0.4,
+    0.7,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-039",
+   "floor": "L1",
+   "room": "L1-WC",
+   "type": "sink",
+   "asset": "AST-SINK",
+   "pos": [
+    29.85,
+    4.4
+   ],
+   "rot": 90,
+   "size": [
+    0.6,
+    0.45,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-040",
+   "floor": "L1",
+   "room": "L1-WC",
+   "type": "partition",
+   "asset": "AST-PARTITION",
+   "pos": [
+    31.1,
+    5.4
+   ],
+   "rot": 0,
+   "size": [
+    1.5,
+    0.05,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-041",
+   "floor": "L1",
+   "room": "L1-WC",
+   "type": "wc",
+   "asset": "AST-WC",
+   "pos": [
+    31.45,
+    6.4
+   ],
+   "rot": 270,
+   "size": [
+    0.4,
+    0.7,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-042",
+   "floor": "L1",
+   "room": "L1-CORR",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    1.0,
+    8.4
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-043",
+   "floor": "L1",
+   "room": "L1-CORR",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    31.0,
+    10.1
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-044",
+   "floor": "L1",
+   "room": "L1-CORR",
+   "type": "poster",
+   "asset": "AST-POSTER",
+   "pos": [
+    8.0,
+    10.4
+   ],
+   "rot": 180,
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "collider": false,
+   "artwork": "ART-07"
+  },
+  {
+   "id": "FX-L1-045",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "round_table",
+   "asset": "AST-ROUND-TABLE",
+   "pos": [
+    3.0,
+    13.6
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    1.2,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-046",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "chair_guest",
+   "asset": "AST-CHAIR-GUEST",
+   "pos": [
+    3.0,
+    12.7
+   ],
+   "rot": 180,
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-047",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "chair_guest",
+   "asset": "AST-CHAIR-GUEST",
+   "pos": [
+    3.0,
+    14.5
+   ],
+   "rot": 0,
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-048",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "chair_guest",
+   "asset": "AST-CHAIR-GUEST",
+   "pos": [
+    2.1,
+    13.6
+   ],
+   "rot": 90,
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-049",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "chair_guest",
+   "asset": "AST-CHAIR-GUEST",
+   "pos": [
+    3.9,
+    13.6
+   ],
+   "rot": 270,
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-050",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "whiteboard",
+   "asset": "AST-WHITEBOARD",
+   "pos": [
+    3.0,
+    16.38
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.1,
+    1.2
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L1-051",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "bookshelf",
+   "asset": "AST-BOOKSHELF",
+   "pos": [
+    0.38,
+    12.2
+   ],
+   "rot": 90,
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-052",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    5.5,
+    11.0
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-053",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    8.0,
+    13.2
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-054",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    8.0,
+    12.45
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-053"
+  },
+  {
+   "id": "FX-L1-055",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    8.0,
+    15.95
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-056",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    8.0,
+    15.2
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-055"
+  },
+  {
+   "id": "FX-L1-057",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    9.6,
+    13.2
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-058",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    9.6,
+    12.45
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-057"
+  },
+  {
+   "id": "FX-L1-059",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    9.6,
+    15.95
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-060",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    9.6,
+    15.2
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-059"
+  },
+  {
+   "id": "FX-L1-061",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    11.2,
+    13.2
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-062",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    11.2,
+    12.45
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-061"
+  },
+  {
+   "id": "FX-L1-063",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    11.2,
+    15.95
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-064",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    11.2,
+    15.2
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-063"
+  },
+  {
+   "id": "FX-L1-065",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "wall_display",
+   "asset": "AST-WALL-DISPLAY",
+   "pos": [
+    13.88,
+    13.6
+   ],
+   "rot": 270,
+   "size": [
+    1.6,
+    0.1,
+    0.95
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L1-066",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    6.5,
+    11.0
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-067",
+   "floor": "L1",
+   "room": "L1-CORE",
+   "type": "stair_u",
+   "asset": "AST-STAIR-U",
+   "pos": [
+    15.5,
+    14.1
+   ],
+   "rot": 0,
+   "size": [
+    2.6,
+    4.4,
+    4.0
+   ],
+   "collider": true,
+   "verticalLink": "VL-STAIR-A"
+  },
+  {
+   "id": "FX-L1-068",
+   "floor": "L1",
+   "room": "L1-CORE",
+   "type": "lift",
+   "asset": "AST-LIFT",
+   "pos": [
+    18.875,
+    15.3
+   ],
+   "rot": 0,
+   "size": [
+    1.9,
+    2.2,
+    3.0
+   ],
+   "collider": true,
+   "verticalLink": "VL-LIFT-A"
+  },
+  {
+   "id": "FX-L1-069",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    21.6,
+    15.95
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-070",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    21.6,
+    15.2
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-069"
+  },
+  {
+   "id": "FX-L1-071",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    24.4,
+    15.95
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-072",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    24.4,
+    15.2
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-071"
+  },
+  {
+   "id": "FX-L1-073",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "type": "plan_table",
+   "asset": "AST-PLAN-TABLE",
+   "pos": [
+    23.0,
+    13.0
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.9,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-074",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "type": "bookshelf",
+   "asset": "AST-BOOKSHELF",
+   "pos": [
+    25.7,
+    12.4
+   ],
+   "rot": 270,
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-075",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "type": "lab_bench",
+   "asset": "AST-LAB-BENCH",
+   "pos": [
+    31.45,
+    12.5
+   ],
+   "rot": 270,
+   "size": [
+    1.8,
+    0.75,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-076",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "type": "lab_bench",
+   "asset": "AST-LAB-BENCH",
+   "pos": [
+    31.45,
+    14.6
+   ],
+   "rot": 270,
+   "size": [
+    1.8,
+    0.75,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-077",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "type": "lab_bench",
+   "asset": "AST-LAB-BENCH",
+   "pos": [
+    28.4,
+    13.2
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.75,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-078",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    28.4,
+    12.5
+   ],
+   "rot": 180,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-079",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "type": "lab_rack_open",
+   "asset": "AST-LAB-RACK-OPEN",
+   "pos": [
+    26.6,
+    15.9
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.2
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-080",
+   "floor": "L1",
+   "room": "L1-NCORR",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    13.0,
+    17.0
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-081",
+   "floor": "L1",
+   "room": "L1-NCORR",
+   "type": "poster",
+   "asset": "AST-POSTER",
+   "pos": [
+    20.0,
+    18.4
+   ],
+   "rot": 180,
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "collider": false,
+   "artwork": "ART-08"
+  },
+  {
+   "id": "FX-L1-082",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "desk_exec",
+   "asset": "AST-DESK-EXEC",
+   "pos": [
+    3.5,
+    22.2
+   ],
+   "rot": 180,
+   "size": [
+    1.8,
+    0.9,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-083",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    3.5,
+    23.05
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-082"
+  },
+  {
+   "id": "FX-L1-084",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "chair_guest",
+   "asset": "AST-CHAIR-GUEST",
+   "pos": [
+    3.0,
+    21.05
+   ],
+   "rot": 180,
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-085",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "chair_guest",
+   "asset": "AST-CHAIR-GUEST",
+   "pos": [
+    4.0,
+    21.05
+   ],
+   "rot": 180,
+   "size": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-086",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "sofa",
+   "asset": "AST-SOFA",
+   "pos": [
+    6.45,
+    20.6
+   ],
+   "rot": 90,
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-087",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "bookshelf",
+   "asset": "AST-BOOKSHELF",
+   "pos": [
+    0.38,
+    21.2
+   ],
+   "rot": 90,
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-088",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "type": "plant_large",
+   "asset": "AST-PLANT-LARGE",
+   "pos": [
+    0.6,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-089",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    8.6,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-090",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    8.6,
+    22.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-089"
+  },
+  {
+   "id": "FX-L1-091",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    10.4,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-092",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    10.4,
+    22.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-091"
+  },
+  {
+   "id": "FX-L1-093",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "drafting_table",
+   "asset": "AST-DRAFTING-TABLE",
+   "pos": [
+    12.8,
+    21.2
+   ],
+   "rot": 270,
+   "size": [
+    1.4,
+    1.0,
+    0.95
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-094",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "model_shelf",
+   "asset": "AST-MODEL-SHELF",
+   "pos": [
+    7.3,
+    20.4
+   ],
+   "rot": 90,
+   "size": [
+    1.2,
+    0.4,
+    1.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-095",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    13.5,
+    23.5
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-096",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    16.0,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-097",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    16.0,
+    22.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-096"
+  },
+  {
+   "id": "FX-L1-098",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "type": "easel",
+   "asset": "AST-EASEL",
+   "pos": [
+    18.7,
+    22.6
+   ],
+   "rot": 0,
+   "size": [
+    0.8,
+    0.8,
+    1.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-099",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "type": "work_table",
+   "asset": "AST-WORK-TABLE",
+   "pos": [
+    16.6,
+    20.8
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-100",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "type": "poster",
+   "asset": "AST-POSTER",
+   "pos": [
+    19.9,
+    20.5
+   ],
+   "rot": 270,
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "collider": false,
+   "artwork": "ART-09"
+  },
+  {
+   "id": "FX-L1-101",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    22.4,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-102",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    22.4,
+    22.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-101"
+  },
+  {
+   "id": "FX-L1-103",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "type": "tool_cabinet",
+   "asset": "AST-TOOL-CABINET",
+   "pos": [
+    20.35,
+    21.3
+   ],
+   "rot": 90,
+   "size": [
+    1.0,
+    0.5,
+    1.2
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-104",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    24.5,
+    19.0
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-105",
+   "floor": "L1",
+   "room": "L1-SERVER",
+   "type": "rack_42u",
+   "asset": "AST-RACK-42U",
+   "pos": [
+    26.4,
+    22.4
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    1.0,
+    2.0
+   ],
+   "collider": true,
+   "ictRack": "RK-L1-01"
+  },
+  {
+   "id": "FX-L1-106",
+   "floor": "L1",
+   "room": "L1-SERVER",
+   "type": "rack_42u",
+   "asset": "AST-RACK-42U",
+   "pos": [
+    27.0,
+    22.4
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    1.0,
+    2.0
+   ],
+   "collider": true,
+   "ictRack": "RK-L1-02"
+  },
+  {
+   "id": "FX-L1-107",
+   "floor": "L1",
+   "room": "L1-STORE",
+   "type": "storage_shelf",
+   "asset": "AST-STORAGE-SHELF",
+   "pos": [
+    30.5,
+    23.6
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.5,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-108",
+   "floor": "L1",
+   "room": "L1-STORE",
+   "type": "storage_shelf",
+   "asset": "AST-STORAGE-SHELF",
+   "pos": [
+    31.6,
+    21.4
+   ],
+   "rot": 270,
+   "size": [
+    1.8,
+    0.5,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-001",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "bookshelf",
+   "asset": "AST-BOOKSHELF",
+   "pos": [
+    0.38,
+    2.0
+   ],
+   "rot": 90,
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-002",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "bookshelf",
+   "asset": "AST-BOOKSHELF",
+   "pos": [
+    0.38,
+    4.0
+   ],
+   "rot": 90,
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-003",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "bookshelf",
+   "asset": "AST-BOOKSHELF",
+   "pos": [
+    0.38,
+    6.0
+   ],
+   "rot": 90,
+   "size": [
+    1.2,
+    0.4,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-004",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "armchair",
+   "asset": "AST-ARMCHAIR",
+   "pos": [
+    2.6,
+    2.5
+   ],
+   "rot": 270,
+   "size": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-005",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "armchair",
+   "asset": "AST-ARMCHAIR",
+   "pos": [
+    2.6,
+    5.5
+   ],
+   "rot": 270,
+   "size": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-006",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "coffee_table",
+   "asset": "AST-COFFEE-TABLE",
+   "pos": [
+    4.2,
+    4.0
+   ],
+   "rot": 90,
+   "size": [
+    1.0,
+    0.6,
+    0.4
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-007",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "bench",
+   "asset": "AST-BENCH",
+   "pos": [
+    5.5,
+    0.45
+   ],
+   "rot": 180,
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-008",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "plant_large",
+   "asset": "AST-PLANT-LARGE",
+   "pos": [
+    7.4,
+    7.4
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-009",
+   "floor": "L2",
+   "room": "L2-READ",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    7.5,
+    0.5
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-010",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "sofa",
+   "asset": "AST-SOFA",
+   "pos": [
+    11.0,
+    0.6
+   ],
+   "rot": 180,
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-011",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "sofa",
+   "asset": "AST-SOFA",
+   "pos": [
+    8.6,
+    3.0
+   ],
+   "rot": 270,
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-012",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "coffee_table",
+   "asset": "AST-COFFEE-TABLE",
+   "pos": [
+    11.0,
+    2.4
+   ],
+   "rot": 0,
+   "size": [
+    1.0,
+    0.6,
+    0.4
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-013",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "armchair",
+   "asset": "AST-ARMCHAIR",
+   "pos": [
+    12.8,
+    3.4
+   ],
+   "rot": 90,
+   "size": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-014",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "coffee_bar",
+   "asset": "AST-COFFEE-BAR",
+   "pos": [
+    16.5,
+    0.5
+   ],
+   "rot": 180,
+   "size": [
+    2.4,
+    0.6,
+    1.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-015",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "beanbag",
+   "asset": "AST-BEANBAG",
+   "pos": [
+    15.0,
+    3.6
+   ],
+   "rot": 0,
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-016",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "beanbag",
+   "asset": "AST-BEANBAG",
+   "pos": [
+    16.4,
+    3.8
+   ],
+   "rot": 0,
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-017",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "high_table",
+   "asset": "AST-HIGH-TABLE",
+   "pos": [
+    12.0,
+    6.2
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    0.7,
+    1.05
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-018",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    11.6,
+    5.55
+   ],
+   "rot": 180,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-019",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    12.4,
+    6.85
+   ],
+   "rot": 0,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-020",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "plant_large",
+   "asset": "AST-PLANT-LARGE",
+   "pos": [
+    19.4,
+    0.6
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-021",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "type": "poster",
+   "asset": "AST-POSTER",
+   "pos": [
+    8.1,
+    6.0
+   ],
+   "rot": 90,
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "collider": false,
+   "artwork": "ART-10"
+  },
+  {
+   "id": "FX-L2-022",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "dining_table",
+   "asset": "AST-DINING-TABLE",
+   "pos": [
+    22.2,
+    2.4
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.9,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-023",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    21.7,
+    1.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-024",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    21.7,
+    3.15
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-025",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    22.7,
+    1.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-026",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    22.7,
+    3.15
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-027",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "dining_table",
+   "asset": "AST-DINING-TABLE",
+   "pos": [
+    22.2,
+    5.6
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.9,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-028",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    21.7,
+    4.85
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-029",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    21.7,
+    6.35
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-030",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    22.7,
+    4.85
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-031",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    22.7,
+    6.35
+   ],
+   "rot": 0,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-032",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "pantry_counter",
+   "asset": "AST-PANTRY-COUNTER",
+   "pos": [
+    25.6,
+    3.0
+   ],
+   "rot": 270,
+   "size": [
+    3.0,
+    0.65,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-033",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "fridge",
+   "asset": "AST-FRIDGE",
+   "pos": [
+    25.55,
+    5.5
+   ],
+   "rot": 270,
+   "size": [
+    0.7,
+    0.7,
+    1.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-034",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "type": "wall_display",
+   "asset": "AST-WALL-DISPLAY",
+   "pos": [
+    20.12,
+    6.6
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.1,
+    0.95
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L2-035",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "type": "shower_stall",
+   "asset": "AST-SHOWER-STALL",
+   "pos": [
+    26.65,
+    0.62
+   ],
+   "rot": 180,
+   "size": [
+    0.9,
+    0.9,
+    2.1
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-036",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "type": "shower_stall",
+   "asset": "AST-SHOWER-STALL",
+   "pos": [
+    27.75,
+    0.62
+   ],
+   "rot": 180,
+   "size": [
+    0.9,
+    0.9,
+    2.1
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-037",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "type": "shower_stall",
+   "asset": "AST-SHOWER-STALL",
+   "pos": [
+    28.85,
+    0.62
+   ],
+   "rot": 180,
+   "size": [
+    0.9,
+    0.9,
+    2.1
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-038",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "type": "bench",
+   "asset": "AST-BENCH",
+   "pos": [
+    27.75,
+    3.6
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-039",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "type": "locker",
+   "asset": "AST-LOCKER",
+   "pos": [
+    29.15,
+    5.6
+   ],
+   "rot": 270,
+   "size": [
+    1.2,
+    0.5,
+    1.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-040",
+   "floor": "L2",
+   "room": "L2-WC",
+   "type": "wc",
+   "asset": "AST-WC",
+   "pos": [
+    31.45,
+    2.2
+   ],
+   "rot": 270,
+   "size": [
+    0.4,
+    0.7,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-041",
+   "floor": "L2",
+   "room": "L2-WC",
+   "type": "sink",
+   "asset": "AST-SINK",
+   "pos": [
+    29.85,
+    4.4
+   ],
+   "rot": 90,
+   "size": [
+    0.6,
+    0.45,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-042",
+   "floor": "L2",
+   "room": "L2-WC",
+   "type": "partition",
+   "asset": "AST-PARTITION",
+   "pos": [
+    31.1,
+    5.4
+   ],
+   "rot": 0,
+   "size": [
+    1.5,
+    0.05,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-043",
+   "floor": "L2",
+   "room": "L2-WC",
+   "type": "wc",
+   "asset": "AST-WC",
+   "pos": [
+    31.45,
+    6.4
+   ],
+   "rot": 270,
+   "size": [
+    0.4,
+    0.7,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-044",
+   "floor": "L2",
+   "room": "L2-CORR",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    1.0,
+    8.4
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-045",
+   "floor": "L2",
+   "room": "L2-CORR",
+   "type": "poster",
+   "asset": "AST-POSTER",
+   "pos": [
+    22.0,
+    10.4
+   ],
+   "rot": 180,
+   "size": [
+    0.7,
+    0.05,
+    1.0
+   ],
+   "collider": false,
+   "artwork": "ART-11"
+  },
+  {
+   "id": "FX-L2-046",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "type": "sofa",
+   "asset": "AST-SOFA",
+   "pos": [
+    3.0,
+    15.95
+   ],
+   "rot": 0,
+   "size": [
+    2.0,
+    0.9,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-047",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "type": "armchair",
+   "asset": "AST-ARMCHAIR",
+   "pos": [
+    1.3,
+    13.6
+   ],
+   "rot": 90,
+   "size": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-048",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "type": "armchair",
+   "asset": "AST-ARMCHAIR",
+   "pos": [
+    4.7,
+    13.6
+   ],
+   "rot": 270,
+   "size": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-049",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "type": "coffee_table",
+   "asset": "AST-COFFEE-TABLE",
+   "pos": [
+    3.0,
+    14.2
+   ],
+   "rot": 0,
+   "size": [
+    1.0,
+    0.6,
+    0.4
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-050",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    0.5,
+    11.0
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-051",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "type": "planter_box",
+   "asset": "AST-PLANTER-BOX",
+   "pos": [
+    6.9,
+    12.6
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-052",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "type": "planter_box",
+   "asset": "AST-PLANTER-BOX",
+   "pos": [
+    6.9,
+    15.0
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-053",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "type": "planter_box",
+   "asset": "AST-PLANTER-BOX",
+   "pos": [
+    10.0,
+    16.05
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-054",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "type": "tree_planter",
+   "asset": "AST-TREE-PLANTER",
+   "pos": [
+    12.6,
+    13.8
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    1.2,
+    2.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-055",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "type": "bench",
+   "asset": "AST-BENCH",
+   "pos": [
+    10.0,
+    13.6
+   ],
+   "rot": 180,
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-056",
+   "floor": "L2",
+   "room": "L2-CORE",
+   "type": "stair_u",
+   "asset": "AST-STAIR-U",
+   "pos": [
+    15.5,
+    14.1
+   ],
+   "rot": 0,
+   "size": [
+    2.6,
+    4.4,
+    4.0
+   ],
+   "collider": true,
+   "verticalLink": "VL-STAIR-A"
+  },
+  {
+   "id": "FX-L2-057",
+   "floor": "L2",
+   "room": "L2-CORE",
+   "type": "lift",
+   "asset": "AST-LIFT",
+   "pos": [
+    18.875,
+    15.3
+   ],
+   "rot": 0,
+   "size": [
+    1.9,
+    2.2,
+    3.0
+   ],
+   "collider": true,
+   "verticalLink": "VL-LIFT-A"
+  },
+  {
+   "id": "FX-L2-058",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "media_console",
+   "asset": "AST-MEDIA-CONSOLE",
+   "pos": [
+    23.0,
+    16.15
+   ],
+   "rot": 0,
+   "size": [
+    2.0,
+    0.5,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-059",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "beanbag",
+   "asset": "AST-BEANBAG",
+   "pos": [
+    22.4,
+    14.6
+   ],
+   "rot": 180,
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-060",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "beanbag",
+   "asset": "AST-BEANBAG",
+   "pos": [
+    23.6,
+    14.6
+   ],
+   "rot": 180,
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-061",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "media_console",
+   "asset": "AST-MEDIA-CONSOLE",
+   "pos": [
+    28.6,
+    16.15
+   ],
+   "rot": 0,
+   "size": [
+    2.0,
+    0.5,
+    1.6
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-062",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "beanbag",
+   "asset": "AST-BEANBAG",
+   "pos": [
+    28.0,
+    14.6
+   ],
+   "rot": 180,
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-063",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "beanbag",
+   "asset": "AST-BEANBAG",
+   "pos": [
+    29.2,
+    14.6
+   ],
+   "rot": 180,
+   "size": [
+    0.8,
+    0.8,
+    0.5
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-064",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "arcade_cabinet",
+   "asset": "AST-ARCADE-CABINET",
+   "pos": [
+    31.4,
+    11.6
+   ],
+   "rot": 270,
+   "size": [
+    0.75,
+    0.85,
+    1.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-065",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "arcade_cabinet",
+   "asset": "AST-ARCADE-CABINET",
+   "pos": [
+    31.4,
+    12.5
+   ],
+   "rot": 270,
+   "size": [
+    0.75,
+    0.85,
+    1.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-066",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "board_table",
+   "asset": "AST-BOARD-TABLE",
+   "pos": [
+    26.0,
+    12.6
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    1.2,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-067",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    26.0,
+    11.75
+   ],
+   "rot": 180,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-068",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    26.0,
+    13.45
+   ],
+   "rot": 0,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-069",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    25.15,
+    12.6
+   ],
+   "rot": 90,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-070",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "type": "stool",
+   "asset": "AST-STOOL",
+   "pos": [
+    26.85,
+    12.6
+   ],
+   "rot": 270,
+   "size": [
+    0.45,
+    0.45,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-071",
+   "floor": "L2",
+   "room": "L2-NCORR",
+   "type": "plant_small",
+   "asset": "AST-PLANT-SMALL",
+   "pos": [
+    13.0,
+    17.0
+   ],
+   "rot": 0,
+   "size": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-072",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "type": "planter_box",
+   "asset": "AST-PLANTER-BOX",
+   "pos": [
+    2.0,
+    23.5
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-073",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "type": "planter_box",
+   "asset": "AST-PLANTER-BOX",
+   "pos": [
+    5.0,
+    23.5
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-074",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "type": "planter_box",
+   "asset": "AST-PLANTER-BOX",
+   "pos": [
+    0.48,
+    21.0
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-075",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "type": "bench",
+   "asset": "AST-BENCH",
+   "pos": [
+    3.5,
+    21.6
+   ],
+   "rot": 180,
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-076",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "type": "round_table",
+   "asset": "AST-ROUND-TABLE",
+   "pos": [
+    5.2,
+    20.4
+   ],
+   "rot": 0,
+   "size": [
+    1.2,
+    1.2,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-077",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "type": "billiard_table",
+   "asset": "AST-BILLIARD-TABLE",
+   "pos": [
+    10.5,
+    21.4
+   ],
+   "rot": 0,
+   "size": [
+    2.84,
+    1.57,
+    0.8
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-078",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "type": "cue_rack",
+   "asset": "AST-CUE-RACK",
+   "pos": [
+    13.85,
+    22.6
+   ],
+   "rot": 270,
+   "size": [
+    0.6,
+    0.12,
+    1.4
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L2-079",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "type": "wall_display",
+   "asset": "AST-WALL-DISPLAY",
+   "pos": [
+    7.12,
+    21.4
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.1,
+    0.95
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L2-080",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "treadmill",
+   "asset": "AST-TREADMILL",
+   "pos": [
+    15.2,
+    22.6
+   ],
+   "rot": 180,
+   "size": [
+    0.9,
+    2.0,
+    1.4
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-081",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "treadmill",
+   "asset": "AST-TREADMILL",
+   "pos": [
+    16.6,
+    22.6
+   ],
+   "rot": 180,
+   "size": [
+    0.9,
+    2.0,
+    1.4
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-082",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "exercise_bike",
+   "asset": "AST-EXERCISE-BIKE",
+   "pos": [
+    18.2,
+    23.0
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    1.2,
+    1.2
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-083",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "exercise_mat",
+   "asset": "AST-EXERCISE-MAT",
+   "pos": [
+    20.6,
+    20.8
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.6,
+    0.02
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L2-084",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "exercise_mat",
+   "asset": "AST-EXERCISE-MAT",
+   "pos": [
+    20.6,
+    21.8
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.6,
+    0.02
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L2-085",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "dumbbell_rack",
+   "asset": "AST-DUMBBELL-RACK",
+   "pos": [
+    22.6,
+    20.4
+   ],
+   "rot": 270,
+   "size": [
+    1.2,
+    0.5,
+    0.9
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-086",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "bench",
+   "asset": "AST-BENCH",
+   "pos": [
+    21.0,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.45,
+    0.45
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-087",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "type": "wall_display",
+   "asset": "AST-WALL-DISPLAY",
+   "pos": [
+    14.12,
+    20.4
+   ],
+   "rot": 90,
+   "size": [
+    1.6,
+    0.1,
+    0.95
+   ],
+   "collider": false
+  },
+  {
+   "id": "FX-L2-088",
+   "floor": "L2",
+   "room": "L2-STORE",
+   "type": "storage_shelf",
+   "asset": "AST-STORAGE-SHELF",
+   "pos": [
+    26.0,
+    23.6
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.5,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-089",
+   "floor": "L2",
+   "room": "L2-STORE",
+   "type": "storage_shelf",
+   "asset": "AST-STORAGE-SHELF",
+   "pos": [
+    28.6,
+    21.4
+   ],
+   "rot": 270,
+   "size": [
+    1.8,
+    0.5,
+    2.0
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-090",
+   "floor": "L2",
+   "room": "L2-SERVICE",
+   "type": "sink",
+   "asset": "AST-SINK",
+   "pos": [
+    31.6,
+    22.0
+   ],
+   "rot": 270,
+   "size": [
+    0.6,
+    0.45,
+    0.85
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L2-091",
+   "floor": "L2",
+   "room": "L2-SERVICE",
+   "type": "storage_shelf",
+   "asset": "AST-STORAGE-SHELF",
+   "pos": [
+    30.5,
+    23.6
+   ],
+   "rot": 0,
+   "size": [
+    1.8,
+    0.5,
+    2.0
+   ],
+   "collider": true
+  }
+ ],
+ "activitySlots": [
+  {
+   "id": "SL-L1-002-1",
+   "fixture": "FX-L1-002",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "activity": "desk",
+   "pos": [
+    14.0,
+    5.85
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-003-1",
+   "fixture": "FX-L1-003",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "activity": "rest",
+   "pos": [
+    8.95,
+    2.5
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-003-2",
+   "fixture": "FX-L1-003",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "activity": "rest",
+   "pos": [
+    8.95,
+    1.5
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-005-1",
+   "fixture": "FX-L1-005",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "activity": "rest",
+   "pos": [
+    18.65,
+    1.3
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-005-2",
+   "fixture": "FX-L1-005",
+   "floor": "L1",
+   "room": "L1-LOBBY",
+   "activity": "rest",
+   "pos": [
+    18.65,
+    2.3
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-012-1",
+   "fixture": "FX-L1-012",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    2.5,
+    3.15
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-013-1",
+   "fixture": "FX-L1-013",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    2.5,
+    5.25
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-014-1",
+   "fixture": "FX-L1-014",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    3.5,
+    3.15
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-015-1",
+   "fixture": "FX-L1-015",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    3.5,
+    5.25
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-016-1",
+   "fixture": "FX-L1-016",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    4.5,
+    3.15
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-017-1",
+   "fixture": "FX-L1-017",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    4.5,
+    5.25
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-018-1",
+   "fixture": "FX-L1-018",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    5.5,
+    3.15
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-019-1",
+   "fixture": "FX-L1-019",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    5.5,
+    5.25
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-020-1",
+   "fixture": "FX-L1-020",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    1.55,
+    4.2
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-021-1",
+   "fixture": "FX-L1-021",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "desk",
+   "pos": [
+    6.45,
+    4.2
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-023-1",
+   "fixture": "FX-L1-023",
+   "floor": "L1",
+   "room": "L1-MEET",
+   "activity": "chat",
+   "pos": [
+    6.4,
+    7.08
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-026-1",
+   "fixture": "FX-L1-026",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "read",
+   "pos": [
+    21.5,
+    1.2
+   ],
+   "facing": 90,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-027-1",
+   "fixture": "FX-L1-027",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "read",
+   "pos": [
+    24.3,
+    1.2
+   ],
+   "facing": 90,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-028-1",
+   "fixture": "FX-L1-028",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "read",
+   "pos": [
+    24.8,
+    3.0
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-029-1",
+   "fixture": "FX-L1-029",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "read",
+   "pos": [
+    24.8,
+    5.6
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-030-1",
+   "fixture": "FX-L1-030",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "rest",
+   "pos": [
+    22.8,
+    3.6
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-030-2",
+   "fixture": "FX-L1-030",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "rest",
+   "pos": [
+    23.6,
+    3.6
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-031-1",
+   "fixture": "FX-L1-031",
+   "floor": "L1",
+   "room": "L1-GALLERY",
+   "activity": "read",
+   "pos": [
+    23.2,
+    5.3
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-033-1",
+   "fixture": "FX-L1-033",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "activity": "coffee",
+   "pos": [
+    28.55,
+    1.2
+   ],
+   "facing": 90,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-033-2",
+   "fixture": "FX-L1-033",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "activity": "coffee",
+   "pos": [
+    26.95,
+    1.2
+   ],
+   "facing": 90,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-036-1",
+   "fixture": "FX-L1-036",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "activity": "chat",
+   "pos": [
+    27.0,
+    3.95
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-037-1",
+   "fixture": "FX-L1-037",
+   "floor": "L1",
+   "room": "L1-PANTRY",
+   "activity": "chat",
+   "pos": [
+    27.8,
+    5.25
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-046-1",
+   "fixture": "FX-L1-046",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "activity": "chat",
+   "pos": [
+    3.0,
+    12.7
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-047-1",
+   "fixture": "FX-L1-047",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "activity": "chat",
+   "pos": [
+    3.0,
+    14.5
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-048-1",
+   "fixture": "FX-L1-048",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "activity": "chat",
+   "pos": [
+    2.1,
+    13.6
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-049-1",
+   "fixture": "FX-L1-049",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "activity": "chat",
+   "pos": [
+    3.9,
+    13.6
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-050-1",
+   "fixture": "FX-L1-050",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "activity": "chat",
+   "pos": [
+    3.0,
+    15.58
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-051-1",
+   "fixture": "FX-L1-051",
+   "floor": "L1",
+   "room": "L1-DISC",
+   "activity": "read",
+   "pos": [
+    0.98,
+    12.2
+   ],
+   "facing": 0,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-054-1",
+   "fixture": "FX-L1-054",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "activity": "desk",
+   "pos": [
+    8.0,
+    12.45
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-056-1",
+   "fixture": "FX-L1-056",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "activity": "desk",
+   "pos": [
+    8.0,
+    15.2
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-058-1",
+   "fixture": "FX-L1-058",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "activity": "desk",
+   "pos": [
+    9.6,
+    12.45
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-060-1",
+   "fixture": "FX-L1-060",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "activity": "desk",
+   "pos": [
+    9.6,
+    15.2
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-062-1",
+   "fixture": "FX-L1-062",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "activity": "desk",
+   "pos": [
+    11.2,
+    12.45
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-064-1",
+   "fixture": "FX-L1-064",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "activity": "desk",
+   "pos": [
+    11.2,
+    15.2
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-070-1",
+   "fixture": "FX-L1-070",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "activity": "desk",
+   "pos": [
+    21.6,
+    15.2
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-072-1",
+   "fixture": "FX-L1-072",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "activity": "desk",
+   "pos": [
+    24.4,
+    15.2
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-073-1",
+   "fixture": "FX-L1-073",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "activity": "read",
+   "pos": [
+    23.0,
+    12.25
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-074-1",
+   "fixture": "FX-L1-074",
+   "floor": "L1",
+   "room": "L1-NOVA",
+   "activity": "read",
+   "pos": [
+    25.1,
+    12.4
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-075-1",
+   "fixture": "FX-L1-075",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "activity": "desk",
+   "pos": [
+    30.75,
+    12.5
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-076-1",
+   "fixture": "FX-L1-076",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "activity": "desk",
+   "pos": [
+    30.75,
+    14.6
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-077-1",
+   "fixture": "FX-L1-077",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "activity": "desk",
+   "pos": [
+    28.4,
+    12.5
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-078-1",
+   "fixture": "FX-L1-078",
+   "floor": "L1",
+   "room": "L1-LAB",
+   "activity": "chat",
+   "pos": [
+    28.4,
+    12.5
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-083-1",
+   "fixture": "FX-L1-083",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "activity": "desk",
+   "pos": [
+    3.5,
+    23.05
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-084-1",
+   "fixture": "FX-L1-084",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "activity": "chat",
+   "pos": [
+    3.0,
+    21.05
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-085-1",
+   "fixture": "FX-L1-085",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "activity": "chat",
+   "pos": [
+    4.0,
+    21.05
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-086-1",
+   "fixture": "FX-L1-086",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "activity": "rest",
+   "pos": [
+    6.5,
+    20.1
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-086-2",
+   "fixture": "FX-L1-086",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "activity": "rest",
+   "pos": [
+    6.5,
+    21.1
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-087-1",
+   "fixture": "FX-L1-087",
+   "floor": "L1",
+   "room": "L1-CEO",
+   "activity": "read",
+   "pos": [
+    0.98,
+    21.2
+   ],
+   "facing": 0,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-090-1",
+   "fixture": "FX-L1-090",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "activity": "desk",
+   "pos": [
+    8.6,
+    22.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-092-1",
+   "fixture": "FX-L1-092",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "activity": "desk",
+   "pos": [
+    10.4,
+    22.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-093-1",
+   "fixture": "FX-L1-093",
+   "floor": "L1",
+   "room": "L1-HUGO",
+   "activity": "read",
+   "pos": [
+    12.0,
+    21.2
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-097-1",
+   "fixture": "FX-L1-097",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "activity": "desk",
+   "pos": [
+    16.0,
+    22.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-098-1",
+   "fixture": "FX-L1-098",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "activity": "read",
+   "pos": [
+    18.7,
+    21.9
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-099-1",
+   "fixture": "FX-L1-099",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "activity": "read",
+   "pos": [
+    16.6,
+    20.1
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-102-1",
+   "fixture": "FX-L1-102",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "activity": "desk",
+   "pos": [
+    22.4,
+    22.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-001-1",
+   "fixture": "FX-L2-001",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "read",
+   "pos": [
+    0.98,
+    2.0
+   ],
+   "facing": 0,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-002-1",
+   "fixture": "FX-L2-002",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "read",
+   "pos": [
+    0.98,
+    4.0
+   ],
+   "facing": 0,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-003-1",
+   "fixture": "FX-L2-003",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "read",
+   "pos": [
+    0.98,
+    6.0
+   ],
+   "facing": 0,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-004-1",
+   "fixture": "FX-L2-004",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "read",
+   "pos": [
+    2.55,
+    2.5
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-005-1",
+   "fixture": "FX-L2-005",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "read",
+   "pos": [
+    2.55,
+    5.5
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-007-1",
+   "fixture": "FX-L2-007",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "rest",
+   "pos": [
+    5.9,
+    0.45
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-007-2",
+   "fixture": "FX-L2-007",
+   "floor": "L2",
+   "room": "L2-READ",
+   "activity": "rest",
+   "pos": [
+    5.1,
+    0.45
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-010-1",
+   "fixture": "FX-L2-010",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "rest",
+   "pos": [
+    11.5,
+    0.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-010-2",
+   "fixture": "FX-L2-010",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "rest",
+   "pos": [
+    10.5,
+    0.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-011-1",
+   "fixture": "FX-L2-011",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "rest",
+   "pos": [
+    8.55,
+    3.5
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-011-2",
+   "fixture": "FX-L2-011",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "rest",
+   "pos": [
+    8.55,
+    2.5
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-013-1",
+   "fixture": "FX-L2-013",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "read",
+   "pos": [
+    12.85,
+    3.4
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-014-1",
+   "fixture": "FX-L2-014",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "coffee",
+   "pos": [
+    17.1,
+    1.2
+   ],
+   "facing": 90,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-014-2",
+   "fixture": "FX-L2-014",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "coffee",
+   "pos": [
+    15.9,
+    1.2
+   ],
+   "facing": 90,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-015-1",
+   "fixture": "FX-L2-015",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "game",
+   "pos": [
+    15.0,
+    3.6
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-016-1",
+   "fixture": "FX-L2-016",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "game",
+   "pos": [
+    16.4,
+    3.8
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-018-1",
+   "fixture": "FX-L2-018",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "chat",
+   "pos": [
+    11.6,
+    5.55
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-019-1",
+   "fixture": "FX-L2-019",
+   "floor": "L2",
+   "room": "L2-LOUNGE",
+   "activity": "chat",
+   "pos": [
+    12.4,
+    6.85
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-023-1",
+   "fixture": "FX-L2-023",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    21.7,
+    1.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-024-1",
+   "fixture": "FX-L2-024",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    21.7,
+    3.15
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-025-1",
+   "fixture": "FX-L2-025",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    22.7,
+    1.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-026-1",
+   "fixture": "FX-L2-026",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    22.7,
+    3.15
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-028-1",
+   "fixture": "FX-L2-028",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    21.7,
+    4.85
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-029-1",
+   "fixture": "FX-L2-029",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    21.7,
+    6.35
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-030-1",
+   "fixture": "FX-L2-030",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    22.7,
+    4.85
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-031-1",
+   "fixture": "FX-L2-031",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "desk",
+   "pos": [
+    22.7,
+    6.35
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-032-1",
+   "fixture": "FX-L2-032",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "coffee",
+   "pos": [
+    24.9,
+    3.8
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-032-2",
+   "fixture": "FX-L2-032",
+   "floor": "L2",
+   "room": "L2-DINE",
+   "activity": "coffee",
+   "pos": [
+    24.9,
+    2.2
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-038-1",
+   "fixture": "FX-L2-038",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "activity": "rest",
+   "pos": [
+    27.35,
+    3.6
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-038-2",
+   "fixture": "FX-L2-038",
+   "floor": "L2",
+   "room": "L2-SHOWER",
+   "activity": "rest",
+   "pos": [
+    28.15,
+    3.6
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-046-1",
+   "fixture": "FX-L2-046",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "activity": "rest",
+   "pos": [
+    2.5,
+    15.9
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-046-2",
+   "fixture": "FX-L2-046",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "activity": "rest",
+   "pos": [
+    3.5,
+    15.9
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-047-1",
+   "fixture": "FX-L2-047",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "activity": "read",
+   "pos": [
+    1.35,
+    13.6
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-048-1",
+   "fixture": "FX-L2-048",
+   "floor": "L2",
+   "room": "L2-CHAT",
+   "activity": "read",
+   "pos": [
+    4.65,
+    13.6
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-055-1",
+   "fixture": "FX-L2-055",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "activity": "rest",
+   "pos": [
+    10.4,
+    13.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-055-2",
+   "fixture": "FX-L2-055",
+   "floor": "L2",
+   "room": "L2-GARDEN",
+   "activity": "rest",
+   "pos": [
+    9.6,
+    13.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-059-1",
+   "fixture": "FX-L2-059",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "game",
+   "pos": [
+    22.4,
+    14.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-060-1",
+   "fixture": "FX-L2-060",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "game",
+   "pos": [
+    23.6,
+    14.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-062-1",
+   "fixture": "FX-L2-062",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "game",
+   "pos": [
+    28.0,
+    14.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-063-1",
+   "fixture": "FX-L2-063",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "game",
+   "pos": [
+    29.2,
+    14.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-064-1",
+   "fixture": "FX-L2-064",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "game",
+   "pos": [
+    30.65,
+    11.6
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-065-1",
+   "fixture": "FX-L2-065",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "game",
+   "pos": [
+    30.65,
+    12.5
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-067-1",
+   "fixture": "FX-L2-067",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "chat",
+   "pos": [
+    26.0,
+    11.75
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-068-1",
+   "fixture": "FX-L2-068",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "chat",
+   "pos": [
+    26.0,
+    13.45
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-069-1",
+   "fixture": "FX-L2-069",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "chat",
+   "pos": [
+    25.15,
+    12.6
+   ],
+   "facing": 0,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-070-1",
+   "fixture": "FX-L2-070",
+   "floor": "L2",
+   "room": "L2-GAME",
+   "activity": "chat",
+   "pos": [
+    26.85,
+    12.6
+   ],
+   "facing": 180,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-075-1",
+   "fixture": "FX-L2-075",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "activity": "rest",
+   "pos": [
+    3.9,
+    21.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-075-2",
+   "fixture": "FX-L2-075",
+   "floor": "L2",
+   "room": "L2-BALCONY",
+   "activity": "rest",
+   "pos": [
+    3.1,
+    21.6
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-077-1",
+   "fixture": "FX-L2-077",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "activity": "billiards",
+   "pos": [
+    8.75,
+    21.4
+   ],
+   "facing": 0,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-077-2",
+   "fixture": "FX-L2-077",
+   "floor": "L2",
+   "room": "L2-BILLIARD",
+   "activity": "billiards",
+   "pos": [
+    12.25,
+    21.4
+   ],
+   "facing": 180,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-080-1",
+   "fixture": "FX-L2-080",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "exercise",
+   "pos": [
+    15.2,
+    22.4
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-081-1",
+   "fixture": "FX-L2-081",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "exercise",
+   "pos": [
+    16.6,
+    22.4
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-082-1",
+   "fixture": "FX-L2-082",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "exercise",
+   "pos": [
+    18.2,
+    22.9
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-083-1",
+   "fixture": "FX-L2-083",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "stretch",
+   "pos": [
+    20.6,
+    20.8
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-084-1",
+   "fixture": "FX-L2-084",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "stretch",
+   "pos": [
+    20.6,
+    21.8
+   ],
+   "facing": 270,
+   "pose": "stand",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-086-1",
+   "fixture": "FX-L2-086",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "rest",
+   "pos": [
+    20.6,
+    23.4
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L2-086-2",
+   "fixture": "FX-L2-086",
+   "floor": "L2",
+   "room": "L2-GYM",
+   "activity": "rest",
+   "pos": [
+    21.4,
+    23.4
+   ],
+   "facing": 270,
+   "pose": "sit",
+   "capacity": 1
+  }
+ ],
+ "waypoints": [
+  {
+   "id": "WP-L1-SPAWN",
+   "floor": "L1",
+   "pos": [
+    14,
+    1.8
+   ],
+   "kind": "spawn",
+   "facing": 90
+  },
+  {
+   "id": "WP-L1-SAFE",
+   "floor": "L1",
+   "pos": [
+    14,
+    3.2
+   ],
+   "kind": "safe"
+  },
+  {
+   "id": "WP-L2-SAFE",
+   "floor": "L2",
+   "pos": [
+    17,
+    9.25
+   ],
+   "kind": "safe"
+  },
+  {
+   "id": "WP-L1-CORR-W",
+   "floor": "L1",
+   "pos": [
+    4,
+    9.25
+   ],
+   "kind": "patrol"
+  },
+  {
+   "id": "WP-L1-CORR-E",
+   "floor": "L1",
+   "pos": [
+    28,
+    9.25
+   ],
+   "kind": "patrol"
+  },
+  {
+   "id": "WP-L1-NCORR",
+   "floor": "L1",
+   "pos": [
+    10,
+    17.5
+   ],
+   "kind": "patrol"
+  },
+  {
+   "id": "WP-L2-NCORR",
+   "floor": "L2",
+   "pos": [
+    22,
+    17.5
+   ],
+   "kind": "patrol"
+  }
+ ],
+ "actors": [
+  {
+   "id": "ACT-BUDI",
+   "displayName": "Budi",
+   "role": "CEO",
+   "kind": "player",
+   "avatarAsset": "CH-CEO",
+   "homeRoom": "L1-CEO",
+   "rolePreference": {},
+   "allowedPublicFields": [
+    "displayName",
+    "role"
+   ],
+   "simulated": true
+  },
+  {
+   "id": "ACT-MAX",
+   "displayName": "Max",
+   "role": "Supervisor",
+   "kind": "npc",
+   "avatarAsset": "CH-SUPERVISOR",
+   "homeRoom": "L1-IMPL",
+   "rolePreference": {
+    "desk": 3,
+    "read": 2,
+    "chat": 2,
+    "coffee": 1,
+    "billiards": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-054",
+   "simulated": true
+  },
+  {
+   "id": "ACT-HUGO",
+   "displayName": "Hugo",
+   "role": "Karakter, aset & arsitektur",
+   "kind": "npc",
+   "avatarAsset": "CH-ARCHITECT",
+   "homeRoom": "L1-HUGO",
+   "rolePreference": {
+    "desk": 3,
+    "read": 2,
+    "rest": 1,
+    "game": 1,
+    "coffee": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-090",
+   "simulated": true
+  },
+  {
+   "id": "ACT-NOVA",
+   "displayName": "Nova",
+   "role": "Spesifikasi ICT",
+   "kind": "npc",
+   "avatarAsset": "CH-ICTSPEC",
+   "homeRoom": "L1-NOVA",
+   "rolePreference": {
+    "desk": 3,
+    "read": 3,
+    "coffee": 1,
+    "stretch": 1,
+    "exercise": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-070",
+   "simulated": true
+  },
+  {
+   "id": "ACT-BRUNO",
+   "displayName": "Bruno",
+   "role": "Instalasi jaringan & server",
+   "kind": "npc",
+   "avatarAsset": "CH-NETINSTALL",
+   "homeRoom": "L1-BRUNO",
+   "rolePreference": {
+    "desk": 3,
+    "exercise": 2,
+    "billiards": 2,
+    "coffee": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-102",
+   "simulated": true
+  },
+  {
+   "id": "ACT-KEVIN",
+   "displayName": "Kevin",
+   "role": "Pamflet & materi visual",
+   "kind": "npc",
+   "avatarAsset": "CH-VISUAL",
+   "homeRoom": "L1-KEVIN",
+   "rolePreference": {
+    "desk": 3,
+    "read": 1,
+    "game": 2,
+    "chat": 2,
+    "rest": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-097",
+   "simulated": true
+  },
+  {
+   "id": "ACT-REX",
+   "displayName": "Rex",
+   "role": "Review & QA",
+   "kind": "npc",
+   "avatarAsset": "CH-QA",
+   "homeRoom": "L1-IMPL",
+   "rolePreference": {
+    "desk": 4,
+    "read": 1,
+    "coffee": 2,
+    "game": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-056",
+   "simulated": true
+  }
+ ],
+ "ict": {
+  "status": "rancangan virtual konsep; tidak terhubung perangkat/IP/ISP nyata",
+  "domains": [
+   {
+    "id": "NET-OFFICE",
+    "label": "office",
+    "note": "abstrak"
+   },
+   {
+    "id": "NET-DEMO",
+    "label": "demo",
+    "note": "abstrak"
+   },
+   {
+    "id": "NET-GUEST",
+    "label": "guest",
+    "note": "abstrak, SSID tamu konsep"
+   },
+   {
+    "id": "NET-LAB",
+    "label": "lab",
+    "note": "abstrak, terisolasi konsep"
+   },
+   {
+    "id": "NET-SERVER",
+    "label": "server",
+    "note": "abstrak"
+   }
+  ],
+  "outlets": [
+   {
+    "id": "TO-L1-001",
+    "floor": "L1",
+    "room": "L1-LOBBY",
+    "pos": [
+     14,
+     5.0
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-001",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "printer"
+    ]
+   },
+   {
+    "id": "TO-L1-002",
+    "floor": "L1",
+    "room": "L1-LOBBY",
+    "pos": [
+     11.5,
+     7.88
+    ],
+    "mount": "wall_high",
+    "z": 1.2,
+    "ports": 1,
+    "serves": "FX-L1-009",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "signage"
+    ]
+   },
+   {
+    "id": "TO-L1-003",
+    "floor": "L1",
+    "room": "L1-MEET",
+    "pos": [
+     4.0,
+     4.2
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-011",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "table_box",
+     "spare"
+    ]
+   },
+   {
+    "id": "TO-L1-004",
+    "floor": "L1",
+    "room": "L1-MEET",
+    "pos": [
+     0.2,
+     4.2
+    ],
+    "mount": "wall_high",
+    "z": 1.2,
+    "ports": 1,
+    "serves": "FX-L1-022",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L1-005",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     8.0,
+     13.2
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-053",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-006",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     8.0,
+     15.95
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-055",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-007",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     9.6,
+     13.2
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-057",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-008",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     9.6,
+     15.95
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-059",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-009",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     11.2,
+     13.2
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-061",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-010",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     11.2,
+     15.95
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-063",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-011",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     13.88,
+     13.6
+    ],
+    "mount": "wall_high",
+    "z": 1.2,
+    "ports": 1,
+    "serves": "FX-L1-065",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L1-012",
+    "floor": "L1",
+    "room": "L1-NOVA",
+    "pos": [
+     21.6,
+     15.95
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-069",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-013",
+    "floor": "L1",
+    "room": "L1-NOVA",
+    "pos": [
+     24.4,
+     15.95
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-071",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-014",
+    "floor": "L1",
+    "room": "L1-LAB",
+    "pos": [
+     31.45,
+     12.5
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 4,
+    "serves": "FX-L1-075",
+    "domain": "NET-LAB",
+    "endpointTypes": [
+     "lab_device",
+     "lab_device",
+     "lab_device",
+     "lab_device"
+    ]
+   },
+   {
+    "id": "TO-L1-015",
+    "floor": "L1",
+    "room": "L1-LAB",
+    "pos": [
+     31.45,
+     14.6
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 4,
+    "serves": "FX-L1-076",
+    "domain": "NET-LAB",
+    "endpointTypes": [
+     "lab_device",
+     "lab_device",
+     "lab_device",
+     "lab_device"
+    ]
+   },
+   {
+    "id": "TO-L1-016",
+    "floor": "L1",
+    "room": "L1-LAB",
+    "pos": [
+     28.4,
+     13.2
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 4,
+    "serves": "FX-L1-077",
+    "domain": "NET-LAB",
+    "endpointTypes": [
+     "lab_device",
+     "lab_device",
+     "lab_device",
+     "lab_device"
+    ]
+   },
+   {
+    "id": "TO-L1-017",
+    "floor": "L1",
+    "room": "L1-LAB",
+    "pos": [
+     26.6,
+     15.9
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-079",
+    "domain": "NET-LAB",
+    "endpointTypes": [
+     "lab_uplink",
+     "spare"
+    ]
+   },
+   {
+    "id": "TO-L1-018",
+    "floor": "L1",
+    "room": "L1-CEO",
+    "pos": [
+     3.5,
+     22.2
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-082",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-019",
+    "floor": "L1",
+    "room": "L1-HUGO",
+    "pos": [
+     8.6,
+     23.4
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-089",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-020",
+    "floor": "L1",
+    "room": "L1-HUGO",
+    "pos": [
+     10.4,
+     23.4
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-091",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-021",
+    "floor": "L1",
+    "room": "L1-KEVIN",
+    "pos": [
+     16.0,
+     23.4
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-096",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-022",
+    "floor": "L1",
+    "room": "L1-BRUNO",
+    "pos": [
+     22.4,
+     23.4
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-101",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L2-001",
+    "floor": "L2",
+    "room": "L2-DINE",
+    "pos": [
+     20.12,
+     6.6
+    ],
+    "mount": "wall_high",
+    "z": 1.2,
+    "ports": 1,
+    "serves": "FX-L2-034",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L2-002",
+    "floor": "L2",
+    "room": "L2-GAME",
+    "pos": [
+     23.0,
+     16.15
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L2-058",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "console",
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L2-003",
+    "floor": "L2",
+    "room": "L2-GAME",
+    "pos": [
+     28.6,
+     16.15
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L2-061",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "console",
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L2-004",
+    "floor": "L2",
+    "room": "L2-GAME",
+    "pos": [
+     31.4,
+     11.6
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 1,
+    "serves": "FX-L2-064",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "arcade"
+    ]
+   },
+   {
+    "id": "TO-L2-005",
+    "floor": "L2",
+    "room": "L2-GAME",
+    "pos": [
+     31.4,
+     12.5
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 1,
+    "serves": "FX-L2-065",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "arcade"
+    ]
+   },
+   {
+    "id": "TO-L2-006",
+    "floor": "L2",
+    "room": "L2-BILLIARD",
+    "pos": [
+     7.12,
+     21.4
+    ],
+    "mount": "wall_high",
+    "z": 1.2,
+    "ports": 1,
+    "serves": "FX-L2-079",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L2-007",
+    "floor": "L2",
+    "room": "L2-GYM",
+    "pos": [
+     14.12,
+     20.4
+    ],
+    "mount": "wall_high",
+    "z": 1.2,
+    "ports": 1,
+    "serves": "FX-L2-087",
+    "domain": "NET-DEMO",
+    "endpointTypes": [
+     "display"
+    ]
+   },
+   {
+    "id": "TO-L1-023",
+    "floor": "L1",
+    "room": "L1-LOBBY",
+    "pos": [
+     14,
+     3.4
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L1-01",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L1-024",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     10,
+     13.9
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L1-02",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L1-025",
+    "floor": "L1",
+    "room": "L1-CORR",
+    "pos": [
+     25,
+     9.25
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L1-03",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L1-026",
+    "floor": "L1",
+    "room": "L1-NCORR",
+    "pos": [
+     9,
+     17.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L1-04",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L1-027",
+    "floor": "L1",
+    "room": "L1-NCORR",
+    "pos": [
+     23,
+     17.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L1-05",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L2-008",
+    "floor": "L2",
+    "room": "L2-LOUNGE",
+    "pos": [
+     13.5,
+     4.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L2-01",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L2-009",
+    "floor": "L2",
+    "room": "L2-DINE",
+    "pos": [
+     23,
+     4.0
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L2-02",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L2-010",
+    "floor": "L2",
+    "room": "L2-GAME",
+    "pos": [
+     26,
+     14.0
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L2-03",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L2-011",
+    "floor": "L2",
+    "room": "L2-CORR",
+    "pos": [
+     6,
+     9.25
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L2-04",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L2-012",
+    "floor": "L2",
+    "room": "L2-NCORR",
+    "pos": [
+     10.5,
+     17.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L2-05",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L2-013",
+    "floor": "L2",
+    "room": "L2-GYM",
+    "pos": [
+     18.5,
+     21.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "AP-L2-06",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "ap"
+    ]
+   },
+   {
+    "id": "TO-L1-028",
+    "floor": "L1",
+    "room": "L1-LOBBY",
+    "pos": [
+     9,
+     7.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "CAM-L1-01",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "camera"
+    ]
+   },
+   {
+    "id": "TO-L1-029",
+    "floor": "L1",
+    "room": "L1-CORR",
+    "pos": [
+     31,
+     9.25
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "CAM-L1-02",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "camera"
+    ]
+   },
+   {
+    "id": "TO-L1-030",
+    "floor": "L1",
+    "room": "L1-BRUNO",
+    "pos": [
+     24.5,
+     23.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "CAM-L1-03",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "camera"
+    ]
+   },
+   {
+    "id": "TO-L2-014",
+    "floor": "L2",
+    "room": "L2-CORR",
+    "pos": [
+     31,
+     9.25
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "CAM-L2-01",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "camera"
+    ]
+   },
+   {
+    "id": "TO-L2-015",
+    "floor": "L2",
+    "room": "L2-NCORR",
+    "pos": [
+     31,
+     17.5
+    ],
+    "mount": "ceiling",
+    "z": 3.0,
+    "ports": 1,
+    "serves": "CAM-L2-02",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "camera"
+    ]
+   }
+  ],
+  "devices": [
+   {
+    "id": "AP-L1-01",
+    "type": "ap",
+    "floor": "L1",
+    "room": "L1-LOBBY",
+    "pos": [
+     14,
+     3.4
+    ],
+    "z": 3.0,
+    "outlet": "TO-L1-023",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L1-02",
+    "type": "ap",
+    "floor": "L1",
+    "room": "L1-IMPL",
+    "pos": [
+     10,
+     13.9
+    ],
+    "z": 3.0,
+    "outlet": "TO-L1-024",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L1-03",
+    "type": "ap",
+    "floor": "L1",
+    "room": "L1-CORR",
+    "pos": [
+     25,
+     9.25
+    ],
+    "z": 3.0,
+    "outlet": "TO-L1-025",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L1-04",
+    "type": "ap",
+    "floor": "L1",
+    "room": "L1-NCORR",
+    "pos": [
+     9,
+     17.5
+    ],
+    "z": 3.0,
+    "outlet": "TO-L1-026",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L1-05",
+    "type": "ap",
+    "floor": "L1",
+    "room": "L1-NCORR",
+    "pos": [
+     23,
+     17.5
+    ],
+    "z": 3.0,
+    "outlet": "TO-L1-027",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L2-01",
+    "type": "ap",
+    "floor": "L2",
+    "room": "L2-LOUNGE",
+    "pos": [
+     13.5,
+     4.5
+    ],
+    "z": 3.0,
+    "outlet": "TO-L2-008",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L2-02",
+    "type": "ap",
+    "floor": "L2",
+    "room": "L2-DINE",
+    "pos": [
+     23,
+     4.0
+    ],
+    "z": 3.0,
+    "outlet": "TO-L2-009",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L2-03",
+    "type": "ap",
+    "floor": "L2",
+    "room": "L2-GAME",
+    "pos": [
+     26,
+     14.0
+    ],
+    "z": 3.0,
+    "outlet": "TO-L2-010",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L2-04",
+    "type": "ap",
+    "floor": "L2",
+    "room": "L2-CORR",
+    "pos": [
+     6,
+     9.25
+    ],
+    "z": 3.0,
+    "outlet": "TO-L2-011",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L2-05",
+    "type": "ap",
+    "floor": "L2",
+    "room": "L2-NCORR",
+    "pos": [
+     10.5,
+     17.5
+    ],
+    "z": 3.0,
+    "outlet": "TO-L2-012",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "AP-L2-06",
+    "type": "ap",
+    "floor": "L2",
+    "room": "L2-GYM",
+    "pos": [
+     18.5,
+     21.5
+    ],
+    "z": 3.0,
+    "outlet": "TO-L2-013",
+    "poeClass": 4,
+    "status": "placeholder (AS-ICT-01)"
+   },
+   {
+    "id": "CAM-L1-01",
+    "type": "camera",
+    "floor": "L1",
+    "room": "L1-LOBBY",
+    "pos": [
+     9,
+     7.5
+    ],
+    "z": 2.8,
+    "aimDeg": 300,
+    "outlet": "TO-L1-028",
+    "poeClass": 3,
+    "status": "opsional konsep, privacy mask perlu kajian"
+   },
+   {
+    "id": "CAM-L1-02",
+    "type": "camera",
+    "floor": "L1",
+    "room": "L1-CORR",
+    "pos": [
+     31,
+     9.25
+    ],
+    "z": 2.8,
+    "aimDeg": 180,
+    "outlet": "TO-L1-029",
+    "poeClass": 3,
+    "status": "opsional konsep, privacy mask perlu kajian"
+   },
+   {
+    "id": "CAM-L1-03",
+    "type": "camera",
+    "floor": "L1",
+    "room": "L1-BRUNO",
+    "pos": [
+     24.5,
+     23.5
+    ],
+    "z": 2.8,
+    "aimDeg": 300,
+    "outlet": "TO-L1-030",
+    "poeClass": 3,
+    "status": "opsional konsep, privacy mask perlu kajian"
+   },
+   {
+    "id": "CAM-L2-01",
+    "type": "camera",
+    "floor": "L2",
+    "room": "L2-CORR",
+    "pos": [
+     31,
+     9.25
+    ],
+    "z": 2.8,
+    "aimDeg": 180,
+    "outlet": "TO-L2-014",
+    "poeClass": 3,
+    "status": "opsional konsep, privacy mask perlu kajian"
+   },
+   {
+    "id": "CAM-L2-02",
+    "type": "camera",
+    "floor": "L2",
+    "room": "L2-NCORR",
+    "pos": [
+     31,
+     17.5
+    ],
+    "z": 2.8,
+    "aimDeg": 180,
+    "outlet": "TO-L2-015",
+    "poeClass": 3,
+    "status": "opsional konsep, privacy mask perlu kajian"
+   }
+  ],
+  "racks": [
+   {
+    "id": "RK-L1-01",
+    "fixture": "FX-L1-105",
+    "room": "L1-SERVER",
+    "floor": "L1",
+    "units": 42,
+    "contents": [
+     {
+      "device": "PP-01",
+      "type": "patch_panel_24",
+      "u": 40,
+      "height": 1
+     },
+     {
+      "device": "CM-01",
+      "type": "cable_manager",
+      "u": 39,
+      "height": 1
+     },
+     {
+      "device": "PP-02",
+      "type": "patch_panel_24",
+      "u": 38,
+      "height": 1
+     },
+     {
+      "device": "CM-02",
+      "type": "cable_manager",
+      "u": 37,
+      "height": 1
+     },
+     {
+      "device": "PP-03",
+      "type": "patch_panel_24",
+      "u": 36,
+      "height": 1
+     },
+     {
+      "device": "CM-03",
+      "type": "cable_manager",
+      "u": 35,
+      "height": 1
+     },
+     {
+      "device": "PP-04",
+      "type": "patch_panel_24",
+      "u": 34,
+      "height": 1
+     },
+     {
+      "device": "CM-04",
+      "type": "cable_manager",
+      "u": 33,
+      "height": 1
+     },
+     {
+      "device": "SW-ACC-01",
+      "type": "switch_access_48_poe",
+      "u": 31,
+      "height": 1
+     },
+     {
+      "device": "SW-ACC-02",
+      "type": "switch_access_48_poe",
+      "u": 30,
+      "height": 1
+     },
+     {
+      "device": "SW-ACC-03",
+      "type": "switch_access_48_poe",
+      "u": 29,
+      "height": 1
+     },
+     {
+      "device": "SW-AGG-01",
+      "type": "switch_aggregation",
+      "u": 28,
+      "height": 1
+     },
+     {
+      "device": "GW-DEMO-01",
+      "type": "gateway_virtual",
+      "u": 26,
+      "height": 1
+     }
+    ]
+   },
+   {
+    "id": "RK-L1-02",
+    "fixture": "FX-L1-106",
+    "room": "L1-SERVER",
+    "floor": "L1",
+    "units": 42,
+    "contents": [
+     {
+      "device": "SRV-DEMO-01",
+      "type": "server_placeholder",
+      "u": 20,
+      "height": 2
+     },
+     {
+      "device": "NAS-DEMO-01",
+      "type": "storage_placeholder",
+      "u": 17,
+      "height": 2
+     },
+     {
+      "device": "PDU-01",
+      "type": "pdu",
+      "u": 10,
+      "height": 1
+     },
+     {
+      "device": "UPS-01",
+      "type": "ups_placeholder",
+      "u": 1,
+      "height": 3
+     }
+    ]
+   }
+  ],
+  "rackDeviceTypes": {
+   "patch_panel_24": {
+    "ports": 24
+   },
+   "switch_access_48_poe": {
+    "ports": 48,
+    "uplinks": 4,
+    "poeBudgetW": null
+   },
+   "switch_aggregation": {
+    "ports": 24,
+    "uplinks": 2
+   },
+   "gateway_virtual": {
+    "ports": 8
+   },
+   "server_placeholder": {
+    "ports": 2
+   },
+   "storage_placeholder": {
+    "ports": 2
+   },
+   "pdu": {},
+   "ups_placeholder": {},
+   "cable_manager": {}
+  },
+  "pathways": {
+   "trayHeight": 3.2,
+   "nodes": [
+    {
+     "id": "PN-L1-RK",
+     "floor": "L1",
+     "pos": [
+      26.7,
+      21.4
+     ],
+     "note": "di atas depan rack"
+    },
+    {
+     "id": "PN-L1-SRV-S",
+     "floor": "L1",
+     "pos": [
+      27.0,
+      18.5
+     ],
+     "note": "penetrasi dinding server ke koridor utara"
+    },
+    {
+     "id": "PN-L1-SRV-E",
+     "floor": "L1",
+     "pos": [
+      29.0,
+      19.25
+     ],
+     "note": "penetrasi server ke riser"
+    },
+    {
+     "id": "PN-L1-RISER",
+     "floor": "L1",
+     "pos": [
+      29.5,
+      19.25
+     ],
+     "note": "riser L1"
+    },
+    {
+     "id": "PN-L2-RISER",
+     "floor": "L2",
+     "pos": [
+      29.5,
+      19.25
+     ],
+     "note": "riser L2"
+    },
+    {
+     "id": "PN-L2-RISER-S",
+     "floor": "L2",
+     "pos": [
+      29.5,
+      18.5
+     ]
+    }
+   ],
+   "edges": [
+    [
+     "PN-L1-RK",
+     "PN-L1-SRV-S"
+    ],
+    [
+     "PN-L1-RK",
+     "PN-L1-SRV-E"
+    ],
+    [
+     "PN-L1-SRV-E",
+     "PN-L1-RISER"
+    ],
+    [
+     "PN-L1-RISER",
+     "PN-L2-RISER"
+    ],
+    [
+     "PN-L2-RISER",
+     "PN-L2-RISER-S"
+    ]
+   ],
+   "trays": [
+    {
+     "id": "TR-L1-N",
+     "floor": "L1",
+     "from": [
+      0.5,
+      17.5
+     ],
+     "to": [
+      31.5,
+      17.5
+     ],
+     "joins": [
+      [
+       "PN-L1-SRV-S",
+       [
+        27.0,
+        17.5
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "TR-L1-CORE",
+     "floor": "L1",
+     "from": [
+      17.0,
+      17.5
+     ],
+     "to": [
+      17.0,
+      9.25
+     ],
+     "joins": []
+    },
+    {
+     "id": "TR-L1-S",
+     "floor": "L1",
+     "from": [
+      0.5,
+      9.25
+     ],
+     "to": [
+      31.5,
+      9.25
+     ],
+     "joins": []
+    },
+    {
+     "id": "TR-L2-N",
+     "floor": "L2",
+     "from": [
+      0.5,
+      17.5
+     ],
+     "to": [
+      31.5,
+      17.5
+     ],
+     "joins": [
+      [
+       "PN-L2-RISER-S",
+       [
+        29.5,
+        17.5
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "TR-L2-CORE",
+     "floor": "L2",
+     "from": [
+      17.0,
+      17.5
+     ],
+     "to": [
+      17.0,
+      9.25
+     ],
+     "joins": []
+    },
+    {
+     "id": "TR-L2-S",
+     "floor": "L2",
+     "from": [
+      0.5,
+      9.25
+     ],
+     "to": [
+      31.5,
+      9.25
+     ],
+     "joins": []
+    }
+   ],
+   "riserVertical": 4.0,
+   "rackRise": 1.2,
+   "slack": {
+    "rack": 3.0,
+    "outlet": 0.3
+   },
+   "maxLinkM": 90.0,
+   "assumptions": [
+    "AS-ICT-02",
+    "AS-ICT-03"
+   ]
+  },
+  "poeClasses": {
+   "3": {
+    "pseW": 15.4,
+    "source": "IEEE 802.3af/at Class 3 PSE output"
+   },
+   "4": {
+    "pseW": 30.0,
+    "source": "IEEE 802.3at Class 4 PSE output"
+   }
+  },
+  "assumptions": [
+   "AS-ICT-01",
+   "AS-ICT-02",
+   "AS-ICT-03",
+   "AS-ICT-04",
+   "AS-ICT-05",
+   "AS-ICT-06",
+   "AS-NET-01"
+  ]
+ },
+ "adjacency": [
+  {
+   "id": "ADJ-01",
+   "rule": "near",
+   "a": "L1-LOBBY",
+   "b": "EXT-ENTRANCE",
+   "text": "Resepsi dekat entrance"
+  },
+  {
+   "id": "ADJ-02",
+   "rule": "visitor_path_avoids",
+   "a": "L1-LOBBY",
+   "b": "L1-MEET",
+   "avoid": [
+    "L1-SERVER",
+    "L1-RISER"
+   ],
+   "text": "Rapat dicapai visitor tanpa melewati server"
+  },
+  {
+   "id": "ADJ-03",
+   "rule": "max_path",
+   "a": "L1-BRUNO",
+   "b": "L1-SERVER",
+   "max_m": 6.0,
+   "text": "Bruno dekat rack, akses rack terbatas"
+  },
+  {
+   "id": "ADJ-04",
+   "rule": "max_path",
+   "a": "L1-BRUNO",
+   "b": "L1-LAB",
+   "max_m": 12.0,
+   "text": "Bruno dekat lab ICT"
+  },
+  {
+   "id": "ADJ-05",
+   "rule": "min_distance",
+   "a": "L1-SERVER",
+   "b_category": "wet",
+   "min_m": 8.0,
+   "text": "Ruang basah jauh dari rack"
+  },
+  {
+   "id": "ADJ-06",
+   "rule": "not_shared_wall",
+   "a_noise": "loud",
+   "b_noise": "quiet",
+   "b_exclude_categories": [
+    "service",
+    "shaft",
+    "restricted"
+   ],
+   "text": "Game/biliar/gym tidak berbagi dinding dengan area tenang"
+  },
+  {
+   "id": "ADJ-07",
+   "rule": "stacked",
+   "a": "L1-WC",
+   "b": "L2-WC",
+   "text": "Area basah ditumpuk (konsep shaft)"
+  },
+  {
+   "id": "ADJ-08",
+   "rule": "stacked",
+   "a": "L1-PANTRY",
+   "b": "L2-SHOWER",
+   "text": "Pantry L1 di bawah shower L2 (zona basah)"
+  },
+  {
+   "id": "ADJ-09",
+   "rule": "restricted_door_only_from",
+   "a": "L1-SERVER",
+   "allowed": [
+    "L1-BRUNO"
+   ],
+   "text": "Pintu server hanya dari area Bruno"
+  },
+  {
+   "id": "ADJ-10",
+   "rule": "exits",
+   "floor": "L1",
+   "min_count": 2,
+   "text": "Dua jalur keluar konsep L1 (perlu kajian profesional)"
+  }
+ ],
+ "occupantLoadFactors": {
+  "business": {
+   "m2": 13.94,
+   "basis": "gross",
+   "label": "Business areas 150 ft2 gross"
+  },
+  "assembly_tables": {
+   "m2": 1.39,
+   "basis": "net",
+   "label": "Assembly unconcentrated (tables and chairs) 15 ft2 net"
+  },
+  "library": {
+   "m2": 4.65,
+   "basis": "net",
+   "label": "Library reading rooms 50 ft2 net"
+  },
+  "exercise": {
+   "m2": 4.65,
+   "basis": "gross",
+   "label": "Exercise rooms 50 ft2 gross"
+  },
+  "storage": {
+   "m2": 27.87,
+   "basis": "gross",
+   "label": "Storage/mechanical 300 ft2 gross"
+  }
+ },
+ "assumptions": [
+  {
+   "id": "AS-DIM-01",
+   "topic": "dimensi",
+   "text": "Footprint 32 m x 24 m per lantai dan tinggi antar lantai 4,0 m adalah proposal PRD, bukan luas lahan yang disahkan."
+  },
+  {
+   "id": "AS-DIM-02",
+   "topic": "dimensi",
+   "text": "Polygon ruang diukur pada garis as dinding; luas adalah luas as-drawn, bukan luas bersih/usable."
+  },
+  {
+   "id": "AS-DIM-03",
+   "topic": "dimensi",
+   "text": "Tebal dinding konsep: luar 0,30 m, dalam 0,15 m; plafon 3,0 m; slab 0,30 m. Belum ada desain struktur."
+  },
+  {
+   "id": "AS-DIM-04",
+   "topic": "dimensi",
+   "text": "Ukuran furniture dari catalog adalah target konsep (bukan katalog vendor). Meja biliar 9 ft memakai luas main 2,54 x 1,27 m dan clearance stik 1,47 m sebagai target ukuran umum, wajib dicek ulang ke spesifikasi produk."
+  },
+  {
+   "id": "AS-DIM-05",
+   "topic": "dimensi",
+   "text": "Tangga U: 24 riser x 0,1667 m, tread 0,28 m, lebar flight 1,2 m. Target konsep game; tidak menyatakan tangga layak konstruksi."
+  },
+  {
+   "id": "AS-OCC-01",
+   "topic": "okupansi",
+   "text": "Faktor beban hunian memakai IBC 2021 Table 1004.5 sebagai pembanding, bukan regulasi Indonesia yang berlaku. Perhitungan egress resmi butuh profesional."
+  },
+  {
+   "id": "AS-OCC-02",
+   "topic": "okupansi",
+   "text": "Kapasitas kursi dihitung dari fixture; bukan target okupansi manusia yang diputuskan Budi."
+  },
+  {
+   "id": "AS-EXIT-01",
+   "topic": "keselamatan",
+   "text": "Tangga darurat timur L2 hanya penanda konsep di luar envelope; jalur keluar belum dinilai memenuhi peraturan."
+  },
+  {
+   "id": "AS-ICT-01",
+   "topic": "ict",
+   "text": "Jumlah AP adalah placeholder; belum ada model site/material dan target coverage. Tidak ada radius Wi-Fi efektif yang diklaim."
+  },
+  {
+   "id": "AS-ICT-02",
+   "topic": "ict",
+   "text": "Slack kabel: 3,0 m sisi rack + 0,3 m sisi outlet; tray pada 3,2 m di atas lantai jadi; outlet meja 0,3 m; outlet plafon 3,0 m. Asumsi proyek, bukan standar."
+  },
+  {
+   "id": "AS-ICT-03",
+   "topic": "ict",
+   "text": "Batas panjang permanent link 90 m dipakai sebagai target konsep (praktik umum kabel tembaga terstruktur), wajib diverifikasi ke standar yang dipilih."
+  },
+  {
+   "id": "AS-ICT-04",
+   "topic": "ict",
+   "text": "Daya PoE worst-case per kelas memakai nilai PSE IEEE 802.3af/at/bt (Class 3 = 15,4 W, Class 4 = 30 W). Kelas perangkat placeholder sampai datasheet dipilih."
+  },
+  {
+   "id": "AS-ICT-05",
+   "topic": "ict",
+   "text": "Rating UPS, thermal/AC dan harga belum ditentukan; tidak ada harga pengadaan dalam paket ini."
+  },
+  {
+   "id": "AS-ICT-06",
+   "topic": "ict",
+   "text": "Clearance rack depan 1,2 m / belakang 0,9 m adalah target konsep; verifikasi ke standar/panduan yang dipilih."
+  },
+  {
+   "id": "AS-NET-01",
+   "topic": "ict",
+   "text": "Domain jaringan office/demo/guest/lab/server adalah ID abstrak; bukan subnet, VLAN atau perangkat produksi."
+  },
+  {
+   "id": "AS-PERF-01",
+   "topic": "performa",
+   "text": "Target FPS/transfer/triangle adalah target PRD; angka hanya disebut terukur setelah benchmark tercatat."
+  },
+  {
+   "id": "AS-SITE-01",
+   "topic": "lahan",
+   "text": "Lahan fisik, lokasi, budget, hosting dan okupansi manusia belum diputuskan."
+  }
+ ]
+}
