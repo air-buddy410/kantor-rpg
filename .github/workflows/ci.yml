@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: System packages for PDF rendering and the OFL font
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils fonts-alegreya-sans
       - run: pip install -r requirements-dev.txt
       - name: Safety scan
         run: python3 tools/safety_scan.py
