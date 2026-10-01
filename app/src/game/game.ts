@@ -9,6 +9,10 @@ import type { Settings } from '../ui/settings';
 import { CameraRig } from './camera';
 import { Input } from './input';
 import { Player } from './player';
+import { ACTIVITY_LABEL, NpcLayer } from './npcs';
+import dialogueJson from '@design/dialogue.json';
+
+const DIALOGUE = dialogueJson as { personas: Record<string, string[]> };
 
 export interface Interactable {
   id: string;
@@ -46,6 +50,10 @@ export class Game {
   lastRawMs = 0;
   onFrame: ((dt: number) => void) | null = null;
   autopilot: { dir: Vec2; run: boolean } | null = null;
+  npcs!: NpcLayer;
+  private npcInteractables = new Map<string, Interactable>();
+  private talkingTo: string | null = null;
+  private lineIndex = new Map<string, number>();
   roomId: string | null = null;
   floorSwitches = 0;
 
@@ -77,6 +85,9 @@ export class Game {
     this.setupScene();
     this.buildFloors();
     this.scene.add(this.player.avatar.root, this.marker);
+    const seed = Number(new URLSearchParams(location.search).get('seed') ?? 20261001);
+    this.npcs = new NpcLayer(world, { L1: this.floors.get('L1')!.nav.staff, L2: this.floors.get('L2')!.nav.staff }, seed, $('labels'));
+    this.scene.add(this.npcs.group);
     this.collectInteractables();
     this.wireUi();
     this.applyFloorVisibility();
@@ -196,6 +207,7 @@ export class Game {
       go: (room) => this.goToRoom(room),
       showRoom: (room) => showRoomCard(this.world, room, this.roomTarget(room) !== null),
       showPersona: (id) => showPersonaCard(this.world, id),
+      meet: (id) => this.meet(id),
     });
   }
 
@@ -329,6 +341,18 @@ export class Game {
   }
 
   private nearestInteractable(): Interactable | null {
+    // CEO interaction with a person outranks furniture and links (PRD 8 priority).
+    const npc = this.npcs.nearest(this.player.floor, this.player.pos, 1.6);
+    if (npc) {
+      let it = this.npcInteractables.get(npc.id);
+      if (!it) {
+        it = { id: npc.id, kind: 'fixture', floor: npc.floor, pos: npc.pos, radius: 1.6, label: `Sapa ${npc.name}`, run: () => this.talkTo(npc.id) };
+        this.npcInteractables.set(npc.id, it);
+      }
+      it.pos = npc.pos;
+      it.floor = npc.floor;
+      return it;
+    }
     let best: Interactable | null = null;
     let bd = Infinity;
     for (const it of this.interactables) {
@@ -337,6 +361,63 @@ export class Game {
       if (d <= it.radius && d < bd) { bd = d; best = it; }
     }
     return best;
+  }
+
+  /** Open the persona dialog; the NPC pauses (reservation kept) until it closes. */
+  talkTo(id: string) {
+    const npc = this.npcs.sim.pauseForPlayer(id);
+    if (!npc) { toast('Persona tidak ditemukan.'); return; }
+    this.talkingTo = id;
+    this.npcs.faceTowards(id, this.player.pos);
+    this.player.facing = (Math.atan2(npc.pos[1] - this.player.pos[1], npc.pos[0] - this.player.pos[0]) * 180) / Math.PI;
+    this.player.avatar.setFacing(this.player.facing);
+    const lines = DIALOGUE.personas[id] ?? ['Halo.'];
+    const quote = el('p', { class: 'quote', 'aria-live': 'polite' });
+    const next = () => {
+      const k = this.lineIndex.get(id) ?? 0;
+      quote.textContent = lines[k % lines.length];
+      this.lineIndex.set(id, k + 1);
+    };
+    next();
+    const more = el('button', { type: 'button', class: 'btn' }, 'Topik lain');
+    more.addEventListener('click', next);
+    const room = this.world.rooms.find((r) => r.floor === npc.floor && insidePoly(npc.pos, r.polygon));
+    const body = [
+      el('p', { class: 'sim-note' }, 'SIMULASI: persona virtual, dialog fiksi statis.'),
+      quote,
+      dlRows([
+        ['Peran', npc.role],
+        ['Aktivitas tampilan', `${ACTIVITY_LABEL[npc.activity] ?? npc.activity} (simulasi)`],
+        ['Status kerja', `tidak diketahui: ${npc.workStatusSource}`],
+        ['Lokasi', room ? room.name : '-'],
+        ['Jam simulasi', this.npcs.sim.clockLabel()],
+      ]),
+      more,
+    ];
+    $('dlg-info-title').textContent = npc.name;
+    $('dlg-info-body').replaceChildren(...body);
+    const dlg = $('dlg-info') as HTMLDialogElement;
+    dlg.addEventListener('close', () => {
+      if (this.talkingTo) this.npcs.sim.resume(this.talkingTo);
+      this.talkingTo = null;
+    }, { once: true });
+    openDialog(dlg);
+  }
+
+  /** Accessible path: move next to an NPC and open the dialog without 3D navigation. */
+  meet(id: string) {
+    const npc = this.npcs.sim.npcs.find((n) => n.id === id);
+    if (!npc) { toast('Persona tidak ditemukan.'); return; }
+    const fr = this.floors.get(npc.floor)!;
+    const spot = fr.nav[this.mode].nearestWalkable(npc.pos, 2.0, fr.reach[this.mode]);
+    if (!spot) { toast(`${npc.name} sedang di area yang tidak dapat dicapai pada mode ini.`); return; }
+    this.toggleDirectory(false);
+    this.transition(() => {
+      this.player.floor = npc.floor;
+      this.player.pos = spot;
+      this.applyFloorVisibility();
+      this.talkTo(id);
+    });
   }
 
   start() {
@@ -390,6 +471,8 @@ export class Game {
     this.materials.cutaway.uCamera.value.copy(this.rig.camera.position);
     this.sun.position.set(pv.x - 14, pv.y + 22, pv.z + 10);
     this.sun.target.position.copy(pv);
+    this.npcs.update(dt, this.player.floor, this.rig.camera, this.stage.clientWidth, this.stage.clientHeight, this.settings.reducedMotion);
+    $('sim-clock').textContent = this.npcs.sim.clockLabel();
     this.updateFocus(dt);
     this.updateRoom();
     this.updateLabels();
@@ -480,6 +563,8 @@ function infoDialog(title: string, nodes: (Node | string)[]) {
   $('dlg-info-body').replaceChildren(...nodes);
   openDialog($('dlg-info') as HTMLDialogElement);
 }
+
+function dlRows(rows: [string, string][]): HTMLElement { return dl(rows); }
 
 function dl(rows: [string, string][]): HTMLElement {
   const d = el('dl', { class: 'info-grid' });

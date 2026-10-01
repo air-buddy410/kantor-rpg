@@ -132,10 +132,12 @@ test.describe('world vertical slice', () => {
     await page.mouse.move(cx, cy);
     await page.mouse.down();
     await page.mouse.move(cx, cy - 50, { steps: 4 });
-    await page.waitForTimeout(1500);
+    // Hold until the CEO has covered distance; software WebGL frame rate varies.
+    await expect.poll(async () => {
+      const s = await state(page);
+      return Math.hypot(s.pos[0] - s0.pos[0], s.pos[1] - s0.pos[1]);
+    }, { timeout: 15_000 }).toBeGreaterThan(0.8);
     await page.mouse.up();
-    const s1 = await state(page);
-    expect(Math.hypot(s1.pos[0] - s0.pos[0], s1.pos[1] - s0.pos[1])).toBeGreaterThan(0.8);
     await shot(page, info, 'joystick');
   });
 

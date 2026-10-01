@@ -116,6 +116,8 @@ function boot() {
     mode: 'world',
     state: () => ({ floor: game.player.floor, pos: game.player.pos, facing: game.player.facing, room: game.roomId, visitor: game.settings.visitor, avatarPlaceholder: game.player.avatar.isPlaceholder, clips: game.player.avatar.clipNames, recoveries: game.player.stuckRecoveries, floorSwitches: game.floorSwitches }),
     stats: () => game.stats(),
+    npcs: () => game.npcs.sim.npcs.map((n) => ({ id: n.id, floor: n.floor, pos: n.pos, phase: n.phase, activity: n.activity, slot: n.slot, workStatus: n.workStatus })),
+    simTime: () => game.npcs.sim.time,
     renderer: game.rendererName,
     // Test/benchmark helper: drives the CEO with the normal movement code along
     // a navgrid path (no teleport). Resolves false when no path exists.

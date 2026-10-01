@@ -25,6 +25,11 @@ export class NpcLayer {
   constructor(private world: World, nav: Record<FloorId, NavGrid>, seed: number, labelHost: HTMLElement) {
     this.sim = new IdleSim(world, nav, { seed, startHour: 8.75, minutesPerSecond: 1 });
     this.group.name = 'npcs';
+    // Own layer: room labels are rebuilt on floor change and must not wipe these.
+    const host = document.createElement('div');
+    host.className = 'labels npc-labels';
+    host.setAttribute('aria-hidden', 'true');
+    labelHost.after(host);
     for (const npc of this.sim.npcs) {
       const actor = world.actors.find((a) => a.id === npc.id)!;
       const avatar = new Avatar(npc.name, 0x6f8fa6);
@@ -34,7 +39,7 @@ export class NpcLayer {
       const label = document.createElement('div');
       label.className = 'npc-label';
       label.setAttribute('aria-hidden', 'true');
-      labelHost.append(label);
+      host.append(label);
       this.views.set(npc.id, { avatar, prev: p.clone(), next: p.clone(), label, floor: npc.floor });
       this.group.add(avatar.root);
     }

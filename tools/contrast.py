@@ -32,7 +32,8 @@ PAIRS = [
     ("accent", "surface", 3.0, "garis prompt interaksi"),
 ]
 # Fixed colours used on the 3D overlay labels (not themed): text on label pill.
-FIXED = [("#1d2a23", "#fffaf0", 4.5, "label ruang"), ("#8a3b1c", "#fffaf0", 4.5, "label ruang terkunci")]
+FIXED = [("#1d2a23", "#fffaf0", 4.5, "label ruang"), ("#8a3b1c", "#fffaf0", 4.5, "label ruang terkunci"),
+         ("#fffaf0", "#1f4d3a", 4.5, "label NPC (latar hijau 92% opak)")]
 
 
 def block(css: str, selector_regex: str) -> dict:
@@ -75,7 +76,7 @@ def main() -> int:
         print(f"{'PASS' if row['ok'] else 'FAIL'} {row['theme']:5} {row['what']:32} {row['ratio']:5.2f} >= {row['need']}")
     if mismatch:
         print("FAIL media-query dark block differs from [data-theme=dark]:", mismatch)
-    out = ROOT / "docs" / "evidence" / "M1" / "contrast.json"
+    out = ROOT / "docs" / "evidence" / (sys.argv[1] if len(sys.argv) > 1 else "M1") / "contrast.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"pairs": rows, "mediaDarkMismatch": mismatch}, indent=1) + "\n", encoding="utf-8")
     return 1 if fails or mismatch else 0

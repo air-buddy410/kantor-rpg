@@ -9,6 +9,7 @@ export interface DirectoryHooks {
   go: (room: Room) => void;
   showRoom: (room: Room) => void;
   showPersona: (actorId: string) => void;
+  meet?: (actorId: string) => void;
   mode3d: boolean;
 }
 
@@ -61,7 +62,14 @@ export function renderDirectory(world: World, hooks: DirectoryHooks): void {
     li.append(el('span', {}, a.displayName), el('span', { class: 'meta' }, a.kind === 'player' ? `${a.role} · kamu` : `${a.role} · persona simulasi`));
     const btn = el('button', { type: 'button', class: 'btn', 'aria-label': `Profil ${a.displayName}` }, 'Profil');
     btn.addEventListener('click', () => hooks.showPersona(a.id));
-    li.append(btn);
+    const actions = el('span', { class: 'dir-actions' });
+    actions.append(btn);
+    if (hooks.mode3d && hooks.meet && a.kind === 'npc') {
+      const meet = el('button', { type: 'button', class: 'btn', 'aria-label': `Temui ${a.displayName}` }, 'Temui');
+      meet.addEventListener('click', () => hooks.meet!(a.id));
+      actions.append(meet);
+    }
+    li.append(actions);
     people.append(li);
   }
   body.append(people);
