@@ -122,8 +122,7 @@
       "docs/evidence/HARDENING/blender-characters-validate.txt",
       "docs/evidence/HARDENING/pytest-blender.txt",
       "assets/previews/character-expressions.png",
-      "assets/previews/character-lod.png",
-      "docs/evidence/HARDENING/e2e-all.txt"
+      "assets/previews/character-lod.png"
      ],
      "status": "terverifikasi"
     },
@@ -401,8 +400,7 @@
      ],
      "evidence": [
       "docs/evidence/HARDENING/pytest.txt",
-      "docs/evidence/HARDENING/vitest.txt",
-      "docs/evidence/HARDENING/e2e-all.txt"
+      "docs/evidence/HARDENING/vitest.txt"
      ],
      "status": "terverifikasi"
     }
@@ -518,7 +516,6 @@
      ],
      "evidence": [
       "docs/evidence/HARDENING/budget-desktop.json",
-      "docs/evidence/HARDENING/budget-tablet.json",
       "docs/evidence/HARDENING/budget-mobile.json"
      ],
      "status": "terverifikasi"
