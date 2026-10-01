@@ -4,6 +4,7 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { buildFixture, type Part } from './furniture';
+import { kitParts, type FurnitureKit } from './furniture-kit';
 import { CATEGORY_TINT, ENV, FINISH_COLOR } from './palette';
 import type { DerivedWalls, Fixture, FloorId, World } from './types';
 
@@ -102,6 +103,11 @@ function fixtureMatrix(fx: Fixture, elevation: number): THREE.Matrix4 {
   return m;
 }
 
+let activeKit: FurnitureKit | null = null;
+/** Furniture GLB families take over from the procedural kit once loaded. */
+export function setFurnitureKit(kit: FurnitureKit | null) { activeKit = kit; }
+export function furnitureKitActive(): boolean { return !!activeKit && activeKit.size > 0; }
+
 const textureLoader = new THREE.TextureLoader();
 const artCache = new Map<string, THREE.MeshLambertMaterial>();
 
@@ -145,9 +151,12 @@ export function buildFixturesInto(fixtures: Fixture[], floor: FloorId, elevation
   for (const fx of fixtures) {
     if (fx.floor !== floor) continue;
     let parts: Part[];
+    let lift = 0;
+    const entry = activeKit?.get(fx.type);
     if (fx.type === 'stair_u' && floor === 'L2') parts = stairVoid(fx);
+    else if (entry) { parts = kitParts(entry); lift = entry.mount; }
     else parts = buildFixture(fx);
-    const m = fixtureMatrix(fx, elevation);
+    const m = fixtureMatrix(fx, elevation + lift);
     for (const p of parts) batch.add(p.geo, p.color, m, p);
   }
   batch.build(materials, group, castShadow);
@@ -199,11 +208,17 @@ export function buildFloor(world: World, walls: DerivedWalls, floor: FloorId, ma
     const color = CATEGORY_TINT[room.category] ?? FINISH_COLOR[room.finish.floor] ?? 0xd8c8ab;
     batch.add(geo, color, id);
   }
+  const ops = walls.floors[floor].openings;
+  const meetsOpening = (axis: string, at: number, v: number) => ops.some((o) => o.axis === axis && Math.abs(o.at - at) < 1e-6 && (Math.abs(o.from - v) < 1e-6 || Math.abs(o.to - v) < 1e-6));
   for (const wall of walls.floors[floor].walls) {
     const t = wall.thickness;
-    const len = wall.to - wall.from + t;
+    // Square caps close T-junctions, but an end at a door jamb gets none so the
+    // visible opening equals the door width (same as the Blender shell).
+    const capA = meetsOpening(wall.axis, wall.at, wall.from) ? 0 : t / 2;
+    const capB = meetsOpening(wall.axis, wall.at, wall.to) ? 0 : t / 2;
+    const len = wall.to - wall.from + capA + capB;
     const hgt = wall.exterior ? WALL_HEIGHT_EXTERIOR : WALL_HEIGHT_INTERIOR;
-    const mid = (wall.from + wall.to) / 2;
+    const mid = (wall.from - capA + wall.to + capB) / 2;
     const geo = new THREE.BoxGeometry(wall.axis === 'x' ? len : t, hgt, wall.axis === 'x' ? t : len);
     const [cx, cy] = wall.axis === 'x' ? [mid, wall.at] : [wall.at, mid];
     geo.translate(cx, elev + hgt / 2, -cy);

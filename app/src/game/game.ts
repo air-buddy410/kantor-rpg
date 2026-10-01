@@ -1,6 +1,7 @@
 // Game orchestrator: renderer, floors, CEO, interactions and HUD wiring.
 import * as THREE from 'three';
-import { buildFixturesInto, buildFloor, MaterialCache, toThree, type FloorBuild } from '../world/build';
+import { buildFixturesInto, buildFloor, MaterialCache, setFurnitureKit, toThree, type FloorBuild } from '../world/build';
+import { loadFurnitureKit } from '../world/furniture-kit';
 import { withFixtures } from '../world/slots';
 import { NavGrid } from '../world/navgrid';
 import type { AccessMode, ActivitySlot, DerivedWalls, Fixture, FloorId, Room, Vec2, VerticalLink, World } from '../world/types';
@@ -133,6 +134,23 @@ export class Game {
   }
 
   /** Flood from the spawn across floors through vertical links, per access mode. */
+  furnitureKit: { loaded: number; failed: string[] } = { loaded: 0, failed: [] };
+
+  /** Rebuild only the furniture meshes (e.g. when the GLB kit arrives). */
+  refreshFixtureMeshes() {
+    for (const f of this.world.floors) {
+      const fr = this.floors.get(f.id)!;
+      const old = fr.build.fixtureGroup;
+      fr.build.group.remove(old);
+      old.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) m.geometry.dispose(); });
+      const g = new THREE.Group();
+      g.name = `fixtures-${f.id}`;
+      buildFixturesInto(this.world.fixtures, f.id, f.elevation, this.materials, g, !this.lowQuality);
+      fr.build.group.add(g);
+      fr.build.fixtureGroup = g;
+    }
+  }
+
   /** Swap the active fixture layout (Studio preview or publish): rebuild
    * furniture meshes, nav grids, reachability, interactables and NPC plans. */
   applyFixtures(fixtures: Fixture[]) {
@@ -517,6 +535,13 @@ export class Game {
   }
 
   start() {
+    // First paint uses the procedural kit; Blender furniture swaps in when loaded.
+    loadFurnitureKit(Object.keys(this.world.catalog)).then(({ kit, failed }) => {
+      setFurnitureKit(kit);
+      this.furnitureKit = { loaded: kit.size, failed };
+      this.refreshFixtureMeshes();
+      if (failed.length) console.warn(`furniture GLB missing, procedural fallback for: ${failed.join(', ')}`);
+    });
     this.player.avatar.load('assets/characters/ch-ceo.glb').then((ok) => {
       if (!ok) toast('Model karakter belum tersedia: memakai placeholder berlabel.', 4000);
       else this.onAvatarLoaded?.();
@@ -660,7 +685,12 @@ export class Game {
       triangles: info.render.triangles,
       geometries: info.memory.geometries,
       textures: info.memory.textures,
-      floorTriangles: Object.fromEntries([...this.floors].map(([k, v]) => [k, Math.round(v.build.triangles)])),
+      floorTriangles: Object.fromEntries([...this.floors].map(([k, v]) => {
+        let t = 0;
+        v.build.group.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { const g = m.geometry as THREE.BufferGeometry; t += (g.index ? g.index.count : g.attributes.position.count) / 3; } });
+        return [k, Math.round(t)];
+      })),
+      furnitureKit: this.furnitureKit,
     };
   }
 }

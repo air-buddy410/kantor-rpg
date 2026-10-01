@@ -2,6 +2,23 @@
 
 Log untuk supervisor (Max). Entri terbaru di atas. Status memakai DONE_Mx / NEEDS_INPUT / BLOCKED; angka test adalah hasil eksekusi, bukan target.
 
+## M3 (branch claude/kantor-rpg-m3)
+
+Status: DONE_M3 untuk authoring + deliverables yang dapat dibuat di cloud; native DWG BLOCKED; target draw call mobile belum terpenuhi (161 > 150 terukur); uji perangkat nyata belum.
+
+Hasil:
+- Office Studio: edit grid 0,25 m, validasi sama dengan validator Python (overlap, dinding, pintu, clearance, reachability, slot), undo/redo, draft, export/import terjaga, publish lokal + rollback 5 langkah, layout diterapkan live ke navgrid dan NPC.
+- Avatar Studio: preview 3D, 3 rambut x 3 palet dari GLB, simpan/reset/batal, fallback default.
+- Gambar: 15 sheet DXF + PDF vektor, paket gabungan 17 halaman (bookmark 15, page label = sheet id), paket A/I/ICT, register 15/15 produced; 69 test CAD lolos (dijalankan ulang pelaksana).
+- Blender: shell bangunan per lantai (1053 cek lolos), 54 keluarga furniture original (654 cek lolos), registry 63 aset; furniture GLB dipakai runtime dengan fallback prosedural.
+- Artwork poster original + poster proyek A3 berangka dari dataset.
+- Audit lisensi: runtime hanya three (MIT) dan Alegreya Sans (OFL); teks lisensi ikut build.
+- Rebuild: `tools/rebuild_all.sh`, `docs/REBUILD.md`; QA: `docs/QA-REPORT.md`.
+
+Bukti: vitest 36 lolos (`docs/evidence/M3/vitest.txt`; pesan commit 0a40760 menyebut 37, angka benar 36); E2E 100 lolos, 5 skip (`docs/evidence/M3/e2e-all.txt`); state test 12 lolos; pytest 219 lolos; safety 0 temuan; perf route container 3,2 FPS rata-rata, transfer awal 7,83 MB (`docs/evidence/M3/perf-route-desktop.json`).
+
+Known issues: draw call 161 di koridor L1 (karakter multi-material); LOD1/atlas belum; arah bukaan pintu dan jendela tidak ada di dataset; meja tanpa monitor di GLB (tinggi catalog); stool/beanbag tidak cocok clip duduk 0,45 m; posisi outlet ICT tidak ikut bila meja dipindah di Studio.
+
 ## M2 (branch claude/kantor-rpg-m2)
 
 Status: DONE_M2 untuk persona/idle/interaksi/aksesibilitas otomatis; uji perangkat nyata dan screen reader belum dilakukan.

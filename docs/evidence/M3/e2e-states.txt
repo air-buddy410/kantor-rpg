@@ -1,0 +1,17 @@
+
+Running 12 tests using 1 worker
+
+  ✓   1 [desktop] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (1.9s)
+  ✓   2 [desktop] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (4.0s)
+  ✓   3 [desktop] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (4.9s)
+  ✓   4 [desktop] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (4.0s)
+  ✓   5 [tablet] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (2.5s)
+  ✓   6 [tablet] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (4.5s)
+  ✓   7 [tablet] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (3.7s)
+  ✓   8 [tablet] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (3.3s)
+  ✓   9 [mobile] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (2.0s)
+  ✓  10 [mobile] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (2.6s)
+  ✓  11 [mobile] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (2.6s)
+  ✓  12 [mobile] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (2.3s)
+
+  12 passed (48.0s)
