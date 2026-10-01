@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+.cache/
+venv/
+.venv/
+playwright-report/
+test-results/
+private/
+*.log

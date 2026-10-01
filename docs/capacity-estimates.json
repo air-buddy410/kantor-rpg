@@ -1,0 +1,9 @@
+{
+  "status": "asumsi/target, bukan observed usage",
+  "gross_m2": 1536,
+  "tile_baseline_cells": 3388,
+  "snapshot_bytes_per_second_40_viewers": 98304.0,
+  "snapshot_bytes_per_second_200_viewers": 491520.0,
+  "first_25_MB_transfer_seconds_at_10_Mbps": 20.0,
+  "maintenance_hours_proposal_monthly": 6
+}
