@@ -187,3 +187,61 @@ def room_at(world, floor_id, pt):
         if r["floor"] == floor_id and point_in_polygon(pt, r["polygon"]):
             return r["id"]
     return None
+
+
+LEAF_THICK = 0.04  # same as blender/building/building_spec.py
+
+
+def door_leaves(world, floor_id):
+    """Door leaves of one floor, derived from world.json swing data (P03).
+
+    The single derivation used by the runtime (rendering and the navgrid, via
+    design/derived/walls.json) and checked against the Blender LEAF-* nodes.
+    hinge: plan point on the hinge jamb, on the leaf centre line flush with
+    the wall face of the side the leaf opens into (Blender rule). closedDeg /
+    openDeg: plan direction (deg, 0 = east, CCW) from the hinge to the leaf's
+    free edge when closed / fully open. openRect: the plan rectangle an open
+    leaf occupies; it is solid for navigation because the swing must stay
+    clear anyway (validator door_swing_clear_of_fixtures).
+    """
+    floor = next(f for f in world["floors"] if f["id"] == floor_id)
+    xs = [p[0] for p in floor["envelope"]]
+    ys = [p[1] for p in floor["envelope"]]
+    rooms = room_by_id(world)
+    out = []
+    for d in world["doors"]:
+        sw = d.get("swing")
+        if d["floor"] != floor_id or not sw:
+            continue
+        ax = d["wallAxis"]
+        c = d["center"][0] if ax == "x" else d["center"][1]
+        at = d["center"][1] if ax == "x" else d["center"][0]
+        lo, hi = c - d["width"] / 2, c + d["width"] / 2
+        exterior = (ax == "x" and at in (min(ys), max(ys))) or (ax == "y" and at in (min(xs), max(xs)))
+        t = world["building"]["wall"]["exterior" if exterior else "interior"]
+        ref = sw["into"] if sw["into"] != "EXT" else next(r for r in d["rooms"] if r != "EXT")
+        probe = (c, at + 0.05) if ax == "x" else (at + 0.05, c)
+        plus = point_in_polygon(probe, rooms[ref]["polygon"])
+        side = (1 if plus else -1) * (1 if sw["into"] != "EXT" else -1)
+        spans = [(lo, (lo + hi) / 2), (hi, (lo + hi) / 2)] if sw["hinge"] == "both" else \
+            [(lo, hi)] if sw["hinge"] == "low" else [(hi, lo)]
+        v = at + side * (t / 2 - LEAF_THICK / 2)
+        for i, (u_h, u_far) in enumerate(spans, start=1):
+            dirn = 1 if u_far > u_h else -1
+            length = abs(u_far - u_h)
+            if ax == "x":
+                hinge = [u_h, v]
+                closed_deg = 0.0 if dirn > 0 else 180.0
+                open_deg = 90.0 if side > 0 else -90.0
+                rect = [u_h - LEAF_THICK / 2, min(v, v + side * length), u_h + LEAF_THICK / 2, max(v, v + side * length)]
+            else:
+                hinge = [v, u_h]
+                closed_deg = 90.0 if dirn > 0 else -90.0
+                open_deg = 0.0 if side > 0 else 180.0
+                rect = [min(v, v + side * length), u_h - LEAF_THICK / 2, max(v, v + side * length), u_h + LEAF_THICK / 2]
+            out.append({"id": f"LEAF-{d['id']}-{i}", "door": d["id"], "into": sw["into"],
+                        "restricted": d["access"] == "restricted",
+                        "hinge": [round(hinge[0], 4), round(hinge[1], 4)], "length": round(length, 4),
+                        "closedDeg": closed_deg, "openDeg": open_deg,
+                        "openRect": [round(x, 4) for x in rect]})
+    return out

@@ -53,6 +53,9 @@ export class NavGrid {
       this.fillRect(openingRect(op, world.building.wall.exterior), locked ? 1 : 0);
     }
     for (const fx of fixtures) if (fx.floor === floor && fx.collider) this.fillFixture(fx);
+    // Open door leaves are solid (same rule as tools/kantor/nav.py): a 4 cm
+    // leaf is thinner than a cell, so every touched cell is filled.
+    for (const leaf of fw.leaves ?? []) this.fillRectTouching(leaf.openRect);
     this.blocked = this.inflate(RADIUS);
   }
 
@@ -64,6 +67,14 @@ export class NavGrid {
     const a = Math.max(0, Math.floor((lo - origin) / CELL - 0.5));
     const b = Math.min(n - 1, Math.ceil((hi - origin) / CELL - 0.5));
     return [a, b];
+  }
+
+  private fillRectTouching([x0, y0, x1, y1]: Rect): void {
+    const ia = Math.max(0, Math.floor((x0 - this.x0) / CELL));
+    const ib = Math.min(this.w - 1, Math.ceil((x1 - this.x0) / CELL) - 1);
+    const ja = Math.max(0, Math.floor((y0 - this.y0) / CELL));
+    const jb = Math.min(this.h - 1, Math.ceil((y1 - this.y0) / CELL) - 1);
+    for (let j = ja; j <= jb; j++) for (let i = ia; i <= ib; i++) this.raw[j * this.w + i] = 1;
   }
 
   private fillRect([x0, y0, x1, y1]: Rect, value: number): void {

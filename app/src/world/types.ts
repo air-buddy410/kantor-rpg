@@ -56,4 +56,9 @@ export interface World {
 }
 export interface WallPiece { axis: 'x' | 'y'; at: number; from: number; to: number; thickness: number; exterior: boolean }
 export interface Opening { door: string; axis: 'x' | 'y'; at: number; from: number; to: number; type: string; access: string; exit: boolean }
-export interface DerivedWalls { worldRevision: string; floors: Record<FloorId, { walls: WallPiece[]; openings: Opening[] }> }
+/** Door leaf derived by tools/kantor/geometry.py::door_leaves (hinge on the wall face of the 'into' side). */
+export interface DoorLeaf {
+  id: string; door: string; into: string; restricted: boolean; hinge: Vec2; length: number;
+  closedDeg: number; openDeg: number; openRect: [number, number, number, number];
+}
+export interface DerivedWalls { worldRevision: string; floors: Record<FloorId, { walls: WallPiece[]; openings: Opening[]; leaves: DoorLeaf[] }> }

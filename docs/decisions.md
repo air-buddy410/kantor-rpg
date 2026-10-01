@@ -35,5 +35,8 @@ Gym L2 (14..23 x 18,5..24) tetap provisional. Di bawahnya studio Kevin dan area 
 ## ADR-011 Q-04 provisional: harness performa reproducible, FPS perangkat belum diuji
 Angka performa berasal dari harness `app/src/perf/harness.ts` + `tests/e2e/perf.spec.ts` dengan rute dan seed tetap, dijalankan di container SwiftShader tanpa GPU. Angka itu bukti reproducible metodologi dan anggaran draw call/triangle/transfer, bukan FPS perangkat. Status target FPS desktop/mobile tetap "belum diuji" sampai Budi/Max menjalankan harness yang sama di perangkat yang disebut (runbook di `docs/QA-REPORT.md`).
 
+## ADR-012 Daun pintu runtime: buka otomatis, posisi terbuka solid
+Daun pintu diturunkan sekali (`tools/kantor/geometry.py::door_leaves`, disimpan di `design/derived/walls.json`) dan dipakai runtime, navgrid Python dan TS, serta diuji terhadap engsel node `LEAF-*` Blender dan busur CAD. Pintu membuka sendiri bila ada agen dalam 1,8 m dari pusat pintu (0,3 s), pintu terbatas tetap tertutup pada mode visitor. Posisi daun terbuka diperlakukan solid di navgrid karena area ayun memang wajib bebas (validator `door_swing_clear_of_fixtures`, Studio memakai cek yang sama). Daun tertutup tidak dimasukkan ke navgrid: aturan waktu menjamin daun terbuka penuh sebelum agen masuk ambang (diuji soak 20 menit). Alasan: tanpa kunci/kartu akses pada demo, pintu otomatis paling sederhana dan tidak bisa mengurung NPC. Membatalkan: hapus pengisian `openRect` di kedua navgrid dan ekspor ulang.
+
 ## Batas yang tidak diputuskan pelaksana
 Lahan, lokasi, luas sah, okupansi manusia, biaya, hosting, integrasi Hermes, client benchmark, logo. Pertanyaan terbuka Q-01 sampai Q-04 ada di PRD v0.2 bagian 2.

@@ -12,6 +12,8 @@ import { CameraRig } from './camera';
 import { Input } from './input';
 import { Player } from './player';
 import { ACTIVITY_LABEL, NpcLayer } from './npcs';
+import { DoorController } from '../world/doors';
+import { DoorMeshes } from '../world/door-meshes';
 import dialogueJson from '@design/dialogue.json';
 
 const DIALOGUE = dialogueJson as { personas: Record<string, string[]> };
@@ -53,6 +55,8 @@ export class Game {
   onFrame: ((dt: number) => void) | null = null;
   autopilot: { dir: Vec2; run: boolean } | null = null;
   npcs!: NpcLayer;
+  doors!: DoorController;
+  private doorMeshes!: DoorMeshes;
   studioOpen = false;
   onAvatarLoaded: (() => void) | null = null;
   studioFocus: THREE.Vector3 | null = null;
@@ -130,6 +134,8 @@ export class Game {
       const nav = { staff: new NavGrid(this.world, this.walls, f.id, this.world.fixtures, 'staff'), visitor: new NavGrid(this.world, this.walls, f.id, this.world.fixtures, 'visitor') };
       this.floors.set(f.id, { build, nav, reach: { staff: new Uint8Array(0), visitor: new Uint8Array(0) } });
     }
+    this.doors = new DoorController(this.world, this.walls);
+    this.doorMeshes = new DoorMeshes(this.world, this.doors, this.materials, new Map([...this.floors].map(([k, v]) => [k, v.build.group])));
     this.computeReach();
   }
 
@@ -607,6 +613,9 @@ export class Game {
     // Seated CEO (activity) is not in the way; standing or walking CEO is.
     this.npcs.sim.setPlayer(this.activity ? null : this.player.floor, this.player.pos);
     this.npcs.update(dt, this.player.floor, this.rig.camera, this.stage.clientWidth, this.stage.clientHeight, this.settings.reducedMotion, this.player.pos);
+    const agents = [{ floor: this.player.floor, pos: this.player.pos }, ...this.npcs.sim.npcs.map((n) => ({ floor: n.floor, pos: n.pos }))];
+    this.doors.update(dt, agents, this.settings.visitor, this.settings.reducedMotion);
+    this.doorMeshes.sync(this.world);
     $('sim-clock').textContent = this.npcs.sim.clockLabel();
     this.updateFocus(dt);
     this.updateRoom();

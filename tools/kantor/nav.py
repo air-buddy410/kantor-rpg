@@ -14,7 +14,7 @@ from __future__ import annotations
 import math
 from collections import deque
 
-from .geometry import derive_walls, opening_rect, point_in_fixture, wall_rect
+from .geometry import derive_walls, door_leaves, opening_rect, point_in_fixture, wall_rect
 
 CELL = 0.1
 RADIUS = 0.25
@@ -43,6 +43,10 @@ class NavGrid:
             if fx["floor"] != floor_id or not fx.get("collider"):
                 continue
             self._fill_fixture(raw, fx)
+        # Open door leaves (R2) are solid. A 4 cm leaf is thinner than a cell,
+        # so every cell the rectangle touches is filled, not only centres.
+        for leaf in door_leaves(world, floor_id):
+            self._fill_rect_touching(raw, leaf["openRect"])
         self.raw = raw
         self.blocked = self._inflate(raw, radius)
 
@@ -67,6 +71,16 @@ class NavGrid:
                 cx = self.x0 + (i + 0.5) * self.cell
                 if x0 <= cx <= x1:
                     grid[row + i] = value
+
+    def _fill_rect_touching(self, grid, rect):
+        x0, y0, x1, y1 = rect
+        ia = max(0, math.floor((x0 - self.x0) / self.cell))
+        ib = min(self.w - 1, math.ceil((x1 - self.x0) / self.cell) - 1)
+        ja = max(0, math.floor((y0 - self.y0) / self.cell))
+        jb = min(self.h - 1, math.ceil((y1 - self.y0) / self.cell) - 1)
+        for j in range(ja, jb + 1):
+            for i in range(ia, ib + 1):
+                grid[j * self.w + i] = 1
 
     def _fill_fixture(self, grid, fx):
         w, d = fx["size"][:2]

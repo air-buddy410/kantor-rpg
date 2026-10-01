@@ -138,6 +138,7 @@ function boot() {
     stats: () => game.stats(),
     studioOpen: () => studio.isOpen,
     npcFace: (id: string) => game.npcs.face(id),
+    doors: () => (['L1', 'L2'] as const).flatMap((f) => game.doors.leaves(f).map((l) => ({ id: l.id, door: l.door, floor: f, openness: game.doors.openness(l.id) }))),
     studioFixtures: () => studio.editor?.fixtures.length ?? null,
     studioOutlet: (fixtureId: string) => studio.editor?.outlets().find((o) => o.serves === fixtureId) ?? null,
     fixtures: () => game.world.fixtures.map((f) => ({ id: f.id, pos: f.pos, rot: f.rot, floor: f.floor, room: f.room })),

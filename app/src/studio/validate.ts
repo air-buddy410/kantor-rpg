@@ -7,7 +7,7 @@ import { NavGrid } from '../world/navgrid';
 import { withFixtures } from '../world/slots';
 import type { DerivedWalls, Fixture, FloorId, Vec2, World } from '../world/types';
 
-export interface Issue { code: 'outside' | 'wall' | 'overlap' | 'door' | 'clearance' | 'unreachable' | 'slot' | 'link'; fixture?: string; message: string }
+export interface Issue { code: 'outside' | 'wall' | 'overlap' | 'door' | 'swing' | 'clearance' | 'unreachable' | 'slot' | 'link'; fixture?: string; message: string }
 
 const TOL = 0.011;
 
@@ -104,6 +104,22 @@ export function geometryIssues(world: World, fixtures: Fixture[], only?: Set<str
     const h = d.width / 2;
     const zone = d.wallAxis === 'x' ? rectPoly(cx - h, cy - 0.9, cx + h, cy + 0.9) : rectPoly(cx - 0.9, cy - h, cx + 0.9, cy + h);
     for (const fx of cols) if (fx.floor === d.floor && want(fx.id) && overlaps(zone, corners(fx))) issues.push({ code: 'door', fixture: fx.id, message: `${fx.id} menghalangi pintu ${d.id}` });
+    // Swing square of each leaf on the 'into' side, as tools/validate_world.py
+    // swing_boxes: the open leaf is solid at runtime, so nothing may stand there.
+    if (d.swing && d.swing.into !== 'EXT') {
+      const room = world.rooms.find((r) => r.id === d.swing!.into);
+      const along = d.wallAxis === 'x' ? cx : cy;
+      const at = d.wallAxis === 'x' ? cy : cx;
+      const probe: Vec2 = d.wallAxis === 'x' ? [along, at + 0.05] : [at + 0.05, along];
+      const sign = room && pointInPoly(probe, room.polygon) ? 1 : -1;
+      const lo = along - h;
+      const spans: [number, number][] = d.swing.hinge === 'both' ? [[lo, along], [along, along + h]] : [[lo, along + h]];
+      for (const [u0, u1] of spans) {
+        const [v0, v1] = [Math.min(at, at + sign * (u1 - u0)), Math.max(at, at + sign * (u1 - u0))];
+        const box = d.wallAxis === 'x' ? rectPoly(u0, v0, u1, v1) : rectPoly(v0, u0, v1, u1);
+        for (const fx of cols) if (fx.floor === d.floor && want(fx.id) && overlaps(box, corners(fx))) issues.push({ code: 'swing', fixture: fx.id, message: `${fx.id} menghalangi ayunan daun pintu ${d.id}` });
+      }
+    }
   }
   for (const fx of fixtures) {
     const c = (world.catalog[fx.type] as unknown as { clearance?: { cue?: number; playing?: [number, number]; front?: number; rear?: number } }).clearance;

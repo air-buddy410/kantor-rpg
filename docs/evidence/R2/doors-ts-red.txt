@@ -1,0 +1,25 @@
+ FAIL  tests/unit/navgrid.test.ts > navgrid parity with tools/kantor/nav.py > L2 visitor walkable count and probes match Python
+AssertionError: expected 50546 to be 49741 // Object.is equality
+
+- Expected
++ Received
+
+- 49741
++ 50546
+
+ ❯ tests/unit/navgrid.test.ts:17:35
+     15|         const g = new NavGrid(W, WALLS, floor, W.fixtures, mode);
+     16|         const key = `${floor}_${mode}` as keyof typeof counts.counts;
+     17|         expect(g.walkableCount()).toBe(counts.counts[key]);
+       |                                   ^
+     18|         let probes = '';
+     19|         for (let k = 0; k < g.w * g.h; k += 997) probes += String(g.bl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 3 passed (7)
+   Start at  23:49:30
+   Duration  1.35s (transform 61%, import 19%, tests 18%, worker 2%)
+
