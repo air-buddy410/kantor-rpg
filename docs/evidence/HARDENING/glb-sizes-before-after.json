@@ -1,0 +1,250 @@
+{
+ "note": "before = GLBs at git f35a7e9 (start of this task, measured from the files on disk before any rebuild); after = this hardening build. LOD0 visible = body + default hair + held prop.",
+ "characters": {
+  "CH-CEO": {
+   "bytes": [
+    909716,
+    1205812
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    17,
+    2
+   ],
+   "lod0VisibleTris": [
+    14788,
+    14860
+   ],
+   "lod1Tris": [
+    null,
+    4800
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 16,
+    "hair_short_tuft": 1,
+    "hair_spiky_soft": 1,
+    "hair_swept": 1
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_short_tuft": 1,
+    "hair_spiky_soft": 1,
+    "hair_swept": 1,
+    "lod1": 1
+   }
+  },
+  "CH-SUPERVISOR": {
+   "bytes": [
+    720136,
+    989132
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    17,
+    2
+   ],
+   "lod0VisibleTris": [
+    14884,
+    14956
+   ],
+   "lod1Tris": [
+    null,
+    4800
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 16,
+    "hair_swept": 1
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_swept": 1,
+    "lod1": 1
+   }
+  },
+  "CH-ARCHITECT": {
+   "bytes": [
+    676244,
+    936748
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    18,
+    2
+   ],
+   "lod0VisibleTris": [
+    13300,
+    13372
+   ],
+   "lod1Tris": [
+    null,
+    4799
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 16,
+    "hair_bun": 2
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_bun": 1,
+    "lod1": 1
+   }
+  },
+  "CH-ICTSPEC": {
+   "bytes": [
+    703484,
+    970436
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    17,
+    3
+   ],
+   "lod0VisibleTris": [
+    14292,
+    14364
+   ],
+   "lod1Tris": [
+    null,
+    4800
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 14,
+    "hair_bob": 1,
+    "prop_tablet": 2
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_bob": 1,
+    "lod1": 1,
+    "prop_tablet": 1
+   }
+  },
+  "CH-NETINSTALL": {
+   "bytes": [
+    692452,
+    956716
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    19,
+    2
+   ],
+   "lod0VisibleTris": [
+    13736,
+    13808
+   ],
+   "lod1Tris": [
+    null,
+    4799
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 16,
+    "hair_cap": 3
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_cap": 1,
+    "lod1": 1
+   }
+  },
+  "CH-VISUAL": {
+   "bytes": [
+    710520,
+    980816
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    19,
+    3
+   ],
+   "lod0VisibleTris": [
+    14512,
+    14584
+   ],
+   "lod1Tris": [
+    null,
+    4800
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 16,
+    "hair_spiky_soft": 1,
+    "prop_sketchbook": 2
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_spiky_soft": 1,
+    "lod1": 1,
+    "prop_sketchbook": 1
+   }
+  },
+  "CH-QA": {
+   "bytes": [
+    723692,
+    994288
+   ],
+   "materials": [
+    16,
+    1
+   ],
+   "lod0VisiblePrimitives": [
+    18,
+    3
+   ],
+   "lod0VisibleTris": [
+    14912,
+    14984
+   ],
+   "lod1Tris": [
+    null,
+    4799
+   ],
+   "perNodePrimitivesBefore": {
+    "body": 14,
+    "hair_side_part": 1,
+    "prop_clipboard": 3
+   },
+   "perNodePrimitivesAfter": {
+    "body": 1,
+    "hair_side_part": 1,
+    "lod1": 1,
+    "prop_clipboard": 1
+   }
+  }
+ },
+ "building": {
+  "L1": {
+   "bytes": [
+    202300,
+    370932
+   ]
+  },
+  "L2": {
+   "bytes": [
+    160436,
+    308492
+   ]
+  }
+ },
+ "sevenCharactersLod0DrawCalls": [
+  125,
+  17
+ ]
+}

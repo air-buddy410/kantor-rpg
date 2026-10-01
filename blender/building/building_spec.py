@@ -21,12 +21,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tools.kantor.geometry import derive_walls, fixture_aabb  # noqa: E402
+from tools.kantor.geometry import derive_walls, fixture_aabb, point_in_polygon  # noqa: E402
 
 WORLD = ROOT / "design" / "world.json"
 WALLS = ROOT / "design" / "derived" / "walls.json"
 DOOR_HEAD = 2.1
 CAP_RECESS = 0.002
+# concept window and door leaf dimensions (metres); not joinery details
+FRAME_FACE = 0.05     # frame bar width seen on the facade
+FRAME_DEPTH = 0.08    # frame depth across the wall
+PANE_THICK = 0.012
+MULLION_MIN_WIDTH = 1.2  # wider windows get one centre mullion
+LEAF_THICK = 0.04
+LEAF_GAP = 0.003      # clearance at each vertical leaf edge
+LEAF_FLOOR = 0.02     # leaf bottom: top of the threshold plate
+LEAF_HEAD_GAP = 0.01  # gap under the lintel
 STAIR_RISERS = 24
 EPS = 1e-6
 
@@ -130,6 +139,155 @@ def opening_boxes(world, walls, fid):
     return out
 
 
+def _along(axis, center):
+    return center[0] if axis == "x" else center[1]
+
+
+def window_specs(world, fid):
+    """Concept windows of one floor (world.json windows) in world metres.
+
+    u0/u1: span along the wall axis; z0/z1: absolute sill/head; at: wall line;
+    thickness: the exterior wall the window sits in.
+    """
+    fi = floor_info(world, fid)
+    t = world["building"]["wall"]["exterior"]
+    out = []
+    for w in world.get("windows", []):
+        if w["floor"] != fid:
+            continue
+        c = _along(w["wallAxis"], w["center"])
+        out.append({"id": w["id"], "room": w["room"], "axis": w["wallAxis"], "at": w["at"], "center": c,
+                    "u0": c - w["width"] / 2, "u1": c + w["width"] / 2, "width": w["width"],
+                    "sill": w["sill"], "head": w["head"], "z0": fi["elevation"] + w["sill"],
+                    "z1": fi["elevation"] + w["head"], "glazing": w["glazing"], "thickness": t})
+    return out
+
+
+def box_from_axis(axis, at, u0, u1, v0, v1, z0, z1):
+    """Axis-aligned box from along-wall (u) and across-wall (v, offsets from the wall line) ranges."""
+    if axis == "x":
+        return {"x0": u0, "x1": u1, "y0": at + v0, "y1": at + v1, "z0": z0, "z1": z1}
+    return {"x0": at + v0, "x1": at + v1, "y0": u0, "y1": u1, "z0": z0, "z1": z1}
+
+
+def wall_windows(wb, windows):
+    """Windows cut into one wall box (same axis and line, span inside the box)."""
+    at = (wb["y0"] + wb["y1"]) / 2 if wb["axis"] == "x" else (wb["x0"] + wb["x1"]) / 2
+    lo, hi = (wb["x0"], wb["x1"]) if wb["axis"] == "x" else (wb["y0"], wb["y1"])
+    return [w for w in windows if w["axis"] == wb["axis"] and abs(w["at"] - at) < 1e-6
+            and w["u0"] > lo + EPS and w["u1"] < hi - EPS]
+
+
+def wall_parts(wb, windows):
+    """Split a wall box around its windows: full-height piers, plus a below-sill
+    and an above-head part over each window span. Returns [(box, full_height)];
+    nothing of the wall remains between sill and head inside a window span."""
+    cut = sorted(wall_windows(wb, windows), key=lambda w: w["u0"])
+    if not cut:
+        return [(dict(wb), True)]
+    ax = wb["axis"]
+    lo, hi = (wb["x0"], wb["x1"]) if ax == "x" else (wb["y0"], wb["y1"])
+    v0, v1 = (wb["y0"], wb["y1"]) if ax == "x" else (wb["x0"], wb["x1"])
+
+    def part(u0, u1, z0, z1):
+        if ax == "x":
+            return {"x0": u0, "x1": u1, "y0": v0, "y1": v1, "z0": z0, "z1": z1}
+        return {"x0": v0, "x1": v1, "y0": u0, "y1": u1, "z0": z0, "z1": z1}
+    out, u = [], lo
+    for w in cut:
+        if w["u0"] > u + EPS:
+            out.append((part(u, w["u0"], wb["z0"], wb["z1"]), True))
+        out.append((part(w["u0"], w["u1"], wb["z0"], w["z0"]), False))
+        out.append((part(w["u0"], w["u1"], w["z1"], wb["z1"]), True))
+        u = w["u1"]
+    if hi > u + EPS:
+        out.append((part(u, hi, wb["z0"], wb["z1"]), True))
+    return out
+
+
+def window_parts(w):
+    """Pane (exactly the opening) and frame bars, as boxes, centred on the wall line."""
+    ax, at = w["axis"], w["at"]
+    pane = box_from_axis(ax, at, w["u0"], w["u1"], -PANE_THICK / 2, PANE_THICK / 2, w["z0"], w["z1"])
+    f, d = FRAME_FACE, FRAME_DEPTH / 2
+    bars = [box_from_axis(ax, at, w["u0"], w["u0"] + f, -d, d, w["z0"], w["z1"]),
+            box_from_axis(ax, at, w["u1"] - f, w["u1"], -d, d, w["z0"], w["z1"]),
+            box_from_axis(ax, at, w["u0"] + f, w["u1"] - f, -d, d, w["z0"], w["z0"] + f),
+            box_from_axis(ax, at, w["u0"] + f, w["u1"] - f, -d, d, w["z1"] - f, w["z1"])]
+    if w["width"] > MULLION_MIN_WIDTH:
+        c = w["center"]
+        bars.append(box_from_axis(ax, at, c - f / 3, c + f / 3, -d * 0.8, d * 0.8, w["z0"] + f, w["z1"] - f))
+    return pane, bars
+
+
+def _room_side(world, d, room_id):
+    """+1 when room_id lies on the + side of the door's wall line, else -1."""
+    room = next(r for r in world["rooms"] if r["id"] == room_id)
+    lo, hi = d["center"][0 if d["wallAxis"] == "x" else 1] - d["width"] / 2, \
+        d["center"][0 if d["wallAxis"] == "x" else 1] + d["width"] / 2
+    at = d["center"][1] if d["wallAxis"] == "x" else d["center"][0]
+    mid = (lo + hi) / 2
+    probe = (mid, at + 0.05) if d["wallAxis"] == "x" else (at + 0.05, mid)
+    return 1 if point_in_polygon(probe, room["polygon"]) else -1
+
+
+def door_leaves(world, fid):
+    """Swing door leaves in the closed position, origin on the hinge jamb.
+
+    hinge low/high = jamb at the lower/higher coordinate along the wall axis,
+    both = two half-width leaves (-1 low, -2 high). The leaf lies flush with the
+    wall face on the side it opens into; open_deg is the rotation about the
+    vertical axis through the origin (Blender +Z = glTF +Y, counter-clockwise
+    seen from above) that swings it 90 degrees into that side.
+    """
+    fi = floor_info(world, fid)
+    out = []
+    for d in world["doors"]:
+        sw = d.get("swing")
+        if d["floor"] != fid or not sw:
+            continue
+        ax = d["wallAxis"]
+        c = _along(ax, d["center"])
+        lo, hi = c - d["width"] / 2, c + d["width"] / 2
+        at = d["center"][1] if ax == "x" else d["center"][0]
+        exterior = (ax == "x" and at in (fi["y0"], fi["y1"])) or (ax == "y" and at in (fi["x0"], fi["x1"]))
+        t = world["building"]["wall"]["exterior" if exterior else "interior"]
+        if sw["into"] == "EXT":
+            other = next(r for r in d["rooms"] if r != "EXT")
+            side = -_room_side(world, d, other)
+        else:
+            side = _room_side(world, d, sw["into"])
+        leaves = [("low", lo, (lo + hi) / 2), ("high", hi, (lo + hi) / 2)] if sw["hinge"] == "both" else             [("low", lo, hi)] if sw["hinge"] == "low" else [("high", hi, lo)]
+        v = side * (t / 2 - LEAF_THICK / 2)  # leaf centre line, flush with the face it opens toward
+        for i, (hinge, u_h, u_far) in enumerate(leaves, start=1):
+            dirn = 1 if u_far > u_h else -1
+            # rotating the closed leaf (pointing along +/-u) by open_deg about +Z
+            # makes it point to the 'into' side; derived per axis in the docstring test
+            if ax == "x":
+                open_deg = 90.0 * side * dirn
+                origin = (u_h, at + v)
+            else:
+                open_deg = -90.0 * side * dirn
+                origin = (at + v, u_h)
+            out.append({"id": f"LEAF-{d['id']}-{i}", "door": d["id"], "leaf": i, "hinge": hinge, "into": sw["into"],
+                        "axis": ax, "at": at, "u_hinge": u_h, "u_far": u_far, "dir": dirn, "side": side,
+                        "origin": (origin[0], origin[1], fi["elevation"]), "width": abs(u_far - u_h),
+                        "thickness": t, "open_deg": open_deg,
+                        "z0": fi["elevation"] + LEAF_FLOOR, "z1": fi["elevation"] + DOOR_HEAD - LEAF_HEAD_GAP})
+    return out
+
+
+def leaf_local_box(leaf):
+    """Leaf box in its own frame (origin on the hinge, z from the floor)."""
+    u0 = LEAF_GAP if leaf["dir"] > 0 else -(leaf["width"] - LEAF_GAP)
+    u1 = leaf["width"] - LEAF_GAP if leaf["dir"] > 0 else -LEAF_GAP
+    h0, h1 = LEAF_FLOOR, DOOR_HEAD - LEAF_HEAD_GAP
+    hl = LEAF_THICK / 2
+    if leaf["axis"] == "x":
+        return {"x0": u0, "x1": u1, "y0": -hl, "y1": hl, "z0": h0, "z1": h1}
+    return {"x0": -hl, "x1": hl, "y0": u0, "y1": u1, "z0": h0, "z1": h1}
+
+
 def vertical_fixtures(world, fid):
     return [f for f in world["fixtures"] if f["floor"] == fid and f["type"] in ("stair_u", "lift")]
 
@@ -200,6 +358,8 @@ def building_expectations(world, walls):
             "openings": opening_boxes(world, walls, fid),
             "slab": slab_spec(world, fid),
             "rooms": [r["id"] for r in world["rooms"] if r["floor"] == fid],
+            "windows": window_specs(world, fid),
+            "leaves": door_leaves(world, fid),
             "vertical": [{"id": fx["id"], "type": fx["type"], "pos": fx["pos"], "rot": fx["rot"], "size": fx["size"]}
                          for fx in vertical_fixtures(world, fid)],
         }

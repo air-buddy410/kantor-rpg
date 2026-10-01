@@ -13,6 +13,9 @@ export const ACTIVITY_LABEL: Record<string, string> = {
 };
 
 const STEP = 0.1;
+// Personas further than this from the CEO (plan metres) render their LOD1
+// mesh: at the default 3/4 camera they cover a few dozen pixels there.
+export const LOD1_DISTANCE = 8;
 
 interface View { avatar: Avatar; prev: THREE.Vector3; next: THREE.Vector3; label: HTMLElement; floor: FloorId }
 
@@ -73,7 +76,7 @@ export class NpcLayer {
     }
   }
 
-  update(dt: number, playerFloor: FloorId, camera: THREE.Camera, w: number, h: number, reducedMotion: boolean): void {
+  update(dt: number, playerFloor: FloorId, camera: THREE.Camera, w: number, h: number, reducedMotion: boolean, playerPos?: [number, number]): void {
     this.acc += dt;
     let steps = 0;
     while (this.acc >= STEP && steps < 5) {
@@ -98,6 +101,8 @@ export class NpcLayer {
       v.avatar.root.visible = visible;
       v.avatar.root.position.lerpVectors(v.prev, v.next, t);
       v.avatar.setFacing(npc.facing);
+      if (playerPos) v.avatar.setLod(Math.hypot(npc.pos[0] - playerPos[0], npc.pos[1] - playerPos[1]) > LOD1_DISTANCE ? 1 : 0);
+      v.avatar.talking = npc.phase === 'paused';
       v.avatar.play(this.clipFor(npc));
       v.avatar.update(dt, npc.phase === 'travel' ? 1 : 0, reducedMotion);
       if (!visible) { v.label.style.opacity = '0'; continue; }
@@ -109,6 +114,19 @@ export class NpcLayer {
         v.label.style.transform = `translate(-50%, -100%) translate(${((s.x + 1) / 2) * w}px, ${((1 - s.y) / 2) * h}px)`;
       }
     }
+  }
+
+  face(id: string): { expressions: Record<string, number>; lod: number } | null {
+    const v = this.views.get(id);
+    return v ? { expressions: v.avatar.expressions(), lod: v.avatar.lodLevel } : null;
+  }
+
+  /** Count of visible personas per LOD level (perf harness / tests). */
+  lodCounts(): { lod0: number; lod1: number } {
+    let lod0 = 0;
+    let lod1 = 0;
+    for (const v of this.views.values()) if (v.avatar.root.visible) { if (v.avatar.lodLevel === 1) lod1++; else lod0++; }
+    return { lod0, lod1 };
   }
 
   nearest(floor: FloorId, pos: [number, number], radius: number): NpcState | null {

@@ -1,0 +1,71 @@
+# kantor-rpg hardening run (characters draw calls + building windows/leaves)
+# date_utc=2026-10-01T16:00:45Z git_head=bac532f7f8a3d57834208431a0982a34a925e86f branch=claude/kantor-rpg-m3-hardening (generated files uncommitted on top of HEAD)
+# blender=Blender 4.0.2 host_python=Python 3.11.15
+# trimmed: Blender banner, exporter/importer INFO lines, Cycles progress
+$ blender -b --factory-startup -noaudio --python blender/building/build_building.py
+BUILDING L1: objects=189 triangles=4446 glb=app/public/assets/building/building-L1.glb bytes=370932
+BUILDING L2: objects=158 triangles=3746 glb=app/public/assets/building/building-L2.glb bytes=308492
+BUILDING_DONE blend=blender/out/building.blend world_revision=P03
+exit_code=0 wall_seconds=2
+$ blender -b --factory-startup -noaudio --python blender/characters/build_characters.py -- --variants
+BUILD CH-CEO: tris={'body': 11100, 'hair_short_tuft': 3760, 'hair_swept': 3152, 'hair_spiky_soft': 3456, 'lod1': 4800} visible_lod0=14860 lod1=4800 (decimated from 14788) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.845, 'run_native_speed_mps': 2.416, 'walk_stance_travel_m': 0.49, 'run_stance_travel_m': 0.551} glb_bytes=1205812 blend=blender/out/ch-ceo.blend glb=app/public/assets/characters/ch-ceo.glb secs=3.1
+BUILD CH-SUPERVISOR: tris={'body': 11804, 'hair_swept': 3152, 'lod1': 4800} visible_lod0=14956 lod1=4800 (decimated from 14884) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.835, 'run_native_speed_mps': 2.388, 'walk_stance_travel_m': 0.485, 'run_stance_travel_m': 0.545} glb_bytes=989132 blend=blender/out/ch-supervisor.blend glb=app/public/assets/characters/ch-supervisor.glb secs=2.3
+BUILD CH-ARCHITECT: tris={'body': 10312, 'hair_bun': 3060, 'lod1': 4799} visible_lod0=13372 lod1=4799 (decimated from 13300) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.873, 'run_native_speed_mps': 2.499, 'walk_stance_travel_m': 0.507, 'run_stance_travel_m': 0.57} glb_bytes=936748 blend=blender/out/ch-architect.blend glb=app/public/assets/characters/ch-architect.glb secs=3.0
+BUILD CH-ICTSPEC: tris={'body': 10344, 'hair_bob': 3536, 'prop_tablet': 484, 'lod1': 4800} visible_lod0=14364 lod1=4800 (decimated from 14292) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.795, 'run_native_speed_mps': 2.274, 'walk_stance_travel_m': 0.461, 'run_stance_travel_m': 0.519} glb_bytes=970436 blend=blender/out/ch-ictspec.blend glb=app/public/assets/characters/ch-ictspec.glb secs=3.1
+BUILD CH-NETINSTALL: tris={'body': 11852, 'hair_cap': 1956, 'lod1': 4799} visible_lod0=13808 lod1=4799 (decimated from 13736) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.818, 'run_native_speed_mps': 2.338, 'walk_stance_travel_m': 0.475, 'run_stance_travel_m': 0.533} glb_bytes=956716 blend=blender/out/ch-netinstall.blend glb=app/public/assets/characters/ch-netinstall.glb secs=3.1
+BUILD CH-VISUAL: tris={'body': 10716, 'hair_spiky_soft': 3456, 'prop_sketchbook': 412, 'lod1': 4800} visible_lod0=14584 lod1=4800 (decimated from 14512) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.811, 'run_native_speed_mps': 2.32, 'walk_stance_travel_m': 0.47, 'run_stance_travel_m': 0.529} glb_bytes=980816 blend=blender/out/ch-visual.blend glb=app/public/assets/characters/ch-visual.glb secs=2.8
+BUILD CH-QA: tris={'body': 11024, 'hair_side_part': 3356, 'prop_clipboard': 604, 'lod1': 4799} visible_lod0=14984 lod1=4799 (decimated from 14912) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.826, 'run_native_speed_mps': 2.361, 'walk_stance_travel_m': 0.479, 'run_stance_travel_m': 0.538} glb_bytes=994288 blend=blender/out/ch-qa.blend glb=app/public/assets/characters/ch-qa.glb secs=3.1
+VARIANTS CH-CEO hair=['short_tuft', 'swept', 'spiky_soft'] palettes=['forest', 'terracotta', 'oat'] (embedded in ch-ceo.glb)
+BUILD_DONE failures=0
+exit_code=0 wall_seconds=21
+$ blender -b --factory-startup -noaudio --python blender/building/render_building.py
+RENDER building-exterior -> assets/previews/building-exterior.png bytes=219301 quant=5 OK
+RENDER building-L1-interior -> assets/previews/building-L1-interior.png bytes=368532 quant=6 OK
+RENDER building-L2-interior -> assets/previews/building-L2-interior.png bytes=390949 quant=5 OK
+RENDER_DONE ok=True
+exit_code=0 wall_seconds=130
+$ blender -b --factory-startup -noaudio --python blender/characters/render_sheet.py
+SHEET CH-CEO -> assets/previews/ch-ceo-sheet.png bytes=146785
+SHEET CH-SUPERVISOR -> assets/previews/ch-supervisor-sheet.png bytes=155721
+SHEET CH-ARCHITECT -> assets/previews/ch-architect-sheet.png bytes=169668
+SHEET CH-ICTSPEC -> assets/previews/ch-ictspec-sheet.png bytes=131204
+SHEET CH-NETINSTALL -> assets/previews/ch-netinstall-sheet.png bytes=158356
+SHEET CH-VISUAL -> assets/previews/ch-visual-sheet.png bytes=164193
+SHEET CH-QA -> assets/previews/ch-qa-sheet.png bytes=152920
+DEFORM CH-CEO -> assets/previews/ch-ceo-deform.png bytes=273137
+VARIANTS CH-CEO -> assets/previews/ch-ceo-variants.png bytes=216530
+EXPRESSIONS CH-CEO: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSIONS CH-SUPERVISOR: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSIONS CH-ARCHITECT: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSIONS CH-ICTSPEC: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSIONS CH-NETINSTALL: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSIONS CH-VISUAL: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSIONS CH-QA: ['neutral', 'blink', 'smile', 'talk', 'surprised', 'frown']
+EXPRESSION_SHEET -> assets/previews/character-expressions.png bytes=213988
+LOD CH-CEO: lod0=14860 lod1=4800 hair=hair_short_tuft
+LOD CH-SUPERVISOR: lod0=14956 lod1=4800 hair=hair_swept
+LOD CH-ARCHITECT: lod0=13372 lod1=4799 hair=hair_bun
+LOD CH-ICTSPEC: lod0=14364 lod1=4800 hair=hair_bob
+LOD CH-NETINSTALL: lod0=13808 lod1=4799 hair=hair_cap
+LOD CH-VISUAL: lod0=14584 lod1=4800 hair=hair_spiky_soft
+LOD CH-QA: lod0=14984 lod1=4799 hair=hair_side_part
+LOD_SHEET -> assets/previews/character-lod.png bytes=243833
+RENDER_DONE
+exit_code=0 wall_seconds=162
+$ blender -b --factory-startup -noaudio --python blender/building/validate_building.py
+building validation: PASS checks=1529 failed=0 world=P03 blender=4.0.2
+L1: objects=189 walls=50 openings=26 windows=20 leaves=23 triangles_blend=4446 triangles_glb=4446 glb_bytes=370932
+L2: objects=158 walls=42 openings=20 windows=19 leaves=15 triangles_blend=3746 triangles_glb=3746 glb_bytes=308492
+BUILDING_VALIDATE_DONE passed=True
+exit_code=0 wall_seconds=2
+$ blender -b --factory-startup -noaudio --python blender/validate_assets.py
+VALIDATE CH-CEO: PASS checks=170 failed=0 materials=1 primitives_lod0=2 tris_lod0=14860 tris_lod1=4800 tris_all_lod0_nodes=21468 height=1.6412 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=1205812
+VALIDATE CH-SUPERVISOR: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=14956 tris_lod1=4800 tris_all_lod0_nodes=14956 height=1.5844 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=989132
+VALIDATE CH-ARCHITECT: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=13372 tris_lod1=4799 tris_all_lod0_nodes=13372 height=1.6305 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=936748
+VALIDATE CH-ICTSPEC: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14364 tris_lod1=4800 tris_all_lod0_nodes=14364 height=1.4939 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=970436
+VALIDATE CH-NETINSTALL: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=13808 tris_lod1=4799 tris_all_lod0_nodes=13808 height=1.562 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=956716
+VALIDATE CH-VISUAL: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14584 tris_lod1=4800 tris_all_lod0_nodes=14584 height=1.5612 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=980816
+VALIDATE CH-QA: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14984 tris_lod1=4799 tris_all_lod0_nodes=14984 height=1.5543 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=994288
+VALIDATE_DONE passed=True characters=7 checks=1151 failed=0 seconds=20.0
+exit_code=0 wall_seconds=21
+done

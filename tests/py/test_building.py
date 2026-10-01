@@ -5,6 +5,7 @@ pure-Python module the Blender builder uses, so a mutated world must produce
 mismatches against the committed GLBs (negative tests below).
 """
 import copy
+import math
 import sys
 from pathlib import Path
 
@@ -174,8 +175,169 @@ def test_wrong_axis_mapping_is_detected(world, walls):
     assert any(abs(a - b) > TOL for a, b in zip(naive[0] + naive[1], want[0] + want[1]))
 
 
+# ------------------------------------------------------------------ windows and door leaves (P03)
+def node_world_bounds(g, name):
+    nodes = g.nodes_by_name()
+    if name not in nodes or "mesh" not in nodes[name]:
+        return None
+    mn, mx = g.node_bounds(name)
+    t = nodes[name].get("translation", [0.0, 0.0, 0.0])
+    return G.world_bounds([a + b for a, b in zip(mn, t)], [a + b for a, b in zip(mx, t)])
+
+
+def windows_of(world, fid):
+    elev = next(f["elevation"] for f in world["floors"] if f["id"] == fid)
+    return {w["id"]: w for w in world["windows"] if w["floor"] == fid}, elev
+
+
+def window_mismatches(g, world, fid):
+    """Every window whose pane node is missing or off the dataset by more than 1 cm."""
+    wins, elev = windows_of(world, fid)
+    out = []
+    for wid, w in wins.items():
+        b = node_world_bounds(g, wid)
+        if b is None:
+            out.append(f"{wid} missing")
+            continue
+        ax = 0 if w["wallAxis"] == "x" else 1
+        c = w["center"][ax]
+        if abs((b[0][ax] + b[1][ax]) / 2 - c) > TOL or abs((b[1][ax] - b[0][ax]) - w["width"]) > TOL \
+                or abs(b[0][2] - (elev + w["sill"])) > TOL or abs(b[1][2] - (elev + w["head"])) > TOL:
+            out.append(f"{wid} at {b}")
+    extra = {n for n in g.nodes_by_name() if n and n.startswith("W-")} - set(wins)
+    return out + [f"{n} not in dataset" for n in sorted(extra)]
+
+
+def wall_triangles_in_openings(g, world, fid):
+    """(wall node, window id) pairs where a wall triangle reaches inside a window opening."""
+    wins, elev = windows_of(world, fid)
+    t = world["building"]["wall"]["exterior"]
+    e = 0.002
+    tris = {}
+    for name in (n for n in g.nodes_by_name() if n and n.startswith("WALL-")):
+        out = []
+        for prim in g.mesh_primitives(name):
+            pos = g.accessor(prim["attributes"]["POSITION"])
+            idx = g.accessor(prim["indices"])
+            out += [[S.gltf_to_world(pos[i]) for i in idx[k:k + 3]] for k in range(0, len(idx), 3)]
+        tris[name] = out
+    hits = []
+    for wid, w in wins.items():
+        ax = 0 if w["wallAxis"] == "x" else 1
+        lo, hi = [0.0, 0.0, elev + w["sill"] + e], [0.0, 0.0, elev + w["head"] - e]
+        lo[ax], hi[ax] = w["center"][ax] - w["width"] / 2 + e, w["center"][ax] + w["width"] / 2 - e
+        lo[1 - ax], hi[1 - ax] = w["at"] - t / 2 - e, w["at"] + t / 2 + e
+        for name, ts in tris.items():
+            for tri in ts:
+                if all(min(p[k] for p in tri) < hi[k] and max(p[k] for p in tri) > lo[k] for k in range(3)):
+                    hits.append((name, wid))
+                    break
+    return hits
+
+
+def hinge_mismatches(g, world, fid):
+    """Leaf nodes whose count or origin (glTF node translation) disagrees with door swing data."""
+    out, want = [], {}
+    for d in (d for d in world["doors"] if d["floor"] == fid and d.get("swing")):
+        ax = 0 if d["wallAxis"] == "x" else 1
+        lo, hi = d["center"][ax] - d["width"] / 2, d["center"][ax] + d["width"] / 2
+        h = d["swing"]["hinge"]
+        for i, j in enumerate([lo, hi] if h == "both" else [lo] if h == "low" else [hi], start=1):
+            want[f"LEAF-{d['id']}-{i}"] = (j, ax, d["center"][1 - ax])
+    nodes = g.nodes_by_name()
+    got = {n for n in nodes if n and n.startswith("LEAF-")}
+    out += [f"{n} missing" for n in sorted(set(want) - got)] + [f"{n} extra" for n in sorted(got - set(want))]
+    for n, (j, ax, at) in want.items():
+        if n not in nodes:
+            continue
+        o = S.gltf_to_world(nodes[n].get("translation", [0, 0, 0]))
+        if abs(o[ax] - j) > TOL or abs(o[1 - ax] - at) > world["building"]["wall"]["exterior"] / 2:
+            out.append(f"{n} origin {o} not on jamb {j}")
+    return out
+
+
+@pytest.mark.parametrize("fid", ["L1", "L2"])
+def test_window_panes_match_dataset(world, fid):
+    g = glb(fid)
+    wins, _ = windows_of(world, fid)
+    assert wins
+    assert window_mismatches(g, world, fid) == []
+    nodes = g.nodes_by_name()
+    for wid, w in wins.items():
+        assert f"FRAME-{wid}" in nodes, wid
+        mats = {g.material_name(p) for p in g.mesh_primitives(wid)}
+        assert mats == {"glass_" + w["glazing"]}, (wid, mats)
+
+
+@pytest.mark.parametrize("fid", ["L1", "L2"])
+def test_walls_have_no_geometry_inside_window_openings(world, fid):
+    assert wall_triangles_in_openings(glb(fid), world, fid) == []
+
+
+@pytest.mark.parametrize("fid", ["L1", "L2"])
+def test_swing_door_leaves_hinge_on_dataset_jamb(world, fid):
+    g = glb(fid)
+    assert hinge_mismatches(g, world, fid) == []
+    nodes = g.nodes_by_name()
+    swing = [d for d in world["doors"] if d["floor"] == fid and d.get("swing")]
+    leaves = [n for n in nodes if n and n.startswith("LEAF-")]
+    assert len(leaves) == sum(2 if d["swing"]["hinge"] == "both" else 1 for d in swing)
+    for n in leaves:
+        assert set(nodes[n]) & {"rotation", "scale", "matrix"} == set(), n
+
+
+@pytest.mark.parametrize("fid", ["L1", "L2"])
+def test_leaf_open_rotation_swings_into_the_named_side(world, fid):
+    """Rotating each closed leaf by its extras kantor_open_deg (about glTF +Y) must put its free
+    edge on the side of the room it opens into (EXT = outside the envelope)."""
+    g = glb(fid)
+    nodes = g.nodes_by_name()
+    rooms = {r["id"]: r for r in world["rooms"]}
+    doors = {d["id"]: d for d in world["doors"]}
+    for n in (n for n in nodes if n and n.startswith("LEAF-")):
+        ex = nodes[n]["extras"]
+        d = doors[ex["kantor_door"]]
+        o = S.gltf_to_world(nodes[n]["translation"])
+        mn, mx = g.node_bounds(n)
+        # free edge: the local x/y extreme farthest from the hinge, in world axes
+        lmn, lmx = G.world_bounds(mn, mx)
+        ax = 0 if d["wallAxis"] == "x" else 1
+        far = [0.0, 0.0]
+        far[ax] = lmx[ax] if abs(lmx[ax]) > abs(lmn[ax]) else lmn[ax]
+        a = math.radians(ex["kantor_open_deg"])
+        rx, ry = far[0] * math.cos(a) - far[1] * math.sin(a), far[0] * math.sin(a) + far[1] * math.cos(a)
+        tip = (o[0] + rx, o[1] + ry)
+        into = ex["kantor_into"]
+        if into == "EXT":
+            other = next(r for r in d["rooms"] if r != "EXT")
+            assert not S.point_in_polygon(tip, rooms[other]["polygon"]), n
+        else:
+            assert S.point_in_polygon(tip, rooms[into]["polygon"]), (n, tip)
+
+
+def test_moved_window_is_detected(world):
+    g = glb("L1")
+    w2 = copy.deepcopy(world)
+    win = next(w for w in w2["windows"] if w["floor"] == "L1" and w["wallAxis"] == "x")
+    win["center"] = [win["center"][0] + 1.0, win["center"][1]]
+    assert any(win["id"] in m for m in window_mismatches(g, w2, "L1"))
+    # the old wall is solid where the moved window would now be
+    assert any(wid == win["id"] for _, wid in wall_triangles_in_openings(g, w2, "L1"))
+
+
+def test_flipped_hinge_is_detected(world):
+    g = glb("L1")
+    w2 = copy.deepcopy(world)
+    d = next(d for d in w2["doors"] if d["floor"] == "L1" and d.get("swing", {}).get("hinge") == "low")
+    d["swing"]["hinge"] = "high"
+    assert any(d["id"] in m for m in hinge_mismatches(g, w2, "L1"))
+    d2 = next(d for d in w2["doors"] if d["floor"] == "L1" and d.get("swing", {}).get("hinge") == "both")
+    d2["swing"]["hinge"] = "low"
+    assert any(f"LEAF-{d2['id']}-2 extra" == m for m in hinge_mismatches(g, w2, "L1"))
+
+
 def test_validation_report_passed():
-    rep = ROOT / "docs" / "evidence" / "M3" / "building-validate.json"
+    rep = ROOT / "docs" / "evidence" / "HARDENING" / "blender-building-validate.json"
     if not rep.exists():
         pytest.skip("run blender/building/validate_building.py")
     import json

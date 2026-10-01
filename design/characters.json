@@ -15,7 +15,9 @@
     "glbBytesTarget": 1500000,
     "heightTolerance": 0.05,
     "previewBytesMax": 400000,
-    "note": "Targets from PRD section 6; measured values live in design/asset-registry.json and docs/evidence/M1/blender-validate.json"
+    "npcTrianglesLOD1": 5000,
+    "visiblePrimitivesLOD0": 2,
+    "note": "Targets from PRD section 6; measured values live in design/asset-registry.json and the latest validator report (docs/evidence/HARDENING/blender-characters-validate.json). npcTrianglesLOD1 is the PRD NPC LOD1 budget, applied to the lod1 node of all seven characters including the CEO. visiblePrimitivesLOD0 counts body + one hair; hand-held prop_* nodes are separate toggleable nodes and add one primitive where present"
   },
   "rig": {
     "skeleton": "shared",
@@ -142,7 +144,23 @@
       "prop_accent",
       "prop_detail"
     ],
-    "note": "Runtime palette swap targets material names; every character GLB uses the same names"
+    "note": "These are zone names, not materials: every character GLB has one material kantor_atlas and each zone owns one cell of its palette texture (see atlas). Palette keys outfit_* equal zone names, so runtime recolours by repainting those cells in a cloned texture"
+  },
+  "atlas": {
+    "material": "kantor_atlas",
+    "sizePx": 32,
+    "cellPx": 4,
+    "columns": 8,
+    "zoneOrder": ["skin", "eyes", "eye_iris", "eye_highlight", "mouth", "blush", "hair", "outfit_main", "outfit_inner", "outfit_bottom", "outfit_accent", "shoes", "shoe_sole", "prop_main", "prop_accent", "prop_detail"],
+    "layout": "zone i owns cell [col, row] = [i % columns, i // columns]; row 0 is the top row of the PNG as stored; every face of a zone has its UVs at that cell centre",
+    "filter": "nearest",
+    "roughness": 0.85,
+    "extras": "GLB scene extras and rig node extras carry kantor_atlas = {size, cell, zones: {zone: [col, row]}}"
+  },
+  "expressions": {
+    "names": ["blink", "smile", "talk", "surprised", "frown"],
+    "node": "body",
+    "note": "Shape keys on body, exported as glTF morph targets in this order (mesh extras targetNames). Deltas only move head-weighted face features (eyes, lashes, brows, mouth); talk opens the mouth for speech. lod1 has no morph targets."
   },
   "characters": {
     "CH-CEO": {

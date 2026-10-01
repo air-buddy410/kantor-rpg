@@ -137,6 +137,7 @@ function boot() {
     state: () => ({ floor: game.player.floor, pos: game.player.pos, facing: game.player.facing, room: game.roomId, visitor: game.settings.visitor, avatarPlaceholder: game.player.avatar.isPlaceholder, clips: game.player.avatar.clipNames, recoveries: game.player.stuckRecoveries, floorSwitches: game.floorSwitches }),
     stats: () => game.stats(),
     studioOpen: () => studio.isOpen,
+    npcFace: (id: string) => game.npcs.face(id),
     studioFixtures: () => studio.editor?.fixtures.length ?? null,
     studioOutlet: (fixtureId: string) => studio.editor?.outlets().find((o) => o.serves === fixtureId) ?? null,
     fixtures: () => game.world.fixtures.map((f) => ({ id: f.id, pos: f.pos, rot: f.rot, floor: f.floor, room: f.room })),

@@ -1,0 +1,9 @@
+# blender/validate_assets.py, Blender 4.0.2, git_head=bac532f7f8a3d57834208431a0982a34a925e86f (generated files uncommitted on top of HEAD)
+VALIDATE CH-CEO: PASS checks=170 failed=0 materials=1 primitives_lod0=2 tris_lod0=14860 tris_lod1=4800 tris_all_lod0_nodes=21468 height=1.6412 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=1205812
+VALIDATE CH-SUPERVISOR: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=14956 tris_lod1=4800 tris_all_lod0_nodes=14956 height=1.5844 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=989132
+VALIDATE CH-ARCHITECT: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=13372 tris_lod1=4799 tris_all_lod0_nodes=13372 height=1.6305 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=936748
+VALIDATE CH-ICTSPEC: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14364 tris_lod1=4800 tris_all_lod0_nodes=14364 height=1.4939 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=970436
+VALIDATE CH-NETINSTALL: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=13808 tris_lod1=4799 tris_all_lod0_nodes=13808 height=1.562 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=956716
+VALIDATE CH-VISUAL: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14584 tris_lod1=4800 tris_all_lod0_nodes=14584 height=1.5612 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=980816
+VALIDATE CH-QA: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14984 tris_lod1=4799 tris_all_lod0_nodes=14984 height=1.5543 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=994288
+VALIDATE_DONE passed=True characters=7 checks=1151 failed=0 seconds=20.0

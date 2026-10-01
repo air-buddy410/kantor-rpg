@@ -606,7 +606,7 @@ export class Game {
     this.sun.target.position.copy(pv);
     // Seated CEO (activity) is not in the way; standing or walking CEO is.
     this.npcs.sim.setPlayer(this.activity ? null : this.player.floor, this.player.pos);
-    this.npcs.update(dt, this.player.floor, this.rig.camera, this.stage.clientWidth, this.stage.clientHeight, this.settings.reducedMotion);
+    this.npcs.update(dt, this.player.floor, this.rig.camera, this.stage.clientWidth, this.stage.clientHeight, this.settings.reducedMotion, this.player.pos);
     $('sim-clock').textContent = this.npcs.sim.clockLabel();
     this.updateFocus(dt);
     this.updateRoom();
@@ -694,6 +694,7 @@ export class Game {
         return [k, Math.round(t)];
       })),
       furnitureKit: this.furnitureKit,
+      npcLod: this.npcs.lodCounts(),
     };
   }
 }

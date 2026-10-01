@@ -1,0 +1,123 @@
+{
+ "functions": 27,
+ "rooms": 38,
+ "roomsTraced": 38,
+ "untracedRooms": [],
+ "problems": [],
+ "map": {
+  "L1-LOBBY": [
+   "PF-L1-01"
+  ],
+  "L1-GALLERY": [
+   "PF-L1-02"
+  ],
+  "L1-CORE": [
+   "PF-L1-03"
+  ],
+  "L1-CORR": [
+   "PF-L1-03"
+  ],
+  "L1-NCORR": [
+   "PF-L1-03"
+  ],
+  "L1-CEO": [
+   "PF-L1-04"
+  ],
+  "L1-DISC": [
+   "PF-L1-05"
+  ],
+  "L1-HUGO": [
+   "PF-L1-06"
+  ],
+  "L1-KEVIN": [
+   "PF-L1-07"
+  ],
+  "L1-NOVA": [
+   "PF-L1-08"
+  ],
+  "L1-BRUNO": [
+   "PF-L1-09"
+  ],
+  "L1-LAB": [
+   "PF-L1-10"
+  ],
+  "L1-SERVER": [
+   "PF-L1-11"
+  ],
+  "L1-RISER": [
+   "PF-L1-11"
+  ],
+  "L1-IMPL": [
+   "PF-L1-12"
+  ],
+  "L1-MEET": [
+   "PF-L1-13"
+  ],
+  "L1-WC": [
+   "PF-L1-14"
+  ],
+  "L1-PANTRY": [
+   "PF-L1-15"
+  ],
+  "L1-STORE": [
+   "PF-L1-16"
+  ],
+  "L1-SHAFT-W": [
+   "PF-L1-16"
+  ],
+  "L2-GAME": [
+   "PF-L2-01"
+  ],
+  "L2-LOUNGE": [
+   "PF-L2-02"
+  ],
+  "L2-GYM": [
+   "PF-L2-03"
+  ],
+  "L2-BILLIARD": [
+   "PF-L2-04"
+  ],
+  "L2-CHAT": [
+   "PF-L2-05"
+  ],
+  "L2-READ": [
+   "PF-L2-06"
+  ],
+  "L2-DINE": [
+   "PF-L2-07"
+  ],
+  "L2-SHOWER": [
+   "PF-L2-08"
+  ],
+  "L2-WC": [
+   "PF-L2-08"
+  ],
+  "L2-BALCONY": [
+   "PF-L2-09"
+  ],
+  "L2-GARDEN": [
+   "PF-L2-09"
+  ],
+  "L2-STORE": [
+   "PF-L2-10"
+  ],
+  "L2-SERVICE": [
+   "PF-L2-10"
+  ],
+  "L2-SHAFT-W": [
+   "PF-L2-10"
+  ],
+  "L2-RISER": [
+   "PF-L2-10"
+  ],
+  "L2-CORE": [
+   "PF-L2-11"
+  ],
+  "L2-CORR": [
+   "PF-L2-11"
+  ],
+  "L2-NCORR": [
+   "PF-L2-11"
+  ]
+ }
+}

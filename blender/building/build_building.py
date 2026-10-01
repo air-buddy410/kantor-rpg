@@ -8,9 +8,15 @@ Writes blender/out/building.blend, app/public/assets/building/building-L1.glb an
 building-L2.glb. Object names are stable IDs: SLAB-<floor>, ROOM-<roomId>,
 WALL-<floor>-<index> (index into walls.json floors.<floor>.walls), OPEN-<doorId>
 (threshold), LINTEL-<doorId>, STAIR-<fixtureId>, STAIRWELL-<fixtureId>,
-LIFT-<fixtureId>, FASCIA-<floor>, ROOF. Mesh vertices are stored in world
-coordinates with identity object transforms, so glTF positions are exactly
-world (x, y, z) -> glTF (x, z, -y). Status: concept geometry, not a construction model.
+LIFT-<fixtureId>, FASCIA-<floor>, ROOF, <windowId> (glass pane, e.g. W-L1-001),
+FRAME-<windowId>, LEAF-<doorId>-1/-2 (swing door leaves, closed). Mesh vertices
+are stored in world coordinates with identity object transforms, so glTF
+positions are exactly world (x, y, z) -> glTF (x, z, -y); the one exception is
+LEAF-*: its origin sits on the hinge jamb (glTF node translation) so the
+runtime can swing it by rotating the node (extras kantor_open_deg).
+Exterior walls are split around each window: full-height piers plus a part
+below the sill and a part above the head, so the opening is empty.
+Status: concept geometry, not a construction model.
 """
 from __future__ import annotations
 
@@ -50,6 +56,16 @@ def wall_faces_materials(wb, fi):
         outward = 5 if (wb["x0"] + wb["x1"]) / 2 < cx else 3  # -X face or +X face
     mats[outward] = "wall_exterior"
     mats[1] = "wall_top"
+    return mats
+
+
+def wall_part_materials(part, wb, fi, full_height):
+    """Facade colour on the outward face of every part; window reveals, sill
+    tops and head soffits read as interior plaster; only full-height parts
+    carry the dark wall cap used by the runtime cutaway."""
+    mats = wall_faces_materials(dict(wb, **{k: part[k] for k in ("x0", "y0", "x1", "y1")}), fi)
+    if not full_height:
+        mats[1] = "wall_interior"
     return mats
 
 
@@ -140,7 +156,15 @@ def materials(env, fin):
         "lift_frame": M.get("lift_frame", env["metal"], rough=0.6),
         "accent": M.get("accent", env["accent"]),
         "guard": M.get("guard", env["woodLight"]),
+        "window_frame": M.get("window_frame", env["wallCap"], rough=0.7),
+        "door_leaf": M.get("door_leaf", env["wood"]),
+        "glass_clear": M.get("glass_clear", env["glass"], rough=0.15),
+        "glass_obscured": M.get("glass_obscured", "#EEF2EE", rough=0.6),
     }
+    # clear glass reads as see-through, obscured (WC, store) as milky
+    for key, alpha in (("glass_clear", 0.35), ("glass_obscured", 0.85)):
+        mats[key].blend_method = "BLEND"
+        mats[key].node_tree.nodes["Principled BSDF"].inputs["Alpha"].default_value = alpha
     for name, hexc in fin.items():
         key = "floor_" + K.slug(name)
         mats[key] = M.get(key, hexc)
@@ -201,11 +225,37 @@ def build():
             B.add(([(x, y, e + 0.006) for x, y in poly], [tuple(range(len(poly)))]),
                   "floor_" + K.slug(r["finish"]["floor"]), smooth=False)
             emit(B, "room", {"kantor_finish": r["finish"]["floor"]})
-        # walls
+        # walls, split around windows
+        wins = exp[fid]["windows"]
         for wb in exp[fid]["walls"]:
             B = K.Builder(wb["id"])
-            add_box_multi(B, wb, wall_faces_materials(wb, fi))
-            emit(B, "wall", {"kantor_exterior": wb["exterior"], "kantor_thickness": wb["thickness"]})
+            parts = S.wall_parts(wb, wins)
+            for part, full in parts:
+                add_box_multi(B, part, wall_part_materials(part, wb, fi, full))
+            cut = [w["id"] for w in S.wall_windows(wb, wins)]
+            emit(B, "wall", {"kantor_exterior": wb["exterior"], "kantor_thickness": wb["thickness"],
+                             **({"kantor_windows": ",".join(cut)} if cut else {})})
+        # windows: pane node named exactly the window id, frame separate
+        for w in wins:
+            pane, bars = S.window_parts(w)
+            B = K.Builder(w["id"])
+            B.add(K.box(pane["x0"], pane["y0"], pane["z0"], pane["x1"], pane["y1"], pane["z1"]),
+                  "glass_" + w["glazing"], smooth=False)
+            emit(B, "window", {"kantor_window": w["id"], "kantor_room": w["room"], "kantor_glazing": w["glazing"],
+                               "kantor_sill": w["sill"], "kantor_head": w["head"], "kantor_width": w["width"]})
+            B = K.Builder(f"FRAME-{w['id']}")
+            for b in bars:
+                B.add(K.box(b["x0"], b["y0"], b["z0"], b["x1"], b["y1"], b["z1"]), "window_frame", smooth=False)
+            emit(B, "window_frame", {"kantor_window": w["id"]})
+        # swing door leaves, closed, origin on the hinge jamb
+        for lf in exp[fid]["leaves"]:
+            lb = S.leaf_local_box(lf)
+            B = K.Builder(lf["id"])
+            B.add(K.box(lb["x0"], lb["y0"], lb["z0"], lb["x1"], lb["y1"], lb["z1"]), "door_leaf", smooth=False)
+            ob = emit(B, "door_leaf", {"kantor_door": lf["door"], "kantor_leaf": lf["leaf"], "kantor_hinge": lf["hinge"],
+                                       "kantor_into": lf["into"], "kantor_open_deg": lf["open_deg"],
+                                       "kantor_leaf_width": round(lf["width"], 4)})
+            ob.location = lf["origin"]
         # door thresholds and lintels
         for ob_spec in exp[fid]["openings"]:
             B = K.Builder(ob_spec["id"])

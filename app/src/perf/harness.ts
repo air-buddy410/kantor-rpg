@@ -28,15 +28,25 @@ export function runPerfRoute(game: Game, seconds = 60): Promise<Record<string, u
     const t0 = performance.now();
     let distance = 0;
     let last: Vec2 = [...game.player.pos] as Vec2;
+    // Peak, not end-of-run, budget numbers: the 150 draw call target applies
+    // to every frame of the route, including the busiest view.
+    const peak = { drawCalls: 0, triangles: 0, at: [0, 0] as Vec2, floor: 'L1' };
+    let lastMoveAt = performance.now();
     game.onFrame = () => {
       frames.push(game.lastRawMs);
+      const info = game.renderer.info.render;
+      if (info.calls > peak.drawCalls) Object.assign(peak, { drawCalls: info.calls, at: [...game.player.pos] as Vec2, floor: game.player.floor });
+      peak.triangles = Math.max(peak.triangles, info.triangles);
+      if (Math.hypot(game.player.pos[0] - last[0], game.player.pos[1] - last[1]) > 0.01) lastMoveAt = performance.now();
+      // Personas are solid: re-plan from here when stuck behind one.
+      if (path && performance.now() - lastMoveAt > 1500) { path = null; lastMoveAt = performance.now(); }
       distance += Math.hypot(game.player.pos[0] - last[0], game.player.pos[1] - last[1]);
       last = [...game.player.pos] as Vec2;
       const elapsed = (performance.now() - t0) / 1000;
       if (elapsed >= seconds) {
         game.autopilot = null;
         game.onFrame = null;
-        resolve(summarise(frames, game, elapsed, distance));
+        resolve({ ...summarise(frames, game, elapsed, distance), peak });
         return;
       }
       const L = ROUTE[leg % ROUTE.length];

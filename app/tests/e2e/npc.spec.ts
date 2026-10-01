@@ -28,6 +28,11 @@ test.describe('persona NPCs (M2)', () => {
     await expect(dlg).toContainText('SIMULASI');
     await expect(dlg).toContainText('tidak diketahui');
     expect((await npcs(page)).find((n) => n.id === 'ACT-NOVA')!.phase).toBe('paused');
+    // Talking drives the face morph targets from the Blender GLB (smile + mouth).
+    type Face = { expressions: Record<string, number>; lod: number } | null;
+    const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));
+    await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');
+    await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);
     const first = await dlg.locator('.quote').innerText();
     await dlg.getByRole('button', { name: 'Topik lain' }).click();
     await expect(dlg.locator('.quote')).not.toHaveText(first);

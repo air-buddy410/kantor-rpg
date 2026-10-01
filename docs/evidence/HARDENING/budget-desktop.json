@@ -1,0 +1,51 @@
+{
+ "label": "fixed route benchmark; client-specific measurement",
+ "seconds": 25.3,
+ "frames": 103,
+ "fpsAverage": 4.1,
+ "frameMsMedian": 231.9,
+ "frameMsP95": 582.8,
+ "frameMsMax": 651,
+ "framesOver33ms": 91,
+ "dropRate": 0.883,
+ "distanceM": 13.3,
+ "floorSwitches": 0,
+ "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+ "lowQuality": true,
+ "pixelRatio": 1,
+ "viewport": [
+  1366,
+  820
+ ],
+ "jsHeapMB": 40.1,
+ "stats": {
+  "drawCalls": 49,
+  "triangles": 184460,
+  "geometries": 63,
+  "textures": 31,
+  "floorTriangles": {
+   "L1": 120486,
+   "L2": 100020
+  },
+  "furnitureKit": {
+   "loaded": 54,
+   "failed": []
+  },
+  "npcLod": {
+   "lod0": 2,
+   "lod1": 4
+  }
+ },
+ "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36",
+ "peak": {
+  "drawCalls": 53,
+  "triangles": 184542,
+  "at": [
+   15.748990535059448,
+   4.70834202775047
+  ],
+  "floor": "L1"
+ },
+ "measuredAt": "2026-10-01T16:15:20.530Z",
+ "note": "peak over fixed 25 s route; SwiftShader container, FPS not a device result"
+}

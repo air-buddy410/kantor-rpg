@@ -75,10 +75,15 @@ def shot(name, cam_loc, target, lens, label, hide, w=1200, h=760, samples=32):
     tmp = Path(tempfile.mkdtemp(prefix="kantor-bld-")) / f"{name}.png"
     arr = K.median3(K.render_pixels(tmp))
     out = PREV / f"{name}.png"
-    K.save_png(arr, out, quant=5)
-    size = out.stat().st_size
+    # windows and leaves added detail: step the quantisation up (5 -> 8) until
+    # the PNG fits the preview budget instead of lowering samples (more noise)
+    for quant in (5, 6, 7, 8):
+        K.save_png(arr, out, quant=quant)
+        size = out.stat().st_size
+        if size <= MAX_BYTES:
+            break
     bpy.data.objects.remove(lab, do_unlink=True)
-    print(f"RENDER {name} -> {out.relative_to(ROOT)} bytes={size} {'OK' if size <= MAX_BYTES else 'OVER_BUDGET'}")
+    print(f"RENDER {name} -> {out.relative_to(ROOT)} bytes={size} quant={quant} {'OK' if size <= MAX_BYTES else 'OVER_BUDGET'}")
     return size
 
 

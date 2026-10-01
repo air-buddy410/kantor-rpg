@@ -12,6 +12,18 @@ nodes (single-GLB approach, see blender/README.md); --variants is accepted so
 the documented command stays stable, and only adds a variant summary print.
 No randomness is used except a fixed-seed RNG for hair lock jitter and paint
 smudges, so reruns produce the same geometry.
+
+Draw-call contract (design/characters.json atlas/expressions/budgets):
+  - one material kantor_atlas per GLB over a 32 px palette PNG, one 4 px cell per
+    zone (the former material names); every face has its UVs at its zone cell
+    centre, the texture is sampled with nearest filtering;
+  - LOD0 is body (one primitive) + one visible hair_<style> (+ prop_<id> where the
+    character carries one); body has shape keys blink, smile, talk, surprised,
+    frown (glTF morph targets, sparse) that move only head-weighted face vertices;
+  - lod1 is one decimated skinned mesh (body + default hair + held props, no
+    morphs) under the PRD NPC LOD1 budget;
+  - rig node and scene extras: kantor_atlas, kantor_lod0_tris, kantor_lod1_tris,
+    kantor_lod1_node, kantor_expressions.
 """
 from __future__ import annotations
 
@@ -24,6 +36,7 @@ from pathlib import Path
 
 import bmesh
 import bpy
+import numpy as np
 from mathutils import Matrix, Quaternion, Vector
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -237,9 +250,13 @@ class Builder:
         self.faces: list[tuple] = []
         self.mats: list[str] = []
         self.weights: list[dict] = []
+        self.tags: dict[str, list[tuple[int, int]]] = {}
 
-    def add(self, geom, mat, weight, xf: Matrix | None = None, keep=None):
-        """mat: str or callable(band, centroid_local)->str; weight: dict or callable(world_pos)->dict."""
+    def add(self, geom, mat, weight, xf: Matrix | None = None, keep=None, tag=None):
+        """mat: str or callable(band, centroid_local)->str; weight: dict or callable(world_pos)->dict.
+
+        tag records the vertex range so later passes (LOD1) can find a part again.
+        """
         verts, faces, band = geom
         if keep is not None:
             kept = [(f, b) for f, b in zip(faces, band) if keep(sum((verts[i] for i in f), Vector()) / len(f))]
@@ -250,6 +267,8 @@ class Builder:
             verts = [verts[i] for i in used]
             faces = [tuple(remap[i] for i in f) for f in faces]
         base = len(self.verts)
+        if tag is not None:
+            self.tags.setdefault(tag, []).append((base, base + len(verts)))
         for v in verts:
             w = xf @ v if xf is not None else v.copy()
             self.verts.append(w)
@@ -427,7 +446,43 @@ class Head:
         return p, n
 
 
+# Expression parameters for face_features. Every expression rebuilds the same
+# primitives with the same segment counts, so vertex i of any expression is the
+# same feature point as vertex i of the neutral face and the difference is a
+# clean shape key. Lengths are metres at s = 1 (scaled by P.s where used).
+NEUTRAL = {
+    "eye_open": 1.0,     # vertical scale of the eye about eye_pivot (x ehz)
+    "eye_pivot": 0.0,
+    "eye_scale": 1.0,
+    "highlight": 1.0,    # catch-light scale; ~0 hides them inside the closed eye
+    "lash_close": 0.0,   # 1 = lash becomes the shallow U of a closed eye
+    "brow_dz": 0.0,
+    "brow_tilt": 0.0,    # inner brow end offset (negative = knitted, frowning)
+    "mouth_w": 1.0,
+    "mouth_curve": 1.0,  # 1 = neutral soft smile curve, negative = arch
+    "mouth_corner": 0.0,
+    "mouth_dz": 0.0,
+    "open_h": 0.0,       # half height of the open-mouth oval
+    "open_w": 0.6,       # half width as a fraction of the neutral mouth half width
+    "open_out": -0.004,  # neutral oval sits under the skin, open ones on top of it
+}
+EXPRESSIONS = {
+    # closed eyes squash to a line just below centre; the lash turns into a U
+    "blink": {"eye_open": 0.08, "eye_pivot": -0.30, "highlight": 0.02, "lash_close": 1.0, "brow_dz": -0.003},
+    # happy squint lifts the lower lid, corners up, wider mouth
+    "smile": {"eye_open": 0.70, "eye_pivot": 0.85, "mouth_w": 1.18, "mouth_curve": 1.9, "mouth_corner": 0.010,
+              "brow_dz": 0.003},
+    # speech: dark oval opens under the upper lip line
+    "talk": {"open_h": 0.0095, "open_w": 0.80, "open_out": 0.0006, "mouth_dz": 0.0015},
+    "surprised": {"eye_scale": 1.14, "brow_dz": 0.016, "mouth_w": 0.55, "mouth_curve": -0.6, "mouth_dz": 0.004,
+                  "open_h": 0.0110, "open_w": 0.95, "open_out": 0.0006},
+    "frown": {"eye_open": 0.82, "eye_pivot": -0.9, "brow_dz": -0.002, "brow_tilt": -0.010, "mouth_curve": -0.7,
+              "mouth_corner": -0.008},
+}
+
+
 def build_head(B: Builder, P, spec, colors):
+    """Head sphere, ears, nose, blush and the neutral face features."""
     H = Head(P)
     seg, rings = 32, 22
     v, f, band = superq(P.rx, P.ry, P.rz, 1.0, 1.0, seg, rings)
@@ -435,63 +490,101 @@ def build_head(B: Builder, P, spec, colors):
     B.add((v, f, band), "skin", {"head": 1.0}, Matrix.Translation(H.c))
     hw = {"head": 1.0}
     rz, rx = P.rz, P.rx
-    # eyes: dark oval, coloured iris, two highlights and an upper lash line
-    ez = -0.17 * rz
-    ehx, ehz = 0.150 * rx, 0.195 * rz
-    H.ez, H.ex = ez, 0.385 * rx
+    H.ez, H.ex = -0.17 * rz, 0.385 * rx
+    H.ehx, H.ehz = 0.150 * rx, 0.195 * rz
     for side in (1, -1):
-        ex = side * 0.385 * rx
-        p, n = H.front(ex, ez, 0.0)
-        m = Matrix.Translation(H.c + p) @ frame_from(n)
-        B.add(superq(ehx, 0.012, ehz, 1, 1, 14, 9), "eyes", hw, m @ Matrix.Translation((0, -0.0015, 0)))
-        B.add(superq(ehx * 0.80, 0.008, ehz * 0.64, 1, 1, 12, 7), "eye_iris", hw,
-              m @ Matrix.Translation((0, -0.0105, -ehz * 0.24)))
-        B.add(superq(ehx * 0.42, 0.006, ehz * 0.36, 1, 1, 10, 6), "eyes", hw,
-              m @ Matrix.Translation((0, -0.0135, -ehz * 0.20)))
-        hx = -0.30 * ehx  # same side on both eyes: one consistent key light
-        B.add(superq(ehx * 0.36, 0.005, ehx * 0.40, 1, 1, 10, 6), "eye_highlight", hw,
-              m @ Matrix.Translation((hx, -0.0165, ehz * 0.38)))
-        B.add(superq(ehx * 0.17, 0.004, ehx * 0.17, 1, 1, 8, 5), "eye_highlight", hw,
-              m @ Matrix.Translation((-hx * 0.9, -0.0160, -ehz * 0.48)))
-        # lash: arc over the top of the eye, thicker toward the outer corner
-        pts, wd = [], []
-        for i in range(9):
-            a = math.radians(lerp(160, 20, i / 8)) if side > 0 else math.radians(lerp(20, 160, i / 8))
-            lx = ex + math.cos(a) * ehx * 1.08
-            lz = ez + math.sin(a) * ehz * 1.02
-            pp, _ = H.front(lx, lz, 0.010)
-            pts.append(H.c + pp)
-            outer = i / 8
-            wd.append(0.0028 + 0.0030 * outer)
-        B.add(tube(pts, wd, [w * 0.8 for w in wd], 6), "eyes", hw)
-        # brows in hair colour
-        bpts = []
-        for i in range(5):
-            t = i / 4
-            bx = ex + side * lerp(-0.85, 0.85, t) * ehx
-            bz = ez + ehz + 0.050 * rz * 2 + 0.010 * math.sin(math.pi * t)
-            pp, _ = H.front(bx, bz, 0.006)
-            bpts.append(H.c + pp)
-        B.add(tube(bpts, [0.0030, 0.0042, 0.0045, 0.0040, 0.0026], [0.0022] * 5, 6), "hair", hw)
-        # cheek blush and ears
         p, n = H.front(side * 0.60 * rx, -0.46 * rz, -0.002)
         B.add(superq(0.030 * P.s, 0.004, 0.015 * P.s, 1, 1, 12, 6), "blush", hw,
               Matrix.Translation(H.c + p) @ frame_from(n))
         ep, en = H.on_dir(side * 92, -12, -0.004)
         B.add(superq(0.020 * P.s, 0.030 * P.s, 0.040 * P.s, 1, 1, 10, 8), "skin", hw,
               Matrix.Translation(H.c + ep) @ Matrix.Rotation(side * math.radians(12), 4, "Z"))
-    # nose bump and a small smile
     p, n = H.front(0.0, -0.40 * rz, -0.004)
     B.add(superq(0.011 * P.s, 0.010 * P.s, 0.009 * P.s, 1, 1, 10, 6), "skin", hw, Matrix.Translation(H.c + p))
+    start = len(B.verts)
+    face_features(B, H, P, NEUTRAL)
+    H.face_range = (start, len(B.verts))
+    return H
+
+
+def face_features(B: Builder, H: Head, P, ex):
+    """Eyes, lashes, brows and mouth for one expression (same topology for all)."""
+    e = dict(NEUTRAL, **ex)
+    hw = {"head": 1.0}
+    rz, rx = P.rz, P.rx
+    ez, ehx, ehz = H.ez, H.ehx, H.ehz
+    sc, op, piv = e["eye_scale"], e["eye_open"], e["eye_pivot"] * ehz
+    for side in (1, -1):
+        ex_ = side * H.ex
+        p, n = H.front(ex_, ez, 0.0)
+        m = Matrix.Translation(H.c + p) @ frame_from(n)
+        # eye-local squash/scale about the pivot line; depth axis (local y) untouched
+        E = m @ Matrix.Translation((0, 0, piv)) @ Matrix.Diagonal((sc, 1.0, sc * op, 1.0)) @ Matrix.Translation((0, 0, -piv))
+        B.add(superq(ehx, 0.012, ehz, 1, 1, 14, 9), "eyes", hw, E @ Matrix.Translation((0, -0.0015, 0)))
+        B.add(superq(ehx * 0.80, 0.008, ehz * 0.64, 1, 1, 12, 7), "eye_iris", hw,
+              E @ Matrix.Translation((0, -0.0105, -ehz * 0.24)))
+        B.add(superq(ehx * 0.42, 0.006, ehz * 0.36, 1, 1, 10, 6), "eyes", hw,
+              E @ Matrix.Translation((0, -0.0135, -ehz * 0.20)))
+        hx = -0.30 * ehx  # same side on both eyes: one consistent key light
+        hl = Matrix.Diagonal((e["highlight"], 1.0, e["highlight"], 1.0))
+        B.add(superq(ehx * 0.36, 0.005, ehx * 0.40, 1, 1, 10, 6), "eye_highlight", hw,
+              E @ Matrix.Translation((hx, -0.0165, ehz * 0.38)) @ hl)
+        B.add(superq(ehx * 0.17, 0.004, ehx * 0.17, 1, 1, 8, 5), "eye_highlight", hw,
+              E @ Matrix.Translation((-hx * 0.9, -0.0160, -ehz * 0.48)) @ hl)
+        # lash: arc over the top of the eye, thicker toward the outer corner; it
+        # follows the eye squash and bends into a shallow U when the eye closes
+        pts, wd = [], []
+        for i in range(9):
+            a = math.radians(lerp(160, 20, i / 8)) if side > 0 else math.radians(lerp(20, 160, i / 8))
+            lx = ex_ + math.cos(a) * ehx * 1.08 * sc
+            dz = math.sin(a) * ehz * 1.02 * sc
+            dz = piv + (dz - piv) * op - e["lash_close"] * math.sin(a) * ehz * 0.22
+            pp, _ = H.front(lx, ez + dz, 0.010)
+            pts.append(H.c + pp)
+            wd.append(0.0028 + 0.0030 * (i / 8))
+        B.add(tube(pts, wd, [w * 0.8 for w in wd], 6), "eyes", hw)
+        # brows in hair colour; t = 0 is the inner end
+        bpts = []
+        for i in range(5):
+            t = i / 4
+            bx = ex_ + side * lerp(-0.85, 0.85, t) * ehx
+            bz = ez + ehz + 0.050 * rz * 2 + 0.010 * math.sin(math.pi * t)
+            bz += (e["brow_dz"] + e["brow_tilt"] * (1 - t)) * P.s
+            pp, _ = H.front(bx, bz, 0.006)
+            bpts.append(H.c + pp)
+        B.add(tube(bpts, [0.0030, 0.0042, 0.0045, 0.0040, 0.0026], [0.0022] * 5, 6), "hair", hw)
+    # mouth line (upper lip when open)
     mpts = []
     for i in range(7):
         t = i / 6
-        mx = lerp(-0.075, 0.075, t) * rx
-        mz = -0.585 * rz - 0.030 * rz * math.sin(math.pi * t)
+        mx = lerp(-0.075, 0.075, t) * rx * e["mouth_w"]
+        mz = (-0.585 * rz - 0.030 * rz * math.sin(math.pi * t) * e["mouth_curve"]
+              + (e["mouth_corner"] * (2 * t - 1) ** 2 + e["mouth_dz"]) * P.s)
         pp, _ = H.front(mx, mz, 0.002)
         mpts.append(H.c + pp)
     B.add(tube(mpts, [0.0030, 0.0042, 0.0048, 0.0050, 0.0048, 0.0042, 0.0030], [0.0024] * 7, 6), "mouth", hw)
-    return H
+    # open-mouth oval: hidden under the skin at neutral (dropped from LOD1). Its
+    # axis points out of the face so 12 segments give the front outline and only
+    # 4 rings of depth: 72 triangles, which keeps the busiest NPCs (Max, Rex)
+    # under the 15k LOD0 budget
+    hh = max(e["open_h"] * P.s, 0.0012)
+    zc = -0.585 * rz - 0.030 * rz * e["mouth_curve"] + e["mouth_dz"] * P.s - e["open_h"] * P.s * 0.75
+    p, n = H.front(0.0, zc, e["open_out"])
+    B.add(superq(e["open_w"] * 0.075 * rx, hh, 0.0012, 1, 1, 12, 4), "mouth", hw,
+          Matrix.Translation(H.c + p) @ frame_from(n) @ Matrix.Rotation(math.pi / 2, 4, "X"), tag="mouth_inner")
+
+
+def expression_shapes(H: Head, P):
+    """{name: [Vector]} positions of the face range for every expression."""
+    out = {}
+    n = H.face_range[1] - H.face_range[0]
+    for name, ex in EXPRESSIONS.items():
+        tmp = Builder(name)
+        face_features(tmp, H, P, ex)
+        if len(tmp.verts) != n:
+            raise RuntimeError(f"expression {name} changed face topology: {len(tmp.verts)} != {n}")
+        out[name] = tmp.verts
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -1290,7 +1383,7 @@ def make_armature(P):
 # --------------------------------------------------------------------------
 # materials and objects
 # --------------------------------------------------------------------------
-def make_materials(spec):
+def zone_colors(spec):
     oc = spec["outfit"]["colors"]
     pc = spec.get("propColors", {})
     colors = {
@@ -1304,41 +1397,107 @@ def make_materials(spec):
     }
     colors.update(oc)
     colors.update(pc)
-    mats = {}
-    for name in sorted(colors):
-        m = bpy.data.materials.new(name)
+    return colors
+
+
+class Atlas:
+    """One matte material over a tiny palette texture (one cell per zone).
+
+    Why: 16 materials per character meant 16+ draw calls each; one material
+    lets every LOD0 part merge into one primitive. Nearest filtering and UVs
+    collapsed to the cell centre keep colours exact, and the runtime recolours
+    a palette by repainting cells in a cloned texture.
+    """
+
+    UNUSED = "#808080"
+
+    def __init__(self, data, colors):
+        a = data["atlas"]
+        self.size, self.cell, self.columns = a["sizePx"], a["cellPx"], a["columns"]
+        self.order = list(a["zoneOrder"])
+        if len(self.order) > (self.size // self.cell) * self.columns or self.columns * self.cell > self.size:
+            raise ValueError("atlas too small for its zones")
+        self.index = {z: i for i, z in enumerate(self.order)}
+        self.cells = {z: [i % self.columns, i // self.columns] for i, z in enumerate(self.order)}
+        self.colors = {z: colors.get(z, self.UNUSED) for z in self.order}
+        self.image = self._image(a)
+        self.material = self._material(a)
+
+    def uv(self, zone):
+        """Blender UV of the cell centre (Blender v=0 is the bottom row; glTF flips it)."""
+        col, row = self.cells[zone]
+        return ((col + 0.5) * self.cell / self.size, 1.0 - (row + 0.5) * self.cell / self.size)
+
+    def extras(self):
+        return {"size": self.size, "cell": self.cell, "zones": {z: list(c) for z, c in self.cells.items()}}
+
+    def _image(self, a):
+        n = self.size
+        img = bpy.data.images.new(a["material"], n, n, alpha=False)
+        px = [0.0] * (n * n * 4)
+        fill = self.UNUSED.lstrip("#")
+        for i in range(n * n):
+            px[i * 4:i * 4 + 4] = [int(fill[k:k + 2], 16) / 255.0 for k in (0, 2, 4)] + [1.0]
+        for z, (col, row) in self.cells.items():
+            h = self.colors[z].lstrip("#")
+            rgb = [int(h[k:k + 2], 16) / 255.0 for k in (0, 2, 4)]
+            for y in range(n - (row + 1) * self.cell, n - row * self.cell):  # pixel rows start at the bottom
+                for x in range(col * self.cell, (col + 1) * self.cell):
+                    px[(y * n + x) * 4:(y * n + x) * 4 + 4] = rgb + [1.0]
+        img.pixels = px
+        img.file_format = "PNG"
+        img.pack()
+        return img
+
+    def _material(self, a):
+        m = bpy.data.materials.new(a["material"])
         m.use_nodes = True
-        bsdf = m.node_tree.nodes.get("Principled BSDF")
-        rgba = hex_rgba(colors[name])
-        bsdf.inputs["Base Color"].default_value = rgba
-        bsdf.inputs["Roughness"].default_value = 0.8 if name not in ("eyes", "eye_iris", "eye_highlight") else 0.45
+        nt = m.node_tree
+        bsdf = nt.nodes.get("Principled BSDF")
+        tex = nt.nodes.new("ShaderNodeTexImage")
+        tex.image = self.image
+        tex.interpolation = "Closest"
+        tex.extension = "EXTEND"
+        nt.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+        bsdf.inputs["Roughness"].default_value = a["roughness"]
         bsdf.inputs["Metallic"].default_value = 0.0
         if "Specular IOR Level" in bsdf.inputs:
             bsdf.inputs["Specular IOR Level"].default_value = 0.35
-        m.diffuse_color = rgba
-        m["hex"] = colors[name]
-        mats[name] = m
-    return mats, colors
+        # neutral colours per zone travel with the material so a runtime can
+        # restore the original palette after repainting cells
+        m["kantor_zone_hex"] = dict(self.colors)
+        return m
 
 
-def make_object(B: Builder, mats, arm):
+def set_zone_uvs(me, atlas, zones=None):
+    """Every loop of a face gets its zone's cell centre (zones: per-face zone index)."""
+    if zones is None:
+        zones = np.zeros(len(me.polygons), dtype=np.int32)
+        me.attributes["kantor_zone"].data.foreach_get("value", zones)
+    totals = np.zeros(len(me.polygons), dtype=np.int32)
+    me.polygons.foreach_get("loop_total", totals)
+    table = np.array([atlas.uv(z) for z in atlas.order], dtype=np.float32)
+    uv = table[np.repeat(np.asarray(zones), totals)]
+    layer = me.uv_layers.get("UVMap") or me.uv_layers.new(name="UVMap")
+    layer.data.foreach_set("uv", uv.ravel())
+
+
+def make_object(B: Builder, atlas: Atlas, arm):
     me = bpy.data.meshes.new(B.name)
     me.from_pydata([tuple(v) for v in B.verts], [], B.faces)
     me.validate(clean_customdata=False)
-    used = []
-    for n in B.mats:
-        if n not in used:
-            used.append(n)
-    for n in used:
-        me.materials.append(mats[n])
-    idx = {n: i for i, n in enumerate(used)}
-    me.polygons.foreach_set("material_index", [idx[n] for n in B.mats])
+    if len(me.vertices) != len(B.verts) or len(me.polygons) != len(B.faces):
+        raise RuntimeError(f"{B.name}: mesh validate changed topology")
+    me.materials.append(atlas.material)
     me.polygons.foreach_set("use_smooth", [True] * len(me.polygons))
     bm = bmesh.new()
     bm.from_mesh(me)
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
     bm.to_mesh(me)
     bm.free()
+    zones = [atlas.index[n] for n in B.mats]
+    me.attributes.new("kantor_zone", "INT", "FACE").data.foreach_set("value", zones)
+    set_zone_uvs(me, atlas, zones)
     me.update()
     ob = bpy.data.objects.new(B.name, me)
     bpy.context.scene.collection.objects.link(ob)
@@ -1355,6 +1514,87 @@ def make_object(B: Builder, mats, arm):
     mod = ob.modifiers.new("Armature", "ARMATURE")
     mod.object = arm
     return ob
+
+
+def add_shape_keys(ob, H: Head, P, names):
+    """Basis + one shape key per expression on body, deltas only in the face range."""
+    ob.shape_key_add(name="Basis", from_mix=False)
+    shapes = expression_shapes(H, P)
+    base = np.zeros(len(ob.data.vertices) * 3, dtype=np.float32)
+    ob.data.vertices.foreach_get("co", base)
+    a, b = H.face_range
+    for name in names:
+        kb = ob.shape_key_add(name=name, from_mix=False)
+        co = base.copy().reshape(-1, 3)
+        co[a:b] = np.array([tuple(v) for v in shapes[name]], dtype=np.float32)
+        kb.data.foreach_set("co", co.ravel())
+        kb.value = 0.0
+    ob.data.shape_keys.name = "expressions"
+
+
+def tri_count_mesh(me):
+    me.calc_loop_triangles()
+    return len(me.loop_triangles)
+
+
+def make_lod1(sources, body_tags, atlas, arm, target):
+    """One decimated skinned mesh from body + default hair + held props.
+
+    Decimate (collapse) keeps per-face attributes on the faces that survive, so
+    the zone of every face is re-read from kantor_zone afterwards and its UVs
+    snapped back to the cell centre (interpolated UVs would land between cells).
+    No vertex-group protection: in Blender 4.0 any non-zero weight froze all
+    face features (1564 of a 4800 budget), and unprotected eyes still read at
+    LOD1 distance (see assets/previews/character-lod.png).
+    """
+    copies = []
+    for src in sources:
+        c = src.copy()
+        c.data = src.data.copy()
+        bpy.context.scene.collection.objects.link(c)
+        if c.data.shape_keys:
+            c.shape_key_clear()
+        for mod in list(c.modifiers):
+            c.modifiers.remove(mod)
+        if src.name == "body":
+            bm = bmesh.new()
+            bm.from_mesh(c.data)
+            bm.verts.ensure_lookup_table()
+            drop = {i for a, b in body_tags.get("mouth_inner", []) for i in range(a, b)}
+            # the hidden open-mouth oval exists only for the talk/surprised morphs
+            bmesh.ops.delete(bm, geom=[bm.verts[i] for i in sorted(drop)], context="VERTS")
+            bm.to_mesh(c.data)
+            bm.free()
+        copies.append(c)
+    bpy.ops.object.select_all(action="DESELECT")
+    for c in copies:
+        c.select_set(True)
+    bpy.context.view_layer.objects.active = copies[0]
+    bpy.ops.object.join()
+    ob = bpy.context.view_layer.objects.active
+    ob.name = "lod1"
+    ob.data.name = "lod1"
+    full = tri_count_mesh(ob.data)
+    mod = ob.modifiers.new("Decimate", "DECIMATE")
+    mod.decimate_type = "COLLAPSE"
+    mod.use_collapse_triangulate = True
+    ratio = target / full
+    for _ in range(8):
+        mod.ratio = ratio
+        dg = bpy.context.evaluated_depsgraph_get()
+        tris = tri_count_mesh(ob.evaluated_get(dg).data)
+        if tris <= target:
+            break
+        ratio *= target / tris * 0.98
+    bpy.ops.object.modifier_apply(modifier="Decimate")
+    set_zone_uvs(ob.data, atlas)
+    ob.data.polygons.foreach_set("use_smooth", [True] * len(ob.data.polygons))
+    ob.parent = arm
+    ob.matrix_parent_inverse.identity()
+    m = ob.modifiers.new("Armature", "ARMATURE")
+    m.object = arm
+    ob.hide_render = True  # sheets show LOD0; runtime picks the LOD by distance
+    return ob, full, tri_count_mesh(ob.data)
 
 
 # --------------------------------------------------------------------------
@@ -1764,12 +2004,16 @@ def build_character(cid, spec, data, variants_spec):
     P = proportions(spec)
     P.seat = data["rig"]["seatHeightM"]
     arm = make_armature(P)
-    mats, colors = make_materials(spec)
+    colors = zone_colors(spec)
+    atlas = Atlas(data, colors)
     body = Builder("body")
     H = build_head(body, P, spec, colors)
+    body.tags["face"] = [H.face_range]
     build_body(body, P, spec, rng)
     build_worn_props(body, P, H, spec, rng)
-    objs = {"body": make_object(body, mats, arm)}
+    objs = {"body": make_object(body, atlas, arm)}
+    expr_names = data["expressions"]["names"]
+    add_shape_keys(objs["body"], H, P, expr_names)
     tri = {"body": body.tri_count()}
     default_hair = spec["hair"]["style"]
     hair_styles = [default_hair]
@@ -1778,13 +2022,20 @@ def build_character(cid, spec, data, variants_spec):
         default_hair = variants_spec["defaultHair"]
     for style in hair_styles:
         hb = build_hair(style, P, H, random.Random(f"kantor-rpg:{cid}:{style}"))
-        objs[hb.name] = make_object(hb, mats, arm)
+        objs[hb.name] = make_object(hb, atlas, arm)
         tri[hb.name] = hb.tri_count()
         if style != default_hair:
             objs[hb.name].hide_render = True
     for pb in build_held_props(P, spec):
-        objs[pb.name] = make_object(pb, mats, arm)
+        objs[pb.name] = make_object(pb, atlas, arm)
         tri[pb.name] = pb.tri_count()
+    visible_tris = tri["body"] + tri["hair_" + default_hair] + sum(v for k, v in tri.items() if k.startswith("prop_"))
+    lod_src = [objs["body"], objs["hair_" + default_hair]] + [o for k, o in objs.items() if k.startswith("prop_")]
+    # 4 percent headroom under the PRD budget for rounding in the decimator
+    lod1, lod_full, lod1_tris = make_lod1(lod_src, body.tags, atlas, arm,
+                                          int(data["budgets"]["npcTrianglesLOD1"] * 0.96))
+    objs["lod1"] = lod1
+    tri["lod1"] = lod1_tris
     actions, loco = bake_actions(arm, P, data["animations"], fps)
     # glTF extras so runtime can read defaults without the JSON
     arm["kantor_id"] = cid
@@ -1794,7 +2045,16 @@ def build_character(cid, spec, data, variants_spec):
     arm["kantor_seat_height_m"] = P.seat
     for k, v in loco.items():
         arm["kantor_" + k] = v
-    visible_tris = tri["body"] + tri["hair_" + default_hair] + sum(v for k, v in tri.items() if k.startswith("prop_"))
+    contract = {
+        "kantor_atlas": atlas.extras(),
+        "kantor_lod0_tris": visible_tris,
+        "kantor_lod1_tris": lod1_tris,
+        "kantor_lod1_node": "lod1",
+        "kantor_expressions": ",".join(expr_names),
+    }
+    for k, v in contract.items():
+        arm[k] = v  # rig node extras (three.js userData on the rig object)
+        bpy.context.scene[k] = v  # glTF scene extras
     OUT_BLEND.mkdir(parents=True, exist_ok=True)
     OUT_GLB.mkdir(parents=True, exist_ok=True)
     stem = cid.lower()
@@ -1806,19 +2066,24 @@ def build_character(cid, spec, data, variants_spec):
     bpy.ops.wm.save_as_mainfile(filepath=str(blend_path), compress=True)
     bpy.ops.export_scene.gltf(
         filepath=str(glb_path), export_format="GLB", use_selection=False, export_extras=True,
-        export_yup=True, export_apply=False, export_texcoords=False, export_normals=True,
+        export_yup=True, export_apply=False, export_texcoords=True, export_normals=True,
         export_tangents=False, export_colors=False, export_materials="EXPORT", export_cameras=False,
-        export_lights=False, export_skins=True, export_all_influences=False, export_morph=False,
+        export_lights=False, export_skins=True, export_all_influences=False,
+        # morph targets as sparse accessors without a zero base buffer: only the
+        # face vertices are stored, so five expressions cost a few kilobytes
+        export_morph=True, export_morph_normal=False, export_morph_tangent=False,
+        export_morph_animation=False, export_try_sparse_sk=True, export_try_omit_sparse_sk=True,
         export_animations=True, export_animation_mode="ACTIONS", export_force_sampling=True,
         export_frame_step=1, export_optimize_animation_size=True, export_anim_single_armature=True,
         export_reset_pose_bones=True, export_rest_position_armature=True, export_def_bones=False,
-        export_image_format="NONE",
+        export_image_format="AUTO",
     )
     size = glb_path.stat().st_size
-    print(f"BUILD {cid}: tris={tri} visible_lod0={visible_tris} actions={[a.name for a in actions]} "
+    print(f"BUILD {cid}: tris={tri} visible_lod0={visible_tris} lod1={lod1_tris} (decimated from {lod_full}) "
+          f"actions={[a.name for a in actions]} "
           f"loco={loco} glb_bytes={size} blend={blend_path.relative_to(ROOT)} glb={glb_path.relative_to(ROOT)} "
           f"secs={time.time() - t0:.1f}")
-    return {"id": cid, "tris": tri, "visible": visible_tris, "glb_bytes": size}
+    return {"id": cid, "tris": tri, "visible": visible_tris, "lod1": lod1_tris, "glb_bytes": size}
 
 
 def main():

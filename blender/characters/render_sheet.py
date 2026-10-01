@@ -7,6 +7,12 @@ Outputs (repo-relative):
   assets/previews/<id>-sheet.png      front / side / back, orthographic
   assets/previews/ch-ceo-deform.png   walk, run, sit and type poses on blockout furniture
   assets/previews/ch-ceo-variants.png 3 hair styles x 3 palettes offered by Avatar Studio
+                                      (palettes applied by repainting atlas cells, as the runtime does)
+  assets/previews/character-expressions.png  7 characters x neutral + 5 shape keys
+  assets/previews/character-lod.png   LOD0 vs LOD1 per character plus its palette atlas
+
+Flags: --only ID, --no-extras (sheets only), --extras-only (skip sheets),
+--sheets-only-new (only the expression and LOD sheets).
 
 Cycles CPU is used because EEVEE and Workbench need an EGL/OpenGL context that
 this headless machine does not have. Denoising is off (this Blender build has no
@@ -28,6 +34,8 @@ import numpy as np
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "blender" / "lib"))
+import kantor_blender as K  # noqa: E402
 DATA = ROOT / "design" / "characters.json"
 BLEND_DIR = ROOT / "blender" / "out"
 PREVIEW_DIR = ROOT / "assets" / "previews"
@@ -77,7 +85,10 @@ def setup_render(w, h, samples=40):
     ls.select_border = True
     ls.select_crease = False
     ls.select_contour = True
-    ls.select_material_boundary = True
+    # one atlas material means no material boundaries any more; zone borders
+    # are Freestyle edge marks instead (mark_zone_edges)
+    ls.select_material_boundary = False
+    ls.select_edge_mark = True
     if ls.linestyle is None:
         ls.linestyle = bpy.data.linestyles.new("ink")
     ls.linestyle.color = hex_lin(INK)[:3]
@@ -226,6 +237,27 @@ def save_array(arr, path):
     Path(path).write_bytes(png)
 
 
+def mark_zone_edges(ob):
+    """Freestyle edge mark on every edge between faces of different atlas zones."""
+    me = ob.data
+    if "kantor_zone" not in me.attributes:
+        return 0
+    zones = np.zeros(len(me.polygons), dtype=np.int32)
+    me.attributes["kantor_zone"].data.foreach_get("value", zones)
+    totals = np.zeros(len(me.polygons), dtype=np.int32)
+    me.polygons.foreach_get("loop_total", totals)
+    edge_of_loop = np.zeros(len(me.loops), dtype=np.int32)
+    me.loops.foreach_get("edge_index", edge_of_loop)
+    zl = np.repeat(zones, totals)
+    lo = np.full(len(me.edges), 1 << 20, dtype=np.int32)
+    hi = np.full(len(me.edges), -1, dtype=np.int32)
+    np.minimum.at(lo, edge_of_loop, zl)
+    np.maximum.at(hi, edge_of_loop, zl)
+    marks = (hi >= 0) & (lo != hi)
+    me.edges.foreach_set("use_freestyle_mark", marks.tolist())
+    return int(marks.sum())
+
+
 def open_char(cid):
     bpy.ops.wm.open_mainfile(filepath=str(BLEND_DIR / f"{cid.lower()}.blend"))
     rig = bpy.data.objects["rig"]
@@ -233,7 +265,26 @@ def open_char(cid):
     for pb in rig.pose.bones:
         pb.location = (0, 0, 0)
         pb.rotation_quaternion = (1, 0, 0, 0)
+    for ob in bpy.data.objects:
+        if ob.type == "MESH":
+            mark_zone_edges(ob)
     return rig
+
+
+def paint_cells(rig, colors):
+    """Repaint atlas cells {zone: '#hex'} in place (what the runtime does on a cloned texture)."""
+    img = bpy.data.images["kantor_atlas"]
+    meta = rig["kantor_atlas"]
+    n, cell = int(meta["size"]), int(meta["cell"])
+    px = np.array(img.pixels[:], dtype=np.float32).reshape(n, n, 4)
+    for zone, hexc in colors.items():
+        col, row = list(meta["zones"][zone])
+        h = hexc.lstrip("#")
+        rgb = [int(h[k:k + 2], 16) / 255.0 for k in (0, 2, 4)]
+        y0 = n - (row + 1) * cell  # pixel rows start at the bottom
+        px[y0:y0 + cell, col * cell:(col + 1) * cell, :3] = rgb
+    img.pixels = px.ravel().tolist()
+    img.update()
 
 
 _TMP = None
@@ -325,16 +376,13 @@ def variants(cid, vspec):
     add_camera(-0.08 * ortho + ortho / 2, ortho)
     rig.rotation_euler = (0, 0, math.radians(-22))
     rows = []
-    mats = bpy.data.materials
     for hair in vspec["hairStyles"]:
         for ob in bpy.data.objects:
             if ob.name.startswith("hair_"):
                 ob.hide_render = ob.name != "hair_" + hair
         row = []
         for pal_name, pal in vspec["palettes"].items():
-            for key in ("outfit_main", "outfit_inner", "outfit_bottom", "outfit_accent"):
-                bs = mats[key].node_tree.nodes.get("Principled BSDF")
-                bs.inputs["Base Color"].default_value = hex_lin(pal[key])
+            paint_cells(rig, {k: v for k, v in pal.items() if k.startswith("outfit_")})
             t = add_text(f"{hair} / {pal_name}", 0.075, (0, -1.0, -0.10))
             row.append(render_to_array(tmp_path(f"var_{hair}_{pal_name}.png")))
             bpy.data.objects.remove(t, do_unlink=True)
@@ -346,18 +394,127 @@ def variants(cid, vspec):
     print(f"VARIANTS {cid} -> {path.relative_to(ROOT)} bytes={path.stat().st_size}")
 
 
+def head_frame(rig):
+    """(centre z, ortho scale) that frames the head plus any hair volume."""
+    hb = rig.data.bones["head"]
+    z0, z1 = hb.head_local.z, hb.tail_local.z
+    return (z0 + z1) / 2 + 0.03, (z1 - z0) * 1.75
+
+
+def expressions(data, ids):
+    """Rows: characters; columns: neutral + every shape key at 1.0 (rest pose)."""
+    names = ["neutral"] + data["expressions"]["names"]
+    pw, ph = 150, 170
+    rows = []
+    for cid in ids:
+        rig = open_char(cid)
+        rig.data.pose_position = "REST"
+        setup_render(pw, ph, 32)
+        add_lights()
+        cz, ortho = head_frame(rig)
+        add_camera(cz, ortho)
+        rig.rotation_euler = (0, 0, math.radians(-14))
+        keys = bpy.data.objects["body"].data.shape_keys.key_blocks
+        spec = data["characters"][cid]
+        # cream label band in front of the shoulders keeps captions legible
+        band_h = ortho * 0.16
+        bpy.ops.mesh.primitive_plane_add(size=1.0, location=(0, -0.9, cz - ortho / 2 + band_h / 2),
+                                         rotation=(math.radians(90), 0, 0))
+        band = bpy.context.active_object
+        band.scale = (ortho, band_h, 1.0)
+        band.data.materials.append(emission_mat("band", CREAM))
+        row = []
+        for name in names:
+            for kb in keys:
+                kb.value = 1.0 if kb.name == name else 0.0
+            label = name if name != "neutral" else f"{spec['displayName']}: neutral"
+            t = add_text(label, ortho * 0.085, (0, -1.0, cz - ortho / 2 + band_h * 0.30), INK)
+            row.append(render_to_array(tmp_path(f"expr_{cid}_{name}.png")))
+            bpy.data.objects.remove(t, do_unlink=True)
+        rows.append(np.concatenate(row, axis=1))
+        print(f"EXPRESSIONS {cid}: {names}")
+    out = np.concatenate(rows[::-1], axis=0)  # first character on top (buffers are bottom-up)
+    out = K.median3_keep_lines(out)
+    path = PREVIEW_DIR / "character-expressions.png"
+    K.save_png(out, path, quant=4)
+    print(f"EXPRESSION_SHEET -> {path.relative_to(ROOT)} bytes={path.stat().st_size}")
+
+
+def lod_sheet(data, ids):
+    """Columns: characters. Rows: LOD0 (body + default hair + props), LOD1, palette atlas."""
+    pw, ph, ah = 180, 330, 200
+    cols = []
+    for cid in ids:
+        rig = open_char(cid)
+        rig.rotation_euler = (0, 0, math.radians(-25))
+        spec = data["characters"][cid]
+        default_hair = rig["kantor_default_hair"]
+        lod0 = [o for o in bpy.data.objects if o.type == "MESH" and not o.hide_render]
+        lod1 = bpy.data.objects["lod1"]
+        panels = []
+        setup_render(pw, ph, 32)
+        add_lights()
+        add_camera(0.75, 2.0)
+        for label, show in ((f"LOD0 {rig['kantor_lod0_tris']} tris", lod0),
+                            (f"LOD1 {rig['kantor_lod1_tris']} tris", [lod1])):
+            for o in bpy.data.objects:
+                if o.type == "MESH":
+                    o.hide_render = o not in show
+            txt = [add_text(spec["displayName"], 0.075, (0, -1.0, -0.10)), add_text(label, 0.065, (0, -1.0, -0.19), INK)]
+            panels.append(render_to_array(tmp_path(f"lod_{cid}_{len(panels)}.png")))
+            for t in txt:
+                bpy.data.objects.remove(t, do_unlink=True)
+        # atlas swatch: the real texture on an emissive plane, nearest filtering
+        for o in bpy.data.objects:
+            if o.type == "MESH":
+                o.hide_render = True
+        bpy.context.scene.render.use_freestyle = False
+        bpy.context.scene.render.resolution_y = ah
+        bpy.context.scene.camera.data.ortho_scale = 1.0
+        bpy.context.scene.camera.location = (0, -12.0, 0.04)
+        bpy.ops.mesh.primitive_plane_add(size=0.62, location=(0, 0, 0.10), rotation=(math.radians(90), 0, 0))
+        plane = bpy.context.active_object
+        m = bpy.data.materials.new("atlas_view")
+        m.use_nodes = True
+        nt = m.node_tree
+        nt.nodes.clear()
+        o_ = nt.nodes.new("ShaderNodeOutputMaterial")
+        e = nt.nodes.new("ShaderNodeEmission")
+        tex = nt.nodes.new("ShaderNodeTexImage")
+        tex.image = bpy.data.images["kantor_atlas"]
+        tex.interpolation = "Closest"
+        nt.links.new(tex.outputs["Color"], e.inputs["Color"])
+        nt.links.new(e.outputs["Emission"], o_.inputs["Surface"])
+        plane.data.materials.append(m)
+        meta = rig["kantor_atlas"]
+        t = add_text(f"atlas {meta['size']} px, {len(meta['zones'])} zones", 0.07, (0, -1.0, -0.34), INK)
+        t.rotation_euler = (math.radians(90), 0, 0)
+        panels.append(render_to_array(tmp_path(f"lod_{cid}_atlas.png")))
+        # panels are bottom-up buffers: stack atlas (bottom), LOD1, LOD0 (top)
+        cols.append(np.concatenate([panels[2], panels[1], panels[0]], axis=0))
+        print(f"LOD {cid}: lod0={rig['kantor_lod0_tris']} lod1={rig['kantor_lod1_tris']} hair={default_hair}")
+    out = K.median3_keep_lines(np.concatenate(cols, axis=1))
+    path = PREVIEW_DIR / "character-lod.png"
+    K.save_png(out, path, quant=4)
+    print(f"LOD_SHEET -> {path.relative_to(ROOT)} bytes={path.stat().st_size}")
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     data = json.loads(DATA.read_text(encoding="utf-8"))
     ids = list(data["characters"])
     if "--only" in argv:
         ids = [argv[argv.index("--only") + 1]]
-    if "--extras-only" not in argv:
+    new_only = "--sheets-only-new" in argv
+    if "--extras-only" not in argv and not new_only:
         for cid in ids:
             sheet(cid, data["characters"][cid])
-    if "--no-extras" not in argv and "CH-CEO" in ids:
+    if "--no-extras" not in argv and "CH-CEO" in ids and not new_only:
         deform("CH-CEO", data["characters"]["CH-CEO"], data["rig"]["seatHeightM"])
         variants("CH-CEO", data["avatarVariants"]["CH-CEO"])
+    if "--no-extras" not in argv:
+        expressions(data, ids)
+        lod_sheet(data, ids)
     if _TMP is not None:
         shutil.rmtree(_TMP, ignore_errors=True)
     print("RENDER_DONE")

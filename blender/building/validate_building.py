@@ -9,7 +9,13 @@ its width within 1 cm and no wall piece below the door head inside it; slab
 extents and top elevation; room plates; stair/lift at their fixture positions;
 glTF node names and bounds; the world (x, y, z) -> glTF (x, z, -y) mapping on
 sample vertices from the binary buffer; a re-import round trip; triangle
-counts per floor. Writes docs/evidence/M3/building-validate.json and .txt and
+counts per floor; windows (P03): one pane node per dataset window, named
+exactly the window id, with centre/sill/head/width within 1 cm, a FRAME-<id>
+node, and no wall triangle anywhere inside any window opening; swing door
+leaves: LEAF-<doorId>-1 (-2 for double) count per floor equals the dataset,
+the object origin / glTF node translation sits on the hinge jamb given by
+swing.hinge within 1 cm, and the closed leaf fills its half of the opening.
+Writes docs/evidence/HARDENING/blender-building-validate.json and .txt and
 merges BLD-L* entries into design/asset-registry.json. Exit 1 on failure.
 """
 from __future__ import annotations
@@ -33,8 +39,9 @@ import registry  # noqa: E402
 ROOT = S.ROOT
 BLEND = ROOT / "blender" / "out" / "building.blend"
 GLB_DIR = ROOT / "app" / "public" / "assets" / "building"
-EVID = ROOT / "docs" / "evidence" / "M3"
+EVID = ROOT / "docs" / "evidence" / "HARDENING"
 TOL = 0.01
+EPS_OPEN = 0.002  # geometry touching the opening boundary is fine, inside it is not
 
 
 class Checks:
@@ -75,7 +82,103 @@ def expected_names(exp_floor, world, fid):
             names.add(f"LIFT-{v['id']}")
     if fid == world["floors"][-1]["id"]:
         names.add("ROOF")
+    names |= {w["id"] for w in exp_floor["windows"]}
+    names |= {f"FRAME-{w['id']}" for w in exp_floor["windows"]}
+    names |= {lf["id"] for lf in exp_floor["leaves"]}
     return names
+
+
+def dataset_windows(world, fid):
+    """Straight from world.json, independent of building_spec, so a spec bug cannot hide."""
+    elev = next(f["elevation"] for f in world["floors"] if f["id"] == fid)
+    out = {}
+    for w in world["windows"]:
+        if w["floor"] == fid:
+            c = w["center"][0] if w["wallAxis"] == "x" else w["center"][1]
+            out[w["id"]] = {"axis": w["wallAxis"], "at": w["at"], "c": c, "width": w["width"],
+                            "z0": elev + w["sill"], "z1": elev + w["head"]}
+    return out
+
+
+def dataset_hinges(world, fid):
+    """{LEAF id: (along-wall jamb coordinate, wall line, axis)} from world.json swing data."""
+    out = {}
+    for d in world["doors"]:
+        sw = d.get("swing")
+        if d["floor"] != fid or not sw:
+            continue
+        c = d["center"][0] if d["wallAxis"] == "x" else d["center"][1]
+        at = d["center"][1] if d["wallAxis"] == "x" else d["center"][0]
+        lo, hi = c - d["width"] / 2, c + d["width"] / 2
+        jambs = [lo, hi] if sw["hinge"] == "both" else [lo] if sw["hinge"] == "low" else [hi]
+        for i, j in enumerate(jambs, start=1):
+            out[f"LEAF-{d['id']}-{i}"] = (j, at, d["wallAxis"], d["width"] / len(jambs))
+    return out
+
+
+def check_windows_and_leaves(C, world, fid, ef, bounds_of, polys_of, origin_of, label):
+    """bounds_of(name) -> world bbox; polys_of(name) -> [[(x, y, z), ...]] in world metres;
+    origin_of(name) -> world origin of the node (hinge for leaves)."""
+    wins = dataset_windows(world, fid)
+    present = {n for n in wins if bounds_of(n) is not None}
+    C(f"{label} window node count equals dataset ({len(wins)})", present == set(wins),
+      {"missing": sorted(set(wins) - present)})
+    t_ext = world["building"]["wall"]["exterior"]
+    walls = [w["id"] for w in ef["walls"]]
+    wall_polys = {n: polys_of(n) or [] for n in walls}
+    inside_all = []
+    for wid, w in sorted(wins.items()):
+        b = bounds_of(wid)
+        if b is None:
+            continue
+        ax = 0 if w["axis"] == "x" else 1
+        perp = 1 - ax
+        got = {"c": round((b[0][ax] + b[1][ax]) / 2, 4), "width": round(b[1][ax] - b[0][ax], 4),
+               "sill_z": round(b[0][2], 4), "head_z": round(b[1][2], 4), "line": round((b[0][perp] + b[1][perp]) / 2, 4)}
+        C(f"{label} {wid} centre/width/sill/head/line within 1 cm",
+          abs(got["c"] - w["c"]) <= TOL and abs(got["width"] - w["width"]) <= TOL and abs(got["sill_z"] - w["z0"]) <= TOL
+          and abs(got["head_z"] - w["z1"]) <= TOL and abs(got["line"] - w["at"]) <= TOL,
+          {"got": got, "want": {k: w[k] for k in ("c", "width", "z0", "z1", "at")}})
+        fb = bounds_of(f"FRAME-{wid}")
+        if C(f"{label} FRAME-{wid} present", fb is not None):
+            C(f"{label} FRAME-{wid} fills the opening within 1 cm",
+              abs(fb[0][ax] - (w["c"] - w["width"] / 2)) <= TOL and abs(fb[1][ax] - (w["c"] + w["width"] / 2)) <= TOL
+              and abs(fb[0][2] - w["z0"]) <= TOL and abs(fb[1][2] - w["z1"]) <= TOL)
+        # no wall polygon may reach into the opening prism (whole wall depth)
+        lo = [0.0, 0.0, w["z0"] + EPS_OPEN]
+        hi = [0.0, 0.0, w["z1"] - EPS_OPEN]
+        lo[ax], hi[ax] = w["c"] - w["width"] / 2 + EPS_OPEN, w["c"] + w["width"] / 2 - EPS_OPEN
+        lo[perp], hi[perp] = w["at"] - t_ext / 2 - EPS_OPEN, w["at"] + t_ext / 2 + EPS_OPEN
+        inside = []
+        for n, polys in wall_polys.items():
+            for poly in polys:
+                pmin = [min(p[k] for p in poly) for k in range(3)]
+                pmax = [max(p[k] for p in poly) for k in range(3)]
+                if all(pmin[k] < hi[k] and pmax[k] > lo[k] for k in range(3)):
+                    inside.append(n)
+                    break
+        inside_all += inside
+        C(f"{label} {wid} opening free of wall geometry", not inside, inside)
+    C(f"{label} wall geometry checked against every window", sum(len(v) for v in wall_polys.values()) > 0)
+    hinges = dataset_hinges(world, fid)
+    leaves = {n for n in hinges if bounds_of(n) is not None}
+    C(f"{label} leaf count equals dataset swing leaves ({len(hinges)})", leaves == set(hinges),
+      {"missing": sorted(set(hinges) - leaves)})
+    for lid, (jamb, at, axis, lw) in sorted(hinges.items()):
+        b = bounds_of(lid)
+        o = origin_of(lid)
+        if b is None or o is None:
+            continue
+        ax = 0 if axis == "x" else 1
+        perp = 1 - ax
+        C(f"{label} {lid} origin on hinge jamb within 1 cm",
+          abs(o[ax] - jamb) <= TOL and abs(o[perp] - at) <= world["building"]["wall"]["exterior"] / 2,
+          {"origin": [round(v, 4) for v in o], "jamb": jamb, "line": at})
+        near = min(abs(b[0][ax] - jamb), abs(b[1][ax] - jamb))
+        C(f"{label} {lid} closed leaf spans {lw:.2f} m from its jamb (1 cm)",
+          near <= TOL and abs((b[1][ax] - b[0][ax]) - lw) <= TOL and b[1][2] <= o[2] + S.DOOR_HEAD + 1e-6,
+          {"bbox": [[round(v, 4) for v in b[0]], [round(v, 4) for v in b[1]]]})
+    return {"windows": len(present), "leaves": len(leaves), "wallsInsideOpenings": sorted(set(inside_all))}
 
 
 def check_floor_geometry(C, exp_floor, fid, bounds_of, label):
@@ -155,6 +258,9 @@ def main():
     # 1. reopened .blend
     bpy.ops.wm.open_mainfile(filepath=str(BLEND))
     blend_bounds = {o.name: obj_bounds(o) for o in bpy.data.objects if o.type == "MESH"}
+    blend_polys = {o.name: [[tuple(o.matrix_world @ o.data.vertices[i].co) for i in p.vertices] for p in o.data.polygons]
+                   for o in bpy.data.objects if o.type == "MESH" and o.name.startswith("WALL-")}
+    blend_origin = {o.name: tuple(o.matrix_world.translation) for o in bpy.data.objects if o.type == "MESH"}
     blend_tris = {o.name: sum(len(p.vertices) - 2 for p in o.data.polygons) for o in bpy.data.objects if o.type == "MESH"}
     sample = {o.name: [tuple(o.matrix_world @ v.co) for v in o.data.vertices[:8]] for o in bpy.data.objects
               if o.type == "MESH" and o.name.startswith("WALL-")}
@@ -172,9 +278,11 @@ def main():
             b = blend_bounds.get(f"ROOM-{r}")
             if C(f"blend {fid} ROOM-{r} present", b is not None):
                 C(f"blend {fid} ROOM-{r} at floor finish level", abs(b[0][2] - (f["elevation"] + 0.006)) <= 0.002, round(b[0][2], 4))
+        wl = check_windows_and_leaves(C, world, fid, ef, lambda n: blend_bounds.get(n), lambda n: blend_polys.get(n),
+                                      lambda n: blend_origin.get(n), f"blend {fid}")
         report["floors"][fid] = {"blendTriangles": sum(blend_tris[n] for n in names if n in blend_tris),
                                  "objects": len(names), "walls": len(ef["walls"]),
-                                 "openings": len(ef["openings"]) // 2}
+                                 "openings": len(ef["openings"]) // 2, "windows": wl["windows"], "leaves": wl["leaves"]}
     # 2. GLB parse (stdlib) and axis mapping on sample vertices
     for f in world["floors"]:
         fid = f["id"]
@@ -188,14 +296,34 @@ def main():
         mesh_nodes = {n for n, v in nodes.items() if "mesh" in v}
         C(f"glb {fid} node names equal spec", mesh_nodes == names,
           {"missing": sorted(names - mesh_nodes), "extra": sorted(mesh_nodes - names)})
-        C(f"glb {fid} nodes carry no transform", all(not any(k in v for k in ("translation", "rotation", "scale", "matrix"))
-                                                    for v in nodes.values()))
+        C(f"glb {fid} nodes carry no transform except leaf translations",
+          all(not any(k in v for k in ("translation", "rotation", "scale", "matrix"))
+              for n, v in nodes.items() if not (n or "").startswith("LEAF-"))
+          and all(set(v) & {"rotation", "scale", "matrix"} == set() for n, v in nodes.items() if (n or "").startswith("LEAF-")))
+
+        def gorigin(n, nodes=nodes):
+            if n not in nodes:
+                return None
+            return S.gltf_to_world(nodes[n].get("translation", [0.0, 0.0, 0.0]))
 
         def gb(n, g=g, nodes=nodes):
             if n not in nodes or "mesh" not in nodes[n]:
                 return None
-            return G.world_bounds(*g.node_bounds(n))
+            mn, mx = g.node_bounds(n)
+            t = nodes[n].get("translation", [0.0, 0.0, 0.0])
+            return G.world_bounds([a + b for a, b in zip(mn, t)], [a + b for a, b in zip(mx, t)])
+
+        def gpolys(n, g=g, nodes=nodes):
+            if n not in nodes or "mesh" not in nodes[n]:
+                return None
+            out = []
+            for prim in g.mesh_primitives(n):
+                pos = g.accessor(prim["attributes"]["POSITION"])
+                idx = g.accessor(prim["indices"])
+                out += [[S.gltf_to_world(pos[i]) for i in idx[k:k + 3]] for k in range(0, len(idx), 3)]
+            return out
         check_floor_geometry(C, ef, fid, gb, f"glb {fid}")
+        check_windows_and_leaves(C, world, fid, ef, gb, gpolys, gorigin, f"glb {fid}")
         mapped, total = 0, 0
         for wname, pts in sample.items():
             if wname not in nodes:
@@ -225,15 +353,16 @@ def main():
     report.update({"passed": ok, "checks": len(C.items), "failed": C.failed(), "seconds": round(time.time() - t0, 1),
                    "gitHead": _git_head(), "items": C.items})
     EVID.mkdir(parents=True, exist_ok=True)
-    (EVID / "building-validate.json").write_text(json.dumps(report, indent=1) + "\n", encoding="utf-8")
+    (EVID / "blender-building-validate.json").write_text(json.dumps(report, indent=1) + "\n", encoding="utf-8")
     lines = [f"building validation: {'PASS' if ok else 'FAIL'} checks={len(C.items)} failed={len(C.failed())} "
              f"world={world['revision']['id']} blender={bpy.app.version_string}"]
     for fid, r in report["floors"].items():
         lines.append(f"{fid}: objects={r['objects']} walls={r['walls']} openings={r['openings']} "
+                     f"windows={r.get('windows')} leaves={r.get('leaves')} "
                      f"triangles_blend={r['blendTriangles']} triangles_glb={r.get('glbTriangles')} glb_bytes={r.get('glbBytes')}")
     for item in C.failed():
         lines.append(f"FAIL {item['check']}: {item['detail']}")
-    (EVID / "building-validate.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (EVID / "blender-building-validate.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
     entries = []
     for f in world["floors"]:
         fid = f["id"]
@@ -249,8 +378,11 @@ def main():
             "collider": {"type": "derived", "source": "design/derived/walls.json"},
             "materials": None, "triangles": {"lod0Visible": r.get("glbTriangles")}, "lod": "LOD0 only",
             "status": "generated+validated" if ok else "generated+validation-failed",
-            "validatedBy": "blender/building/validate_building.py", "evidence": "docs/evidence/M3/building-validate.json",
-            "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away)"})
+            "validatedBy": "blender/building/validate_building.py",
+            "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
+            "windows": r.get("windows"), "doorLeaves": r.get("leaves"),
+            "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); "
+                    "window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"})
     if ok:
         g = G.Glb(GLB_DIR / "building-L1.glb")
         mats = sorted({m["name"] for m in g.doc.get("materials", [])})
