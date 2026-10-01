@@ -244,13 +244,33 @@ export class NavGrid {
     return out;
   }
 
+  /** Exact grid traversal: every cell the segment touches must be free.
+   * Point sampling (the earlier version, 0.05 m steps) could skip a cell the
+   * segment only clips at a corner; an NPC whose step landed there stopped
+   * for good (seed 11 soak, hardening round). Corner crossings require both
+   * side cells free so a path never squeezes diagonally between two blocks. */
   lineWalkable(a: Vec2, b: Vec2): boolean {
-    const steps = Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / (CELL * 0.5));
-    for (let s = 0; s <= steps; s++) {
-      const t = steps ? s / steps : 0;
-      if (!this.walkableAt([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t])) return false;
+    let i = Math.floor((a[0] - this.x0) / CELL);
+    let j = Math.floor((a[1] - this.y0) / CELL);
+    const gi = Math.floor((b[0] - this.x0) / CELL);
+    const gj = Math.floor((b[1] - this.y0) / CELL);
+    if (!this.walkable(i, j)) return false;
+    const dx = b[0] - a[0];
+    const dy = b[1] - a[1];
+    const si = Math.sign(dx);
+    const sj = Math.sign(dy);
+    let tMaxX = dx !== 0 ? ((si > 0 ? (i + 1) * CELL : i * CELL) + this.x0 - a[0]) / dx : Infinity;
+    let tMaxY = dy !== 0 ? ((sj > 0 ? (j + 1) * CELL : j * CELL) + this.y0 - a[1]) / dy : Infinity;
+    const tdx = dx !== 0 ? CELL / Math.abs(dx) : Infinity;
+    const tdy = dy !== 0 ? CELL / Math.abs(dy) : Infinity;
+    for (let guard = Math.abs(gi - i) + Math.abs(gj - j) + 2; (i !== gi || j !== gj) && guard > 0; guard--) {
+      if (Math.abs(tMaxX - tMaxY) < 1e-9) {
+        if (!this.walkable(i + si, j) || !this.walkable(i, j + sj)) return false;
+        i += si; j += sj; tMaxX += tdx; tMaxY += tdy;
+      } else if (tMaxX < tMaxY) { i += si; tMaxX += tdx; } else { j += sj; tMaxY += tdy; }
+      if (!this.walkable(i, j)) return false;
     }
-    return true;
+    return this.walkable(gi, gj);
   }
 }
 

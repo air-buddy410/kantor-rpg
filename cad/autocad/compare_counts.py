@@ -38,6 +38,17 @@ def main(argv) -> int:
         status = "OK" if w == g else "BEDA"
         bad += w != g
         print(f"{status:4s} {key[0]:14s} {key[1]:12s} generator {w:5d}  autocad {g:5d}")
+    # Openings (P03): the per-layer rows above already compare every entity;
+    # these lines restate them as door/window numbers an operator can check
+    # against the drawing (one A-GLAZ-IDEN text per window, one A-DOOR arc per leaf).
+    op = ref.get("openings")
+    if op:
+        print(f"openings generator: jendela {op['window_symbols']} {op.get('windows_per_floor', {})}, "
+              f"daun pintu {op['door_leaves']}, busur {op['door_arcs']}")
+        for label, key, n in (("jendela (A-GLAZ-IDEN TEXT)", ("A-GLAZ-IDEN", "TEXT"), op["window_symbols"]),
+                              ("busur pintu (A-DOOR ARC)", ("A-DOOR", "ARC"), op["door_arcs"])):
+            if key in want:
+                print(f"  {label}: generator {n}, autocad {got.get(key, 0)}")
     exp_total = ref["totals"]["modelspace"]
     print(f"total model space generator {exp_total} autocad {total}")
     if total != exp_total:

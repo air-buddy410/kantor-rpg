@@ -581,7 +581,8 @@ export class Game {
       }
     }
     if (this.activity && Math.hypot(dir[0], dir[1]) > 0.1) this.endActivity(false);
-    const moved = this.activity ? 0 : this.player.step(dt, dir, run, nav);
+    const others = this.npcs.sim.npcs.filter((n) => n.floor === this.player.floor).map((n) => n.pos);
+    const moved = this.activity ? 0 : this.player.step(dt, dir, run, nav, others);
     const speed = moved / Math.max(dt, 1e-4);
     if (this.activity) {
       this.player.avatar.play(slotClip(this.activity.slot));
@@ -603,6 +604,8 @@ export class Game {
     this.materials.cutaway.uCamera.value.copy(this.rig.camera.position);
     this.sun.position.set(pv.x - 14, pv.y + 22, pv.z + 10);
     this.sun.target.position.copy(pv);
+    // Seated CEO (activity) is not in the way; standing or walking CEO is.
+    this.npcs.sim.setPlayer(this.activity ? null : this.player.floor, this.player.pos);
     this.npcs.update(dt, this.player.floor, this.rig.camera, this.stage.clientWidth, this.stage.clientHeight, this.settings.reducedMotion);
     $('sim-clock').textContent = this.npcs.sim.clockLabel();
     this.updateFocus(dt);

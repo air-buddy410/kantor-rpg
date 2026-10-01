@@ -5,8 +5,8 @@
    "HATCH": 38
   },
   "A-WALL": {
-   "HATCH": 92,
-   "LWPOLYLINE": 92
+   "HATCH": 131,
+   "LWPOLYLINE": 131
   },
   "A-AREA": {
    "LWPOLYLINE": 38
@@ -15,6 +15,9 @@
    "LWPOLYLINE": 66,
    "ARC": 38,
    "HATCH": 6
+  },
+  "A-GLAZ": {
+   "LWPOLYLINE": 364
   },
   "A-STRS": {
    "LWPOLYLINE": 62,
@@ -59,7 +62,7 @@
   }
  },
  "totals": {
-  "modelspace": 474,
+  "modelspace": 916,
   "paperspace": 118
  },
  "layers": [
@@ -76,6 +79,8 @@
   "A-DOOR-IDEN",
   "A-FURN",
   "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
   "A-GRID",
   "A-GRID-IDEN",
   "A-STRS",
@@ -86,9 +91,19 @@
  "insunits": 4,
  "dxfversion": "AC1032",
  "sheet": "I-101",
- "world_revision": "P02",
+ "world_revision": "P03",
  "expected": {
   "pages": 1,
   "views": 2
+ },
+ "openings": {
+  "window_symbols": 39,
+  "windows_per_floor": {
+   "L1": 20,
+   "L2": 19
+  },
+  "door_leaves": 38,
+  "door_arcs": 38,
+  "elevation_hinge_marks": 0
  }
 }

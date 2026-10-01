@@ -144,7 +144,9 @@ def test_dxf_door_and_fixture_ids(built, world):
 def test_dxf_walls_count_and_extents(built, world):
     msp = ezdxf.readfile(built["dxf"]).modelspace()
     walls = list(msp.query('LWPOLYLINE[layer=="A-WALL"]'))
-    assert len(walls) == len(derive_walls(world, FLOOR)[0])
+    # Each concept window (P03) splits one exterior wall piece in two.
+    n_windows = sum(1 for w in world["windows"] if w["floor"] == FLOOR)
+    assert len(walls) == len(derive_walls(world, FLOOR)[0]) + n_windows
     assert len(msp.query('HATCH[layer=="A-WALL"]')) == len(walls)
     pts = [p for w in walls for p in w.get_points("xy")]
     half = world["building"]["wall"]["exterior"] / 2 * 1000
@@ -259,6 +261,8 @@ def test_autocad_count_comparison_tool(built, tmp_path):
     tool = [sys.executable, str(ROOT / "cad" / "autocad" / "compare_counts.py"), str(built["counts"])]
     assert subprocess.run(tool + [str(good)], capture_output=True).returncode == 0
     bad = tmp_path / "bad.txt"
-    bad.write_text(good.read_text(encoding="utf-8").replace("A-WALL LWPOLYLINE 50", "A-WALL LWPOLYLINE 49"),
-                   encoding="utf-8")
+    n = counts["modelspace"]["A-WALL"]["LWPOLYLINE"]
+    tampered = good.read_text(encoding="utf-8").replace(f"A-WALL LWPOLYLINE {n}", f"A-WALL LWPOLYLINE {n - 1}")
+    assert tampered != good.read_text(encoding="utf-8")
+    bad.write_text(tampered, encoding="utf-8")
     assert subprocess.run(tool + [str(bad)], capture_output=True).returncode == 1

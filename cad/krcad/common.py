@@ -62,6 +62,9 @@ LAYERS = {
     "A-WALL": (3, (31, 77, 58), 50, "Continuous", True),
     "A-DOOR": (3, (31, 77, 58), 25, "Continuous", True),
     "A-DOOR-IDEN": (8, (61, 90, 76), 13, "Continuous", True),
+    # Concept windows (world.json windows, P03): symbol in the exterior wall and its ID tag.
+    "A-GLAZ": (3, (31, 77, 58), 18, "Continuous", True),
+    "A-GLAZ-IDEN": (8, (61, 90, 76), 13, "Continuous", True),
     "A-AREA": (9, (160, 180, 170), 13, "Continuous", False),
     "A-ANNO-RMNM": (7, (34, 48, 42), 18, "Continuous", True),
     "A-FURN": (8, (138, 128, 118), 18, "Continuous", True),
@@ -75,8 +78,8 @@ LAYERS = {
     "A-ANNO-WMRK": (9, (232, 238, 234), 13, "Continuous", True),
     "A-ANNO-VPRT": (8, (128, 128, 128), 13, "Continuous", False),
 }
-REQUIRED_LAYERS = ["A-WALL", "A-DOOR", "A-AREA", "A-ANNO-RMNM", "A-FURN", "A-FURN-IDEN", "A-STRS",
-                   "A-ANNO-DIMS", "A-GRID", "A-ANNO-TTLB"]
+REQUIRED_LAYERS = ["A-WALL", "A-DOOR", "A-GLAZ", "A-GLAZ-IDEN", "A-AREA", "A-ANNO-RMNM", "A-FURN", "A-FURN-IDEN",
+                   "A-STRS", "A-ANNO-DIMS", "A-GRID", "A-ANNO-TTLB"]
 
 
 # --------------------------------------------------------------------------- helpers

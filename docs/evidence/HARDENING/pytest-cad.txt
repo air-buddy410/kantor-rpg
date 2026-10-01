@@ -1,0 +1,7 @@
+# command: python3 -m pytest -q tests/py/test_cad.py tests/py/test_cad_m3.py tests/py/test_cad_openings.py tests/py/test_openings.py
+# utc start: 2026-10-01T15:48:49Z
+........................................................................ [ 67%]
+...................................                                      [100%]
+107 passed in 130.65s (0:02:10)
+# exit code: 0
+# utc end: 2026-10-01T15:51:01Z

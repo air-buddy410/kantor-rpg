@@ -16,8 +16,11 @@ LIGHT_WALL_EXT = "#6f8379"
 
 
 def plan_base(v: View, plan, mode="full", doors=True, door_tags=False, grid=True, fixtures="full",
-              vlinks=True, room_outline=True):
-    """mode 'full' = green poche walls; 'light' = grey walls so overlays read first."""
+              vlinks=True, room_outline=True, window_tags=False):
+    """mode 'full' = green poche walls; 'light' = grey walls so overlays read first.
+
+    Windows are always drawn: walls are split at them, so leaving the symbol
+    out would read as a hole in the envelope."""
     light = mode == "light"
     for ext in (False, True):
         colr = (LIGHT_WALL_EXT if ext else LIGHT_WALL) if light else (GREEN if ext else WALL_INT)
@@ -47,6 +50,22 @@ def plan_base(v: View, plan, mode="full", doors=True, door_tags=False, grid=True
             if door_tags:
                 v.text(d["tag_pos"], d["id"], "A-DOOR-IDEN", size=4.6, font="M", color=GREY_TEXT, align="c",
                        rot=d["tag_rot"], knock=True, xd=xd)
+    wc = LIGHT_WALL_EXT if light else GREEN
+    for w in plan.get("windows", []):
+        xd = ("window", w["id"], {"glazing": w["glazing"], "room": w["room"], "sill": w["sill"], "head": w["head"],
+                                  "width": w["width"]})
+        for a, b in w["faces"]:
+            v.line(a, b, "A-GLAZ", stroke=wc, width=0.4, xd=xd)
+        for a, b in w["glass"]:
+            v.line(a, b, "A-GLAZ", stroke=wc, width=0.25, xd=xd)
+        v.poly(w["sill_line"], "A-GLAZ", stroke=wc, width=0.35, xd=xd)
+        for a, b in w["hatch"]:
+            v.line(a, b, "A-GLAZ", stroke=wc, width=0.2, xd=xd)
+        if window_tags:
+            v.text((w["tag_pos"][0] + (0 if w["tag_rot"] == 0 else w["tag_size"] * 0.34 / PT_PER_MM * v.m_per_mm()),
+                    w["tag_pos"][1] - (w["tag_size"] * 0.34 / PT_PER_MM * v.m_per_mm() if w["tag_rot"] == 0 else 0)),
+                   w["id"], "A-GLAZ-IDEN", size=w["tag_size"], font="M", color=GREY_TEXT, align="c",
+                   rot=w["tag_rot"], knock=True, xd=("window", w["id"]))
     if fixtures:
         fc = FURN if fixtures == "full" else "#c2bbb3"
         fw = 0.35 if fixtures == "full" else 0.25

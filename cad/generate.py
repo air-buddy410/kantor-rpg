@@ -73,6 +73,52 @@ def dxf_counts(path: Path) -> dict:
     return out
 
 
+def opening_counts(path: Path) -> dict:
+    """Window symbols and door leaves/arcs as found in the written DXF (model
+    space and every layout), read back through the KANTOR_RPG xdata rather than
+    taken from the in-memory model, so the counts describe the file."""
+    import ezdxf
+    doc = ezdxf.readfile(path)
+    windows, leaves, arcs, hinge_marks = set(), 0, 0, 0
+    per_floor = {}
+    spaces = [doc.modelspace()] + [lay for lay in doc.layouts if not lay.is_modelspace]
+    for space in spaces:
+        for e in space:
+            if not e.has_xdata(APPID):
+                continue
+            tags = [t.value for t in e.get_xdata(APPID)]
+            extra = dict(t.split("=", 1) for t in tags[2:] if "=" in t)
+            if tags[0] == "window" and e.dxf.layer in ("A-GLAZ", "A-ELEV-GLAZ", "A-SECT-GLAZ"):
+                windows.add(tags[1])
+            elif tags[0] == "door" and e.dxf.layer == "A-DOOR" and extra.get("type") in ("single", "double"):
+                if e.dxftype() == "ARC":
+                    arcs += 1
+                elif e.dxftype() == "LINE" or (e.dxftype() == "LWPOLYLINE" and len(e) == 2):
+                    leaves += 1
+            elif tags[0] == "door" and e.dxf.layer == "A-ELEV-DOOR" and "hinge_u" in extra:
+                hinge_marks += 1
+    for wid in windows:
+        fl = wid.split("-")[1]
+        per_floor[fl] = per_floor.get(fl, 0) + 1
+    return {"window_symbols": len(windows), "windows_per_floor": dict(sorted(per_floor.items())),
+            "door_leaves": leaves, "door_arcs": arcs, "elevation_hinge_marks": hinge_marks}
+
+
+def write_counts_index(out_dxf: Path) -> Path:
+    """cad/out/counts.json: one index over every <ID>.counts.json on disk, so a
+    partial --sheets run never leaves the index describing files it did not see."""
+    sheets = {}
+    for f in sorted(Path(out_dxf).glob("*.counts.json")):
+        c = json.loads(f.read_text(encoding="utf-8"))
+        sheets[c["sheet"]] = {"file": f.name, "world_revision": c["world_revision"],
+                              "modelspace_total": c["totals"]["modelspace"],
+                              "paperspace_total": c["totals"]["paperspace"], "openings": c.get("openings")}
+    path = Path(out_dxf) / "counts.json"
+    path.write_text(json.dumps({"note": "Indeks dari cad/out/<ID>.counts.json, ditulis oleh cad/generate.py",
+                                "sheets": sheets}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return path
+
+
 def render_pdf_preview(pdf: Path, png: Path, dpi=50) -> list:
     """Page 1 -> <ID>.png, page n -> <ID>-p<n>.png."""
     png.parent.mkdir(parents=True, exist_ok=True)
@@ -141,7 +187,7 @@ def build_sheet(sheet: dict, world: dict, out_dxf: Path, out_pdf: Path, out_prev
         meta = write_dxf(sheet, world, plan, layout, dxf_path, generated_utc, world_sha)
         pdf_info = write_pdf(sheet, world, plan, layout, pdf_path, generated_utc, world_sha)
         expected = {"walls": len(plan["walls"]), "doors": len(plan["doors"]), "rooms": len(plan["rooms"]),
-                    "fixtures": len(plan["fixtures"]) + len(plan["vlinks"]),
+                    "windows": len(plan["windows"]), "fixtures": len(plan["fixtures"]) + len(plan["vlinks"]),
                     "dimension_segments": sum(len(ch["segments"]) for ch in plan["chains"])}
         result = {"plan": plan, "layout": layout, "scale_bar": layout["scale_bar"],
                   "forced_tags": [rid for rid, t in plan["tags"].items() if t.get("forced")],
@@ -157,7 +203,8 @@ def build_sheet(sheet: dict, world: dict, out_dxf: Path, out_pdf: Path, out_prev
         expected = {"pages": len(sd.pages), "views": sum(len(p.views) for p in sd.pages)}
         result = {"sheetdoc": sd, "summary": sd.summary}
     counts = dxf_counts(dxf_path)
-    counts.update({"sheet": sheet["id"], "world_revision": world["revision"]["id"], "expected": expected})
+    counts.update({"sheet": sheet["id"], "world_revision": world["revision"]["id"], "expected": expected,
+                   "openings": opening_counts(dxf_path)})
     counts_path.write_text(json.dumps(counts, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     result.update({"sheet": sheet, "dxf": dxf_path, "pdf": pdf_path, "counts": counts_path, "meta": meta,
                    "page_pt": pdf_info["page_pt"], "pages": _pdf_pages(pdf_path)})
@@ -305,6 +352,7 @@ def _log_sheet(r):
     for lay, layers in cnt["paperspace"].items():
         print(f"  {lay} {sum(sum(t.values()) for t in layers.values())} entities")
     print(f"  expected {cnt['expected']}")
+    print(f"  openings {json.dumps(cnt['openings'], ensure_ascii=False)}")
     print(f"  pdf {r['pdf'].relative_to(ROOT)}  {r['pdf'].stat().st_size} bytes  pages {r['pages']}  page "
           f"{r['page_pt'][0]:.2f} x {r['page_pt'][1]:.2f} pt  sha256 {sha256(r['pdf'])}")
     if "scale_bar" in r:
@@ -361,6 +409,8 @@ def main(argv=None) -> int:
     built = build_set(wanted, world, out_dxf, out_pdf, out_prev, generated_utc, world_sha,
                       previews=not args.no_previews, portmap=portmap, sheets_doc=sheets_doc, on_result=_log_sheet)
     results = list(built.values())
+    idx = write_counts_index(out_dxf)
+    print(f"\ncounts index {idx.relative_to(ROOT)} sha256 {sha256(idx)}")
     sets = consolidate(sheets_doc, out_pdf)
     print()
     for st in sets:

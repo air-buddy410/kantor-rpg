@@ -162,7 +162,9 @@ test.describe('world vertical slice', () => {
 
   test('only same-origin requests are made (no external endpoints)', async ({ page }) => {
     const hosts = new Set<string>();
-    page.on('request', (r) => hosts.add(new URL(r.url()).host));
+    // blob:/data: URLs are in-page (GLTFLoader hands embedded textures to the
+    // image decoder that way); only network schemes count as endpoints.
+    page.on('request', (r) => { const u = new URL(r.url()); if (u.protocol !== 'blob:' && u.protocol !== 'data:') hosts.add(u.host); });
     await boot(page);
     await page.locator('#btn-directory').click();
     await page.waitForTimeout(1500);

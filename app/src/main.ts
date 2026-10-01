@@ -6,7 +6,7 @@ import { runPerfRoute } from './perf/harness';
 import { renderDirectory } from './ui/directory';
 import { $, openDialog, toast } from './ui/dom';
 import { applyTheme, loadSettings, saveSettings, type Settings } from './ui/settings';
-import type { DerivedWalls, World } from './world/types';
+import type { DerivedWalls, Vec2, World } from './world/types';
 import { showPersonaCard, showRoomCard } from './game/game';
 import { StudioUI } from './studio/ui';
 import { AvatarStudio, availableHair, loadChoice, paletteColors } from './studio/avatar-studio';
@@ -150,22 +150,32 @@ function boot() {
     // Test/benchmark helper: drives the CEO with the normal movement code along
     // a navgrid path (no teleport). Resolves false when no path exists.
     walkTo: (x: number, y: number, timeoutMs = 90000) => new Promise<boolean>((resolve) => {
-      const path = game.nav.findPath(game.player.pos, [x, y]);
-      if (!path) { resolve(false); return; }
+      const first = game.nav.findPath(game.player.pos, [x, y]);
+      if (!first) { resolve(false); return; }
+      let path: Vec2[] = first;
       let i = 0;
       const t0 = performance.now();
+      // Personas are solid now: a test driver that stalls behind one re-plans
+      // from where it stands, and counts as arrived when a persona occupies the
+      // last metre (the CEO stops at their disc, as a player would).
+      let lastPos = [...game.player.pos];
+      let lastMove = performance.now();
+      const finish = (ok: boolean) => { game.autopilot = null; game.onFrame = null; resolve(ok); };
       game.onFrame = () => {
+        const now = performance.now();
+        if (Math.hypot(game.player.pos[0] - lastPos[0], game.player.pos[1] - lastPos[1]) > 0.05) { lastPos = [...game.player.pos]; lastMove = now; }
+        if (now - lastMove > 1500) {
+          if (Math.hypot(x - game.player.pos[0], y - game.player.pos[1]) < 1.0) { finish(true); return; }
+          path = game.nav.findPath(game.player.pos, [x, y]) ?? path;
+          i = 0;
+          lastMove = now;
+        }
         const tgt = path[Math.min(i, path.length - 1)];
         const dx = tgt[0] - game.player.pos[0];
         const dy = tgt[1] - game.player.pos[1];
         const d = Math.hypot(dx, dy);
         if (d < 0.2) i++;
-        if (i >= path.length || performance.now() - t0 > timeoutMs) {
-          game.autopilot = null;
-          game.onFrame = null;
-          resolve(i >= path.length);
-          return;
-        }
+        if (i >= path.length || now - t0 > timeoutMs) { finish(i >= path.length); return; }
         game.autopilot = d < 0.2 ? null : { dir: [dx / d, dy / d], run: true };
       };
     }),

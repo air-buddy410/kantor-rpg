@@ -210,23 +210,51 @@ export function buildFloor(world: World, walls: DerivedWalls, floor: FloorId, ma
   }
   const ops = walls.floors[floor].openings;
   const meetsOpening = (axis: string, at: number, v: number) => ops.some((o) => o.axis === axis && Math.abs(o.at - at) < 1e-6 && (Math.abs(o.from - v) < 1e-6 || Math.abs(o.to - v) < 1e-6));
+  const wins = (world.windows ?? []).filter((w) => w.floor === floor);
+  const winCount = { full: 0, high: 0 };
   for (const wall of walls.floors[floor].walls) {
     const t = wall.thickness;
     // Square caps close T-junctions, but an end at a door jamb gets none so the
     // visible opening equals the door width (same as the Blender shell).
     const capA = meetsOpening(wall.axis, wall.at, wall.from) ? 0 : t / 2;
     const capB = meetsOpening(wall.axis, wall.at, wall.to) ? 0 : t / 2;
-    const len = wall.to - wall.from + capA + capB;
     const hgt = wall.exterior ? WALL_HEIGHT_EXTERIOR : WALL_HEIGHT_INTERIOR;
-    const mid = (wall.from - capA + wall.to + capB) / 2;
-    const geo = new THREE.BoxGeometry(wall.axis === 'x' ? len : t, hgt, wall.axis === 'x' ? t : len);
-    const [cx, cy] = wall.axis === 'x' ? [mid, wall.at] : [wall.at, mid];
-    geo.translate(cx, elev + hgt / 2, -cy);
-    batch.add(geo, wall.exterior ? ENV.wallExterior : ENV.wallInterior, id, { occluder: true });
-    const cap = new THREE.BoxGeometry(wall.axis === 'x' ? len : t + 0.02, 0.05, wall.axis === 'x' ? t + 0.02 : len);
-    cap.translate(cx, elev + hgt + 0.025, -cy);
-    batch.add(cap, ENV.wallCap, id, { occluder: true });
+    const color = wall.exterior ? ENV.wallExterior : ENV.wallInterior;
+    const box = (a: number, b: number, z0: number, z1: number, c: number, opts: { occluder?: boolean; glass?: boolean } = {}, depth = t) => {
+      const len = b - a;
+      if (len <= 1e-6 || z1 - z0 <= 1e-6) return;
+      const mid = (a + b) / 2;
+      const geo = new THREE.BoxGeometry(wall.axis === 'x' ? len : depth, z1 - z0, wall.axis === 'x' ? depth : len);
+      const [cx, cy] = wall.axis === 'x' ? [mid, wall.at] : [wall.at, mid];
+      geo.translate(cx, elev + (z0 + z1) / 2, -cy);
+      batch.add(geo, c, id, opts);
+    };
+    // Concept windows (world.windows, P03) cut the cutaway wall between sill
+    // and wall top; a window whose sill is above the cut height (wet rooms,
+    // stores) shows as a frosted band on the cap so its position still reads.
+    const along = (w: { center: [number, number] }) => (wall.axis === 'x' ? w.center[0] : w.center[1]);
+    const mine = wall.exterior ? wins.filter((w) => w.wallAxis === wall.axis && Math.abs(w.at - wall.at) < 1e-6 && along(w) > wall.from && along(w) < wall.to) : [];
+    mine.sort((a, b) => along(a) - along(b));
+    let cursor = wall.from - capA;
+    for (const w of mine) {
+      const a = along(w) - w.width / 2;
+      const b = along(w) + w.width / 2;
+      if (w.sill < hgt) {
+        box(cursor, a, 0, hgt, color, { occluder: true });
+        box(a, b, 0, w.sill, color, { occluder: true });
+        box(a, b, w.sill - 0.04, w.sill, ENV.wallCap, {}, t + 0.08);
+        box(a, b, w.sill, hgt, w.glazing === 'obscured' ? ENV.wallCap : ENV.glass, { glass: true }, 0.04);
+        cursor = b;
+        winCount.full++;
+      } else {
+        box(a, b, hgt + 0.05, hgt + 0.09, ENV.glass, { glass: true }, t + 0.03);
+        winCount.high++;
+      }
+    }
+    box(cursor, wall.to + capB, 0, hgt, color, { occluder: true });
+    box(wall.from - capA, wall.to + capB, hgt, hgt + 0.05, ENV.wallCap, { occluder: true }, t + 0.02);
   }
+  group.userData.windows = winCount;
   for (const op of walls.floors[floor].openings) {
     // Threshold strip marks every doorway; restricted doors get a closed leaf.
     const len = op.to - op.from;

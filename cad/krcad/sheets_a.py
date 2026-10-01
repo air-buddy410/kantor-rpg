@@ -10,7 +10,7 @@ from krcad.common import *  # noqa: F401,F403
 from krcad.draw import (Col, LabelPlacer, SheetDoc, draw_table, frame_and_title, heading, north_arrow,
                         paragraph, scale_bar, table_rows_height, text_w_mm, wrap)
 from krcad.plan_prims import plan_base, plan_paper_layout, room_id_labels, stair_profile, local_to_world
-from krcad.planmodel import build_plan
+from krcad.planmodel import _clip_diagonals, build_plan, window_span
 
 # Values the dataset does not hold; drawn only with these labels on the sheet.
 DOOR_HEAD = 2.1
@@ -93,9 +93,10 @@ def build_room_schedule(sheet, ctx):
         n = max(n, 1)
         pages_rows.append(remaining[:n])
         remaining = remaining[n:]
+    n_pages = len(pages_rows) + 1  # + door and window schedule
     for i, chunk in enumerate(pages_rows):
-        page = sd.new_page(f"{i + 1}/{len(pages_rows)}")
-        (fx0, fy0, fx1, fy1), tb = frame_and_title(sd, page, i + 1, len(pages_rows), ctx["utc"], ctx["sha"])
+        page = sd.new_page(f"{i + 1}/{n_pages}")
+        (fx0, fy0, fx1, fy1), tb = frame_and_title(sd, page, i + 1, n_pages, ctx["utc"], ctx["sha"])
         view_title(page, fx0 + 4, fy1 - 9, "ROOM SCHEDULE", "NTS · luas as-drawn dari polygon (AS-DIM-02)")
         draw_table(page, fx0 + 4, fy1 - 13, cols, chunk, size=6.6, lead=1.2,
                    row_xd=lambda row: ("room", row[0]) if not row[0].startswith("Subtotal") else None)
@@ -105,10 +106,77 @@ def build_room_schedule(sheet, ctx):
                  "Kursi = slot duduk dari fixture (AS-OCC-02), bukan target okupansi.",
                  "Pemeriksaan: jumlah luas ruang per lantai harus sama dengan luas envelope; hasil tertulis di baris "
                  "subtotal tiap lantai.",
-                 f"Halaman {i + 1} dari {len(pages_rows)}."]
+                 f"Halaman {i + 1} dari {n_pages}; schedule pintu dan jendela di halaman {n_pages}."]
         for n_ in notes:
             y = paragraph(page, fx0 + 4, y, n_, tb[0] - fx0 - 12, size=6.4, bullet=True)
+    _opening_schedule_page(sd, ctx, n_pages)
     return sd
+
+
+HINGE_SIDE = {("x", "low"): "barat", ("x", "high"): "timur", ("y", "low"): "selatan", ("y", "high"): "utara"}
+
+
+def facade_of_window(world, win):
+    env = floor_of(world, win["floor"])["envelope"]
+    xs, ys = [p[0] for p in env], [p[1] for p in env]
+    if win["wallAxis"] == "x":
+        return "S" if abs(win["at"] - min(ys)) < 1e-9 else "N" if abs(win["at"] - max(ys)) < 1e-9 else None
+    return "W" if abs(win["at"] - min(xs)) < 1e-9 else "E" if abs(win["at"] - max(xs)) < 1e-9 else None
+
+
+def opening_schedule_rows(world):
+    """Door and window schedule rows, every value straight from world.json."""
+    doors = []
+    for d in world["doors"]:
+        sw = d.get("swing")
+        if sw:
+            into = "EXT (luar)" if sw["into"] == "EXT" else sw["into"]
+            hinge = "both (2 daun)" if sw["hinge"] == "both" else f"{sw['hinge']} ({HINGE_SIDE[(d['wallAxis'], sw['hinge'])]})"
+        else:
+            into, hinge = "-", "-"
+        doors.append([d["id"], d["floor"], " / ".join(d["rooms"]), d["type"], fmt_m(d["width"]), into, hinge,
+                      "ya" if d["exit"] else ""])
+    wins = [[w["id"], w["floor"], w["room"], facade_of_window(world, w) or "?", fmt_m(w["width"]), fmt_m(w["sill"]),
+             fmt_m(w["head"]), "buram" if w["glazing"] == "obscured" else "bening"]
+            for w in sorted(world.get("windows", []), key=lambda w: w["id"])]
+    return doors, wins
+
+
+def _opening_schedule_page(sd, ctx, n_pages):
+    world = sd.world
+    page = sd.new_page(f"{n_pages}/{n_pages}")
+    (fx0, fy0, fx1, fy1), tb = frame_and_title(sd, page, n_pages, n_pages, ctx["utc"], ctx["sha"])
+    doors, wins = opening_schedule_rows(world)
+    view_title(page, fx0 + 4, fy1 - 9, "SCHEDULE PINTU DAN JENDELA",
+               f"NTS · dari world.json doors[] dan windows[] revisi {world['revision']['id']}")
+    dcols = [Col("ID pintu", 22, "l", "B"), Col("Lantai", 10, "c"), Col("Ruang yang dihubungkan", 46),
+             Col("Tipe", 14), Col("Lebar m", 12, "r", "M"), Col("Buka ke", 23), Col("Engsel", 21), Col("Exit", 9, "c")]
+    wcols = [Col("ID jendela", 21, "l", "B"), Col("Lantai", 10, "c"), Col("Ruang", 23), Col("Fasad", 11, "c"),
+             Col("Lebar m", 12, "r", "M"), Col("Ambang m", 14, "r", "M"), Col("Kepala m", 14, "r", "M"),
+             Col("Kaca", 13)]
+    x_d = fx0 + 4
+    x_w = x_d + sum(c.width for c in dcols) + 8
+    top = fy1 - 13
+    nd, yd = draw_table(page, x_d, top, dcols, doors, size=6.2, lead=1.18, row_xd=lambda r: ("door", r[0]))
+    nw, yw = draw_table(page, x_w, top, wcols, wins, size=6.2, lead=1.18, row_xd=lambda r: ("window", r[0]))
+    assert nd == len(doors) and nw == len(wins), f"A-103 opening schedule truncated ({nd}/{len(doors)}, {nw}/{len(wins)})"
+    assert yd > fy0 + 4 and yw > tb[3] + 30, f"A-103 opening schedule overflow ({yd:.1f}, {yw:.1f})"
+    n_swing = sum(1 for d in world["doors"] if d.get("swing"))
+    n_obs = sum(1 for w in world.get("windows", []) if w["glazing"] == "obscured")
+    width = sum(c.width for c in wcols)
+    y = heading(page, x_w, yw - 4, "CATATAN SCHEDULE", width, size=8)
+    for n_ in [f"Jumlah: {len(doors)} pintu/bukaan ({n_swing} berdaun dengan data swing), {len(wins)} jendela "
+               f"({n_obs} kaca buram).",
+               "Buka ke = ruang tempat daun pintu berayun (swing.into). Engsel low/high = kusen pada koordinat "
+               "lebih kecil/lebih besar sepanjang sumbu dinding; arah mata angin di dalam kurung.",
+               "Ambang dan kepala jendela diukur dari lantai jadi lantai masing-masing (elevasi "
+               + ", ".join(f"{f['id']} {fmt_elev(f['elevation'])} m" for f in world["floors"]) + ").",
+               "Fasad S/E/N/W = selatan, timur, utara, barat (Y+ = utara). Semua jendela berstatus konsep; "
+               "ukuran kusen, material dan U-value belum didesain."]:
+        y = paragraph(page, x_w, y, n_, width, size=6.2, bullet=True)
+    assert y > tb[3] + 2, f"A-103 schedule notes overflow ({y:.1f})"
+    sd.summary["opening_schedule"] = {"door_rows": nd, "window_rows": nw, "swing_doors": n_swing,
+                                      "obscured_windows": n_obs, "page": n_pages}
 
 
 # ------------------------------------------------------------------ A-201 / A-202
@@ -126,7 +194,7 @@ def build_furniture(sheet, ctx):
     page.line((lay["panel"][0], fy0), (lay["panel"][0], fy1), "A-ANNO-TTLB", stroke=GREEN, width=0.8)
     z = lay["zone"]
     v = page.view("plan", den, lay["origin"], (z[0] + 1, z[1] + 1, z[2] - 1, z[3] - 1))
-    plan_base(v, plan, mode="full", fixtures="full")
+    plan_base(v, plan, mode="full", fixtures="full", window_tags=True)
     wall_rects = [w["rect"] for w in plan["walls"]]
     fx_boxes = []
     for fx in plan["fixtures"]:
@@ -214,8 +282,26 @@ def facade_data(world):
         "W": {"name": "TAMPAK BARAT", "len": Y, "u": lambda x, y: Y - y, "on": lambda d: d["center"][0] == 0},
     }
     for key, s in sides.items():
-        s["doors"] = [{"id": d["id"], "u": s["u"](*d["center"]), "w": d["width"], "z": levels[d["floor"]],
-                       "floor": d["floor"]} for d in ext_doors if s["on"](d)]
+        s["doors"] = []
+        for d in ext_doors:
+            if not s["on"](d):
+                continue
+            item = {"id": d["id"], "u": s["u"](*d["center"]), "w": d["width"], "z": levels[d["floor"]],
+                    "floor": d["floor"], "type": d["type"], "hinge_u": []}
+            sw = d.get("swing")
+            if sw:
+                _, at, lo, hi = window_span(d | {"at": d["center"][1] if d["wallAxis"] == "x" else d["center"][0]})
+                jambs = {"low": [lo], "high": [hi], "both": [lo, hi]}[sw["hinge"]]
+                for j in jambs:
+                    pt = (j, at) if d["wallAxis"] == "x" else (at, j)
+                    item["hinge_u"].append(s["u"](*pt))
+            s["doors"].append(item)
+        s["windows"] = []
+        for w in sorted(world.get("windows", []), key=lambda w: w["id"]):
+            if facade_of_window(world, w) == key:
+                s["windows"].append({"id": w["id"], "u": s["u"](*w["center"]), "w": w["width"],
+                                     "z": levels[w["floor"]], "floor": w["floor"], "sill": w["sill"],
+                                     "head": w["head"], "glazing": w["glazing"]})
         junctions = set()
         for r in world["rooms"]:
             for (x0, y0), (x1, y1) in zip(r["polygon"], r["polygon"][1:] + r["polygon"][:1]):
@@ -275,6 +361,8 @@ def build_elevations(sheet, ctx):
     placements = {"S": (fx0 + 12, 212), "N": (fx0 + 196, 212), "E": (fx0 + 12, 124), "W": (fx0 + 196, 124)}
     offsets = {"S": (0, -40), "N": (0, -60), "E": (45, -40), "W": (45, -60)}
     door_count = 0
+    win_count = {}
+    worst_tag = 0.0
     for key in ("S", "E", "N", "W"):
         s = sides[key]
         ox, oy = placements[key]
@@ -282,7 +370,7 @@ def build_elevations(sheet, ctx):
         clip = (ox - 8, oy - 20, ox + L * 1000 / den + 33, oy + top * 1000 / den + 12)
         v = page.view(f"facade-{key}", den, (ox, oy), clip, model_offset_m=offsets[key])
         v.line((-2.0, 0), (L + 2.0, 0), "A-ELEV-GRND", stroke=INK, width=1.4)
-        v.rect(0, 0, L, top, "A-ELEV-OTLN", stroke=GREEN, fill="#f4f1ea", width=1.0)
+        v.rect(0, 0, L, top, "A-ELEV-OTLN", stroke=GREEN, fill="#f4f1ea", width=1.0, xd=("facade", key))
         for lv in range(1, nfl + 1):
             z = lv * ff
             v.line((0, z - slab), (L, z - slab), "A-ELEV-HIDN", stroke=GRID, width=0.3, dash=(3, 2))
@@ -290,15 +378,42 @@ def build_elevations(sheet, ctx):
         for u, fl in s["junctions"]:
             z0 = next(f["elevation"] for f in world["floors"] if f["id"] == fl)
             v.line((u, z0 + 0.05), (u, z0 + ff - slab), "A-ELEV-HIDN", stroke="#c9d3cd", width=0.25, dash=(1.5, 1.5))
+        placer = LabelPlacer(v)
         for d in s["doors"]:
             u0, u1 = d["u"] - d["w"] / 2, d["u"] + d["w"] / 2
             z0 = d["z"]
             v.rect(u0, z0, u1, z0 + DOOR_HEAD, "A-ELEV-DOOR", stroke=GREEN, fill="#ffffff", width=0.7,
                    xd=("door", d["id"]))
-            v.line((d["u"], z0), (d["u"], z0 + DOOR_HEAD), "A-ELEV-DOOR", stroke=GREEN, width=0.3)
-            v.text((d["u"], z0 + DOOR_HEAD + 0.35), d["id"], "A-ELEV-DOOR", size=5.4, font="M", color=INK, align="c",
-                   knock=True, xd=("door", d["id"]))
+            if d["type"] == "double":
+                v.line((d["u"], z0), (d["u"], z0 + DOOR_HEAD), "A-ELEV-DOOR", stroke=GREEN, width=0.3)
+            # Hinge mark: dashed triangle with its apex on the hinge jamb (swing data, P03).
+            for hu in d["hinge_u"]:
+                leaf_w = d["w"] / len(d["hinge_u"])
+                free = hu + leaf_w if abs(hu - u0) < 1e-6 else hu - leaf_w
+                v.poly([(free, z0 + 0.05), (hu, z0 + DOOR_HEAD / 2), (free, z0 + DOOR_HEAD - 0.05)], "A-ELEV-DOOR",
+                       stroke=GREEN, width=0.25, dash=(1.2, 0.9), xd=("door", d["id"], {"hinge_u": round(hu, 3)}))
+            placer.boxes.append((u0, z0, u1, z0 + DOOR_HEAD))
+            box, _ = placer.place((d["u"], z0 + DOOR_HEAD + 0.12), d["id"], 5.4, "M", gap=0.1, prefer=2)
+            v.text(((box[0] + box[2]) / 2, box[1] + (box[3] - box[1]) * 0.22), d["id"], "A-ELEV-DOOR", size=5.4,
+                   font="M", color=INK, align="c", knock=True, xd=("door", d["id"]))
             door_count += 1
+        for w in s["windows"]:
+            u0, u1 = w["u"] - w["w"] / 2, w["u"] + w["w"] / 2
+            zs, zh = w["z"] + w["sill"], w["z"] + w["head"]
+            xd = ("window", w["id"], {"facade": key, "floor": w["floor"], "glazing": w["glazing"]})
+            obscured = w["glazing"] == "obscured"
+            v.rect(u0, zs, u1, zh, "A-ELEV-GLAZ", stroke=GREEN, fill="#e6eeec" if not obscured else "#ece8e0",
+                   width=0.6, xd=xd)
+            for a, b in (_clip_diagonals(u0, zs, u1, zh, 0.16) if obscured else []):
+                v.line(a, b, "A-ELEV-GLAZ", stroke=GREY_TEXT, width=0.2)
+            v.line((u0 - 0.08, zs), (u1 + 0.08, zs), "A-ELEV-GLAZ", stroke=GREEN, width=0.9)
+            placer.boxes.append((u0 - 0.08, zs - 0.05, u1 + 0.08, zh))
+            win_count[key] = win_count.get(key, 0) + 1
+        for w in s["windows"]:
+            box, hit = placer.place((w["u"], w["z"] + w["head"] + 0.12), w["id"], 5.0, "M", gap=0.1, prefer=2)
+            worst_tag = max(worst_tag, hit)
+            v.text(((box[0] + box[2]) / 2, box[1] + (box[3] - box[1]) * 0.22), w["id"], "A-ELEV-GLAZ", size=5.0,
+                   font="M", color=INK, align="c", knock=True, xd=("window", w["id"]))
         bz, br = -0.3 - 6 * mpm, 2.6 * mpm
         for lbl, u in s["grid"]:
             v.line((u, -0.1), (u, bz + br), "A-GRID", stroke=GRID, width=0.3)
@@ -314,13 +429,17 @@ def build_elevations(sheet, ctx):
         page.text((ox, oy - 15.5), f"Panjang fasad {fmt_m(L)} m, as ke as dinding luar.", "A-ANNO-NOTE", size=6.2,
                   color=GREY_TEXT)
     sd.summary["exterior_doors_drawn"] = door_count
+    sd.summary["windows_per_facade"] = {k: win_count.get(k, 0) for k in ("S", "E", "N", "W")}
+    sd.summary["window_tag_overlap_m2_max"] = round(worst_tag, 4)
     x = fx0 + 4
     y = fy0 + 50
     y = heading(page, x, y, "CATATAN TAMPAK", tb[0] - x - 8, size=8)
     notes = [f"Tinggi antar lantai {fmt_m(ff)} m dan pelat {fmt_m(slab)} m dari world.json (AS-DIM-01, AS-DIM-03).",
              f"* Atap dan parapet {fmt_m(PARAPET)} m serta tinggi pintu {fmt_m(DOOR_HEAD)} m adalah asumsi lembar ini "
              "(konsep); tidak ada di world.json.",
-             "world.json belum memuat jendela: bukaan jendela dan material fasad belum didesain dan tidak digambar.",
+             f"Jendela dari world.json windows ({sum(win_count.values())} buah): posisi, lebar, ambang dan kepala per "
+             "lantai; kaca buram diarsir. Kusen dan material fasad belum didesain.",
+             "Segitiga putus pada pintu = sisi engsel (puncak segitiga) dari doors[].swing.hinge.",
              "Garis putus tipis = posisi dinding dalam yang bertemu fasad; garis putus abu = pelat tersembunyi.",
              "Pintu exit L2 timur menuju tangga darurat konsep VL-ESC-E di luar envelope (AS-EXIT-01), tidak digambar."]
     for n_ in notes:
@@ -342,6 +461,14 @@ def section_cut(world, floor_id, axis, at):
                  if w["axis"] == want and w["from"] < at < w["to"]]
     cut_doors = [{"u": o["at"], "door": o["door"], "type": o["type"]} for o in openings
                  if o["axis"] == want and o["from"] < at < o["to"]]
+    cut_windows = []
+    for w in world.get("windows", []):
+        if w["floor"] != floor_id:
+            continue
+        w_axis, w_at, lo, hi = window_span(w)
+        if w_axis == want and lo < at < hi:
+            cut_windows.append({"u": w_at, "id": w["id"], "sill": w["sill"], "head": w["head"],
+                                "glazing": w["glazing"]})
     us = sorted({c["u"] for c in cut_walls} | {d["u"] for d in cut_doors})
     rooms = []
     for a, b in zip(us, us[1:]):
@@ -350,7 +477,7 @@ def section_cut(world, floor_id, axis, at):
         rid = room_at(world, floor_id, pt)
         if rid:
             rooms.append({"u0": a, "u1": b, "room": rid})
-    return {"walls": cut_walls, "doors": cut_doors, "rooms": rooms}
+    return {"walls": cut_walls, "doors": cut_doors, "windows": cut_windows, "rooms": rooms}
 
 
 def flight_height(prof, flight, ly):
@@ -411,6 +538,7 @@ def build_sections(sheet, ctx):
             e = f["elevation"]
             sc = section_cut(world, f["id"], cut["axis"], cut["at"])
             info["floors"][f["id"]] = {"walls": len(sc["walls"]), "doors": [d["door"] for d in sc["doors"]],
+                                       "windows": [w["id"] for w in sc["windows"]],
                                        "rooms": [r["room"] for r in sc["rooms"]]}
             # Slab under this floor (the ground slab for the lowest floor).
             zb = e - slab
@@ -425,7 +553,22 @@ def build_sections(sheet, ctx):
             for w in sc["walls"]:
                 t = w["t"]
                 ztop = top + (slab + PARAPET if (w["exterior"] and i == len(floors) - 1) else 0)
-                v.rect(w["u"] - t / 2, e, w["u"] + t / 2, ztop, "A-SECT-WALL", stroke=None, fill=poche)
+                win = next((x for x in sc["windows"] if abs(x["u"] - w["u"]) < 1e-9), None)
+                if win is None:
+                    v.rect(w["u"] - t / 2, e, w["u"] + t / 2, ztop, "A-SECT-WALL", stroke=None, fill=poche)
+                    continue
+                # Cut through a window: wall below the sill and above the head,
+                # glass as a double line between them.
+                zs, zh = e + win["sill"], e + win["head"]
+                xd = ("window", win["id"], {"glazing": win["glazing"]})
+                v.rect(w["u"] - t / 2, e, w["u"] + t / 2, zs, "A-SECT-WALL", stroke=None, fill=poche)
+                v.rect(w["u"] - t / 2, zh, w["u"] + t / 2, ztop, "A-SECT-WALL", stroke=None, fill=poche)
+                v.rect(w["u"] - t / 2, zs, w["u"] + t / 2, zh, "A-SECT-GLAZ", stroke=GREEN, width=0.3, xd=xd)
+                for du in (-0.025, 0.025):
+                    v.line((w["u"] + du, zs), (w["u"] + du, zh), "A-SECT-GLAZ", stroke=GREEN, width=0.35, xd=xd)
+                out = 1 if w["u"] >= L / 2 else -1
+                v.text((w["u"] + out * (t / 2 + 0.32), (zs + zh) / 2), win["id"], "A-SECT-IDEN", size=5, font="M",
+                       color=INK, align="c", rot=90, knock=True, xd=("window", win["id"]))
             for d in sc["doors"]:
                 t = b["wall"]["exterior"] if d["u"] in (0, L) else b["wall"]["interior"]
                 ztop = top + (slab + PARAPET if (d["u"] in (0, L) and i == len(floors) - 1) else 0)
@@ -496,6 +639,7 @@ def build_sections(sheet, ctx):
                    color=DIM, align="c", rot=90)
         view_title(page, ox, oy + (roof + PARAPET) * 1000 / den + 1.5, cut["title"], f"1:{den} · {cut['desc']}",
                    size=9.5)
+        info["axis"], info["at"] = cut["axis"], cut["at"]
         summary[cut["key"]] = info
     sd.summary["cuts"] = summary
     # Key plan 1:500 with cut lines.
@@ -522,7 +666,10 @@ def build_sections(sheet, ctx):
              f"{fmt_m(slab)} m (AS-DIM-03); dinding dan bukaan dari derive_walls; tangga dari fixture stair_u (AS-DIM-05).",
              f"Tinggi kepala pintu {fmt_m(DOOR_HEAD)} m dan parapet {fmt_m(PARAPET)} m adalah asumsi lembar, bukan data "
              "world.json. Belum ada desain struktur atau fondasi.",
-             "Hijau penuh = elemen terpotong (dinding, pelat). Garis putus = plafon. Terakota = tangga."]
+             "Hijau penuh = elemen terpotong (dinding, pelat). Garis putus = plafon. Terakota = tangga.",
+             "Jendela yang terpotong garis potong digambar dengan ambang dan kepala dari world.json windows: "
+             + (", ".join(sorted({w for c in summary.values() for fl in c["floors"].values() for w in fl["windows"]}))
+                or "tidak ada") + "."]
     for n_ in notes:
         y = paragraph(page, x, y, n_, tb[0] - x - 8, size=6.2, bullet=True)
     return sd

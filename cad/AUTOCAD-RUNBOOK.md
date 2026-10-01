@@ -24,9 +24,11 @@ Aturan:
 | Text style | `KR-SANS` dengan font `DejaVuSans.ttf`, width factor 0,8 agar teks tabel muat di kolom yang diukur untuk PDF. Bila font tidak ada, AutoCAD memakai pengganti (`FONTALT`); catat font pengganti di evidence |
 | Dimstyle | `KR-100` (DIMSCALE 100, tick arsitektural, angka mm) |
 
-Layer denah: `A-WALL`, `A-DOOR`, `A-DOOR-IDEN`, `A-AREA` (non-plot), `A-ANNO-RMNM`, `A-FURN`, `A-FURN-IDEN` (frozen di viewport), `A-STRS`, `A-ANNO-DIMS`, `A-GRID`, `A-GRID-IDEN`, `A-ANNO-TTLB`, `A-ANNO-NOTE`, `A-ANNO-WMRK`, `A-ANNO-VPRT` (non-plot).
+Layer denah: `A-WALL`, `A-DOOR`, `A-DOOR-IDEN`, `A-GLAZ` (simbol jendela konsep: muka dinding, garis kaca ganda, ambang dalam, arsir diagonal untuk kaca buram), `A-GLAZ-IDEN` (ID jendela), `A-AREA` (non-plot), `A-ANNO-RMNM`, `A-FURN`, `A-FURN-IDEN` (frozen di viewport), `A-STRS`, `A-ANNO-DIMS`, `A-GRID`, `A-GRID-IDEN`, `A-ANNO-TTLB`, `A-ANNO-NOTE`, `A-ANNO-WMRK`, `A-ANNO-VPRT` (non-plot).
 
-Layer lembar lain memakai awalan yang sama: `A-ELEV-*` (tampak), `A-SECT-*` (potongan), `I-FLOR-PATT` (finish), `ICT-*` (outlet, AP, kamera, tray, riser, rack, rute kabel), `A-ANNO-SCHD` (tabel). Hitungan per layer selalu ada di `<ID>.counts.json`.
+Sejak revisi P03 dinding luar dipotong di setiap jendela (`windows[]` di world.json), jadi jumlah `A-WALL LWPOLYLINE` = potongan dinding dari derive_walls + jumlah jendela di lantai itu. Arah buka dan engsel pintu dibaca dari `doors[].swing`.
+
+Layer lembar lain memakai awalan yang sama: `A-ELEV-*` (tampak, termasuk `A-ELEV-GLAZ` untuk jendela dan tanda engsel pintu di `A-ELEV-DOOR`), `A-SECT-*` (potongan, termasuk `A-SECT-GLAZ` untuk jendela yang terpotong), `I-FLOR-PATT` (finish), `ICT-*` (outlet, AP, kamera, tray, riser, rack, rute kabel), `A-ANNO-SCHD` (tabel). Hitungan per layer selalu ada di `<ID>.counts.json`; bagian `openings` di file itu mencatat jumlah simbol jendela (per lantai), daun dan busur pintu, dan tanda engsel di tampak, dibaca ulang dari XDATA DXF. Indeks semua lembar: `cad/out/counts.json`.
 
 ID ruang, pintu, fixture, outlet, perangkat, perangkat rack dan kabel juga tersimpan sebagai XDATA aplikasi `KANTOR_RPG` (lihat dengan `LIST` atau `XDLIST` bila Express Tools terpasang).
 
@@ -64,7 +66,7 @@ Centang semua sebelum menyebut DWG "native, terverifikasi":
 - [ ] `INSUNITS` = 4 dan `UNITS` menampilkan Millimeters.
 - [ ] Semua layer pada daftar di atas ada.
 - [ ] `APPLOAD` lalu muat `cad/autocad/count_by_layer.lsp`, jalankan `KRCOUNT`. File `A-101.autocad-counts.txt` terbentuk di `cad/out/`.
-- [ ] Bandingkan hitungan: `python3 cad/autocad/compare_counts.py cad/out/A-101.counts.json cad/out/A-101.autocad-counts.txt` harus "HASIL: cocok". Untuk A-101 revisi P02 contoh nilainya: `A-WALL LWPOLYLINE 50`, `A-WALL HATCH 50`, `A-ANNO-DIMS DIMENSION 28`, `A-ANNO-RMNM MTEXT 20`; angka acuan selalu dari file counts.json, bukan dari runbook ini.
+- [ ] Bandingkan hitungan: `python3 cad/autocad/compare_counts.py cad/out/A-101.counts.json cad/out/A-101.autocad-counts.txt` harus "HASIL: cocok". Untuk A-101 revisi P03 contoh nilainya: `A-WALL LWPOLYLINE 70`, `A-WALL HATCH 70`, `A-GLAZ-IDEN TEXT 20` (20 jendela L1), `A-DOOR ARC 23` (23 daun pintu L1), `A-ANNO-DIMS DIMENSION 28`, `A-ANNO-RMNM MTEXT 20`; angka acuan selalu dari file counts.json, bukan dari runbook ini.
 - [ ] `LIST` pada dimensi total bawah: 32000; dimensi total kiri: 24000.
 - [ ] Lembar tabel (A-001, A-103, ICT-001, ICT-401) isinya di paper space, jadi `KRCOUNT` (model space) memberi 0 untuknya: cek jumlah tab layout dan entitas paper space terhadap bagian `paperspace` di `<ID>.counts.json` secara manual (`QSELECT` per layout).
 - [ ] Ulangi checklist ini untuk setiap lembar di `drawings/register.json`; A-101 hanya contoh.

@@ -64,10 +64,14 @@ def building_grid(world) -> dict:
             "extent": (xmin, ymin, xmax, ymax)}
 
 
+class OpeningDataError(ValueError):
+    """world.json lacks or contradicts data the drawing needs (swing, window)."""
+
+
 def _wall_rect(wall, openings):
     """Rectangle of a wall piece. Square caps (t/2) close corners and T-junctions,
-    but an end that is a door jamb gets no cap, otherwise the cap would narrow the
-    clear opening by t/2 on each side."""
+    but an end that is a door or window jamb gets no cap, otherwise the cap would
+    narrow the clear opening by t/2 on each side."""
     t = wall["thickness"] / 2
     jambs = [o for o in openings if o["axis"] == wall["axis"] and abs(o["at"] - wall["at"]) < 1e-9]
     cap0 = 0.0 if any(abs(wall["from"] - o["to"]) < 1e-6 for o in jambs) else t
@@ -75,6 +79,45 @@ def _wall_rect(wall, openings):
     if wall["axis"] == "x":
         return (wall["from"] - cap0, wall["at"] - t, wall["to"] + cap1, wall["at"] + t)
     return (wall["at"] - t, wall["from"] - cap0, wall["at"] + t, wall["to"] + cap1)
+
+
+def window_span(win):
+    """(axis, at, from, to) of a window along its wall, from world.json fields."""
+    c = win["center"][0] if win["wallAxis"] == "x" else win["center"][1]
+    return win["wallAxis"], win["at"], c - win["width"] / 2, c + win["width"] / 2
+
+
+def split_walls_at_windows(walls, windows):
+    """Break every wall piece where a window sits. A window that does not fall
+    strictly inside one wall piece (over a door, past a corner, on an interior
+    line that has no wall) is a dataset error, so it raises instead of drawing
+    glass in thin air."""
+    out = [dict(w) for w in walls]
+    for win in windows:
+        axis, at, lo, hi = window_span(win)
+        host = [w for w in out if w["axis"] == axis and abs(w["at"] - at) < 1e-9
+                and w["from"] < lo - 1e-9 and hi + 1e-9 < w["to"]]
+        if len(host) != 1:
+            raise OpeningDataError(f"{win['id']}: window {lo:.3f}-{hi:.3f} on {axis}@{at} is not inside one wall piece")
+        w = host[0]
+        out.remove(w)
+        out += [{**w, "from": w["from"], "to": lo}, {**w, "from": hi, "to": w["to"]}]
+    out.sort(key=lambda w: (w["axis"], w["at"], w["from"]))
+    return out
+
+
+def _check_swing(door):
+    sw = door.get("swing")
+    if door["type"] not in ("single", "double"):
+        return None
+    if not sw or "into" not in sw or "hinge" not in sw:
+        raise OpeningDataError(f"{door['id']}: {door['type']} door has no swing data in world.json")
+    if sw["into"] not in door["rooms"]:
+        raise OpeningDataError(f"{door['id']}: swing.into {sw['into']} is not one of {door['rooms']}")
+    want = ("both",) if door["type"] == "double" else ("low", "high")
+    if sw["hinge"] not in want:
+        raise OpeningDataError(f"{door['id']}: hinge {sw['hinge']} invalid for a {door['type']} door")
+    return sw
 
 
 def _door_symbol(world, floor_id, op, door, walls, env_box):
@@ -94,39 +137,30 @@ def _door_symbol(world, floor_id, op, door, walls, env_box):
         return room_at(world, floor_id, to_world(mid, sign * 0.05)) or "EXT"
 
     plus, minus = side_room(+1), side_room(-1)
-    cats = {r["id"]: r["category"] for r in world["rooms"]}
-    a, b = door["rooms"]
-    # Drawing convention (world.json stores no swing): exits swing outward in the
-    # egress direction; other doors swing away from circulation into the room.
-    if door["exit"] and "EXT" in (a, b):
-        target = "EXT"
-    elif cats.get(a) == "circulation" and cats.get(b) != "circulation":
-        target = b
-    elif cats.get(b) == "circulation" and cats.get(a) != "circulation":
-        target = a
+    sw = _check_swing(door)
+    # Side and hinge come from world.json doors[].swing (P03). The leaf opens
+    # into swing.into; hinge low/high is the jamb at the lower/higher coordinate
+    # along the wall axis.
+    if sw:
+        target = sw["into"]
+        if target not in (plus, minus):
+            raise OpeningDataError(f"{door['id']}: swing.into {target} is on neither side ({minus}, {plus})")
     else:
-        target = b
+        # Opening / sliding / hatch has no leaf; the side only decides where the
+        # tag goes: on the circulation side, so it reads from the corridor.
+        cats = {r["id"]: r["category"] for r in world["rooms"]}
+        a, b = door["rooms"]
+        target = b if cats.get(a) == "circulation" and cats.get(b) != "circulation" else \
+            a if cats.get(b) == "circulation" and cats.get(a) != "circulation" else b
+        if target not in (plus, minus):
+            target = plus
     sign = +1 if target == plus else -1
-    ref = target if target != "EXT" else (minus if sign > 0 else plus)
-    # Hinge on the jamb nearest the reference room's corner so the open leaf
-    # rests against the side wall.
-    hinge_from = True
-    rp = next((r["polygon"] for r in world["rooms"] if r["id"] == ref), None)
-    if rp:
-        for p, q in polygon_edges(rp):
-            if axis == "x" and p[1] == q[1] == at:
-                e0, e1 = sorted((p[0], q[0]))
-            elif axis == "y" and p[0] == q[0] == at:
-                e0, e1 = sorted((p[1], q[1]))
-            else:
-                continue
-            if e0 - 1e-9 <= mid <= e1 + 1e-9:
-                hinge_from = (op["from"] - e0) <= (e1 - op["to"])
-                break
+    hinge_from = sw is None or sw["hinge"] == "low"
     w = op["to"] - op["from"]
     vf = sign * t / 2
     sym = {"id": door["id"], "type": door["type"], "width": w, "axis": axis, "at": at, "thickness": t,
-           "sign": sign, "target": target, "leaves": [], "arcs": [], "dashed": [], "panels": [], "lines": []}
+           "sign": sign, "target": target, "hinge": sw["hinge"] if sw else None, "leaves": [], "arcs": [],
+           "dashed": [], "panels": [], "lines": []}
 
     def vec_angle(du, dv):
         x, y = (du, dv) if axis == "x" else (dv, du)
@@ -175,6 +209,82 @@ def _door_symbol(world, floor_id, op, door, walls, env_box):
     sym["tag_pos"] = to_world(mid, -sign * (t / 2 + 0.3))
     sym["tag_rot"] = 0 if axis == "x" else 90
     return sym
+
+
+GLASS_GAP = 0.025  # half distance between the two glass lines, m
+SILL_PROJ = 0.05  # interior window board projection past the wall face and jambs, m
+OBSCURE_PITCH = 0.09  # diagonal hatch pitch for obscured glazing, m (0,9 mm at 1:100)
+
+
+def _clip_diagonals(x0, y0, x1, y1, pitch):
+    """45 degree hatch lines clipped to an axis-aligned rectangle."""
+    segs = []
+    k = x0 - y1 + pitch / 2
+    while k < x1 - y0:
+        # Line y = x - k inside the rectangle.
+        xa, xb = max(x0, y0 + k), min(x1, y1 + k)
+        if xb - xa > 1e-6:
+            segs.append(((xa, xa - k), (xb, xb - k)))
+        k += pitch
+    return segs
+
+
+def _window_symbol(world, floor_id, win):
+    """Concept plan symbol: wall break, both wall faces, a double glass line at
+    the wall centre and the interior sill board; obscured glazing adds a
+    diagonal hatch across the opening."""
+    axis, at, lo, hi = window_span(win)
+    t = world["building"]["wall"]["exterior"]
+    mid = (lo + hi) / 2
+
+    def to_world(u, v):
+        return (u, at + v) if axis == "x" else (at + v, u)
+
+    inside_plus = room_at(world, floor_id, to_world(mid, 0.05)) == win["room"]
+    inside_minus = room_at(world, floor_id, to_world(mid, -0.05)) == win["room"]
+    if inside_plus == inside_minus:
+        raise OpeningDataError(f"{win['id']}: room {win['room']} is not on exactly one side of the window")
+    out = -1 if inside_plus else +1  # exterior side
+    sym = {"id": win["id"], "room": win["room"], "axis": axis, "at": at, "from": lo, "to": hi, "out": out,
+           "width": win["width"], "sill": win["sill"], "head": win["head"], "glazing": win["glazing"],
+           "thickness": t}
+    sym["faces"] = [(to_world(lo, v), to_world(hi, v)) for v in (-t / 2, t / 2)]
+    sym["glass"] = [(to_world(lo, v), to_world(hi, v)) for v in (-GLASS_GAP, GLASS_GAP)]
+    vin = -out * t / 2
+    sym["sill_line"] = [to_world(lo - SILL_PROJ, vin), to_world(lo - SILL_PROJ, vin - out * SILL_PROJ),
+                        to_world(hi + SILL_PROJ, vin - out * SILL_PROJ), to_world(hi + SILL_PROJ, vin)]
+    a, b = to_world(lo, -t / 2), to_world(hi, t / 2)
+    sym["box"] = (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a[1], b[1]))
+    sym["hatch"] = _clip_diagonals(*sym["box"], OBSCURE_PITCH) if win["glazing"] == "obscured" else []
+    sym["tag_rot"] = 0 if axis == "x" else 90
+    sym["to_world"] = to_world
+    return sym
+
+
+def _place_window_tags(windows, obstacles, tf, den, size=5.2):
+    """Tags sit outside the exterior wall, between the wall face and the first
+    dimension chain. Candidates slide along and away from the wall; the one
+    with least overlap against swings, door tags, extension lines and the
+    tags already placed wins."""
+    pt_per_m = 1000.0 / den * PT_PER_MM
+    placed = []
+    for w in windows:
+        tw = (tf.width(w["id"], tf.medium, size) + 2) / pt_per_m
+        th = (size + 2) / pt_per_m
+        best = None
+        mid = (w["from"] + w["to"]) / 2
+        for i, d in enumerate((0.42, 0.62, 0.85)):
+            for j, du in enumerate((0.0, -0.3, 0.3, -0.6, 0.6)):
+                x, y = w["to_world"](mid + du, w["out"] * (w["thickness"] / 2 + d))
+                box = (x - tw / 2, y - th / 2, x + tw / 2, y + th / 2) if w["tag_rot"] == 0 else \
+                    (x - th / 2, y - tw / 2, x + th / 2, y + tw / 2)
+                hit = sum(rect_overlap(box, o) for o in obstacles + placed)
+                cost = hit * 100 + i * 0.05 + j * 0.01
+                if best is None or cost < best[0]:
+                    best = (cost, (x, y), box, hit)
+        w["tag_pos"], w["tag_box"], w["tag_overlap_m2"] = best[1], best[2], round(best[3], 5)
+        w["tag_size"] = size
+        placed.append(best[2])
 
 
 def _fixture_local(fx, lx, ly):
@@ -344,8 +454,11 @@ def build_plan(world, floor_id, den=100, tf=None, with_tags=True):
     env = floor_of(world, floor_id)["envelope"]
     env_box = (min(p[0] for p in env), min(p[1] for p in env), max(p[0] for p in env), max(p[1] for p in env))
     doors = {d["id"]: d for d in world["doors"]}
-    wall_items = [{**w, "rect": _wall_rect(w, openings)} for w in walls]
+    floor_windows = sorted((w for w in world.get("windows", []) if w["floor"] == floor_id), key=lambda w: w["id"])
+    jambs = list(openings) + [dict(zip(("axis", "at", "from", "to"), window_span(w))) for w in floor_windows]
+    wall_items = [{**w, "rect": _wall_rect(w, jambs)} for w in split_walls_at_windows(walls, floor_windows)]
     door_items = [_door_symbol(world, floor_id, op, doors[op["door"]], walls, env_box) for op in openings]
+    window_items = [_window_symbol(world, floor_id, w) for w in floor_windows]
     rooms = []
     for r in world["rooms"]:
         if r["floor"] == floor_id:
@@ -378,8 +491,34 @@ def build_plan(world, floor_id, den=100, tf=None, with_tags=True):
             d["tag_box"] = (x - th / 2, y - tw / 2, x + th / 2, y + tw / 2)
         d["tag_size"] = door_tag_size
         obstacles.append(d["tag_box"])
+    # Window tags avoid swings, door tags and the dimension extension lines
+    # that run from the wall face out to the first chain.
+    x0e, y0e, x1e, y1e = extent
+    win_obstacles = list(obstacles)
+    for ch in chains:
+        if ch["kind"] != "ruang":
+            continue
+        for val in ch["values"]:
+            if ch["side"] == "S":
+                win_obstacles.append((val - 0.04, y0e - ch["offset"], val + 0.04, y0e))
+            elif ch["side"] == "N":
+                win_obstacles.append((val - 0.04, y1e, val + 0.04, y1e + ch["offset"]))
+            elif ch["side"] == "W":
+                win_obstacles.append((x0e - ch["offset"], val - 0.04, x0e, val + 0.04))
+            else:
+                win_obstacles.append((x1e, val - 0.04, x1e + ch["offset"], val + 0.04))
+    for g in grid["x"]:
+        win_obstacles.append((g["at"] - 0.03, y0e - 3, g["at"] + 0.03, y1e + 3))
+    for g in grid["y"]:
+        win_obstacles.append((x0e - 3, g["at"] - 0.03, x1e + 3, g["at"] + 0.03))
+    _place_window_tags(window_items, win_obstacles, tf, den)
+    for w in window_items:
+        del w["to_world"]  # keep the plan model plain data
+        obstacles.append(w["box"])
+        xs, ys = [q[0] for q in w["sill_line"]], [q[1] for q in w["sill_line"]]
+        obstacles.append((min(xs), min(ys), max(xs), max(ys)))
     # The tag search is the slow part; overlay sheets place their own labels.
     tags = _layout_room_tags(rooms, [w["rect"] for w in wall_items], obstacles, tf, den) if with_tags else {}
     return {"floor": floor_id, "den": den, "walls": wall_items, "openings": openings, "doors": door_items,
-            "rooms": rooms, "fixtures": fixtures, "vlinks": vlinks, "grid": grid, "chains": chains,
+            "windows": window_items, "rooms": rooms, "fixtures": fixtures, "vlinks": vlinks, "grid": grid, "chains": chains,
             "extent": extent, "tags": tags, "fonts": tf}

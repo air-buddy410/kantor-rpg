@@ -1,0 +1,223 @@
+{
+ "note": "Indeks dari cad/out/<ID>.counts.json, ditulis oleh cad/generate.py",
+ "sheets": {
+  "A-001": {
+   "file": "A-001.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 0,
+   "paperspace_total": 219,
+   "openings": {
+    "window_symbols": 0,
+    "windows_per_floor": {},
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "A-101": {
+   "file": "A-101.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 796,
+   "paperspace_total": 23,
+   "openings": {
+    "window_symbols": 20,
+    "windows_per_floor": {
+     "L1": 20
+    },
+    "door_leaves": 23,
+    "door_arcs": 23,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "A-102": {
+   "file": "A-102.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 727,
+   "paperspace_total": 23,
+   "openings": {
+    "window_symbols": 19,
+    "windows_per_floor": {
+     "L2": 19
+    },
+    "door_leaves": 15,
+    "door_arcs": 15,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "A-103": {
+   "file": "A-103.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 0,
+   "paperspace_total": 1383,
+   "openings": {
+    "window_symbols": 0,
+    "windows_per_floor": {},
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "A-201": {
+   "file": "A-201.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 762,
+   "paperspace_total": 714,
+   "openings": {
+    "window_symbols": 20,
+    "windows_per_floor": {
+     "L1": 20
+    },
+    "door_leaves": 23,
+    "door_arcs": 23,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "A-202": {
+   "file": "A-202.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 703,
+   "paperspace_total": 637,
+   "openings": {
+    "window_symbols": 19,
+    "windows_per_floor": {
+     "L2": 19
+    },
+    "door_leaves": 15,
+    "door_arcs": 15,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "A-301": {
+   "file": "A-301.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 536,
+   "paperspace_total": 51,
+   "openings": {
+    "window_symbols": 39,
+    "windows_per_floor": {
+     "L1": 20,
+     "L2": 19
+    },
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 6
+   }
+  },
+  "A-401": {
+   "file": "A-401.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 174,
+   "paperspace_total": 24,
+   "openings": {
+    "window_symbols": 1,
+    "windows_per_floor": {
+     "L1": 1
+    },
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "I-101": {
+   "file": "I-101.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 916,
+   "paperspace_total": 118,
+   "openings": {
+    "window_symbols": 39,
+    "windows_per_floor": {
+     "L1": 20,
+     "L2": 19
+    },
+    "door_leaves": 38,
+    "door_arcs": 38,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "ICT-001": {
+   "file": "ICT-001.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 0,
+   "paperspace_total": 165,
+   "openings": {
+    "window_symbols": 0,
+    "windows_per_floor": {},
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "ICT-101": {
+   "file": "ICT-101.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 781,
+   "paperspace_total": 347,
+   "openings": {
+    "window_symbols": 20,
+    "windows_per_floor": {
+     "L1": 20
+    },
+    "door_leaves": 23,
+    "door_arcs": 23,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "ICT-102": {
+   "file": "ICT-102.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 686,
+   "paperspace_total": 250,
+   "openings": {
+    "window_symbols": 19,
+    "windows_per_floor": {
+     "L2": 19
+    },
+    "door_leaves": 15,
+    "door_arcs": 15,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "ICT-201": {
+   "file": "ICT-201.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 279,
+   "paperspace_total": 160,
+   "openings": {
+    "window_symbols": 0,
+    "windows_per_floor": {},
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "ICT-301": {
+   "file": "ICT-301.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 880,
+   "paperspace_total": 77,
+   "openings": {
+    "window_symbols": 39,
+    "windows_per_floor": {
+     "L1": 20,
+     "L2": 19
+    },
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  },
+  "ICT-401": {
+   "file": "ICT-401.counts.json",
+   "world_revision": "P03",
+   "modelspace_total": 0,
+   "paperspace_total": 1081,
+   "openings": {
+    "window_symbols": 0,
+    "windows_per_floor": {},
+    "door_leaves": 0,
+    "door_arcs": 0,
+    "elevation_hinge_marks": 0
+   }
+  }
+ }
+}

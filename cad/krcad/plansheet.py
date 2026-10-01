@@ -73,6 +73,18 @@ def write_dxf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
         t.set_placement(P(d["tag_pos"]), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
         _xdata(t, "door", d["id"])
 
+    for w in plan["windows"]:
+        xd = dict(glazing=w["glazing"], room=w["room"], sill=w["sill"], head=w["head"], width=w["width"])
+        for a, b in w["faces"] + w["glass"] + w["hatch"]:
+            e = msp.add_line(P(a), P(b), dxfattribs={"layer": "A-GLAZ"})
+            _xdata(e, "window", w["id"], **xd)
+        e = msp.add_lwpolyline([P(p) for p in w["sill_line"]], dxfattribs={"layer": "A-GLAZ"})
+        _xdata(e, "window", w["id"], **xd)
+        t = msp.add_text(w["id"], height=w["tag_size"] / PT_PER_MM * den * 0.72, rotation=w["tag_rot"],
+                         dxfattribs={"layer": "A-GLAZ-IDEN", "style": "KR-SANS"})
+        t.set_placement(P(w["tag_pos"]), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
+        _xdata(t, "window", w["id"])
+
     for r in plan["rooms"]:
         pl = msp.add_lwpolyline([P(p) for p in r["polygon"]], close=True, dxfattribs={"layer": "A-AREA"})
         _xdata(pl, "room", r["id"], area_m2=f"{r['area']:.4f}")
@@ -474,6 +486,35 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
         c.drawCentredString(0, -d["tag_size"] * 0.34, d["id"])
         c.restoreState()
 
+    # Windows: wall faces and sill board in ink, glass as a thin double line,
+    # obscured glazing hatched so it reads without colour.
+    for w in plan["windows"]:
+        c.setStrokeColor(col(GREEN))
+        c.setLineWidth(0.45)
+        for a, b in w["faces"]:
+            c.line(*W(a), *W(b))
+        c.setLineWidth(0.3)
+        for a, b in w["glass"]:
+            c.line(*W(a), *W(b))
+        c.setLineWidth(0.4)
+        sp = [W(p) for p in w["sill_line"]]
+        for a, b in zip(sp, sp[1:]):
+            c.line(*a, *b)
+        c.setLineWidth(0.25)
+        for a, b in w["hatch"]:
+            c.line(*W(a), *W(b))
+        tx, ty = W(w["tag_pos"])
+        c.saveState()
+        c.translate(tx, ty)
+        c.rotate(w["tag_rot"])
+        tw = tf.width(w["id"], FM, w["tag_size"])
+        c.setFillColor(colors.white)
+        c.rect(-tw / 2 - 1, -w["tag_size"] * 0.55, tw + 2, w["tag_size"] * 1.1, stroke=0, fill=1)
+        c.setFillColor(col(GREY_TEXT))
+        c.setFont(FM, w["tag_size"])
+        c.drawCentredString(0, -w["tag_size"] * 0.34, w["id"])
+        c.restoreState()
+
     # Room tags with a paper knockout so grid lines never cut through text.
     for r in plan["rooms"]:
         tag = plan["tags"][r["id"]]
@@ -684,7 +725,9 @@ def _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha):
              ("furn", "Furniture dan fixture (catalog, AS-DIM-04)"),
              ("stair", "Tangga U / lift, panah dari lantai ini"),
              ("grid", "Garis grid acuan konsep"), ("dim", "Dimensi mm, as ke as (AS-DIM-02)"),
-             ("tag", "Tag ruang: ID, nama, luas as-drawn"), ("dtag", "ID pintu (sisi tanpa ayunan)")]
+             ("tag", "Tag ruang: ID, nama, luas as-drawn"), ("dtag", "ID pintu (sisi tanpa ayunan)"),
+             ("win", "Jendela konsep kaca bening, ID di luar dinding"),
+             ("win_obs", "Jendela kaca buram (arsir diagonal)")]
     row = 18.0
     for i, (kind, text) in enumerate(items):
         colx = left + (i % 2) * width / 2
@@ -768,6 +811,33 @@ def _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha):
             c.setFillColor(col(GREY_TEXT))
             c.setFont(tf.medium, 5.5)
             c.drawCentredString(x0s + sw / 2, cy_ - 5, "00,00 m²")
+        elif kind in ("win", "win_obs"):
+            c.setStrokeColor(col(GREEN))
+            wx0, wx1 = x0s + 3, x0s + sw - 3
+            c.setFillColor(col(GREEN))
+            c.rect(x0s, cy_ - mm(1.5), 3, mm(3.0), stroke=0, fill=1)
+            c.rect(wx1, cy_ - mm(1.5), 3, mm(3.0), stroke=0, fill=1)
+            c.setLineWidth(0.45)
+            for dy in (-mm(1.5), mm(1.5)):
+                c.line(wx0, cy_ + dy, wx1, cy_ + dy)
+            c.setLineWidth(0.3)
+            for dy in (-mm(0.25), mm(0.25)):
+                c.line(wx0, cy_ + dy, wx1, cy_ + dy)
+            c.setLineWidth(0.4)
+            c.line(wx0 - 1.4, cy_ + mm(1.5), wx0 - 1.4, cy_ + mm(2.0))
+            c.line(wx0 - 1.4, cy_ + mm(2.0), wx1 + 1.4, cy_ + mm(2.0))
+            c.line(wx1 + 1.4, cy_ + mm(2.0), wx1 + 1.4, cy_ + mm(1.5))
+            if kind == "win_obs":
+                c.setLineWidth(0.25)
+                pth = c.beginPath()
+                pth.rect(wx0, cy_ - mm(1.5), wx1 - wx0, mm(3.0))
+                c.saveState()
+                c.clipPath(pth, stroke=0, fill=0)
+                xk = wx0 - mm(3.0)
+                while xk < wx1:
+                    c.line(xk, cy_ - mm(1.5), xk + mm(3.0), cy_ + mm(1.5))
+                    xk += mm(0.9)
+                c.restoreState()
         elif kind == "dtag":
             c.setFillColor(col(GREY_TEXT))
             c.setFont(tf.medium, 5.5)
@@ -836,8 +906,11 @@ def _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha):
     notes = [
         f"Sumber tunggal: design/world.json revisi {world['revision']['id']}; dinding diturunkan oleh "
         "tools/kantor/geometry.py (tepi polygon ruang dikurangi bukaan pintu).",
-        "Arah ayun pintu adalah konvensi generator: pintu exit membuka ke luar, pintu lain membuka ke ruang, "
-        "menjauhi koridor. world.json belum menyimpan arah ayun.",
+        "Arah buka dan sisi engsel pintu dibaca dari world.json (doors[].swing.into dan .hinge); generator "
+        "menolak pintu tunggal/ganda tanpa data swing.",
+        f"Jendela konsep dari world.json windows: {len(plan['windows'])} di lantai ini, "
+        f"{sum(1 for w in plan['windows'] if w['glazing'] == 'obscured')} kaca buram. Ambang dan kepala jendela "
+        "ada di schedule pintu dan jendela A-103 halaman 2 dan di A-301.",
         f"Lantai {floor_meta['id']}: elevasi {fmt_elev(floor_meta['elevation'])} m; {len(plan['rooms'])} ruang, "
         f"{len(plan['doors'])} pintu/bukaan, {len(plan['fixtures']) + len(plan['vlinks'])} fixture, "
         f"{seats} slot duduk (AS-OCC-02).",

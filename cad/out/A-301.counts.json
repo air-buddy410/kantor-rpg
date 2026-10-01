@@ -13,8 +13,13 @@
   },
   "A-ELEV-DOOR": {
    "HATCH": 5,
-   "LWPOLYLINE": 10,
+   "LWPOLYLINE": 12,
    "TEXT": 5
+  },
+  "A-ELEV-GLAZ": {
+   "HATCH": 39,
+   "LWPOLYLINE": 221,
+   "TEXT": 39
   },
   "A-GRID": {
    "LWPOLYLINE": 22
@@ -45,9 +50,9 @@
     "TEXT": 1
    },
    "A-ANNO-NOTE": {
-    "TEXT": 18,
+    "TEXT": 19,
     "LWPOLYLINE": 5,
-    "HATCH": 5
+    "HATCH": 6
    },
    "A-ANNO-VPRT": {
     "VIEWPORT": 4
@@ -55,8 +60,8 @@
   }
  },
  "totals": {
-  "modelspace": 235,
-  "paperspace": 49
+  "modelspace": 536,
+  "paperspace": 51
  },
  "layers": [
   "0",
@@ -70,11 +75,14 @@
   "A-DOOR",
   "A-DOOR-IDEN",
   "A-ELEV-DOOR",
+  "A-ELEV-GLAZ",
   "A-ELEV-GRND",
   "A-ELEV-HIDN",
   "A-ELEV-OTLN",
   "A-FURN",
   "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
   "A-GRID",
   "A-GRID-IDEN",
   "A-STRS",
@@ -84,9 +92,19 @@
  "insunits": 4,
  "dxfversion": "AC1032",
  "sheet": "A-301",
- "world_revision": "P02",
+ "world_revision": "P03",
  "expected": {
   "pages": 1,
   "views": 4
+ },
+ "openings": {
+  "window_symbols": 39,
+  "windows_per_floor": {
+   "L1": 20,
+   "L2": 19
+  },
+  "door_leaves": 0,
+  "door_arcs": 0,
+  "elevation_hinge_marks": 6
  }
 }

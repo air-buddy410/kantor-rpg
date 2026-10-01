@@ -5,6 +5,7 @@
 // no adapter, so workStatus stays 'unknown' no matter what the avatar does.
 // Nothing here performs network or model calls: decisions are a seeded
 // utility function evaluated only when an NPC finishes its current activity.
+import { AGENT_GAP, stepBlocked } from './agents';
 import type { NavGrid } from '../world/navgrid';
 import type { Actor, ActivitySlot, FloorId, Vec2, VerticalLink, World } from '../world/types';
 
@@ -36,6 +37,9 @@ export interface NpcState {
   workStatusSource: string;
   group: string | null;
   speed: number;
+  /** id of the agent this NPC is waiting for (player or NPC), null when walking freely */
+  yieldTo: string | null;
+  yieldSince: number;
   stats: { activities: Record<string, number>; recoveries: number; cancelled: number; distance: number };
 }
 
@@ -59,6 +63,12 @@ const PERFORM_SECONDS: Record<string, [number, number]> = {
 };
 const COOLDOWN_SECONDS: Record<string, number> = { coffee: 120, game: 90, billiards: 90, exercise: 120, stretch: 60, chat: 60, read: 40, rest: 60, desk: 0 };
 const STUCK_SECONDS = 2.5;
+// Wait this long behind a blocker before planning a detour around it; below
+// STUCK_SECONDS so a detour is tried before the stuck fallback fires.
+const YIELD_DETOUR_SECONDS = 0.8;
+// Within this distance of the path end, other NPCs no longer block: shared
+// multi-person slots (sofa, chat table) would otherwise be unreachable.
+const ARRIVAL_ZONE = 0.9;
 const RESERVATION_TTL = 30; // seconds of travel allowance before a reservation lapses
 
 export function mulberry32(seed: number): () => number {
@@ -90,6 +100,12 @@ export class IdleSim {
   /** count of external calls attempted; must stay 0 (boundary of REQ-IDLE-01) */
   externalCalls = 0;
   log: { t: number; npc: string; event: string; detail?: string }[] = [];
+
+  /** CEO position, set by the game each frame; NPCs yield to it. */
+  private player: { floor: FloorId; pos: Vec2 } | null = null;
+  setPlayer(floor: FloorId | null, pos?: Vec2): void { this.player = floor && pos ? { floor, pos: [pos[0], pos[1]] } : null; }
+  yields = 0;
+  detours = 0;
 
   constructor(private world: World, private nav: Record<FloorId, NavGrid>, opts: SimOptions, private events: SimEvents = {}) {
     this.rand = mulberry32(opts.seed);
@@ -178,7 +194,7 @@ export class IdleSim {
       phase: 'choose', activity: 'idle', slot: null, path: [], pathIndex: 0, via: null, until: 0,
       lastProgressAt: 0, lastPos: [start[0], start[1]], failures: 0, recentActivities: [], cooldown: {},
       workStatus: 'unknown', workStatusSource: 'tidak ada adapter (demo offline)', group: null,
-      speed: 1.3 + this.rand() * 0.25, stats: { activities: {}, recoveries: 0, cancelled: 0, distance: 0 },
+      speed: 1.3 + this.rand() * 0.25, yieldTo: null, yieldSince: 0, stats: { activities: {}, recoveries: 0, cancelled: 0, distance: 0 },
     };
   }
 
@@ -405,20 +421,81 @@ export class IdleSim {
     const dy = target[1] - npc.pos[1];
     const d = Math.hypot(dx, dy);
     const stepLen = npc.speed * dt;
-    if (d <= stepLen) {
-      npc.pos = [target[0], target[1]];
-      npc.pathIndex++;
+    const next: Vec2 = d <= stepLen ? [target[0], target[1]] : [npc.pos[0] + (dx / d) * stepLen, npc.pos[1] + (dy / d) * stepLen];
+    const blocker = this.blockerFor(npc, next);
+    if (blocker) {
+      if (npc.yieldTo !== blocker.id) { npc.yieldTo = blocker.id; npc.yieldSince = this.time; this.yields++; }
+      else if (this.time - npc.yieldSince >= YIELD_DETOUR_SECONDS) this.detour(npc, blocker.pos);
     } else {
-      const nx = npc.pos[0] + (dx / d) * stepLen;
-      const ny = npc.pos[1] + (dy / d) * stepLen;
-      if (nav.walkableAt([nx, ny])) npc.pos = [nx, ny];
+      npc.yieldTo = null;
+      if (d <= stepLen) {
+        npc.pos = next;
+        npc.pathIndex++;
+      } else if (nav.walkableAt(next)) npc.pos = next;
+      // Axis slide, same as the CEO controller: a step clipping a blocked
+      // corner cell slides along the free axis instead of freezing in place.
+      else if (nav.walkableAt([next[0], npc.pos[1]])) npc.pos = [next[0], npc.pos[1]];
+      else if (nav.walkableAt([npc.pos[0], next[1]])) npc.pos = [npc.pos[0], next[1]];
     }
     if (d > 1e-6) npc.facing = (Math.atan2(dy, dx) * 180) / Math.PI;
     const moved = Math.hypot(npc.pos[0] - npc.lastPos[0], npc.pos[1] - npc.lastPos[1]);
     npc.stats.distance += moved;
     if (moved > 0.01) npc.lastProgressAt = this.time;
+    // A walker that is moving or politely waiting keeps its slot: giving way
+    // can make a trip outlast the TTL, which used to let a second NPC book the
+    // same seat (2 h soak, hardening). Abandoned trips still lapse via fail().
+    if (npc.slot && (moved > 0.01 || npc.yieldTo)) {
+      const r = this.reservations.get(npc.slot);
+      if (r && r.npc === npc.id) r.expires = Math.max(r.expires, this.time + RESERVATION_TTL);
+    }
     npc.lastPos = [npc.pos[0], npc.pos[1]];
     if (this.time - npc.lastProgressAt > STUCK_SECONDS) this.fail(npc, 'stuck');
+  }
+
+  /** Who would this step bump into? The CEO always has right of way; walking
+   * NPCs give way to lower-index walkers and to anyone standing still, so two
+   * NPCs meeting head-on both stop and the detour below separates them. */
+  private blockerFor(npc: NpcState, next: Vec2): { id: string; pos: Vec2 } | null {
+    if (this.player && this.player.floor === npc.floor && stepBlocked(npc.pos, next, this.player.pos)) return { id: 'player', pos: this.player.pos };
+    const end = npc.path[npc.path.length - 1];
+    if (end && Math.hypot(end[0] - npc.pos[0], end[1] - npc.pos[1]) < ARRIVAL_ZONE) return null;
+    const me = this.npcs.indexOf(npc);
+    for (let k = 0; k < this.npcs.length; k++) {
+      const o = this.npcs[k];
+      if (o === npc || o.floor !== npc.floor) continue;
+      const walking = (o.phase === 'travel' || o.phase === 'recover') && o.yieldTo === null;
+      if (walking && k > me) continue;
+      if (stepBlocked(npc.pos, next, o.pos)) return { id: o.id, pos: o.pos };
+    }
+    return null;
+  }
+
+  /** Re-plan to the same destination with the blocker's disc temporarily closed. */
+  private detour(npc: NpcState, around: Vec2): void {
+    const end = npc.path[npc.path.length - 1];
+    if (!end) return;
+    const nav = this.nav[npc.floor];
+    const saved = nav.blocked;
+    const tmp = new Uint8Array(saved);
+    const [ci, cj] = nav.cellOf(around);
+    const r = Math.ceil((AGENT_GAP + 0.05) / 0.1);
+    for (let j = cj - r; j <= cj + r; j++) {
+      for (let i = ci - r; i <= ci + r; i++) {
+        if (i < 0 || j < 0 || i >= nav.w || j >= nav.h) continue;
+        const c = nav.center(i, j);
+        if (Math.hypot(c[0] - around[0], c[1] - around[1]) < AGENT_GAP + 0.05) tmp[j * nav.w + i] = 1;
+      }
+    }
+    nav.blocked = tmp;
+    let p: Vec2[] | null = null;
+    try { p = nav.findPath(npc.pos, end, 20000); } finally { nav.blocked = saved; }
+    npc.yieldSince = this.time; // wait another interval before the next attempt
+    if (p && p.length > 1) {
+      npc.path = p;
+      npc.pathIndex = 1;
+      this.detours++;
+      this.log.push({ t: this.time, npc: npc.id, event: 'detour', detail: npc.yieldTo ?? '' });
+    }
   }
 
   /** Failure path: release the reservation, retry once, then walk to the safe point. */

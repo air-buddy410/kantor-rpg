@@ -85,6 +85,8 @@
   "A-DOOR-IDEN",
   "A-FURN",
   "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
   "A-GRID",
   "A-GRID-IDEN",
   "A-STRS",
@@ -94,9 +96,16 @@
  "insunits": 4,
  "dxfversion": "AC1032",
  "sheet": "ICT-401",
- "world_revision": "P02",
+ "world_revision": "P03",
  "expected": {
   "pages": 3,
   "views": 0
+ },
+ "openings": {
+  "window_symbols": 0,
+  "windows_per_floor": {},
+  "door_leaves": 0,
+  "door_arcs": 0,
+  "elevation_hinge_marks": 0
  }
 }

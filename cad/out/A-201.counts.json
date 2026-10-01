@@ -2,8 +2,8 @@
  "file": "A-201.dxf",
  "modelspace": {
   "A-WALL": {
-   "HATCH": 50,
-   "LWPOLYLINE": 50
+   "HATCH": 70,
+   "LWPOLYLINE": 70
   },
   "A-AREA": {
    "LWPOLYLINE": 20
@@ -12,6 +12,12 @@
    "LWPOLYLINE": 35,
    "ARC": 23,
    "HATCH": 2
+  },
+  "A-GLAZ": {
+   "LWPOLYLINE": 178
+  },
+  "A-GLAZ-IDEN": {
+   "TEXT": 20
   },
   "A-FURN": {
    "LWPOLYLINE": 106
@@ -65,7 +71,7 @@
   }
  },
  "totals": {
-  "modelspace": 524,
+  "modelspace": 762,
   "paperspace": 714
  },
  "layers": [
@@ -82,6 +88,8 @@
   "A-DOOR-IDEN",
   "A-FURN",
   "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
   "A-GRID",
   "A-GRID-IDEN",
   "A-STRS",
@@ -91,9 +99,18 @@
  "insunits": 4,
  "dxfversion": "AC1032",
  "sheet": "A-201",
- "world_revision": "P02",
+ "world_revision": "P03",
  "expected": {
   "pages": 1,
   "views": 1
+ },
+ "openings": {
+  "window_symbols": 20,
+  "windows_per_floor": {
+   "L1": 20
+  },
+  "door_leaves": 23,
+  "door_arcs": 23,
+  "elevation_hinge_marks": 0
  }
 }
