@@ -19,12 +19,17 @@ test.describe('world vertical slice', () => {
     await page.locator('#stage canvas').click({ position: { x: 300, y: 600 } });
     // Hold until the CEO stops advancing: frame rate in CI is low (software
     // WebGL), and the game clamps dt, so wall-clock time is not distance.
+    // Personas are solid (hardening): a stop next to one is a persona block,
+    // not the desk, so keep holding until the CEO is stopped with nobody close.
+    const personaNear = (p: number[]) => page.evaluate((q) => (window.__kantor!.npcs as () => { floor: string; pos: number[] }[])()
+      .some((n) => n.floor === 'L1' && Math.hypot(n.pos[0] - q[0], n.pos[1] - q[1]) < 0.8), p);
     await page.keyboard.down('w');
     let last = s0.pos[1];
-    for (let k = 0; k < 40; k++) {
+    for (let k = 0; k < 60; k++) {
       await page.waitForTimeout(500);
-      const y = (await state(page)).pos[1];
-      if (y > s0.pos[1] + 1 && Math.abs(y - last) < 0.01) break;
+      const st = await state(page);
+      const y = st.pos[1];
+      if (y > s0.pos[1] + 1 && Math.abs(y - last) < 0.01 && !(await personaNear(st.pos))) break;
       last = y;
     }
     await page.keyboard.up('w');
