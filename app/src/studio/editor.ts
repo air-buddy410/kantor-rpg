@@ -2,7 +2,8 @@
 // Every operation is validated before it is committed; a rejected operation
 // leaves the draft exactly as it was and returns the reasons.
 import { geometryIssues, navIssues, roomAt, type Issue } from './validate';
-import type { DerivedWalls, Fixture, FloorId, Vec2, World } from '../world/types';
+import { deriveOutlets, type OutletDerivation } from '../world/ict';
+import type { DerivedWalls, Fixture, FloorId, Outlet, Vec2, World } from '../world/types';
 
 export const GRID = 0.25;
 export const LOCKED_FAMILIES = new Set(['shell', 'sanitary']);
@@ -23,6 +24,7 @@ export class Editor {
   private redoStack: Fixture[][] = [];
   private addCounter = 0;
   private navBaseline: Set<string> | null = null;
+  private outletCache: { fixtures: Fixture[]; res: OutletDerivation } | null = null;
   dirty = false;
 
   constructor(private world: World, private walls: DerivedWalls, start: Fixture[]) {
@@ -45,7 +47,6 @@ export class Editor {
     const fam = this.world.catalog[fx.type]?.family;
     if (fam === 'shell') return 'Elemen bangunan.';
     if (fam === 'sanitary') return 'Fixture sanitasi terikat shaft basah.';
-    if (this.world.ict.outlets.some((o) => o.serves === fx.id)) return null; // movable, outlet follows in a future ICT pass
     return null;
   }
 
@@ -102,6 +103,13 @@ export class Editor {
     if (!this.navBaseline) this.navBaseline = new Set(navIssues(this.world, this.walls, this.fixtures).issues.map((i) => i.message));
     return this.navBaseline;
   }
+
+  /** Outlets derived from the current fixtures; undo/redo/rollback follow automatically. */
+  outletDerivation(): OutletDerivation {
+    if (this.outletCache?.fixtures !== this.fixtures) this.outletCache = { fixtures: this.fixtures, res: deriveOutlets(this.world, this.fixtures) };
+    return this.outletCache.res;
+  }
+  outlets(): Outlet[] { return this.outletDerivation().outlets; }
 
   canUndo() { return this.undoStack.length > 0; }
   canRedo() { return this.redoStack.length > 0; }

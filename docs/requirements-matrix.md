@@ -1,6 +1,6 @@
 # Matriks requirement
 
-Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit c9c278a; evidence menunjuk file di repo).
+Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit f35a7e9; evidence menunjuk file di repo).
 Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi pada commit tercatat. Evidence kosong = belum diuji.
 
 | REQ | Milestone | Bagian | Test | Evidence | Status |

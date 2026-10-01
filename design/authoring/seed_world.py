@@ -779,6 +779,28 @@ def assign_homes(fixtures):
 # ICT: devices placed from the same coordinates; cables are derived later by
 # tools/ict_derive.py from this pathway graph, never stored as free lengths.
 # ---------------------------------------------------------------------------
+# Fixture types that get a telecom outlet at the fixture position. Stored in
+# world.ict.outletRules so the Studio (TS) and tools/kantor/ict_follow.py
+# re-derive outlets for moved/added/deleted furniture from the same table.
+def _rule(ports, mount, dom_l1, dom_l2, endpoints):
+    return {"ports": ports, "mount": mount, "domainByFloor": {"L1": dom_l1, "L2": dom_l2}, "endpointTypes": endpoints}
+
+
+OUTLET_RULES = {
+    "desk": _rule(2, "floor_wall", "NET-OFFICE", "NET-OFFICE", ["workstation", "phone_or_spare"]),
+    "desk_exec": _rule(2, "floor_wall", "NET-OFFICE", "NET-OFFICE", ["workstation", "phone_or_spare"]),
+    "lab_bench": _rule(4, "floor_wall", "NET-LAB", "NET-LAB", ["lab_device"] * 4),
+    "reception_desk": _rule(2, "floor_wall", "NET-OFFICE", "NET-OFFICE", ["workstation", "printer"]),
+    "wall_display": _rule(1, "wall_high", "NET-OFFICE", "NET-DEMO", ["display"]),
+    "media_console": _rule(2, "floor_wall", "NET-DEMO", "NET-DEMO", ["console", "display"]),
+    "arcade_cabinet": _rule(1, "floor_wall", "NET-DEMO", "NET-DEMO", ["arcade"]),
+    "directory_sign": _rule(1, "wall_high", "NET-DEMO", "NET-DEMO", ["signage"]),
+    "meeting_table": _rule(2, "floor_wall", "NET-OFFICE", "NET-OFFICE", ["table_box", "spare"]),
+    "lab_rack_open": _rule(2, "floor_wall", "NET-LAB", "NET-LAB", ["lab_uplink", "spare"]),
+}
+MOUNT_Z = {"floor_wall": 0.3, "ceiling": 3.0, "wall_high": 1.2}
+
+
 def seed_ict(fixtures):
     by_id = {f["id"]: f for f in fixtures}
     outlets = []
@@ -788,31 +810,14 @@ def seed_ict(fixtures):
         floor = room[:2]
         n[floor] += 1
         outlets.append({"id": f"TO-{floor}-{n[floor]:03d}", "floor": floor, "room": room, "pos": [round(pos[0], 3), round(pos[1], 3)],
-                        "mount": mount, "z": 0.3 if mount == "floor_wall" else (3.0 if mount == "ceiling" else 1.2),
+                        "mount": mount, "z": MOUNT_Z[mount],
                         "ports": ports, "serves": serves, "domain": domain, "endpointTypes": endpoint_types})
 
     for fx in fixtures:
-        t = fx["type"]
-        if t in ("desk", "desk_exec"):
-            dom = "NET-OFFICE"
-            outlet(fx["room"], fx["pos"], 2, "floor_wall", fx["id"], dom, ["workstation", "phone_or_spare"])
-        elif t == "lab_bench":
-            outlet(fx["room"], fx["pos"], 4, "floor_wall", fx["id"], "NET-LAB", ["lab_device"] * 4)
-        elif t == "reception_desk":
-            outlet(fx["room"], fx["pos"], 2, "floor_wall", fx["id"], "NET-OFFICE", ["workstation", "printer"])
-        elif t == "wall_display":
-            dom = "NET-DEMO" if fx["floor"] == "L2" else "NET-OFFICE"
-            outlet(fx["room"], fx["pos"], 1, "wall_high", fx["id"], dom, ["display"])
-        elif t == "media_console":
-            outlet(fx["room"], fx["pos"], 2, "floor_wall", fx["id"], "NET-DEMO", ["console", "display"])
-        elif t == "arcade_cabinet":
-            outlet(fx["room"], fx["pos"], 1, "floor_wall", fx["id"], "NET-DEMO", ["arcade"])
-        elif t == "directory_sign":
-            outlet(fx["room"], fx["pos"], 1, "wall_high", fx["id"], "NET-DEMO", ["signage"])
-        elif t == "meeting_table":
-            outlet(fx["room"], fx["pos"], 2, "floor_wall", fx["id"], "NET-OFFICE", ["table_box", "spare"])
-        elif t == "lab_rack_open":
-            outlet(fx["room"], fx["pos"], 2, "floor_wall", fx["id"], "NET-LAB", ["lab_uplink", "spare"])
+        rule = OUTLET_RULES.get(fx["type"])
+        if rule:
+            outlet(fx["room"], fx["pos"], rule["ports"], rule["mount"], fx["id"],
+                   rule["domainByFloor"][fx["floor"]], rule["endpointTypes"])
 
     aps = [("L1", "L1-LOBBY", [14, 3.4]), ("L1", "L1-IMPL", [10, 13.9]), ("L1", "L1-CORR", [25, 9.25]),
            ("L1", "L1-NCORR", [9, 17.5]), ("L1", "L1-NCORR", [23, 17.5]),
@@ -899,7 +904,7 @@ def seed_ict(fixtures):
     poe_classes = {"3": {"pseW": 15.4, "source": "IEEE 802.3af/at Class 3 PSE output"},
                    "4": {"pseW": 30.0, "source": "IEEE 802.3at Class 4 PSE output"}}
     return {"status": "rancangan virtual konsep; tidak terhubung perangkat/IP/ISP nyata", "domains": domains,
-            "outlets": outlets, "devices": devices, "racks": racks, "rackDeviceTypes": rack_device_types,
+            "outletRules": OUTLET_RULES, "mountZ": MOUNT_Z, "outlets": outlets, "devices": devices, "racks": racks, "rackDeviceTypes": rack_device_types,
             "pathways": pathways, "poeClasses": poe_classes,
             "assumptions": ["AS-ICT-01", "AS-ICT-02", "AS-ICT-03", "AS-ICT-04", "AS-ICT-05", "AS-ICT-06", "AS-NET-01"]}
 

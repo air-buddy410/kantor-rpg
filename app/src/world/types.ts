@@ -11,7 +11,18 @@ export interface Door {
   id: string; floor: FloorId; rooms: [string, string]; center: Vec2; width: number;
   type: 'single' | 'double' | 'opening' | 'sliding' | 'hatch'; access: 'public' | 'staff' | 'restricted';
   exit: boolean; wallAxis: 'x' | 'y';
+  /** Swing doors only: leaf opens into `into`; hinge low/high = jamb at the lower/higher coordinate along the wall. */
+  swing?: { into: string; hinge: 'low' | 'high' | 'both' };
 }
+export interface WindowSpec {
+  id: string; floor: FloorId; room: string; wallAxis: 'x' | 'y'; at: number; center: Vec2; width: number;
+  sill: number; head: number; glazing: 'clear' | 'obscured'; status: 'konsep';
+}
+export interface Outlet {
+  id: string; floor: FloorId; room: string; pos: Vec2; mount: string; z: number; ports: number; serves: string;
+  domain: string; endpointTypes: string[];
+}
+export interface OutletRule { ports: number; mount: string; domainByFloor: Record<FloorId, string>; endpointTypes: string[] }
 export interface Fixture {
   id: string; floor: FloorId; room: string; type: string; asset: string; pos: Vec2; rot: number;
   size: [number, number, number]; collider: boolean; pairedWith?: string; artwork?: string;
@@ -35,9 +46,12 @@ export interface Floor { id: FloorId; name: string; level: number; elevation: nu
 export interface World {
   schemaVersion: string; revision: { id: string; date: string; note: string }; status: string;
   building: { footprint: Vec2; floorToFloor: number; ceilingHeight: number; slab: number; wall: { exterior: number; interior: number } };
-  floors: Floor[]; rooms: Room[]; doors: Door[]; verticalLinks: VerticalLink[]; catalog: Record<string, CatalogEntry>;
+  floors: Floor[]; rooms: Room[]; doors: Door[]; windows: WindowSpec[]; verticalLinks: VerticalLink[]; catalog: Record<string, CatalogEntry>;
   fixtures: Fixture[]; activitySlots: ActivitySlot[]; waypoints: Waypoint[]; actors: Actor[];
-  ict: { outlets: { id: string; floor: FloorId; room: string; pos: Vec2; ports: number; serves: string }[]; devices: { id: string; type: string; floor: FloorId; room: string; pos: Vec2 }[] };
+  ict: {
+    outlets: Outlet[]; outletRules: Record<string, OutletRule>; mountZ: Record<string, number>;
+    devices: { id: string; type: string; floor: FloorId; room: string; pos: Vec2 }[];
+  };
   assumptions: { id: string; topic: string; text: string }[];
 }
 export interface WallPiece { axis: 'x' | 'y'; at: number; from: number; to: number; thickness: number; exterior: boolean }

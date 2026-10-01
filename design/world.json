@@ -9573,6 +9573,132 @@
     "note": "abstrak"
    }
   ],
+  "outletRules": {
+   "desk": {
+    "ports": 2,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-OFFICE",
+     "L2": "NET-OFFICE"
+    },
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   "desk_exec": {
+    "ports": 2,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-OFFICE",
+     "L2": "NET-OFFICE"
+    },
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   "lab_bench": {
+    "ports": 4,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-LAB",
+     "L2": "NET-LAB"
+    },
+    "endpointTypes": [
+     "lab_device",
+     "lab_device",
+     "lab_device",
+     "lab_device"
+    ]
+   },
+   "reception_desk": {
+    "ports": 2,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-OFFICE",
+     "L2": "NET-OFFICE"
+    },
+    "endpointTypes": [
+     "workstation",
+     "printer"
+    ]
+   },
+   "wall_display": {
+    "ports": 1,
+    "mount": "wall_high",
+    "domainByFloor": {
+     "L1": "NET-OFFICE",
+     "L2": "NET-DEMO"
+    },
+    "endpointTypes": [
+     "display"
+    ]
+   },
+   "media_console": {
+    "ports": 2,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-DEMO",
+     "L2": "NET-DEMO"
+    },
+    "endpointTypes": [
+     "console",
+     "display"
+    ]
+   },
+   "arcade_cabinet": {
+    "ports": 1,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-DEMO",
+     "L2": "NET-DEMO"
+    },
+    "endpointTypes": [
+     "arcade"
+    ]
+   },
+   "directory_sign": {
+    "ports": 1,
+    "mount": "wall_high",
+    "domainByFloor": {
+     "L1": "NET-DEMO",
+     "L2": "NET-DEMO"
+    },
+    "endpointTypes": [
+     "signage"
+    ]
+   },
+   "meeting_table": {
+    "ports": 2,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-OFFICE",
+     "L2": "NET-OFFICE"
+    },
+    "endpointTypes": [
+     "table_box",
+     "spare"
+    ]
+   },
+   "lab_rack_open": {
+    "ports": 2,
+    "mount": "floor_wall",
+    "domainByFloor": {
+     "L1": "NET-LAB",
+     "L2": "NET-LAB"
+    },
+    "endpointTypes": [
+     "lab_uplink",
+     "spare"
+    ]
+   }
+  },
+  "mountZ": {
+   "floor_wall": 0.3,
+   "ceiling": 3.0,
+   "wall_high": 1.2
+  },
   "outlets": [
    {
     "id": "TO-L1-001",

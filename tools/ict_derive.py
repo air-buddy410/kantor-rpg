@@ -6,6 +6,7 @@ absent: no dated quote exists (AS-ICT-05). Everything is a virtual design; no
 production device, IP or ISP topology is referenced.
 
 Usage: python3 tools/ict_derive.py [--out design/derived]
+       python3 tools/ict_derive.py --layout studio-export.json [--out build/ict-layout]
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.kantor.geometry import load_world, room_at  # noqa: E402
+from tools.kantor.ict_follow import apply_layout  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BOX_M = 305  # common bulk box length for copper cable (1000 ft); count only, no price
@@ -271,13 +273,44 @@ def derive(world):
     }
 
 
+def load_layout(path: Path, world: dict) -> list[dict]:
+    """Minimal guarded reader for a Studio export; sizes come from the catalog,
+    never from the file (same rule as app/src/studio/layout.ts)."""
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    if doc.get("format") != "kantor-rpg-layout" or doc.get("version") not in (1, 2):
+        raise SystemExit(f"{path}: not a kantor-rpg layout v1/v2")
+    if doc.get("worldRevision") != world["revision"]["id"]:
+        raise SystemExit(f"{path}: layout for {doc.get('worldRevision')}, dataset is {world['revision']['id']}")
+    rooms = {r["id"]: r["floor"] for r in world["rooms"]}
+    fixtures = []
+    for f in doc["fixtures"]:
+        cat = world["catalog"].get(f["type"])
+        if cat is None or rooms.get(f["room"]) != f["floor"]:
+            raise SystemExit(f"{path}: bad fixture {f.get('id')}")
+        rec = {"id": f["id"], "floor": f["floor"], "room": f["room"], "type": f["type"],
+               "asset": "AST-" + f["type"].upper().replace("_", "-"), "pos": [float(f["pos"][0]), float(f["pos"][1])],
+               "rot": int(f["rot"]), "size": list(cat["size"]), "collider": cat["collider"]}
+        for k in ("pairedWith", "artwork", "verticalLink", "ictRack"):
+            if k in f:
+                rec[k] = f[k]
+        fixtures.append(rec)
+    return fixtures
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(ROOT / "design" / "derived"))
+    ap.add_argument("--out", default=None, help="default design/derived, or build/ict-layout with --layout")
+    ap.add_argument("--layout", help="Office Studio export (kantor-rpg-layout); outlets follow its furniture")
     args = ap.parse_args()
-    out = Path(args.out)
+    world = load_world()
+    follow = None
+    if args.layout:
+        world, follow = apply_layout(world, load_layout(Path(args.layout), world))
+    out = Path(args.out or (ROOT / "build" / "ict-layout" if args.layout else ROOT / "design" / "derived"))
     out.mkdir(parents=True, exist_ok=True)
-    res = derive(load_world())
+    res = derive(world)
+    if follow:
+        res["layout"] = {"source": Path(args.layout).name, "moved": follow["moved"], "removed": follow["removed"], "added": follow["added"]}
     (out / "ict-portmap.json").write_text(json.dumps(res, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     with (out / "ict-portmap.csv").open("w", newline="", encoding="utf-8") as fh:
         cols = ["cable", "outletPort", "floor", "room", "serves", "endpoint", "domain", "rack", "patchPanel", "ppPort",

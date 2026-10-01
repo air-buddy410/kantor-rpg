@@ -1,0 +1,366 @@
+{
+ "world": "/home/user/kantor-rpg/design/world.json",
+ "revision": {
+  "id": "P03",
+  "date": "2026-10-01",
+  "note": "Hardening: arah bukaan pintu dan jendela konsep di dataset; gym provisional (Q-03)"
+ },
+ "checks": [
+  {
+   "check": "schema",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "unique_ids",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_orthogonal_L1",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_in_envelope_L1",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_cover_envelope_L1",
+   "ok": true,
+   "detail": {
+    "rooms_m2": 768.0,
+    "envelope_m2": 768.0
+   }
+  },
+  {
+   "check": "rooms_no_overlap_L1",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_no_gap_L1",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_orthogonal_L2",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_in_envelope_L2",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_cover_envelope_L2",
+   "ok": true,
+   "detail": {
+    "rooms_m2": 768.0,
+    "envelope_m2": 768.0
+   }
+  },
+  {
+   "check": "rooms_no_overlap_L2",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "rooms_no_gap_L2",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "doors_on_shared_walls",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "fixtures_inside_rooms",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "fixtures_no_overlap",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "door_zones_clear",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "functional_clearances",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "door_swing_metadata",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "door_swing_clear_of_fixtures",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "windows_on_exterior_walls",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "windows_clear_of_doors_and_each_other",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "windows_not_blocked_by_tall_fixtures",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_all_rooms_reachable_staff",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_restricted_locked_for_visitor",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_public_rooms_reachable_visitor",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_activity_slots_approachable",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_vertical_links_usable",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_waypoints_walkable",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_doors_passable",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "nav_walkable_counts",
+   "ok": true,
+   "detail": {
+    "L1_staff": 49397,
+    "L1_visitor": 49245,
+    "L2_staff": 50626,
+    "L2_visitor": 50546
+   }
+  },
+  {
+   "check": "adjacency_ADJ-01",
+   "ok": true,
+   "detail": "D-L1-ENT"
+  },
+  {
+   "check": "adjacency_ADJ-02",
+   "ok": true,
+   "detail": "path L1-LOBBY->L1-MEET avoiding ['L1-SERVER', 'L1-RISER']"
+  },
+  {
+   "check": "adjacency_ADJ-03",
+   "ok": true,
+   "detail": {
+    "path_m": 0.0,
+    "max_m": 6.0
+   }
+  },
+  {
+   "check": "adjacency_ADJ-04",
+   "ok": true,
+   "detail": {
+    "path_m": 6.39,
+    "max_m": 12.0
+   }
+  },
+  {
+   "check": "adjacency_ADJ-05",
+   "ok": true,
+   "detail": {
+    "min_m": 10.5,
+    "required": 8.0
+   }
+  },
+  {
+   "check": "adjacency_ADJ-06",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "adjacency_ADJ-07",
+   "ok": true,
+   "detail": {
+    "overlap_m2": 17.5
+   }
+  },
+  {
+   "check": "adjacency_ADJ-08",
+   "ok": true,
+   "detail": {
+    "overlap_m2": 28.0
+   }
+  },
+  {
+   "check": "adjacency_ADJ-09",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "adjacency_ADJ-10",
+   "ok": true,
+   "detail": {
+    "exits": 4
+   }
+  },
+  {
+   "check": "adjacency_ADJ-11",
+   "ok": true,
+   "detail": {
+    "below": [
+     "L1-BRUNO",
+     "L1-KEVIN"
+    ],
+    "sensitive": []
+   }
+  },
+  {
+   "check": "ict_foreign_keys",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "ict_no_camera_in_wet_rooms",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "actors_home_seats_exist",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "world_matches_authoring_seed",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "check": "walls_derived",
+   "ok": true,
+   "detail": {
+    "L1": 50,
+    "L2": 42
+   }
+  }
+ ],
+ "passed": 46,
+ "failed": 0,
+ "adjacency": [
+  {
+   "id": "ADJ-01",
+   "ok": true,
+   "detail": "D-L1-ENT",
+   "text": "Resepsi dekat entrance"
+  },
+  {
+   "id": "ADJ-02",
+   "ok": true,
+   "detail": "path L1-LOBBY->L1-MEET avoiding ['L1-SERVER', 'L1-RISER']",
+   "text": "Rapat dicapai visitor tanpa melewati server"
+  },
+  {
+   "id": "ADJ-03",
+   "ok": true,
+   "detail": {
+    "path_m": 0.0,
+    "max_m": 6.0
+   },
+   "text": "Bruno dekat rack, akses rack terbatas"
+  },
+  {
+   "id": "ADJ-04",
+   "ok": true,
+   "detail": {
+    "path_m": 6.39,
+    "max_m": 12.0
+   },
+   "text": "Bruno dekat lab ICT"
+  },
+  {
+   "id": "ADJ-05",
+   "ok": true,
+   "detail": {
+    "min_m": 10.5,
+    "required": 8.0
+   },
+   "text": "Ruang basah jauh dari rack"
+  },
+  {
+   "id": "ADJ-06",
+   "ok": true,
+   "detail": [],
+   "text": "Game/biliar/gym tidak berbagi dinding dengan area tenang"
+  },
+  {
+   "id": "ADJ-07",
+   "ok": true,
+   "detail": {
+    "overlap_m2": 17.5
+   },
+   "text": "Area basah ditumpuk (konsep shaft)"
+  },
+  {
+   "id": "ADJ-08",
+   "ok": true,
+   "detail": {
+    "overlap_m2": 28.0
+   },
+   "text": "Pantry L1 di bawah shower L2 (zona basah)"
+  },
+  {
+   "id": "ADJ-09",
+   "ok": true,
+   "detail": [],
+   "text": "Pintu server hanya dari area Bruno"
+  },
+  {
+   "id": "ADJ-10",
+   "ok": true,
+   "detail": {
+    "exits": 4
+   },
+   "text": "Dua jalur keluar konsep L1 (perlu kajian profesional)"
+  },
+  {
+   "id": "ADJ-11",
+   "ok": true,
+   "detail": {
+    "below": [
+     "L1-BRUNO",
+     "L1-KEVIN"
+    ],
+    "sensitive": []
+   },
+   "text": "Gym provisional (Q-03) tidak di atas ruang sensitif (tenang, rapat, server); risiko getaran/akustik ke studio di bawah tetap perlu kajian"
+  }
+ ]
+}

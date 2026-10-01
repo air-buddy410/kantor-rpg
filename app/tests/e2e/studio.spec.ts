@@ -98,6 +98,42 @@ test.describe('Office Studio (REQ-STUDIO-01)', () => {
     await expect(page.locator('#studio-status')).toContainText('Layout diimpor');
   });
 
+  test('ICT outlet follows its desk through move, undo, export, publish and rollback', async ({ page }, info) => {
+    type O = { id: string; pos: [number, number] } | null;
+    const outlet = () => page.evaluate(() => (window.__kantor!.studioOutlet as (id: string) => O)('FX-L1-053'));
+    await boot(page);
+    await openStudio(page);
+    await page.selectOption('#studio-pick', 'FX-L1-053');
+    const start = (await outlet())!;
+    await expect(page.locator('#studio-outlet')).toContainText(start.id);
+    await page.getByRole('button', { name: 'Geser ke barat 0,25 m' }).click();
+    await expect(page.locator('#studio-status')).toContainText('dipindah');
+    const desk = (await fixture(page, 'FX-L1-053'))!;
+    expect((await outlet())!.pos).toEqual(desk.pos);
+    await expect(page.locator('#studio-ict')).toContainText('1 ikut pindah');
+    await page.getByRole('button', { name: 'Undo' }).click();
+    expect((await outlet())!.pos).toEqual(start.pos);
+    await page.getByRole('button', { name: 'Redo' }).click();
+    const dl = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Export JSON' }).click();
+    const path = join(info.outputDir, 'layout-ict.json');
+    await (await dl).saveAs(path);
+    const doc = JSON.parse(readFileSync(path, 'utf-8'));
+    expect(doc.version).toBe(2);
+    expect(doc.outlets.find((o: { serves: string }) => o.serves === 'FX-L1-053').pos).toEqual(desk.pos);
+    // A hand-edited outlet position is refused on import.
+    const tampered = join(info.outputDir, 'layout-ict-tampered.json');
+    doc.outlets[0].pos = [1, 1];
+    writeFileSync(tampered, JSON.stringify(doc));
+    await page.locator('#studio-import').setInputFiles(tampered);
+    await expect(page.locator('#studio-status')).toContainText('Outlet ICT');
+    await page.getByRole('button', { name: 'Publish lokal' }).click();
+    await expect(page.locator('#studio-status')).toContainText('Dipublish lokal');
+    await page.getByRole('button', { name: /Rollback/ }).click();
+    await expect(page.locator('#studio-status')).toContainText('dataset asli');
+    expect((await outlet())!.pos).toEqual(start.pos);
+  });
+
   test('adding a fixture places it on a valid free spot', async ({ page }) => {
     await boot(page);
     await openStudio(page);

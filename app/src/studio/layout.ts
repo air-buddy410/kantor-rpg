@@ -3,10 +3,12 @@
 // anything: it parses JSON text, then rebuilds every fixture field from an
 // allow-list after range checks, so unknown keys (including __proto__) are
 // dropped and a bad file leaves the current layout untouched.
-import type { Fixture, FloorId, World } from '../world/types';
+import { deriveOutlets } from '../world/ict';
+import type { Fixture, FloorId, Outlet, World } from '../world/types';
 
 export const LAYOUT_FORMAT = 'kantor-rpg-layout';
-export const LAYOUT_VERSION = 1;
+// v2 adds derived ICT outlets; v1 files (no outlets) still import.
+export const LAYOUT_VERSION = 2;
 export const MAX_IMPORT_BYTES = 512 * 1024;
 export const MAX_DEPTH = 6;
 export const MAX_FIXTURES = 1500;
@@ -18,6 +20,8 @@ export interface LayoutDoc {
   savedAt: string;
   note: string;
   fixtures: Fixture[];
+  /** Derived from fixtures (outlets follow furniture); carried for review/CAD, re-checked on import. */
+  outlets: Outlet[];
 }
 
 export class LayoutError extends Error {}
@@ -26,7 +30,7 @@ const ID = /^[A-Z0-9]+(-[A-Z0-9]+)*$/;
 const TYPE = /^[a-z0-9_]+$/;
 
 export function makeLayout(world: World, fixtures: Fixture[], note = ''): LayoutDoc {
-  return { format: LAYOUT_FORMAT, version: LAYOUT_VERSION, worldRevision: world.revision.id, savedAt: new Date().toISOString(), note: note.slice(0, 200), fixtures };
+  return { format: LAYOUT_FORMAT, version: LAYOUT_VERSION, worldRevision: world.revision.id, savedAt: new Date().toISOString(), note: note.slice(0, 200), fixtures, outlets: deriveOutlets(world, fixtures).outlets };
 }
 
 export function serializeLayout(doc: LayoutDoc): string {
@@ -63,7 +67,7 @@ export function parseLayout(text: string, world: World): LayoutDoc {
   if (depth(raw) > MAX_DEPTH) throw new LayoutError('Struktur terlalu dalam');
   const r = raw as Record<string, unknown>;
   if (r.format !== LAYOUT_FORMAT) throw new LayoutError('Bukan file layout kantor-rpg');
-  if (r.version !== LAYOUT_VERSION) throw new LayoutError(`Versi layout ${String(r.version)} tidak didukung`);
+  if (r.version !== 1 && r.version !== LAYOUT_VERSION) throw new LayoutError(`Versi layout ${String(r.version)} tidak didukung`);
   if (r.worldRevision !== world.revision.id) throw new LayoutError(`Layout untuk revisi ${String(r.worldRevision)}, dataset sekarang ${world.revision.id}`);
   if (!Array.isArray(r.fixtures) || r.fixtures.length > MAX_FIXTURES) throw new LayoutError('Daftar fixture tidak valid');
   const rooms = new Map(world.rooms.map((x) => [x.id, x]));
@@ -92,7 +96,13 @@ export function parseLayout(text: string, world: World): LayoutDoc {
   });
   const note = typeof r.note === 'string' ? r.note.slice(0, 200) : '';
   const savedAt = typeof r.savedAt === 'string' && !Number.isNaN(Date.parse(r.savedAt)) ? r.savedAt : new Date(0).toISOString();
-  return { format: LAYOUT_FORMAT, version: LAYOUT_VERSION, worldRevision: world.revision.id, savedAt, note, fixtures };
+  const outlets = deriveOutlets(world, fixtures).outlets;
+  // Outlets are never taken from the file; a file whose outlets disagree with
+  // the derivation was edited by hand or made by another revision of the rule.
+  if (r.outlets !== undefined && JSON.stringify(r.outlets) !== JSON.stringify(outlets)) {
+    throw new LayoutError('Outlet ICT di file tidak cocok dengan posisi furniture');
+  }
+  return { format: LAYOUT_FORMAT, version: LAYOUT_VERSION, worldRevision: world.revision.id, savedAt, note, fixtures, outlets };
 }
 
 const KEY_DRAFT = 'kantor-rpg.layout.draft.v1';

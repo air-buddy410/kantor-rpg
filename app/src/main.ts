@@ -138,6 +138,7 @@ function boot() {
     stats: () => game.stats(),
     studioOpen: () => studio.isOpen,
     studioFixtures: () => studio.editor?.fixtures.length ?? null,
+    studioOutlet: (fixtureId: string) => studio.editor?.outlets().find((o) => o.serves === fixtureId) ?? null,
     fixtures: () => game.world.fixtures.map((f) => ({ id: f.id, pos: f.pos, rot: f.rot, floor: f.floor, room: f.room })),
     avatar: () => { let hair = ''; game.player.avatar.model?.traverse((o) => { if (o.name.startsWith('hair_') && o.visible) hair = o.name; }); return { hair, choice: loadChoice() }; },
     npcs: () => game.npcs.sim.npcs.map((n) => ({ id: n.id, floor: n.floor, pos: n.pos, phase: n.phase, activity: n.activity, slot: n.slot, workStatus: n.workStatus })),

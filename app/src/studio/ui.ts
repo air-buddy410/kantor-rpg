@@ -18,6 +18,8 @@ export class StudioUI {
   private grid: THREE.LineSegments | null = null;
   private highlight: THREE.LineSegments;
   private ghost: THREE.LineSegments;
+  // One instanced mesh for all outlet markers: a single draw call in Studio.
+  private outletMarks: THREE.InstancedMesh;
   private drag: { id: number; start: Vec2; moved: boolean } | null = null;
   private panel: HTMLElement;
   private keyHandler = (e: KeyboardEvent) => this.onKey(e);
@@ -32,7 +34,11 @@ export class StudioUI {
     this.ghost = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1, 1, 1)), new THREE.LineBasicMaterial({ color: 0x1f4d3a, depthTest: false }));
     this.ghost.renderOrder = 11;
     this.ghost.visible = false;
-    game.scene.add(this.highlight, this.ghost);
+    this.outletMarks = new THREE.InstancedMesh(new THREE.BoxGeometry(0.22, 0.12, 0.22), new THREE.MeshBasicMaterial({ color: 0x2f6f9f, depthTest: false }), 256);
+    this.outletMarks.renderOrder = 9;
+    this.outletMarks.visible = false;
+    this.outletMarks.frustumCulled = false;
+    game.scene.add(this.highlight, this.ghost, this.outletMarks);
     const canvas = game.renderer.domElement;
     canvas.addEventListener('pointerdown', (e) => this.onPointerDown(e));
     canvas.addEventListener('pointermove', (e) => this.onPointerMove(e));
@@ -69,6 +75,7 @@ export class StudioUI {
     this.selected = null;
     this.highlight.visible = false;
     this.ghost.visible = false;
+    this.outletMarks.visible = false;
     if (this.grid) { this.game.scene.remove(this.grid); this.grid.geometry.dispose(); this.grid = null; }
     this.game.studioOpen = false;
     this.game.rig.enabled = true;
@@ -303,11 +310,29 @@ export class StudioUI {
     box.visible = true;
   }
 
+  /** Outlet markers for the shown floor, at the derived (furniture-following) positions. */
+  private placeOutlets() {
+    if (!this.editor) return;
+    const elev = this.game.world.floors.find((f) => f.id === this.floor)!.elevation;
+    const m = new THREE.Matrix4();
+    let n = 0;
+    for (const o of this.editor.outlets()) {
+      if (o.floor !== this.floor || n >= this.outletMarks.count) continue;
+      m.makeTranslation(toThree(o.pos[0], o.pos[1], elev + 0.08));
+      this.outletMarks.setMatrixAt(n++, m);
+    }
+    this.outletMarks.count = n;
+    this.outletMarks.instanceMatrix.needsUpdate = true;
+    this.outletMarks.visible = true;
+  }
+
   render() {
     const body = $('studio-body');
     if (!this.editor) return;
     const ed = this.editor;
     const fx = this.selectedFixture();
+    this.outletMarks.count = 256;
+    this.placeOutlets();
     if (fx) this.placeBox(this.highlight, fx);
     else this.highlight.visible = false;
     body.replaceChildren();
@@ -334,6 +359,12 @@ export class StudioUI {
     const info = el('p', { class: 'muted small', id: 'studio-selected' });
     const lock = fx ? ed.lockedReason(fx) : null;
     info.textContent = fx ? `${fx.id} di ${this.game.world.rooms.find((r) => r.id === fx.room)?.name}; posisi ${fx.pos[0].toFixed(2)}, ${fx.pos[1].toFixed(2)} m; rotasi ${fx.rot} derajat.${lock ? ` Terkunci: ${lock}` : ''}` : 'Belum ada fixture terpilih.';
+    const ict = ed.outletDerivation();
+    const own = fx ? ict.outlets.find((o) => o.serves === fx.id) : undefined;
+    const outletInfo = el('p', { class: 'muted small', id: 'studio-outlet' },
+      own ? `Outlet ICT ${own.id} (${own.ports} port, ${own.domain}) ikut di ${own.pos[0].toFixed(2)}, ${own.pos[1].toFixed(2)} m.` : fx ? 'Fixture ini tidak punya outlet ICT.' : '');
+    const ictSummary = el('p', { class: 'muted small', id: 'studio-ict' },
+      `ICT: ${ict.outlets.length} outlet; ${ict.moved.length} ikut pindah, ${ict.removed.length} dihapus, ${ict.added.length} baru. Port map dihitung ulang dari export dengan tools/ict_derive.py --layout.`);
     const canEdit = !!fx && !lock && ed.editable(fx);
     const tools = el('div', { class: 'tool-grid' });
     const btn = (label: string, aria: string, fn: () => void, enabled: boolean) => {
@@ -378,7 +409,7 @@ export class StudioUI {
     fbtn(`Rollback (${store.historyCount()})`, () => this.rollback());
     const exit = el('button', { type: 'button', class: 'btn', id: 'studio-exit' }, 'Keluar Studio');
     exit.addEventListener('click', () => this.close());
-    body.append(floors, pick, info, tools, addRow, files, el('p', { class: 'muted small' }, `Grid ${GRID} m. Panah geser, R putar, Delete hapus, Ctrl+Z/Ctrl+Y, Esc batal pilih. Publish hanya di browser ini; dataset repo tidak berubah.`), exit);
+    body.append(floors, pick, info, outletInfo, tools, addRow, files, el('p', { class: 'muted small' }, `Grid ${GRID} m. Panah geser, R putar, Delete hapus, Ctrl+Z/Ctrl+Y, Esc batal pilih. Publish hanya di browser ini; dataset repo tidak berubah.`), ictSummary, exit);
   }
 }
 

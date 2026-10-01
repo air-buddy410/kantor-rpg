@@ -1,0 +1,5698 @@
+{
+ "worldRevision": "P03",
+ "cases": [
+  {
+   "name": "identity",
+   "ops": [],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-005",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-053",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-006",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-055",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       20.12,
+       6.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     }
+    ],
+    "moved": [],
+    "removed": [],
+    "added": []
+   }
+  },
+  {
+   "name": "move-desk",
+   "ops": [
+    {
+     "kind": "move",
+     "id": "FX-L1-053",
+     "pos": [
+      8.25,
+      13.0
+     ]
+    }
+   ],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-005",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.25,
+       13.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-053",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-006",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-055",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       20.12,
+       6.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     }
+    ],
+    "moved": [
+     "TO-L1-005"
+    ],
+    "removed": [],
+    "added": []
+   }
+  },
+  {
+   "name": "move-display-l2",
+   "ops": [
+    {
+     "kind": "move",
+     "id": "FX-L2-034",
+     "pos": [
+      12.0,
+      0.5
+     ]
+    }
+   ],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-005",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-053",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-006",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-055",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       12.0,
+       0.5
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     }
+    ],
+    "moved": [
+     "TO-L2-001"
+    ],
+    "removed": [],
+    "added": []
+   }
+  },
+  {
+   "name": "delete-desk",
+   "ops": [
+    {
+     "kind": "delete",
+     "id": "FX-L1-055"
+    }
+   ],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-005",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-053",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       20.12,
+       6.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     }
+    ],
+    "moved": [],
+    "removed": [
+     "TO-L1-006"
+    ],
+    "added": []
+   }
+  },
+  {
+   "name": "add-desk",
+   "ops": [
+    {
+     "kind": "add",
+     "fixture": {
+      "id": "FX-L1-D001",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "type": "desk",
+      "asset": "AST-DESK",
+      "pos": [
+       12.75,
+       11.5
+      ],
+      "rot": 0,
+      "size": [
+       1.6,
+       0.8,
+       0.75
+      ],
+      "collider": true
+     }
+    }
+   ],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-005",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-053",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-006",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-055",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       20.12,
+       6.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-D001",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       12.75,
+       11.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-D001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     }
+    ],
+    "moved": [],
+    "removed": [],
+    "added": [
+     "TO-L1-D001"
+    ]
+   }
+  },
+  {
+   "name": "add-chair-no-outlet",
+   "ops": [
+    {
+     "kind": "add",
+     "fixture": {
+      "id": "FX-L1-D002",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "type": "chair",
+      "asset": "AST-CHAIR",
+      "pos": [
+       12.75,
+       12.5
+      ],
+      "rot": 0,
+      "size": [
+       0.6,
+       0.6,
+       0.9
+      ],
+      "collider": true
+     }
+    }
+   ],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-005",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-053",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-006",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-055",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       20.12,
+       6.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     }
+    ],
+    "moved": [],
+    "removed": [],
+    "added": []
+   }
+  },
+  {
+   "name": "move-then-delete",
+   "ops": [
+    {
+     "kind": "move",
+     "id": "FX-L1-053",
+     "pos": [
+      8.25,
+      13.0
+     ]
+    },
+    {
+     "kind": "delete",
+     "id": "FX-L1-053"
+    }
+   ],
+   "expected": {
+    "outlets": [
+     {
+      "id": "TO-L1-001",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14.0,
+       5.0
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-001",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "printer"
+      ]
+     },
+     {
+      "id": "TO-L1-002",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       11.5,
+       7.88
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-009",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "signage"
+      ]
+     },
+     {
+      "id": "TO-L1-003",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       4.0,
+       4.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-011",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "table_box",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-004",
+      "floor": "L1",
+      "room": "L1-MEET",
+      "pos": [
+       0.2,
+       4.2
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-022",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-006",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       8.0,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-055",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-007",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-057",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-008",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       9.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-059",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-009",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-061",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-010",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       11.2,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-063",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-011",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       13.88,
+       13.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L1-065",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-012",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       21.6,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-069",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-013",
+      "floor": "L1",
+      "room": "L1-NOVA",
+      "pos": [
+       24.4,
+       15.95
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-071",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-014",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-075",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-015",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       31.45,
+       14.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-076",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-016",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       28.4,
+       13.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 4,
+      "serves": "FX-L1-077",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_device",
+       "lab_device",
+       "lab_device",
+       "lab_device"
+      ]
+     },
+     {
+      "id": "TO-L1-017",
+      "floor": "L1",
+      "room": "L1-LAB",
+      "pos": [
+       26.6,
+       15.9
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-079",
+      "domain": "NET-LAB",
+      "endpointTypes": [
+       "lab_uplink",
+       "spare"
+      ]
+     },
+     {
+      "id": "TO-L1-018",
+      "floor": "L1",
+      "room": "L1-CEO",
+      "pos": [
+       3.5,
+       22.2
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-082",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-019",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       8.6,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-089",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-020",
+      "floor": "L1",
+      "room": "L1-HUGO",
+      "pos": [
+       10.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-091",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-021",
+      "floor": "L1",
+      "room": "L1-KEVIN",
+      "pos": [
+       16.0,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-096",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L1-022",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       22.4,
+       23.4
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L1-101",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "workstation",
+       "phone_or_spare"
+      ]
+     },
+     {
+      "id": "TO-L2-001",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       20.12,
+       6.6
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-034",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-002",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       23.0,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-058",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-003",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       28.6,
+       16.15
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 2,
+      "serves": "FX-L2-061",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "console",
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-004",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       11.6
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-064",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-005",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       31.4,
+       12.5
+      ],
+      "mount": "floor_wall",
+      "z": 0.3,
+      "ports": 1,
+      "serves": "FX-L2-065",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "arcade"
+      ]
+     },
+     {
+      "id": "TO-L2-006",
+      "floor": "L2",
+      "room": "L2-BILLIARD",
+      "pos": [
+       7.12,
+       21.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-079",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L2-007",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       14.12,
+       20.4
+      ],
+      "mount": "wall_high",
+      "z": 1.2,
+      "ports": 1,
+      "serves": "FX-L2-087",
+      "domain": "NET-DEMO",
+      "endpointTypes": [
+       "display"
+      ]
+     },
+     {
+      "id": "TO-L1-023",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       14,
+       3.4
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-024",
+      "floor": "L1",
+      "room": "L1-IMPL",
+      "pos": [
+       10,
+       13.9
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-025",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       25,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-026",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       9,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-027",
+      "floor": "L1",
+      "room": "L1-NCORR",
+      "pos": [
+       23,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L1-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-008",
+      "floor": "L2",
+      "room": "L2-LOUNGE",
+      "pos": [
+       13.5,
+       4.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-009",
+      "floor": "L2",
+      "room": "L2-DINE",
+      "pos": [
+       23,
+       4.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-010",
+      "floor": "L2",
+      "room": "L2-GAME",
+      "pos": [
+       26,
+       14.0
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-011",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       6,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-04",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-012",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       10.5,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-05",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L2-013",
+      "floor": "L2",
+      "room": "L2-GYM",
+      "pos": [
+       18.5,
+       21.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "AP-L2-06",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "ap"
+      ]
+     },
+     {
+      "id": "TO-L1-028",
+      "floor": "L1",
+      "room": "L1-LOBBY",
+      "pos": [
+       9,
+       7.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-029",
+      "floor": "L1",
+      "room": "L1-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L1-030",
+      "floor": "L1",
+      "room": "L1-BRUNO",
+      "pos": [
+       24.5,
+       23.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L1-03",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-014",
+      "floor": "L2",
+      "room": "L2-CORR",
+      "pos": [
+       31,
+       9.25
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-01",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     },
+     {
+      "id": "TO-L2-015",
+      "floor": "L2",
+      "room": "L2-NCORR",
+      "pos": [
+       31,
+       17.5
+      ],
+      "mount": "ceiling",
+      "z": 3.0,
+      "ports": 1,
+      "serves": "CAM-L2-02",
+      "domain": "NET-OFFICE",
+      "endpointTypes": [
+       "camera"
+      ]
+     }
+    ],
+    "moved": [],
+    "removed": [
+     "TO-L1-005"
+    ],
+    "added": []
+   }
+  }
+ ]
+}
