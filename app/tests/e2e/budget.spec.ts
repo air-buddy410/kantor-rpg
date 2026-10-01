@@ -9,7 +9,6 @@ import { EVIDENCE } from './helpers';
 // triangles do not depend on GPU speed, so the container measures them
 // faithfully; FPS from this run is NOT a device result (ADR-011).
 test('peak draw calls and triangles stay inside the mobile budget on the fixed route', async ({ page }, info) => {
-  test.skip(info.project.name === 'tablet', 'desktop and mobile bracket the viewport range');
   test.setTimeout(240_000);
   await page.goto('/?perf=route&seconds=25');
   await page.waitForFunction(() => !!window.__kantor, null, { timeout: 60_000 });

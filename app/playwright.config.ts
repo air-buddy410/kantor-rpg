@@ -2,6 +2,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 // Chromium build 1194 is preinstalled in the container (PLAYWRIGHT_BROWSERS_PATH);
 // @playwright/test is pinned to 1.56.1 so it resolves that build without downloading.
+// KANTOR_BASE_URL points the suite at an already running build (for example a
+// preview deployment, see docs/PREVIEW-HANDOFF.md); no local server is started then.
+const external = process.env.KANTOR_BASE_URL;
+
 export default defineConfig({
   testDir: 'tests/e2e',
   timeout: 120_000,
@@ -10,11 +14,11 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['json', { outputFile: 'test-results/e2e.json' }]],
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: external ?? 'http://127.0.0.1:4173',
     trace: 'off',
     launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] },
   },
-  webServer: {
+  webServer: external ? undefined : {
     command: 'npx vite preview --port 4173 --strictPort --host 127.0.0.1',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: true,

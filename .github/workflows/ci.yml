@@ -47,6 +47,10 @@ jobs:
         run: npx playwright test tests/e2e/world.spec.ts
       - name: E2E NPC, activities, studios, states, axe (desktop)
         run: npx playwright test tests/e2e/npc.spec.ts tests/e2e/activity.spec.ts tests/e2e/studio.spec.ts tests/e2e/states.spec.ts tests/e2e/a11y.spec.ts --project=desktop
+      # Draw calls and triangles do not depend on GPU speed, so the software
+      # renderer on the runner measures the mobile budget faithfully.
+      - name: Render budget gate (desktop, tablet, mobile) and touch greeting
+        run: npx playwright test tests/e2e/budget.spec.ts tests/e2e/npc.spec.ts --project=tablet --project=mobile && npx playwright test tests/e2e/budget.spec.ts --project=desktop
       - name: Licence audit
         working-directory: .
         run: python3 tools/license_audit.py --out /tmp/license-audit.json

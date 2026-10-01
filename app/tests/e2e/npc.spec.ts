@@ -49,14 +49,15 @@ test.describe('persona NPCs (M2)', () => {
     await expect.poll(async () => (await npcs(page)).find((n) => n.id === 'ACT-NOVA')!.phase).not.toBe('paused');
   });
 
-  test('walking up to a seated NPC and pressing E greets it', async ({ page }, info) => {
-    test.skip(info.project.name !== 'desktop', 'keyboard greeting on desktop; touch covered by directory path');
+  test('walking up to a seated NPC and pressing E (or tapping Aksi) greets it', async ({ page }, info) => {
     await boot(page);
     const target = (await npcs(page)).find((n) => n.phase === 'perform' && n.floor === 'L1' && n.activity === 'desk')!;
     expect(target).toBeTruthy();
     expect(await walkTo(page, target.pos[0], target.pos[1] - 0.9)).toBe(true);
     await expect(page.locator('#prompt')).toContainText('Sapa');
-    await page.keyboard.press('e');
+    // Touch projects use the on-screen action button, desktop the E key.
+    if (info.project.name === 'desktop') await page.keyboard.press('e');
+    else await page.locator('#touch-interact').tap();
     await expect(page.locator('#dlg-info')).toBeVisible();
     await page.keyboard.press('Escape');
   });

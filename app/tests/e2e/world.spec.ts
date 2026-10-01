@@ -165,10 +165,14 @@ test.describe('world vertical slice', () => {
     // blob:/data: URLs are in-page (GLTFLoader hands embedded textures to the
     // image decoder that way); only network schemes count as endpoints.
     page.on('request', (r) => { const u = new URL(r.url()); if (u.protocol !== 'blob:' && u.protocol !== 'data:') hosts.add(u.host); });
+    // Under the CSP of docs/PREVIEW-HANDOFF.md (scripts/serve-csp.mjs) a blocked load shows up here.
+    const csp: string[] = [];
+    page.on('console', (m) => { if (/Content Security Policy/i.test(m.text())) csp.push(m.text()); });
     await boot(page);
     await page.locator('#btn-directory').click();
     await page.waitForTimeout(1500);
-    expect([...hosts]).toEqual(['127.0.0.1:4173']);
+    expect([...hosts]).toEqual([new URL(page.url()).host]);
+    expect(csp).toEqual([]);
   });
 });
 
