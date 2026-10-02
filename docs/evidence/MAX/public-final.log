@@ -1,0 +1,403 @@
+(node:90818) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 165 tests using 2 workers
+
+(node:90828) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:90829) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓    2 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light world (3.2s)
+  ✓    1 [desktop] › tests/e2e/activity.spec.ts:4:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (5.1s)
+  ✓    3 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light directory (3.8s)
+  ✓    4 [desktop] › tests/e2e/activity.spec.ts:36:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (3.7s)
+  ✓    5 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light help-dialog (3.0s)
+  ✓    7 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light settings-dialog (3.1s)
+  ✓    8 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (3.3s)
+  ✓    9 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark directory (3.1s)
+  ✓   10 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark help-dialog (2.6s)
+  ✓   11 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark settings-dialog (2.7s)
+  ✓   12 [desktop] › tests/e2e/a11y.spec.ts:51:1 › axe fallback (no WebGL) (1.3s)
+  ✓   13 [desktop] › tests/e2e/bundle.spec.ts:17:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand (6.3s)
+  ✓   14 [desktop] › tests/e2e/controls.spec.ts:21:3 › controls without earlier coverage (R2 control audit) › skip link jumps to the directory; the close button hides it and returns focus (3.1s)
+  ✓    6 [desktop] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (29.6s)
+  ✓   15 [desktop] › tests/e2e/controls.spec.ts:36:3 › controls without earlier coverage (R2 control audit) › theme radios switch and persist; quality radio is stored and applied after reload (9.3s)
+  ✓   16 [desktop] › tests/e2e/device.spec.ts:6:3 › device validation hooks (R2) › ?perf=route&report=1 shows the result with device info, copy and download (9.6s)
+  ✓   17 [desktop] › tests/e2e/controls.spec.ts:76:3 › controls without earlier coverage (R2 control audit) › keyboard: H opens help, R/Q/Z/+/- move the camera, Shift runs (3.4s)
+  -   19 [desktop] › tests/e2e/controls.spec.ts:111:3 › controls without earlier coverage (R2 control audit) › touch: Lari toggles running
+  ✓   18 [desktop] › tests/e2e/device.spec.ts:27:3 › device validation hooks (R2) › ?a11ylog=1 lists live-region announcements in order (8.5s)
+  ✓   20 [desktop] › tests/e2e/controls.spec.ts:122:3 › controls without earlier coverage (R2 control audit) › Studio: floor switch, nudge north/east, rotate (button and R), arrows, Delete, Ctrl+Z/Ctrl+Y, Simpan draft (7.0s)
+  ✓   22 [desktop] › tests/e2e/failures.spec.ts:6:3 › failure paths (PRD 12) › AC-ACCESS/AC-PERF: losing the WebGL context mid-session falls back to the keyboard directory (2.2s)
+  ✓   21 [desktop] › tests/e2e/doors.spec.ts:5:3 › door leaves (R2) › every swing door has its leaves, they open for the CEO and close after (11.8s)
+  ✓   23 [desktop] › tests/e2e/failures.spec.ts:30:3 › failure paths (PRD 12) › AC-INTERACT: pressing the action with nothing in reach says so instead of doing nothing (10.2s)
+  ✓   25 [desktop] › tests/e2e/failures.spec.ts:46:3 › failure paths (PRD 12) › AC-CHAR: a missing character GLB gives an honest labelled placeholder, not a crash (2.8s)
+  ✓   26 [desktop] › tests/e2e/npc.spec.ts:5:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (10.6s)
+  ✓   24 [desktop] › tests/e2e/doors.spec.ts:20:3 › door leaves (R2) › in visitor mode the server door stays shut even with the CEO next to it (17.7s)
+  -   28 [desktop] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times
+  ✓   29 [desktop] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (3.2s)
+  ✓   30 [desktop] › tests/e2e/states.spec.ts:17:3 › document list states › empty state when no documents were generated (1.9s)
+  ✓   31 [desktop] › tests/e2e/states.spec.ts:31:3 › document list states › loading state is announced before the list arrives (4.0s)
+  ✓   32 [desktop] › tests/e2e/states.spec.ts:48:3 › document list states › blueprint card reports a missing PDF honestly (1.8s)
+  ✘   27 [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (18.0s)
+(node:93095) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   33 [desktop] › tests/e2e/studio.spec.ts:23:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (5.5s)
+  ✓   35 [desktop] › tests/e2e/studio.spec.ts:57:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (3.4s)
+  ✓   34 [desktop] › tests/e2e/npc.spec.ts:64:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (10.0s)
+  ✓   36 [desktop] › tests/e2e/studio.spec.ts:68:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (7.1s)
+  ✓   38 [desktop] › tests/e2e/studio.spec.ts:93:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (5.0s)
+  ✓   37 [desktop] › tests/e2e/npc.spec.ts:82:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (8.0s)
+  ✓   39 [desktop] › tests/e2e/studio.spec.ts:124:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (5.1s)
+  ✓   40 [desktop] › tests/e2e/world.spec.ts:4:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.1s)
+  ✓   41 [desktop] › tests/e2e/studio.spec.ts:172:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (4.9s)
+  ✓   42 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (4.6s)
+  ✓   44 [desktop] › tests/e2e/world.spec.ts:48:3 › world vertical slice › stair interaction changes floor only at the marked point (18.9s)
+  ✘   43 [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (22.2s)
+(node:94316) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   45 [desktop] › tests/e2e/world.spec.ts:75:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (10.9s)
+  ✓   47 [desktop] › tests/e2e/world.spec.ts:94:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.6s)
+  ✓   48 [desktop] › tests/e2e/world.spec.ts:116:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (3.6s)
+  ✓   49 [desktop] › tests/e2e/world.spec.ts:136:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (2.6s)
+  -   50 [desktop] › tests/e2e/world.spec.ts:152:3 › world vertical slice › touch joystick walks the CEO
+  ✓   51 [desktop] › tests/e2e/world.spec.ts:176:3 › world vertical slice › dark theme renders with computed token colours (2.9s)
+  ✘   46 [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (24.0s)
+(node:95098) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   52 [desktop] › tests/e2e/world.spec.ts:188:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (5.9s)
+  ✓   53 [desktop] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.3s)
+(node:95147) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   54 [desktop] › tests/e2e/world.spec.ts:201:3 › world vertical slice › only same-origin requests are made (no external endpoints) (2.9s)
+  ✓   56 [desktop] › tests/e2e/world.spec.ts:224:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (959ms)
+(node:95174) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   55 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light world (3.5s)
+  ✓   58 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light directory (3.2s)
+  ✓   57 [tablet] › tests/e2e/activity.spec.ts:4:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (5.7s)
+  ✓   59 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light help-dialog (3.7s)
+  ✓   60 [tablet] › tests/e2e/activity.spec.ts:36:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (3.2s)
+  ✓   61 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light settings-dialog (2.8s)
+  ✓   63 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (3.5s)
+  ✓   64 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark directory (3.1s)
+  ✓   65 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark help-dialog (2.7s)
+  ✓   66 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark settings-dialog (2.8s)
+  ✓   67 [tablet] › tests/e2e/a11y.spec.ts:51:1 › axe fallback (no WebGL) (1.3s)
+  ✓   68 [tablet] › tests/e2e/bundle.spec.ts:17:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand (5.8s)
+  ✓   69 [tablet] › tests/e2e/controls.spec.ts:21:3 › controls without earlier coverage (R2 control audit) › skip link jumps to the directory; the close button hides it and returns focus (2.8s)
+  ✓   62 [tablet] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (27.1s)
+  ✓   70 [tablet] › tests/e2e/controls.spec.ts:36:3 › controls without earlier coverage (R2 control audit) › theme radios switch and persist; quality radio is stored and applied after reload (9.9s)
+  ✓   71 [tablet] › tests/e2e/device.spec.ts:6:3 › device validation hooks (R2) › ?perf=route&report=1 shows the result with device info, copy and download (8.4s)
+  ✓   72 [tablet] › tests/e2e/controls.spec.ts:76:3 › controls without earlier coverage (R2 control audit) › keyboard: H opens help, R/Q/Z/+/- move the camera, Shift runs (3.4s)
+  ✓   74 [tablet] › tests/e2e/controls.spec.ts:111:3 › controls without earlier coverage (R2 control audit) › touch: Lari toggles running (3.9s)
+  ✓   73 [tablet] › tests/e2e/device.spec.ts:27:3 › device validation hooks (R2) › ?a11ylog=1 lists live-region announcements in order (8.1s)
+  ✓   75 [tablet] › tests/e2e/controls.spec.ts:122:3 › controls without earlier coverage (R2 control audit) › Studio: floor switch, nudge north/east, rotate (button and R), arrows, Delete, Ctrl+Z/Ctrl+Y, Simpan draft (8.9s)
+  ✓   77 [tablet] › tests/e2e/failures.spec.ts:6:3 › failure paths (PRD 12) › AC-ACCESS/AC-PERF: losing the WebGL context mid-session falls back to the keyboard directory (2.6s)
+  ✓   76 [tablet] › tests/e2e/doors.spec.ts:5:3 › door leaves (R2) › every swing door has its leaves, they open for the CEO and close after (12.4s)
+  ✓   78 [tablet] › tests/e2e/failures.spec.ts:30:3 › failure paths (PRD 12) › AC-INTERACT: pressing the action with nothing in reach says so instead of doing nothing (9.5s)
+  ✓   80 [tablet] › tests/e2e/failures.spec.ts:46:3 › failure paths (PRD 12) › AC-CHAR: a missing character GLB gives an honest labelled placeholder, not a crash (2.0s)
+  ✓   79 [tablet] › tests/e2e/doors.spec.ts:20:3 › door leaves (R2) › in visitor mode the server door stays shut even with the CEO next to it (18.2s)
+  -   82 [tablet] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times
+  ✓   81 [tablet] › tests/e2e/npc.spec.ts:5:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (11.0s)
+  ✓   83 [tablet] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (1.6s)
+  ✓   85 [tablet] › tests/e2e/states.spec.ts:17:3 › document list states › empty state when no documents were generated (2.3s)
+  ✓   86 [tablet] › tests/e2e/states.spec.ts:31:3 › document list states › loading state is announced before the list arrives (3.2s)
+  ✓   87 [tablet] › tests/e2e/states.spec.ts:48:3 › document list states › blueprint card reports a missing PDF honestly (1.9s)
+  ✓   88 [tablet] › tests/e2e/studio.spec.ts:23:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (4.8s)
+  ✓   89 [tablet] › tests/e2e/studio.spec.ts:57:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (3.1s)
+  ✘   84 [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (17.4s)
+(node:97307) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   90 [tablet] › tests/e2e/studio.spec.ts:68:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (5.5s)
+  ✓   92 [tablet] › tests/e2e/studio.spec.ts:93:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (4.4s)
+  ✓   91 [tablet] › tests/e2e/npc.spec.ts:64:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (9.7s)
+  ✓   93 [tablet] › tests/e2e/studio.spec.ts:124:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (4.8s)
+  ✓   95 [tablet] › tests/e2e/studio.spec.ts:172:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (5.1s)
+  ✓   94 [tablet] › tests/e2e/npc.spec.ts:82:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (8.9s)
+  ✓   97 [tablet] › tests/e2e/world.spec.ts:4:3 › world vertical slice › boots in lobby with simulation badge and no page errors (3.1s)
+  ✓   98 [tablet] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (5.0s)
+  ✘   96 [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (22.6s)
+(node:98408) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   99 [tablet] › tests/e2e/world.spec.ts:48:3 › world vertical slice › stair interaction changes floor only at the marked point (18.2s)
+  ✓  101 [tablet] › tests/e2e/world.spec.ts:75:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (11.2s)
+  ✓  102 [tablet] › tests/e2e/world.spec.ts:94:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.4s)
+  ✓  103 [tablet] › tests/e2e/world.spec.ts:116:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (6.0s)
+  ✘  100 [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (24.5s)
+(node:98920) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  104 [tablet] › tests/e2e/world.spec.ts:136:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (1.8s)
+  ✓  106 [tablet] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.6s)
+(node:98969) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  105 [tablet] › tests/e2e/world.spec.ts:152:3 › world vertical slice › touch joystick walks the CEO (3.0s)
+  ✓  107 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light world (2.8s)
+  ✓  108 [tablet] › tests/e2e/world.spec.ts:176:3 › world vertical slice › dark theme renders with computed token colours (2.5s)
+  ✓  109 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light directory (3.1s)
+  ✓  110 [tablet] › tests/e2e/world.spec.ts:188:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (5.8s)
+  ✓  111 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light help-dialog (3.8s)
+  ✓  113 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light settings-dialog (2.5s)
+  ✓  112 [tablet] › tests/e2e/world.spec.ts:201:3 › world vertical slice › only same-origin requests are made (no external endpoints) (3.7s)
+  ✓  114 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (2.4s)
+  ✓  115 [tablet] › tests/e2e/world.spec.ts:224:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (2.8s)
+(node:99467) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  116 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark directory (2.0s)
+  ✓  118 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark help-dialog (2.6s)
+  ✓  117 [mobile] › tests/e2e/activity.spec.ts:4:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (4.7s)
+  ✓  119 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark settings-dialog (2.6s)
+  ✓  121 [mobile] › tests/e2e/a11y.spec.ts:51:1 › axe fallback (no WebGL) (6.5s)
+  ✓  120 [mobile] › tests/e2e/activity.spec.ts:36:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (9.0s)
+  ✓  123 [mobile] › tests/e2e/bundle.spec.ts:17:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand (6.9s)
+  ✓  124 [mobile] › tests/e2e/controls.spec.ts:21:3 › controls without earlier coverage (R2 control audit) › skip link jumps to the directory; the close button hides it and returns focus (2.4s)
+  ✓  125 [mobile] › tests/e2e/controls.spec.ts:36:3 › controls without earlier coverage (R2 control audit) › theme radios switch and persist; quality radio is stored and applied after reload (7.2s)
+  ✓  126 [mobile] › tests/e2e/controls.spec.ts:76:3 › controls without earlier coverage (R2 control audit) › keyboard: H opens help, R/Q/Z/+/- move the camera, Shift runs (2.7s)
+  ✓  127 [mobile] › tests/e2e/controls.spec.ts:111:3 › controls without earlier coverage (R2 control audit) › touch: Lari toggles running (2.5s)
+  ✓  122 [mobile] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (26.7s)
+  ✓  128 [mobile] › tests/e2e/controls.spec.ts:122:3 › controls without earlier coverage (R2 control audit) › Studio: floor switch, nudge north/east, rotate (button and R), arrows, Delete, Ctrl+Z/Ctrl+Y, Simpan draft (5.5s)
+  ✓  129 [mobile] › tests/e2e/device.spec.ts:6:3 › device validation hooks (R2) › ?perf=route&report=1 shows the result with device info, copy and download (9.3s)
+  ✓  130 [mobile] › tests/e2e/doors.spec.ts:5:3 › door leaves (R2) › every swing door has its leaves, they open for the CEO and close after (11.7s)
+  ✓  131 [mobile] › tests/e2e/device.spec.ts:27:3 › device validation hooks (R2) › ?a11ylog=1 lists live-region announcements in order (7.5s)
+  ✓  133 [mobile] › tests/e2e/failures.spec.ts:6:3 › failure paths (PRD 12) › AC-ACCESS/AC-PERF: losing the WebGL context mid-session falls back to the keyboard directory (4.8s)
+  ✓  134 [mobile] › tests/e2e/failures.spec.ts:30:3 › failure paths (PRD 12) › AC-INTERACT: pressing the action with nothing in reach says so instead of doing nothing (8.6s)
+  ✓  135 [mobile] › tests/e2e/failures.spec.ts:46:3 › failure paths (PRD 12) › AC-CHAR: a missing character GLB gives an honest labelled placeholder, not a crash (1.5s)
+  ✓  132 [mobile] › tests/e2e/doors.spec.ts:20:3 › door leaves (R2) › in visitor mode the server door stays shut even with the CEO next to it (17.9s)
+  -  137 [mobile] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times
+  ✓  138 [mobile] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (1.6s)
+  ✓  139 [mobile] › tests/e2e/states.spec.ts:17:3 › document list states › empty state when no documents were generated (2.2s)
+  ✓  140 [mobile] › tests/e2e/states.spec.ts:31:3 › document list states › loading state is announced before the list arrives (3.6s)
+  ✓  141 [mobile] › tests/e2e/states.spec.ts:48:3 › document list states › blueprint card reports a missing PDF honestly (1.6s)
+  ✓  136 [mobile] › tests/e2e/npc.spec.ts:5:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (11.4s)
+  ✓  142 [mobile] › tests/e2e/studio.spec.ts:23:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (3.4s)
+  ✓  144 [mobile] › tests/e2e/studio.spec.ts:57:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (3.5s)
+  ✓  145 [mobile] › tests/e2e/studio.spec.ts:68:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (5.2s)
+  ✓  146 [mobile] › tests/e2e/studio.spec.ts:93:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (2.9s)
+  ✓  147 [mobile] › tests/e2e/studio.spec.ts:124:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (4.1s)
+  ✘  143 [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (18.2s)
+(node:1943) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  148 [mobile] › tests/e2e/studio.spec.ts:172:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (3.9s)
+  ✓  149 [mobile] › tests/e2e/npc.spec.ts:64:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (9.1s)
+  ✓  151 [mobile] › tests/e2e/npc.spec.ts:82:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (8.4s)
+  ✓  152 [mobile] › tests/e2e/world.spec.ts:4:3 › world vertical slice › boots in lobby with simulation badge and no page errors (2.7s)
+  ✓  153 [mobile] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (3.9s)
+  ✘  150 [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (23.1s)
+(node:2672) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  154 [mobile] › tests/e2e/world.spec.ts:48:3 › world vertical slice › stair interaction changes floor only at the marked point (17.9s)
+  ✘  155 [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (23.5s)
+(node:3040) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  157 [mobile] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.4s)
+  ✓  156 [mobile] › tests/e2e/world.spec.ts:75:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (11.5s)
+  ✓  158 [mobile] › tests/e2e/world.spec.ts:94:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (1.8s)
+  ✓  159 [mobile] › tests/e2e/world.spec.ts:116:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (3.1s)
+  ✓  160 [mobile] › tests/e2e/world.spec.ts:136:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (1.6s)
+  ✓  161 [mobile] › tests/e2e/world.spec.ts:152:3 › world vertical slice › touch joystick walks the CEO (2.5s)
+  ✓  162 [mobile] › tests/e2e/world.spec.ts:176:3 › world vertical slice › dark theme renders with computed token colours (2.1s)
+  ✓  163 [mobile] › tests/e2e/world.spec.ts:188:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (5.6s)
+  ✓  164 [mobile] › tests/e2e/world.spec.ts:201:3 › world vertical slice › only same-origin requests are made (no external endpoints) (2.5s)
+  ✓  165 [mobile] › tests/e2e/world.spec.ts:224:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.1s)
+
+
+  1) [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"blink,frown,smile,surprised,talk"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      32 |     type Face = { expressions: Record<string, number>; lod: number } | null;
+      33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));
+    > 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');
+         |     ^
+      35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);
+      36 |     const first = await dlg.locator('.quote').innerText();
+      37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5
+
+    Error Context: test-results/npc-persona-NPCs-M2-direct-cad28-nd-restores-focus-on-Escape-desktop/error-context.md
+
+  2) [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      154 |     await page.evaluate(() => { try { localStorage.clear(); } catch { /* ignore */ } });
+      155 |     await boot(page);
+    > 156 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      157 |     await page.locator('#btn-avatar').click();
+      158 |     await page.getByLabel('Disisir ke samping').check();
+      159 |     await page.getByLabel('Terakota').check();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:156:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-a08f7-ad-reset-returns-to-default-desktop/error-context.md
+
+  3) [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      178 |     await page.reload();
+      179 |     await page.waitForFunction(() => !!window.__kantor);
+    > 180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      181 |   });
+      182 |
+      183 |   test('studios are hidden (not dead) without WebGL', async ({ page }) => {
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:180:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-desktop/error-context.md
+
+  4) [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"blink,frown,smile,surprised,talk"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      32 |     type Face = { expressions: Record<string, number>; lod: number } | null;
+      33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));
+    > 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');
+         |     ^
+      35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);
+      36 |     const first = await dlg.locator('.quote').innerText();
+      37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5
+
+    Error Context: test-results/npc-persona-NPCs-M2-direct-cad28-nd-restores-focus-on-Escape-tablet/error-context.md
+
+  5) [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      154 |     await page.evaluate(() => { try { localStorage.clear(); } catch { /* ignore */ } });
+      155 |     await boot(page);
+    > 156 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      157 |     await page.locator('#btn-avatar').click();
+      158 |     await page.getByLabel('Disisir ke samping').check();
+      159 |     await page.getByLabel('Terakota').check();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:156:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-a08f7-ad-reset-returns-to-default-tablet/error-context.md
+
+  6) [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      178 |     await page.reload();
+      179 |     await page.waitForFunction(() => !!window.__kantor);
+    > 180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      181 |   });
+      182 |
+      183 |   test('studios are hidden (not dead) without WebGL', async ({ page }) => {
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:180:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-tablet/error-context.md
+
+  7) [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"blink,frown,smile,surprised,talk"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      32 |     type Face = { expressions: Record<string, number>; lod: number } | null;
+      33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));
+    > 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');
+         |     ^
+      35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);
+      36 |     const first = await dlg.locator('.quote').innerText();
+      37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5
+
+    Error Context: test-results/npc-persona-NPCs-M2-direct-cad28-nd-restores-focus-on-Escape-mobile/error-context.md
+
+  8) [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      154 |     await page.evaluate(() => { try { localStorage.clear(); } catch { /* ignore */ } });
+      155 |     await boot(page);
+    > 156 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      157 |     await page.locator('#btn-avatar').click();
+      158 |     await page.getByLabel('Disisir ke samping').check();
+      159 |     await page.getByLabel('Terakota').check();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:156:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-a08f7-ad-reset-returns-to-default-mobile/error-context.md
+
+  9) [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      178 |     await page.reload();
+      179 |     await page.waitForFunction(() => !!window.__kantor);
+    > 180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      181 |   });
+      182 |
+      183 |   test('studios are hidden (not dead) without WebGL', async ({ page }) => {
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:180:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-mobile/error-context.md
+
+  9 failed
+    [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape 
+    [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+    [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+    [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape 
+    [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+    [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+    [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape 
+    [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+    [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+  5 skipped
+  151 passed (9.0m)

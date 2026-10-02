@@ -12,6 +12,10 @@ Pelaksana: Max sendiri. Baseline Claude R2: `27423cbafcf3d68ffce1e2e48adca0303f1
 - Safety scan: findings 0. License audit: violations 0. Pemeriksaan token warna light/dark: PASS. Hasil ini bukan screen-reader manual atau acceptance semua kondisi fisik.
 - Desktop nyata: Mac mini M4 16GB, Chrome terlihat, renderer Metal Apple M4, 3 rute 60 detik, 1366x820. Median throughput 179 FPS, median p95 frame 6.9 ms. Ini pengukuran lingkungan tersebut, bukan FPS ponsel atau jaminan refresh monitor pengguna. JSON dan screenshot: `docs/evidence/MAX/device/`.
 - Cloudflare: header `Cache-Control: public, no-transform` hanya pada vhost employee-rpg menghilangkan injeksi beacon di HTML publik. Backup: `/var/backups/employee-rpg-before-max-no-transform.conf`. Tidak mematikan analytics satu zona.
+- Verifikasi publik menemukan download GLB tidak selesai dalam batas waktu sehingga Avatar Studio masih memakai placeholder, meski semua hash dan tes localhost lulus. Gzip di origin, hanya pada vhost ini, menurunkan transfer CEO dari 620612 ke 225811 byte (level 5). `Content-Encoding: gzip` publik terverifikasi; 12 tes regression publik lulus tanpa mengubah assertion atau timeout. Backup konfigurasi: `/var/backups/employee-rpg-before-max-gzip.conf`.
+- Clean worktree source `ae1ea8e`: Python 389 dan Vitest 114 lulus; npm audit 0. Semua hasil build identik kecuali timestamp `generated` di `docs/manifest.json`.
+- Release pertama Max `ae1ea8ea3bfa3e3798259dafd4ce5776cd896b5e`: 133/133 SHA256-match. PR implementasi: https://github.com/air-buddy410/kantor-rpg/pull/6. Situs main/about/enterprise/farsight tetap HTTPS 200.
+- Full suite publik pertama setelah gzip: 151 passed, 9 failed, 5 skipped. Failure bukan di-whitelist: karakter/NPC belum selesai dimuat ketika puluhan request furniture berebut bandwidth. Batas concurrency furniture 4 ditambahkan dengan regression test yang sebelumnya gagal (12 request sekaligus). Vitest baru 116 passed; 9 regression browser lokal desktop/tablet/mobile lulus. Hasil public rerun versi antrean wajib dibuktikan sebelum mengklaim semua tes publik hijau.
 
 ## Review visual oleh Max (AI, bukan sign-off manusia)
 

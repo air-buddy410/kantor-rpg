@@ -1,0 +1,25 @@
+(node:86968) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:86969) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (2.8s)
+  ✓   2 [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (18.7s)
+  ✓   3 [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (12.4s)
+  ✓   4 [desktop] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (725ms)
+(node:87867) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   5 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (2.6s)
+  ✓   6 [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (18.1s)
+  ✓   7 [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (13.4s)
+  ✓   8 [tablet] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (764ms)
+(node:88400) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   9 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (2.3s)
+  ✓  10 [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (17.9s)
+  ✓  11 [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (12.8s)
+  ✓  12 [mobile] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (940ms)
+
+  12 passed (1.8m)

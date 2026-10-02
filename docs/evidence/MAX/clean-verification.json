@@ -1,0 +1,22 @@
+[
+  {
+    "step": "clean-python",
+    "exit": 0,
+    "seconds": 47.71
+  },
+  {
+    "step": "clean-npm-ci",
+    "exit": 0,
+    "seconds": 1.26
+  },
+  {
+    "step": "clean-unit",
+    "exit": 0,
+    "seconds": 8.54
+  },
+  {
+    "step": "clean-build",
+    "exit": 0,
+    "seconds": 2.14
+  }
+]

@@ -1,0 +1,24 @@
+(node:8497) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 9 tests using 2 workers
+
+(node:8509) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:8508) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (5.6s)
+(node:8721) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  2 [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (10.7s)
+  ✓  3 [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (5.7s)
+  ✓  4 [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (2.6s)
+(node:8907) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  6 [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (5.1s)
+  ✓  5 [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (8.4s)
+  ✓  8 [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (2.6s)
+  ✓  7 [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (7.4s)
+  ✓  9 [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (1.8s)
+
+  9 passed (28.7s)

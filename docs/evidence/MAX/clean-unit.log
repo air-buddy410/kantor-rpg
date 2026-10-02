@@ -1,0 +1,13 @@
+
+> kantor-rpg-app@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.3 /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/verify-ae1ea8e/app
+
+
+ Test Files  9 passed (9)
+      Tests  114 passed (114)
+   Start at  11:46:41
+   Duration  7.58s (tests 86%, transform 11%, import 3%)
+
