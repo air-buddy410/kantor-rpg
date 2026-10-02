@@ -65,23 +65,37 @@ describe('CEO / persona collision', () => {
     }
   });
 
-  it('walking NPCs keep their spacing outside arrival zones (2 h soak, same floor pairs)', () => {
-    const sim = new IdleSim(W, nav, { seed: 42, startHour: 8.5, minutesPerSecond: 2 });
-    let closeSteps = 0;
-    let pairSteps = 0;
-    for (let t = 0; t < 7200; t += 0.1) {
-      sim.step(0.1);
-      const walking = sim.npcs.filter((n) => (n.phase === 'travel' || n.phase === 'recover') && n.path.length && d(n.pos, n.path[n.path.length - 1]) > 1.0);
-      for (let i = 0; i < walking.length; i++) for (let j = i + 1; j < walking.length; j++) {
-        if (walking[i].floor !== walking[j].floor) continue;
-        pairSteps++;
-        if (d(walking[i].pos, walking[j].pos) < AGENT_GAP * 0.5) closeSteps++;
+  it('no walking step ever closes in on another agent (zero overlap steps; seeds 42 for 2 h, 11 and 3 for 30 min, CEO standing in the busiest corridor)', () => {
+    // R2: the earlier test only capped deep overlaps at 0.2 percent of pair
+    // steps. Now any step by a walking NPC that ends inside the gap of another
+    // agent and closer than before is a failure, including the CEO.
+    const runs: [number, number][] = [[42, 7200], [11, 1800], [3, 1800]];
+    const violations: string[] = [];
+    for (const [seed, seconds] of runs) {
+      const sim = new IdleSim(W, nav, { seed, startHour: 8.5, minutesPerSecond: 2 });
+      const player: Vec2 = [17, 9.25];
+      sim.setPlayer('L1', player);
+      const prev = new Map<string, number>();
+      for (let t = 0; t < seconds; t += 0.1) {
+        sim.step(0.1);
+        const agents = [...sim.npcs.map((n) => ({ id: n.id, floor: n.floor, pos: n.pos, walking: n.phase === 'travel' || n.phase === 'recover' })), { id: 'player', floor: 'L1' as FloorId, pos: player, walking: false }];
+        for (let i = 0; i < agents.length; i++) for (let j = i + 1; j < agents.length; j++) {
+          const a = agents[i];
+          const b = agents[j];
+          const key = `${a.id}|${b.id}`;
+          if (a.floor !== b.floor) { prev.delete(key); continue; }
+          const dist = d(a.pos, b.pos);
+          const before = prev.get(key);
+          prev.set(key, dist);
+          if ((a.walking || b.walking) && before !== undefined && dist < AGENT_GAP - 1e-6 && dist < before - 1e-6) {
+            if (violations.length < 10) violations.push(`seed ${seed} t=${sim.time.toFixed(1)} ${key} ${before.toFixed(3)}->${dist.toFixed(3)}`);
+            else violations.push('');
+          }
+        }
       }
+      for (const n of sim.npcs) expect(Object.keys(n.stats.activities).length, `${seed} ${n.id} variety`).toBeGreaterThanOrEqual(2);
     }
-    // Overlap deeper than half the gap between two walkers is the visible
-    // "walk through" failure; it must stay a rare transient, not a pattern.
-    expect(closeSteps).toBeLessThanOrEqual(Math.max(5, pairSteps * 0.002));
-    for (const n of sim.npcs) expect(Object.keys(n.stats.activities).length, n.id).toBeGreaterThanOrEqual(3);
+    expect(violations.length, violations.slice(0, 10).join('\n')).toBe(0);
   });
 
   it('the CEO stops at a persona and slides around instead of passing through', () => {

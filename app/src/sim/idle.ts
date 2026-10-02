@@ -40,6 +40,9 @@ export interface NpcState {
   /** id of the agent this NPC is waiting for (player or NPC), null when walking freely */
   yieldTo: string | null;
   yieldSince: number;
+  /** Giving way (R2): after backing off, hold until this time, then re-plan to resumeTo. */
+  holdUntil: number;
+  resumeTo: Vec2 | null;
   stats: { activities: Record<string, number>; recoveries: number; cancelled: number; distance: number };
 }
 
@@ -66,9 +69,6 @@ const STUCK_SECONDS = 2.5;
 // Wait this long behind a blocker before planning a detour around it; below
 // STUCK_SECONDS so a detour is tried before the stuck fallback fires.
 const YIELD_DETOUR_SECONDS = 0.8;
-// Within this distance of the path end, other NPCs no longer block: shared
-// multi-person slots (sofa, chat table) would otherwise be unreachable.
-const ARRIVAL_ZONE = 0.9;
 const RESERVATION_TTL = 30; // seconds of travel allowance before a reservation lapses
 
 export function mulberry32(seed: number): () => number {
@@ -194,7 +194,7 @@ export class IdleSim {
       phase: 'choose', activity: 'idle', slot: null, path: [], pathIndex: 0, via: null, until: 0,
       lastProgressAt: 0, lastPos: [start[0], start[1]], failures: 0, recentActivities: [], cooldown: {},
       workStatus: 'unknown', workStatusSource: 'tidak ada adapter (demo offline)', group: null,
-      speed: 1.3 + this.rand() * 0.25, yieldTo: null, yieldSince: 0, stats: { activities: {}, recoveries: 0, cancelled: 0, distance: 0 },
+      speed: 1.3 + this.rand() * 0.25, yieldTo: null, yieldSince: 0, holdUntil: 0, resumeTo: null, stats: { activities: {}, recoveries: 0, cancelled: 0, distance: 0 },
     };
   }
 
@@ -390,9 +390,27 @@ export class IdleSim {
 
   private travel(npc: NpcState, dt: number): void {
     const nav = this.nav[npc.floor];
+    if (npc.pathIndex >= npc.path.length && npc.resumeTo) {
+      // Backed off to let someone pass: hold, then head for the old goal again.
+      npc.lastProgressAt = this.time;
+      if (this.time < npc.holdUntil) return;
+      const goal = npc.resumeTo;
+      npc.resumeTo = null;
+      const p = nav.findPath(npc.pos, goal);
+      if (p) { npc.path = p; npc.pathIndex = 0; } else this.fail(npc, 'no route after giving way');
+      return;
+    }
     if (npc.pathIndex >= npc.path.length) {
       if (npc.via) {
         const v = npc.via;
+        // Arriving on a spot someone already stands on would overlap them:
+        // wait at the link end instead (the stuck fallback still applies).
+        const occupied = this.npcs.some((o) => o !== npc && o.floor === v.to && Math.hypot(o.pos[0] - v.arrive[0], o.pos[1] - v.arrive[1]) < AGENT_GAP)
+          || (!!this.player && this.player.floor === v.to && Math.hypot(this.player.pos[0] - v.arrive[0], this.player.pos[1] - v.arrive[1]) < AGENT_GAP);
+        if (occupied) {
+          if (this.time - npc.lastProgressAt > STUCK_SECONDS) this.fail(npc, 'arrival occupied');
+          return;
+        }
         npc.floor = v.to;
         npc.pos = [v.arrive[0], v.arrive[1]];
         npc.lastPos = [...npc.pos] as Vec2;
@@ -425,7 +443,8 @@ export class IdleSim {
     const blocker = this.blockerFor(npc, next);
     if (blocker) {
       if (npc.yieldTo !== blocker.id) { npc.yieldTo = blocker.id; npc.yieldSince = this.time; this.yields++; }
-      else if (this.time - npc.yieldSince >= YIELD_DETOUR_SECONDS) this.detour(npc, blocker.pos);
+      else if (this.mutualAndMineToGive(npc, blocker.id) && this.time - npc.yieldSince >= YIELD_DETOUR_SECONDS / 2) this.giveWay(npc, blocker.pos);
+      else if (this.time - npc.yieldSince >= this.detourDelay(npc)) this.detour(npc);
     } else {
       npc.yieldTo = null;
       if (d <= stepLen) {
@@ -452,40 +471,84 @@ export class IdleSim {
     if (this.time - npc.lastProgressAt > STUCK_SECONDS) this.fail(npc, 'stuck');
   }
 
-  /** Who would this step bump into? The CEO always has right of way; walking
-   * NPCs give way to lower-index walkers and to anyone standing still, so two
-   * NPCs meeting head-on both stop and the detour below separates them. */
+  /** Who would this step bump into? Every agent counts, walking or not, the
+   * CEO included: a step may never end inside another agent's disc closer
+   * than it started (R2: the earlier priority rule let a walker ignore lower
+   * priority walkers, 401 overlapping steps in the 2 h soak). */
   private blockerFor(npc: NpcState, next: Vec2): { id: string; pos: Vec2 } | null {
     if (this.player && this.player.floor === npc.floor && stepBlocked(npc.pos, next, this.player.pos)) return { id: 'player', pos: this.player.pos };
-    const end = npc.path[npc.path.length - 1];
-    if (end && Math.hypot(end[0] - npc.pos[0], end[1] - npc.pos[1]) < ARRIVAL_ZONE) return null;
-    const me = this.npcs.indexOf(npc);
-    for (let k = 0; k < this.npcs.length; k++) {
-      const o = this.npcs[k];
+    for (const o of this.npcs) {
       if (o === npc || o.floor !== npc.floor) continue;
-      const walking = (o.phase === 'travel' || o.phase === 'recover') && o.yieldTo === null;
-      if (walking && k > me) continue;
       if (stepBlocked(npc.pos, next, o.pos)) return { id: o.id, pos: o.pos };
     }
     return null;
   }
 
-  /** Re-plan to the same destination with the blocker's disc temporarily closed. */
-  private detour(npc: NpcState, around: Vec2): void {
+  /** Two walkers waiting on each other: the one with the higher index gives way. */
+  private mutualAndMineToGive(npc: NpcState, otherId: string): boolean {
+    const o = this.npcs.find((x) => x.id === otherId);
+    return !!o && o.yieldTo === npc.id && this.npcs.indexOf(npc) > this.npcs.indexOf(o) && !npc.resumeTo;
+  }
+
+  /** Back off to the free spot 0.7 to 1.2 m away that is furthest from the
+   * other agent (straight, walkable, clear of everyone), hold 1.5 s there and
+   * then re-plan. Resolves head-on meetings in doorways and narrow rooms. */
+  private giveWay(npc: NpcState, from: Vec2): void {
+    const nav = this.nav[npc.floor];
+    const goal = npc.path[npc.path.length - 1] ?? npc.pos;
+    let best: Vec2 | null = null;
+    let bestScore = -Infinity;
+    for (const r of [0.7, 0.95, 1.2]) {
+      for (let k = 0; k < 16; k++) {
+        const a = (k / 16) * Math.PI * 2;
+        const c: Vec2 = [npc.pos[0] + Math.cos(a) * r, npc.pos[1] + Math.sin(a) * r];
+        if (!nav.walkableAt(c) || !nav.lineWalkable(npc.pos, c)) continue;
+        const clear = this.npcs.every((o) => o === npc || o.floor !== npc.floor || Math.hypot(o.pos[0] - c[0], o.pos[1] - c[1]) >= AGENT_GAP + 0.1)
+          && !(this.player && this.player.floor === npc.floor && Math.hypot(this.player.pos[0] - c[0], this.player.pos[1] - c[1]) < AGENT_GAP + 0.1);
+        if (!clear) continue;
+        const score = Math.hypot(c[0] - from[0], c[1] - from[1]);
+        if (score > bestScore) { bestScore = score; best = c; }
+      }
+    }
+    if (!best) return;
+    npc.path = [best];
+    npc.pathIndex = 0;
+    npc.resumeTo = [goal[0], goal[1]];
+    npc.holdUntil = this.time + 1.5;
+    npc.yieldTo = null;
+    this.log.push({ t: this.time, npc: npc.id, event: 'give-way', detail: '' });
+  }
+
+  /** Seconds this NPC waits before planning a detour. Staggered by index so
+   * two walkers blocking each other do not both swerve at the same instant. */
+  private detourDelay(npc: NpcState): number {
+    return YIELD_DETOUR_SECONDS + 0.15 * this.npcs.indexOf(npc);
+  }
+
+  /** Re-plan to the same destination with the discs of all nearby agents
+   * (CEO included) temporarily closed, so the new route passes clear of them. */
+  private detour(npc: NpcState): void {
     const end = npc.path[npc.path.length - 1];
     if (!end) return;
     const nav = this.nav[npc.floor];
     const saved = nav.blocked;
     const tmp = new Uint8Array(saved);
-    const [ci, cj] = nav.cellOf(around);
+    const others: Vec2[] = this.npcs.filter((o) => o !== npc && o.floor === npc.floor && Math.hypot(o.pos[0] - npc.pos[0], o.pos[1] - npc.pos[1]) < 4).map((o) => o.pos);
+    if (this.player && this.player.floor === npc.floor) others.push(this.player.pos);
     const r = Math.ceil((AGENT_GAP + 0.05) / 0.1);
-    for (let j = cj - r; j <= cj + r; j++) {
-      for (let i = ci - r; i <= ci + r; i++) {
-        if (i < 0 || j < 0 || i >= nav.w || j >= nav.h) continue;
-        const c = nav.center(i, j);
-        if (Math.hypot(c[0] - around[0], c[1] - around[1]) < AGENT_GAP + 0.05) tmp[j * nav.w + i] = 1;
+    for (const around of others) {
+      const [ci, cj] = nav.cellOf(around);
+      for (let j = cj - r; j <= cj + r; j++) {
+        for (let i = ci - r; i <= ci + r; i++) {
+          if (i < 0 || j < 0 || i >= nav.w || j >= nav.h) continue;
+          const c = nav.center(i, j);
+          if (Math.hypot(c[0] - around[0], c[1] - around[1]) < AGENT_GAP + 0.05) tmp[j * nav.w + i] = 1;
+        }
       }
     }
+    // The NPC's own cell stays open so the search can start from where it stands.
+    const [si, sj] = nav.cellOf(npc.pos);
+    tmp[sj * nav.w + si] = saved[sj * nav.w + si];
     nav.blocked = tmp;
     let p: Vec2[] | null = null;
     try { p = nav.findPath(npc.pos, end, 20000); } finally { nav.blocked = saved; }
