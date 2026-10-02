@@ -11,7 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 WORLD = ROOT / "design" / "world.json"
-GLB_DIR = ROOT / "app" / "public" / "assets" / "furniture"
+GLB_DIR = ROOT / "app" / "public" / "assets" / "furniture"  # shipped (tools/glb_optimize.mjs output)
+# Blender exports land here; tools/glb_optimize.mjs turns them into GLB_DIR files.
+RAW_GLB_DIR = ROOT / "blender" / "out" / "raw-glb" / "furniture"
 TOL_M = 0.02
 SMALL_TRIS = 2000
 LARGE_TRIS = 5000
@@ -64,4 +66,10 @@ def tri_budget(size):
 
 
 def glb_path(t):
+    """The shipped (optimised) GLB the runtime loads and the validators check."""
     return GLB_DIR / f"{t}.glb"
+
+
+def raw_glb_path(t):
+    """The Blender export, input of tools/glb_optimize.mjs."""
+    return RAW_GLB_DIR / f"{t}.glb"

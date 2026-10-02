@@ -1,9 +1,13 @@
 """Character asset checks with the standard library only (no bpy).
 
-Parses each GLB (JSON chunk, binary buffer, sparse morph accessors, embedded
-PNG atlas) and compares it with design/characters.json, design/world.json
-actors and design/asset-registry.json. Blender-side checks (reopen, deform,
-slip, LOD1 following the clips) live in blender/validate_assets.py.
+Parses each shipped GLB (JSON chunk, binary buffer, sparse morph accessors,
+embedded PNG atlas) and compares it with design/characters.json,
+design/world.json actors and design/asset-registry.json. The shipped files are
+quantized (KHR_mesh_quantization, tools/glb_optimize.mjs), so positions and
+morph deltas are read through the skin bind matrices (glb_read node_positions,
+node_world_bounds, morph_deltas) and are metres. Blender-side checks (reopen,
+deform, slip, LOD1 following the clips) live in blender/validate_assets.py;
+equality with the Blender export lives in tools/glb_compare.py.
 """
 import json
 import struct
@@ -215,10 +219,10 @@ def test_expression_morph_targets_move_only_the_face(glbx):
     head = [names[i] for i in doc["skins"][0]["joints"]].index("head")
     joints = g.accessor(prim["attributes"]["JOINTS_0"])
     weights = g.accessor(prim["attributes"]["WEIGHTS_0"])
-    for name, t in zip(EXPR, prim["targets"]):
+    for ti, (name, t) in enumerate(zip(EXPR, prim["targets"])):
         acc = doc["accessors"][t["POSITION"]]
         assert "sparse" in acc, (cid, name)
-        d = g.accessor(t["POSITION"])
+        d = g.morph_deltas("body", ti)
         moved = [i for i in g.sparse_indices(t["POSITION"]) if any(abs(c) > 1e-7 for c in d[i])]
         assert moved, (cid, name)
         assert max(sum(c * c for c in d[i]) ** 0.5 for i in moved) >= 0.002, (cid, name)
@@ -244,13 +248,14 @@ def test_lod1_is_one_skinned_mesh_under_budget(glbx):
     assert isinstance(rig["kantor_walk_native_speed_mps"], float)
     # LOD1 must be a real reduction of the same character, not a copy
     assert tris < 0.5 * rig["kantor_lod0_tris"]
-    mn, mx = g.node_bounds("lod1")
-    bmn, bmx = g.node_bounds("body")
-    assert abs(mn[1]) < 0.01 and abs(mx[1] - max(bmx[1], g.node_bounds(default_hair(cid))[1][1])) < 0.03
+    mn, mx = g.node_world_bounds("lod1")
+    bmn, bmx = g.node_world_bounds("body")
+    assert abs(mn[1]) < 0.01 and abs(mx[1] - max(bmx[1], g.node_world_bounds(default_hair(cid))[1][1])) < 0.03
 
 
-def test_size_triangle_and_height_budgets(glb):
-    cid, path, doc = glb
+def test_size_triangle_and_height_budgets(glbx):
+    cid, g = glbx
+    path, doc = glb_path(cid), g.doc
     spec = CHARS["characters"][cid]
     budgets = CHARS["budgets"]
     assert path.stat().st_size <= budgets["glbBytesTarget"]
@@ -265,8 +270,8 @@ def test_size_triangle_and_height_budgets(glb):
             continue
         for prim in doc["meshes"][node["mesh"]]["primitives"]:
             tris += doc["accessors"][prim["indices"]]["count"] // 3
-            pos = doc["accessors"][prim["attributes"]["POSITION"]]
-            ymin, ymax = min(ymin, pos["min"][1]), max(ymax, pos["max"][1])
+        mn, mx = g.node_world_bounds(name)
+        ymin, ymax = min(ymin, mn[1]), max(ymax, mx[1])
     budget = budgets["playerTrianglesLOD0" if spec["kind"] == "player" else "npcTrianglesLOD0"]
     assert tris <= budget, (cid, tris, budget)
     assert abs(ymin) < 0.005, f"feet should be on the floor, min y {ymin}"
@@ -280,7 +285,7 @@ def test_character_faces_plus_z_in_gltf(glbx):
     zone_at = {tuple(v): z for z, v in meta["zones"].items()}
     prim = g.mesh_primitives("body")[0]
     uv = g.accessor(prim["attributes"]["TEXCOORD_0"])
-    pos = g.accessor(prim["attributes"]["POSITION"])
+    pos = g.node_positions("body", prim)
     eyes = [p for p, (u, v) in zip(pos, uv) if G.atlas_zone_of_uv(u, v, meta["size"], meta["cell"], zone_at) == "eye_iris"]
     assert eyes
     assert min(p[2] for p in eyes) > 0.05, "eyes must sit on the +Z (forward) side"

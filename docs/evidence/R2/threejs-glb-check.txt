@@ -1,0 +1,102 @@
+# three.js 0.186.1 GLTFLoader check in Node v22.22.0, 2026-10-02T00:13:16Z, git_head=0a5b58799fcffde8edc9de4c5a25a2902b7083da + uncommitted worktree
+# Loads blender/out/raw-glb (export) and app/public/assets (shipped) with GLTFLoader; replays app/src/world/furniture-kit.ts logic with and without a dequantize step; poses every character clip (t = 0, 25, 50, 75 percent) with AnimationMixer plus the talk morph and compares every third skinned vertex (SkinnedMesh.getVertexPosition).
+# command: node three_check.mjs (scratch script, text below output)
+
+furniture billiard_table.glb: current furniture-kit max position error 31034.053 m, normal component error 126.0; with dequantize 2.16e-5 m, normal 3.67e-3
+FURNITURE_KIT files=54 current_logic_worst_error=32769.000 dequantized_worst_position_error_m=3.356e-5
+character ch-architect.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2451 mm
+character ch-ceo.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2554 mm
+character ch-ictspec.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2253 mm
+character ch-netinstall.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2744 mm
+character ch-qa.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2427 mm
+character ch-supervisor.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2504 mm
+character ch-visual.glb: clips=13 tracksRaw=702 tracksShipped=184 max skinned+talk-morph vertex distance 0.2316 mm
+THREE_CHARACTERS files=7 worst_posed_vertex_distance_mm=0.2744 three=186
+exit=0
+
+----- three_check.mjs -----
+// Runtime check in Node: three.js 0.186.1 GLTFLoader on the Blender export (raw) vs the shipped file.
+import { readFileSync, readdirSync } from 'node:fs';
+const R = '/home/user/kantor-rpg';
+// Node has no DOM: stand-ins so GLTFLoader can finish (the 32 px atlas is not decoded; geometry is what is checked)
+globalThis.self = globalThis;
+globalThis.createImageBitmap = async () => ({ width: 32, height: 32, close() {} });
+const THREE = await import(R + '/app/node_modules/three/build/three.module.js');
+const { GLTFLoader } = await import(R + '/app/node_modules/three/examples/jsm/loaders/GLTFLoader.js');
+const silence = console.error; console.error = () => {}; // texture decode is unavailable in Node; geometry is what is checked
+const load = (p) => new Promise((res, rej) => { const b = readFileSync(p); new GLTFLoader().parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength), '', res, rej); });
+
+// furniture-kit.ts logic, verbatim except for the optional dequantize step
+function kitPositions(gltf, dequantize) {
+  gltf.scene.updateMatrixWorld(true);
+  const out = [];
+  gltf.scene.traverse((o) => {
+    if (!o.isMesh) return;
+    const geo = o.geometry.clone();
+    if (dequantize) for (const [name, a] of Object.entries(geo.attributes)) {
+      if (a.array instanceof Float32Array && !a.normalized) continue;
+      const f = new Float32Array(a.count * a.itemSize);
+      for (let i = 0; i < a.count; i++) for (let k = 0; k < a.itemSize; k++) f[i * a.itemSize + k] = a.getComponent(i, k);
+      geo.setAttribute(name, new THREE.BufferAttribute(f, a.itemSize));
+    }
+    geo.applyMatrix4(o.matrixWorld);
+    const src = geo.index ? geo.toNonIndexed() : geo;
+    for (const name of ['position', 'normal']) {
+      const a = src.attributes[name];
+      const sliced = new THREE.BufferAttribute(a.array.slice(0), a.itemSize);
+      for (let i = 0; i < sliced.count; i++) out.push([name, sliced.getX(i), sliced.getY(i), sliced.getZ(i)]);
+    }
+  });
+  return out;
+}
+let worstNow = 0, worstFixed = 0, nf = 0;
+for (const f of readdirSync(R + '/app/public/assets/furniture').filter((x) => x.endsWith('.glb')).sort()) {
+  const raw = kitPositions(await load(`${R}/blender/out/raw-glb/furniture/${f}`), false);
+  const now = kitPositions(await load(`${R}/app/public/assets/furniture/${f}`), false);
+  const fixed = kitPositions(await load(`${R}/app/public/assets/furniture/${f}`), true);
+  const err = (a) => Math.max(...raw.map((r, i) => (r[0] === 'position' ? Math.max(Math.abs(r[1] - a[i][1]), Math.abs(r[2] - a[i][2]), Math.abs(r[3] - a[i][3])) : 0)));
+  const nerr = (a) => Math.max(...raw.map((r, i) => (r[0] === 'normal' ? Math.max(Math.abs(r[1] - a[i][1]), Math.abs(r[2] - a[i][2]), Math.abs(r[3] - a[i][3])) : 0)));
+  worstNow = Math.max(worstNow, err(now), nerr(now)); worstFixed = Math.max(worstFixed, err(fixed)); nf++;
+  if (f === 'billiard_table.glb') console.log(`furniture ${f}: current furniture-kit max position error ${err(now).toFixed(3)} m, normal component error ${nerr(now).toFixed(1)}; with dequantize ${err(fixed).toExponential(2)} m, normal ${nerr(fixed).toExponential(2)}`);
+}
+console.log(`FURNITURE_KIT files=${nf} current_logic_worst_error=${worstNow.toFixed(3)} dequantized_worst_position_error_m=${worstFixed.toExponential(3)}`);
+
+// characters: pose every clip with AnimationMixer and compare skinned + morphed vertices
+let worstPose = 0, nc = 0;
+for (const f of readdirSync(R + '/app/public/assets/characters').filter((x) => x.endsWith('.glb')).sort()) {
+  const a = await load(`${R}/blender/out/raw-glb/characters/${f}`);
+  const b = await load(`${R}/app/public/assets/characters/${f}`);
+  const meshes = (g) => { const m = []; g.scene.traverse((o) => { if (o.isSkinnedMesh) m.push(o); }); return m; };
+  const ma = meshes(a), mb = meshes(b);
+  if (ma.length !== mb.length || a.animations.length !== b.animations.length) throw new Error(f + ' structure differs');
+  const mixA = new THREE.AnimationMixer(a.scene), mixB = new THREE.AnimationMixer(b.scene);
+  let worst = 0;
+  for (const clipA of a.animations) {
+    const clipB = b.animations.find((c) => c.name === clipA.name);
+    if (Math.abs(clipA.duration - clipB.duration) > 1e-6) throw new Error(`${f} ${clipA.name} duration ${clipA.duration} vs ${clipB.duration}`);
+    mixA.stopAllAction(); mixB.stopAllAction();
+    const actA = mixA.clipAction(clipA).play(), actB = mixB.clipAction(clipB).play();
+    for (const t of [0, 0.25, 0.5, 0.75].map((u) => u * clipA.duration)) {
+      actA.time = t; actB.time = t; mixA.update(0); mixB.update(0);
+      a.scene.updateMatrixWorld(true); b.scene.updateMatrixWorld(true);
+      for (let k = 0; k < ma.length; k++) {
+        const A = ma[k], B = mb[k];
+        if (A.name !== B.name) throw new Error('mesh order');
+        const talk = A.morphTargetDictionary?.talk;
+        if (talk !== undefined) { A.morphTargetInfluences[talk] = 1; B.morphTargetInfluences[B.morphTargetDictionary.talk] = 1; }
+        A.skeleton.update(); B.skeleton.update();
+        const va = new THREE.Vector3(), vb = new THREE.Vector3();
+        const n = A.geometry.attributes.position.count;
+        for (let i = 0; i < n; i += 3) {
+          A.getVertexPosition(i, va); B.getVertexPosition(i, vb);
+          va.applyMatrix4(A.matrixWorld); vb.applyMatrix4(B.matrixWorld);
+          worst = Math.max(worst, va.distanceTo(vb));
+        }
+      }
+    }
+  }
+  worstPose = Math.max(worstPose, worst); nc++;
+  console.log(`character ${f}: clips=${b.animations.length} tracksRaw=${a.animations.reduce((s, c) => s + c.tracks.length, 0)} tracksShipped=${b.animations.reduce((s, c) => s + c.tracks.length, 0)} max skinned+talk-morph vertex distance ${(worst * 1000).toFixed(4)} mm`);
+}
+console.error = silence;
+console.log(`THREE_CHARACTERS files=${nc} worst_posed_vertex_distance_mm=${(worstPose * 1000).toFixed(4)} three=${THREE.REVISION}`);

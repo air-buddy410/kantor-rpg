@@ -5,7 +5,9 @@ Run:
 
 Reads design/characters.json, builds every character from smooth primitives,
 rigs it on the shared skeleton, keys the required actions, then writes
-blender/out/<id>.blend and app/public/assets/characters/<id>.glb.
+blender/out/<id>.blend and the Blender export blender/out/raw-glb/characters/<id>.glb.
+tools/glb_optimize.mjs turns the export into the shipped
+app/public/assets/characters/<id>.glb (KHR_mesh_quantization).
 
 The CEO avatar variants are always embedded in ch-ceo.glb as hair_<style>
 nodes (single-GLB approach, see blender/README.md); --variants is accepted so
@@ -42,7 +44,7 @@ from mathutils import Matrix, Quaternion, Vector
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "design" / "characters.json"
 OUT_BLEND = ROOT / "blender" / "out"
-OUT_GLB = ROOT / "app" / "public" / "assets" / "characters"
+OUT_GLB = ROOT / "blender" / "out" / "raw-glb" / "characters"  # export; shipped file comes from tools/glb_optimize.mjs
 TAU = math.tau
 
 

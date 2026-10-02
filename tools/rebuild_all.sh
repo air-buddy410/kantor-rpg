@@ -15,12 +15,18 @@ if command -v blender >/dev/null 2>&1; then
   step "Blender: building";   $B blender/building/build_building.py
   step "Blender: furniture";  $B blender/furniture/build_furniture.py
   step "Blender: characters"; $B blender/characters/build_characters.py -- --variants
+  # Builders export to blender/out/raw-glb; the app ships the optimised copies,
+  # so optimise and compare before any validator reads app/public/assets.
+  step "GLB optimise (KHR_mesh_quantization) + compare with the export"
+  [ -d app/node_modules/@gltf-transform/functions ] || (cd app && npm ci)
+  node tools/glb_optimize.mjs
+  python3 tools/glb_compare.py  # writes docs/evidence/R2/glb-compare.json, read by tests/py/test_asset_size.py
   step "Blender: validate";   $B blender/validate_assets.py
   step "Blender: validate building + furniture"
   $B blender/building/validate_building.py
   $B blender/furniture/validate_furniture.py
 else
-  echo "SKIP Blender steps: blender not found (GLB/blend in repo stay as committed)"
+  echo "SKIP Blender steps and GLB optimise: blender not found (GLB/blend in repo stay as committed)"
 fi
 step "Python tests"; python3 -m pytest tests/py -q
 # Evidence of a rebuild goes to its own folder so milestone evidence stays as recorded.

@@ -1,4 +1,9 @@
-"""Furniture GLBs vs the world.json catalog, stdlib only (no Blender)."""
+"""Furniture GLBs vs the world.json catalog, stdlib only (no Blender).
+
+The shipped files are quantized (KHR_mesh_quantization, tools/glb_optimize.mjs):
+positions are integers dequantized by the node's uniform scale + translation, so
+sizes come from glb_read node_world_bounds / node_positions (metres).
+"""
 import copy
 import json
 import re
@@ -38,7 +43,10 @@ def problems(g, t, size):
     nodes = g.nodes_by_name()
     if [n for n, v in nodes.items() if "mesh" in v] != [name]:
         return [f"mesh nodes {list(nodes)}"]
-    mn, mx = G.world_bounds(*g.node_bounds(name))
+    node = nodes[name]
+    if "matrix" in node or list(node.get("rotation", [0, 0, 0, 1])) != [0, 0, 0, 1]:
+        out.append("node transform must be the dequantization only (no rotation or matrix)")
+    mn, mx = G.world_bounds(*g.node_world_bounds(name))
     dims = [mx[i] - mn[i] for i in range(3)]
     if any(abs(a - b) > FS.TOL_M for a, b in zip(dims, size)):
         out.append(f"dims {dims} != {size}")
@@ -54,7 +62,7 @@ def problems(g, t, size):
         ys = []
         for p in g.mesh_primitives(name):
             if g.material_name(p) == mat:
-                ys += [G.gltf_to_world(v)[1] for v in g.accessor(p["attributes"]["POSITION"]) if G.gltf_to_world(v)[2] >= zmin]
+                ys += [G.gltf_to_world(v)[1] for v in g.node_positions(name, p) if G.gltf_to_world(v)[2] >= zmin]
         y = sum(ys) / len(ys) if ys else None
         if y is None or (side == "-" and y >= -0.005) or (side == "+" and y <= 0.005):
             out.append(f"front probe {mat} mean y {y}")

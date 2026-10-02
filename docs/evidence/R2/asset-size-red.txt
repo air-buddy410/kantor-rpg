@@ -1,0 +1,50 @@
+# python3 -m pytest -q tests/py/test_asset_size.py (before optimisation), git_head=b4dfb214da5cd95b621777cbde09773565742a9e, 2026-10-01T23:54:10Z
+FFF.......F                                                              [100%]
+=================================== FAILURES ===================================
+______________________ test_character_glbs_within_budget _______________________
+
+    def test_character_glbs_within_budget():
+        files = glbs("characters")
+        assert len(files) == len(IDS)
+>       assert total("characters") <= BUDGET_CHARACTERS, {p.name: p.stat().st_size for p in files}
+E       AssertionError: {'ch-architect.glb': 936748, 'ch-ceo.glb': 1205812, 'ch-ictspec.glb': 970436, 'ch-netinstall.glb': 956716, ...}
+E       assert 7033948 <= 3000000.0
+E        +  where 7033948 = total('characters')
+
+tests/py/test_asset_size.py:62: AssertionError
+______________________ test_furniture_glbs_within_budget _______________________
+
+    def test_furniture_glbs_within_budget():
+        assert glbs("furniture")
+>       assert total("furniture") <= BUDGET_FURNITURE, total("furniture")
+E       AssertionError: 2240192
+E       assert 2240192 <= 1500000.0
+E        +  where 2240192 = total('furniture')
+
+tests/py/test_asset_size.py:67: AssertionError
+______________________ test_first_load_glbs_within_budget ______________________
+
+    def test_first_load_glbs_within_budget():
+>       assert total("characters") + total("furniture") <= BUDGET_TOTAL
+E       AssertionError: assert (7033948 + 2240192) <= 4500000.0
+E        +  where 7033948 = total('characters')
+E        +  and   2240192 = total('furniture')
+
+tests/py/test_asset_size.py:71: AssertionError
+_________________ test_compare_report_covers_every_shipped_glb _________________
+
+    def test_compare_report_covers_every_shipped_glb():
+>       assert COMPARE.exists(), "run python3 tools/glb_compare.py after tools/glb_optimize.mjs"
+E       AssertionError: run python3 tools/glb_compare.py after tools/glb_optimize.mjs
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/home/user/kantor-rpg/docs/evidence/R2/glb-compare.json').exists
+
+tests/py/test_asset_size.py:139: AssertionError
+=========================== short test summary info ============================
+FAILED tests/py/test_asset_size.py::test_character_glbs_within_budget - Asser...
+FAILED tests/py/test_asset_size.py::test_furniture_glbs_within_budget - Asser...
+FAILED tests/py/test_asset_size.py::test_first_load_glbs_within_budget - Asse...
+FAILED tests/py/test_asset_size.py::test_compare_report_covers_every_shipped_glb
+4 failed, 7 passed in 0.15s
+exit=1

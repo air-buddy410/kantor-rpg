@@ -14,21 +14,25 @@ Checks per character
           <= 5k triangles, no shape keys) that follows LOD0 through every clip,
           floor contact in every clip, seat height for seated clips, measured
           foot slip during walk/run stance, and a morph applied on top of a clip.
-  .glb:   GLB header/chunks, animation names, skin joints, hair/prop/lod1 nodes,
+  .glb:   the shipped file (tools/glb_optimize.mjs output, KHR_mesh_quantization;
+          positions are read through the skin bind matrices so values are metres):
+          GLB header/chunks, animation names, skin joints, hair/prop/lod1 nodes,
           one material + one embedded PNG (decoded, cell colours compared),
           NEAREST sampler, one primitive per mesh node, visible LOD0 primitive
           count, morph target names (mesh extras targetNames) and their sparse
           deltas confined to vertices skinned 100 percent to the head joint,
           scene + rig extras, size budget; then a re-import into an empty scene
           to re-measure height, feet, facing, shape keys and lod1 after the
-          round trip.
-Writes docs/evidence/HARDENING/blender-characters-validate.json and .txt and
+          round trip (Blender 4.0.2 imports KHR_mesh_quantization). Equality with
+          the Blender export is measured by tools/glb_compare.py.
+Writes docs/evidence/<KANTOR_EVIDENCE, default R2>/blender-characters-validate.json and .txt and
 (unless --no-registry) merges measured values into design/asset-registry.json.
 Exit code 1 on any failure.
 """
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import time
@@ -46,10 +50,13 @@ import glb_read as G  # noqa: E402
 
 DATA = ROOT / "design" / "characters.json"
 REGISTRY = ROOT / "design" / "asset-registry.json"
-EVID = ROOT / "docs" / "evidence" / "HARDENING"
+# Evidence folder of the current round (KANTOR_EVIDENCE, default R2) so reruns never
+# overwrite the evidence recorded for earlier milestones.
+EVID = ROOT / "docs" / "evidence" / os.environ.get("KANTOR_EVIDENCE", "R2")
 REPORT = EVID / "blender-characters-validate.json"
 REPORT_TXT = EVID / "blender-characters-validate.txt"
 SCRIPT = "blender/characters/build_characters.py"
+RAW_GLB = ROOT / "blender" / "out" / "raw-glb" / "characters"  # Blender export, optimiser input
 SEATED = {"sit", "type", "game"}
 MIN_MORPH_M = 0.002  # an expression must move some face vertex at least 2 mm
 LOD_BBOX_TOL = 0.03  # lod1 world bbox vs LOD0 world bbox in every sampled pose
@@ -462,6 +469,10 @@ def check_glb(cid, spec, data, C: Check):
     C("glb size within target", size <= data["budgets"]["glbBytesTarget"], size)
     g = G.Glb(path)
     j = g.doc
+    C("glb is the optimised file (KHR_mesh_quantization required)",
+      "KHR_mesh_quantization" in j.get("extensionsRequired", []), j.get("extensionsRequired"))
+    raw = RAW_GLB / path.name
+    raw_bytes = raw.stat().st_size if raw.exists() else None
     C("glb has BIN chunk", len(g.bin) > 0)
     anims = sorted(a["name"] for a in j.get("animations", []))
     C("glb animation names exact", anims == sorted(data["animations"]), anims)
@@ -522,7 +533,8 @@ def check_glb(cid, spec, data, C: Check):
                 uv_bad.append(nname)
                 continue
             uv = g.accessor(p["attributes"]["TEXCOORD_0"])
-            pos = g.accessor(p["attributes"]["POSITION"]) if nname == "body" else None
+            # metres in the glTF frame: the shipped file stores quantized integers
+            pos = g.node_positions(nname, p) if nname == "body" else None
             for i, (u, v) in enumerate(uv):
                 z = G.atlas_zone_of_uv(u, v, meta["size"], meta["cell"], zone_at) if meta else None
                 used.add(z)
@@ -561,8 +573,8 @@ def check_glb(cid, spec, data, C: Check):
 
         def head_only(i):
             return sum(w for jj, w in zip(joints_of[i], weights_of[i]) if jj == head_j) >= 0.999
-        for name, t in zip(tnames or names, targets):
-            d = g.accessor(t["POSITION"])
+        for ti, (name, t) in enumerate(zip(tnames or names, targets)):
+            d = g.morph_deltas("body", ti)
             idx = [i for i, v in enumerate(d) if any(abs(c) > 1e-7 for c in v)]
             mx = max((sum(c * c for c in d[i]) ** 0.5 for i in idx), default=0.0)
             off = [i for i in idx if not head_only(i)]
@@ -619,7 +631,7 @@ def check_glb(cid, spec, data, C: Check):
     rmats = sorted({m.name for o in bpy.data.objects if is_char_mesh(o) for m in o.data.materials if m})
     C("reimport: one material", [strip_suffix(n) for n in rmats] == [a["material"]], rmats)
     C("reimport: lod1 present", any(strip_suffix(o.name) == "lod1" and o.type == "MESH" for o in bpy.data.objects))
-    return {"glb": rel(path), "bytes": size, "animations": anims, "durations": durations, "nodes": nodes,
+    return {"glb": rel(path), "bytes": size, "exportBytes": raw_bytes, "animations": anims, "durations": durations, "nodes": nodes,
             "materials": mats, "primitives": prims, "visiblePrimitivesLOD0": vis_prims, "lod0Tris": lod0_tris,
             "lod1Tris": lod_tris, "morph": morph, "targetNames": tnames, "atlasPng": png, "sampler": samplers,
             "reimport": {k: rm[k] for k in ("height", "feet_z", "tri_visible", "tri_total", "tri_lod1",
@@ -708,6 +720,9 @@ def update_registry(results, data):
                 "lod1": "lod1",
             },
             "glbBytes": g.get("bytes"),
+            "glbExportBytes": g.get("exportBytes"),
+            "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: "
+                              "tools/glb_compare.py",
             "status": "generated+validated" if r["ok"] else "generated+validation-failed",
             "validatedBy": "blender/validate_assets.py",
             "evidence": rel(REPORT),

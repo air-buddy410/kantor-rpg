@@ -9,6 +9,8 @@ python3 tools/export_runtime.py                                                 
 blender -b --factory-startup -noaudio --python blender/building/build_building.py # 1. gedung: building.blend + building-L1/L2.glb
 blender -b --factory-startup -noaudio --python blender/furniture/build_furniture.py   # 2. 54 tipe furnitur
 blender -b --factory-startup -noaudio --python blender/characters/build_characters.py -- --variants  # 3. karakter
+node tools/glb_optimize.mjs                                                       # 3a. export -> GLB yang dikirim (perlu app/node_modules: cd app && npm ci)
+python3 tools/glb_compare.py                                                      # 3b. bandingkan GLB kirim dengan export Blender
 blender -b --factory-startup -noaudio --python blender/building/render_building.py    # 4. render gedung (memakai furniture.blend)
 blender -b --factory-startup -noaudio --python blender/furniture/render_furniture.py  # 5. contact sheet furnitur
 blender -b --factory-startup -noaudio --python blender/characters/render_sheet.py     # 6. sheet karakter
@@ -18,9 +20,27 @@ blender -b --factory-startup -noaudio --python blender/validate_assets.py
 python3 -m pytest tests/py -q                                                      # 8. test stdlib tanpa Blender
 ```
 
+Langkah 3a dan 3b wajib setelah build furnitur atau karakter: builder kini menulis export Blender ke `blender/out/raw-glb/<kind>/`, bukan ke `app/public/assets/`. Validator membaca file yang dikirim (hasil 3a). Lihat bagian "Optimasi GLB (R2)".
+
 Validator menulis nilai terukur ke `design/asset-registry.json` (karakter, `BLD-L1/L2`, satu entri `AST-*` per tipe furnitur) dan evidence ke `docs/evidence/HARDENING/` (karakter: `blender-characters-validate.json/.txt`, gedung: `blender-building-validate.json/.txt`) serta `docs/evidence/M3/` (furnitur). Evidence M1/M3 lama untuk karakter dan gedung dibiarkan sebagai catatan historis. Status `generated+validated` hanya ditulis bila validator lulus.
 
 Tool: Blender 4.0.2 (paket Ubuntu, Python 3.12 bawaan), Cycles CPU tanpa denoise (build ini tanpa OpenImageDenoise; EEVEE/Workbench tidak jalan headless karena `libEGL.so.1` tidak ada). Render memakai median 3x3 (yang mempertahankan garis outline) dan kuantisasi ringan agar PNG di bawah 400 KB. Kode bersama ada di `blender/lib/` (`kantor_blender.py` untuk bpy, `glb_read.py` dan `registry.py` stdlib murni).
+
+## Optimasi GLB (R2)
+
+Tujuan: memperkecil unduhan awal app (target proyek R2: GLB karakter + furnitur paling banyak 4.5 MB, karakter 3.0 MB, furnitur 1.5 MB; diuji `tests/py/test_asset_size.py`). Hanya `KHR_mesh_quantization` yang dipakai: three.js GLTFLoader membacanya tanpa decoder dan tanpa WebAssembly, sehingga CSP usulan tanpa `'wasm-unsafe-eval'` tetap berlaku. Draco dan meshopt sengaja tidak dipakai.
+
+- Alur: builder Blender -> `blender/out/raw-glb/{characters,furniture}/*.glb` (export, tidak dimuat runtime) -> `node tools/glb_optimize.mjs` -> `app/public/assets/{characters,furniture}/*.glb` (yang dikirim) -> `python3 tools/glb_compare.py` -> validator Blender + pytest. GLB gedung tidak diproses (tidak dimuat runtime, tidak masuk budget) dan tetap diekspor langsung ke `app/public/assets/building/`.
+- Library: `@gltf-transform/core`, `extensions`, `functions` 4.5.1 (MIT), devDependencies di `app/package.json` dengan versi pasti. Dependensi turunan `sharp` membawa binary libvips LGPL-3.0-or-later; hanya dev, tidak dikirim, dan fungsi tekstur tidak dipakai (lihat audit lisensi).
+- Yang dilakukan, deterministik (tanpa jam dan acak; dua kali jalan memberi sha256 identik):
+  - POSITION int16 16 bit. Karakter: satu volume kuantisasi untuk semua mesh sehingga tetap satu skin bersama; posisi dan delta morph disimpan sebagai short tanpa normalisasi dan faktor dekuantisasi masuk ke inverse bind matrix. Furnitur: short ternormalisasi, node `FURN-<type>` mendapat scale seragam + translation (satu-satunya transform yang diizinkan validator).
+  - NORMAL int8, TEXCOORD_0 uint16 (pusat sel atlas bergeser paling jauh sekitar 0.0002 texel), WEIGHTS_0 uint8 yang dinormalisasi ulang agar jumlahnya tepat 1, morph tetap sparse.
+  - Klip: channel yang semua key-nya sama dengan TRS rest node dihapus (518 dari 702 per karakter). Di three.js AnimationMixer properti tanpa track memakai nilai asli node untuk sisa bobot, jadi hasilnya sama; satu channel dengan waktu akhir terpanjang selalu disimpan agar durasi klip tetap. Output rotasi disimpan int16 ternormalisasi. Resample key tidak dipakai: toleransi 1e-5 justru membesarkan total (3,574,292 byte) dan 1e-4 hanya menghemat 65 KB untuk tujuh karakter sambil lossy.
+  - dedup + prune; nama node, extras node/scene/mesh/material, nama material dan sampler NEAREST tidak berubah.
+- Dua batasan glTF-Transform 4.5.1 yang ditangani: (1) penulis sparse membaca nilai lewat `getElement()` yang mendekuantisasi, sehingga delta morph int16 ternormalisasi tertulis 0 (terukur 70 mm); karena itu posisi karakter tidak dinormalisasi. (2) penulis menghapus komponen TRS yang selisihnya di bawah 1e-5 dari default (Blender meninggalkan scale 0.9999957 pada `upper_arm_*`); compare mengizinkan 1e-5 dan mencatat selisih terbesar.
+- `tools/glb_compare.py` (pembaca stdlib `blender/lib/glb_read.py`, bukan glTF-Transform) membandingkan tiap pasangan: struktur identik (nama/parent/extras node, material, sampler, byte gambar, nama joint, nama dan durasi klip, daftar indeks) dan error terukur: posisi rest, delta morph, sel atlas UV, rotasi/translasi/scale joint pada setiap waktu key dan titik tengahnya, serta posisi vertex ter-skin pada setiap pose key setiap klip. Laporan: `docs/evidence/R2/glb-compare.json` (dibaca pytest lewat sha256 file yang dikirim).
+- Blender 4.0.2 mengimpor file terkuantisasi dengan benar (diuji: bbox rest karakter dan furnitur sama dengan export dalam 0.02 mm, lima shape key, 13 action), jadi validator Blender langsung membuka file yang dikirim. `glb_read.py` kini membaca integer ternormalisasi dan menyediakan `node_positions`, `node_world_bounds`, `morph_deltas` (meter, lewat transform node atau bind matrix skin).
+- Catatan runtime: `app/src/world/furniture-kit.ts` memotong `attribute.array` sebagai Float32Array dan memanggil `applyMatrix4` pada atribut int16/int8; atribut perlu didekuantisasi ke Float32 dulu (`runtimeNotes` di `docs/evidence/R2/glb-sizes-r2.json`). Karakter tidak membaca array atribut.
 
 ## Gedung (M3)
 
@@ -38,7 +58,7 @@ Tool: Blender 4.0.2 (paket Ubuntu, Python 3.12 bawaan), Cycles CPU tanpa denoise
 - Gaya: bentuk tebal bersudut lembut (rounded box dengan radius tetap, silinder ber-bevel, blob untuk tanaman/bantal), material matte. Satu palet bersama: nama material = kunci `ENV` di `palette.ts` (`wood`, `fabricGreen`, ...), ditambah `art_a/b/c` untuk komposisi poster/galeri (runtime bisa mewarnai ulang per `ARTWORK`). Kaca shower memakai alpha blend.
 - Item dinding (`whiteboard` 0.9 m, `wall_display` 1.1 m, `poster` 1.2 m, `directory_sign` 1.0 m) tetap ber-bbox katalog dari z = 0; tinggi pasang ada di extras `kantor_mount_height_m` dan registry `mountHeightM`, sama dengan nilai `panel()` di `app/src/world/furniture.ts`.
 - Budget: prop kecil (dimensi maksimum 1.0 m atau kurang) 2k segitiga, lainnya 5k. Contact sheet `assets/previews/furniture-sheet.png`.
-- Validasi (`validate_furniture.py`): satu node mesh tanpa transform, bbox = katalog dalam 2 cm, tapak terpusat dan di lantai, probe orientasi depan per tipe (`FRONT_RULES`; tipe simetris dideklarasikan di `SYMMETRIC`), budget segitiga, material hanya dari palet, extras, round trip importer.
+- Validasi (`validate_furniture.py`, pada file yang dikirim): file memakai `KHR_mesh_quantization`, satu node mesh yang transformnya hanya dekuantisasi (scale seragam + translation), bbox = katalog dalam 2 cm, tapak terpusat dan di lantai, probe orientasi depan per tipe (`FRONT_RULES`; tipe simetris dideklarasikan di `SYMMETRIC`), budget segitiga, material hanya dari palet, extras, round trip importer.
 
 ## Karakter (M1)
 
@@ -76,7 +96,8 @@ Waktu nyata di mesin ini (4 vCPU, hardening): build tujuh karakter sekitar 20 de
 |---|---|
 | `design/characters.json` | sumber tunggal: proporsi, kulit, mata, gaya rambut, warna outfit, prop, klip, budget, varian avatar |
 | `blender/out/<id>.blend` | sumber Blender (rig, mesh, action + NLA track per klip) |
-| `app/public/assets/characters/<id>.glb` | aset runtime three.js |
+| `blender/out/raw-glb/characters/<id>.glb` | export Blender (input optimasi, tidak dimuat runtime) |
+| `app/public/assets/characters/<id>.glb` | aset runtime three.js, hasil `tools/glb_optimize.mjs` |
 | `assets/previews/<id>-sheet.png` | sheet depan/samping/belakang, ortografis |
 | `assets/previews/ch-ceo-deform.png` | walk (heel strike, passing), sit di kursi 0.45 m, type di meja 0.75 m |
 | `assets/previews/ch-ceo-variants.png` | 3 rambut x 3 palet Avatar Studio (palet lewat cat ulang sel atlas) |
@@ -111,7 +132,7 @@ Waktu nyata di mesin ini (4 vCPU, hardening): build tujuh karakter sekitar 20 de
 
 ### Varian avatar CEO
 
-Pendekatan: satu GLB (`ch-ceo.glb`) berisi `hair_short_tuft`, `hair_swept`, `hair_spiky_soft`; tiga palet `forest`, `terracotta`, `oat` diterapkan runtime lewat nama material. Dipilih karena lebih kecil (sekitar 0.9 MB untuk 9 kombinasi, bukan 9 GLB), satu rig dan satu set klip, dan Avatar Studio tidak perlu memuat ulang aset saat pratinjau. Hanya kombinasi yang benar-benar dibangun yang dicantumkan di `characters.json`.
+Pendekatan: satu GLB (`ch-ceo.glb`) berisi `hair_short_tuft`, `hair_swept`, `hair_spiky_soft`; tiga palet `forest`, `terracotta`, `oat` diterapkan runtime lewat nama material. Dipilih karena lebih kecil (satu file untuk 9 kombinasi, bukan 9 GLB; terukur R2: export 1,205,812 byte, dikirim 620,616 byte), satu rig dan satu set klip, dan Avatar Studio tidak perlu memuat ulang aset saat pratinjau. Hanya kombinasi yang benar-benar dibangun yang dicantumkan di `characters.json`.
 
 ### Idempotensi
 
@@ -128,7 +149,7 @@ Per karakter, dari `.blend` yang dibuka ulang (tambahan hardening: satu material
 - tiap klip: mesh tidak menembus lantai lebih dari 6 mm, ada kaki yang menyentuh lantai (klip berdiri), panggul pada kursi 0.45 m dalam 3 cm (sit/type/game);
 - walk/run: kecepatan kaki tumpu terukur dibanding kecepatan native root, slip di bawah 5 persen (terukur kurang dari 0.1 persen).
 
-Dari GLB: header/chunk GLB, nama animasi, joint skin = skeleton bersama, node rambut, tepat satu material dan satu PNG (didekode, warna sel dibandingkan), sampler NEAREST, satu primitive per node, primitive LOD0 terlihat = body + satu rambut (+ prop), `targetNames` dan delta morph sparse hanya pada vertex dengan JOINTS/WEIGHTS 100 persen `head`, `lod1`, extras scene dan rig, ukuran di bawah 1.5 MB, durasi klip dari accessor; lalu import ulang ke scene kosong dan ukur ulang tinggi, kaki, arah hadap (zona `eye_iris` dari UV), shape key, `lod1` dan jumlah action. Preview harus PNG valid di bawah 400 KB.
+Dari GLB yang dikirim (posisi dibaca lewat bind matrix skin sehingga bernilai meter): `KHR_mesh_quantization` wajib, header/chunk GLB, nama animasi, joint skin = skeleton bersama, node rambut, tepat satu material dan satu PNG (didekode, warna sel dibandingkan), sampler NEAREST, satu primitive per node, primitive LOD0 terlihat = body + satu rambut (+ prop), `targetNames` dan delta morph sparse hanya pada vertex dengan JOINTS/WEIGHTS 100 persen `head`, `lod1`, extras scene dan rig, ukuran di bawah 1.5 MB, durasi klip dari accessor; lalu import ulang ke scene kosong dan ukur ulang tinggi, kaki, arah hadap (zona `eye_iris` dari UV), shape key, `lod1` dan jumlah action. Preview harus PNG valid di bawah 400 KB.
 
 ### Batasan yang diketahui
 
@@ -140,7 +161,7 @@ Dari GLB: header/chunk GLB, nama animasi, joint skin = skeleton bersama, node ra
 - Tangan berbentuk mitten; tidak ada pose jari. Cangkir, buku, controller dan stik biliar tidak dimodelkan (klip coffee/read/game/billiards adalah gestur). Klip `talk` tetap gestur skeletal; gerak mulut adalah morph `talk` yang diatur runtime. Pada beberapa karakter poni atau mikrofon headset menutupi sebagian alis/mulut sehingga ekspresi alis kurang terlihat.
 - Transisi antar klip tidak di-author; runtime perlu crossfade.
 - Sheet dirender dengan outline Freestyle; tampilan three.js tanpa outline akan lebih lembut kecuali runtime menambah outline.
-- GLB karakter membesar dari 0.68 sampai 0.91 MB menjadi 0.94 sampai 1.21 MB (UV per vertex, vertex terpisah di batas zona, node `lod1`, morph sparse sekitar 54 KB); masih di bawah target 1.5 MB.
+- Export Blender karakter 0.94 sampai 1.21 MB (UV per vertex, vertex terpisah di batas zona, node `lod1`, morph sparse sekitar 54 KB). Setelah optimasi R2 file yang dikirim 469,056 sampai 620,616 byte, total tujuh karakter 3,551,104 byte: masih di atas target R2 3.0 MB. Sisa terbesar per karakter adalah indeks segitiga (CEO 157,608 byte) dan data per vertex yang sudah di batas bawah kuantisasi (24 byte per vertex karena padding 4 byte glTF); menurunkan lagi butuh pengurangan geometri (keputusan art) atau kompresi meshopt/Draco (ditolak karena CSP).
 
 ## Batasan M3 yang diketahui
 

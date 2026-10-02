@@ -8,8 +8,10 @@ Z up, front = -Y) and is drawn to the catalog size; the builder then only
 re-centres (no scaling) and prints the residual so drift is visible. Shapes are
 chunky and soft-cornered with matte colours from app/src/world/palette.ts, one
 shared palette (material names = palette keys). Outputs:
-app/public/assets/furniture/<type>.glb and blender/out/furniture.blend
-(objects FURN-<type>, all at the origin). Fixed seeds keep reruns identical.
+blender/out/raw-glb/furniture/<type>.glb (Blender export; tools/glb_optimize.mjs
+writes the shipped app/public/assets/furniture/<type>.glb from it) and
+blender/out/furniture.blend (objects FURN-<type>, all at the origin). Fixed seeds
+keep reruns identical.
 """
 from __future__ import annotations
 
@@ -872,7 +874,7 @@ def build(only=None):
     if not only:
         bpy.ops.wm.save_as_mainfile(filepath=str(OUT_BLEND), compress=True)
     for ob in list(col.objects):
-        K.export_glb(FS.glb_path(ob["kantor_type"]), [ob])
+        K.export_glb(FS.raw_glb_path(ob["kantor_type"]), [ob])
     bad = [t for t, r in results.items() if r["err"] > FS.TOL_M or r["tris"] > r["budget"]]
     print(f"FURNITURE_DONE types={len(results)} out_of_spec={bad}")
     return bad

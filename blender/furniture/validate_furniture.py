@@ -3,17 +3,23 @@
 Run:
   blender -b --factory-startup -noaudio --python blender/furniture/validate_furniture.py
 
-Per type: GLB header/chunks, one mesh node FURN-<type> with no node
-transform, bbox equals catalog [w, d, h] within 2 cm, footprint centred on the
+Checks the shipped GLB (tools/glb_optimize.mjs output, KHR_mesh_quantization):
+the integer positions are read through the node transform, so every size below
+is in metres. Equality with the Blender export is measured by tools/glb_compare.py.
+
+Per type: GLB header/chunks, one mesh node FURN-<type> whose only transform
+is the dequantization (uniform scale + translation, no rotation), bbox equals
+catalog [w, d, h] within 2 cm, footprint centred on the
 origin and resting on the floor, front orientation probe (furniture_spec.FRONT_RULES),
 triangle budget (small 2k / large 5k), materials drawn from the shared palette,
 and a Blender re-import whose bbox matches. Also reopens furniture.blend.
-Writes docs/evidence/M3/furniture-validate.json and .txt and merges one
+Writes docs/evidence/<KANTOR_EVIDENCE, default R2>/furniture-validate.json and .txt and merges one
 registry entry per type (kind "furniture"). Exit 1 on any failure.
 """
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -30,7 +36,9 @@ import registry  # noqa: E402
 
 ROOT = FS.ROOT
 BLEND = ROOT / "blender" / "out" / "furniture.blend"
-EVID = ROOT / "docs" / "evidence" / "M3"
+# Evidence folder of the current round (KANTOR_EVIDENCE, default R2) so reruns never
+# overwrite the evidence recorded for earlier milestones.
+EVID = ROOT / "docs" / "evidence" / os.environ.get("KANTOR_EVIDENCE", "R2")
 SHEET = "assets/previews/furniture-sheet.png"
 
 
@@ -40,7 +48,7 @@ def probe(g, node, material, zmin):
     for p in g.mesh_primitives(node):
         if g.material_name(p) != material:
             continue
-        for v in g.accessor(p["attributes"]["POSITION"]):
+        for v in g.node_positions(node, p):
             x, y, z = G.gltf_to_world(v)
             if z >= zmin:
                 ys.append(y)
@@ -64,8 +72,14 @@ def check_type(t, size, palette_names):
     chk("single mesh node FURN-<type>", mesh_nodes == [name], mesh_nodes)
     if name not in nodes:
         return res
-    chk("node has no transform", not any(k in nodes[name] for k in ("translation", "rotation", "scale", "matrix")))
-    mn, mx = G.world_bounds(*g.node_bounds(name))
+    chk("glb is the optimised file (KHR_mesh_quantization required)",
+        "KHR_mesh_quantization" in g.doc.get("extensionsRequired", []), g.doc.get("extensionsRequired"))
+    n = nodes[name]
+    sc = n.get("scale", [1.0, 1.0, 1.0])
+    chk("node transform is only the dequantization (uniform scale + translation)",
+        "matrix" not in n and list(n.get("rotation", [0, 0, 0, 1])) == [0, 0, 0, 1]
+        and max(sc) - min(sc) <= 1e-9 * max(sc), {k: n.get(k) for k in ("translation", "rotation", "scale")})
+    mn, mx = G.world_bounds(*g.node_world_bounds(name))
     dims = [mx[i] - mn[i] for i in range(3)]
     chk(f"bbox equals catalog {size} within {FS.TOL_M} m", all(abs(a - b) <= FS.TOL_M for a, b in zip(dims, size)),
         [round(v, 4) for v in dims])
@@ -100,8 +114,10 @@ def check_type(t, size, palette_names):
         rdims = [b[i] - a[i] for i in range(3)]
         chk("reimport: bbox matches glb", all(abs(u - v) <= 0.002 for u, v in zip(rdims, dims)),
             [round(v, 4) for v in rdims])
+    raw = FS.raw_glb_path(t)
     res.update({"dims": [round(v, 4) for v in dims], "triangles": tris, "budget": budget, "materials": mats,
-                "bytes": g.size, "class": FS.size_class(size)})
+                "bytes": g.size, "exportBytes": raw.stat().st_size if raw.exists() else None,
+                "class": FS.size_class(size)})
     return res
 
 
@@ -148,9 +164,11 @@ def main():
              "dimensions": r.get("dims"), "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
              "collider": {"type": "box", "size": [w, d, h]}, "materials": r.get("materials"),
              "triangles": {"lod0Visible": r.get("triangles"), "budget": r.get("budget"), "class": r.get("class")},
-             "lod": "LOD0 only", "glbBytes": r.get("bytes"),
+             "lod": "LOD0 only", "glbBytes": r.get("bytes"), "glbExportBytes": r.get("exportBytes"),
+             "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: "
+                               "tools/glb_compare.py",
              "status": "generated+validated" if t not in failed and blend_ok else "generated+validation-failed",
-             "validatedBy": "blender/furniture/validate_furniture.py", "evidence": "docs/evidence/M3/furniture-validate.json"}
+             "validatedBy": "blender/furniture/validate_furniture.py", "evidence": str((EVID / "furniture-validate.json").relative_to(ROOT))}
         if t in FS.MOUNT_HEIGHT_M:
             e["mountHeightM"] = FS.MOUNT_HEIGHT_M[t]
         entries.append(e)

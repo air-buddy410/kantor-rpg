@@ -1,0 +1,4 @@
+     × arcade_cabinet: baked parts fit the catalog footprint within 5 cm 35ms
+     × armchair: baked parts fit the catalog footprint within 5 cm 7ms
+     × beanbag: baked parts fit the catalog footprint within 5 cm 3ms
+     × bench: baked parts fit the catalog footprint within 5 cm 7ms

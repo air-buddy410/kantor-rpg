@@ -1,0 +1,24 @@
+# R2 full Python suite after regeneration (context for the CAD run; one known failure outside the CAD scope)
+# HEAD 4fc39b00e7a464f2b5c560c3c2c5d843ca8042b0  utc 2026-10-02T00:33:00Z
+# command: python3 -m pytest -q tests/py
+.F..................                                                     [100%]
+=================================== FAILURES ===================================
+______________ test_public_pdfs_are_byte_copies_of_generated_ones ______________
+
+    def test_public_pdfs_are_byte_copies_of_generated_ones():
+        for f in (PUBLIC / "docs").glob("*.pdf"):
+            src = ROOT / ("PRD" if f.name.startswith("PRD") else "drawings/pdf") / f.name
+>           assert src.exists() and src.read_bytes() == f.read_bytes(), f"{f.name} differs from its generated source; run npm run sync"
+E           AssertionError: A-102.pdf differs from its generated source; run npm run sync
+E           assert (True and b'%PDF-1.4\n%...2664\n%%EOF\n' == b'%PDF-1.4\n%...2664\n%%EOF\n'
+E            +  where True = exists()
+E            +    where exists = PosixPath('/home/user/kantor-rpg/drawings/pdf/A-102.pdf').exists
+E             
+E             At index 28276 diff: b'9' != b'5'
+E             Use -v to get more diff)
+
+tests/py/test_provenance.py:68: AssertionError
+=========================== short test summary info ============================
+FAILED tests/py/test_provenance.py::test_public_pdfs_are_byte_copies_of_generated_ones
+1 failed, 379 passed in 151.50s (0:02:31)
+# exit 1

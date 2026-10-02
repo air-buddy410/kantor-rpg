@@ -237,10 +237,12 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 1205812,
+      "glbBytes": 620616,
+      "glbExportBytes": 1205812,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json",
+      "evidence": "docs/evidence/R2/blender-characters-validate.json",
       "avatarVariants": {
         "approach": "single GLB; show exactly one hair_<style> node; recolour by repainting the outfit_* cells of a cloned kantor_atlas texture",
         "hairNodes": [
@@ -486,10 +488,12 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 989132,
+      "glbBytes": 498316,
+      "glbExportBytes": 989132,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
+      "evidence": "docs/evidence/R2/blender-characters-validate.json"
     },
     {
       "id": "CH-ARCHITECT",
@@ -715,10 +719,12 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 936748,
+      "glbBytes": 469056,
+      "glbExportBytes": 936748,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
+      "evidence": "docs/evidence/R2/blender-characters-validate.json"
     },
     {
       "id": "CH-ICTSPEC",
@@ -949,10 +955,12 @@
         ],
         "lod1": "lod1"
       },
-      "glbBytes": 970436,
+      "glbBytes": 488328,
+      "glbExportBytes": 970436,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
+      "evidence": "docs/evidence/R2/blender-characters-validate.json"
     },
     {
       "id": "CH-NETINSTALL",
@@ -1178,10 +1186,12 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 956716,
+      "glbBytes": 479500,
+      "glbExportBytes": 956716,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
+      "evidence": "docs/evidence/R2/blender-characters-validate.json"
     },
     {
       "id": "CH-VISUAL",
@@ -1412,10 +1422,12 @@
         ],
         "lod1": "lod1"
       },
-      "glbBytes": 980816,
+      "glbBytes": 493896,
+      "glbExportBytes": 980816,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
+      "evidence": "docs/evidence/R2/blender-characters-validate.json"
     },
     {
       "id": "CH-QA",
@@ -1646,10 +1658,12 @@
         ],
         "lod1": "lod1"
       },
-      "glbBytes": 994288,
+      "glbBytes": 501392,
+      "glbExportBytes": 994288,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
-      "evidence": "docs/evidence/HARDENING/blender-characters-validate.json"
+      "evidence": "docs/evidence/R2/blender-characters-validate.json"
     },
     {
       "id": "BLD-L1",
@@ -1706,7 +1720,7 @@
       "lod": "LOD0 only",
       "status": "generated+validated",
       "validatedBy": "blender/building/validate_building.py",
-      "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
+      "evidence": "docs/evidence/R2/blender-building-validate.json",
       "windows": 20,
       "doorLeaves": 23,
       "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"
@@ -1766,7 +1780,7 @@
       "lod": "LOD0 only",
       "status": "generated+validated",
       "validatedBy": "blender/building/validate_building.py",
-      "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
+      "evidence": "docs/evidence/R2/blender-building-validate.json",
       "windows": 19,
       "doorLeaves": 15,
       "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"
@@ -1817,10 +1831,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 41532,
+      "glbBytes": 27844,
+      "glbExportBytes": 41532,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-ARMCHAIR",
@@ -1861,10 +1877,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 36444,
+      "glbBytes": 25204,
+      "glbExportBytes": 36444,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-BEANBAG",
@@ -1881,7 +1899,7 @@
       "preview": "assets/previews/furniture-sheet.png",
       "dimensions": [
         0.79,
-        0.7895,
+        0.7894,
         0.5
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
@@ -1903,10 +1921,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 15568,
+      "glbBytes": 11384,
+      "glbExportBytes": 15568,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-BENCH",
@@ -1945,10 +1965,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 23032,
+      "glbBytes": 15240,
+      "glbExportBytes": 23032,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-BILLIARD-TABLE",
@@ -1995,10 +2017,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 94028,
+      "glbBytes": 59868,
+      "glbExportBytes": 94028,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-BOARD-TABLE",
@@ -2040,10 +2064,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 49788,
+      "glbBytes": 30040,
+      "glbExportBytes": 49788,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-BOOKSHELF",
@@ -2061,7 +2087,7 @@
       "dimensions": [
         1.2,
         0.4,
-        2
+        2.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -2088,10 +2114,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 95804,
+      "glbBytes": 58148,
+      "glbExportBytes": 95804,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-CHAIR",
@@ -2131,10 +2159,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 40464,
+      "glbBytes": 26084,
+      "glbExportBytes": 40464,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-CHAIR-GUEST",
@@ -2174,10 +2204,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 27668,
+      "glbBytes": 18136,
+      "glbExportBytes": 27668,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-COFFEE-BAR",
@@ -2195,7 +2227,7 @@
       "dimensions": [
         2.4,
         0.6,
-        1
+        1.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -2224,10 +2256,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 66704,
+      "glbBytes": 42488,
+      "glbExportBytes": 66704,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-COFFEE-TABLE",
@@ -2269,10 +2303,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 24644,
+      "glbBytes": 15144,
+      "glbExportBytes": 24644,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-CUE-RACK",
@@ -2313,10 +2349,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 28936,
+      "glbBytes": 18800,
+      "glbExportBytes": 28936,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-DESK",
@@ -2358,10 +2396,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 38240,
+      "glbBytes": 24164,
+      "glbExportBytes": 38240,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-DESK-EXEC",
@@ -2404,10 +2444,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 57924,
+      "glbBytes": 35264,
+      "glbExportBytes": 57924,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-DINING-TABLE",
@@ -2447,10 +2489,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 16756,
+      "glbBytes": 11668,
+      "glbExportBytes": 16756,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-DIRECTORY-SIGN",
@@ -2490,10 +2534,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 29436,
+      "glbBytes": 18160,
+      "glbExportBytes": 29436,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "evidence": "docs/evidence/R2/furniture-validate.json",
       "mountHeightM": 1.0
     },
     {
@@ -2535,10 +2581,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 27380,
+      "glbBytes": 17336,
+      "glbExportBytes": 27380,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-DUMBBELL-RACK",
@@ -2582,10 +2630,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 83104,
+      "glbBytes": 46572,
+      "glbExportBytes": 83104,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-EASEL",
@@ -2628,10 +2678,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 22232,
+      "glbBytes": 15328,
+      "glbExportBytes": 22232,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-EXERCISE-BIKE",
@@ -2674,10 +2726,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 43216,
+      "glbBytes": 28372,
+      "glbExportBytes": 43216,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-EXERCISE-MAT",
@@ -2716,10 +2770,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 12636,
+      "glbBytes": 8328,
+      "glbExportBytes": 12636,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-FRIDGE",
@@ -2762,10 +2818,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 24828,
+      "glbBytes": 15308,
+      "glbExportBytes": 24828,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-GALLERY-PANEL",
@@ -2783,7 +2841,7 @@
       "dimensions": [
         1.5,
         0.3,
-        2
+        2.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -2809,10 +2867,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 23620,
+      "glbBytes": 13792,
+      "glbExportBytes": 23620,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-HIGH-TABLE",
@@ -2852,10 +2912,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 19260,
+      "glbBytes": 13220,
+      "glbExportBytes": 19260,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-LAB-BENCH",
@@ -2900,10 +2962,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 51264,
+      "glbBytes": 30360,
+      "glbExportBytes": 51264,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-LAB-RACK-OPEN",
@@ -2947,10 +3011,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 79360,
+      "glbBytes": 48356,
+      "glbExportBytes": 79360,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-LIFT",
@@ -2968,7 +3034,7 @@
       "dimensions": [
         1.9,
         2.2,
-        3
+        3.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -2991,10 +3057,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 11200,
+      "glbBytes": 8392,
+      "glbExportBytes": 11200,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-LOCKER",
@@ -3036,10 +3104,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 104148,
+      "glbBytes": 58140,
+      "glbExportBytes": 104148,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-MEDIA-CONSOLE",
@@ -3055,7 +3125,7 @@
       "glb": "app/public/assets/furniture/media_console.glb",
       "preview": "assets/previews/furniture-sheet.png",
       "dimensions": [
-        2,
+        2.0,
         0.5,
         1.6
       ],
@@ -3086,10 +3156,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 39688,
+      "glbBytes": 23312,
+      "glbExportBytes": 39688,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-MEETING-TABLE",
@@ -3105,8 +3177,8 @@
       "glb": "app/public/assets/furniture/meeting_table.glb",
       "preview": "assets/previews/furniture-sheet.png",
       "dimensions": [
-        4,
-        1.4,
+        4.0,
+        1.3999,
         0.766
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
@@ -3130,10 +3202,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 28384,
+      "glbBytes": 18112,
+      "glbExportBytes": 28384,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-MODEL-SHELF",
@@ -3176,10 +3250,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 65180,
+      "glbBytes": 41128,
+      "glbExportBytes": 65180,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-PANTRY-COUNTER",
@@ -3223,10 +3299,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 51316,
+      "glbBytes": 32960,
+      "glbExportBytes": 51316,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-PARTITION",
@@ -3244,7 +3322,7 @@
       "dimensions": [
         1.5,
         0.05,
-        2
+        2.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -3266,10 +3344,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 13128,
+      "glbBytes": 8224,
+      "glbExportBytes": 13128,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-PLAN-TABLE",
@@ -3311,10 +3391,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 48944,
+      "glbBytes": 30756,
+      "glbExportBytes": 48944,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-PLANT-LARGE",
@@ -3355,10 +3437,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 40112,
+      "glbBytes": 27892,
+      "glbExportBytes": 40112,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-PLANT-SMALL",
@@ -3399,10 +3483,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 29960,
+      "glbBytes": 20496,
+      "glbExportBytes": 29960,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-PLANTER-BOX",
@@ -3445,10 +3531,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 35848,
+      "glbBytes": 22996,
+      "glbExportBytes": 35848,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-POSTER",
@@ -3466,7 +3554,7 @@
       "dimensions": [
         0.7,
         0.05,
-        1
+        1.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -3490,10 +3578,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 17428,
+      "glbBytes": 10968,
+      "glbExportBytes": 17428,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "evidence": "docs/evidence/R2/furniture-validate.json",
       "mountHeightM": 1.2
     },
     {
@@ -3512,7 +3602,7 @@
       "dimensions": [
         0.6,
         0.99,
-        2
+        2.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -3538,10 +3628,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 158380,
+      "glbBytes": 91072,
+      "glbExportBytes": 158380,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-RECEPTION-DESK",
@@ -3585,10 +3677,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 49992,
+      "glbBytes": 30732,
+      "glbExportBytes": 49992,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-ROUND-TABLE",
@@ -3627,10 +3721,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 16644,
+      "glbBytes": 11656,
+      "glbExportBytes": 16644,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-SHOWER-STALL",
@@ -3671,10 +3767,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 25208,
+      "glbBytes": 16412,
+      "glbExportBytes": 25208,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-SINK",
@@ -3714,10 +3812,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 16868,
+      "glbBytes": 10828,
+      "glbExportBytes": 16868,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-SOFA",
@@ -3733,7 +3833,7 @@
       "glb": "app/public/assets/furniture/sofa.glb",
       "preview": "assets/previews/furniture-sheet.png",
       "dimensions": [
-        2,
+        2.0,
         0.9,
         0.8
       ],
@@ -3758,10 +3858,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 38796,
+      "glbBytes": 23228,
+      "glbExportBytes": 38796,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-STAIR-U",
@@ -3779,7 +3881,7 @@
       "dimensions": [
         2.6,
         4.4,
-        4
+        4.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -3801,10 +3903,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 34672,
+      "glbBytes": 21068,
+      "glbExportBytes": 34672,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-STOOL",
@@ -3843,10 +3947,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 18140,
+      "glbBytes": 12088,
+      "glbExportBytes": 18140,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-STORAGE-SHELF",
@@ -3864,7 +3970,7 @@
       "dimensions": [
         1.8,
         0.5,
-        2
+        2.0
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
       "collider": {
@@ -3888,10 +3994,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 118496,
+      "glbBytes": 71476,
+      "glbExportBytes": 118496,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-TOOL-CABINET",
@@ -3932,10 +4040,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 49488,
+      "glbBytes": 30768,
+      "glbExportBytes": 49488,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-TREADMILL",
@@ -3952,7 +4062,7 @@
       "preview": "assets/previews/furniture-sheet.png",
       "dimensions": [
         0.9,
-        2,
+        2.0,
         1.4
       ],
       "pivot": "footprint centre on the floor, front -Y (glTF +Z)",
@@ -3980,10 +4090,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 34516,
+      "glbBytes": 21296,
+      "glbExportBytes": 34516,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-TREE-PLANTER",
@@ -4024,10 +4136,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 38700,
+      "glbBytes": 23176,
+      "glbExportBytes": 38700,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-WALL-DISPLAY",
@@ -4068,10 +4182,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 14232,
+      "glbBytes": 8816,
+      "glbExportBytes": 14232,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "evidence": "docs/evidence/R2/furniture-validate.json",
       "mountHeightM": 1.1
     },
     {
@@ -4112,10 +4228,12 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 17876,
+      "glbBytes": 12516,
+      "glbExportBytes": 17876,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     },
     {
       "id": "AST-WHITEBOARD",
@@ -4158,10 +4276,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 28900,
+      "glbBytes": 17652,
+      "glbExportBytes": 28900,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json",
+      "evidence": "docs/evidence/R2/furniture-validate.json",
       "mountHeightM": 0.9
     },
     {
@@ -4201,10 +4321,12 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 20080,
+      "glbBytes": 13456,
+      "glbExportBytes": 20080,
+      "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
-      "evidence": "docs/evidence/M3/furniture-validate.json"
+      "evidence": "docs/evidence/R2/furniture-validate.json"
     }
   ]
 }

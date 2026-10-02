@@ -1,0 +1,866 @@
+# R2 asset pipeline run (steps of tools/rebuild_all.sh touched by the GLB optimisation), Blender 4.0.2, Node v22.22.0, git_head at start=b109cde, at end=0a5b58799fcffde8edc9de4c5a25a2902b7083da (other sessions commit in parallel; generated files uncommitted)
+# 1. blender -b --factory-startup -noaudio --python blender/furniture/build_furniture.py
+# 2. blender -b --factory-startup -noaudio --python blender/characters/build_characters.py -- --variants
+#    check: all 61 fresh exports in blender/out/raw-glb are sha256-identical to the files shipped before R2 (sha256sum -c: 61 OK)
+# 3. node tools/glb_optimize.mjs
+# 4. python3 tools/glb_compare.py --out docs/evidence/R2/glb-compare.json
+# 5. blender ... blender/validate_assets.py; blender ... blender/building/validate_building.py; blender ... blender/furniture/validate_furniture.py
+# building build_building.py was not rerun: building GLBs are not optimised and its script did not change
+
+########## steps 1-2 (Blender builds) ##########
+
+== Blender: furniture (2026-10-02T00:04:54Z)
+Blender 4.0.2
+FURN desk            size=[1.6, 0.8, 0.764] catalog=[1.6, 0.8, 0.75] err=0.014 tris=976/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN desk_exec       size=[1.8, 0.9, 0.764] catalog=[1.8, 0.9, 0.75] err=0.014 tris=1476/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN chair           size=[0.6, 0.5988, 0.9] catalog=[0.6, 0.6, 0.9] err=0.001 tris=1312/2000 shift=[-0.0, -0.0006, -0.0] OK
+FURN chair_guest     size=[0.55, 0.55, 0.85] catalog=[0.55, 0.55, 0.85] err=0.000 tris=792/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN stool           size=[0.4456, 0.4456, 0.7041] catalog=[0.45, 0.45, 0.7] err=0.004 tris=516/2000 shift=[-0.0, -0.0, 0.0041] OK
+FURN meeting_table   size=[4.0, 1.4, 0.766] catalog=[4.0, 1.4, 0.75] err=0.016 tris=768/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN round_table     size=[1.2, 1.2, 0.75] catalog=[1.2, 1.2, 0.75] err=0.000 tris=620/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN high_table      size=[1.2, 0.7, 1.05] catalog=[1.2, 0.7, 1.05] err=0.000 tris=552/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN dining_table    size=[1.8, 0.9, 0.762] catalog=[1.8, 0.9, 0.75] err=0.012 tris=452/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN coffee_table    size=[1.0, 0.6, 0.4] catalog=[1.0, 0.6, 0.4] err=0.000 tris=492/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN work_table      size=[1.6, 0.8, 0.9] catalog=[1.6, 0.8, 0.9] err=0.000 tris=648/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN plan_table      size=[1.8, 0.9, 0.904] catalog=[1.8, 0.9, 0.9] err=0.004 tris=1152/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN drafting_table  size=[1.4, 1.0, 0.9494] catalog=[1.4, 1.0, 0.95] err=0.001 tris=660/5000 shift=[-0.0, -0.0, 0.013] OK
+FURN reception_desk  size=[3.0, 0.91, 1.1] catalog=[3.0, 0.9, 1.1] err=0.010 tris=1216/5000 shift=[-0.0, 0.015, 0.0] OK
+FURN sofa            size=[2.0, 0.9, 0.8] catalog=[2.0, 0.9, 0.8] err=0.000 tris=1944/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN armchair        size=[0.9, 0.9, 0.85] catalog=[0.9, 0.9, 0.85] err=0.000 tris=1536/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN beanbag         size=[0.79, 0.7895, 0.5] catalog=[0.8, 0.8, 0.5] err=0.011 tris=712/2000 shift=[-0.0, -0.0053, -0.0] OK
+FURN bench           size=[1.6, 0.441, 0.45] catalog=[1.6, 0.45, 0.45] err=0.009 tris=756/5000 shift=[-0.0, -0.0, 0.0] OK
+FURN bookshelf       size=[1.2, 0.4, 2.0] catalog=[1.2, 0.4, 2.0] err=0.000 tris=2048/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN model_shelf     size=[1.2, 0.4, 1.8] catalog=[1.2, 0.4, 1.8] err=0.000 tris=2000/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN tool_cabinet    size=[1.0, 0.5, 1.2] catalog=[1.0, 0.5, 1.2] err=0.000 tris=1208/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN storage_shelf   size=[1.8, 0.5, 2.0] catalog=[1.8, 0.5, 2.0] err=0.000 tris=3148/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN locker          size=[1.2, 0.499, 1.8] catalog=[1.2, 0.5, 1.8] err=0.001 tris=2184/5000 shift=[-0.0, -0.0005, -0.0] OK
+FURN whiteboard      size=[1.8, 0.1, 1.2] catalog=[1.8, 0.1, 1.2] err=0.000 tris=524/5000 shift=[-0.0, 0.0, -0.0] OK
+FURN wall_display    size=[1.6, 0.098, 0.95] catalog=[1.6, 0.1, 0.95] err=0.002 tris=240/5000 shift=[-0.0, -0.001, -0.0] OK
+FURN gallery_panel   size=[1.5, 0.3, 2.0] catalog=[1.5, 0.3, 2.0] err=0.000 tris=532/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN poster          size=[0.7, 0.05, 1.0] catalog=[0.7, 0.05, 1.0] err=0.000 tris=316/2000 shift=[-0.0, 0.0, -0.0] OK
+FURN directory_sign  size=[1.2, 0.078, 0.9] catalog=[1.2, 0.08, 0.9] err=0.002 tris=504/5000 shift=[-0.0, -0.001, 0.0] OK
+FURN easel           size=[0.7988, 0.7989, 1.7095] catalog=[0.8, 0.8, 1.7] err=0.010 tris=448/5000 shift=[-0.0, -0.0002, 0.0067] OK
+FURN plant_large     size=[0.6, 0.5949, 1.6] catalog=[0.6, 0.6, 1.6] err=0.005 tris=1820/5000 shift=[-0.0, 0.002, -0.0] OK
+FURN plant_small     size=[0.4, 0.4, 0.9] catalog=[0.4, 0.4, 0.9] err=0.000 tris=1048/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN planter_box     size=[1.6, 0.6, 0.7] catalog=[1.6, 0.6, 0.7] err=0.000 tris=1312/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN tree_planter    size=[1.2, 1.2, 2.6] catalog=[1.2, 1.2, 2.6] err=0.000 tris=1960/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN pantry_counter  size=[3.0, 0.65, 0.915] catalog=[3.0, 0.65, 0.9] err=0.015 tris=1214/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN coffee_bar      size=[2.4, 0.6, 1.0] catalog=[2.4, 0.6, 1.0] err=0.000 tris=1894/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN fridge          size=[0.7, 0.7, 1.8] catalog=[0.7, 0.7, 1.8] err=0.000 tris=596/5000 shift=[-0.0, -0.0, 0.0] OK
+FURN sink            size=[0.6, 0.4525, 0.865] catalog=[0.6, 0.45, 0.85] err=0.015 tris=464/2000 shift=[-0.0, 0.0012, -0.0] OK
+FURN wc              size=[0.4, 0.6959, 0.8] catalog=[0.4, 0.7, 0.8] err=0.004 tris=560/2000 shift=[-0.0, -0.0021, -0.0] OK
+FURN partition       size=[1.5, 0.05, 2.0] catalog=[1.5, 0.05, 2.0] err=0.000 tris=176/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN shower_stall    size=[0.9, 0.9, 2.1] catalog=[0.9, 0.9, 2.1] err=0.000 tris=476/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN rack_42u        size=[0.6, 0.99, 2.0] catalog=[0.6, 1.0, 2.0] err=0.010 tris=2736/5000 shift=[-0.0, -0.005, -0.0] OK
+FURN lab_bench       size=[1.8, 0.75, 0.904] catalog=[1.8, 0.75, 0.9] err=0.004 tris=1068/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN lab_rack_open   size=[0.6, 0.6, 1.2] catalog=[0.6, 0.6, 1.2] err=0.000 tris=1624/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN billiard_table  size=[2.84, 1.57, 0.816] catalog=[2.84, 1.57, 0.8] err=0.016 tris=3532/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN cue_rack        size=[0.6, 0.119, 1.4] catalog=[0.6, 0.12, 1.4] err=0.001 tris=660/5000 shift=[-0.0, -0.0005, -0.0] OK
+FURN media_console   size=[2.0, 0.5, 1.6] catalog=[2.0, 0.5, 1.6] err=0.000 tris=1116/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN arcade_cabinet  size=[0.75, 0.85, 1.8] catalog=[0.75, 0.85, 1.8] err=0.000 tris=1020/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN board_table     size=[1.2, 1.2, 0.766] catalog=[1.2, 1.2, 0.75] err=0.016 tris=1152/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN treadmill       size=[0.9, 2.0, 1.4] catalog=[0.9, 2.0, 1.4] err=0.000 tris=864/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN exercise_bike   size=[0.6, 1.2, 1.1902] catalog=[0.6, 1.2, 1.2] err=0.010 tris=1152/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN exercise_mat    size=[1.8, 0.6, 0.0205] catalog=[1.8, 0.6, 0.02] err=0.001 tris=176/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN dumbbell_rack   size=[1.2, 0.4985, 0.9062] catalog=[1.2, 0.5, 0.9] err=0.006 tris=2024/5000 shift=[-0.0, -0.0, 0.0061] OK
+FURN stair_u         size=[2.6, 4.4, 4.0] catalog=[2.6, 4.4, 4.0] err=0.000 tris=600/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN lift            size=[1.9, 2.2, 3.0] catalog=[1.9, 2.2, 3.0] err=0.000 tris=154/5000 shift=[-0.0, -0.0, -0.0] OK
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "furniture.blend"
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: desk
+00:04:55 | INFO: Primitives created: 5
+00:04:55 | INFO: Finished glTF 2.0 export in 0.01546788215637207 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: desk_exec
+00:04:55 | INFO: Primitives created: 6
+00:04:55 | INFO: Finished glTF 2.0 export in 0.03296518325805664 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: chair
+00:04:55 | INFO: Primitives created: 3
+00:04:55 | INFO: Finished glTF 2.0 export in 0.010171175003051758 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: chair_guest
+00:04:55 | INFO: Primitives created: 3
+00:04:55 | INFO: Finished glTF 2.0 export in 0.007757902145385742 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: stool
+00:04:55 | INFO: Primitives created: 2
+00:04:55 | INFO: Finished glTF 2.0 export in 0.006084918975830078 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: meeting_table
+00:04:55 | INFO: Primitives created: 4
+00:04:55 | INFO: Finished glTF 2.0 export in 0.009382963180541992 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: round_table
+00:04:55 | INFO: Primitives created: 2
+00:04:55 | INFO: Finished glTF 2.0 export in 0.005967378616333008 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: high_table
+00:04:55 | INFO: Primitives created: 3
+00:04:55 | INFO: Finished glTF 2.0 export in 0.007702350616455078 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: dining_table
+00:04:55 | INFO: Primitives created: 3
+00:04:55 | INFO: Finished glTF 2.0 export in 0.006339550018310547 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: coffee_table
+00:04:55 | INFO: Primitives created: 5
+00:04:55 | INFO: Finished glTF 2.0 export in 0.00832509994506836 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: work_table
+00:04:55 | INFO: Primitives created: 2
+00:04:55 | INFO: Finished glTF 2.0 export in 0.006196737289428711 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: plan_table
+00:04:55 | INFO: Primitives created: 5
+00:04:55 | INFO: Finished glTF 2.0 export in 0.011587142944335938 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: drafting_table
+00:04:55 | INFO: Primitives created: 4
+00:04:55 | INFO: Finished glTF 2.0 export in 0.007972478866577148 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: reception_desk
+00:04:55 | INFO: Primitives created: 7
+00:04:55 | INFO: Finished glTF 2.0 export in 0.012800216674804688 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: sofa
+00:04:55 | INFO: Primitives created: 4
+00:04:55 | INFO: Finished glTF 2.0 export in 0.01136922836303711 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: armchair
+00:04:55 | INFO: Primitives created: 4
+00:04:55 | INFO: Finished glTF 2.0 export in 0.01174163818359375 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: beanbag
+00:04:55 | INFO: Primitives created: 2
+00:04:55 | INFO: Finished glTF 2.0 export in 0.0069582462310791016 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: bench
+00:04:55 | INFO: Primitives created: 2
+00:04:55 | INFO: Finished glTF 2.0 export in 0.0066030025482177734 s
+
+00:04:55 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:55 | INFO: Starting glTF 2.0 export
+00:04:55 | INFO: Extracting primitive: bookshelf
+00:04:56 | INFO: Primitives created: 8
+00:04:56 | INFO: Finished glTF 2.0 export in 0.016915559768676758 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: model_shelf
+00:04:56 | INFO: Primitives created: 6
+00:04:56 | INFO: Finished glTF 2.0 export in 0.015036821365356445 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: tool_cabinet
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0103759765625 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: storage_shelf
+00:04:56 | INFO: Primitives created: 5
+00:04:56 | INFO: Finished glTF 2.0 export in 0.017436742782592773 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: locker
+00:04:56 | INFO: Primitives created: 5
+00:04:56 | INFO: Finished glTF 2.0 export in 0.013840913772583008 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: whiteboard
+00:04:56 | INFO: Primitives created: 6
+00:04:56 | INFO: Finished glTF 2.0 export in 0.01091456413269043 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: wall_display
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.006793975830078125 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: gallery_panel
+00:04:56 | INFO: Primitives created: 7
+00:04:56 | INFO: Finished glTF 2.0 export in 0.011574029922485352 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: poster
+00:04:56 | INFO: Primitives created: 5
+00:04:56 | INFO: Finished glTF 2.0 export in 0.008523941040039062 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: directory_sign
+00:04:56 | INFO: Primitives created: 3
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0073511600494384766 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: easel
+00:04:56 | INFO: Primitives created: 6
+00:04:56 | INFO: Finished glTF 2.0 export in 0.009134531021118164 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: plant_large
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.011223316192626953 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: plant_small
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.009217500686645508 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: planter_box
+00:04:56 | INFO: Primitives created: 6
+00:04:56 | INFO: Finished glTF 2.0 export in 0.012456178665161133 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: tree_planter
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.011901617050170898 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: pantry_counter
+00:04:56 | INFO: Primitives created: 7
+00:04:56 | INFO: Finished glTF 2.0 export in 0.012912273406982422 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: coffee_bar
+00:04:56 | INFO: Primitives created: 10
+00:04:56 | INFO: Finished glTF 2.0 export in 0.018024682998657227 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: fridge
+00:04:56 | INFO: Primitives created: 6
+00:04:56 | INFO: Finished glTF 2.0 export in 0.010303497314453125 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: sink
+00:04:56 | INFO: Primitives created: 3
+00:04:56 | INFO: Finished glTF 2.0 export in 0.006815195083618164 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: wc
+00:04:56 | INFO: Primitives created: 3
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0073773860931396484 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: partition
+00:04:56 | INFO: Primitives created: 3
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0065691471099853516 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: shower_stall
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.007822036743164062 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: rack_42u
+00:04:56 | INFO: Primitives created: 7
+00:04:56 | INFO: Finished glTF 2.0 export in 0.018006324768066406 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: lab_bench
+00:04:56 | INFO: Primitives created: 8
+00:04:56 | INFO: Finished glTF 2.0 export in 0.014380931854248047 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: lab_rack_open
+00:04:56 | INFO: Primitives created: 7
+00:04:56 | INFO: Finished glTF 2.0 export in 0.014684915542602539 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: billiard_table
+00:04:56 | INFO: Primitives created: 10
+00:04:56 | INFO: Finished glTF 2.0 export in 0.022354841232299805 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: cue_rack
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.008759021759033203 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: media_console
+00:04:56 | INFO: Primitives created: 10
+00:04:56 | INFO: Finished glTF 2.0 export in 0.015801429748535156 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: arcade_cabinet
+00:04:56 | INFO: Primitives created: 11
+00:04:56 | INFO: Finished glTF 2.0 export in 0.017371654510498047 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: board_table
+00:04:56 | INFO: Primitives created: 5
+00:04:56 | INFO: Finished glTF 2.0 export in 0.011233329772949219 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: treadmill
+00:04:56 | INFO: Primitives created: 8
+00:04:56 | INFO: Finished glTF 2.0 export in 0.012960672378540039 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: exercise_bike
+00:04:56 | INFO: Primitives created: 6
+00:04:56 | INFO: Finished glTF 2.0 export in 0.012906789779663086 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: exercise_mat
+00:04:56 | INFO: Primitives created: 2
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0053751468658447266 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: dumbbell_rack
+00:04:56 | INFO: Primitives created: 7
+00:04:56 | INFO: Finished glTF 2.0 export in 0.01590132713317871 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: stair_u
+00:04:56 | INFO: Primitives created: 3
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0073451995849609375 s
+
+00:04:56 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:56 | INFO: Starting glTF 2.0 export
+00:04:56 | INFO: Extracting primitive: lift
+00:04:56 | INFO: Primitives created: 4
+00:04:56 | INFO: Finished glTF 2.0 export in 0.0069005489349365234 s
+
+FURNITURE_DONE types=54 out_of_spec=[]
+
+== Blender: characters (2026-10-02T00:04:56Z)
+Blender 4.0.2
+blender 4.0.2; building ['CH-CEO', 'CH-SUPERVISOR', 'CH-ARCHITECT', 'CH-ICTSPEC', 'CH-NETINSTALL', 'CH-VISUAL', 'CH-QA']
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-ceo.blend"
+00:04:57 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:04:57 | INFO: Starting glTF 2.0 export
+00:04:57 | INFO: Extracting primitive: body
+00:04:57 | INFO: Primitives created: 1
+00:04:57 | INFO: Extracting primitive: hair_short_tuft
+00:04:57 | INFO: Primitives created: 1
+00:04:57 | INFO: Extracting primitive: hair_spiky_soft
+00:04:57 | INFO: Primitives created: 1
+00:04:57 | INFO: Extracting primitive: hair_swept
+00:04:57 | INFO: Primitives created: 1
+00:04:57 | INFO: Extracting primitive: lod1
+00:04:57 | INFO: Primitives created: 1
+00:04:59 | INFO: Finished glTF 2.0 export in 2.155026912689209 s
+
+BUILD CH-CEO: tris={'body': 11100, 'hair_short_tuft': 3760, 'hair_swept': 3152, 'hair_spiky_soft': 3456, 'lod1': 4800} visible_lod0=14860 lod1=4800 (decimated from 14788) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.845, 'run_native_speed_mps': 2.416, 'walk_stance_travel_m': 0.49, 'run_stance_travel_m': 0.551} glb_bytes=1205812 blend=blender/out/ch-ceo.blend glb=blender/out/raw-glb/characters/ch-ceo.glb secs=2.6
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-supervisor.blend"
+00:05:00 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:05:00 | INFO: Starting glTF 2.0 export
+00:05:00 | INFO: Extracting primitive: body
+00:05:00 | INFO: Primitives created: 1
+00:05:00 | INFO: Extracting primitive: hair_swept
+00:05:00 | INFO: Primitives created: 1
+00:05:00 | INFO: Extracting primitive: lod1
+00:05:00 | INFO: Primitives created: 1
+00:05:02 | INFO: Finished glTF 2.0 export in 1.9975533485412598 s
+
+BUILD CH-SUPERVISOR: tris={'body': 11804, 'hair_swept': 3152, 'lod1': 4800} visible_lod0=14956 lod1=4800 (decimated from 14884) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.835, 'run_native_speed_mps': 2.388, 'walk_stance_travel_m': 0.485, 'run_stance_travel_m': 0.545} glb_bytes=989132 blend=blender/out/ch-supervisor.blend glb=blender/out/raw-glb/characters/ch-supervisor.glb secs=2.3
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-architect.blend"
+00:05:02 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:05:02 | INFO: Starting glTF 2.0 export
+00:05:02 | INFO: Extracting primitive: body
+00:05:02 | INFO: Primitives created: 1
+00:05:02 | INFO: Extracting primitive: hair_bun
+00:05:02 | INFO: Primitives created: 1
+00:05:02 | INFO: Extracting primitive: lod1
+00:05:02 | INFO: Primitives created: 1
+00:05:04 | INFO: Finished glTF 2.0 export in 1.893639087677002 s
+
+BUILD CH-ARCHITECT: tris={'body': 10312, 'hair_bun': 3060, 'lod1': 4799} visible_lod0=13372 lod1=4799 (decimated from 13300) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.873, 'run_native_speed_mps': 2.499, 'walk_stance_travel_m': 0.507, 'run_stance_travel_m': 0.57} glb_bytes=936748 blend=blender/out/ch-architect.blend glb=blender/out/raw-glb/characters/ch-architect.glb secs=2.2
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-ictspec.blend"
+00:05:04 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:05:04 | INFO: Starting glTF 2.0 export
+00:05:04 | INFO: Extracting primitive: body
+00:05:04 | INFO: Primitives created: 1
+00:05:04 | INFO: Extracting primitive: hair_bob
+00:05:04 | INFO: Primitives created: 1
+00:05:04 | INFO: Extracting primitive: lod1
+00:05:04 | INFO: Primitives created: 1
+00:05:04 | INFO: Extracting primitive: prop_tablet
+00:05:04 | INFO: Primitives created: 1
+00:05:06 | INFO: Finished glTF 2.0 export in 1.9796936511993408 s
+
+BUILD CH-ICTSPEC: tris={'body': 10344, 'hair_bob': 3536, 'prop_tablet': 484, 'lod1': 4800} visible_lod0=14364 lod1=4800 (decimated from 14292) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.795, 'run_native_speed_mps': 2.274, 'walk_stance_travel_m': 0.461, 'run_stance_travel_m': 0.519} glb_bytes=970436 blend=blender/out/ch-ictspec.blend glb=blender/out/raw-glb/characters/ch-ictspec.glb secs=2.3
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-netinstall.blend"
+00:05:06 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:05:06 | INFO: Starting glTF 2.0 export
+00:05:06 | INFO: Extracting primitive: body
+00:05:06 | INFO: Primitives created: 1
+00:05:06 | INFO: Extracting primitive: hair_cap
+00:05:07 | INFO: Primitives created: 1
+00:05:07 | INFO: Extracting primitive: lod1
+00:05:07 | INFO: Primitives created: 1
+00:05:08 | INFO: Finished glTF 2.0 export in 2.0007731914520264 s
+
+BUILD CH-NETINSTALL: tris={'body': 11852, 'hair_cap': 1956, 'lod1': 4799} visible_lod0=13808 lod1=4799 (decimated from 13736) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.818, 'run_native_speed_mps': 2.338, 'walk_stance_travel_m': 0.475, 'run_stance_travel_m': 0.533} glb_bytes=956716 blend=blender/out/ch-netinstall.blend glb=blender/out/raw-glb/characters/ch-netinstall.glb secs=2.3
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-visual.blend"
+00:05:09 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:05:09 | INFO: Starting glTF 2.0 export
+00:05:09 | INFO: Extracting primitive: body
+00:05:09 | INFO: Primitives created: 1
+00:05:09 | INFO: Extracting primitive: hair_spiky_soft
+00:05:09 | INFO: Primitives created: 1
+00:05:09 | INFO: Extracting primitive: lod1
+00:05:09 | INFO: Primitives created: 1
+00:05:09 | INFO: Extracting primitive: prop_sketchbook
+00:05:09 | INFO: Primitives created: 1
+00:05:11 | INFO: Finished glTF 2.0 export in 2.119363307952881 s
+
+BUILD CH-VISUAL: tris={'body': 10716, 'hair_spiky_soft': 3456, 'prop_sketchbook': 412, 'lod1': 4800} visible_lod0=14584 lod1=4800 (decimated from 14512) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.811, 'run_native_speed_mps': 2.32, 'walk_stance_travel_m': 0.47, 'run_stance_travel_m': 0.529} glb_bytes=980816 blend=blender/out/ch-visual.blend glb=blender/out/raw-glb/characters/ch-visual.glb secs=2.4
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-qa.blend"
+00:05:11 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+00:05:11 | INFO: Starting glTF 2.0 export
+00:05:11 | INFO: Extracting primitive: body
+00:05:11 | INFO: Primitives created: 1
+00:05:11 | INFO: Extracting primitive: hair_side_part
+00:05:11 | INFO: Primitives created: 1
+00:05:11 | INFO: Extracting primitive: lod1
+00:05:11 | INFO: Primitives created: 1
+00:05:11 | INFO: Extracting primitive: prop_clipboard
+00:05:11 | INFO: Primitives created: 1
+00:05:13 | INFO: Finished glTF 2.0 export in 2.117084264755249 s
+
+BUILD CH-QA: tris={'body': 11024, 'hair_side_part': 3356, 'prop_clipboard': 604, 'lod1': 4799} visible_lod0=14984 lod1=4799 (decimated from 14912) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.826, 'run_native_speed_mps': 2.361, 'walk_stance_travel_m': 0.479, 'run_stance_travel_m': 0.538} glb_bytes=994288 blend=blender/out/ch-qa.blend glb=blender/out/raw-glb/characters/ch-qa.glb secs=2.4
+VARIANTS CH-CEO hair=['short_tuft', 'swept', 'spiky_soft'] palettes=['forest', 'terracotta', 'oat'] (embedded in ch-ceo.glb)
+BUILD_DONE failures=0
+
+########## steps 3-5 (optimise, compare, validators) ##########
+
+== GLB optimise (tools/glb_optimize.mjs) (2026-10-02T00:05:23Z)
+prune: Removed types... Skin (1), Accessor (536)
+prune: Removed types... Accessor (2)
+OPT characters/ch-architect.glb: 936748 -> 469056 bytes (50.1%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Skin (1), Accessor (544)
+prune: Removed types... Accessor (4)
+OPT characters/ch-ceo.glb: 1205812 -> 620616 bytes (51.5%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Skin (1), Accessor (540)
+prune: Removed types... Accessor (3)
+OPT characters/ch-ictspec.glb: 970436 -> 488328 bytes (50.3%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Skin (1), Accessor (536)
+prune: Removed types... Accessor (2)
+OPT characters/ch-netinstall.glb: 956716 -> 479500 bytes (50.1%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Skin (1), Accessor (540)
+prune: Removed types... Accessor (3)
+OPT characters/ch-qa.glb: 994288 -> 501392 bytes (50.4%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Skin (1), Accessor (536)
+prune: Removed types... Accessor (2)
+OPT characters/ch-supervisor.glb: 989132 -> 498316 bytes (50.4%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Skin (1), Accessor (540)
+prune: Removed types... Accessor (3)
+OPT characters/ch-visual.glb: 980816 -> 493896 bytes (50.4%) restChannelsRemoved=518 rotationOutputs=171
+prune: Removed types... Accessor (22)
+OPT furniture/arcade_cabinet.glb: 41532 -> 27844 bytes (67.0%)
+prune: Removed types... Accessor (8)
+OPT furniture/armchair.glb: 36444 -> 25204 bytes (69.2%)
+prune: Removed types... Accessor (4)
+OPT furniture/beanbag.glb: 15568 -> 11384 bytes (73.1%)
+prune: Removed types... Accessor (4)
+OPT furniture/bench.glb: 23032 -> 15240 bytes (66.2%)
+prune: Removed types... Accessor (20)
+OPT furniture/billiard_table.glb: 94028 -> 59868 bytes (63.7%)
+prune: Removed types... Accessor (10)
+OPT furniture/board_table.glb: 49788 -> 30040 bytes (60.3%)
+prune: Removed types... Accessor (16)
+OPT furniture/bookshelf.glb: 95804 -> 58148 bytes (60.7%)
+prune: Removed types... Accessor (6)
+OPT furniture/chair.glb: 40464 -> 26084 bytes (64.5%)
+prune: Removed types... Accessor (6)
+OPT furniture/chair_guest.glb: 27668 -> 18136 bytes (65.5%)
+prune: Removed types... Accessor (20)
+OPT furniture/coffee_bar.glb: 66704 -> 42488 bytes (63.7%)
+prune: Removed types... Accessor (10)
+OPT furniture/coffee_table.glb: 24644 -> 15144 bytes (61.5%)
+prune: Removed types... Accessor (8)
+OPT furniture/cue_rack.glb: 28936 -> 18800 bytes (65.0%)
+prune: Removed types... Accessor (10)
+OPT furniture/desk.glb: 38240 -> 24164 bytes (63.2%)
+prune: Removed types... Accessor (12)
+OPT furniture/desk_exec.glb: 57924 -> 35264 bytes (60.9%)
+prune: Removed types... Accessor (6)
+OPT furniture/dining_table.glb: 16756 -> 11668 bytes (69.6%)
+prune: Removed types... Accessor (6)
+OPT furniture/directory_sign.glb: 29436 -> 18160 bytes (61.7%)
+prune: Removed types... Accessor (8)
+OPT furniture/drafting_table.glb: 27380 -> 17336 bytes (63.3%)
+prune: Removed types... Accessor (14)
+OPT furniture/dumbbell_rack.glb: 83104 -> 46572 bytes (56.0%)
+prune: Removed types... Accessor (12)
+OPT furniture/easel.glb: 22232 -> 15328 bytes (68.9%)
+prune: Removed types... Accessor (12)
+OPT furniture/exercise_bike.glb: 43216 -> 28372 bytes (65.7%)
+prune: Removed types... Accessor (4)
+OPT furniture/exercise_mat.glb: 12636 -> 8328 bytes (65.9%)
+prune: Removed types... Accessor (12)
+OPT furniture/fridge.glb: 24828 -> 15308 bytes (61.7%)
+prune: Removed types... Accessor (14)
+OPT furniture/gallery_panel.glb: 23620 -> 13792 bytes (58.4%)
+prune: Removed types... Accessor (6)
+OPT furniture/high_table.glb: 19260 -> 13220 bytes (68.6%)
+prune: Removed types... Accessor (16)
+OPT furniture/lab_bench.glb: 51264 -> 30360 bytes (59.2%)
+prune: Removed types... Accessor (14)
+OPT furniture/lab_rack_open.glb: 79360 -> 48356 bytes (60.9%)
+prune: Removed types... Accessor (8)
+OPT furniture/lift.glb: 11200 -> 8392 bytes (74.9%)
+prune: Removed types... Accessor (10)
+OPT furniture/locker.glb: 104148 -> 58140 bytes (55.8%)
+prune: Removed types... Accessor (20)
+OPT furniture/media_console.glb: 39688 -> 23312 bytes (58.7%)
+prune: Removed types... Accessor (8)
+OPT furniture/meeting_table.glb: 28384 -> 18112 bytes (63.8%)
+prune: Removed types... Accessor (12)
+OPT furniture/model_shelf.glb: 65180 -> 41128 bytes (63.1%)
+prune: Removed types... Accessor (14)
+OPT furniture/pantry_counter.glb: 51316 -> 32960 bytes (64.2%)
+prune: Removed types... Accessor (6)
+OPT furniture/partition.glb: 13128 -> 8224 bytes (62.6%)
+prune: Removed types... Accessor (10)
+OPT furniture/plan_table.glb: 48944 -> 30756 bytes (62.8%)
+prune: Removed types... Accessor (8)
+OPT furniture/plant_large.glb: 40112 -> 27892 bytes (69.5%)
+prune: Removed types... Accessor (8)
+OPT furniture/plant_small.glb: 29960 -> 20496 bytes (68.4%)
+prune: Removed types... Accessor (12)
+OPT furniture/planter_box.glb: 35848 -> 22996 bytes (64.1%)
+prune: Removed types... Accessor (10)
+OPT furniture/poster.glb: 17428 -> 10968 bytes (62.9%)
+prune: Removed types... Accessor (14)
+OPT furniture/rack_42u.glb: 158380 -> 91072 bytes (57.5%)
+prune: Removed types... Accessor (14)
+OPT furniture/reception_desk.glb: 49992 -> 30732 bytes (61.5%)
+prune: Removed types... Accessor (4)
+OPT furniture/round_table.glb: 16644 -> 11656 bytes (70.0%)
+prune: Removed types... Accessor (8)
+OPT furniture/shower_stall.glb: 25208 -> 16412 bytes (65.1%)
+prune: Removed types... Accessor (6)
+OPT furniture/sink.glb: 16868 -> 10828 bytes (64.2%)
+prune: Removed types... Accessor (8)
+OPT furniture/sofa.glb: 38796 -> 23228 bytes (59.9%)
+prune: Removed types... Accessor (6)
+OPT furniture/stair_u.glb: 34672 -> 21068 bytes (60.8%)
+prune: Removed types... Accessor (4)
+OPT furniture/stool.glb: 18140 -> 12088 bytes (66.6%)
+prune: Removed types... Accessor (10)
+OPT furniture/storage_shelf.glb: 118496 -> 71476 bytes (60.3%)
+prune: Removed types... Accessor (8)
+OPT furniture/tool_cabinet.glb: 49488 -> 30768 bytes (62.2%)
+prune: Removed types... Accessor (16)
+OPT furniture/treadmill.glb: 34516 -> 21296 bytes (61.7%)
+prune: Removed types... Accessor (8)
+OPT furniture/tree_planter.glb: 38700 -> 23176 bytes (59.9%)
+prune: Removed types... Accessor (8)
+OPT furniture/wall_display.glb: 14232 -> 8816 bytes (61.9%)
+prune: Removed types... Accessor (6)
+OPT furniture/wc.glb: 17876 -> 12516 bytes (70.0%)
+prune: Removed types... Accessor (12)
+OPT furniture/whiteboard.glb: 28900 -> 17652 bytes (61.1%)
+prune: Removed types... Accessor (4)
+OPT furniture/work_table.glb: 20080 -> 13456 bytes (67.0%)
+OPT_TOTAL characters: files=7 before=7033948 after=3551104
+OPT_TOTAL furniture: files=54 before=2240192 after=1394224
+OPT_DONE kinds=characters,furniture in=blender/out/raw-glb out=app/public/assets
+
+== GLB compare (tools/glb_compare.py) (2026-10-02T00:05:24Z)
+PASS characters/ch-architect.glb: 936748 -> 469056 bytes maxPositionErrorM=1.35e-05 maxNormalErrorDeg=0.368 maxRestTrsDeviation=3.64e-06 maxMorphErrorM=1.35e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00307 maxTranslationErrorM=2.53e-07 maxScaleError=3.7e-06 maxPosedErrorM=0.000253
+PASS characters/ch-ceo.glb: 1205812 -> 620616 bytes maxPositionErrorM=1.36e-05 maxNormalErrorDeg=0.369 maxRestTrsDeviation=4.29e-06 maxMorphErrorM=1.36e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=2.16e-07 maxScaleError=4.41e-06 maxPosedErrorM=0.000261
+PASS characters/ch-ictspec.glb: 970436 -> 488328 bytes maxPositionErrorM=1.25e-05 maxNormalErrorDeg=0.367 maxRestTrsDeviation=2.92e-06 maxMorphErrorM=1.24e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00307 maxTranslationErrorM=1.79e-07 maxScaleError=3.04e-06 maxPosedErrorM=0.000232
+PASS characters/ch-netinstall.glb: 956716 -> 479500 bytes maxPositionErrorM=1.3e-05 maxNormalErrorDeg=0.361 maxRestTrsDeviation=5.01e-06 maxMorphErrorM=1.3e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=5.13e-06 maxPosedErrorM=0.000282
+PASS characters/ch-qa.glb: 994288 -> 501392 bytes maxPositionErrorM=1.29e-05 maxNormalErrorDeg=0.359 maxRestTrsDeviation=3.93e-06 maxMorphErrorM=1.29e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.49e-07 maxScaleError=3.93e-06 maxPosedErrorM=0.000255
+PASS characters/ch-supervisor.glb: 989132 -> 498316 bytes maxPositionErrorM=1.32e-05 maxNormalErrorDeg=0.37 maxRestTrsDeviation=3.7e-06 maxMorphErrorM=1.32e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=3.81e-06 maxPosedErrorM=0.000255
+PASS characters/ch-visual.glb: 980816 -> 493896 bytes maxPositionErrorM=1.3e-05 maxNormalErrorDeg=0.375 maxRestTrsDeviation=4.29e-06 maxMorphErrorM=1.3e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=4.29e-06 maxPosedErrorM=0.000243
+PASS furniture/arcade_cabinet.glb: 41532 -> 27844 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.34 maxRestTrsDeviation=0
+PASS furniture/armchair.glb: 36444 -> 25204 bytes maxPositionErrorM=6.87e-06 maxNormalErrorDeg=0.262 maxRestTrsDeviation=0
+PASS furniture/beanbag.glb: 15568 -> 11384 bytes maxPositionErrorM=6.03e-06 maxNormalErrorDeg=0.289 maxRestTrsDeviation=0
+PASS furniture/bench.glb: 23032 -> 15240 bytes maxPositionErrorM=1.19e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/billiard_table.glb: 94028 -> 59868 bytes maxPositionErrorM=2.16e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/board_table.glb: 49788 -> 30040 bytes maxPositionErrorM=8.83e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/bookshelf.glb: 95804 -> 58148 bytes maxPositionErrorM=1.52e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/chair.glb: 40464 -> 26084 bytes maxPositionErrorM=6.86e-06 maxNormalErrorDeg=0.366 maxRestTrsDeviation=0
+PASS furniture/chair_guest.glb: 27668 -> 18136 bytes maxPositionErrorM=6.45e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/coffee_bar.glb: 66704 -> 42488 bytes maxPositionErrorM=1.82e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/coffee_table.glb: 24644 -> 15144 bytes maxPositionErrorM=7.42e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/cue_rack.glb: 28936 -> 18800 bytes maxPositionErrorM=1.07e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/desk.glb: 38240 -> 24164 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/desk_exec.glb: 57924 -> 35264 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/dining_table.glb: 16756 -> 11668 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/directory_sign.glb: 29436 -> 18160 bytes maxPositionErrorM=9.07e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/drafting_table.glb: 27380 -> 17336 bytes maxPositionErrorM=1.07e-05 maxNormalErrorDeg=0.323 maxRestTrsDeviation=0
+PASS furniture/dumbbell_rack.glb: 83104 -> 46572 bytes maxPositionErrorM=9.11e-06 maxNormalErrorDeg=0.256 maxRestTrsDeviation=0
+PASS furniture/easel.glb: 22232 -> 15328 bytes maxPositionErrorM=1.29e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/exercise_bike.glb: 43216 -> 28372 bytes maxPositionErrorM=9.16e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/exercise_mat.glb: 12636 -> 8328 bytes maxPositionErrorM=1.27e-05 maxNormalErrorDeg=0.00936 maxRestTrsDeviation=0
+PASS furniture/fridge.glb: 24828 -> 15308 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/gallery_panel.glb: 23620 -> 13792 bytes maxPositionErrorM=1.51e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/high_table.glb: 19260 -> 13220 bytes maxPositionErrorM=9.06e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/lab_bench.glb: 51264 -> 30360 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/lab_rack_open.glb: 79360 -> 48356 bytes maxPositionErrorM=9.16e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/lift.glb: 11200 -> 8392 bytes maxPositionErrorM=2.21e-05 maxNormalErrorDeg=0 maxRestTrsDeviation=0
+PASS furniture/locker.glb: 104148 -> 58140 bytes maxPositionErrorM=1.35e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/media_console.glb: 39688 -> 23312 bytes maxPositionErrorM=1.51e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/meeting_table.glb: 28384 -> 18112 bytes maxPositionErrorM=3.04e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/model_shelf.glb: 65180 -> 41128 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/pantry_counter.glb: 51316 -> 32960 bytes maxPositionErrorM=2.26e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/partition.glb: 13128 -> 8224 bytes maxPositionErrorM=1.51e-05 maxNormalErrorDeg=0.00468 maxRestTrsDeviation=0
+PASS furniture/plan_table.glb: 48944 -> 30756 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/plant_large.glb: 40112 -> 27892 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.299 maxRestTrsDeviation=0
+PASS furniture/plant_small.glb: 29960 -> 20496 bytes maxPositionErrorM=6.86e-06 maxNormalErrorDeg=0.277 maxRestTrsDeviation=0
+PASS furniture/planter_box.glb: 35848 -> 22996 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.32 maxRestTrsDeviation=0
+PASS furniture/poster.glb: 17428 -> 10968 bytes maxPositionErrorM=7.39e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/rack_42u.glb: 158380 -> 91072 bytes maxPositionErrorM=1.53e-05 maxNormalErrorDeg=0.311 maxRestTrsDeviation=0
+PASS furniture/reception_desk.glb: 49992 -> 30732 bytes maxPositionErrorM=2.27e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/round_table.glb: 16644 -> 11656 bytes maxPositionErrorM=8.92e-06 maxNormalErrorDeg=0.306 maxRestTrsDeviation=0
+PASS furniture/shower_stall.glb: 25208 -> 16412 bytes maxPositionErrorM=1.58e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/sink.glb: 16868 -> 10828 bytes maxPositionErrorM=6.6e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/sofa.glb: 38796 -> 23228 bytes maxPositionErrorM=1.52e-05 maxNormalErrorDeg=0.262 maxRestTrsDeviation=0
+PASS furniture/stair_u.glb: 34672 -> 21068 bytes maxPositionErrorM=3.36e-05 maxNormalErrorDeg=0.191 maxRestTrsDeviation=0
+PASS furniture/stool.glb: 18140 -> 12088 bytes maxPositionErrorM=5.37e-06 maxNormalErrorDeg=0.267 maxRestTrsDeviation=0
+PASS furniture/storage_shelf.glb: 118496 -> 71476 bytes maxPositionErrorM=1.53e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/tool_cabinet.glb: 49488 -> 30768 bytes maxPositionErrorM=9.11e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/treadmill.glb: 34516 -> 21296 bytes maxPositionErrorM=1.47e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/tree_planter.glb: 38700 -> 23176 bytes maxPositionErrorM=1.98e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/wall_display.glb: 14232 -> 8816 bytes maxPositionErrorM=1.2e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/wc.glb: 17876 -> 12516 bytes maxPositionErrorM=6.09e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/whiteboard.glb: 28900 -> 17652 bytes maxPositionErrorM=1.34e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/work_table.glb: 20080 -> 13456 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+COMPARE_TOTAL characters: files=7 raw=7033948 shipped=3551104
+COMPARE_TOTAL furniture: files=54 raw=2240192 shipped=1394224
+COMPARE_WORST channelsRaw=702 channelsShipped=184 maxMorphErrorM=1.362e-05 maxNormalErrorDeg=0.375 maxPosedErrorM=0.0002823 maxPositionErrorM=3.357e-05 maxRestTrsDeviation=5.007e-06 maxRotationErrorDeg=0.003083 maxScaleError=5.126e-06 maxTranslationErrorM=2.533e-07 maxUvError=6.676e-06 maxUvErrorTexels=0.0002136 maxWeightError=0.001961 morphNewlyMovedVertices=0 uvCellMismatches=0
+COMPARE_DONE passed=True files=61 failed=0 out=docs/evidence/R2/glb-compare.json
+
+== Blender: validate characters (2026-10-02T00:06:06Z)
+Blender 4.0.2
+Read blend: "/home/user/kantor-rpg/blender/out/ch-ceo.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.15s
+VALIDATE CH-CEO: PASS checks=171 failed=0 materials=1 primitives_lod0=2 tris_lod0=14860 tris_lod1=4800 tris_all_lod0_nodes=21468 height=1.6412 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=620616
+Read blend: "/home/user/kantor-rpg/blender/out/ch-supervisor.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.18s
+VALIDATE CH-SUPERVISOR: PASS checks=164 failed=0 materials=1 primitives_lod0=2 tris_lod0=14956 tris_lod1=4800 tris_all_lod0_nodes=14956 height=1.5844 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=498316
+Read blend: "/home/user/kantor-rpg/blender/out/ch-architect.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+VALIDATE CH-ARCHITECT: PASS checks=164 failed=0 materials=1 primitives_lod0=2 tris_lod0=13372 tris_lod1=4799 tris_all_lod0_nodes=13372 height=1.6305 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=469056
+Read blend: "/home/user/kantor-rpg/blender/out/ch-ictspec.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.12s
+VALIDATE CH-ICTSPEC: PASS checks=165 failed=0 materials=1 primitives_lod0=3 tris_lod0=14364 tris_lod1=4800 tris_all_lod0_nodes=14364 height=1.4939 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=488328
+Read blend: "/home/user/kantor-rpg/blender/out/ch-netinstall.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.10s
+VALIDATE CH-NETINSTALL: PASS checks=164 failed=0 materials=1 primitives_lod0=2 tris_lod0=13808 tris_lod1=4799 tris_all_lod0_nodes=13808 height=1.562 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=479500
+Read blend: "/home/user/kantor-rpg/blender/out/ch-visual.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.10s
+VALIDATE CH-VISUAL: PASS checks=165 failed=0 materials=1 primitives_lod0=3 tris_lod0=14584 tris_lod1=4800 tris_all_lod0_nodes=14584 height=1.5612 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=493896
+Read blend: "/home/user/kantor-rpg/blender/out/ch-qa.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+VALIDATE CH-QA: PASS checks=165 failed=0 materials=1 primitives_lod0=3 tris_lod0=14984 tris_lod1=4799 tris_all_lod0_nodes=14984 height=1.5543 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=501392
+VALIDATE_DONE passed=True characters=7 checks=1158 failed=0 seconds=23.3
+
+== Blender: validate building + furniture (2026-10-02T00:06:30Z)
+Blender 4.0.2
+Read blend: "/home/user/kantor-rpg/blender/out/building.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.13s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+building validation: PASS checks=1529 failed=0 world=P03 blender=4.0.2
+L1: objects=189 walls=50 openings=26 windows=20 leaves=23 triangles_blend=4446 triangles_glb=4446 glb_bytes=370932
+L2: objects=158 walls=42 openings=20 windows=19 leaves=15 triangles_blend=3746 triangles_glb=3746 glb_bytes=308492
+BUILDING_VALIDATE_DONE passed=True
+Blender 4.0.2
+Read blend: "/home/user/kantor-rpg/blender/out/furniture.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.02s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+furniture validation: PASS types=54 checks=708 failed_types=0 blend_types=54 sheet_ok=True blender=4.0.2
+FURNITURE_VALIDATE_DONE passed=True
+
+########## determinism: optimiser run again into a scratch dir, sha256 compared with app/public/assets ##########
+OPT_TOTAL characters: files=7 before=7033948 after=3551104
+OPT_TOTAL furniture: files=54 before=2240192 after=1394224
+OPT_DONE kinds=characters,furniture in=blender/out/raw-glb out=../../../tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/det2
+DETERMINISM files=61 differing=0

@@ -15,12 +15,13 @@ node, and no wall triangle anywhere inside any window opening; swing door
 leaves: LEAF-<doorId>-1 (-2 for double) count per floor equals the dataset,
 the object origin / glTF node translation sits on the hinge jamb given by
 swing.hinge within 1 cm, and the closed leaf fills its half of the opening.
-Writes docs/evidence/HARDENING/blender-building-validate.json and .txt and
+Writes docs/evidence/<KANTOR_EVIDENCE, default R2>/blender-building-validate.json and .txt and
 merges BLD-L* entries into design/asset-registry.json. Exit 1 on failure.
 """
 from __future__ import annotations
 
 import json
+import os
 import math
 import subprocess
 import sys
@@ -39,7 +40,9 @@ import registry  # noqa: E402
 ROOT = S.ROOT
 BLEND = ROOT / "blender" / "out" / "building.blend"
 GLB_DIR = ROOT / "app" / "public" / "assets" / "building"
-EVID = ROOT / "docs" / "evidence" / "HARDENING"
+# Evidence folder of the current round (KANTOR_EVIDENCE, default R2) so reruns never
+# overwrite the evidence recorded for earlier milestones.
+EVID = ROOT / "docs" / "evidence" / os.environ.get("KANTOR_EVIDENCE", "R2")
 TOL = 0.01
 EPS_OPEN = 0.002  # geometry touching the opening boundary is fine, inside it is not
 
@@ -379,7 +382,7 @@ def main():
             "materials": None, "triangles": {"lod0Visible": r.get("glbTriangles")}, "lod": "LOD0 only",
             "status": "generated+validated" if ok else "generated+validation-failed",
             "validatedBy": "blender/building/validate_building.py",
-            "evidence": "docs/evidence/HARDENING/blender-building-validate.json",
+            "evidence": str((EVID / "blender-building-validate.json").relative_to(ROOT)),
             "windows": r.get("windows"), "doorLeaves": r.get("leaves"),
             "note": "concept geometry, not a construction model; walls full 3.0 m height (runtime cuts away); "
                     "window panes named by window id, FRAME-<id>, LEAF-<doorId>-n with origin on the hinge jamb"})

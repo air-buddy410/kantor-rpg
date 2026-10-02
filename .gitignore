@@ -16,3 +16,4 @@ __pycache__/
 *.blend1
 blender/out/_render_tmp/
 /build/
+/blender/out/raw-glb/

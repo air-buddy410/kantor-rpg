@@ -1,0 +1,26 @@
+controls=58 unlisted=0 missingInSource=0 untested=25
+  untested: Lewati ke direktori (skip link)
+  untested: Touch Lari
+  untested: Tutup direktori
+  untested: Tema sistem
+  untested: Tema terang
+  untested: Tema gelap
+  untested: Kualitas auto
+  untested: Kualitas rendah
+  untested: Kualitas tinggi
+  untested: Avatar reset
+  untested: Avatar batal
+  untested: Avatar simpan
+  untested: Studio lantai L1/L2
+  untested: Studio geser utara
+  untested: Studio geser timur
+  untested: Studio putar
+  untested: Studio Simpan draft
+  untested: Key Shift run
+  untested: Key H help
+  untested: Key R recenter camera
+  untested: Key Q/Z rotate camera
+  untested: Key +/- zoom
+  untested: Studio keys arrows/R/Delete/Ctrl+Z/Ctrl+Y
+  untested: Studio key Delete
+  untested: Studio key Ctrl+Z / Ctrl+Y
