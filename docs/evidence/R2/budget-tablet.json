@@ -1,28 +1,28 @@
 {
  "label": "fixed route benchmark; client-specific measurement",
- "seconds": 25.2,
- "frames": 97,
- "fpsAverage": 3.9,
- "frameMsMedian": 252.5,
- "frameMsP95": 586.9,
- "frameMsMax": 909.4,
- "framesOver33ms": 87,
+ "seconds": 25,
+ "frames": 117,
+ "fpsAverage": 4.7,
+ "frameMsMedian": 198.5,
+ "frameMsP95": 436.7,
+ "frameMsMax": 617.6,
+ "framesOver33ms": 105,
  "dropRate": 0.897,
- "distanceM": 12.8,
+ "distanceM": 15.4,
  "floorSwitches": 0,
  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
  "lowQuality": true,
  "pixelRatio": 1,
  "viewport": [
-  1366,
-  820
+  820,
+  1180
  ],
- "jsHeapMB": 45.2,
+ "jsHeapMB": 48.1,
  "stats": {
-  "drawCalls": 51,
-  "triangles": 184736,
-  "geometries": 65,
-  "textures": 31,
+  "drawCalls": 49,
+  "triangles": 179935,
+  "geometries": 59,
+  "textures": 27,
   "floorTriangles": {
    "L1": 120510,
    "L2": 100032
@@ -33,16 +33,16 @@
   },
   "npcLod": {
    "lod0": 2,
-   "lod1": 4
+   "lod1": 3
   }
  },
  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36",
  "peak": {
-  "drawCalls": 56,
-  "triangles": 184818,
+  "drawCalls": 51,
+  "triangles": 184814,
   "at": [
-   15.767533048981642,
-   6.386220824926435
+   12.420817142256551,
+   8.865334597745651
   ],
   "floor": "L1"
  },
@@ -50,12 +50,12 @@
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36",
   "platform": "Windows",
   "screen": [
-   1366,
-   820
+   820,
+   1180
   ],
   "viewport": [
-   1366,
-   820
+   820,
+   1180
   ],
   "devicePixelRatio": 1,
   "hardwareConcurrency": 4,
@@ -63,6 +63,6 @@
   "gpuRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
  },
  "url": "?perf=route&seconds=25",
- "measuredAt": "2026-10-02T01:10:52.094Z",
+ "measuredAt": "2026-10-02T01:20:52.683Z",
  "note": "peak over fixed 25 s route; SwiftShader container, FPS not a device result"
 }
