@@ -1,6 +1,48 @@
-# QA report (M0 sampai M3 + hardening)
+# QA report (M0 sampai M3, hardening, R2)
 
 Disusun oleh pelaksana (Claude Code cloud) dari hasil eksekusi di container ini, bukan verdict review. Max dan CI memeriksa ulang. Semua angka di bawah berasal dari file evidence yang disebut. CI hijau bukan acceptance.
+
+## R2 (perbaikan cacat sisa, branch claude/kantor-rpg-m3-hardening)
+
+Permintaan Budi/Max: tutup cacat produk sisa, test gagal dulu lalu perbaikan, rebuild dan regresi tiga viewport, audit Must/skip/kontrol, hook validasi perangkat. Max mempublikasikan b109cde ke preview; pelaksana tidak men-deploy dan tidak mengakses kredensial hosting. SHA yang diuji dan SHA akhir tercatat di `docs/progress.md` bagian R2.
+
+### Terverifikasi (test merah dulu, evidence di `docs/evidence/R2/`)
+
+| Cacat / item | Merah (sebelum) | Hijau (sesudah) | Evidence |
+|---|---|---|---|
+| Daun pintu runtime + collision konsisten CAD/Blender | test tidak ada derivasi, paritas navgrid gagal | 38 daun dari satu derivasi; buka otomatis 1,8 m; posisi terbuka solid di navgrid Python/TS; visitor mengunci pintu terbatas; Studio menolak furniture di area ayun; engsel = node LEAF-* Blender (<= 1 cm) | `door-leaves-red.txt`, `doors-ts-red.txt`, `doors.spec.ts`, ADR-012 |
+| Tumpang tindih NPC berjalan | 401 langkah tumpang tindih (soak seed 42/11/3) | 0 langkah; tidak ada NPC diam > 10 s (seed 3/11/23) | `npc-overlap-red.txt`, `vitest.txt`, ADR-013 |
+| Label jendela A3 (dan semua teks sheet) | 17 gagal, terkecil 1,10 mm | semua teks 15 sheet >= 2,64 mm saat A3, tanpa tumpang tindih, tanpa pengecualian | `cad-legibility-all-red.txt`, `cad-legibility-sizes.json`, `pytest-cad.txt` |
+| Muat awal | 9,73 MB | 5,40 MB (target 6 MB) | `bundle-red.txt`, `bundle-desktop.json`, `glb-sizes-r2.json`, ADR-014 |
+| Chunk JS besar | satu file 916 kB | entry 227 kB, three.js chunk 667 kB terpisah, Studio dan harness dimuat saat dipakai | `bundle.spec.ts` |
+| GLB terkuantisasi aman | furniture loader membaca atribut integer sebagai float (unit test merah) | galat maks 0,28 mm pada pose animasi, sel atlas identik, validator Blender membuka file yang dikirim (1158 + 1529 + 708 cek) | `furniture-kit-red.txt`, `glb-compare.json`, `blender-validate-summary.txt` |
+| Kontrol tanpa test | 25 dari 58 | 0 dari 61 | `control-audit-red.txt`, `control-audit.json` |
+| Jalur gagal PRD tanpa test | context loss, aksi tanpa target, GLB hilang | diuji; 3 cacat ditemukan dan diperbaiki (tombol Direktori menyembunyikan direktori setelah context loss; panel fallback menutupi HUD di ponsel; Tutup di fallback menjebak pengguna) | `failures.spec.ts` |
+| Audit Must PRD bagian 12 | tidak ada | 12 REQ, 52 elemen: 44 terverifikasi, 8 gap berlabel | `docs/MUST-AUDIT.md` |
+| axe WCAG 2.1 A/AA tiga viewport, dua tema | - | 0 pelanggaran di 24 laporan | `docs/evidence/R2/axe/` |
+| Skip | 9 | 5 tersisa, semua berjustifikasi (perf gated tiga viewport dijalankan terpisah; joystick dan Lari tidak ada di desktop) | `docs/SKIP-LEDGER.md` |
+
+Angka akhir (lokal): pytest 380 lolos (`pytest.txt`), vitest 113 lolos (`vitest.txt`), Playwright penuh desktop/tablet/mobile 160 lolos, 0 gagal, 5 skip (`e2e-all.txt`), benchmark 60 s tiga viewport lolos (`perf-route-*.json`), draw call puncak 52 sampai 57, triangle <= 194k.
+
+### Target (belum terbukti di perangkat)
+
+- FPS perangkat: container SwiftShader, rute 60 s: desktop 3,9, tablet 4,8, mobile 8,5 FPS. A/B hari yang sama: b109cde 4,1 FPS, R2 3,9 sampai 4,0 FPS (biaya kecil daun pintu + collision simetris, `perf-ab.txt`). Angka 5,6 FPS di laporan hardening berasal dari instance container lain dan tidak sebanding.
+- Target karakter 3,0 MB yang ditetapkan pelaksana tidak tercapai (3,55 MB); direvisi ke 3,6 MB (ADR-014). Muat awal 6 MB tercapai.
+
+### Blocked / belum diuji
+
+- DWG native: BLOCKED tanpa AutoCAD berlisensi.
+- FPS perangkat nyata dan screen reader: BLOCKED sampai dijalankan; hook `?perf=route&report=1`, `?a11ylog=1` dan runbook `docs/DEVICE-VALIDATION.md` siap.
+- Review manual silhouette/deform karakter dan review PDF ICT oleh manusia: belum tercatat.
+- M4 data private: disabled.
+
+### Known issues R2
+
+- Ukuran teks diukur sebagai ukuran font (pembacaan longgar ISO 3098); tinggi huruf kapital sekitar 1,85 mm pada A3.
+- DXF A-101/A-102: catatan paper space dan tinggi atribut titleblock masih ukuran lama; PDF sudah benar (runbook mencatat).
+- Tiga karakter (Nova, Kevin, Rex) tetap 3 primitive LOD0 karena prop dipegang.
+- Slot multi-kursi yang titik dekatnya berdempet bisa ditolak lalu NPC memilih aktivitas lain (konsekuensi nol tumpang tindih).
+- Dev dependency `sharp` (via glTF-Transform) memuat binary LGPL; hanya alat build, tidak dikirim.
 
 ## Hardening (branch claude/kantor-rpg-m3-hardening, PR draft air-buddy410/kantor-rpg#5)
 
