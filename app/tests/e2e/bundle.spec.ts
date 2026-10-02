@@ -12,7 +12,6 @@ const resources = (page: import('@playwright/test').Page) => page.evaluate(() =>
   .map((r) => ({ name: r.name, transfer: r.transferSize, decoded: r.decodedBodySize, type: r.initiatorType })));
 
 test('first download and JS chunks stay inside the R2 targets; Studio code loads on demand', async ({ page }, info) => {
-  test.skip(info.project.name !== 'desktop', 'bundle composition is viewport independent');
   await boot(page);
   await page.waitForTimeout(4000); // furniture GLBs and NPC characters finish loading
   const res: Res[] = await resources(page);

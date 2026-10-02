@@ -32,6 +32,14 @@ function webglAvailable(): string | null {
   }
 }
 
+/** In fallback the directory is the whole UI: the button re-opens it (after
+ * Tutup) and moves focus into it. */
+function showFallbackDirectory() {
+  const panel = $('directory-panel');
+  panel.hidden = false;
+  panel.focus();
+}
+
 function enterFallback(reason: string) {
   const app = $('app');
   app.dataset.mode = 'fallback';
@@ -101,7 +109,7 @@ function boot() {
   if (reason) {
     enterFallback(reason);
     wireSettings(null, settings);
-    $('btn-directory').addEventListener('click', () => $('directory-panel').focus());
+    $('btn-directory').addEventListener('click', showFallbackDirectory);
     return;
   }
   let game: Game;
@@ -131,7 +139,9 @@ function boot() {
   $('avatar-reset').addEventListener('click', () => avatarStudio.reset());
   $('avatar-cancel').addEventListener('click', () => ($('dlg-avatar') as HTMLDialogElement).close());
   wireSettings(game, settings);
-  $('btn-directory').addEventListener('click', () => game.toggleDirectory());
+  // After a mid-session context loss the app is in fallback mode: the directory
+  // is the whole UI then, so the button focuses it instead of toggling it away.
+  $('btn-directory').addEventListener('click', () => ($('app').dataset.mode === 'fallback' ? showFallbackDirectory() : game.toggleDirectory()));
   window.addEventListener('kantor:fallback', (e) => enterFallback((e as CustomEvent<string>).detail));
   game.start();
   window.__kantor = {
@@ -140,6 +150,9 @@ function boot() {
     stats: () => game.stats(),
     studioOpen: () => studio?.isOpen ?? false,
     npcFace: (id: string) => game.npcs.face(id),
+    camera: () => ({ yaw: game.rig.yaw, pitch: game.rig.pitch, distance: game.rig.distance }),
+    render: () => ({ lowQuality: game.lowQuality, shadows: game.renderer.shadowMap.enabled, theme: document.documentElement.dataset.theme ?? null }),
+    motion: () => ({ speed: game.player.speed, runToggle: game.input.runToggle }),
     doors: () => (['L1', 'L2'] as const).flatMap((f) => game.doors.leaves(f).map((l) => ({ id: l.id, door: l.door, floor: f, openness: game.doors.openness(l.id) }))),
     studioFixtures: () => studio?.editor?.fixtures.length ?? null,
     studioOutlet: (fixtureId: string) => studio?.editor?.outlets().find((o) => o.serves === fixtureId) ?? null,
@@ -191,8 +204,15 @@ function boot() {
   if (params.get('perf') === 'route') {
     const secs = Number(params.get('seconds') ?? 60);
     toast(`Benchmark rute tetap ${secs} s berjalan`, 3000);
-    void import('./perf/harness').then(({ runPerfRoute }) => runPerfRoute(game, secs)).then((r) => { window.__perfResult = r; toast('Benchmark selesai'); });
+    void import('./perf/harness').then(({ runPerfRoute }) => runPerfRoute(game, secs)).then(async (r) => {
+      const { deviceInfo, showPerfReport } = await import('./perf/report');
+      const full = { ...r, device: deviceInfo(game.renderer.domElement), url: location.search };
+      window.__perfResult = full;
+      toast('Benchmark selesai');
+      if (params.get('report') === '1') showPerfReport(full);
+    });
   }
+  if (params.get('a11ylog') === '1') void import('./perf/report').then(({ startA11yLog }) => startA11yLog());
 }
 
 boot();

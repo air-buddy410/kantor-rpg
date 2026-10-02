@@ -6,7 +6,8 @@ import { EVIDENCE } from './helpers';
 // Fixed 60 s route (REQ-PERF-01). Runs in the cloud container with software
 // WebGL (SwiftShader, no GPU): numbers describe this environment only.
 test('fixed route benchmark records frame times', async ({ page }, info) => {
-  test.skip(info.project.name !== 'desktop' || !process.env.KANTOR_PERF, 'set KANTOR_PERF=1 to run the 60 s benchmark');
+  // Gated: 60 s per viewport is too long for every CI run; R2 evidence runs it on all three.
+  test.skip(!process.env.KANTOR_PERF, 'set KANTOR_PERF=1 to run the 60 s benchmark');
   test.setTimeout(180_000);
   const seconds = Number(process.env.KANTOR_PERF_SECONDS ?? 60);
   const t0 = Date.now();

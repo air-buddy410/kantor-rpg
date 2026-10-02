@@ -1,0 +1,503 @@
+{
+ "source": "PRD/PRD-v0.1.md bagian 12",
+ "statusVocabulary": [
+  "terverifikasi",
+  "belum diuji",
+  "blocked",
+  "asumsi",
+  "tidak didukung"
+ ],
+ "note": "Diperiksa tools/must_audit.py: setiap ref path::substring harus ada di repo.",
+ "requirements": {
+  "REQ-WORLD-01": [
+   {
+    "kind": "AC",
+    "text": "semua ruang wajib dapat dicapai lewat transisi lantai tanpa menerobos collider",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_world.py::test_committed_world_passes_all_checks",
+     "app/tests/unit/navgrid.test.ts::walkable count and probes match Python",
+     "app/tests/e2e/world.spec.ts::stair interaction changes floor only at the marked point",
+     "app/tests/e2e/world.spec.ts::reception desk collider stops it"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "navigation unit + E2E floor routes",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/navgrid.test.ts::finds a staff path",
+     "app/tests/e2e/world.spec.ts::stair interaction"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "stuck -> safe waypoint",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/idle.test.ts::seal",
+     "app/tests/unit/collision.test.ts::no NPC freezes"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "server room visitor tetap terkunci",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/world.spec.ts::visitor mode locks the server room",
+     "app/tests/e2e/doors.spec.ts::server door stays shut",
+     "tests/py/test_world.py::test_visitor_cannot_reach_server"
+    ]
+   }
+  ],
+  "REQ-CHAR-01": [
+   {
+    "kind": "AC",
+    "text": "label peran dan animasi konsisten tanpa IP pihak lain",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/npc.spec.ts::never claim a work status",
+     "tests/py/test_assets.py::def test_",
+     "tests/py/test_provenance.py::test_registry_entries_are_original_and_scripted"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "asset validation",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_assets.py::def test_",
+     "blender/validate_assets.py::VALIDATE_DONE"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "manual silhouette/deform review",
+    "status": "belum diuji",
+    "refs": [
+     "assets/previews/ch-ceo-deform.png::",
+     "assets/previews/character-expressions.png::"
+    ],
+    "note": "sheet dan preview deform tersedia; review manusia (Max/Budi) belum tercatat"
+   },
+   {
+    "kind": "failure",
+    "text": "missing GLB -> honest placeholder",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/failures.spec.ts::missing character GLB"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "tidak mengarang likeness manusia",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_provenance.py::original"
+    ],
+    "note": "karakter procedural original; review likeness manual belum tercatat"
+   }
+  ],
+  "REQ-INTERACT-01": [
+   {
+    "kind": "AC",
+    "text": "E/tap membuka satu panel, locomotion berhenti, Escape menutup dan mengembalikan fokus",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/npc.spec.ts::or tapping Aksi",
+     "app/tests/e2e/world.spec.ts::dialogs trap focus, block locomotion and return focus on Escape"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "E2E desktop/mobile/keyboard",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/npc.spec.ts::touch-interact",
+     "app/tests/e2e/npc.spec.ts::press('e')"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "target hilang -> pesan jelas",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/failures.spec.ts::nothing in reach says so"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "public hanya fixture",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/adapter.test.ts::demo snapshot carries no work claims"
+    ]
+   }
+  ],
+  "REQ-IDLE-01": [
+   {
+    "kind": "AC",
+    "text": "reservasi tidak overcapacity, NPC tidak stuck permanen, status tidak dipalsukan",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/idle.test.ts::never over-books a slot",
+     "app/tests/unit/collision.test.ts::no NPC freezes",
+     "app/tests/unit/collision.test.ts::no walking step ever closes in"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "seeded simulation + soak",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/idle.test.ts::is deterministic for a seed",
+     "app/tests/unit/idle.test.ts::2 h soak"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "route gagal -> cancel/release",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/idle.test.ts::seal"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "nol LLM/API calls akibat idle",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/idle.test.ts::never touches the network"
+    ]
+   }
+  ],
+  "REQ-STUDIO-01": [
+   {
+    "kind": "AC",
+    "text": "edit/undo/save/load pulih deterministik; overlap/pintu invalid ditolak",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/studio.test.ts::is deterministic",
+     "app/tests/unit/studio.test.ts::rejects overlap, wall intrusion, door blocking",
+     "app/tests/unit/doors.test.ts::door-swing issue",
+     "app/tests/e2e/studio.spec.ts::move, reject overlap, undo/redo",
+     "app/tests/e2e/controls.spec.ts::Ctrl+Z/Ctrl+Y"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "schema/unit + E2E",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/studio.test.ts::round-trips save/load exactly",
+     "app/tests/e2e/studio.spec.ts::export round-trips"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "JSON rusak -> original tetap utuh",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/studio.spec.ts::a broken or invalid import is rejected and changes nothing"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "tidak eksekusi script/file path import",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/studio.test.ts::ignores asset paths and prototype keys"
+    ]
+   }
+  ],
+  "REQ-AVATAR-01": [
+   {
+    "kind": "AC",
+    "text": "preview/save/reset persist, reset kembali default",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/studio.spec.ts::preview, save persists across reload, reset returns to default"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "E2E + asset load",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/studio.spec.ts::Avatar Studio"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "asset missing -> default",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/studio.spec.ts::falls back to the default"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "tidak memakai Pokemon atau wajah manusia tanpa sumber",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_provenance.py::original"
+    ]
+   }
+  ],
+  "REQ-BLUEPRINT-01": [
+   {
+    "kind": "AC",
+    "text": "dimensi/pintu/fixture ID konsisten di DXF, PDF, GLB; ketersediaan CAD dilaporkan",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_cad.py::test_dxf_door_and_fixture_ids",
+     "tests/py/test_cad_openings.py::def test_",
+     "tests/py/test_door_leaves.py::test_blender_leaf_nodes_hinge_where_the_runtime_hinges",
+     "tests/py/test_building.py::def test_"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "CAD reopen/parse, PDF extract/render, GLB validator, koordinat",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_cad.py::test_dxf_reopens_and_audits_clean",
+     "tests/py/test_cad.py::test_pdf_text_content",
+     "tests/py/test_cad_legibility.py::def test_",
+     "tests/py/test_cad.py::test_plan_origin_maps_world_metres_to_paper"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "AutoCAD tidak tersedia -> native DWG BLOCKED, bukan sukses palsu",
+    "status": "blocked",
+    "refs": [
+     "cad/AUTOCAD-RUNBOOK.md::DWG",
+     "docs/evidence/M0/capability-report.md::AutoCAD"
+    ],
+    "note": "tidak ada AutoCAD berlisensi di cloud; DXF + runbook tersedia"
+   },
+   {
+    "kind": "boundary",
+    "text": "konsep bukan signed construction",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_cad_m3.py::KONSEP"
+    ]
+   }
+  ],
+  "REQ-ICT-01": [
+   {
+    "kind": "AC",
+    "text": "tanpa orphan ID/duplicate port, panjang memakai route",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_ict.py::test_portmap_unique_and_routed",
+     "tests/py/test_world.py::test_orphan_outlet_rejected",
+     "tests/py/test_ict_follow.py::test_port_map_follows_layout"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "schema/count/rack capacity unit",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_world.py::test_rack_unit_collision_rejected"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "PDF review",
+    "status": "belum diuji",
+    "refs": [
+     "drawings/pdf/ICT-401.pdf::"
+    ],
+    "note": "isi PDF diuji otomatis (total kabel); review manusia belum tercatat"
+   },
+   {
+    "kind": "failure",
+    "text": "spec missing -> belum divalidasi",
+    "status": "asumsi",
+    "refs": [
+     "design/requirements.json::PoE budget switch"
+    ],
+    "note": "PoE budget/UPS/thermal menunggu datasheet"
+   },
+   {
+    "kind": "boundary",
+    "text": "no real ISP topology/device access",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_ict.py::test_bom_has_no_prices",
+     "tools/safety_scan.py::def "
+    ]
+   }
+  ],
+  "REQ-ACCESS-01": [
+   {
+    "kind": "AC",
+    "text": "tanpa WebGL/reduced motion, directory dan dokumen dapat dipakai keyboard dan tap",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/world.spec.ts::fallback without WebGL",
+     "app/tests/e2e/world.spec.ts::reduced motion makes floor changes instant",
+     "app/tests/e2e/a11y.spec.ts::axe fallback"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "forced context failure + accessibility E2E",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/failures.spec.ts::losing the WebGL context mid-session",
+     "app/tests/e2e/a11y.spec.ts::axe"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "screen reader nyata",
+    "status": "blocked",
+    "refs": [
+     "docs/DEVICE-VALIDATION.md::Screen reader"
+    ],
+    "note": "butuh NVDA/VoiceOver/TalkBack di perangkat; hook ?a11ylog=1 siap"
+   },
+   {
+    "kind": "failure",
+    "text": "render context loss -> fallback",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/failures.spec.ts::falls back to the keyboard directory"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "accessible view tidak bypass private policy",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/adapter.test.ts::private mode is disabled"
+    ]
+   }
+  ],
+  "REQ-DATA-01": [
+   {
+    "kind": "AC",
+    "text": "status/time/source benar, unknown saat timeout",
+    "status": "tidak didukung",
+    "refs": [
+     "app/tests/unit/adapter.test.ts::stale snapshots degrade to unknown"
+    ],
+    "note": "M4 disabled sampai izin Budi; kontrak demo diuji"
+   },
+   {
+    "kind": "test",
+    "text": "contract/integration + public isolation",
+    "status": "tidak didukung",
+    "refs": [
+     "app/tests/unit/adapter.test.ts::sanitizer drops unknown fields"
+    ],
+    "note": "integrasi private tidak dibangun"
+   },
+   {
+    "kind": "failure",
+    "text": "disconnect -> stale/unknown",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/adapter.test.ts::stale snapshots degrade to unknown"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "visitor/unauth tidak menerima payload private",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/unit/adapter.test.ts::private mode is disabled"
+    ]
+   }
+  ],
+  "REQ-PERF-01": [
+   {
+    "kind": "AC",
+    "text": "frame-time/load/assets memenuhi target tier atau degrade jujur",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/budget.spec.ts::peak draw calls and triangles",
+     "app/tests/e2e/bundle.spec.ts::first download and JS chunks"
+    ],
+    "note": "anggaran draw call/triangle/transfer terverifikasi; FPS lihat baris manual"
+   },
+   {
+    "kind": "test",
+    "text": "browser perf (container)",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/perf.spec.ts::fixed route benchmark"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "manual real-device",
+    "status": "blocked",
+    "refs": [
+     "docs/DEVICE-VALIDATION.md::FPS perangkat"
+    ],
+    "note": "perangkat Budi belum ditentukan (Q-04) dan belum dijalankan"
+   },
+   {
+    "kind": "failure",
+    "text": "memory/context loss -> low quality/fallback",
+    "status": "terverifikasi",
+    "refs": [
+     "app/tests/e2e/failures.spec.ts::losing the WebGL context",
+     "app/tests/e2e/controls.spec.ts::quality radio is stored and applied"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "tidak klaim FPS tanpa benchmark",
+    "status": "terverifikasi",
+    "refs": [
+     "tests/py/test_prd_numbers.py::def test_"
+    ]
+   }
+  ],
+  "REQ-SAFE-01": [
+   {
+    "kind": "AC",
+    "text": "no secrets/private payload/copyright asset/production endpoint",
+    "status": "terverifikasi",
+    "refs": [
+     "tools/safety_scan.py::def ",
+     "tests/py/test_provenance.py::test_every_public_file_has_a_source",
+     "app/tests/e2e/world.spec.ts::only same-origin requests"
+    ]
+   },
+   {
+    "kind": "test",
+    "text": "secret scan, dependency/license audit, URL allowlist, network assertions",
+    "status": "terverifikasi",
+    "refs": [
+     "tools/license_audit.py::def main",
+     "app/tests/e2e/world.spec.ts::Content Security Policy"
+    ]
+   },
+   {
+    "kind": "failure",
+    "text": "suspect -> stop publish",
+    "status": "terverifikasi",
+    "refs": [
+     ".github/workflows/ci.yml::safety_scan"
+    ]
+   },
+   {
+    "kind": "boundary",
+    "text": "no merge/deploy/paid upgrade",
+    "status": "terverifikasi",
+    "refs": [
+     "docs/PREVIEW-HANDOFF.md::tidak men-deploy"
+    ],
+    "note": "kebijakan proses; diperiksa di laporan, bukan test kode"
+   }
+  ]
+ }
+}

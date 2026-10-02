@@ -13,7 +13,6 @@ test.describe('world vertical slice', () => {
   });
 
   test('keyboard walking moves the CEO and the reception desk collider stops it', async ({ page }, info) => {
-    test.skip(info.project.name !== 'desktop', 'keyboard locomotion covered on desktop');
     await boot(page);
     const s0 = await state(page);
     await page.locator('#stage canvas').click({ position: { x: 300, y: 600 } });
