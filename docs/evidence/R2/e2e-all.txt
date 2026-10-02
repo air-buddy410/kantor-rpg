@@ -1,0 +1,14 @@
+
+Running 165 tests using 1 worker
+
+  ✓    1 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light world (8.1s)
+  ✓    2 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (9.4s)
+  ✓    3 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (5.7s)
+  ✓    4 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (5.6s)
+  ✓    5 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (5.4s)
+  ✓    6 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (5.7s)
+  ✓    7 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (5.1s)
+  ✓    8 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (5.6s)
+  ✓    9 [desktop] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.3s)
+  ✓   10 [desktop] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (7.0s)
+  ✓   11 [desktop] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (7.2s)
