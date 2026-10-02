@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "status": "M1 generated source; art is procedural stylized, not final hand-sculpted art",
+  "description": "Single source for original kantor-rpg character appearance. Read by blender/characters/build_characters.py, blender/validate_assets.py, blender/characters/render_sheet.py and tests/py/test_assets.py. Characters are original stylized semi-anime designs; they are not likenesses of real people and do not reuse any third-party character, asset or IP.",
+  "units": "m",
+  "conventions": {
+    "up": "+Z in Blender, +Y in glTF/three.js",
+    "forward": "character faces Blender -Y, which the glTF exporter writes as +Z (three.js +Z)",
+    "origin": "feet center on the floor (Z=0)",
+    "leftSide": "character left is Blender +X (bone suffix _L)"
+  },
+  "budgets": {
+    "npcTrianglesLOD0": 15000,
+    "playerTrianglesLOD0": 25000,
+    "glbBytesTarget": 1500000,
+    "heightTolerance": 0.05,
+    "previewBytesMax": 400000,
+    "npcTrianglesLOD1": 5000,
+    "visiblePrimitivesLOD0": 2,
+    "note": "Targets from PRD section 6; measured values live in design/asset-registry.json and the latest validator report (docs/evidence/HARDENING/blender-characters-validate.json). npcTrianglesLOD1 is the PRD NPC LOD1 budget, applied to the lod1 node of all seven characters including the CEO. visiblePrimitivesLOD0 counts body + one hair; hand-held prop_* nodes are separate toggleable nodes and add one primitive where present"
+  },
+  "rig": {
+    "skeleton": "shared",
+    "bones": [
+      "root",
+      "hips",
+      "spine",
+      "chest",
+      "neck",
+      "head",
+      "upper_arm_L",
+      "forearm_L",
+      "hand_L",
+      "upper_arm_R",
+      "forearm_R",
+      "hand_R",
+      "thigh_L",
+      "shin_L",
+      "foot_L",
+      "thigh_R",
+      "shin_R",
+      "foot_R"
+    ],
+    "boneNamingNote": "Underscore side suffix instead of .L because three.js PropertyBinding strips dots from node names",
+    "fps": 30,
+    "seatHeightM": 0.45,
+    "seatNote": "sit/type/game place the pelvis on a seat surface 0.45 m above the root (root stays on the floor). With semi-anime leg length the feet hang a little above the floor on a 0.45 m seat; this is an intentional stylization, see blender/README.md"
+  },
+  "locomotion": {
+    "walk": {
+      "cycleS": 1.0,
+      "requestedSpeedMps": 1.4,
+      "nativeSpeedMps": "per character, about 0.80 to 0.87; measured value in design/asset-registry.json locomotion and GLB rig extras kantor_walk_native_speed_mps",
+      "inPlace": true
+    },
+    "run": {
+      "cycleS": 0.6,
+      "nativeSpeedMps": "per character, about 2.27 to 2.50; see kantor_run_native_speed_mps",
+      "inPlace": true
+    },
+    "note": "Clips animate in place. The planted foot travels at the native speed (validated slip under 5 percent), so runtime should move the root at nativeSpeed * timeScale. The requested 1.4 m/s walk with a 1.0 s cycle needs a 1.4 m stride, which these semi-anime legs (hip height about 0.6 m) cannot reach without foot sliding; to move at 1.4 m/s play walk with timeScale = 1.4 / nativeSpeed (about 1.7), or use a slower walk speed."
+  },
+  "animations": {
+    "idle": {
+      "durationS": 2.0,
+      "loop": true
+    },
+    "walk": {
+      "durationS": 1.0,
+      "loop": true
+    },
+    "run": {
+      "durationS": 0.6,
+      "loop": true
+    },
+    "wave": {
+      "durationS": 1.6,
+      "loop": false
+    },
+    "talk": {
+      "durationS": 2.4,
+      "loop": true
+    },
+    "sit": {
+      "durationS": 2.0,
+      "loop": true
+    },
+    "type": {
+      "durationS": 1.0,
+      "loop": true
+    },
+    "read": {
+      "durationS": 2.4,
+      "loop": true
+    },
+    "coffee": {
+      "durationS": 3.0,
+      "loop": true
+    },
+    "stretch": {
+      "durationS": 3.0,
+      "loop": false
+    },
+    "exercise": {
+      "durationS": 0.8,
+      "loop": true
+    },
+    "billiards": {
+      "durationS": 2.4,
+      "loop": true
+    },
+    "game": {
+      "durationS": 1.6,
+      "loop": true
+    }
+  },
+  "hairStyles": {
+    "short_tuft": "short cropped cap, five short bangs and one curled crown tuft",
+    "swept": "volume swept to the character's right with four long side bangs",
+    "spiky_soft": "rounded spikes radiating from the crown, soft tips",
+    "bob": "jaw-length rounded bob with a curled hem and straight bangs",
+    "bun": "short cap with a round bun at the back of the crown and side locks",
+    "cap": "work cap (no logo) with a short brim over short hair",
+    "side_part": "neat side part with a short fringe on one side"
+  },
+  "materialNames": {
+    "required": [
+      "skin",
+      "eyes",
+      "eye_iris",
+      "eye_highlight",
+      "mouth",
+      "blush",
+      "hair",
+      "outfit_main",
+      "outfit_inner",
+      "outfit_bottom",
+      "outfit_accent",
+      "shoes",
+      "shoe_sole"
+    ],
+    "optional": [
+      "prop_main",
+      "prop_accent",
+      "prop_detail"
+    ],
+    "note": "These are zone names, not materials: every character GLB has one material kantor_atlas and each zone owns one cell of its palette texture (see atlas). Palette keys outfit_* equal zone names, so runtime recolours by repainting those cells in a cloned texture"
+  },
+  "atlas": {
+    "material": "kantor_atlas",
+    "sizePx": 32,
+    "cellPx": 4,
+    "columns": 8,
+    "zoneOrder": ["skin", "eyes", "eye_iris", "eye_highlight", "mouth", "blush", "hair", "outfit_main", "outfit_inner", "outfit_bottom", "outfit_accent", "shoes", "shoe_sole", "prop_main", "prop_accent", "prop_detail"],
+    "layout": "zone i owns cell [col, row] = [i % columns, i // columns]; row 0 is the top row of the PNG as stored; every face of a zone has its UVs at that cell centre",
+    "filter": "nearest",
+    "roughness": 0.85,
+    "extras": "GLB scene extras and rig node extras carry kantor_atlas = {size, cell, zones: {zone: [col, row]}}"
+  },
+  "expressions": {
+    "names": ["blink", "smile", "talk", "surprised", "frown"],
+    "node": "body",
+    "note": "Shape keys on body, exported as glTF morph targets in this order (mesh extras targetNames). Deltas only move head-weighted face features (eyes, lashes, brows, mouth); talk opens the mouth for speech. lod1 has no morph targets."
+  },
+  "characters": {
+    "CH-CEO": {
+      "displayName": "Budi",
+      "role": "CEO",
+      "actor": "ACT-BUDI",
+      "kind": "player",
+      "body": { "heightM": 1.58, "headRatio": 3.55, "legRatio": 0.375, "shoulderWidth": 0.35, "torsoWidth": 1.0, "torsoDepth": 1.0, "limbScale": 1.0, "headWidth": 1.0 },
+      "skin": "#E3B48C",
+      "eyes": { "iris": "#7A4E2D" },
+      "hair": { "style": "short_tuft", "color": "#2E2420" },
+      "outfit": {
+        "top": "blazer",
+        "colors": {
+          "outfit_main": "#2F5D50",
+          "outfit_inner": "#F3EAD7",
+          "outfit_bottom": "#3B3431",
+          "outfit_accent": "#C8643B",
+          "shoes": "#5A3B2A",
+          "shoe_sole": "#E9DCC3"
+        }
+      },
+      "props": [
+        "lanyard_badge"
+      ],
+      "propColors": {
+        "prop_main": "#FBF6EC",
+        "prop_accent": "#C8643B",
+        "prop_detail": "#2F5D50"
+      },
+      "silhouette": "flared blazer hem, lanyard badge on chest, single curled crown tuft"
+    },
+    "CH-SUPERVISOR": {
+      "displayName": "Max",
+      "role": "Supervisor",
+      "actor": "ACT-MAX",
+      "kind": "npc",
+      "body": { "heightM": 1.56, "headRatio": 3.6, "legRatio": 0.375, "shoulderWidth": 0.34, "torsoWidth": 1.0, "torsoDepth": 1.0, "limbScale": 1.0, "headWidth": 1.0 },
+      "skin": "#C98F65",
+      "eyes": { "iris": "#3E5A48" },
+      "hair": { "style": "swept", "color": "#26252E" },
+      "outfit": {
+        "top": "cardigan",
+        "colors": {
+          "outfit_main": "#C99A45",
+          "outfit_inner": "#EFE6D6",
+          "outfit_bottom": "#556B4E",
+          "outfit_accent": "#8C6A2E",
+          "shoes": "#3E2E26",
+          "shoe_sole": "#E2D4BA"
+        }
+      },
+      "props": [
+        "headset"
+      ],
+      "propColors": {
+        "prop_main": "#34343A",
+        "prop_accent": "#C8643B",
+        "prop_detail": "#55555C"
+      },
+      "silhouette": "headset band over swept hair, mic boom, open cardigan"
+    },
+    "CH-ARCHITECT": {
+      "displayName": "Hugo",
+      "role": "Karakter, aset & arsitektur",
+      "actor": "ACT-HUGO",
+      "kind": "npc",
+      "body": { "heightM": 1.6, "headRatio": 3.7, "legRatio": 0.39, "shoulderWidth": 0.34, "torsoWidth": 0.95, "torsoDepth": 0.95, "limbScale": 0.95, "headWidth": 0.98 },
+      "skin": "#F0CDAA",
+      "eyes": { "iris": "#5A6E3A" },
+      "hair": { "style": "bun", "color": "#6B4128" },
+      "outfit": {
+        "top": "sweater",
+        "colors": {
+          "outfit_main": "#D8C6A2",
+          "outfit_inner": "#EDE3CF",
+          "outfit_bottom": "#5B4636",
+          "outfit_accent": "#7FA38A",
+          "shoes": "#6E4B33",
+          "shoe_sole": "#E9DCC3"
+        }
+      },
+      "props": [
+        "blueprint_tube",
+        "ear_pencil"
+      ],
+      "propColors": {
+        "prop_main": "#A57C55",
+        "prop_accent": "#C8643B",
+        "prop_detail": "#E2B44A"
+      },
+      "silhouette": "blueprint tube slung diagonally on the back, bun, turtleneck, pencil behind ear"
+    },
+    "CH-ICTSPEC": {
+      "displayName": "Nova",
+      "role": "Spesifikasi ICT",
+      "actor": "ACT-NOVA",
+      "kind": "npc",
+      "body": { "heightM": 1.49, "headRatio": 3.5, "legRatio": 0.37, "shoulderWidth": 0.32, "torsoWidth": 0.92, "torsoDepth": 0.92, "limbScale": 0.92, "headWidth": 1.0 },
+      "skin": "#A86F4C",
+      "eyes": { "iris": "#3C6C70" },
+      "hair": { "style": "bob", "color": "#2B2230" },
+      "outfit": {
+        "top": "jacket",
+        "colors": {
+          "outfit_main": "#3F7470",
+          "outfit_inner": "#F1E7D2",
+          "outfit_bottom": "#4A4A55",
+          "outfit_accent": "#C8643B",
+          "shoes": "#2F2A2A",
+          "shoe_sole": "#E9DCC3"
+        }
+      },
+      "props": [
+        "tablet",
+        "hair_clip"
+      ],
+      "propColors": {
+        "prop_main": "#2D3036",
+        "prop_accent": "#9CC5B0",
+        "prop_detail": "#C8643B"
+      },
+      "silhouette": "rounded bob with curled hem, cropped teal jacket, tablet in the right hand"
+    },
+    "CH-NETINSTALL": {
+      "displayName": "Bruno",
+      "role": "Instalasi jaringan & server",
+      "actor": "ACT-BRUNO",
+      "kind": "npc",
+      "body": { "heightM": 1.55, "headRatio": 3.55, "legRatio": 0.365, "shoulderWidth": 0.39, "torsoWidth": 1.12, "torsoDepth": 1.08, "limbScale": 1.12, "headWidth": 1.02 },
+      "skin": "#8A5A3C",
+      "eyes": { "iris": "#5C3A22" },
+      "hair": { "style": "cap", "color": "#2A211C" },
+      "outfit": {
+        "top": "workvest",
+        "colors": {
+          "outfit_main": "#A65A3A",
+          "outfit_inner": "#E3D3B5",
+          "outfit_bottom": "#4B5866",
+          "outfit_accent": "#6E7B4A",
+          "shoes": "#4A3426",
+          "shoe_sole": "#D9C9AA"
+        }
+      },
+      "props": [
+        "tool_belt",
+        "cable_coil"
+      ],
+      "propColors": {
+        "prop_main": "#7A5534",
+        "prop_accent": "#2F3A34",
+        "prop_detail": "#C9B07A"
+      },
+      "silhouette": "broad build, work cap with brim, tool belt with pouches, cable coil at the left hip"
+    },
+    "CH-VISUAL": {
+      "displayName": "Kevin",
+      "role": "Pamflet & materi visual",
+      "actor": "ACT-KEVIN",
+      "kind": "npc",
+      "body": { "heightM": 1.51, "headRatio": 3.5, "legRatio": 0.375, "shoulderWidth": 0.33, "torsoWidth": 0.96, "torsoDepth": 0.96, "limbScale": 0.96, "headWidth": 1.0 },
+      "skin": "#EBC4A0",
+      "eyes": { "iris": "#8A5A2B" },
+      "hair": { "style": "spiky_soft", "color": "#8C4A2F" },
+      "outfit": {
+        "top": "apron",
+        "colors": {
+          "outfit_main": "#E6D39C",
+          "outfit_inner": "#E6D39C",
+          "outfit_bottom": "#7A5A40",
+          "outfit_accent": "#CDBB97",
+          "shoes": "#5E3F2C",
+          "shoe_sole": "#F0E6D2"
+        }
+      },
+      "props": [
+        "paint_apron",
+        "sketchbook"
+      ],
+      "propColors": {
+        "prop_main": "#2F5D50",
+        "prop_accent": "#C8643B",
+        "prop_detail": "#3C7C86"
+      },
+      "silhouette": "soft spiky hair, canvas apron with paint smudges, sketchbook tucked under the left arm"
+    },
+    "CH-QA": {
+      "displayName": "Rex",
+      "role": "Review & QA",
+      "actor": "ACT-REX",
+      "kind": "npc",
+      "body": { "heightM": 1.54, "headRatio": 3.6, "legRatio": 0.375, "shoulderWidth": 0.34, "torsoWidth": 0.98, "torsoDepth": 0.98, "limbScale": 0.98, "headWidth": 1.0 },
+      "skin": "#D9A77F",
+      "eyes": { "iris": "#4C4A6A" },
+      "hair": { "style": "side_part", "color": "#4A4440" },
+      "outfit": {
+        "top": "sweater_vest",
+        "colors": {
+          "outfit_main": "#7A3E3E",
+          "outfit_inner": "#F2ECE0",
+          "outfit_bottom": "#34343A",
+          "outfit_accent": "#D9B26A",
+          "shoes": "#2E2523",
+          "shoe_sole": "#E2D4BA"
+        }
+      },
+      "props": [
+        "glasses",
+        "clipboard"
+      ],
+      "propColors": {
+        "prop_main": "#B08A5E",
+        "prop_accent": "#F7F1E4",
+        "prop_detail": "#2A2A2E"
+      },
+      "silhouette": "round glasses, neat side part, collared shirt under a sweater vest, clipboard held at the chest"
+    }
+  },
+  "avatarVariants": {
+    "CH-CEO": {
+      "approach": "single GLB: every hair style below is a separate skinned node named hair_<style>; runtime shows exactly one. Palettes recolor materials by name.",
+      "defaultHair": "short_tuft",
+      "hairStyles": [
+        "short_tuft",
+        "swept",
+        "spiky_soft"
+      ],
+      "defaultPalette": "forest",
+      "palettes": {
+        "forest": {
+          "label": "Hijau hutan",
+          "outfit_main": "#2F5D50",
+          "outfit_inner": "#F3EAD7",
+          "outfit_bottom": "#3B3431",
+          "outfit_accent": "#C8643B"
+        },
+        "terracotta": {
+          "label": "Terakota",
+          "outfit_main": "#B5573A",
+          "outfit_inner": "#F3EAD7",
+          "outfit_bottom": "#4A3B30",
+          "outfit_accent": "#2F5D50"
+        },
+        "oat": {
+          "label": "Oat dan kayu",
+          "outfit_main": "#D6C3A0",
+          "outfit_inner": "#FBF6EC",
+          "outfit_bottom": "#2F5D50",
+          "outfit_accent": "#C8643B"
+        }
+      }
+    }
+  }
+}

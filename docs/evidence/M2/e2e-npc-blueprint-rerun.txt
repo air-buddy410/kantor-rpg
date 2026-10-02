@@ -1,0 +1,8 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 [desktop] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (15.6s)
+  ✓  2 [tablet] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (15.4s)
+  ✓  3 [mobile] › tests/e2e/npc.spec.ts:59:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (8.8s)
+
+  3 passed (49.1s)

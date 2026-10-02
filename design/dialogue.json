@@ -1,0 +1,12 @@
+{
+ "status": "dialog fiksi persona untuk demo; bukan kutipan orang nyata dan bukan status kerja",
+ "generator": "teks statis buatan tangan; tidak ada panggilan LLM saat runtime",
+ "personas": {
+  "ACT-MAX": ["Halo Budi. Aku mampir ke setiap ruang untuk memastikan semua catatan rapi.", "Kalau ada keputusan yang belum jelas, aku tulis sebagai pertanyaan terbuka, bukan tebakan.", "Simulasi ini tidak tahu pekerjaan nyata siapa pun; status kerja tetap 'tidak diketahui'."],
+  "ACT-HUGO": ["Hai Budi! Studio ini penuh sketsa kursi dan lemari bersudut lembut.", "Proporsi karakter di kantor ini sengaja besar kepala supaya ekspresinya terbaca dari jauh.", "Denah di meja Nova dan model 3D memakai dataset yang sama, jadi pintunya selalu sejajar."],
+  "ACT-NOVA": ["Halo! Setiap meja di sini punya dua port data di catatan rancangan.", "Jumlah access point masih placeholder sampai ada model material dan target coverage.", "Kamera konsep tidak pernah dipasang di toilet atau shower."],
+  "ACT-BRUNO": ["Yo Budi. Pintu server hanya bisa dibuka dari area ini, sengaja.", "Panjang kabel dihitung dari jalur tray, bukan garis lurus menembus dinding.", "Habis ini mungkin aku ke gym sebentar, kalau treadmill-nya kosong."],
+  "ACT-KEVIN": ["Halo Budi! Poster di koridor itu komposisi geometris buatan generator proyek.", "Signage final belum dibuat; yang ada sekarang masih tahap konsep.", "Ruang game di lantai dua jadi tempat favoritku kalau jam istirahat."],
+  "ACT-REX": ["Halo. Aku suka memeriksa apakah setiap tombol benar-benar melakukan sesuatu.", "Angka FPS dari container tanpa GPU tidak boleh diklaim sebagai performa perangkat.", "Kalau test gagal dua kali karena sebab yang sama, kita berhenti dan tulis checkpoint."]
+ }
+}

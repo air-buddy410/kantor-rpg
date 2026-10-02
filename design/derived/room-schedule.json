@@ -1,0 +1,2517 @@
+{
+ "worldRevision": "P03",
+ "status": "proposal konsep, bukan program ruang yang disahkan",
+ "rooms": [
+  {
+   "id": "L1-MEET",
+   "name": "Ruang rapat besar",
+   "floor": "L1",
+   "category": "work",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Rapat tim dan tamu, presentasi",
+   "polygon": [
+    [
+     0,
+     0
+    ],
+    [
+     8,
+     0
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     0,
+     8
+    ]
+   ],
+   "area_m2": 64.0,
+   "seats": 10,
+   "doors": [
+    "D-L1-02",
+    "D-L1-03"
+   ],
+   "doorConnected": [
+    "L1-CORR",
+    "L1-LOBBY"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-LOBBY"
+   ],
+   "furnishing": {
+    "meeting_table": 1,
+    "chair": 10,
+    "wall_display": 1,
+    "whiteboard": 1,
+    "plant_small": 2
+   },
+   "ictOutlets": 2,
+   "ictPorts": 3,
+   "ictProfile": [
+    "layar dinding",
+    "outlet meja rapat",
+    "AP coverage"
+   ],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-LOBBY",
+   "name": "Lobby & resepsi",
+   "floor": "L1",
+   "category": "public",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Kedatangan, resepsi, titik spawn CEO",
+   "polygon": [
+    [
+     8,
+     0
+    ],
+    [
+     20,
+     0
+    ],
+    [
+     20,
+     8
+    ],
+    [
+     8,
+     8
+    ]
+   ],
+   "area_m2": 96.0,
+   "seats": 5,
+   "doors": [
+    "D-L1-ENT",
+    "D-L1-01",
+    "D-L1-02",
+    "D-L1-04"
+   ],
+   "doorConnected": [
+    "EXT",
+    "L1-CORR",
+    "L1-GALLERY",
+    "L1-MEET"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-GALLERY",
+    "L1-MEET"
+   ],
+   "furnishing": {
+    "reception_desk": 1,
+    "chair": 1,
+    "sofa": 2,
+    "coffee_table": 1,
+    "plant_large": 3,
+    "directory_sign": 1,
+    "poster": 1
+   },
+   "ictOutlets": 4,
+   "ictPorts": 5,
+   "ictProfile": [
+    "outlet resepsi",
+    "papan direktori",
+    "AP",
+    "kamera konsep pintu masuk"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-GALLERY",
+   "name": "Galeri portofolio",
+   "floor": "L1",
+   "category": "public",
+   "access": "public",
+   "noise": "quiet",
+   "function": "Pameran karya tim (artwork original)",
+   "polygon": [
+    [
+     20,
+     0
+    ],
+    [
+     26,
+     0
+    ],
+    [
+     26,
+     8
+    ],
+    [
+     20,
+     8
+    ]
+   ],
+   "area_m2": 48.0,
+   "seats": 2,
+   "doors": [
+    "D-L1-04",
+    "D-L1-05"
+   ],
+   "doorConnected": [
+    "L1-CORR",
+    "L1-LOBBY"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-LOBBY",
+    "L1-PANTRY"
+   ],
+   "furnishing": {
+    "gallery_panel": 5,
+    "bench": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "outlet display galeri"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-PANTRY",
+   "name": "Pantry kerja",
+   "floor": "L1",
+   "category": "wet",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Kopi/air untuk area kerja",
+   "polygon": [
+    [
+     26,
+     0
+    ],
+    [
+     29.5,
+     0
+    ],
+    [
+     29.5,
+     8
+    ],
+    [
+     26,
+     8
+    ]
+   ],
+   "area_m2": 28.0,
+   "seats": 2,
+   "doors": [
+    "D-L1-06"
+   ],
+   "doorConnected": [
+    "L1-CORR"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-GALLERY",
+    "L1-SHAFT-W",
+    "L1-WC"
+   ],
+   "furnishing": {
+    "pantry_counter": 1,
+    "fridge": 1,
+    "high_table": 1,
+    "stool": 2
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-SHAFT-W",
+   "name": "Shaft basah",
+   "floor": "L1",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Shaft plumbing (konsep, belum desain MEP)",
+   "polygon": [
+    [
+     29.5,
+     0
+    ],
+    [
+     32,
+     0
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     29.5,
+     1
+    ]
+   ],
+   "area_m2": 2.5,
+   "seats": 0,
+   "doors": [
+    "D-L1-08"
+   ],
+   "doorConnected": [
+    "L1-WC"
+   ],
+   "sharedWall": [
+    "L1-PANTRY",
+    "L1-WC"
+   ],
+   "furnishing": {},
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-WC",
+   "name": "Toilet aksesibel",
+   "floor": "L1",
+   "category": "wet",
+   "access": "public",
+   "noise": "quiet",
+   "function": "Toilet + wastafel; aksesibilitas perlu kajian",
+   "polygon": [
+    [
+     29.5,
+     1
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     29.5,
+     8
+    ]
+   ],
+   "area_m2": 17.5,
+   "seats": 0,
+   "doors": [
+    "D-L1-07",
+    "D-L1-08"
+   ],
+   "doorConnected": [
+    "L1-CORR",
+    "L1-SHAFT-W"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-PANTRY",
+    "L1-SHAFT-W"
+   ],
+   "furnishing": {
+    "wc": 2,
+    "sink": 1,
+    "partition": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "tidak ada kamera (privasi)"
+   ],
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-CORR",
+   "name": "Koridor utama L1",
+   "floor": "L1",
+   "category": "circulation",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Sirkulasi timur-barat, dua pintu keluar konsep",
+   "polygon": [
+    [
+     0,
+     8
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     0,
+     10.5
+    ]
+   ],
+   "area_m2": 80.0,
+   "seats": 0,
+   "doors": [
+    "D-L1-01",
+    "D-L1-03",
+    "D-L1-05",
+    "D-L1-06",
+    "D-L1-07",
+    "D-L1-EXW",
+    "D-L1-EXE",
+    "D-L1-09",
+    "D-L1-10",
+    "D-L1-11",
+    "D-L1-12",
+    "D-L1-13"
+   ],
+   "doorConnected": [
+    "EXT",
+    "L1-CORE",
+    "L1-DISC",
+    "L1-GALLERY",
+    "L1-IMPL",
+    "L1-LAB",
+    "L1-LOBBY",
+    "L1-MEET",
+    "L1-NOVA",
+    "L1-PANTRY",
+    "L1-WC"
+   ],
+   "sharedWall": [
+    "L1-CORE",
+    "L1-DISC",
+    "L1-GALLERY",
+    "L1-IMPL",
+    "L1-LAB",
+    "L1-LOBBY",
+    "L1-MEET",
+    "L1-NOVA",
+    "L1-PANTRY",
+    "L1-WC"
+   ],
+   "furnishing": {
+    "plant_small": 2,
+    "poster": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 2,
+   "ictProfile": [
+    "AP",
+    "kamera konsep koridor"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-DISC",
+   "name": "Ruang diskusi",
+   "floor": "L1",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Diskusi kecil 4 orang",
+   "polygon": [
+    [
+     0,
+     10.5
+    ],
+    [
+     6,
+     10.5
+    ],
+    [
+     6,
+     16.5
+    ],
+    [
+     0,
+     16.5
+    ]
+   ],
+   "area_m2": 36.0,
+   "seats": 4,
+   "doors": [
+    "D-L1-09"
+   ],
+   "doorConnected": [
+    "L1-CORR"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-IMPL",
+    "L1-NCORR"
+   ],
+   "furnishing": {
+    "round_table": 1,
+    "chair_guest": 4,
+    "whiteboard": 1,
+    "bookshelf": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-IMPL",
+   "name": "Ruang implementasi & review",
+   "floor": "L1",
+   "category": "work",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Workstation implementasi/review (Rex, Max)",
+   "polygon": [
+    [
+     6,
+     10.5
+    ],
+    [
+     14,
+     10.5
+    ],
+    [
+     14,
+     16.5
+    ],
+    [
+     6,
+     16.5
+    ]
+   ],
+   "area_m2": 48.0,
+   "seats": 6,
+   "doors": [
+    "D-L1-10"
+   ],
+   "doorConnected": [
+    "L1-CORR"
+   ],
+   "sharedWall": [
+    "L1-CORE",
+    "L1-CORR",
+    "L1-DISC",
+    "L1-NCORR"
+   ],
+   "furnishing": {
+    "desk": 6,
+    "chair": 6,
+    "wall_display": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 8,
+   "ictPorts": 14,
+   "ictProfile": [
+    "2 port per workstation",
+    "layar review",
+    "AP"
+   ],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-CORE",
+   "name": "Inti tangga & lift L1",
+   "floor": "L1",
+   "category": "circulation",
+   "access": "public",
+   "noise": "moderate",
+   "function": "Tangga U dan lift konsep ke L2",
+   "polygon": [
+    [
+     14,
+     10.5
+    ],
+    [
+     20,
+     10.5
+    ],
+    [
+     20,
+     16.5
+    ],
+    [
+     14,
+     16.5
+    ]
+   ],
+   "area_m2": 36.0,
+   "seats": 0,
+   "doors": [
+    "D-L1-11",
+    "D-L1-14"
+   ],
+   "doorConnected": [
+    "L1-CORR",
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-IMPL",
+    "L1-NCORR",
+    "L1-NOVA"
+   ],
+   "furnishing": {
+    "stair_u": 1,
+    "lift": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-NOVA",
+   "name": "Area Nova (spesifikasi ICT)",
+   "floor": "L1",
+   "category": "work",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Spesifikasi ICT, meja denah",
+   "polygon": [
+    [
+     20,
+     10.5
+    ],
+    [
+     26,
+     10.5
+    ],
+    [
+     26,
+     16.5
+    ],
+    [
+     20,
+     16.5
+    ]
+   ],
+   "area_m2": 36.0,
+   "seats": 2,
+   "doors": [
+    "D-L1-12"
+   ],
+   "doorConnected": [
+    "L1-CORR"
+   ],
+   "sharedWall": [
+    "L1-CORE",
+    "L1-CORR",
+    "L1-LAB",
+    "L1-NCORR"
+   ],
+   "furnishing": {
+    "desk": 2,
+    "chair": 2,
+    "plan_table": 1,
+    "bookshelf": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 4,
+   "ictProfile": [
+    "2 port per workstation"
+   ],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-LAB",
+   "name": "Lab ICT",
+   "floor": "L1",
+   "category": "work",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Bench uji perangkat virtual, terpisah dari server",
+   "polygon": [
+    [
+     26,
+     10.5
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     26,
+     16.5
+    ]
+   ],
+   "area_m2": 36.0,
+   "seats": 1,
+   "doors": [
+    "D-L1-13",
+    "D-L1-22"
+   ],
+   "doorConnected": [
+    "L1-CORR",
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-CORR",
+    "L1-NCORR",
+    "L1-NOVA"
+   ],
+   "furnishing": {
+    "lab_bench": 3,
+    "stool": 1,
+    "lab_rack_open": 1
+   },
+   "ictOutlets": 4,
+   "ictPorts": 14,
+   "ictProfile": [
+    "4 port per bench",
+    "rack lab terbuka (bukan produksi)"
+   ],
+   "finish": {
+    "floor": "vinyl anti-statik (target)",
+    "wall": "cat matte",
+    "ceiling": "gypsum + akses tray"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-NCORR",
+   "name": "Koridor utara L1",
+   "floor": "L1",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Akses sayap kerja tenang",
+   "polygon": [
+    [
+     0,
+     16.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     0,
+     18.5
+    ]
+   ],
+   "area_m2": 64.0,
+   "seats": 0,
+   "doors": [
+    "D-L1-14",
+    "D-L1-22",
+    "D-L1-EXN",
+    "D-L1-15",
+    "D-L1-16",
+    "D-L1-17",
+    "D-L1-18",
+    "D-L1-20",
+    "D-L1-21"
+   ],
+   "doorConnected": [
+    "EXT",
+    "L1-BRUNO",
+    "L1-CEO",
+    "L1-CORE",
+    "L1-HUGO",
+    "L1-KEVIN",
+    "L1-LAB",
+    "L1-RISER",
+    "L1-STORE"
+   ],
+   "sharedWall": [
+    "L1-BRUNO",
+    "L1-CEO",
+    "L1-CORE",
+    "L1-DISC",
+    "L1-HUGO",
+    "L1-IMPL",
+    "L1-KEVIN",
+    "L1-LAB",
+    "L1-NOVA",
+    "L1-RISER",
+    "L1-SERVER",
+    "L1-STORE"
+   ],
+   "furnishing": {
+    "plant_small": 1,
+    "poster": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 2,
+   "ictProfile": [
+    "AP",
+    "kamera konsep pintu server"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-CEO",
+   "name": "Ruang CEO",
+   "floor": "L1",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Ruang Budi (CEO)",
+   "polygon": [
+    [
+     0,
+     18.5
+    ],
+    [
+     7,
+     18.5
+    ],
+    [
+     7,
+     24
+    ],
+    [
+     0,
+     24
+    ]
+   ],
+   "area_m2": 38.5,
+   "seats": 5,
+   "doors": [
+    "D-L1-15"
+   ],
+   "doorConnected": [
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-HUGO",
+    "L1-NCORR"
+   ],
+   "furnishing": {
+    "desk_exec": 1,
+    "chair": 1,
+    "chair_guest": 2,
+    "sofa": 1,
+    "bookshelf": 1,
+    "plant_large": 1
+   },
+   "ictOutlets": 1,
+   "ictPorts": 2,
+   "ictProfile": [
+    "2 port meja CEO"
+   ],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-HUGO",
+   "name": "Studio Hugo",
+   "floor": "L1",
+   "category": "work",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Karakter, aset, arsitektur/interior",
+   "polygon": [
+    [
+     7,
+     18.5
+    ],
+    [
+     14,
+     18.5
+    ],
+    [
+     14,
+     24
+    ],
+    [
+     7,
+     24
+    ]
+   ],
+   "area_m2": 38.5,
+   "seats": 2,
+   "doors": [
+    "D-L1-16"
+   ],
+   "doorConnected": [
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-CEO",
+    "L1-KEVIN",
+    "L1-NCORR"
+   ],
+   "furnishing": {
+    "desk": 2,
+    "chair": 2,
+    "drafting_table": 1,
+    "model_shelf": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 4,
+   "ictProfile": [
+    "2 port per workstation"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-KEVIN",
+   "name": "Studio Kevin",
+   "floor": "L1",
+   "category": "work",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Pamflet, signage, artwork",
+   "polygon": [
+    [
+     14,
+     18.5
+    ],
+    [
+     20,
+     18.5
+    ],
+    [
+     20,
+     24
+    ],
+    [
+     14,
+     24
+    ]
+   ],
+   "area_m2": 33.0,
+   "seats": 1,
+   "doors": [
+    "D-L1-17"
+   ],
+   "doorConnected": [
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-BRUNO",
+    "L1-HUGO",
+    "L1-NCORR"
+   ],
+   "furnishing": {
+    "desk": 1,
+    "chair": 1,
+    "easel": 1,
+    "work_table": 1,
+    "poster": 1
+   },
+   "ictOutlets": 1,
+   "ictPorts": 2,
+   "ictProfile": [
+    "2 port per workstation"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-BRUNO",
+   "name": "Area Bruno",
+   "floor": "L1",
+   "category": "work",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Instalasi jaringan/server/workstation",
+   "polygon": [
+    [
+     20,
+     18.5
+    ],
+    [
+     25,
+     18.5
+    ],
+    [
+     25,
+     24
+    ],
+    [
+     20,
+     24
+    ]
+   ],
+   "area_m2": 27.5,
+   "seats": 1,
+   "doors": [
+    "D-L1-18",
+    "D-L1-19"
+   ],
+   "doorConnected": [
+    "L1-NCORR",
+    "L1-SERVER"
+   ],
+   "sharedWall": [
+    "L1-KEVIN",
+    "L1-NCORR",
+    "L1-SERVER"
+   ],
+   "furnishing": {
+    "desk": 1,
+    "chair": 1,
+    "tool_cabinet": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 3,
+   "ictProfile": [
+    "2 port workstation"
+   ],
+   "finish": {
+    "floor": "vinyl anti-statik (target)",
+    "wall": "cat matte",
+    "ceiling": "gypsum + akses tray"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-SERVER",
+   "name": "Ruang server",
+   "floor": "L1",
+   "category": "restricted",
+   "access": "restricted",
+   "noise": "moderate",
+   "function": "Rack virtual; akses terbatas, bukan jalur umum",
+   "polygon": [
+    [
+     25,
+     18.5
+    ],
+    [
+     29,
+     18.5
+    ],
+    [
+     29,
+     24
+    ],
+    [
+     25,
+     24
+    ]
+   ],
+   "area_m2": 22.0,
+   "seats": 0,
+   "doors": [
+    "D-L1-19"
+   ],
+   "doorConnected": [
+    "L1-BRUNO"
+   ],
+   "sharedWall": [
+    "L1-BRUNO",
+    "L1-NCORR",
+    "L1-RISER",
+    "L1-STORE"
+   ],
+   "furnishing": {
+    "rack_42u": 2
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "2 rack 42U target",
+    "UPS (rating TBD)",
+    "patch panel"
+   ],
+   "finish": {
+    "floor": "vinyl anti-statik (target)",
+    "wall": "cat matte",
+    "ceiling": "gypsum + akses tray"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-RISER",
+   "name": "Riser ICT",
+   "floor": "L1",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Riser kabel vertikal L1-L2",
+   "polygon": [
+    [
+     29,
+     18.5
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     29,
+     20
+    ]
+   ],
+   "area_m2": 1.5,
+   "seats": 0,
+   "doors": [
+    "D-L1-20"
+   ],
+   "doorConnected": [
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-NCORR",
+    "L1-SERVER",
+    "L1-STORE"
+   ],
+   "furnishing": {},
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "riser kabel ke L2"
+   ],
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L1-STORE",
+   "name": "Gudang & utilitas",
+   "floor": "L1",
+   "category": "service",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Gudang, panel utilitas (konsep)",
+   "polygon": [
+    [
+     29,
+     20
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     32,
+     24
+    ],
+    [
+     29,
+     24
+    ]
+   ],
+   "area_m2": 15.0,
+   "seats": 0,
+   "doors": [
+    "D-L1-21"
+   ],
+   "doorConnected": [
+    "L1-NCORR"
+   ],
+   "sharedWall": [
+    "L1-NCORR",
+    "L1-RISER",
+    "L1-SERVER"
+   ],
+   "furnishing": {
+    "storage_shelf": 2
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "epoxy",
+    "wall": "cat matte",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-READ",
+   "name": "Perpustakaan / reading nook",
+   "floor": "L2",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Baca tenang",
+   "polygon": [
+    [
+     0,
+     0
+    ],
+    [
+     8,
+     0
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     0,
+     8
+    ]
+   ],
+   "area_m2": 64.0,
+   "seats": 4,
+   "doors": [
+    "D-L2-02"
+   ],
+   "doorConnected": [
+    "L2-CORR"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-LOUNGE"
+   ],
+   "furnishing": {
+    "bookshelf": 3,
+    "armchair": 2,
+    "coffee_table": 1,
+    "bench": 1,
+    "plant_large": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-LOUNGE",
+   "name": "Lounge & coffee bar",
+   "floor": "L2",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Santai, kopi, ngobrol",
+   "polygon": [
+    [
+     8,
+     0
+    ],
+    [
+     20,
+     0
+    ],
+    [
+     20,
+     8
+    ],
+    [
+     8,
+     8
+    ]
+   ],
+   "area_m2": 96.0,
+   "seats": 9,
+   "doors": [
+    "D-L2-01",
+    "D-L2-04"
+   ],
+   "doorConnected": [
+    "L2-CORR",
+    "L2-DINE"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-DINE",
+    "L2-READ"
+   ],
+   "furnishing": {
+    "sofa": 2,
+    "coffee_table": 1,
+    "armchair": 1,
+    "coffee_bar": 1,
+    "beanbag": 2,
+    "high_table": 1,
+    "stool": 2,
+    "plant_large": 1,
+    "poster": 1
+   },
+   "ictOutlets": 1,
+   "ictPorts": 1,
+   "ictProfile": [
+    "AP"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-DINE",
+   "name": "Ruang makan & pantry",
+   "floor": "L2",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Makan bersama, pantry",
+   "polygon": [
+    [
+     20,
+     0
+    ],
+    [
+     26,
+     0
+    ],
+    [
+     26,
+     8
+    ],
+    [
+     20,
+     8
+    ]
+   ],
+   "area_m2": 48.0,
+   "seats": 8,
+   "doors": [
+    "D-L2-03",
+    "D-L2-04"
+   ],
+   "doorConnected": [
+    "L2-CORR",
+    "L2-LOUNGE"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-LOUNGE",
+    "L2-SHOWER"
+   ],
+   "furnishing": {
+    "dining_table": 2,
+    "chair": 8,
+    "pantry_counter": 1,
+    "fridge": 1,
+    "wall_display": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 2,
+   "ictProfile": [
+    "AP",
+    "signage display"
+   ],
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-SHOWER",
+   "name": "Shower & ruang ganti",
+   "floor": "L2",
+   "category": "wet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Shower; tanpa kamera (privasi)",
+   "polygon": [
+    [
+     26,
+     0
+    ],
+    [
+     29.5,
+     0
+    ],
+    [
+     29.5,
+     8
+    ],
+    [
+     26,
+     8
+    ]
+   ],
+   "area_m2": 28.0,
+   "seats": 2,
+   "doors": [
+    "D-L2-05"
+   ],
+   "doorConnected": [
+    "L2-CORR"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-DINE",
+    "L2-SHAFT-W",
+    "L2-WC"
+   ],
+   "furnishing": {
+    "shower_stall": 3,
+    "bench": 1,
+    "locker": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "tidak ada kamera (privasi)"
+   ],
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-SHAFT-W",
+   "name": "Shaft basah L2",
+   "floor": "L2",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Lanjutan shaft basah",
+   "polygon": [
+    [
+     29.5,
+     0
+    ],
+    [
+     32,
+     0
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     29.5,
+     1
+    ]
+   ],
+   "area_m2": 2.5,
+   "seats": 0,
+   "doors": [
+    "D-L2-07"
+   ],
+   "doorConnected": [
+    "L2-WC"
+   ],
+   "sharedWall": [
+    "L2-SHOWER",
+    "L2-WC"
+   ],
+   "furnishing": {},
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-WC",
+   "name": "Toilet L2",
+   "floor": "L2",
+   "category": "wet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Toilet + wastafel",
+   "polygon": [
+    [
+     29.5,
+     1
+    ],
+    [
+     32,
+     1
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     29.5,
+     8
+    ]
+   ],
+   "area_m2": 17.5,
+   "seats": 0,
+   "doors": [
+    "D-L2-06",
+    "D-L2-07"
+   ],
+   "doorConnected": [
+    "L2-CORR",
+    "L2-SHAFT-W"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-SHAFT-W",
+    "L2-SHOWER"
+   ],
+   "furnishing": {
+    "wc": 2,
+    "sink": 1,
+    "partition": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "tidak ada kamera (privasi)"
+   ],
+   "finish": {
+    "floor": "keramik anti-slip",
+    "wall": "keramik dinding",
+    "ceiling": "gypsum tahan lembab"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-CORR",
+   "name": "Koridor utama L2",
+   "floor": "L2",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Sirkulasi rekreasi",
+   "polygon": [
+    [
+     0,
+     8
+    ],
+    [
+     32,
+     8
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     0,
+     10.5
+    ]
+   ],
+   "area_m2": 80.0,
+   "seats": 0,
+   "doors": [
+    "D-L2-01",
+    "D-L2-02",
+    "D-L2-03",
+    "D-L2-05",
+    "D-L2-06",
+    "D-L2-EXE",
+    "D-L2-08",
+    "D-L2-09",
+    "D-L2-10",
+    "D-L2-11"
+   ],
+   "doorConnected": [
+    "EXT",
+    "L2-CHAT",
+    "L2-CORE",
+    "L2-DINE",
+    "L2-GAME",
+    "L2-GARDEN",
+    "L2-LOUNGE",
+    "L2-READ",
+    "L2-SHOWER",
+    "L2-WC"
+   ],
+   "sharedWall": [
+    "L2-CHAT",
+    "L2-CORE",
+    "L2-DINE",
+    "L2-GAME",
+    "L2-GARDEN",
+    "L2-LOUNGE",
+    "L2-READ",
+    "L2-SHOWER",
+    "L2-WC"
+   ],
+   "furnishing": {
+    "plant_small": 1,
+    "poster": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 2,
+   "ictProfile": [
+    "AP",
+    "kamera konsep koridor"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-CHAT",
+   "name": "Diskusi santai",
+   "floor": "L2",
+   "category": "quiet",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Ngobrol santai, jauh dari game",
+   "polygon": [
+    [
+     0,
+     10.5
+    ],
+    [
+     6,
+     10.5
+    ],
+    [
+     6,
+     16.5
+    ],
+    [
+     0,
+     16.5
+    ]
+   ],
+   "area_m2": 36.0,
+   "seats": 4,
+   "doors": [
+    "D-L2-08"
+   ],
+   "doorConnected": [
+    "L2-CORR"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-GARDEN",
+    "L2-NCORR"
+   ],
+   "furnishing": {
+    "sofa": 1,
+    "armchair": 2,
+    "coffee_table": 1,
+    "plant_small": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-GARDEN",
+   "name": "Taman dalam",
+   "floor": "L2",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Penyangga akustik hijau antara area tenang dan ramai",
+   "polygon": [
+    [
+     6,
+     10.5
+    ],
+    [
+     14,
+     10.5
+    ],
+    [
+     14,
+     16.5
+    ],
+    [
+     6,
+     16.5
+    ]
+   ],
+   "area_m2": 48.0,
+   "seats": 2,
+   "doors": [
+    "D-L2-09"
+   ],
+   "doorConnected": [
+    "L2-CORR"
+   ],
+   "sharedWall": [
+    "L2-CHAT",
+    "L2-CORE",
+    "L2-CORR",
+    "L2-NCORR"
+   ],
+   "furnishing": {
+    "planter_box": 3,
+    "tree_planter": 1,
+    "bench": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "deck komposit",
+    "wall": "panel tanaman",
+    "ceiling": "terbuka/pergola"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-CORE",
+   "name": "Inti tangga & lift L2",
+   "floor": "L2",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Kedatangan dari L1",
+   "polygon": [
+    [
+     14,
+     10.5
+    ],
+    [
+     20,
+     10.5
+    ],
+    [
+     20,
+     16.5
+    ],
+    [
+     14,
+     16.5
+    ]
+   ],
+   "area_m2": 36.0,
+   "seats": 0,
+   "doors": [
+    "D-L2-10",
+    "D-L2-12"
+   ],
+   "doorConnected": [
+    "L2-CORR",
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-CORR",
+    "L2-GAME",
+    "L2-GARDEN",
+    "L2-NCORR"
+   ],
+   "furnishing": {
+    "stair_u": 1,
+    "lift": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-GAME",
+   "name": "Ruang game",
+   "floor": "L2",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "loud",
+   "function": "Konsol, arcade, board game",
+   "polygon": [
+    [
+     20,
+     10.5
+    ],
+    [
+     32,
+     10.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     20,
+     16.5
+    ]
+   ],
+   "area_m2": 72.0,
+   "seats": 8,
+   "doors": [
+    "D-L2-11",
+    "D-L2-19"
+   ],
+   "doorConnected": [
+    "L2-CORR",
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-CORE",
+    "L2-CORR",
+    "L2-NCORR"
+   ],
+   "furnishing": {
+    "media_console": 2,
+    "beanbag": 4,
+    "arcade_cabinet": 2,
+    "board_table": 1,
+    "stool": 4
+   },
+   "ictOutlets": 5,
+   "ictPorts": 7,
+   "ictProfile": [
+    "2 port per konsol",
+    "1 port per arcade",
+    "AP"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-NCORR",
+   "name": "Koridor utara L2",
+   "floor": "L2",
+   "category": "circulation",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Akses biliar, gym, balkon",
+   "polygon": [
+    [
+     0,
+     16.5
+    ],
+    [
+     32,
+     16.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     0,
+     18.5
+    ]
+   ],
+   "area_m2": 64.0,
+   "seats": 0,
+   "doors": [
+    "D-L2-12",
+    "D-L2-19",
+    "D-L2-13",
+    "D-L2-14",
+    "D-L2-15",
+    "D-L2-16",
+    "D-L2-17",
+    "D-L2-18"
+   ],
+   "doorConnected": [
+    "L2-BALCONY",
+    "L2-BILLIARD",
+    "L2-CORE",
+    "L2-GAME",
+    "L2-GYM",
+    "L2-RISER",
+    "L2-SERVICE",
+    "L2-STORE"
+   ],
+   "sharedWall": [
+    "L2-BALCONY",
+    "L2-BILLIARD",
+    "L2-CHAT",
+    "L2-CORE",
+    "L2-GAME",
+    "L2-GARDEN",
+    "L2-GYM",
+    "L2-RISER",
+    "L2-SERVICE",
+    "L2-STORE"
+   ],
+   "furnishing": {
+    "plant_small": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 2,
+   "ictProfile": [
+    "AP"
+   ],
+   "finish": {
+    "floor": "vinyl motif kayu",
+    "wall": "cat matte krem + panel kayu",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-BALCONY",
+   "name": "Balkon taman",
+   "floor": "L2",
+   "category": "outdoor",
+   "access": "staff",
+   "noise": "moderate",
+   "function": "Teras semi-terbuka, tanaman",
+   "polygon": [
+    [
+     0,
+     18.5
+    ],
+    [
+     7,
+     18.5
+    ],
+    [
+     7,
+     24
+    ],
+    [
+     0,
+     24
+    ]
+   ],
+   "area_m2": 38.5,
+   "seats": 2,
+   "doors": [
+    "D-L2-13"
+   ],
+   "doorConnected": [
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-BILLIARD",
+    "L2-NCORR"
+   ],
+   "furnishing": {
+    "planter_box": 3,
+    "bench": 1,
+    "round_table": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "deck komposit",
+    "wall": "panel tanaman",
+    "ceiling": "terbuka/pergola"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-BILLIARD",
+   "name": "Ruang biliar",
+   "floor": "L2",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "loud",
+   "function": "Meja biliar 9 ft + clearance stik",
+   "polygon": [
+    [
+     7,
+     18.5
+    ],
+    [
+     14,
+     18.5
+    ],
+    [
+     14,
+     24
+    ],
+    [
+     7,
+     24
+    ]
+   ],
+   "area_m2": 38.5,
+   "seats": 0,
+   "doors": [
+    "D-L2-14"
+   ],
+   "doorConnected": [
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-BALCONY",
+    "L2-GYM",
+    "L2-NCORR"
+   ],
+   "furnishing": {
+    "billiard_table": 1,
+    "cue_rack": 1,
+    "wall_display": 1
+   },
+   "ictOutlets": 1,
+   "ictPorts": 1,
+   "ictProfile": [
+    "layar skor"
+   ],
+   "finish": {
+    "floor": "karpet tile matte",
+    "wall": "cat matte krem",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-GYM",
+   "name": "Ruang olahraga",
+   "floor": "L2",
+   "category": "recreation",
+   "access": "staff",
+   "noise": "loud",
+   "function": "Treadmill, sepeda, matras",
+   "polygon": [
+    [
+     14,
+     18.5
+    ],
+    [
+     23,
+     18.5
+    ],
+    [
+     23,
+     24
+    ],
+    [
+     14,
+     24
+    ]
+   ],
+   "area_m2": 49.5,
+   "seats": 3,
+   "doors": [
+    "D-L2-15"
+   ],
+   "doorConnected": [
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-BILLIARD",
+    "L2-NCORR",
+    "L2-STORE"
+   ],
+   "furnishing": {
+    "treadmill": 2,
+    "exercise_bike": 1,
+    "exercise_mat": 2,
+    "dumbbell_rack": 1,
+    "bench": 1,
+    "wall_display": 1
+   },
+   "ictOutlets": 2,
+   "ictPorts": 2,
+   "ictProfile": [
+    "AP",
+    "layar olahraga"
+   ],
+   "finish": {
+    "floor": "lantai karet olahraga",
+    "wall": "cat matte",
+    "ceiling": "akustik panel"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-STORE",
+   "name": "Gudang L2",
+   "floor": "L2",
+   "category": "service",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Perlengkapan rekreasi",
+   "polygon": [
+    [
+     23,
+     18.5
+    ],
+    [
+     29,
+     18.5
+    ],
+    [
+     29,
+     24
+    ],
+    [
+     23,
+     24
+    ]
+   ],
+   "area_m2": 33.0,
+   "seats": 0,
+   "doors": [
+    "D-L2-16"
+   ],
+   "doorConnected": [
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-GYM",
+    "L2-NCORR",
+    "L2-RISER",
+    "L2-SERVICE"
+   ],
+   "furnishing": {
+    "storage_shelf": 2
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "epoxy",
+    "wall": "cat matte",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-RISER",
+   "name": "Riser ICT L2",
+   "floor": "L2",
+   "category": "shaft",
+   "access": "restricted",
+   "noise": "quiet",
+   "function": "Lanjutan riser",
+   "polygon": [
+    [
+     29,
+     18.5
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     29,
+     20
+    ]
+   ],
+   "area_m2": 1.5,
+   "seats": 0,
+   "doors": [
+    "D-L2-17"
+   ],
+   "doorConnected": [
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-NCORR",
+    "L2-SERVICE",
+    "L2-STORE"
+   ],
+   "furnishing": {},
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [
+    "riser kabel dari L1"
+   ],
+   "finish": {
+    "floor": "-",
+    "wall": "-",
+    "ceiling": "-"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  },
+  {
+   "id": "L2-SERVICE",
+   "name": "Area servis L2",
+   "floor": "L2",
+   "category": "service",
+   "access": "staff",
+   "noise": "quiet",
+   "function": "Kebersihan, utilitas",
+   "polygon": [
+    [
+     29,
+     20
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     30,
+     18.5
+    ],
+    [
+     32,
+     18.5
+    ],
+    [
+     32,
+     24
+    ],
+    [
+     29,
+     24
+    ]
+   ],
+   "area_m2": 15.0,
+   "seats": 0,
+   "doors": [
+    "D-L2-18"
+   ],
+   "doorConnected": [
+    "L2-NCORR"
+   ],
+   "sharedWall": [
+    "L2-NCORR",
+    "L2-RISER",
+    "L2-STORE"
+   ],
+   "furnishing": {
+    "sink": 1,
+    "storage_shelf": 1
+   },
+   "ictOutlets": 0,
+   "ictPorts": 0,
+   "ictProfile": [],
+   "finish": {
+    "floor": "epoxy",
+    "wall": "cat matte",
+    "ceiling": "gypsum"
+   },
+   "status": "proposal konsep",
+   "assumptions": [
+    "AS-DIM-01",
+    "AS-DIM-02"
+   ]
+  }
+ ],
+ "adjacencyRules": [
+  {
+   "id": "ADJ-01",
+   "ok": true,
+   "detail": "D-L1-ENT",
+   "text": "Resepsi dekat entrance"
+  },
+  {
+   "id": "ADJ-02",
+   "ok": true,
+   "detail": "path L1-LOBBY->L1-MEET avoiding ['L1-SERVER', 'L1-RISER']",
+   "text": "Rapat dicapai visitor tanpa melewati server"
+  },
+  {
+   "id": "ADJ-03",
+   "ok": true,
+   "detail": {
+    "path_m": 0.0,
+    "max_m": 6.0
+   },
+   "text": "Bruno dekat rack, akses rack terbatas"
+  },
+  {
+   "id": "ADJ-04",
+   "ok": true,
+   "detail": {
+    "path_m": 6.39,
+    "max_m": 12.0
+   },
+   "text": "Bruno dekat lab ICT"
+  },
+  {
+   "id": "ADJ-05",
+   "ok": true,
+   "detail": {
+    "min_m": 10.5,
+    "required": 8.0
+   },
+   "text": "Ruang basah jauh dari rack"
+  },
+  {
+   "id": "ADJ-06",
+   "ok": true,
+   "detail": [],
+   "text": "Game/biliar/gym tidak berbagi dinding dengan area tenang"
+  },
+  {
+   "id": "ADJ-07",
+   "ok": true,
+   "detail": {
+    "overlap_m2": 17.5
+   },
+   "text": "Area basah ditumpuk (konsep shaft)"
+  },
+  {
+   "id": "ADJ-08",
+   "ok": true,
+   "detail": {
+    "overlap_m2": 28.0
+   },
+   "text": "Pantry L1 di bawah shower L2 (zona basah)"
+  },
+  {
+   "id": "ADJ-09",
+   "ok": true,
+   "detail": [],
+   "text": "Pintu server hanya dari area Bruno"
+  },
+  {
+   "id": "ADJ-10",
+   "ok": true,
+   "detail": {
+    "exits": 4
+   },
+   "text": "Dua jalur keluar konsep L1 (perlu kajian profesional)"
+  },
+  {
+   "id": "ADJ-11",
+   "ok": true,
+   "detail": {
+    "below": [
+     "L1-BRUNO",
+     "L1-KEVIN"
+    ],
+    "sensitive": []
+   },
+   "text": "Gym provisional (Q-03) tidak di atas ruang sensitif (tenang, rapat, server); risiko getaran/akustik ke studio di bawah tetap perlu kajian"
+  }
+ ]
+}

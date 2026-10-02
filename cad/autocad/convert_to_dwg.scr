@@ -1,0 +1,12 @@
+; kantor-rpg: simpan DXF yang sedang terbuka sebagai DWG 2018 di folder yang sama.
+; Pakai di AutoCAD berlisensi SETELAH membuka cad/out/<ID>.dxf (OPEN), lalu perintah SCRIPT -> file ini.
+; Alternatif tanpa GUI (belum diuji di repo ini): accoreconsole.exe /i "<path>\A-101.dxf" /s "<path>\convert_to_dwg.scr"
+; Script tidak menimpa DWG yang sudah ada. Status: BELUM DIUJI, AutoCAD tidak tersedia di container cloud.
+(vl-load-com)
+FILEDIA 0
+CMDECHO 1
+_.AUDIT _Y
+(setq kr-dwg (strcat (getvar "DWGPREFIX") (vl-filename-base (getvar "DWGNAME")) ".dwg"))
+(if (findfile kr-dwg) (princ (strcat "\nSTOP: DWG sudah ada, tidak ditimpa: " kr-dwg)) (command "_.SAVEAS" "2018" kr-dwg))
+(princ (strcat "\nSelesai. Buka ulang dan verifikasi: " kr-dwg))
+FILEDIA 1

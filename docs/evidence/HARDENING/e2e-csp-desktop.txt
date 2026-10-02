@@ -1,0 +1,32 @@
+
+Running 25 tests using 1 worker
+
+  ✓   1 [desktop] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (2.2s)
+  ✓   2 [desktop] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (3.4s)
+  ✓   3 [desktop] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (3.4s)
+  ✓   4 [desktop] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (3.4s)
+  ✓   5 [desktop] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (12.4s)
+  ✓   6 [desktop] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (5.9s)
+  ✓   7 [desktop] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (14.3s)
+  ✓   8 [desktop] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (6.4s)
+  ✓   9 [desktop] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (8.4s)
+  ✓  10 [desktop] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (7.0s)
+  ✓  11 [desktop] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (15.1s)
+  ✓  12 [desktop] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (4.6s)
+  ✓  13 [desktop] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.8s)
+  ✓  14 [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (5.0s)
+  ✓  15 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (7.3s)
+  ✓  16 [desktop] › tests/e2e/world.spec.ts:44:3 › world vertical slice › stair interaction changes floor only at the marked point (35.5s)
+  ✓  17 [desktop] › tests/e2e/world.spec.ts:66:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (25.4s)
+  ✓  18 [desktop] › tests/e2e/world.spec.ts:80:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (3.4s)
+  ✓  19 [desktop] › tests/e2e/world.spec.ts:101:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (7.0s)
+  ✓  20 [desktop] › tests/e2e/world.spec.ts:114:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (5.3s)
+  -  21 [desktop] › tests/e2e/world.spec.ts:130:3 › world vertical slice › touch joystick walks the CEO
+  ✓  22 [desktop] › tests/e2e/world.spec.ts:149:3 › world vertical slice › dark theme renders with computed token colours (4.2s)
+  ✓  23 [desktop] › tests/e2e/world.spec.ts:158:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (13.4s)
+  ✓  24 [desktop] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) (5.2s)
+  ✓  25 [desktop] › tests/e2e/world.spec.ts:185:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.9s)
+
+  1 skipped
+  24 passed (3.4m)
+exit=0

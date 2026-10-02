@@ -1,0 +1,74 @@
+{
+ "label": "fixed route benchmark; client-specific measurement",
+ "seconds": 60.1,
+ "frames": 286,
+ "fpsAverage": 4.8,
+ "frameMsMedian": 189.6,
+ "frameMsP95": 479.5,
+ "frameMsMax": 1046.9,
+ "framesOver33ms": 247,
+ "dropRate": 0.864,
+ "distanceM": 37.3,
+ "floorSwitches": 1,
+ "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+ "lowQuality": true,
+ "pixelRatio": 1,
+ "viewport": [
+  820,
+  1180
+ ],
+ "jsHeapMB": 40.1,
+ "stats": {
+  "drawCalls": 38,
+  "triangles": 119603,
+  "geometries": 105,
+  "textures": 35,
+  "floorTriangles": {
+   "L1": 120510,
+   "L2": 100032
+  },
+  "furnitureKit": {
+   "loaded": 54,
+   "failed": []
+  },
+  "npcLod": {
+   "lod0": 0,
+   "lod1": 1
+  }
+ },
+ "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36",
+ "peak": {
+  "drawCalls": 53,
+  "triangles": 193707,
+  "at": [
+   14.90715740412503,
+   11.251033267749317
+  ],
+  "floor": "L1"
+ },
+ "device": {
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36",
+  "platform": "Windows",
+  "screen": [
+   820,
+   1180
+  ],
+  "viewport": [
+   820,
+   1180
+  ],
+  "devicePixelRatio": 1,
+  "hardwareConcurrency": 4,
+  "deviceMemoryGB": 8,
+  "gpuRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+ },
+ "url": "?perf=route&seconds=60",
+ "environment": "Claude Code cloud container, headless Chromium 141, SwiftShader software WebGL, no GPU",
+ "loadMsUntilAppReady": 1318,
+ "navigation": {
+  "domContentLoadedMs": 829.4000000003725,
+  "transferBytes": 5401794,
+  "resources": 80
+ },
+ "measuredAt": "2026-10-02T01:37:42.276Z"
+}

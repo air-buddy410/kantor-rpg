@@ -1,0 +1,1981 @@
+Clean-clone rebuild of claude/kantor-rpg-m3-hardening at 185b46286a1656b1341ad62c78d67f954da81e70
+Command: git clone --branch claude/kantor-rpg-m3-hardening <repo> && bash tools/rebuild_all.sh (Blender 4.0.2 present)
+
+
+== Python toolchain
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+== Design data (seed, validate, capacity, schedule, ICT, matrix, PRD PDF)
++ /usr/local/bin/python3 design/authoring/seed_world.py
+design/world.json
++ /usr/local/bin/python3 tools/validate_world.py --report design/derived/validate-world.json
+PASS schema
+PASS unique_ids
+PASS rooms_orthogonal_L1
+PASS rooms_in_envelope_L1
+PASS rooms_cover_envelope_L1
+PASS rooms_no_overlap_L1
+PASS rooms_no_gap_L1
+PASS rooms_orthogonal_L2
+PASS rooms_in_envelope_L2
+PASS rooms_cover_envelope_L2
+PASS rooms_no_overlap_L2
+PASS rooms_no_gap_L2
+PASS doors_on_shared_walls
+PASS fixtures_inside_rooms
+PASS fixtures_no_overlap
+PASS door_zones_clear
+PASS functional_clearances
+PASS door_swing_metadata
+PASS door_swing_clear_of_fixtures
+PASS windows_on_exterior_walls
+PASS windows_clear_of_doors_and_each_other
+PASS windows_not_blocked_by_tall_fixtures
+PASS nav_all_rooms_reachable_staff
+PASS nav_restricted_locked_for_visitor
+PASS nav_public_rooms_reachable_visitor
+PASS nav_activity_slots_approachable
+PASS nav_vertical_links_usable
+PASS nav_waypoints_walkable
+PASS nav_doors_passable
+PASS nav_walkable_counts
+PASS adjacency_ADJ-01
+PASS adjacency_ADJ-02
+PASS adjacency_ADJ-03
+PASS adjacency_ADJ-04
+PASS adjacency_ADJ-05
+PASS adjacency_ADJ-06
+PASS adjacency_ADJ-07
+PASS adjacency_ADJ-08
+PASS adjacency_ADJ-09
+PASS adjacency_ADJ-10
+PASS adjacency_ADJ-11
+PASS ict_foreign_keys
+PASS ict_no_camera_in_wet_rooms
+PASS actors_home_seats_exist
+PASS world_matches_authoring_seed
+PASS walls_derived
+passed=46 failed=0
++ /usr/local/bin/python3 tools/export_runtime.py
+{"L1_staff": 49397, "L1_visitor": 49245, "L2_staff": 50626, "L2_visitor": 50546}
++ /usr/local/bin/python3 tools/capacity.py
+{"gross_m2": 1536.0, "world_revision": "P03", "floors": {"L1": {"rooms": 20, "seats_from_fixtures": 41, "workstations": 13, "walkable_m2_navgrid": 494.0}, "L2": {"rooms": 18, "seats_from_fixtures": 42, "workstations": 0, "walkable_m2_navgrid": 506.3}}, "explore": {"tile_baseline_cells": 3388, "pixel_areas": 47, "pixel_furniture": 297, "world_rooms_non_shaft": 34, "world_fixtures": 199, "world_activity_slots": 117, "world_walkable_m2": 1000.3, "note": "Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).", "rooms_vs_pixel_areas_ratio": 0.72, "fixtures_vs_pixel_furniture_ratio": 0.67}, "transfer_s": 20.0, "maint": 6}
++ /usr/local/bin/python3 tools/room_schedule.py
+rooms=38 rules_ok=11/11
++ /usr/local/bin/python3 tools/ict_derive.py
+{"totals": {"outlets": 45, "ports": 72, "cable_m": 2074.8, "max_length_m": 50.6, "min_length_m": 12.7, "patchPanelPorts": 96, "patchPanelPortsUsed": 72}, "poeTotalWorstCaseW": 407.0, "switches": [["SW-ACC-01", 24, 0.455], ["SW-ACC-02", 24, 0.455], ["SW-ACC-03", 24, 0.455]], "errors": []}
++ /usr/local/bin/python3 tools/req_matrix.py
+{'terverifikasi': 35, 'tidak didukung': 2, 'asumsi': 2, 'belum diuji': 2}
++ /usr/local/bin/python3 tools/render_prd.py --source PRD/PRD-v0.2.md --output PRD/PRD-v0.2.pdf
+PRD/PRD-v0.2.pdf
+
+== Drawings (DXF + PDF + previews)
+generator cad/generate.py v1  utc 2026-10-01T16:39:27Z
+world design/world.json revision P03 sha256 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+portmap design/derived/ict-portmap.json worldRevision P03 sha256 93de0733e7d36d25b6081782f843f5d054509056b4d892bbbb89fb470397c054
+Huruf: KantorRPG Sans, turunan Alegreya Sans karya Juan Pablo del Peral (SIL OFL 1.1, paket Debian fonts-alegreya-sans), subset tertanam.
+contrast INK #22302a on white = 13.78:1
+contrast GREEN #1f4d3a on white = 9.63:1
+contrast GREY_TEXT #5a524b on white = 7.66:1
+contrast TERRA #b5532f on white = 4.95:1
+contrast DIM #2f4238 on white = 10.73:1
+contrast white on GREEN status band = 9.63:1
+
+[A-101] Denah Lantai 1  content plan  floor L1  scale 1:100 @ A2
+  dxf cad/out/A-101.dxf  307587 bytes  sha256 2093b3cb326e5697d7ce02067d04529124335679d5aeb7b75e3ebd76a7755200
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 796 entities: A-ANNO-DIMS DIMENSION 28; A-ANNO-RMNM MTEXT 20; A-AREA LWPOLYLINE 20; A-DOOR ARC 23, LINE 33, LWPOLYLINE 2; A-DOOR-IDEN TEXT 26; A-FURN LWPOLYLINE 106; A-FURN-IDEN TEXT 108; A-GLAZ LINE 158, LWPOLYLINE 20; A-GLAZ-IDEN TEXT 20; A-GRID LINE 11; A-GRID-IDEN CIRCLE 22, TEXT 22; A-STRS LINE 29, LWPOLYLINE 5, SOLID 1, TEXT 2; A-WALL HATCH 70, LWPOLYLINE 70
+  paperspace:A-101 23 entities
+  expected {'walls': 70, 'doors': 26, 'rooms': 20, 'windows': 20, 'fixtures': 108, 'dimension_segments': 28}
+  openings {"window_symbols": 20, "windows_per_floor": {"L1": 20}, "door_leaves": 23, "door_arcs": 23, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-101.pdf  55841 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 ba1a3835f5b1288a29998c0092e2236174fe81de4e1e90ba37748da3db32533e
+  scale bar [0, 1, 2, 5, 10] m -> 100.00 mm = 283.46 pt
+  summary {"forced_tags": []}
+  previews drawings/previews/A-101.png, drawings/previews/A-101-dxf.png
+
+[A-102] Denah Lantai 2  content plan  floor L2  scale 1:100 @ A2
+  dxf cad/out/A-102.dxf  288733 bytes  sha256 70eeb43bf8060d71b960eed67a4f4ba72f130668ce9dc1fee1cc3b8684b8ffd2
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 727 entities: A-ANNO-DIMS DIMENSION 27; A-ANNO-RMNM MTEXT 18; A-AREA LWPOLYLINE 18; A-DOOR ARC 15, LINE 27, LWPOLYLINE 4; A-DOOR-IDEN TEXT 20; A-FURN LWPOLYLINE 89; A-FURN-IDEN TEXT 91; A-GLAZ LINE 167, LWPOLYLINE 19; A-GLAZ-IDEN TEXT 19; A-GRID LINE 11; A-GRID-IDEN CIRCLE 22, TEXT 22; A-STRS LINE 29, LWPOLYLINE 4, SOLID 1, TEXT 2; A-WALL HATCH 61, LWPOLYLINE 61
+  paperspace:A-102 23 entities
+  expected {'walls': 61, 'doors': 20, 'rooms': 18, 'windows': 19, 'fixtures': 91, 'dimension_segments': 27}
+  openings {"window_symbols": 19, "windows_per_floor": {"L2": 19}, "door_leaves": 15, "door_arcs": 15, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-102.pdf  53944 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 17365a3e7457ecd692af8fa13213354556faafa60ac4550a401c1c08bb635e4b
+  scale bar [0, 1, 2, 5, 10] m -> 100.00 mm = 283.46 pt
+  summary {"forced_tags": []}
+  previews drawings/previews/A-102.png, drawings/previews/A-102-dxf.png
+
+[A-103] Room schedule, pintu dan jendela  content room_schedule  floor -  scale NTS @ A3
+  dxf cad/out/A-103.dxf  400786 bytes  sha256 a2b57a9f72abf65221ed87cb4aa77e12f214f502db153cabc0cca01fb6e2131f
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:A-103-1 533 entities
+  paperspace:A-103-2 850 entities
+  expected {'pages': 2, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-103.pdf  48114 bytes  pages 2  page 1190.55 x 841.89 pt  sha256 61e7875f1f0e62f3e57b59dd64971e0435fe3511cabfc414aeac5fb3ad4c7ce4
+  summary {"checks": {"L1": {"rooms": 20, "total_m2": 768.0, "envelope_m2": 768.0, "ok": true, "seats": 41}, "L2": {"rooms": 18, "total_m2": 768.0, "envelope_m2": 768.0, "ok": true, "seats": 42}}, "rows": 40, "opening_schedule": {"door_rows": 46, "window_rows": 39, "swing_doors": 34, "obscured_windows": 13, "page": 2}}
+  previews drawings/previews/A-103.png, drawings/previews/A-103-dxf.png, drawings/previews/A-103-p2.png
+
+[A-201] Layout furniture Lantai 1  content furniture  floor L1  scale 1:100 @ A2
+  dxf cad/out/A-201.dxf  444444 bytes  sha256 4c395cdf3cf2ec65e4c2c31c2ab8ada900dfa327578d5633a854e4673ad1d762
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 762 entities: A-ANNO-RMNM TEXT 20; A-AREA LWPOLYLINE 20; A-DOOR ARC 23, HATCH 2, LWPOLYLINE 35; A-FURN LWPOLYLINE 106; A-FURN-IDEN TEXT 108; A-GLAZ LWPOLYLINE 178; A-GLAZ-IDEN TEXT 20; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 70, LWPOLYLINE 70
+  paperspace:A-201 714 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 20, "windows_per_floor": {"L1": 20}, "door_leaves": 23, "door_arcs": 23, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-201.pdf  54203 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 8964b83413650db5d87e3a1b605100e40061a8eacc636584046d1093f1aa7dc7
+  summary {"key_overlap_m2_max": 0.0, "fixtures": 108, "panel_bottom_mm": 92.8}
+  previews drawings/previews/A-201.png, drawings/previews/A-201-dxf.png
+
+[A-202] Layout furniture Lantai 2  content furniture  floor L2  scale 1:100 @ A2
+  dxf cad/out/A-202.dxf  409145 bytes  sha256 395f72a2cec28c4278e664dffdeb0c49813ec998f0b782472a406c0203f1b93a
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 703 entities: A-ANNO-RMNM TEXT 18; A-AREA LWPOLYLINE 18; A-DOOR ARC 15, HATCH 4, LWPOLYLINE 31; A-FURN LWPOLYLINE 89; A-FURN-IDEN TEXT 91; A-GLAZ LWPOLYLINE 186; A-GLAZ-IDEN TEXT 19; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 61, LWPOLYLINE 61
+  paperspace:A-202 637 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 19, "windows_per_floor": {"L2": 19}, "door_leaves": 15, "door_arcs": 15, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-202.pdf  52435 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 8733731ac8a955972436bc411ca3039e6ebc9fecc35ccc0076bb07d87f490e00
+  summary {"key_overlap_m2_max": 0.0, "fixtures": 91, "panel_bottom_mm": 121.1}
+  previews drawings/previews/A-202.png, drawings/previews/A-202-dxf.png
+
+[A-301] Tampak  content elevations  floor -  scale 1:200 @ A3
+  dxf cad/out/A-301.dxf  194706 bytes  sha256 0a92ac3a0a76b197d4fd0e2fe0f5427b1670b7735a4d01bec90cfa7926d5d031
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 536 entities: A-ANNO-NOTE HATCH 16, LWPOLYLINE 32, TEXT 16; A-ELEV-DOOR HATCH 5, LWPOLYLINE 12, TEXT 5; A-ELEV-GLAZ HATCH 39, LWPOLYLINE 221, TEXT 39; A-ELEV-GRND LWPOLYLINE 4; A-ELEV-HIDN LWPOLYLINE 43; A-ELEV-OTLN HATCH 4, LWPOLYLINE 12; A-GRID LWPOLYLINE 22; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22
+  paperspace:A-301 51 entities
+  expected {'pages': 1, 'views': 4}
+  openings {"window_symbols": 39, "windows_per_floor": {"L1": 20, "L2": 19}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 6}
+  pdf drawings/pdf/A-301.pdf  41042 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 88dd614992875273b1ba02bf219f1ac02cbc4759c0545c5ffde6e78a9d8a9dd0
+  summary {"exterior_doors_drawn": 5, "windows_per_facade": {"S": 11, "E": 11, "N": 12, "W": 5}, "window_tag_overlap_m2_max": 0.0}
+  previews drawings/previews/A-301.png, drawings/previews/A-301-dxf.png
+
+[A-401] Potongan  content sections  floor -  scale 1:100 @ A3
+  dxf cad/out/A-401.dxf  117866 bytes  sha256 70c550a99bee13d2973e44b906332252ba77076da8ea137bda1ed115a98ccafe
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 174 entities: A-ANNO-DIMS LWPOLYLINE 10, TEXT 6; A-ANNO-NOTE HATCH 10, LWPOLYLINE 20, TEXT 10; A-AREA LWPOLYLINE 20; A-SECT-CLNG LWPOLYLINE 19; A-SECT-GLAZ LWPOLYLINE 3; A-SECT-GRND HATCH 2, LWPOLYLINE 2; A-SECT-IDEN TEXT 26; A-SECT-MARK LWPOLYLINE 2, TEXT 4; A-SECT-SLAB HATCH 8; A-SECT-STRS HATCH 3, LWPOLYLINE 4; A-SECT-WALL HATCH 24; A-STRS LWPOLYLINE 1
+  paperspace:A-401 24 entities
+  expected {'pages': 1, 'views': 3}
+  openings {"window_symbols": 1, "windows_per_floor": {"L1": 1}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-401.pdf  35702 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 c75ba11b3121888fb4e02589ceba196f488295ee90eb0bd37551ea7b96d58ac4
+  summary {"cuts": {"A": {"floors": {"L1": {"walls": 6, "doors": [], "windows": [], "rooms": ["L1-DISC", "L1-IMPL", "L1-CORE", "L1-NOVA", "L1-LAB"]}, "L2": {"walls": 5, "doors": [], "windows": [], "rooms": ["L2-CHAT", "L2-GARDEN", "L2-CORE", "L2-GAME"]}}, "stair": {"risers": 24, "rise": 0.16666666666666666}, "axis": "X", "at": 13.0}, "B": {"floors": {"L1": {"walls": 5, "doors": ["D-L1-ENT"], "windows": ["W-L1-016"], "rooms": ["L1-LOBBY", "L1-CORR", "L1-CORE", "L1-NCORR", "L1-KEVIN"]}, "L2": {"walls": 6, "doors": [], "windows": [], "rooms": ["L2-LOUNGE", "L2-CORR", "L2-CORE", "L2-NCORR", "L2-GYM"]}}, "stair": {"risers": 24, "rise": 0.16666666666666666, "landing_z": 2.0}, "axis": "Y", "at": 14.8}}}
+  previews drawings/previews/A-401.png, drawings/previews/A-401-dxf.png
+
+[I-101] Finish interior dan material  content finishes  floor -  scale 1:200 @ A3
+  dxf cad/out/I-101.dxf  346601 bytes  sha256 0cc20facb69cbcc53921e6be0d3b1ddb2f5c20029065b357772f8a8adfd97cb8
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 916 entities: A-ANNO-RMNM TEXT 38; A-AREA LWPOLYLINE 38; A-DOOR ARC 38, HATCH 6, LWPOLYLINE 66; A-GLAZ LWPOLYLINE 364; A-STRS LWPOLYLINE 62, TEXT 4; A-WALL HATCH 131, LWPOLYLINE 131; I-FLOR-PATT HATCH 38
+  paperspace:I-101 118 entities
+  expected {'pages': 1, 'views': 2}
+  openings {"window_symbols": 39, "windows_per_floor": {"L1": 20, "L2": 19}, "door_leaves": 38, "door_arcs": 38, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/I-101.pdf  47345 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 6c8652f5cf31003418c63900b57e978b8f15de08a196ac1a6ae0732cdf00c39c
+  summary {"finishes": {"vinyl motif kayu": {"rooms": 12, "area_m2": 743.5}, "karpet tile matte": {"rooms": 8, "area_m2": 361.0}, "keramik anti-slip": {"rooms": 5, "area_m2": 139.0}, "-": {"rooms": 4, "area_m2": 8.0}, "epoxy": {"rooms": 3, "area_m2": 63.0}, "vinyl anti-statik (target)": {"rooms": 3, "area_m2": 85.5}, "deck komposit": {"rooms": 2, "area_m2": 86.5}, "lantai karet olahraga": {"rooms": 1, "area_m2": 49.5}}, "total_m2": 1536.0}
+  previews drawings/previews/I-101.png, drawings/previews/I-101-dxf.png
+
+[ICT-001] Topologi jaringan (virtual)  content topology  floor -  scale NTS @ A3
+  dxf cad/out/ICT-001.dxf  105964 bytes  sha256 d0e3a7ac5080875db26702bb6c58ee406bb7c70a6ced3b60f3ad4a0a3bd5e8dc
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:ICT-001 165 entities
+  expected {'pages': 1, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-001.pdf  33814 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 475c244d3df5d9c2a89195b8856bcc233bb358ffa4c46d55a5c59d71a8ec7fba
+  summary {"switches": 3, "patch_panels": 4, "aps": 11, "cameras": 5, "domains": 5}
+  previews drawings/previews/ICT-001.png, drawings/previews/ICT-001-dxf.png
+
+[ICT-101] Outlet, AP dan kamera Lantai 1  content ict_plan  floor L1  scale 1:100 @ A2
+  dxf cad/out/ICT-101.dxf  361446 bytes  sha256 2400eba9dd61170d840a01b6400bbf61d7109481dc4fc8005d82d4cc26b77a3d
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 781 entities: A-ANNO-RMNM TEXT 20; A-AREA LWPOLYLINE 20; A-DOOR ARC 23, HATCH 2, LWPOLYLINE 35; A-FURN LWPOLYLINE 106; A-GLAZ LWPOLYLINE 178; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 70, LWPOLYLINE 70; ICT-AP CIRCLE 5, HATCH 5, TEXT 5; ICT-CAM HATCH 6, LWPOLYLINE 6; ICT-DEV-IDEN TEXT 8; ICT-OUTL HATCH 30, LWPOLYLINE 30; ICT-OUTL-IDEN TEXT 30; ICT-RACK HATCH 2, LWPOLYLINE 2, TEXT 2; ICT-RISR HATCH 1, LWPOLYLINE 1, TEXT 1; ICT-TRAY LWPOLYLINE 10, TEXT 3
+  paperspace:ICT-101 347 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 20, "windows_per_floor": {"L1": 20}, "door_leaves": 23, "door_arcs": 23, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-101.pdf  50734 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 239a761016002d3a2836a994814d55438236d00bff7d074a61850702b44387c6
+  summary {"outlets": 30, "ports": 55, "aps": 5, "cameras": 3, "wet_room_cameras": []}
+  previews drawings/previews/ICT-101.png, drawings/previews/ICT-101-dxf.png
+
+[ICT-102] Outlet, AP dan kamera Lantai 2  content ict_plan  floor L2  scale 1:100 @ A2
+  dxf cad/out/ICT-102.dxf  310930 bytes  sha256 d785f8d9af3a96f0e1933e4a54db4278b1bb272db2acdde89a899f5475ee22dc
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 686 entities: A-ANNO-RMNM TEXT 18; A-AREA LWPOLYLINE 18; A-DOOR ARC 15, HATCH 4, LWPOLYLINE 31; A-FURN LWPOLYLINE 89; A-GLAZ LWPOLYLINE 186; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 61, LWPOLYLINE 61; ICT-AP CIRCLE 6, HATCH 6, TEXT 6; ICT-CAM HATCH 4, LWPOLYLINE 4; ICT-DEV-IDEN TEXT 8; ICT-OUTL HATCH 15, LWPOLYLINE 15; ICT-OUTL-IDEN TEXT 15; ICT-RISR HATCH 1, LWPOLYLINE 1, TEXT 1; ICT-TRAY LWPOLYLINE 8, TEXT 3
+  paperspace:ICT-102 250 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 19, "windows_per_floor": {"L2": 19}, "door_leaves": 15, "door_arcs": 15, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-102.pdf  48229 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 a1c61b07b11266af347b862fb5a1564e8a7ca4a69e989e9c9910b0c2fce167f2
+  summary {"outlets": 15, "ports": 17, "aps": 6, "cameras": 2, "wet_room_cameras": []}
+  previews drawings/previews/ICT-102.png, drawings/previews/ICT-102-dxf.png
+
+[ICT-201] Elevasi rack  content rack_elevation  floor -  scale 1:20 @ A3
+  dxf cad/out/ICT-201.dxf  166487 bytes  sha256 34bb551fa0715055677ac3785bb3ab4cee17f18347cc73eb88725ccd92617937
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 279 entities: A-ANNO-RMNM TEXT 1; A-WALL LWPOLYLINE 1; ICT-CLRZ HATCH 4, LWPOLYLINE 4, TEXT 2; ICT-RACK HATCH 4, LWPOLYLINE 92; ICT-RACK-DEV HATCH 17, LWPOLYLINE 17; ICT-RACK-IDEN LWPOLYLINE 17, TEXT 120
+  paperspace:ICT-201 160 entities
+  expected {'pages': 1, 'views': 3}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-201.pdf  36784 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 8fc00b4490c9075f3fd72a83df551538c2846e8b3ccfe0559d94824d1cc50b08
+  summary {"racks": 2, "devices": 17}
+  previews drawings/previews/ICT-201.png, drawings/previews/ICT-201-dxf.png
+
+[ICT-301] Pathway dan riser  content pathways  floor -  scale 1:200 @ A3
+  dxf cad/out/ICT-301.dxf  345416 bytes  sha256 4a222e452025d6f20f9ce3abdb2071d4432d6fbf1e53bdfad57dd363561f3bb5
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 880 entities: A-AREA LWPOLYLINE 38; A-GLAZ LWPOLYLINE 364; A-STRS LWPOLYLINE 62, TEXT 4; A-WALL HATCH 131, LWPOLYLINE 131; ICT-OUTL HATCH 45; ICT-RACK HATCH 2, LWPOLYLINE 2; ICT-RISR HATCH 2, LWPOLYLINE 2, TEXT 2; ICT-ROUT LWPOLYLINE 89; ICT-TRAY LWPOLYLINE 6
+  paperspace:ICT-301 77 entities
+  expected {'pages': 1, 'views': 2}
+  openings {"window_symbols": 39, "windows_per_floor": {"L1": 20, "L2": 19}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-301.pdf  47369 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 ac5c1a54479168b33453c34b3a05ff91e4b6f832b06c4b32317d4042faa3d822
+  summary {"route_counts": {"L1": 55, "L2": 17}, "check": {"cables": 72, "sum_length_m": 2074.8, "declared_total_m": 2074.8, "total_ok": true, "revision_ok": true}}
+  previews drawings/previews/ICT-301.png, drawings/previews/ICT-301-dxf.png
+
+[ICT-401] Port dan device schedule  content port_schedule  floor -  scale NTS @ A3
+  dxf cad/out/ICT-401.dxf  336313 bytes  sha256 a1151fba07329d97118b5e3b46d4912a349c995cc765dafc6fb8f4096116f65b
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:ICT-401-1 648 entities
+  paperspace:ICT-401-2 310 entities
+  paperspace:ICT-401-3 123 entities
+  expected {'pages': 3, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-401.pdf  47205 bytes  pages 3  page 1190.55 x 841.89 pt  sha256 2f47557e4d5b4fc2dabcb90d691dd9c0323caa105c98d3b438342f429b888c3a
+  summary {"check": {"cables": 72, "sum_length_m": 2074.8, "declared_total_m": 2074.8, "total_ok": true, "revision_ok": true}, "rows": 72, "pages": 3, "printed_total_m": 2074.8}
+  previews drawings/previews/ICT-401.png, drawings/previews/ICT-401-dxf.png, drawings/previews/ICT-401-p2.png, drawings/previews/ICT-401-p3.png
+
+[A-001] Cover, indeks dan catatan umum  content index  floor -  scale NTS @ A3
+  dxf cad/out/A-001.dxf  120048 bytes  sha256 bbb13b69b4b680f8eb29abeaa64c4a753a99b8c3d2cca5eb4d3c92e5f7809003
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:A-001 219 entities
+  expected {'pages': 1, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-001.pdf  35649 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 5fb698ec1a8f2e0e409348b647ad712fb2c927565cf410acd2d504052474edb6
+  summary {"index_rows": 15, "assumptions": 17}
+  previews drawings/previews/A-001.png, drawings/previews/A-001-dxf.png
+
+counts index cad/out/counts.json sha256 fd40bd3176ee944435a438b53b0092ee618b0268b4fd177b194226aab077f1f5
+
+set kantor-rpg-sheets-all.pdf: 15 sheets, 18 pages, labels A-001 A-101 A-102 A-103-1 A-103-2 A-201 A-202 A-301 A-401 I-101 ICT-001 ICT-101 ICT-102 ICT-201 ICT-301 ICT-401-1 ICT-401-2 ICT-401-3  sha256 d40a7c3ca37dffb6ba3614ef7b9ccecf870b93d21aa455623dfc93a92fdf8f35
+set kantor-rpg-sheets-A.pdf: 8 sheets, 9 pages, labels A-001 A-101 A-102 A-103-1 A-103-2 A-201 A-202 A-301 A-401  sha256 95ca7c95b2b73a19e25f14545b046ec3556e088532b9027d3b3087f9e7233d6b
+set kantor-rpg-sheets-I.pdf: 1 sheets, 1 pages, labels I-101  sha256 a5317adf0bdc292c7eda029f9b278f8b3dc8955c66fcc613edf567c91e40e19a
+set kantor-rpg-sheets-ICT.pdf: 6 sheets, 8 pages, labels ICT-001 ICT-101 ICT-102 ICT-201 ICT-301 ICT-401-1 ICT-401-2 ICT-401-3  sha256 a321969fc1c5a4d9fe0176cb0ef52471ac396153b5aca3bbc23158a2e7d05a8e
+
+register drawings/register.json: 15 produced, 0 target
+native DWG: BLOCKED (AutoCAD tidak tersedia di container); tidak ada file .dwg dibuat
+
+== Signage and poster
+{"artworks": 11, "bytes": 126463, "poster": "drawings/pdf/kantor-rpg-poster.pdf"}
+
+== Blender: building
+Blender 4.0.2
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "building.blend"
+16:40:27 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:27 | INFO: Starting glTF 2.0 export
+16:40:27 | INFO: Extracting primitive: SLAB-L1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-MEET
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-LOBBY
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-GALLERY
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-PANTRY
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-SHAFT-W
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-WC
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-CORR
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-DISC
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-IMPL
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-CORE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-NOVA
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-LAB
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-NCORR
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-CEO
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-HUGO
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-KEVIN
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-BRUNO
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-SERVER
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-RISER
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L1-STORE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-000
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-001
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-002
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-003
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-004
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-005
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-006
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-007
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-008
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-009
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-010
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-011
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-012
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-013
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-014
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-015
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-016
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-017
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-018
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-019
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-020
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-021
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-022
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-023
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-024
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-025
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-026
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-027
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-028
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-029
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-030
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-031
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-032
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-033
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-034
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-035
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-036
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-037
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-038
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-039
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-040
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-041
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-042
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-043
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-044
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-045
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-046
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-047
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L1-048
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L1-049
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: W-L1-001
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-001
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-002
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-002
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-003
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-003
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-004
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-004
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-005
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-005
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-006
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-006
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-007
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-007
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-008
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-008
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-009
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-009
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-010
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-010
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-011
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-011
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-012
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-012
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-013
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-013
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-014
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-014
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-015
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-015
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-016
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-016
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-017
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-017
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-018
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-018
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-019
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-019
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L1-020
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L1-020
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-ENT-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-ENT-2
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-02-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-02-2
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-03-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-05-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-06-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-07-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-EXW-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-EXE-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-09-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-10-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-12-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-13-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-14-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-22-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-EXN-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-15-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-16-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-17-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-18-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-19-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L1-21-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-ENT
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-ENT
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-01
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-01
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-02
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-02
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-03
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-03
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-04
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-04
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-05
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-05
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-06
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-06
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-07
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-07
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-08
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-08
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-EXW
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-EXW
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-EXE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-EXE
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-09
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-09
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-10
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-10
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-11
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-11
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-12
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-12
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-13
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-13
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-14
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-14
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-22
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-22
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-EXN
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-EXN
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-15
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-15
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-16
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-16
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-17
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-17
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-18
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-18
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-19
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-19
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-20
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-20
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L1-21
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L1-21
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: STAIR-FX-L1-067
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: LIFT-FX-L1-068
+16:40:27 | INFO: Primitives created: 4
+16:40:27 | INFO: Extracting primitive: FASCIA-L1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Finished glTF 2.0 export in 0.21357345581054688 s
+
+BUILDING L1: objects=189 triangles=4446 glb=app/public/assets/building/building-L1.glb bytes=370932
+16:40:27 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:27 | INFO: Starting glTF 2.0 export
+16:40:27 | INFO: Extracting primitive: SLAB-L2
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-READ
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-LOUNGE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-DINE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-SHOWER
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-SHAFT-W
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-WC
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-CORR
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-CHAT
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-GARDEN
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-CORE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-GAME
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-NCORR
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-BALCONY
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-BILLIARD
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-GYM
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-STORE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-RISER
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOM-L2-SERVICE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-000
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L2-001
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-002
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-003
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-004
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-005
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-006
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-007
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-008
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-009
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-010
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-011
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-012
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-013
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-014
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-015
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-016
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-017
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-018
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-019
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-020
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-021
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-022
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-023
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-024
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-025
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L2-026
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L2-027
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-028
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-029
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-030
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-031
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-032
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-033
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-034
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-035
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-036
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-037
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-038
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-039
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: WALL-L2-040
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: WALL-L2-041
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: W-L2-021
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-021
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-022
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-022
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-023
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-023
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-024
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-024
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-025
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-025
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-026
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-026
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-027
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-027
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-028
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-028
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-029
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-029
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-030
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-030
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-031
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-031
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-032
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-032
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-033
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-033
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-034
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-034
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-035
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-035
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-036
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-036
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-037
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-037
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-038
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-038
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: W-L2-039
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: FRAME-W-L2-039
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-02-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-03-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-05-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-06-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-EXE-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-08-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-11-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-11-2
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-12-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-19-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-14-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-15-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-15-2
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-16-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LEAF-D-L2-18-1
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-01
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-01
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-02
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-02
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-03
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-03
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-04
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-04
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-05
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-05
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-06
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-06
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-07
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-07
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-EXE
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-EXE
+16:40:27 | INFO: Primitives created: 3
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-08
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-08
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-09
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-09
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-10
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-10
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-11
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-11
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-12
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-12
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-19
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-19
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-13
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-13
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-14
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-14
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-15
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-15
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-16
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-16
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-17
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-17
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: OPEN-D-L2-18
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LINTEL-D-L2-18
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: STAIRWELL-FX-L2-056
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: LIFT-FX-L2-057
+16:40:27 | INFO: Primitives created: 4
+16:40:27 | INFO: Extracting primitive: FASCIA-L2
+16:40:27 | INFO: Primitives created: 1
+16:40:27 | INFO: Extracting primitive: ROOF
+16:40:27 | INFO: Primitives created: 2
+16:40:27 | INFO: Finished glTF 2.0 export in 0.18740391731262207 s
+
+BUILDING L2: objects=158 triangles=3746 glb=app/public/assets/building/building-L2.glb bytes=308492
+BUILDING_DONE blend=blender/out/building.blend world_revision=P03
+
+Blender quit
+
+== Blender: furniture
+Blender 4.0.2
+FURN desk            size=[1.6, 0.8, 0.764] catalog=[1.6, 0.8, 0.75] err=0.014 tris=976/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN desk_exec       size=[1.8, 0.9, 0.764] catalog=[1.8, 0.9, 0.75] err=0.014 tris=1476/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN chair           size=[0.6, 0.5988, 0.9] catalog=[0.6, 0.6, 0.9] err=0.001 tris=1312/2000 shift=[-0.0, -0.0006, -0.0] OK
+FURN chair_guest     size=[0.55, 0.55, 0.85] catalog=[0.55, 0.55, 0.85] err=0.000 tris=792/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN stool           size=[0.4456, 0.4456, 0.7041] catalog=[0.45, 0.45, 0.7] err=0.004 tris=516/2000 shift=[-0.0, -0.0, 0.0041] OK
+FURN meeting_table   size=[4.0, 1.4, 0.766] catalog=[4.0, 1.4, 0.75] err=0.016 tris=768/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN round_table     size=[1.2, 1.2, 0.75] catalog=[1.2, 1.2, 0.75] err=0.000 tris=620/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN high_table      size=[1.2, 0.7, 1.05] catalog=[1.2, 0.7, 1.05] err=0.000 tris=552/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN dining_table    size=[1.8, 0.9, 0.762] catalog=[1.8, 0.9, 0.75] err=0.012 tris=452/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN coffee_table    size=[1.0, 0.6, 0.4] catalog=[1.0, 0.6, 0.4] err=0.000 tris=492/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN work_table      size=[1.6, 0.8, 0.9] catalog=[1.6, 0.8, 0.9] err=0.000 tris=648/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN plan_table      size=[1.8, 0.9, 0.904] catalog=[1.8, 0.9, 0.9] err=0.004 tris=1152/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN drafting_table  size=[1.4, 1.0, 0.9494] catalog=[1.4, 1.0, 0.95] err=0.001 tris=660/5000 shift=[-0.0, -0.0, 0.013] OK
+FURN reception_desk  size=[3.0, 0.91, 1.1] catalog=[3.0, 0.9, 1.1] err=0.010 tris=1216/5000 shift=[-0.0, 0.015, 0.0] OK
+FURN sofa            size=[2.0, 0.9, 0.8] catalog=[2.0, 0.9, 0.8] err=0.000 tris=1944/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN armchair        size=[0.9, 0.9, 0.85] catalog=[0.9, 0.9, 0.85] err=0.000 tris=1536/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN beanbag         size=[0.79, 0.7895, 0.5] catalog=[0.8, 0.8, 0.5] err=0.011 tris=712/2000 shift=[-0.0, -0.0053, -0.0] OK
+FURN bench           size=[1.6, 0.441, 0.45] catalog=[1.6, 0.45, 0.45] err=0.009 tris=756/5000 shift=[-0.0, -0.0, 0.0] OK
+FURN bookshelf       size=[1.2, 0.4, 2.0] catalog=[1.2, 0.4, 2.0] err=0.000 tris=2048/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN model_shelf     size=[1.2, 0.4, 1.8] catalog=[1.2, 0.4, 1.8] err=0.000 tris=2000/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN tool_cabinet    size=[1.0, 0.5, 1.2] catalog=[1.0, 0.5, 1.2] err=0.000 tris=1208/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN storage_shelf   size=[1.8, 0.5, 2.0] catalog=[1.8, 0.5, 2.0] err=0.000 tris=3148/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN locker          size=[1.2, 0.499, 1.8] catalog=[1.2, 0.5, 1.8] err=0.001 tris=2184/5000 shift=[-0.0, -0.0005, -0.0] OK
+FURN whiteboard      size=[1.8, 0.1, 1.2] catalog=[1.8, 0.1, 1.2] err=0.000 tris=524/5000 shift=[-0.0, 0.0, -0.0] OK
+FURN wall_display    size=[1.6, 0.098, 0.95] catalog=[1.6, 0.1, 0.95] err=0.002 tris=240/5000 shift=[-0.0, -0.001, -0.0] OK
+FURN gallery_panel   size=[1.5, 0.3, 2.0] catalog=[1.5, 0.3, 2.0] err=0.000 tris=532/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN poster          size=[0.7, 0.05, 1.0] catalog=[0.7, 0.05, 1.0] err=0.000 tris=316/2000 shift=[-0.0, 0.0, -0.0] OK
+FURN directory_sign  size=[1.2, 0.078, 0.9] catalog=[1.2, 0.08, 0.9] err=0.002 tris=504/5000 shift=[-0.0, -0.001, 0.0] OK
+FURN easel           size=[0.7988, 0.7989, 1.7095] catalog=[0.8, 0.8, 1.7] err=0.010 tris=448/5000 shift=[-0.0, -0.0002, 0.0067] OK
+FURN plant_large     size=[0.6, 0.5949, 1.6] catalog=[0.6, 0.6, 1.6] err=0.005 tris=1820/5000 shift=[-0.0, 0.002, -0.0] OK
+FURN plant_small     size=[0.4, 0.4, 0.9] catalog=[0.4, 0.4, 0.9] err=0.000 tris=1048/2000 shift=[-0.0, -0.0, -0.0] OK
+FURN planter_box     size=[1.6, 0.6, 0.7] catalog=[1.6, 0.6, 0.7] err=0.000 tris=1312/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN tree_planter    size=[1.2, 1.2, 2.6] catalog=[1.2, 1.2, 2.6] err=0.000 tris=1960/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN pantry_counter  size=[3.0, 0.65, 0.915] catalog=[3.0, 0.65, 0.9] err=0.015 tris=1214/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN coffee_bar      size=[2.4, 0.6, 1.0] catalog=[2.4, 0.6, 1.0] err=0.000 tris=1894/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN fridge          size=[0.7, 0.7, 1.8] catalog=[0.7, 0.7, 1.8] err=0.000 tris=596/5000 shift=[-0.0, -0.0, 0.0] OK
+FURN sink            size=[0.6, 0.4525, 0.865] catalog=[0.6, 0.45, 0.85] err=0.015 tris=464/2000 shift=[-0.0, 0.0012, -0.0] OK
+FURN wc              size=[0.4, 0.6959, 0.8] catalog=[0.4, 0.7, 0.8] err=0.004 tris=560/2000 shift=[-0.0, -0.0021, -0.0] OK
+FURN partition       size=[1.5, 0.05, 2.0] catalog=[1.5, 0.05, 2.0] err=0.000 tris=176/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN shower_stall    size=[0.9, 0.9, 2.1] catalog=[0.9, 0.9, 2.1] err=0.000 tris=476/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN rack_42u        size=[0.6, 0.99, 2.0] catalog=[0.6, 1.0, 2.0] err=0.010 tris=2736/5000 shift=[-0.0, -0.005, -0.0] OK
+FURN lab_bench       size=[1.8, 0.75, 0.904] catalog=[1.8, 0.75, 0.9] err=0.004 tris=1068/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN lab_rack_open   size=[0.6, 0.6, 1.2] catalog=[0.6, 0.6, 1.2] err=0.000 tris=1624/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN billiard_table  size=[2.84, 1.57, 0.816] catalog=[2.84, 1.57, 0.8] err=0.016 tris=3532/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN cue_rack        size=[0.6, 0.119, 1.4] catalog=[0.6, 0.12, 1.4] err=0.001 tris=660/5000 shift=[-0.0, -0.0005, -0.0] OK
+FURN media_console   size=[2.0, 0.5, 1.6] catalog=[2.0, 0.5, 1.6] err=0.000 tris=1116/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN arcade_cabinet  size=[0.75, 0.85, 1.8] catalog=[0.75, 0.85, 1.8] err=0.000 tris=1020/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN board_table     size=[1.2, 1.2, 0.766] catalog=[1.2, 1.2, 0.75] err=0.016 tris=1152/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN treadmill       size=[0.9, 2.0, 1.4] catalog=[0.9, 2.0, 1.4] err=0.000 tris=864/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN exercise_bike   size=[0.6, 1.2, 1.1902] catalog=[0.6, 1.2, 1.2] err=0.010 tris=1152/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN exercise_mat    size=[1.8, 0.6, 0.0205] catalog=[1.8, 0.6, 0.02] err=0.001 tris=176/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN dumbbell_rack   size=[1.2, 0.4985, 0.9062] catalog=[1.2, 0.5, 0.9] err=0.006 tris=2024/5000 shift=[-0.0, -0.0, 0.0061] OK
+FURN stair_u         size=[2.6, 4.4, 4.0] catalog=[2.6, 4.4, 4.0] err=0.000 tris=600/5000 shift=[-0.0, -0.0, -0.0] OK
+FURN lift            size=[1.9, 2.2, 3.0] catalog=[1.9, 2.2, 3.0] err=0.000 tris=154/5000 shift=[-0.0, -0.0, -0.0] OK
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "furniture.blend"
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: desk
+16:40:28 | INFO: Primitives created: 5
+16:40:28 | INFO: Finished glTF 2.0 export in 0.015308618545532227 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: desk_exec
+16:40:28 | INFO: Primitives created: 6
+16:40:28 | INFO: Finished glTF 2.0 export in 0.03191971778869629 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: chair
+16:40:28 | INFO: Primitives created: 3
+16:40:28 | INFO: Finished glTF 2.0 export in 0.008586883544921875 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: chair_guest
+16:40:28 | INFO: Primitives created: 3
+16:40:28 | INFO: Finished glTF 2.0 export in 0.0070035457611083984 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: stool
+16:40:28 | INFO: Primitives created: 2
+16:40:28 | INFO: Finished glTF 2.0 export in 0.006181955337524414 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: meeting_table
+16:40:28 | INFO: Primitives created: 4
+16:40:28 | INFO: Finished glTF 2.0 export in 0.008413314819335938 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: round_table
+16:40:28 | INFO: Primitives created: 2
+16:40:28 | INFO: Finished glTF 2.0 export in 0.005764484405517578 s
+
+16:40:28 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:28 | INFO: Starting glTF 2.0 export
+16:40:28 | INFO: Extracting primitive: high_table
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.007090568542480469 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: dining_table
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006933450698852539 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: coffee_table
+16:40:29 | INFO: Primitives created: 5
+16:40:29 | INFO: Finished glTF 2.0 export in 0.009952068328857422 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: work_table
+16:40:29 | INFO: Primitives created: 2
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006281614303588867 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: plan_table
+16:40:29 | INFO: Primitives created: 5
+16:40:29 | INFO: Finished glTF 2.0 export in 0.012271404266357422 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: drafting_table
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.00850367546081543 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: reception_desk
+16:40:29 | INFO: Primitives created: 7
+16:40:29 | INFO: Finished glTF 2.0 export in 0.012942075729370117 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: sofa
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.012004852294921875 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: armchair
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.013309240341186523 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: beanbag
+16:40:29 | INFO: Primitives created: 2
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006719350814819336 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: bench
+16:40:29 | INFO: Primitives created: 2
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006963491439819336 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: bookshelf
+16:40:29 | INFO: Primitives created: 8
+16:40:29 | INFO: Finished glTF 2.0 export in 0.01621079444885254 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: model_shelf
+16:40:29 | INFO: Primitives created: 6
+16:40:29 | INFO: Finished glTF 2.0 export in 0.01382756233215332 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: tool_cabinet
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.008765935897827148 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: storage_shelf
+16:40:29 | INFO: Primitives created: 5
+16:40:29 | INFO: Finished glTF 2.0 export in 0.016396284103393555 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: locker
+16:40:29 | INFO: Primitives created: 5
+16:40:29 | INFO: Finished glTF 2.0 export in 0.013079404830932617 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: whiteboard
+16:40:29 | INFO: Primitives created: 6
+16:40:29 | INFO: Finished glTF 2.0 export in 0.009459495544433594 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: wall_display
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.007947921752929688 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: gallery_panel
+16:40:29 | INFO: Primitives created: 7
+16:40:29 | INFO: Finished glTF 2.0 export in 0.00962972640991211 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: poster
+16:40:29 | INFO: Primitives created: 5
+16:40:29 | INFO: Finished glTF 2.0 export in 0.007287502288818359 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: directory_sign
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.007432699203491211 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: easel
+16:40:29 | INFO: Primitives created: 6
+16:40:29 | INFO: Finished glTF 2.0 export in 0.012386798858642578 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: plant_large
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.011965274810791016 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: plant_small
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.009889364242553711 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: planter_box
+16:40:29 | INFO: Primitives created: 6
+16:40:29 | INFO: Finished glTF 2.0 export in 0.012641668319702148 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: tree_planter
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.011690855026245117 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: pantry_counter
+16:40:29 | INFO: Primitives created: 7
+16:40:29 | INFO: Finished glTF 2.0 export in 0.013073921203613281 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: coffee_bar
+16:40:29 | INFO: Primitives created: 10
+16:40:29 | INFO: Finished glTF 2.0 export in 0.01915454864501953 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: fridge
+16:40:29 | INFO: Primitives created: 6
+16:40:29 | INFO: Finished glTF 2.0 export in 0.009708166122436523 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: sink
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.008238554000854492 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: wc
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006825685501098633 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: partition
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006309032440185547 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: shower_stall
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.008770465850830078 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: rack_42u
+16:40:29 | INFO: Primitives created: 7
+16:40:29 | INFO: Finished glTF 2.0 export in 0.017951011657714844 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: lab_bench
+16:40:29 | INFO: Primitives created: 8
+16:40:29 | INFO: Finished glTF 2.0 export in 0.014076948165893555 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: lab_rack_open
+16:40:29 | INFO: Primitives created: 7
+16:40:29 | INFO: Finished glTF 2.0 export in 0.015747785568237305 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: billiard_table
+16:40:29 | INFO: Primitives created: 10
+16:40:29 | INFO: Finished glTF 2.0 export in 0.021917343139648438 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: cue_rack
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.009419918060302734 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: media_console
+16:40:29 | INFO: Primitives created: 10
+16:40:29 | INFO: Finished glTF 2.0 export in 0.016204833984375 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: arcade_cabinet
+16:40:29 | INFO: Primitives created: 11
+16:40:29 | INFO: Finished glTF 2.0 export in 0.016066789627075195 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: board_table
+16:40:29 | INFO: Primitives created: 5
+16:40:29 | INFO: Finished glTF 2.0 export in 0.010425329208374023 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: treadmill
+16:40:29 | INFO: Primitives created: 8
+16:40:29 | INFO: Finished glTF 2.0 export in 0.011310815811157227 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: exercise_bike
+16:40:29 | INFO: Primitives created: 6
+16:40:29 | INFO: Finished glTF 2.0 export in 0.012754678726196289 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: exercise_mat
+16:40:29 | INFO: Primitives created: 2
+16:40:29 | INFO: Finished glTF 2.0 export in 0.005929470062255859 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: dumbbell_rack
+16:40:29 | INFO: Primitives created: 7
+16:40:29 | INFO: Finished glTF 2.0 export in 0.014101982116699219 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: stair_u
+16:40:29 | INFO: Primitives created: 3
+16:40:29 | INFO: Finished glTF 2.0 export in 0.007711648941040039 s
+
+16:40:29 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:29 | INFO: Starting glTF 2.0 export
+16:40:29 | INFO: Extracting primitive: lift
+16:40:29 | INFO: Primitives created: 4
+16:40:29 | INFO: Finished glTF 2.0 export in 0.006887197494506836 s
+
+FURNITURE_DONE types=54 out_of_spec=[]
+
+== Blender: characters
+Blender 4.0.2
+blender 4.0.2; building ['CH-CEO', 'CH-SUPERVISOR', 'CH-ARCHITECT', 'CH-ICTSPEC', 'CH-NETINSTALL', 'CH-VISUAL', 'CH-QA']
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-ceo.blend"
+16:40:30 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:30 | INFO: Starting glTF 2.0 export
+16:40:30 | INFO: Extracting primitive: body
+16:40:30 | INFO: Primitives created: 1
+16:40:30 | INFO: Extracting primitive: hair_short_tuft
+16:40:30 | INFO: Primitives created: 1
+16:40:30 | INFO: Extracting primitive: hair_spiky_soft
+16:40:30 | INFO: Primitives created: 1
+16:40:30 | INFO: Extracting primitive: hair_swept
+16:40:30 | INFO: Primitives created: 1
+16:40:30 | INFO: Extracting primitive: lod1
+16:40:30 | INFO: Primitives created: 1
+16:40:32 | INFO: Finished glTF 2.0 export in 2.174741506576538 s
+
+BUILD CH-CEO: tris={'body': 11100, 'hair_short_tuft': 3760, 'hair_swept': 3152, 'hair_spiky_soft': 3456, 'lod1': 4800} visible_lod0=14860 lod1=4800 (decimated from 14788) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.845, 'run_native_speed_mps': 2.416, 'walk_stance_travel_m': 0.49, 'run_stance_travel_m': 0.551} glb_bytes=1205812 blend=blender/out/ch-ceo.blend glb=app/public/assets/characters/ch-ceo.glb secs=2.6
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-supervisor.blend"
+16:40:33 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:33 | INFO: Starting glTF 2.0 export
+16:40:33 | INFO: Extracting primitive: body
+16:40:33 | INFO: Primitives created: 1
+16:40:33 | INFO: Extracting primitive: hair_swept
+16:40:33 | INFO: Primitives created: 1
+16:40:33 | INFO: Extracting primitive: lod1
+16:40:33 | INFO: Primitives created: 1
+16:40:35 | INFO: Finished glTF 2.0 export in 1.8236067295074463 s
+
+BUILD CH-SUPERVISOR: tris={'body': 11804, 'hair_swept': 3152, 'lod1': 4800} visible_lod0=14956 lod1=4800 (decimated from 14884) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.835, 'run_native_speed_mps': 2.388, 'walk_stance_travel_m': 0.485, 'run_stance_travel_m': 0.545} glb_bytes=989132 blend=blender/out/ch-supervisor.blend glb=app/public/assets/characters/ch-supervisor.glb secs=2.1
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-architect.blend"
+16:40:35 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:35 | INFO: Starting glTF 2.0 export
+16:40:35 | INFO: Extracting primitive: body
+16:40:35 | INFO: Primitives created: 1
+16:40:35 | INFO: Extracting primitive: hair_bun
+16:40:35 | INFO: Primitives created: 1
+16:40:35 | INFO: Extracting primitive: lod1
+16:40:35 | INFO: Primitives created: 1
+16:40:36 | INFO: Finished glTF 2.0 export in 1.6205508708953857 s
+
+BUILD CH-ARCHITECT: tris={'body': 10312, 'hair_bun': 3060, 'lod1': 4799} visible_lod0=13372 lod1=4799 (decimated from 13300) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.873, 'run_native_speed_mps': 2.499, 'walk_stance_travel_m': 0.507, 'run_stance_travel_m': 0.57} glb_bytes=936748 blend=blender/out/ch-architect.blend glb=app/public/assets/characters/ch-architect.glb secs=1.9
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-ictspec.blend"
+16:40:37 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:37 | INFO: Starting glTF 2.0 export
+16:40:37 | INFO: Extracting primitive: body
+16:40:37 | INFO: Primitives created: 1
+16:40:37 | INFO: Extracting primitive: hair_bob
+16:40:37 | INFO: Primitives created: 1
+16:40:37 | INFO: Extracting primitive: lod1
+16:40:37 | INFO: Primitives created: 1
+16:40:37 | INFO: Extracting primitive: prop_tablet
+16:40:37 | INFO: Primitives created: 1
+16:40:38 | INFO: Finished glTF 2.0 export in 1.674170970916748 s
+
+BUILD CH-ICTSPEC: tris={'body': 10344, 'hair_bob': 3536, 'prop_tablet': 484, 'lod1': 4800} visible_lod0=14364 lod1=4800 (decimated from 14292) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.795, 'run_native_speed_mps': 2.274, 'walk_stance_travel_m': 0.461, 'run_stance_travel_m': 0.519} glb_bytes=970436 blend=blender/out/ch-ictspec.blend glb=app/public/assets/characters/ch-ictspec.glb secs=2.0
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-netinstall.blend"
+16:40:39 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:39 | INFO: Starting glTF 2.0 export
+16:40:39 | INFO: Extracting primitive: body
+16:40:39 | INFO: Primitives created: 1
+16:40:39 | INFO: Extracting primitive: hair_cap
+16:40:39 | INFO: Primitives created: 1
+16:40:39 | INFO: Extracting primitive: lod1
+16:40:39 | INFO: Primitives created: 1
+16:40:40 | INFO: Finished glTF 2.0 export in 1.768744707107544 s
+
+BUILD CH-NETINSTALL: tris={'body': 11852, 'hair_cap': 1956, 'lod1': 4799} visible_lod0=13808 lod1=4799 (decimated from 13736) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.818, 'run_native_speed_mps': 2.338, 'walk_stance_travel_m': 0.475, 'run_stance_travel_m': 0.533} glb_bytes=956716 blend=blender/out/ch-netinstall.blend glb=app/public/assets/characters/ch-netinstall.glb secs=2.1
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-visual.blend"
+16:40:41 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:41 | INFO: Starting glTF 2.0 export
+16:40:41 | INFO: Extracting primitive: body
+16:40:41 | INFO: Primitives created: 1
+16:40:41 | INFO: Extracting primitive: hair_spiky_soft
+16:40:41 | INFO: Primitives created: 1
+16:40:41 | INFO: Extracting primitive: lod1
+16:40:41 | INFO: Primitives created: 1
+16:40:41 | INFO: Extracting primitive: prop_sketchbook
+16:40:41 | INFO: Primitives created: 1
+16:40:42 | INFO: Finished glTF 2.0 export in 1.6694841384887695 s
+
+BUILD CH-VISUAL: tris={'body': 10716, 'hair_spiky_soft': 3456, 'prop_sketchbook': 412, 'lod1': 4800} visible_lod0=14584 lod1=4800 (decimated from 14512) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.811, 'run_native_speed_mps': 2.32, 'walk_stance_travel_m': 0.47, 'run_stance_travel_m': 0.529} glb_bytes=980816 blend=blender/out/ch-visual.blend glb=app/public/assets/characters/ch-visual.glb secs=2.0
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "ch-qa.blend"
+16:40:43 | ERROR: Draco mesh compression is not available because library could not be found at /usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+16:40:43 | INFO: Starting glTF 2.0 export
+16:40:43 | INFO: Extracting primitive: body
+16:40:43 | INFO: Primitives created: 1
+16:40:43 | INFO: Extracting primitive: hair_side_part
+16:40:43 | INFO: Primitives created: 1
+16:40:43 | INFO: Extracting primitive: lod1
+16:40:43 | INFO: Primitives created: 1
+16:40:43 | INFO: Extracting primitive: prop_clipboard
+16:40:43 | INFO: Primitives created: 1
+16:40:44 | INFO: Finished glTF 2.0 export in 1.7083158493041992 s
+
+BUILD CH-QA: tris={'body': 11024, 'hair_side_part': 3356, 'prop_clipboard': 604, 'lod1': 4799} visible_lod0=14984 lod1=4799 (decimated from 14912) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.826, 'run_native_speed_mps': 2.361, 'walk_stance_travel_m': 0.479, 'run_stance_travel_m': 0.538} glb_bytes=994288 blend=blender/out/ch-qa.blend glb=app/public/assets/characters/ch-qa.glb secs=2.0
+VARIANTS CH-CEO hair=['short_tuft', 'swept', 'spiky_soft'] palettes=['forest', 'terracotta', 'oat'] (embedded in ch-ceo.glb)
+BUILD_DONE failures=0
+
+== Blender: validate
+Blender 4.0.2
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-ceo.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.13s
+VALIDATE CH-CEO: PASS checks=170 failed=0 materials=1 primitives_lod0=2 tris_lod0=14860 tris_lod1=4800 tris_all_lod0_nodes=21468 height=1.6412 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=1205812
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-supervisor.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+VALIDATE CH-SUPERVISOR: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=14956 tris_lod1=4800 tris_all_lod0_nodes=14956 height=1.5844 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=989132
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-architect.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+VALIDATE CH-ARCHITECT: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=13372 tris_lod1=4799 tris_all_lod0_nodes=13372 height=1.6305 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=936748
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-ictspec.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.14s
+VALIDATE CH-ICTSPEC: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14364 tris_lod1=4800 tris_all_lod0_nodes=14364 height=1.4939 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=970436
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-netinstall.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+VALIDATE CH-NETINSTALL: PASS checks=163 failed=0 materials=1 primitives_lod0=2 tris_lod0=13808 tris_lod1=4799 tris_all_lod0_nodes=13808 height=1.562 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=956716
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-visual.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.14s
+VALIDATE CH-VISUAL: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14584 tris_lod1=4800 tris_all_lod0_nodes=14584 height=1.5612 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=980816
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/ch-qa.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.12s
+VALIDATE CH-QA: PASS checks=164 failed=0 materials=1 primitives_lod0=3 tris_lod0=14984 tris_lod1=4799 tris_all_lod0_nodes=14984 height=1.5543 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=994288
+VALIDATE_DONE passed=True characters=7 checks=1151 failed=0 seconds=18.1
+
+== Blender: validate building + furniture
+Blender 4.0.2
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/building.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.23s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.11s
+building validation: PASS checks=1529 failed=0 world=P03 blender=4.0.2
+L1: objects=189 walls=50 openings=26 windows=20 leaves=23 triangles_blend=4446 triangles_glb=4446 glb_bytes=370932
+L2: objects=158 walls=42 openings=20 windows=19 leaves=15 triangles_blend=3746 triangles_glb=3746 glb_bytes=308492
+BUILDING_VALIDATE_DONE passed=True
+Blender 4.0.2
+Read blend: "/tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/blender/out/furniture.blend"
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.02s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+furniture validation: PASS types=54 checks=654 failed_types=0 blend_types=54 sheet_ok=True blender=4.0.2
+FURNITURE_VALIDATE_DONE passed=True
+
+== Python tests
+........................................................................ [ 22%]
+........................................................................ [ 45%]
+........................................................................ [ 68%]
+........................................................................ [ 91%]
+............................                                             [100%]
+316 passed in 137.73s (0:02:17)
+
+== Safety + licences + contrast
+scanned_text_files=309 findings=0
+npm runtime=2 dev=74 python=9 runtimeProblems=0 devNotAllowListed=0
+  runtime @fontsource/alegreya-sans@5.3.0 OFL-1.1
+  runtime three@0.186.1 MIT
+  python ezdxf==1.4.4 MIT License
+  python fonttools==4.66.1 MIT
+  python jsonschema==4.26.0 MIT
+  python matplotlib==3.11.2 License agreement for matplotlib versions 1.3.0 and later
+  python numpy==2.4.6 BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0
+  python pillow==12.3.0 MIT-CMU
+  python pypdf==6.19.0 BSD-3-Clause
+  python pytest==8.4.2 MIT
+  python reportlab==5.0.1 BSD license (see license.txt for details), Copyright (c) 200
+PASS light teks utama di latar              12.70 >= 4.5
+PASS light teks utama di panel              14.34 >= 4.5
+PASS light teks di tag/hover                11.74 >= 4.5
+PASS light teks sekunder di panel            7.01 >= 4.5
+PASS light teks sekunder di latar            6.21 >= 4.5
+PASS light teks tombol utama / chip lantai   9.26 >= 4.5
+PASS light judul hijau di panel              9.26 >= 4.5
+PASS light badge SIMULASI / tag terkunci     5.66 >= 4.5
+PASS light tautan dokumen                    6.31 >= 4.5
+PASS light batas kontrol                     4.99 >= 3.0
+PASS light batas kontrol di latar            4.42 >= 3.0
+PASS light cincin fokus di latar             4.04 >= 3.0
+PASS light cincin fokus di panel             4.57 >= 3.0
+PASS light garis prompt interaksi            5.66 >= 3.0
+PASS dark  teks utama di latar              14.33 >= 4.5
+PASS dark  teks utama di panel              12.42 >= 4.5
+PASS dark  teks di tag/hover                10.49 >= 4.5
+PASS dark  teks sekunder di panel            7.62 >= 4.5
+PASS dark  teks sekunder di latar            8.79 >= 4.5
+PASS dark  teks tombol utama / chip lantai   9.69 >= 4.5
+PASS dark  judul hijau di panel              8.60 >= 4.5
+PASS dark  badge SIMULASI / tag terkunci     7.17 >= 4.5
+PASS dark  tautan dokumen                    7.15 >= 4.5
+PASS dark  batas kontrol                     5.38 >= 3.0
+PASS dark  batas kontrol di latar            6.21 >= 3.0
+PASS dark  cincin fokus di latar             9.41 >= 3.0
+PASS dark  cincin fokus di panel             8.16 >= 3.0
+PASS dark  garis prompt interaksi            5.83 >= 3.0
+PASS both  label ruang                      14.34 >= 4.5
+PASS both  label ruang terkunci              7.41 >= 4.5
+PASS both  label NPC (latar hijau 92% opak)  9.26 >= 4.5
+
+== App (install, unit, build)
+
+added 52 packages, and audited 53 packages in 5s
+
+14 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+ RUN  v5.0.3 /tmp/claude-0/-home-user-kantor-rpg/6dd16dbe-5cbd-5113-af1a-ba0bc93756ad/scratchpad/clean/app
+
+
+ Test Files  7 passed (7)
+      Tests  53 passed (53)
+   Start at  16:43:33
+   Duration  10.90s (tests 91%, transform 7%, import 2%)
+
+
+> kantor-rpg-app@0.1.0 prebuild
+> node scripts/sync-public.mjs
+
+synced 8 docs
+
+> kantor-rpg-app@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 39 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/alegreya-sans-greek-400-normal-8U5NAP_q.woff            6.82 kB
+dist/assets/alegreya-sans-greek-700-normal-BZuMtSJ5.woff            6.86 kB
+dist/assets/alegreya-sans-greek-500-normal-BwxJMQU_.woff            6.87 kB
+dist/assets/alegreya-sans-greek-ext-400-normal-D6j-TQLM.woff        7.22 kB
+dist/assets/alegreya-sans-greek-ext-500-normal-Cp0bGOKK.woff        7.28 kB
+dist/index.html                                                     7.32 kB │ gzip:   2.17 kB
+dist/assets/alegreya-sans-greek-ext-700-normal-BVJ8GoGc.woff        7.34 kB
+dist/assets/alegreya-sans-vietnamese-400-normal-BFvpiE3j.woff       7.64 kB
+dist/assets/alegreya-sans-vietnamese-500-normal-B1LHNMw0.woff       7.64 kB
+dist/assets/alegreya-sans-vietnamese-700-normal-D0056cUE.woff       7.67 kB
+dist/assets/alegreya-sans-greek-ext-500-normal-8OvC5Vmr.woff2       8.43 kB
+dist/assets/alegreya-sans-greek-ext-400-normal-CaUEPd_u.woff2       8.44 kB
+dist/assets/alegreya-sans-greek-ext-700-normal-ChNZoGr1.woff2       8.64 kB
+dist/assets/alegreya-sans-greek-500-normal-CjlmbScm.woff2           8.78 kB
+dist/assets/alegreya-sans-greek-400-normal-B87Md6o9.woff2           8.82 kB
+dist/assets/alegreya-sans-greek-700-normal-CTof9pYC.woff2           8.93 kB
+dist/assets/alegreya-sans-cyrillic-ext-400-normal-ClLgPhqT.woff     8.98 kB
+dist/assets/alegreya-sans-cyrillic-ext-500-normal-CBZLRaMr.woff     9.05 kB
+dist/assets/alegreya-sans-cyrillic-ext-700-normal-YOec_wOb.woff     9.05 kB
+dist/assets/alegreya-sans-vietnamese-500-normal-CFLbXWhL.woff2      9.09 kB
+dist/assets/alegreya-sans-vietnamese-400-normal-D7fwYHgb.woff2      9.10 kB
+dist/assets/alegreya-sans-vietnamese-700-normal-CHYTK2w7.woff2      9.36 kB
+dist/assets/alegreya-sans-cyrillic-500-normal-gEBUHwKD.woff        10.32 kB
+dist/assets/alegreya-sans-cyrillic-700-normal-qSextXl4.woff        10.36 kB
+dist/assets/alegreya-sans-cyrillic-400-normal-C2XSGevv.woff        10.36 kB
+dist/assets/alegreya-sans-cyrillic-ext-400-normal-CBouUAPx.woff2   11.04 kB
+dist/assets/alegreya-sans-cyrillic-ext-700-normal-Cpzx2u2L.woff2   11.14 kB
+dist/assets/alegreya-sans-cyrillic-ext-500-normal-BjdEjhHc.woff2   11.17 kB
+dist/assets/alegreya-sans-cyrillic-500-normal-kQHBM3cE.woff2       12.19 kB
+dist/assets/alegreya-sans-cyrillic-400-normal-CFUoBDld.woff2       12.28 kB
+dist/assets/alegreya-sans-cyrillic-700-normal-BMO00Gdb.woff2       12.34 kB
+dist/assets/alegreya-sans-latin-ext-400-normal-DpBVrRWA.woff       19.99 kB
+dist/assets/alegreya-sans-latin-ext-700-normal-CkNjzB9Y.woff       20.07 kB
+dist/assets/alegreya-sans-latin-ext-500-normal-CxFoZ42m.woff       20.17 kB
+dist/assets/alegreya-sans-latin-ext-400-normal-D7N6b6bd.woff2      21.27 kB
+dist/assets/alegreya-sans-latin-ext-500-normal-TH5u60nj.woff2      21.50 kB
+dist/assets/alegreya-sans-latin-400-normal-DmA8jeke.woff           21.54 kB
+dist/assets/alegreya-sans-latin-700-normal-BnzUNlma.woff           21.60 kB
+dist/assets/alegreya-sans-latin-500-normal-vXxrTKJT.woff           21.71 kB
+dist/assets/alegreya-sans-latin-ext-700-normal-HuHd3-Mg.woff2      21.86 kB
+dist/assets/alegreya-sans-latin-400-normal-DtLlO8BS.woff2          23.70 kB
+dist/assets/alegreya-sans-latin-500-normal-DS713u5J.woff2          23.92 kB
+dist/assets/alegreya-sans-latin-700-normal-DEbcy2sF.woff2          23.97 kB
+dist/assets/index-BVZQIpDb.css                                     17.99 kB │ gzip:   4.03 kB
+dist/assets/index-7fssWig1.js                                     904.82 kB │ gzip: 231.25 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 900 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 933ms
+
+== App E2E (Chromium)
+
+Running 123 tests using 1 worker
+
+  ✓    1 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light world (4.4s)
+  ✓    2 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (4.9s)
+  ✓    3 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (5.0s)
+  ✓    4 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (5.0s)
+  ✓    5 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (4.3s)
+  ✓    6 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (4.7s)
+  ✓    7 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (4.5s)
+  ✓    8 [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (4.4s)
+  ✓    9 [desktop] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.6s)
+  ✓   10 [desktop] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (5.5s)
+  ✓   11 [desktop] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (5.7s)
+  ✓   12 [desktop] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (27.2s)
+  ✓   13 [desktop] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (19.0s)
+  ✓   14 [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (8.2s)
+  ✓   15 [desktop] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (16.2s)
+  ✓   16 [desktop] › tests/e2e/npc.spec.ts:65:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (15.6s)
+  ✓   17 [desktop] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (4.1s)
+  ✓   18 [desktop] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (3.3s)
+  ✓   19 [desktop] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (3.4s)
+  ✓   20 [desktop] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (3.2s)
+  ✓   21 [desktop] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (11.6s)
+  ✓   22 [desktop] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (5.0s)
+  ✓   23 [desktop] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (12.7s)
+  ✓   24 [desktop] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (6.1s)
+  ✓   25 [desktop] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (8.7s)
+  ✓   26 [desktop] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (6.5s)
+  ✓   27 [desktop] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (13.8s)
+  ✓   28 [desktop] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (4.5s)
+  ✓   29 [desktop] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.9s)
+  ✓   30 [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.9s)
+  ✓   31 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (6.9s)
+  ✓   32 [desktop] › tests/e2e/world.spec.ts:44:3 › world vertical slice › stair interaction changes floor only at the marked point (34.7s)
+  ✓   33 [desktop] › tests/e2e/world.spec.ts:66:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (25.6s)
+  ✓   34 [desktop] › tests/e2e/world.spec.ts:80:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (3.6s)
+  ✓   35 [desktop] › tests/e2e/world.spec.ts:101:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (7.2s)
+  ✓   36 [desktop] › tests/e2e/world.spec.ts:114:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (5.2s)
+  -   37 [desktop] › tests/e2e/world.spec.ts:130:3 › world vertical slice › touch joystick walks the CEO
+  ✓   38 [desktop] › tests/e2e/world.spec.ts:149:3 › world vertical slice › dark theme renders with computed token colours (4.2s)
+  ✓   39 [desktop] › tests/e2e/world.spec.ts:158:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (12.1s)
+  ✓   40 [desktop] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) (5.3s)
+  ✓   41 [desktop] › tests/e2e/world.spec.ts:185:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.6s)
+  ✓   42 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light world (4.1s)
+  ✓   43 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (4.7s)
+  ✓   44 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (3.9s)
+  ✓   45 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (3.7s)
+  ✓   46 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (4.1s)
+  ✓   47 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (4.6s)
+  ✓   48 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (4.3s)
+  ✓   49 [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (3.7s)
+  ✓   50 [tablet] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.3s)
+  ✓   51 [tablet] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (4.3s)
+  ✓   52 [tablet] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (5.1s)
+  ✓   53 [tablet] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (26.9s)
+  ✓   54 [tablet] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (15.2s)
+  ✓   55 [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (8.1s)
+  ✓   56 [tablet] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (14.5s)
+  ✓   57 [tablet] › tests/e2e/npc.spec.ts:65:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (12.8s)
+  ✓   58 [tablet] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (3.3s)
+  ✓   59 [tablet] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (3.1s)
+  ✓   60 [tablet] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (3.0s)
+  ✓   61 [tablet] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (3.2s)
+  ✓   62 [tablet] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (11.1s)
+  ✓   63 [tablet] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (4.5s)
+  ✓   64 [tablet] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (11.9s)
+  ✓   65 [tablet] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (5.7s)
+  ✓   66 [tablet] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (7.5s)
+  ✓   67 [tablet] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (6.9s)
+  ✓   68 [tablet] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (14.2s)
+  ✓   69 [tablet] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (3.9s)
+  ✓   70 [tablet] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.1s)
+  ✓   71 [tablet] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.8s)
+  -   72 [tablet] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+  ✓   73 [tablet] › tests/e2e/world.spec.ts:44:3 › world vertical slice › stair interaction changes floor only at the marked point (29.1s)
+  ✓   74 [tablet] › tests/e2e/world.spec.ts:66:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (20.7s)
+  ✓   75 [tablet] › tests/e2e/world.spec.ts:80:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (3.3s)
+  ✓   76 [tablet] › tests/e2e/world.spec.ts:101:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (7.7s)
+  ✓   77 [tablet] › tests/e2e/world.spec.ts:114:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (4.8s)
+  ✓   78 [tablet] › tests/e2e/world.spec.ts:130:3 › world vertical slice › touch joystick walks the CEO (7.1s)
+  ✓   79 [tablet] › tests/e2e/world.spec.ts:149:3 › world vertical slice › dark theme renders with computed token colours (5.1s)
+  ✓   80 [tablet] › tests/e2e/world.spec.ts:158:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (10.2s)
+  ✓   81 [tablet] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) (4.2s)
+  ✓   82 [tablet] › tests/e2e/world.spec.ts:185:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.6s)
+  ✓   83 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light world (3.0s)
+  ✓   84 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light directory (3.5s)
+  ✓   85 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog (3.1s)
+  ✓   86 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog (3.3s)
+  ✓   87 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark world (2.8s)
+  ✓   88 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory (3.3s)
+  ✓   89 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog (3.2s)
+  ✓   90 [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog (3.1s)
+  ✓   91 [mobile] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL) (1.2s)
+  ✓   92 [mobile] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it (3.5s)
+  ✓   93 [mobile] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it (4.2s)
+  ✓   94 [mobile] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (26.5s)
+  ✓   95 [mobile] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (12.0s)
+  ✓   96 [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (6.0s)
+  ✓   97 [mobile] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (11.1s)
+  ✓   98 [mobile] › tests/e2e/npc.spec.ts:65:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (10.8s)
+  ✓   99 [mobile] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails (2.4s)
+  ✓  100 [mobile] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated (2.0s)
+  ✓  101 [mobile] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives (2.4s)
+  ✓  102 [mobile] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly (1.8s)
+  ✓  103 [mobile] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (7.4s)
+  ✓  104 [mobile] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (3.3s)
+  ✓  105 [mobile] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (9.2s)
+  ✓  106 [mobile] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (3.5s)
+  ✓  107 [mobile] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (6.4s)
+  ✓  108 [mobile] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (4.8s)
+  ✓  109 [mobile] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (10.0s)
+  ✓  110 [mobile] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (3.1s)
+  ✓  111 [mobile] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (404ms)
+  ✓  112 [mobile] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (3.8s)
+  -  113 [mobile] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+  ✓  114 [mobile] › tests/e2e/world.spec.ts:44:3 › world vertical slice › stair interaction changes floor only at the marked point (22.1s)
+  ✓  115 [mobile] › tests/e2e/world.spec.ts:66:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (13.9s)
+  ✓  116 [mobile] › tests/e2e/world.spec.ts:80:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.6s)
+  ✓  117 [mobile] › tests/e2e/world.spec.ts:101:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (4.9s)
+  ✓  118 [mobile] › tests/e2e/world.spec.ts:114:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (3.0s)
+  ✓  119 [mobile] › tests/e2e/world.spec.ts:130:3 › world vertical slice › touch joystick walks the CEO (5.1s)
+  ✓  120 [mobile] › tests/e2e/world.spec.ts:149:3 › world vertical slice › dark theme renders with computed token colours (3.6s)
+  ✓  121 [mobile] › tests/e2e/world.spec.ts:158:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (7.4s)
+  ✓  122 [mobile] › tests/e2e/world.spec.ts:168:3 › world vertical slice › only same-origin requests are made (no external endpoints) (3.4s)
+  ✓  123 [mobile] › tests/e2e/world.spec.ts:185:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (969ms)
+
+  3 skipped
+  120 passed (14.5m)
+
+rebuild complete
+
+real	18m59.569s
+user	5m59.357s
+sys	0m30.559s
+exit=0
+
+== Files differing from the committed tree after the rebuild (git status --porcelain)
+ M PRD/PRD-v0.2.pdf
+ M app/public/assets/characters/ch-supervisor.glb
+ M app/public/assets/characters/ch-visual.glb
+ M blender/out/building.blend
+ M blender/out/ch-architect.blend
+ M blender/out/ch-ceo.blend
+ M blender/out/ch-ictspec.blend
+ M blender/out/ch-netinstall.blend
+ M blender/out/ch-qa.blend
+ M blender/out/ch-supervisor.blend
+ M blender/out/ch-visual.blend
+ M blender/out/furniture.blend
+ M cad/out/A-001.dxf
+ M cad/out/A-101.dxf
+ M cad/out/A-102.dxf
+ M cad/out/A-103.dxf
+ M cad/out/A-201.dxf
+ M cad/out/A-202.dxf
+ M cad/out/A-301.dxf
+ M cad/out/A-401.dxf
+ M cad/out/I-101.dxf
+ M cad/out/ICT-001.dxf
+ M cad/out/ICT-101.dxf
+ M cad/out/ICT-102.dxf
+ M cad/out/ICT-201.dxf
+ M cad/out/ICT-301.dxf
+ M cad/out/ICT-401.dxf
+ M design/asset-registry.json
+ M design/derived/validate-world.json
+ M docs/evidence/HARDENING/blender-building-validate.json
+ M docs/evidence/HARDENING/blender-characters-validate.json
+ M docs/evidence/HARDENING/blender-characters-validate.txt
+ M docs/evidence/M3/furniture-validate.json
+ M docs/requirements-matrix.md
+ M drawings/pdf/A-001.pdf
+ M drawings/pdf/A-101.pdf
+ M drawings/pdf/A-102.pdf
+ M drawings/pdf/A-103.pdf
+ M drawings/pdf/A-201.pdf
+ M drawings/pdf/A-202.pdf
+ M drawings/pdf/A-301.pdf
+ M drawings/pdf/A-401.pdf
+ M drawings/pdf/I-101.pdf
+ M drawings/pdf/ICT-001.pdf
+ M drawings/pdf/ICT-101.pdf
+ M drawings/pdf/ICT-102.pdf
+ M drawings/pdf/ICT-201.pdf
+ M drawings/pdf/ICT-301.pdf
+ M drawings/pdf/ICT-401.pdf
+ M drawings/pdf/kantor-rpg-poster.pdf
+ M drawings/pdf/kantor-rpg-sheets-A.pdf
+ M drawings/pdf/kantor-rpg-sheets-I.pdf
+ M drawings/pdf/kantor-rpg-sheets-ICT.pdf
+ M drawings/pdf/kantor-rpg-sheets-all.pdf
+ M drawings/previews/A-001-dxf.png
+ M drawings/previews/A-001.png
+ M drawings/previews/A-101.png
+ M drawings/previews/A-102.png
+ M drawings/previews/A-103-dxf.png
+ M drawings/previews/A-103-p2.png
+ M drawings/previews/A-103.png
+ M drawings/previews/A-201.png
+ M drawings/previews/A-202.png
+ M drawings/previews/A-301.png
+ M drawings/previews/A-401.png
+ M drawings/previews/I-101.png
+ M drawings/previews/ICT-001-dxf.png
+ M drawings/previews/ICT-001.png
+ M drawings/previews/ICT-101.png
+ M drawings/previews/ICT-102.png
+ M drawings/previews/ICT-201.png
+ M drawings/previews/ICT-301.png
+ M drawings/previews/ICT-401-dxf.png
+ M drawings/previews/ICT-401-p2.png
+ M drawings/previews/ICT-401-p3.png
+ M drawings/previews/ICT-401.png
+ M drawings/previews/kantor-rpg-poster.png
+ M drawings/register.json
+?? docs/evidence/REBUILD/

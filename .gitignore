@@ -10,3 +10,10 @@ playwright-report/
 test-results/
 private/
 *.log
+__pycache__/
+*.pyc
+.pytest_cache/
+*.blend1
+blender/out/_render_tmp/
+/build/
+/blender/out/raw-glb/

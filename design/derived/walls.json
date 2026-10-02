@@ -1,0 +1,1940 @@
+{
+ "worldRevision": "P03",
+ "note": "derived by tools/kantor/geometry.py::derive_walls; do not edit",
+ "floors": {
+  "L1": {
+   "walls": [
+    {
+     "axis": "x",
+     "at": 0,
+     "from": 0,
+     "to": 13.0,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "x",
+     "at": 0,
+     "from": 15.0,
+     "to": 32,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "x",
+     "at": 1,
+     "from": 29.5,
+     "to": 30.45,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 1,
+     "from": 31.05,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 0,
+     "to": 3.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 4.5,
+     "to": 15.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 18.5,
+     "to": 22.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 23.5,
+     "to": 27.25,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 28.25,
+     "to": 30.25,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 31.25,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 0,
+     "to": 2.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 3.5,
+     "to": 9.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 10.5,
+     "to": 17.2,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 19.6,
+     "to": 22.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 23.5,
+     "to": 28.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 29.5,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 16.5,
+     "from": 0,
+     "to": 16.85,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 16.5,
+     "from": 17.85,
+     "to": 27.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 16.5,
+     "from": 28.5,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 0,
+     "to": 3.0,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 4.0,
+     "to": 10.0,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 11.0,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 17.5,
+     "to": 22.0,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 23.0,
+     "to": 29.1,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 29.9,
+     "to": 30.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 31.5,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 20,
+     "from": 29,
+     "to": 30,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 24,
+     "from": 0,
+     "to": 32,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 0,
+     "from": 0,
+     "to": 8.65,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 0,
+     "from": 9.85,
+     "to": 16.9,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 0,
+     "from": 18.1,
+     "to": 24,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 6,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 7,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 8,
+     "from": 0,
+     "to": 3.1,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 8,
+     "from": 4.9,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 14,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 14,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 0,
+     "to": 2.8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 5.2,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 25,
+     "from": 18.5,
+     "to": 19.75,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 25,
+     "from": 20.75,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 26,
+     "from": 0,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 26,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 29,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 29.5,
+     "from": 0,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 30,
+     "from": 18.5,
+     "to": 20,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 32,
+     "from": 0,
+     "to": 8.65,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 32,
+     "from": 9.85,
+     "to": 24,
+     "thickness": 0.3,
+     "exterior": true
+    }
+   ],
+   "openings": [
+    {
+     "door": "D-L1-ENT",
+     "axis": "x",
+     "at": 0,
+     "from": 13.0,
+     "to": 15.0,
+     "type": "double",
+     "access": "public",
+     "exit": true
+    },
+    {
+     "door": "D-L1-01",
+     "axis": "x",
+     "at": 8,
+     "from": 15.5,
+     "to": 18.5,
+     "type": "opening",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-02",
+     "axis": "y",
+     "at": 8,
+     "from": 3.1,
+     "to": 4.9,
+     "type": "double",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-03",
+     "axis": "x",
+     "at": 8,
+     "from": 3.5,
+     "to": 4.5,
+     "type": "single",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-04",
+     "axis": "y",
+     "at": 20,
+     "from": 2.8,
+     "to": 5.2,
+     "type": "opening",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-05",
+     "axis": "x",
+     "at": 8,
+     "from": 22.5,
+     "to": 23.5,
+     "type": "single",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-06",
+     "axis": "x",
+     "at": 8,
+     "from": 27.25,
+     "to": 28.25,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-07",
+     "axis": "x",
+     "at": 8,
+     "from": 30.25,
+     "to": 31.25,
+     "type": "single",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-08",
+     "axis": "x",
+     "at": 1,
+     "from": 30.45,
+     "to": 31.05,
+     "type": "hatch",
+     "access": "restricted",
+     "exit": false
+    },
+    {
+     "door": "D-L1-EXW",
+     "axis": "y",
+     "at": 0,
+     "from": 8.65,
+     "to": 9.85,
+     "type": "single",
+     "access": "public",
+     "exit": true
+    },
+    {
+     "door": "D-L1-EXE",
+     "axis": "y",
+     "at": 32,
+     "from": 8.65,
+     "to": 9.85,
+     "type": "single",
+     "access": "public",
+     "exit": true
+    },
+    {
+     "door": "D-L1-09",
+     "axis": "x",
+     "at": 10.5,
+     "from": 2.5,
+     "to": 3.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-10",
+     "axis": "x",
+     "at": 10.5,
+     "from": 9.5,
+     "to": 10.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-11",
+     "axis": "x",
+     "at": 10.5,
+     "from": 17.2,
+     "to": 19.599999999999998,
+     "type": "opening",
+     "access": "public",
+     "exit": false
+    },
+    {
+     "door": "D-L1-12",
+     "axis": "x",
+     "at": 10.5,
+     "from": 22.5,
+     "to": 23.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-13",
+     "axis": "x",
+     "at": 10.5,
+     "from": 28.5,
+     "to": 29.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-14",
+     "axis": "x",
+     "at": 16.5,
+     "from": 16.85,
+     "to": 17.85,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-22",
+     "axis": "x",
+     "at": 16.5,
+     "from": 27.5,
+     "to": 28.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-EXN",
+     "axis": "y",
+     "at": 0,
+     "from": 16.9,
+     "to": 18.1,
+     "type": "single",
+     "access": "staff",
+     "exit": true
+    },
+    {
+     "door": "D-L1-15",
+     "axis": "x",
+     "at": 18.5,
+     "from": 3.0,
+     "to": 4.0,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-16",
+     "axis": "x",
+     "at": 18.5,
+     "from": 10.0,
+     "to": 11.0,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-17",
+     "axis": "x",
+     "at": 18.5,
+     "from": 16.5,
+     "to": 17.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-18",
+     "axis": "x",
+     "at": 18.5,
+     "from": 22.0,
+     "to": 23.0,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L1-19",
+     "axis": "y",
+     "at": 25,
+     "from": 19.75,
+     "to": 20.75,
+     "type": "single",
+     "access": "restricted",
+     "exit": false
+    },
+    {
+     "door": "D-L1-20",
+     "axis": "x",
+     "at": 18.5,
+     "from": 29.1,
+     "to": 29.9,
+     "type": "hatch",
+     "access": "restricted",
+     "exit": false
+    },
+    {
+     "door": "D-L1-21",
+     "axis": "x",
+     "at": 18.5,
+     "from": 30.5,
+     "to": 31.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    }
+   ],
+   "leaves": [
+    {
+     "id": "LEAF-D-L1-ENT-1",
+     "door": "D-L1-ENT",
+     "into": "EXT",
+     "restricted": false,
+     "hinge": [
+      13.0,
+      -0.13
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      12.98,
+      -1.13,
+      13.02,
+      -0.13
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-ENT-2",
+     "door": "D-L1-ENT",
+     "into": "EXT",
+     "restricted": false,
+     "hinge": [
+      15.0,
+      -0.13
+     ],
+     "length": 1.0,
+     "closedDeg": 180.0,
+     "openDeg": -90.0,
+     "openRect": [
+      14.98,
+      -1.13,
+      15.02,
+      -0.13
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-02-1",
+     "door": "D-L1-02",
+     "into": "L1-MEET",
+     "restricted": false,
+     "hinge": [
+      7.945,
+      3.1
+     ],
+     "length": 0.9,
+     "closedDeg": 90.0,
+     "openDeg": 180.0,
+     "openRect": [
+      7.045,
+      3.08,
+      7.945,
+      3.12
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-02-2",
+     "door": "D-L1-02",
+     "into": "L1-MEET",
+     "restricted": false,
+     "hinge": [
+      7.945,
+      4.9
+     ],
+     "length": 0.9,
+     "closedDeg": -90.0,
+     "openDeg": 180.0,
+     "openRect": [
+      7.045,
+      4.88,
+      7.945,
+      4.92
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-03-1",
+     "door": "D-L1-03",
+     "into": "L1-MEET",
+     "restricted": false,
+     "hinge": [
+      3.5,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      3.48,
+      6.945,
+      3.52,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-05-1",
+     "door": "D-L1-05",
+     "into": "L1-GALLERY",
+     "restricted": false,
+     "hinge": [
+      22.5,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      22.48,
+      6.945,
+      22.52,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-06-1",
+     "door": "D-L1-06",
+     "into": "L1-PANTRY",
+     "restricted": false,
+     "hinge": [
+      27.25,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      27.23,
+      6.945,
+      27.27,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-07-1",
+     "door": "D-L1-07",
+     "into": "L1-WC",
+     "restricted": false,
+     "hinge": [
+      30.25,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      30.23,
+      6.945,
+      30.27,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-EXW-1",
+     "door": "D-L1-EXW",
+     "into": "EXT",
+     "restricted": false,
+     "hinge": [
+      -0.13,
+      8.65
+     ],
+     "length": 1.2,
+     "closedDeg": 90.0,
+     "openDeg": 180.0,
+     "openRect": [
+      -1.33,
+      8.63,
+      -0.13,
+      8.67
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-EXE-1",
+     "door": "D-L1-EXE",
+     "into": "EXT",
+     "restricted": false,
+     "hinge": [
+      32.13,
+      8.65
+     ],
+     "length": 1.2,
+     "closedDeg": 90.0,
+     "openDeg": 0.0,
+     "openRect": [
+      32.13,
+      8.63,
+      33.33,
+      8.67
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-09-1",
+     "door": "D-L1-09",
+     "into": "L1-DISC",
+     "restricted": false,
+     "hinge": [
+      2.5,
+      10.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      2.48,
+      10.555,
+      2.52,
+      11.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-10-1",
+     "door": "D-L1-10",
+     "into": "L1-IMPL",
+     "restricted": false,
+     "hinge": [
+      9.5,
+      10.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      9.48,
+      10.555,
+      9.52,
+      11.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-12-1",
+     "door": "D-L1-12",
+     "into": "L1-NOVA",
+     "restricted": false,
+     "hinge": [
+      22.5,
+      10.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      22.48,
+      10.555,
+      22.52,
+      11.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-13-1",
+     "door": "D-L1-13",
+     "into": "L1-LAB",
+     "restricted": false,
+     "hinge": [
+      28.5,
+      10.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      28.48,
+      10.555,
+      28.52,
+      11.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-14-1",
+     "door": "D-L1-14",
+     "into": "L1-NCORR",
+     "restricted": false,
+     "hinge": [
+      17.85,
+      16.555
+     ],
+     "length": 1.0,
+     "closedDeg": 180.0,
+     "openDeg": 90.0,
+     "openRect": [
+      17.83,
+      16.555,
+      17.87,
+      17.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-22-1",
+     "door": "D-L1-22",
+     "into": "L1-LAB",
+     "restricted": false,
+     "hinge": [
+      27.5,
+      16.445
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      27.48,
+      15.445,
+      27.52,
+      16.445
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-EXN-1",
+     "door": "D-L1-EXN",
+     "into": "EXT",
+     "restricted": false,
+     "hinge": [
+      -0.13,
+      16.9
+     ],
+     "length": 1.2,
+     "closedDeg": 90.0,
+     "openDeg": 180.0,
+     "openRect": [
+      -1.33,
+      16.88,
+      -0.13,
+      16.92
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-15-1",
+     "door": "D-L1-15",
+     "into": "L1-CEO",
+     "restricted": false,
+     "hinge": [
+      3.0,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      2.98,
+      18.555,
+      3.02,
+      19.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-16-1",
+     "door": "D-L1-16",
+     "into": "L1-HUGO",
+     "restricted": false,
+     "hinge": [
+      10.0,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      9.98,
+      18.555,
+      10.02,
+      19.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-17-1",
+     "door": "D-L1-17",
+     "into": "L1-KEVIN",
+     "restricted": false,
+     "hinge": [
+      16.5,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      16.48,
+      18.555,
+      16.52,
+      19.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-18-1",
+     "door": "D-L1-18",
+     "into": "L1-BRUNO",
+     "restricted": false,
+     "hinge": [
+      22.0,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      21.98,
+      18.555,
+      22.02,
+      19.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-19-1",
+     "door": "D-L1-19",
+     "into": "L1-SERVER",
+     "restricted": true,
+     "hinge": [
+      25.055,
+      19.75
+     ],
+     "length": 1.0,
+     "closedDeg": 90.0,
+     "openDeg": 0.0,
+     "openRect": [
+      25.055,
+      19.73,
+      26.055,
+      19.77
+     ]
+    },
+    {
+     "id": "LEAF-D-L1-21-1",
+     "door": "D-L1-21",
+     "into": "L1-STORE",
+     "restricted": false,
+     "hinge": [
+      30.5,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      30.48,
+      18.555,
+      30.52,
+      19.555
+     ]
+    }
+   ]
+  },
+  "L2": {
+   "walls": [
+    {
+     "axis": "x",
+     "at": 0,
+     "from": 0,
+     "to": 32,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "x",
+     "at": 1,
+     "from": 29.5,
+     "to": 30.45,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 1,
+     "from": 31.05,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 0,
+     "to": 3.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 4.5,
+     "to": 15.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 18.5,
+     "to": 22.4,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 23.6,
+     "to": 27.25,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 28.25,
+     "to": 30.25,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 8,
+     "from": 31.25,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 0,
+     "to": 2.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 3.5,
+     "to": 9.0,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 11.0,
+     "to": 17.2,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 19.6,
+     "to": 23.2,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 10.5,
+     "from": 24.8,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 16.5,
+     "from": 0,
+     "to": 16.85,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 16.5,
+     "from": 17.85,
+     "to": 25.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 16.5,
+     "from": 26.5,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 0,
+     "to": 2.7,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 4.3,
+     "to": 9.9,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 11.1,
+     "to": 17.7,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 19.3,
+     "to": 25.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 26.5,
+     "to": 29.1,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 29.9,
+     "to": 30.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 18.5,
+     "from": 31.5,
+     "to": 32,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 20,
+     "from": 29,
+     "to": 30,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "x",
+     "at": 24,
+     "from": 0,
+     "to": 32,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 0,
+     "from": 0,
+     "to": 24,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 6,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 7,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 8,
+     "from": 0,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 14,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 14,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 0,
+     "to": 3.0,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 5.0,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 20,
+     "from": 10.5,
+     "to": 16.5,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 23,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 26,
+     "from": 0,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 29,
+     "from": 18.5,
+     "to": 24,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 29.5,
+     "from": 0,
+     "to": 8,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 30,
+     "from": 18.5,
+     "to": 20,
+     "thickness": 0.15,
+     "exterior": false
+    },
+    {
+     "axis": "y",
+     "at": 32,
+     "from": 0,
+     "to": 8.65,
+     "thickness": 0.3,
+     "exterior": true
+    },
+    {
+     "axis": "y",
+     "at": 32,
+     "from": 9.85,
+     "to": 24,
+     "thickness": 0.3,
+     "exterior": true
+    }
+   ],
+   "openings": [
+    {
+     "door": "D-L2-01",
+     "axis": "x",
+     "at": 8,
+     "from": 15.5,
+     "to": 18.5,
+     "type": "opening",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-02",
+     "axis": "x",
+     "at": 8,
+     "from": 3.5,
+     "to": 4.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-03",
+     "axis": "x",
+     "at": 8,
+     "from": 22.4,
+     "to": 23.6,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-04",
+     "axis": "y",
+     "at": 20,
+     "from": 3.0,
+     "to": 5.0,
+     "type": "opening",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-05",
+     "axis": "x",
+     "at": 8,
+     "from": 27.25,
+     "to": 28.25,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-06",
+     "axis": "x",
+     "at": 8,
+     "from": 30.25,
+     "to": 31.25,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-07",
+     "axis": "x",
+     "at": 1,
+     "from": 30.45,
+     "to": 31.05,
+     "type": "hatch",
+     "access": "restricted",
+     "exit": false
+    },
+    {
+     "door": "D-L2-EXE",
+     "axis": "y",
+     "at": 32,
+     "from": 8.65,
+     "to": 9.85,
+     "type": "single",
+     "access": "staff",
+     "exit": true
+    },
+    {
+     "door": "D-L2-08",
+     "axis": "x",
+     "at": 10.5,
+     "from": 2.5,
+     "to": 3.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-09",
+     "axis": "x",
+     "at": 10.5,
+     "from": 9.0,
+     "to": 11.0,
+     "type": "opening",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-10",
+     "axis": "x",
+     "at": 10.5,
+     "from": 17.2,
+     "to": 19.599999999999998,
+     "type": "opening",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-11",
+     "axis": "x",
+     "at": 10.5,
+     "from": 23.2,
+     "to": 24.8,
+     "type": "double",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-12",
+     "axis": "x",
+     "at": 16.5,
+     "from": 16.85,
+     "to": 17.85,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-19",
+     "axis": "x",
+     "at": 16.5,
+     "from": 25.5,
+     "to": 26.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-13",
+     "axis": "x",
+     "at": 18.5,
+     "from": 2.7,
+     "to": 4.3,
+     "type": "sliding",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-14",
+     "axis": "x",
+     "at": 18.5,
+     "from": 9.9,
+     "to": 11.1,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-15",
+     "axis": "x",
+     "at": 18.5,
+     "from": 17.7,
+     "to": 19.3,
+     "type": "double",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-16",
+     "axis": "x",
+     "at": 18.5,
+     "from": 25.5,
+     "to": 26.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    },
+    {
+     "door": "D-L2-17",
+     "axis": "x",
+     "at": 18.5,
+     "from": 29.1,
+     "to": 29.9,
+     "type": "hatch",
+     "access": "restricted",
+     "exit": false
+    },
+    {
+     "door": "D-L2-18",
+     "axis": "x",
+     "at": 18.5,
+     "from": 30.5,
+     "to": 31.5,
+     "type": "single",
+     "access": "staff",
+     "exit": false
+    }
+   ],
+   "leaves": [
+    {
+     "id": "LEAF-D-L2-02-1",
+     "door": "D-L2-02",
+     "into": "L2-READ",
+     "restricted": false,
+     "hinge": [
+      3.5,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      3.48,
+      6.945,
+      3.52,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-03-1",
+     "door": "D-L2-03",
+     "into": "L2-DINE",
+     "restricted": false,
+     "hinge": [
+      22.4,
+      7.945
+     ],
+     "length": 1.2,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      22.38,
+      6.745,
+      22.42,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-05-1",
+     "door": "D-L2-05",
+     "into": "L2-SHOWER",
+     "restricted": false,
+     "hinge": [
+      27.25,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      27.23,
+      6.945,
+      27.27,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-06-1",
+     "door": "D-L2-06",
+     "into": "L2-WC",
+     "restricted": false,
+     "hinge": [
+      30.25,
+      7.945
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      30.23,
+      6.945,
+      30.27,
+      7.945
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-EXE-1",
+     "door": "D-L2-EXE",
+     "into": "EXT",
+     "restricted": false,
+     "hinge": [
+      32.13,
+      8.65
+     ],
+     "length": 1.2,
+     "closedDeg": 90.0,
+     "openDeg": 0.0,
+     "openRect": [
+      32.13,
+      8.63,
+      33.33,
+      8.67
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-08-1",
+     "door": "D-L2-08",
+     "into": "L2-CHAT",
+     "restricted": false,
+     "hinge": [
+      2.5,
+      10.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      2.48,
+      10.555,
+      2.52,
+      11.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-11-1",
+     "door": "D-L2-11",
+     "into": "L2-GAME",
+     "restricted": false,
+     "hinge": [
+      23.2,
+      10.555
+     ],
+     "length": 0.8,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      23.18,
+      10.555,
+      23.22,
+      11.355
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-11-2",
+     "door": "D-L2-11",
+     "into": "L2-GAME",
+     "restricted": false,
+     "hinge": [
+      24.8,
+      10.555
+     ],
+     "length": 0.8,
+     "closedDeg": 180.0,
+     "openDeg": 90.0,
+     "openRect": [
+      24.78,
+      10.555,
+      24.82,
+      11.355
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-12-1",
+     "door": "D-L2-12",
+     "into": "L2-NCORR",
+     "restricted": false,
+     "hinge": [
+      17.85,
+      16.555
+     ],
+     "length": 1.0,
+     "closedDeg": 180.0,
+     "openDeg": 90.0,
+     "openRect": [
+      17.83,
+      16.555,
+      17.87,
+      17.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-19-1",
+     "door": "D-L2-19",
+     "into": "L2-GAME",
+     "restricted": false,
+     "hinge": [
+      25.5,
+      16.445
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": -90.0,
+     "openRect": [
+      25.48,
+      15.445,
+      25.52,
+      16.445
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-14-1",
+     "door": "D-L2-14",
+     "into": "L2-BILLIARD",
+     "restricted": false,
+     "hinge": [
+      9.9,
+      18.555
+     ],
+     "length": 1.2,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      9.88,
+      18.555,
+      9.92,
+      19.755
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-15-1",
+     "door": "D-L2-15",
+     "into": "L2-GYM",
+     "restricted": false,
+     "hinge": [
+      17.7,
+      18.555
+     ],
+     "length": 0.8,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      17.68,
+      18.555,
+      17.72,
+      19.355
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-15-2",
+     "door": "D-L2-15",
+     "into": "L2-GYM",
+     "restricted": false,
+     "hinge": [
+      19.3,
+      18.555
+     ],
+     "length": 0.8,
+     "closedDeg": 180.0,
+     "openDeg": 90.0,
+     "openRect": [
+      19.28,
+      18.555,
+      19.32,
+      19.355
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-16-1",
+     "door": "D-L2-16",
+     "into": "L2-STORE",
+     "restricted": false,
+     "hinge": [
+      25.5,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      25.48,
+      18.555,
+      25.52,
+      19.555
+     ]
+    },
+    {
+     "id": "LEAF-D-L2-18-1",
+     "door": "D-L2-18",
+     "into": "L2-SERVICE",
+     "restricted": false,
+     "hinge": [
+      30.5,
+      18.555
+     ],
+     "length": 1.0,
+     "closedDeg": 0.0,
+     "openDeg": 90.0,
+     "openRect": [
+      30.48,
+      18.555,
+      30.52,
+      19.555
+     ]
+    }
+   ]
+  }
+ }
+}

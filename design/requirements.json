@@ -1,0 +1,685 @@
+{
+ "statusVocabulary": [
+  "target",
+  "asumsi",
+  "belum diuji",
+  "terverifikasi",
+  "tidak didukung"
+ ],
+ "note": "Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi pada commit tercatat. Evidence kosong = belum diuji.",
+ "requirements": [
+  {
+   "id": "REQ-WORLD-01",
+   "milestone": "M1",
+   "story": "Sebagai CEO, saya ingin menjelajahi dua lantai agar memahami kantor.",
+   "ac": "AC-WORLD-01: Given world valid, When CEO berjalan dan memakai transisi lantai, Then semua ruang wajib dapat dicapai tanpa menerobos collider.",
+   "failure": "stuck -> safe waypoint",
+   "boundary": "server room visitor tetap terkunci",
+   "parts": [
+    {
+     "scope": "M0 data: reachability semua ruang non-shaft lewat navgrid + vertical link",
+     "tests": [
+      "tools/validate_world.py::nav_all_rooms_reachable_staff",
+      "tests/py/test_world.py::test_nav_detects_blocked_room"
+     ],
+     "evidence": [
+      "docs/evidence/M0/validate-world.json",
+      "docs/evidence/M0/pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M0 data: server terkunci untuk visitor",
+     "tests": [
+      "tools/validate_world.py::nav_restricted_locked_for_visitor",
+      "tests/py/test_world.py::test_visitor_cannot_reach_server_even_if_door_public_elsewhere"
+     ],
+     "evidence": [
+      "docs/evidence/M0/validate-world.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M1 runtime: CEO berjalan, collider, transisi lantai, safe waypoint",
+     "tests": [
+      "app/tests/unit/navgrid.test.ts",
+      "app/tests/e2e/world.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M1/e2e-world.txt",
+      "docs/evidence/M1/vitest.txt",
+      "docs/evidence/M1/screenshots/desktop-l2-game.jpg"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Q-01 (ADR-008): 27 fungsi program PRD v0.1 bagian 5 terlacak ke 38 ruang dan sebaliknya; ruang/fungsi tanpa pasangan menggagalkan test",
+     "tests": [
+      "tools/prd_trace.py",
+      "tests/py/test_prd_trace.py"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/prd-trace.json",
+      "docs/evidence/HARDENING/pytest.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CHAR-01",
+   "milestone": "M1/M2",
+   "story": "Sebagai CEO, saya ingin mengenali persona agar menemui peran tepat.",
+   "ac": "AC-CHAR-01: Given asset registry, When NPC spawn/talk, Then label peran dan animasi konsisten tanpa memakai IP pihak lain.",
+   "failure": "missing GLB -> honest placeholder",
+   "boundary": "tidak mengarang likeness manusia",
+   "parts": [
+    {
+     "scope": "M0 data: actor record, role, homeSeat, simulated=true",
+     "tests": [
+      "tools/validate_world.py::actors_home_seats_exist",
+      "design/world.schema.json"
+     ],
+     "evidence": [
+      "docs/evidence/M0/validate-world.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M1 asset: 7 GLB karakter original, registry, 13 animasi, reopen/validate",
+     "tests": [
+      "blender/validate_assets.py",
+      "tests/py/test_assets.py"
+     ],
+     "evidence": [
+      "docs/evidence/M1/blender-validate.json",
+      "docs/evidence/M1/blender-validate-rerun.txt",
+      "assets/previews/ch-ceo-sheet.png"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M2 runtime: NPC spawn, label peran, animasi per aktivitas",
+     "tests": [
+      "app/tests/e2e/npc.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/screenshots/desktop-npcs.jpg",
+      "docs/evidence/M2/e2e-npc-blueprint-rerun.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Hardening: atlas 1 material per karakter, LOD1 <= 5k triangle (4799-4800), 5 ekspresi wajah (blink, smile, talk, surprised, frown) sebagai morph target; dieksekusi, blend/GLB dibuka ulang dan divalidasi; runtime memakai LOD1 > 8 m dan ekspresi saat bicara",
+     "tests": [
+      "blender/validate_assets.py",
+      "tests/py/test_assets.py",
+      "app/tests/e2e/npc.spec.ts",
+      "app/tests/e2e/budget.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/blender-characters-validate.txt",
+      "docs/evidence/HARDENING/pytest-blender.txt",
+      "assets/previews/character-expressions.png",
+      "assets/previews/character-lod.png",
+      "docs/evidence/HARDENING/e2e-all.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M3: 54 keluarga furniture original + shell bangunan, registry 63 aset generated+validated",
+     "tests": [
+      "blender/furniture/validate_furniture.py",
+      "tests/py/test_furniture_assets.py"
+     ],
+     "evidence": [
+      "docs/evidence/M3/furniture-validate.json",
+      "assets/previews/furniture-sheet.png"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-INTERACT-01",
+   "milestone": "M2",
+   "story": "Sebagai CEO, saya ingin menyapa dan membuka panel agar memahami aktivitas.",
+   "ac": "AC-INTERACT-01: Given NPC dekat, When E/tap, Then satu panel terbuka dan locomotion berhenti; Escape menutup dan mengembalikan focus.",
+   "failure": "target hilang -> pesan jelas",
+   "boundary": "public hanya fixture",
+   "parts": [
+    {
+     "scope": "M2: E/Aksi/Temui membuka satu panel persona, locomotion berhenti, Escape menutup dan focus kembali, NPC pause/resume",
+     "tests": [
+      "app/tests/e2e/npc.spec.ts",
+      "app/tests/e2e/world.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/screenshots/desktop-npc-dialog.jpg",
+      "docs/evidence/M2/e2e-npc-blueprint-rerun.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M2: interaksi furnitur (duduk, workstation, biliar, game, gym) dengan reservasi bersama NPC; kursi terpakai ditolak dengan pesan",
+     "tests": [
+      "app/tests/e2e/activity.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/screenshots/desktop-billiards.jpg"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Boundary: public hanya fixture; adapter private M4 melempar AdapterDisabledError",
+     "tests": [
+      "app/tests/unit/adapter.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-IDLE-01",
+   "milestone": "M2",
+   "story": "Sebagai visitor, saya ingin aktivitas beragam agar kantor terasa hidup.",
+   "ac": "AC-IDLE-01: Given seed dan NPC, When idle simulation berjalan, Then reservasi tidak overcapacity, NPC tidak stuck permanen dan task status tidak dipalsukan.",
+   "failure": "route gagal -> cancel/release",
+   "boundary": "nol LLM/API calls akibat idle",
+   "parts": [
+    {
+     "scope": "M0 data: activity slots ber-capacity dan approachable",
+     "tests": [
+      "tools/validate_world.py::nav_activity_slots_approachable"
+     ],
+     "evidence": [
+      "docs/evidence/M0/validate-world.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M2: simulasi berseed, reservasi tanpa overcapacity (soak 2 jam), cap aktivitas, stuck recovery, nol fetch",
+     "tests": [
+      "app/tests/unit/idle.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Hardening: CEO dan persona tidak saling tembus; NPC memberi jalan, detour, reservasi kursi tetap saat menunggu; tidak ada NPC diam > 10 s (seed 3/11/23, soak 2 jam); bug lama NPC membeku di sel sudut diperbaiki",
+     "tests": [
+      "app/tests/unit/collision.test.ts",
+      "app/tests/unit/idle.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: nol langkah NPC berjalan yang masuk ke cakram agen lain (CEO termasuk) pada soak seed 42 (2 jam), 11 dan 3 (sebelumnya 401); give-way untuk saling-tunggu",
+     "tests": [
+      "app/tests/unit/collision.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/npc-overlap-red.txt",
+      "docs/evidence/R2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-STUDIO-01",
+   "milestone": "M3",
+   "story": "Sebagai designer, saya ingin mengedit draft kantor agar menata ruang.",
+   "ac": "AC-STUDIO-01: Given valid layout, When edit/undo/save/load, Then perubahan pulih deterministik dan invalid overlap/pintu ditolak.",
+   "failure": "JSON rusak -> original tetap utuh",
+   "boundary": "tidak eksekusi script/file path import",
+   "parts": [
+    {
+     "scope": "M3: Office Studio edit/undo/redo/save/load/publish/rollback, validasi overlap/pintu/navigasi, import terjaga",
+     "tests": [
+      "app/tests/unit/studio.test.ts",
+      "app/tests/e2e/studio.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M3/vitest.txt",
+      "docs/evidence/M3/e2e-all.txt",
+      "docs/evidence/M3/screenshots/desktop-studio.jpg"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-AVATAR-01",
+   "milestone": "M3",
+   "story": "Sebagai CEO, saya ingin memilih avatar agar punya tampilan sendiri.",
+   "ac": "AC-AVATAR-01: Given varian tersedia, When preview/save/reset, Then pilihan persist dan reset kembali default.",
+   "failure": "asset missing -> default",
+   "boundary": "tidak memakai Pokemon atau wajah manusia tanpa sumber",
+   "parts": [
+    {
+     "scope": "M3: Avatar Studio preview/save/reset, persist, fallback default untuk pilihan tanpa aset",
+     "tests": [
+      "app/tests/e2e/studio.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M3/e2e-all.txt",
+      "docs/evidence/M3/screenshots/desktop-avatar-studio.jpg"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-BLUEPRINT-01",
+   "milestone": "M0/M3",
+   "story": "Sebagai CEO, saya ingin melihat denah CAD/PDF/3D agar memahami rancangan.",
+   "ac": "AC-BLUEPRINT-01: Given design schema, When generate, Then dimensi/pintu/fixture ID konsisten dalam DXF, PDF dan GLB, source CAD availability dilaporkan.",
+   "failure": "AutoCAD unavailable -> native DWG blocked, bukan sukses palsu",
+   "boundary": "konsep bukan signed construction",
+   "parts": [
+    {
+     "scope": "M0: schema satu sumber, ruang tanpa overlap/gap, pintu di dinding bersama, fixture dalam ruang",
+     "tests": [
+      "tools/validate_world.py",
+      "tests/py/test_world.py"
+     ],
+     "evidence": [
+      "docs/evidence/M0/validate-world.json",
+      "docs/evidence/M0/pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M0: capability CAD dilaporkan; native DWG",
+     "tests": [
+      "docs/evidence/M0/capability-report.md"
+     ],
+     "evidence": [
+      "docs/evidence/M0/capability-report.md"
+     ],
+     "status": "tidak didukung"
+    },
+    {
+     "scope": "M1: A-101/A-102 DXF+PDF konsisten dengan dataset (reopen, audit, luas, ID pintu/fixture, skala)",
+     "tests": [
+      "tests/py/test_cad.py"
+     ],
+     "evidence": [
+      "docs/evidence/M1/cad-pytest.txt",
+      "drawings/register.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M3: 15 sheet DXF+PDF, paket gabungan; GLB bangunan konsisten dengan dataset (dinding, bukaan, slab, axis)",
+     "tests": [
+      "tests/py/test_cad_m3.py",
+      "blender/building/validate_building.py",
+      "tests/py/test_building.py"
+     ],
+     "evidence": [
+      "docs/evidence/M3/cad-pytest.txt",
+      "docs/evidence/M3/building-validate.json",
+      "drawings/register.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "P03: arah bukaan pintu dan 39 jendela konsep satu sumber di world.json, dibaca CAD (denah, tampak, potongan, jadwal pintu/jendela), Blender (bukaan, kaca, daun pintu) dan runtime (dinding terpotong jendela)",
+     "tests": [
+      "tests/py/test_openings.py",
+      "tests/py/test_cad_openings.py",
+      "tests/py/test_building.py",
+      "blender/building/validate_building.py",
+      "app/tests/unit/openings.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/pytest.txt",
+      "docs/evidence/HARDENING/pytest-cad.txt",
+      "docs/evidence/HARDENING/blender-building-validate.txt",
+      "docs/evidence/HARDENING/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: daun pintu runtime dari derivasi yang sama dengan navgrid Python/TS, busur CAD dan engsel LEAF-* Blender; buka otomatis, posisi terbuka solid, terkunci pada mode visitor; Studio menolak furniture di area ayun",
+     "tests": [
+      "tests/py/test_door_leaves.py",
+      "app/tests/unit/doors.test.ts",
+      "app/tests/e2e/doors.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/door-leaves-red.txt",
+      "docs/evidence/R2/doors-ts-red.txt",
+      "docs/evidence/R2/pytest.txt",
+      "docs/evidence/R2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: semua teks 15 sheet A/I/ICT >= 2,5 mm saat dicetak A3 (ukuran font, pembacaan longgar ISO 3098), tanpa tumpang tindih; tag pendek dengan tabel lookup",
+     "tests": [
+      "tests/py/test_cad_legibility.py"
+     ],
+     "evidence": [
+      "docs/evidence/R2/cad-legibility-all-red.txt",
+      "docs/evidence/R2/cad-legibility-sizes.json",
+      "docs/evidence/R2/pytest-cad.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-ICT-01",
+   "milestone": "M0/M3",
+   "story": "Sebagai designer ICT, saya ingin schedule endpoint/rack/route agar instalasi dapat dibaca.",
+   "ac": "AC-ICT-01: Given device schedule, When derive ports/BOM, Then tidak ada orphan ID/duplicate port dan panjang memakai route.",
+   "failure": "spec missing -> belum divalidasi",
+   "boundary": "no real ISP topology/device access",
+   "parts": [
+    {
+     "scope": "M0: FK outlet/device/rack, rack U collision, kamera tidak di area basah",
+     "tests": [
+      "tools/validate_world.py::ict_foreign_keys",
+      "tests/py/test_ict.py"
+     ],
+     "evidence": [
+      "docs/evidence/M0/validate-world.json",
+      "docs/evidence/M0/pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M0: port map tanpa duplikat, panjang dari route tray, <= 90 m target, spare switch >= 20%",
+     "tests": [
+      "tools/ict_derive.py",
+      "tests/py/test_ict.py"
+     ],
+     "evidence": [
+      "design/derived/ict-portmap.json",
+      "docs/evidence/M0/failure-paths/ict-switch-spare-below-target.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "PoE budget switch, rating UPS, thermal",
+     "tests": [],
+     "evidence": [],
+     "status": "asumsi"
+    },
+    {
+     "scope": "M3: gambar ICT-001/101/102/201/301/401 konsisten dengan port map (ID, panjang total, U rack)",
+     "tests": [
+      "tests/py/test_cad_m3.py"
+     ],
+     "evidence": [
+      "docs/evidence/M3/cad-pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Outlet ICT ikut furniture di Office Studio: pindah/hapus/tambah, undo/redo, export v2 + import menolak outlet yang diedit, publish/rollback; paritas Python/TS; ict_derive.py --layout",
+     "tests": [
+      "tests/py/test_ict_follow.py",
+      "app/tests/unit/ict.test.ts",
+      "app/tests/e2e/studio.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/pytest.txt",
+      "docs/evidence/HARDENING/vitest.txt",
+      "docs/evidence/HARDENING/e2e-all.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-ACCESS-01",
+   "milestone": "M1/M2",
+   "story": "Sebagai visitor, saya ingin directory tanpa 3D agar tetap memakai kantor.",
+   "ac": "AC-ACCESS-01: Given WebGL unavailable/reduced motion, When membuka app, Then DOM directory/dokumen dapat dipakai lewat keyboard dan tap.",
+   "failure": "render context loss -> fallback",
+   "boundary": "aksesible view tidak bypass private policy",
+   "parts": [
+    {
+     "scope": "M1: fallback ?nogl=1, direktori keyboard, focus kembali, reduced motion (viewport emulasi)",
+     "tests": [
+      "app/tests/e2e/world.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M1/e2e-world.txt",
+      "docs/evidence/M1/screenshots/desktop-fallback.jpg",
+      "docs/evidence/M1/contrast.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M2: axe-core WCAG 2.1 A/AA tanpa pelanggaran (dunia, direktori, dialog, fallback; terang dan gelap)",
+     "tests": [
+      "app/tests/e2e/a11y.spec.ts",
+      "tools/contrast.py"
+     ],
+     "evidence": [
+      "docs/evidence/M2/e2e-all.txt",
+      "docs/evidence/M2/axe/desktop-light-world.json",
+      "docs/evidence/M2/contrast.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Perangkat mobile/tablet nyata dan screen reader",
+     "tests": [],
+     "evidence": [],
+     "status": "belum diuji"
+    },
+    {
+     "scope": "R2: setiap kontrol dan shortcut punya test (61, sebelumnya 25 tanpa test); jalur gagal context loss, aksi tanpa target, GLB hilang; tiga cacat fallback ditemukan dan diperbaiki",
+     "tests": [
+      "tools/control_audit.py",
+      "tests/py/test_control_audit.py",
+      "app/tests/e2e/controls.spec.ts",
+      "app/tests/e2e/failures.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/control-audit-red.txt",
+      "docs/evidence/R2/control-audit.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Screen reader nyata (NVDA/VoiceOver/TalkBack): hook ?a11ylog=1 dan runbook siap; uji fisik belum dijalankan",
+     "tests": [
+      "app/tests/e2e/device.spec.ts"
+     ],
+     "evidence": [
+      "docs/DEVICE-VALIDATION.md"
+     ],
+     "status": "belum diuji"
+    }
+   ]
+  },
+  {
+   "id": "REQ-DATA-01",
+   "milestone": "M4 gated",
+   "story": "Sebagai owner private, saya ingin status tersanitasi agar melihat kerja real.",
+   "ac": "AC-DATA-01: Given approved adapter, When snapshot fresh/stale/offline, Then status/time/source benar dan unknown saat timeout.",
+   "failure": "disconnect -> stale/unknown",
+   "boundary": "visitor/unauth tidak menerima payload private. Disabled sebelum izin.",
+   "parts": [
+    {
+     "scope": "M4 disabled sampai izin Budi",
+     "tests": [],
+     "evidence": [],
+     "status": "tidak didukung"
+    },
+    {
+     "scope": "Kontrak adapter (sanitasi allowlist, stale -> unknown) diuji dengan fixture; tanpa sumber nyata",
+     "tests": [
+      "app/tests/unit/adapter.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-PERF-01",
+   "milestone": "M1-M3",
+   "story": "Sebagai CEO, saya ingin navigasi stabil agar bermain nyaman.",
+   "ac": "AC-PERF-01: Given benchmark tercatat, When fixed route 60 detik berjalan, Then measured frame-time/load/assets memenuhi target tier atau degrade jujur.",
+   "failure": "memory/context loss -> low quality/fallback",
+   "boundary": "tidak klaim FPS tanpa benchmark",
+   "parts": [
+    {
+     "scope": "M0: anggaran transfer/triangle dihitung",
+     "tests": [
+      "tools/capacity.py"
+     ],
+     "evidence": [
+      "design/derived/capacity.json"
+     ],
+     "status": "asumsi"
+    },
+    {
+     "scope": "M1: harness rute tetap 60 s berjalan dan tercatat (container SwiftShader)",
+     "tests": [
+      "app/tests/e2e/perf.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M1/perf-route-desktop.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Target 60 FPS desktop / 30 FPS mobile pada perangkat pilihan Budi",
+     "tests": [
+      "app/tests/e2e/perf.spec.ts"
+     ],
+     "evidence": [],
+     "status": "belum diuji"
+    },
+    {
+     "scope": "Anggaran draw call mobile <= 150 dan triangle <= 250k: puncak per frame selama rute tetap 25 s, desktop/tablet/mobile (draw call dan triangle tidak bergantung kecepatan GPU)",
+     "tests": [
+      "app/tests/e2e/budget.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/budget-desktop.json",
+      "docs/evidence/HARDENING/budget-mobile.json",
+      "docs/evidence/HARDENING/budget-tablet.json",
+      "docs/evidence/HARDENING/e2e-unskipped-touch.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: muat awal <= 6 MB (5,40 MB, sebelumnya 9,73 MB), chunk entry <= 250 kB, three.js chunk terpisah, Studio dimuat saat dipakai; GLB terkuantisasi dengan galat <= 1 mm",
+     "tests": [
+      "app/tests/e2e/bundle.spec.ts",
+      "tests/py/test_asset_size.py",
+      "app/tests/unit/furniture-kit.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/bundle-red.txt",
+      "docs/evidence/R2/bundle-desktop.json",
+      "docs/evidence/R2/glb-sizes-r2.json",
+      "docs/evidence/R2/glb-compare.json"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-SAFE-01",
+   "milestone": "semua",
+   "story": "Sebagai pemilik, saya ingin publikasi aman agar data private/produksi tidak bocor.",
+   "ac": "AC-SAFE-01: Given staged files and app build, When scanning and public negative tests, Then no secrets/private payload/copyright asset and no production endpoint/cost/control path.",
+   "failure": "suspect -> stop publish",
+   "boundary": "no merge/deploy/paid upgrade",
+   "parts": [
+    {
+     "scope": "M0: secret/URL/file allowlist scan repo",
+     "tests": [
+      "tools/safety_scan.py"
+     ],
+     "evidence": [
+      "docs/evidence/M0/safety-scan.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "M1: runtime hanya request same-origin; safety scan",
+     "tests": [
+      "app/tests/e2e/world.spec.ts",
+      "tools/safety_scan.py"
+     ],
+     "evidence": [
+      "docs/evidence/M1/e2e-world.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Audit lisensi dependency npm/pip",
+     "tests": [
+      "tools/license_audit.py"
+     ],
+     "evidence": [
+      "docs/evidence/M3/license-audit.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Provenance: setiap file app/public dipetakan ke generator repo (GLB registry, artwork make_signage, PDF hasil generate, teks lisensi); file asing gagal",
+     "tests": [
+      "tests/py/test_provenance.py"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/pytest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Keamanan: safety scan teks repo, npm audit runtime + dev, audit lisensi",
+     "tests": [
+      "tools/safety_scan.py",
+      "tools/license_audit.py"
+     ],
+     "evidence": [
+      "docs/evidence/HARDENING/safety-scan.txt",
+      "docs/evidence/HARDENING/npm-audit-runtime.txt",
+      "docs/evidence/HARDENING/npm-audit-all.txt",
+      "docs/evidence/HARDENING/license-audit.json",
+      "docs/evidence/HARDENING/e2e-csp-desktop.txt",
+      "docs/evidence/HARDENING/e2e-csp-desktop-run1.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: audit Must per AC/test/failure/boundary untuk 12 REQ PRD bagian 12, referensi diperiksa ada",
+     "tests": [
+      "tools/must_audit.py",
+      "tests/py/test_must_audit.py"
+     ],
+     "evidence": [
+      "docs/MUST-AUDIT.md"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  }
+ ]
+}

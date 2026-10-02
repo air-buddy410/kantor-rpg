@@ -1,0 +1,16 @@
+
+Running 10 tests using 1 worker
+
+  ✓   1 [tablet] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (26.5s)
+  ✓   2 [tablet] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (16.6s)
+  ✓   3 [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (8.3s)
+  ✓   4 [tablet] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (14.3s)
+  ✓   5 [tablet] › tests/e2e/npc.spec.ts:65:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (13.3s)
+  ✓   6 [mobile] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route (26.4s)
+  ✓   7 [mobile] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status (12.3s)
+  ✓   8 [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape (6.4s)
+  ✓   9 [mobile] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it (11.1s)
+  ✓  10 [mobile] › tests/e2e/npc.spec.ts:65:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback (9.8s)
+
+  10 passed (2.5m)
+exit=0

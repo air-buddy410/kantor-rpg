@@ -1,0 +1,42 @@
+
+Running 36 tests using 1 worker
+
+  ✓   1 [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (5.4s)
+  ✓   2 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (7.5s)
+  ✓   3 [desktop] › tests/e2e/world.spec.ts:39:3 › world vertical slice › stair interaction changes floor only at the marked point (35.0s)
+  ✓   4 [desktop] › tests/e2e/world.spec.ts:61:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (19.3s)
+  ✓   5 [desktop] › tests/e2e/world.spec.ts:75:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (3.4s)
+  ✓   6 [desktop] › tests/e2e/world.spec.ts:96:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (7.8s)
+  ✓   7 [desktop] › tests/e2e/world.spec.ts:109:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (5.6s)
+  -   8 [desktop] › tests/e2e/world.spec.ts:125:3 › world vertical slice › touch joystick walks the CEO
+  ✓   9 [desktop] › tests/e2e/world.spec.ts:142:3 › world vertical slice › dark theme renders with computed token colours (4.4s)
+  ✓  10 [desktop] › tests/e2e/world.spec.ts:151:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (12.9s)
+  ✓  11 [desktop] › tests/e2e/world.spec.ts:161:3 › world vertical slice › only same-origin requests are made (no external endpoints) (3.8s)
+  ✓  12 [desktop] › tests/e2e/world.spec.ts:172:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (2.9s)
+  ✓  13 [tablet] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (5.5s)
+  -  14 [tablet] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+  ✓  15 [tablet] › tests/e2e/world.spec.ts:39:3 › world vertical slice › stair interaction changes floor only at the marked point (29.3s)
+  ✓  16 [tablet] › tests/e2e/world.spec.ts:61:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (15.9s)
+  ✓  17 [tablet] › tests/e2e/world.spec.ts:75:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.6s)
+  ✓  18 [tablet] › tests/e2e/world.spec.ts:96:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (6.6s)
+  ✓  19 [tablet] › tests/e2e/world.spec.ts:109:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (4.6s)
+  ✓  20 [tablet] › tests/e2e/world.spec.ts:125:3 › world vertical slice › touch joystick walks the CEO (6.2s)
+  ✓  21 [tablet] › tests/e2e/world.spec.ts:142:3 › world vertical slice › dark theme renders with computed token colours (5.7s)
+  ✓  22 [tablet] › tests/e2e/world.spec.ts:151:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (10.9s)
+  ✓  23 [tablet] › tests/e2e/world.spec.ts:161:3 › world vertical slice › only same-origin requests are made (no external endpoints) (3.8s)
+  ✓  24 [tablet] › tests/e2e/world.spec.ts:172:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (3.1s)
+  ✓  25 [mobile] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.2s)
+  -  26 [mobile] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+  ✓  27 [mobile] › tests/e2e/world.spec.ts:39:3 › world vertical slice › stair interaction changes floor only at the marked point (21.1s)
+  ✓  28 [mobile] › tests/e2e/world.spec.ts:61:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (10.2s)
+  ✓  29 [mobile] › tests/e2e/world.spec.ts:75:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.2s)
+  ✓  30 [mobile] › tests/e2e/world.spec.ts:96:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (5.1s)
+  ✓  31 [mobile] › tests/e2e/world.spec.ts:109:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (2.8s)
+  ✓  32 [mobile] › tests/e2e/world.spec.ts:125:3 › world vertical slice › touch joystick walks the CEO (4.8s)
+  ✓  33 [mobile] › tests/e2e/world.spec.ts:142:3 › world vertical slice › dark theme renders with computed token colours (4.2s)
+  ✓  34 [mobile] › tests/e2e/world.spec.ts:151:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (8.0s)
+  ✓  35 [mobile] › tests/e2e/world.spec.ts:161:3 › world vertical slice › only same-origin requests are made (no external endpoints) (2.9s)
+  ✓  36 [mobile] › tests/e2e/world.spec.ts:172:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.9s)
+
+  3 skipped
+  33 passed (4.7m)

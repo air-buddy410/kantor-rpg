@@ -1,0 +1,9 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 [desktop] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times (1.0m)
+  ✓  2 [tablet] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times (1.0m)
+  ✓  3 [mobile] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times (1.0m)
+
+  3 passed (3.2m)
+exit=0

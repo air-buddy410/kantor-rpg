@@ -1,0 +1,33 @@
+{
+ "note": "Q-01 (ADR-008): keragaman ruang dipertahankan hanya bila setiap fungsi PRD v0.1 bagian 5 terlacak ke ruang dataset, dan setiap ruang terlacak balik ke fungsi PRD. Diperiksa oleh tools/prd_trace.py.",
+ "source": "PRD/PRD-v0.1.md bagian 5 (program ruang)",
+ "functions": [
+  {"id": "PF-L1-01", "floor": "L1", "prd": "lobby/resepsi", "rooms": ["L1-LOBBY"]},
+  {"id": "PF-L1-02", "floor": "L1", "prd": "gallery portofolio", "rooms": ["L1-GALLERY"]},
+  {"id": "PF-L1-03", "floor": "L1", "prd": "pusat sirkulasi dengan tangga dan akses vertikal yang bisa digunakan avatar", "rooms": ["L1-CORE", "L1-CORR", "L1-NCORR"]},
+  {"id": "PF-L1-04", "floor": "L1", "prd": "sayap tenang ruang CEO", "rooms": ["L1-CEO"]},
+  {"id": "PF-L1-05", "floor": "L1", "prd": "diskusi", "rooms": ["L1-DISC"]},
+  {"id": "PF-L1-06", "floor": "L1", "prd": "studio Hugo", "rooms": ["L1-HUGO"]},
+  {"id": "PF-L1-07", "floor": "L1", "prd": "studio Kevin", "rooms": ["L1-KEVIN"]},
+  {"id": "PF-L1-08", "floor": "L1", "prd": "area Nova", "rooms": ["L1-NOVA"]},
+  {"id": "PF-L1-09", "floor": "L1", "prd": "area Bruno", "rooms": ["L1-BRUNO"]},
+  {"id": "PF-L1-10", "floor": "L1", "prd": "lab ICT terpisah dari server", "rooms": ["L1-LAB"]},
+  {"id": "PF-L1-11", "floor": "L1", "prd": "server rack tidak menjadi jalur umum", "rooms": ["L1-SERVER", "L1-RISER"]},
+  {"id": "PF-L1-12", "floor": "L1", "prd": "ruang kerja implementasi/review", "rooms": ["L1-IMPL"]},
+  {"id": "PF-L1-13", "floor": "L1", "prd": "ruang rapat besar", "rooms": ["L1-MEET"]},
+  {"id": "PF-L1-14", "floor": "L1", "prd": "toilet aksesibel", "rooms": ["L1-WC"]},
+  {"id": "PF-L1-15", "floor": "L1", "prd": "pantry kerja", "rooms": ["L1-PANTRY"]},
+  {"id": "PF-L1-16", "floor": "L1", "prd": "gudang dan utilitas", "rooms": ["L1-STORE", "L1-SHAFT-W"]},
+  {"id": "PF-L2-01", "floor": "L2", "prd": "ruang game", "rooms": ["L2-GAME"]},
+  {"id": "PF-L2-02", "floor": "L2", "prd": "lounge", "rooms": ["L2-LOUNGE"]},
+  {"id": "PF-L2-03", "floor": "L2", "prd": "olahraga", "rooms": ["L2-GYM"]},
+  {"id": "PF-L2-04", "floor": "L2", "prd": "biliar", "rooms": ["L2-BILLIARD"]},
+  {"id": "PF-L2-05", "floor": "L2", "prd": "diskusi santai", "rooms": ["L2-CHAT"]},
+  {"id": "PF-L2-06", "floor": "L2", "prd": "perpustakaan/reading nook", "rooms": ["L2-READ"]},
+  {"id": "PF-L2-07", "floor": "L2", "prd": "makan/pantry", "rooms": ["L2-DINE"]},
+  {"id": "PF-L2-08", "floor": "L2", "prd": "shower dan toilet", "rooms": ["L2-SHOWER", "L2-WC"]},
+  {"id": "PF-L2-09", "floor": "L2", "prd": "balkon/taman", "rooms": ["L2-BALCONY", "L2-GARDEN"]},
+  {"id": "PF-L2-10", "floor": "L2", "prd": "gudang dan area servis", "rooms": ["L2-STORE", "L2-SERVICE", "L2-SHAFT-W", "L2-RISER"]},
+  {"id": "PF-L2-11", "floor": "L2", "prd": "jalur evakuasi", "rooms": ["L2-CORE", "L2-CORR", "L2-NCORR"]}
+ ]
+}

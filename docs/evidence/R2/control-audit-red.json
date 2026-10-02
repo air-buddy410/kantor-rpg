@@ -1,0 +1,448 @@
+{
+ "controls": 58,
+ "unlistedHtmlControls": [],
+ "missingInSource": [],
+ "untested": [
+  "Lewati ke direktori (skip link)",
+  "Touch Lari",
+  "Tutup direktori",
+  "Tema sistem",
+  "Tema terang",
+  "Tema gelap",
+  "Kualitas auto",
+  "Kualitas rendah",
+  "Kualitas tinggi",
+  "Avatar reset",
+  "Avatar batal",
+  "Avatar simpan",
+  "Studio lantai L1/L2",
+  "Studio geser utara",
+  "Studio geser timur",
+  "Studio putar",
+  "Studio Simpan draft",
+  "Key Shift run",
+  "Key H help",
+  "Key R recenter camera",
+  "Key Q/Z rotate camera",
+  "Key +/- zoom",
+  "Studio keys arrows/R/Delete/Ctrl+Z/Ctrl+Y",
+  "Studio key Delete",
+  "Studio key Ctrl+Z / Ctrl+Y"
+ ],
+ "rows": [
+  {
+   "control": "Lewati ke direktori (skip link)",
+   "defined": "html:href=#directory-panel",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Direktori button",
+   "defined": "html:btn-directory",
+   "present": true,
+   "testedBy": [
+    "#btn-directory"
+   ]
+  },
+  {
+   "control": "Studio button",
+   "defined": "html:btn-studio",
+   "present": true,
+   "testedBy": [
+    "#btn-studio"
+   ]
+  },
+  {
+   "control": "Avatar button",
+   "defined": "html:btn-avatar",
+   "present": true,
+   "testedBy": [
+    "#btn-avatar"
+   ]
+  },
+  {
+   "control": "Pengaturan button",
+   "defined": "html:btn-settings",
+   "present": true,
+   "testedBy": [
+    "#btn-settings"
+   ]
+  },
+  {
+   "control": "Kontrol/help button",
+   "defined": "html:btn-help",
+   "present": true,
+   "testedBy": [
+    "#btn-help"
+   ]
+  },
+  {
+   "control": "Selesai aktivitas",
+   "defined": "html:activity-end",
+   "present": true,
+   "testedBy": [
+    "#activity-end"
+   ]
+  },
+  {
+   "control": "Touch Lari",
+   "defined": "html:touch-run",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Touch Aksi",
+   "defined": "html:touch-interact",
+   "present": true,
+   "testedBy": [
+    "#touch-interact"
+   ]
+  },
+  {
+   "control": "Tutup direktori",
+   "defined": "html:directory-close",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Tema sistem",
+   "defined": "html:theme=system",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Tema terang",
+   "defined": "html:theme=light",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Tema gelap",
+   "defined": "html:theme=dark",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Kualitas auto",
+   "defined": "html:quality=auto",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Kualitas rendah",
+   "defined": "html:quality=low",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Kualitas tinggi",
+   "defined": "html:quality=high",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Kurangi gerak",
+   "defined": "html:reducedMotion",
+   "present": true,
+   "testedBy": [
+    "reducedMotion"
+   ]
+  },
+  {
+   "control": "Mode visitor",
+   "defined": "html:visitor",
+   "present": true,
+   "testedBy": [
+    "Mode visitor"
+   ]
+  },
+  {
+   "control": "Avatar reset",
+   "defined": "html:avatar-reset",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Avatar batal",
+   "defined": "html:avatar-cancel",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Avatar simpan",
+   "defined": "html:avatar-save",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Dialog close (Selesai/Tutup)",
+   "defined": "html:value=close",
+   "present": true,
+   "testedBy": [
+    "'Selesai'"
+   ]
+  },
+  {
+   "control": "Directory Pergi",
+   "defined": "src:'Pergi'",
+   "present": true,
+   "testedBy": [
+    "Pergi"
+   ]
+  },
+  {
+   "control": "Directory Profil",
+   "defined": "src:Profil ${a.displayName}",
+   "present": true,
+   "testedBy": [
+    "Profil "
+   ]
+  },
+  {
+   "control": "Directory Temui",
+   "defined": "src:Temui ${a.displayName}",
+   "present": true,
+   "testedBy": [
+    "Temui "
+   ]
+  },
+  {
+   "control": "Persona Topik lain",
+   "defined": "src:'Topik lain'",
+   "present": true,
+   "testedBy": [
+    "Topik lain"
+   ]
+  },
+  {
+   "control": "Studio lantai L1/L2",
+   "defined": "src:'aria-pressed': String(f.id === this.floor)",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio pilih fixture",
+   "defined": "src:studio-pick",
+   "present": true,
+   "testedBy": [
+    "#studio-pick"
+   ]
+  },
+  {
+   "control": "Studio geser barat",
+   "defined": "src:Geser ke barat 0,25 m",
+   "present": true,
+   "testedBy": [
+    "Geser ke barat"
+   ]
+  },
+  {
+   "control": "Studio geser utara",
+   "defined": "src:Geser ke utara 0,25 m",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio geser selatan",
+   "defined": "src:Geser ke selatan 0,25 m",
+   "present": true,
+   "testedBy": [
+    "Geser ke selatan"
+   ]
+  },
+  {
+   "control": "Studio geser timur",
+   "defined": "src:Geser ke timur 0,25 m",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio putar",
+   "defined": "src:Putar 90 derajat",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio hapus",
+   "defined": "src:Hapus fixture terpilih",
+   "present": true,
+   "testedBy": [
+    "Hapus fixture terpilih"
+   ]
+  },
+  {
+   "control": "Studio undo",
+   "defined": "src:'Undo'",
+   "present": true,
+   "testedBy": [
+    "name: 'Undo'"
+   ]
+  },
+  {
+   "control": "Studio redo",
+   "defined": "src:'Redo'",
+   "present": true,
+   "testedBy": [
+    "name: 'Redo'"
+   ]
+  },
+  {
+   "control": "Studio tipe baru + Tambah",
+   "defined": "src:'Tambah'",
+   "present": true,
+   "testedBy": [
+    "'Tambah'"
+   ]
+  },
+  {
+   "control": "Studio Validasi",
+   "defined": "src:fbtn('Validasi'",
+   "present": true,
+   "testedBy": [
+    "'Validasi'"
+   ]
+  },
+  {
+   "control": "Studio Simpan draft",
+   "defined": "src:fbtn('Simpan draft'",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio Export JSON",
+   "defined": "src:fbtn('Export JSON'",
+   "present": true,
+   "testedBy": [
+    "Export JSON"
+   ]
+  },
+  {
+   "control": "Studio Import JSON",
+   "defined": "src:studio-import",
+   "present": true,
+   "testedBy": [
+    "#studio-import"
+   ]
+  },
+  {
+   "control": "Studio Publish lokal",
+   "defined": "src:'Publish lokal'",
+   "present": true,
+   "testedBy": [
+    "Publish lokal"
+   ]
+  },
+  {
+   "control": "Studio Rollback",
+   "defined": "src:`Rollback (",
+   "present": true,
+   "testedBy": [
+    "Rollback"
+   ]
+  },
+  {
+   "control": "Studio Keluar",
+   "defined": "src:studio-exit",
+   "present": true,
+   "testedBy": [
+    "#studio-exit"
+   ]
+  },
+  {
+   "control": "Key W/A/S/D walk",
+   "defined": "src:'w', 'a', 's', 'd'",
+   "present": true,
+   "testedBy": [
+    "keyboard.down('w')"
+   ]
+  },
+  {
+   "control": "Key Shift run",
+   "defined": "src:shift",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Key E interact",
+   "defined": "src:k === 'e'",
+   "present": true,
+   "testedBy": [
+    "press('e')"
+   ]
+  },
+  {
+   "control": "Key M directory",
+   "defined": "src:k === 'm'",
+   "present": true,
+   "testedBy": [
+    "press('m')"
+   ]
+  },
+  {
+   "control": "Key H help",
+   "defined": "src:k === 'h'",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Key R recenter camera",
+   "defined": "src:k === 'r') this.rig.recenter",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Key Q/Z rotate camera",
+   "defined": "src:k === 'q') this.rig.rotate",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Key +/- zoom",
+   "defined": "src:k === '+'",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Key Escape (dialogs, activity, directory, studio)",
+   "defined": "src:k === 'escape'",
+   "present": true,
+   "testedBy": [
+    "press('Escape')"
+   ]
+  },
+  {
+   "control": "Studio keys arrows/R/Delete/Ctrl+Z/Ctrl+Y",
+   "defined": "src:k === 'arrowleft'",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio key Delete",
+   "defined": "src:k === 'delete'",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Studio key Ctrl+Z / Ctrl+Y",
+   "defined": "src:ctrl && k === 'z'",
+   "present": true,
+   "testedBy": []
+  },
+  {
+   "control": "Camera drag (pointer)",
+   "defined": "src:pointerdown",
+   "present": true,
+   "testedBy": [
+    "mouse.down()"
+   ]
+  },
+  {
+   "control": "Touch joystick",
+   "defined": "html:joystick",
+   "present": true,
+   "testedBy": [
+    "joystick"
+   ]
+  }
+ ]
+}

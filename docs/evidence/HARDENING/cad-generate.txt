@@ -1,0 +1,194 @@
+# command: python3 cad/generate.py --all-available
+# cwd: /home/user/kantor-rpg  utc start: 2026-10-01T15:47:39Z
+generator cad/generate.py v1  utc 2026-10-01T15:47:39Z
+world design/world.json revision P03 sha256 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+portmap design/derived/ict-portmap.json worldRevision P03 sha256 93de0733e7d36d25b6081782f843f5d054509056b4d892bbbb89fb470397c054
+Huruf: KantorRPG Sans, turunan Alegreya Sans karya Juan Pablo del Peral (SIL OFL 1.1, paket Debian fonts-alegreya-sans), subset tertanam.
+contrast INK #22302a on white = 13.78:1
+contrast GREEN #1f4d3a on white = 9.63:1
+contrast GREY_TEXT #5a524b on white = 7.66:1
+contrast TERRA #b5532f on white = 4.95:1
+contrast DIM #2f4238 on white = 10.73:1
+contrast white on GREEN status band = 9.63:1
+
+[A-101] Denah Lantai 1  content plan  floor L1  scale 1:100 @ A2
+  dxf cad/out/A-101.dxf  307585 bytes  sha256 9d98b7fe51bdffcfe670b503cb7b3de0633a45929e97a7f259170f1d01315980
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 796 entities: A-ANNO-DIMS DIMENSION 28; A-ANNO-RMNM MTEXT 20; A-AREA LWPOLYLINE 20; A-DOOR ARC 23, LINE 33, LWPOLYLINE 2; A-DOOR-IDEN TEXT 26; A-FURN LWPOLYLINE 106; A-FURN-IDEN TEXT 108; A-GLAZ LINE 158, LWPOLYLINE 20; A-GLAZ-IDEN TEXT 20; A-GRID LINE 11; A-GRID-IDEN CIRCLE 22, TEXT 22; A-STRS LINE 29, LWPOLYLINE 5, SOLID 1, TEXT 2; A-WALL HATCH 70, LWPOLYLINE 70
+  paperspace:A-101 23 entities
+  expected {'walls': 70, 'doors': 26, 'rooms': 20, 'windows': 20, 'fixtures': 108, 'dimension_segments': 28}
+  openings {"window_symbols": 20, "windows_per_floor": {"L1": 20}, "door_leaves": 23, "door_arcs": 23, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-101.pdf  55849 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 dddeba96c6ba4b71897410f2f9ef86d522603ea6d3d1f929c92941bd1ec8c0ba
+  scale bar [0, 1, 2, 5, 10] m -> 100.00 mm = 283.46 pt
+  summary {"forced_tags": []}
+  previews drawings/previews/A-101.png, drawings/previews/A-101-dxf.png
+
+[A-102] Denah Lantai 2  content plan  floor L2  scale 1:100 @ A2
+  dxf cad/out/A-102.dxf  288735 bytes  sha256 cf3f5d2f826445f3627d080aed1d2563ac82b08d2ad6da7e85dec8a66ee00009
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 727 entities: A-ANNO-DIMS DIMENSION 27; A-ANNO-RMNM MTEXT 18; A-AREA LWPOLYLINE 18; A-DOOR ARC 15, LINE 27, LWPOLYLINE 4; A-DOOR-IDEN TEXT 20; A-FURN LWPOLYLINE 89; A-FURN-IDEN TEXT 91; A-GLAZ LINE 167, LWPOLYLINE 19; A-GLAZ-IDEN TEXT 19; A-GRID LINE 11; A-GRID-IDEN CIRCLE 22, TEXT 22; A-STRS LINE 29, LWPOLYLINE 4, SOLID 1, TEXT 2; A-WALL HATCH 61, LWPOLYLINE 61
+  paperspace:A-102 23 entities
+  expected {'walls': 61, 'doors': 20, 'rooms': 18, 'windows': 19, 'fixtures': 91, 'dimension_segments': 27}
+  openings {"window_symbols": 19, "windows_per_floor": {"L2": 19}, "door_leaves": 15, "door_arcs": 15, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-102.pdf  53952 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 adbcdfdefac968fae7c36e91b260f6e2d211a99d2964e252f0537ab575764401
+  scale bar [0, 1, 2, 5, 10] m -> 100.00 mm = 283.46 pt
+  summary {"forced_tags": []}
+  previews drawings/previews/A-102.png, drawings/previews/A-102-dxf.png
+
+[A-103] Room schedule, pintu dan jendela  content room_schedule  floor -  scale NTS @ A3
+  dxf cad/out/A-103.dxf  400784 bytes  sha256 4d6c977f206c6e41531d98700421a1cdedbc955bb80afe452f2720b659d41f70
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:A-103-1 533 entities
+  paperspace:A-103-2 850 entities
+  expected {'pages': 2, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-103.pdf  48121 bytes  pages 2  page 1190.55 x 841.89 pt  sha256 14f562ae9be8fbf3ea78cc4600da2aa357cec2ae4534c58112f62e188c1fce13
+  summary {"checks": {"L1": {"rooms": 20, "total_m2": 768.0, "envelope_m2": 768.0, "ok": true, "seats": 41}, "L2": {"rooms": 18, "total_m2": 768.0, "envelope_m2": 768.0, "ok": true, "seats": 42}}, "rows": 40, "opening_schedule": {"door_rows": 46, "window_rows": 39, "swing_doors": 34, "obscured_windows": 13, "page": 2}}
+  previews drawings/previews/A-103.png, drawings/previews/A-103-dxf.png, drawings/previews/A-103-p2.png
+
+[A-201] Layout furniture Lantai 1  content furniture  floor L1  scale 1:100 @ A2
+  dxf cad/out/A-201.dxf  444446 bytes  sha256 bdee2c998b8a02d586e83b20c7ca55efa5285f1732b1344f8b95f48b2bd24523
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 762 entities: A-ANNO-RMNM TEXT 20; A-AREA LWPOLYLINE 20; A-DOOR ARC 23, HATCH 2, LWPOLYLINE 35; A-FURN LWPOLYLINE 106; A-FURN-IDEN TEXT 108; A-GLAZ LWPOLYLINE 178; A-GLAZ-IDEN TEXT 20; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 70, LWPOLYLINE 70
+  paperspace:A-201 714 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 20, "windows_per_floor": {"L1": 20}, "door_leaves": 23, "door_arcs": 23, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-201.pdf  54210 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 e0cf446c63b39145eb0cdb70b7a8138627c2b6e125bbdce29ab01a265d4e54a0
+  summary {"key_overlap_m2_max": 0.0, "fixtures": 108, "panel_bottom_mm": 92.8}
+  previews drawings/previews/A-201.png, drawings/previews/A-201-dxf.png
+
+[A-202] Layout furniture Lantai 2  content furniture  floor L2  scale 1:100 @ A2
+  dxf cad/out/A-202.dxf  409141 bytes  sha256 dd73bde0b1e6b13cb5a89fc3f0f0985a9aa8b1c5a32ba11f35e5647cd6a6218d
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 703 entities: A-ANNO-RMNM TEXT 18; A-AREA LWPOLYLINE 18; A-DOOR ARC 15, HATCH 4, LWPOLYLINE 31; A-FURN LWPOLYLINE 89; A-FURN-IDEN TEXT 91; A-GLAZ LWPOLYLINE 186; A-GLAZ-IDEN TEXT 19; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 61, LWPOLYLINE 61
+  paperspace:A-202 637 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 19, "windows_per_floor": {"L2": 19}, "door_leaves": 15, "door_arcs": 15, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-202.pdf  52440 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 a384ba404029dff2c1344e8768c068a17963a5c8f568fd37b793f1dbce774071
+  summary {"key_overlap_m2_max": 0.0, "fixtures": 91, "panel_bottom_mm": 121.1}
+  previews drawings/previews/A-202.png, drawings/previews/A-202-dxf.png
+
+[A-301] Tampak  content elevations  floor -  scale 1:200 @ A3
+  dxf cad/out/A-301.dxf  194706 bytes  sha256 65f1ef0958620c078ecf93484440c3ab31206f9021c67bc1c4105a10b3d206db
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 536 entities: A-ANNO-NOTE HATCH 16, LWPOLYLINE 32, TEXT 16; A-ELEV-DOOR HATCH 5, LWPOLYLINE 12, TEXT 5; A-ELEV-GLAZ HATCH 39, LWPOLYLINE 221, TEXT 39; A-ELEV-GRND LWPOLYLINE 4; A-ELEV-HIDN LWPOLYLINE 43; A-ELEV-OTLN HATCH 4, LWPOLYLINE 12; A-GRID LWPOLYLINE 22; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22
+  paperspace:A-301 51 entities
+  expected {'pages': 1, 'views': 4}
+  openings {"window_symbols": 39, "windows_per_floor": {"L1": 20, "L2": 19}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 6}
+  pdf drawings/pdf/A-301.pdf  41044 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 7bfc8717c59ec0c00d02162d9199b21986b1cfcd9548c5a877c5a7ca7f4893b5
+  summary {"exterior_doors_drawn": 5, "windows_per_facade": {"S": 11, "E": 11, "N": 12, "W": 5}, "window_tag_overlap_m2_max": 0.0}
+  previews drawings/previews/A-301.png, drawings/previews/A-301-dxf.png
+
+[A-401] Potongan  content sections  floor -  scale 1:100 @ A3
+  dxf cad/out/A-401.dxf  117866 bytes  sha256 ff738091f8c74e9e2804202921dd43767ac4af6617eb6a52c95613b20c2eb86a
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 174 entities: A-ANNO-DIMS LWPOLYLINE 10, TEXT 6; A-ANNO-NOTE HATCH 10, LWPOLYLINE 20, TEXT 10; A-AREA LWPOLYLINE 20; A-SECT-CLNG LWPOLYLINE 19; A-SECT-GLAZ LWPOLYLINE 3; A-SECT-GRND HATCH 2, LWPOLYLINE 2; A-SECT-IDEN TEXT 26; A-SECT-MARK LWPOLYLINE 2, TEXT 4; A-SECT-SLAB HATCH 8; A-SECT-STRS HATCH 3, LWPOLYLINE 4; A-SECT-WALL HATCH 24; A-STRS LWPOLYLINE 1
+  paperspace:A-401 24 entities
+  expected {'pages': 1, 'views': 3}
+  openings {"window_symbols": 1, "windows_per_floor": {"L1": 1}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-401.pdf  35705 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 9b3d31d165a28257d3afbf5694b0c1c23640a0f022e8a5aeafc9fc7845e41296
+  summary {"cuts": {"A": {"floors": {"L1": {"walls": 6, "doors": [], "windows": [], "rooms": ["L1-DISC", "L1-IMPL", "L1-CORE", "L1-NOVA", "L1-LAB"]}, "L2": {"walls": 5, "doors": [], "windows": [], "rooms": ["L2-CHAT", "L2-GARDEN", "L2-CORE", "L2-GAME"]}}, "stair": {"risers": 24, "rise": 0.16666666666666666}, "axis": "X", "at": 13.0}, "B": {"floors": {"L1": {"walls": 5, "doors": ["D-L1-ENT"], "windows": ["W-L1-016"], "rooms": ["L1-LOBBY", "L1-CORR", "L1-CORE", "L1-NCORR", "L1-KEVIN"]}, "L2": {"walls": 6, "doors": [], "windows": [], "rooms": ["L2-LOUNGE", "L2-CORR", "L2-CORE", "L2-NCORR", "L2-GYM"]}}, "stair": {"risers": 24, "rise": 0.16666666666666666, "landing_z": 2.0}, "axis": "Y", "at": 14.8}}}
+  previews drawings/previews/A-401.png, drawings/previews/A-401-dxf.png
+
+[I-101] Finish interior dan material  content finishes  floor -  scale 1:200 @ A3
+  dxf cad/out/I-101.dxf  346601 bytes  sha256 a886c02c8dd20ac58d494cfa28d6bfdc0ccea07178f9712aa8b61d1d4b31a2cd
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 916 entities: A-ANNO-RMNM TEXT 38; A-AREA LWPOLYLINE 38; A-DOOR ARC 38, HATCH 6, LWPOLYLINE 66; A-GLAZ LWPOLYLINE 364; A-STRS LWPOLYLINE 62, TEXT 4; A-WALL HATCH 131, LWPOLYLINE 131; I-FLOR-PATT HATCH 38
+  paperspace:I-101 118 entities
+  expected {'pages': 1, 'views': 2}
+  openings {"window_symbols": 39, "windows_per_floor": {"L1": 20, "L2": 19}, "door_leaves": 38, "door_arcs": 38, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/I-101.pdf  47349 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 7a072970a742acbb912cb30cd76a129a0f8595fc5f34d43d0cd4dc4b64297d05
+  summary {"finishes": {"vinyl motif kayu": {"rooms": 12, "area_m2": 743.5}, "karpet tile matte": {"rooms": 8, "area_m2": 361.0}, "keramik anti-slip": {"rooms": 5, "area_m2": 139.0}, "-": {"rooms": 4, "area_m2": 8.0}, "epoxy": {"rooms": 3, "area_m2": 63.0}, "vinyl anti-statik (target)": {"rooms": 3, "area_m2": 85.5}, "deck komposit": {"rooms": 2, "area_m2": 86.5}, "lantai karet olahraga": {"rooms": 1, "area_m2": 49.5}}, "total_m2": 1536.0}
+  previews drawings/previews/I-101.png, drawings/previews/I-101-dxf.png
+
+[ICT-001] Topologi jaringan (virtual)  content topology  floor -  scale NTS @ A3
+  dxf cad/out/ICT-001.dxf  105964 bytes  sha256 3d5c7f1e5152479bac1e4ba829959f7f7d4a88ae4f34b1600629085c0094f86b
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:ICT-001 165 entities
+  expected {'pages': 1, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-001.pdf  33821 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 1714972a29f6252978a1728dc5a371a84a1ea7502eb40ef33f0da292c10875de
+  summary {"switches": 3, "patch_panels": 4, "aps": 11, "cameras": 5, "domains": 5}
+  previews drawings/previews/ICT-001.png, drawings/previews/ICT-001-dxf.png
+
+[ICT-101] Outlet, AP dan kamera Lantai 1  content ict_plan  floor L1  scale 1:100 @ A2
+  dxf cad/out/ICT-101.dxf  361446 bytes  sha256 22c69c30a85ac8e7e2ae37ab4d6592e8040c9cd27d1efe8e421e59cef6fe6d03
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 781 entities: A-ANNO-RMNM TEXT 20; A-AREA LWPOLYLINE 20; A-DOOR ARC 23, HATCH 2, LWPOLYLINE 35; A-FURN LWPOLYLINE 106; A-GLAZ LWPOLYLINE 178; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 70, LWPOLYLINE 70; ICT-AP CIRCLE 5, HATCH 5, TEXT 5; ICT-CAM HATCH 6, LWPOLYLINE 6; ICT-DEV-IDEN TEXT 8; ICT-OUTL HATCH 30, LWPOLYLINE 30; ICT-OUTL-IDEN TEXT 30; ICT-RACK HATCH 2, LWPOLYLINE 2, TEXT 2; ICT-RISR HATCH 1, LWPOLYLINE 1, TEXT 1; ICT-TRAY LWPOLYLINE 10, TEXT 3
+  paperspace:ICT-101 347 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 20, "windows_per_floor": {"L1": 20}, "door_leaves": 23, "door_arcs": 23, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-101.pdf  50741 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 96af4f789e63e6a3a855d9f17a72b2f182e066d873f5ebda481c5891b40126a9
+  summary {"outlets": 30, "ports": 55, "aps": 5, "cameras": 3, "wet_room_cameras": []}
+  previews drawings/previews/ICT-101.png, drawings/previews/ICT-101-dxf.png
+
+[ICT-102] Outlet, AP dan kamera Lantai 2  content ict_plan  floor L2  scale 1:100 @ A2
+  dxf cad/out/ICT-102.dxf  310930 bytes  sha256 c2800ddd8f357ad4f568a24d1cc6c9e9b96765414cc8892839bb2320f05f0bfa
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 686 entities: A-ANNO-RMNM TEXT 18; A-AREA LWPOLYLINE 18; A-DOOR ARC 15, HATCH 4, LWPOLYLINE 31; A-FURN LWPOLYLINE 89; A-GLAZ LWPOLYLINE 186; A-GRID LWPOLYLINE 11; A-GRID-IDEN CIRCLE 22, HATCH 22, TEXT 22; A-STRS LWPOLYLINE 31, TEXT 2; A-WALL HATCH 61, LWPOLYLINE 61; ICT-AP CIRCLE 6, HATCH 6, TEXT 6; ICT-CAM HATCH 4, LWPOLYLINE 4; ICT-DEV-IDEN TEXT 8; ICT-OUTL HATCH 15, LWPOLYLINE 15; ICT-OUTL-IDEN TEXT 15; ICT-RISR HATCH 1, LWPOLYLINE 1, TEXT 1; ICT-TRAY LWPOLYLINE 8, TEXT 3
+  paperspace:ICT-102 250 entities
+  expected {'pages': 1, 'views': 1}
+  openings {"window_symbols": 19, "windows_per_floor": {"L2": 19}, "door_leaves": 15, "door_arcs": 15, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-102.pdf  48236 bytes  pages 1  page 1683.78 x 1190.55 pt  sha256 1c66c5096dae9d09499b056335690cb1f0d99b97bd115b47a2215744b5a5c541
+  summary {"outlets": 15, "ports": 17, "aps": 6, "cameras": 2, "wet_room_cameras": []}
+  previews drawings/previews/ICT-102.png, drawings/previews/ICT-102-dxf.png
+
+[ICT-201] Elevasi rack  content rack_elevation  floor -  scale 1:20 @ A3
+  dxf cad/out/ICT-201.dxf  166487 bytes  sha256 150655034b2f6696fa70a16f159f6454f97cc695a4972b21f98d68fe0c4d708e
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 279 entities: A-ANNO-RMNM TEXT 1; A-WALL LWPOLYLINE 1; ICT-CLRZ HATCH 4, LWPOLYLINE 4, TEXT 2; ICT-RACK HATCH 4, LWPOLYLINE 92; ICT-RACK-DEV HATCH 17, LWPOLYLINE 17; ICT-RACK-IDEN LWPOLYLINE 17, TEXT 120
+  paperspace:ICT-201 160 entities
+  expected {'pages': 1, 'views': 3}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-201.pdf  36791 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 605de184221209cf8fb4e8587057c64935cacd8854c6e895d0bf04cb399eb6e4
+  summary {"racks": 2, "devices": 17}
+  previews drawings/previews/ICT-201.png, drawings/previews/ICT-201-dxf.png
+
+[ICT-301] Pathway dan riser  content pathways  floor -  scale 1:200 @ A3
+  dxf cad/out/ICT-301.dxf  345416 bytes  sha256 8da3564fa80e769d2de5949819ba8c6565e07b59b3cc2d36e2d9af37fb52535e
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 880 entities: A-AREA LWPOLYLINE 38; A-GLAZ LWPOLYLINE 364; A-STRS LWPOLYLINE 62, TEXT 4; A-WALL HATCH 131, LWPOLYLINE 131; ICT-OUTL HATCH 45; ICT-RACK HATCH 2, LWPOLYLINE 2; ICT-RISR HATCH 2, LWPOLYLINE 2, TEXT 2; ICT-ROUT LWPOLYLINE 89; ICT-TRAY LWPOLYLINE 6
+  paperspace:ICT-301 77 entities
+  expected {'pages': 1, 'views': 2}
+  openings {"window_symbols": 39, "windows_per_floor": {"L1": 20, "L2": 19}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-301.pdf  47376 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 9811e88795e9fbccd554dc0fd7b915c9c8b967c8c14a8aa79fdaaa8ebee45b4c
+  summary {"route_counts": {"L1": 55, "L2": 17}, "check": {"cables": 72, "sum_length_m": 2074.8, "declared_total_m": 2074.8, "total_ok": true, "revision_ok": true}}
+  previews drawings/previews/ICT-301.png, drawings/previews/ICT-301-dxf.png
+
+[ICT-401] Port dan device schedule  content port_schedule  floor -  scale NTS @ A3
+  dxf cad/out/ICT-401.dxf  336311 bytes  sha256 64876685ad68b491194fdf84e7aa36cab9e60b5b9eb0e1c7ce3725d78007a59a
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:ICT-401-1 648 entities
+  paperspace:ICT-401-2 310 entities
+  paperspace:ICT-401-3 123 entities
+  expected {'pages': 3, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/ICT-401.pdf  47212 bytes  pages 3  page 1190.55 x 841.89 pt  sha256 fd4b831a85e8595d90373515583169a1ac214960a5c4dc8ff5a2109ea016e446
+  summary {"check": {"cables": 72, "sum_length_m": 2074.8, "declared_total_m": 2074.8, "total_ok": true, "revision_ok": true}, "rows": 72, "pages": 3, "printed_total_m": 2074.8}
+  previews drawings/previews/ICT-401.png, drawings/previews/ICT-401-dxf.png, drawings/previews/ICT-401-p2.png, drawings/previews/ICT-401-p3.png
+
+[A-001] Cover, indeks dan catatan umum  content index  floor -  scale NTS @ A3
+  dxf cad/out/A-001.dxf  120040 bytes  sha256 11403ce730c20bd76b7456a0ceaec8ef14860a662caf6bf2f44f5f3640c8974d
+  reopen ezdxf.readfile OK, dxfversion AC1032, $INSUNITS 4, audit errors 0 fixes 0
+  modelspace 0 entities: 
+  paperspace:A-001 219 entities
+  expected {'pages': 1, 'views': 0}
+  openings {"window_symbols": 0, "windows_per_floor": {}, "door_leaves": 0, "door_arcs": 0, "elevation_hinge_marks": 0}
+  pdf drawings/pdf/A-001.pdf  35657 bytes  pages 1  page 1190.55 x 841.89 pt  sha256 56c712e8d5e966aff4d1cb364fbe4e3cff36c1458c2e2a467a8b298334c2c7ec
+  summary {"index_rows": 15, "assumptions": 17}
+  previews drawings/previews/A-001.png, drawings/previews/A-001-dxf.png
+
+counts index cad/out/counts.json sha256 fd40bd3176ee944435a438b53b0092ee618b0268b4fd177b194226aab077f1f5
+
+set kantor-rpg-sheets-all.pdf: 15 sheets, 18 pages, labels A-001 A-101 A-102 A-103-1 A-103-2 A-201 A-202 A-301 A-401 I-101 ICT-001 ICT-101 ICT-102 ICT-201 ICT-301 ICT-401-1 ICT-401-2 ICT-401-3  sha256 30e1850ffd27e97f3b61f433df39aff242e0bb957c7dc077e1c9fbe5c05a083f
+set kantor-rpg-sheets-A.pdf: 8 sheets, 9 pages, labels A-001 A-101 A-102 A-103-1 A-103-2 A-201 A-202 A-301 A-401  sha256 1577a1367c77f72f3b7003624b07dc8b976380d98d32024181466e67939f59ec
+set kantor-rpg-sheets-I.pdf: 1 sheets, 1 pages, labels I-101  sha256 7faea6adec70458a467e755e8395495b2b1fe7976b72bbf9e352eee59e57a9ed
+set kantor-rpg-sheets-ICT.pdf: 6 sheets, 8 pages, labels ICT-001 ICT-101 ICT-102 ICT-201 ICT-301 ICT-401-1 ICT-401-2 ICT-401-3  sha256 6e366494e5ab804d8d4e758597a98e555a532308e8fe1f1c6c5810adc9644eb4
+
+register drawings/register.json: 15 produced, 0 target
+native DWG: BLOCKED (AutoCAD tidak tersedia di container); tidak ada file .dwg dibuat
+# exit code: 0
+# utc end: 2026-10-01T15:48:39Z

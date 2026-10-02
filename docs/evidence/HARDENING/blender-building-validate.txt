@@ -1,0 +1,3 @@
+building validation: PASS checks=1529 failed=0 world=P03 blender=4.0.2
+L1: objects=189 walls=50 openings=26 windows=20 leaves=23 triangles_blend=4446 triangles_glb=4446 glb_bytes=370932
+L2: objects=158 walls=42 openings=20 windows=19 leaves=15 triangles_blend=3746 triangles_glb=3746 glb_bytes=308492

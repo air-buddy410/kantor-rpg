@@ -1,0 +1,8 @@
+A/B perf, same container, same day, desktop viewport, fixed 60 s route (SwiftShader, no GPU; not a device result).
+label | build | fpsAverage | frameMsMedian | frameMsP95 | distanceM
+R2 run0 | current | 3.9 | 257.3 | 542.5 | 28.1
+R2-ab-old1 | b109cde (hardening) | 4.1 | 231.5 | 560.3 | 30
+R2-ab-old2 | b109cde (hardening) | 4.1 | 229.9 | 575.8 | 34.5
+R2-var1 | current | 3.9 | 250 | 588.1 | 29
+R2-var2 | current | 4 | 246.9 | 543.1 | 31.9
+Conclusion: under identical conditions b109cde gives 4.1 FPS (median 230 ms) and the R2 build 3.9 to 4.0 FPS (median 247 to 257 ms): about 3 to 5 percent lower average FPS and 7 to 12 percent higher median frame time, a small real cost (door leaves, symmetric collision checks). The 5.6 FPS recorded at b109cde came from an earlier container instance; container FPS is not comparable across sessions (ADR-011).

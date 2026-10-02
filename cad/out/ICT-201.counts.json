@@ -1,0 +1,101 @@
+{
+ "file": "ICT-201.dxf",
+ "modelspace": {
+  "ICT-RACK": {
+   "HATCH": 4,
+   "LWPOLYLINE": 92
+  },
+  "ICT-RACK-IDEN": {
+   "TEXT": 120,
+   "LWPOLYLINE": 17
+  },
+  "ICT-RACK-DEV": {
+   "HATCH": 17,
+   "LWPOLYLINE": 17
+  },
+  "A-WALL": {
+   "LWPOLYLINE": 1
+  },
+  "ICT-CLRZ": {
+   "HATCH": 4,
+   "LWPOLYLINE": 4,
+   "TEXT": 2
+  },
+  "A-ANNO-RMNM": {
+   "TEXT": 1
+  }
+ },
+ "paperspace": {
+  "paperspace:ICT-201": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 9,
+    "LWPOLYLINE": 3,
+    "HATCH": 3
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 9,
+    "TEXT": 108,
+    "LWPOLYLINE": 19
+   },
+   "A-ANNO-VPRT": {
+    "VIEWPORT": 3
+   }
+  }
+ },
+ "totals": {
+  "modelspace": 279,
+  "paperspace": 160
+ },
+ "layers": [
+  "0",
+  "A-ANNO-DIMS",
+  "A-ANNO-NOTE",
+  "A-ANNO-RMNM",
+  "A-ANNO-SCHD",
+  "A-ANNO-TTLB",
+  "A-ANNO-VPRT",
+  "A-ANNO-WMRK",
+  "A-AREA",
+  "A-DOOR",
+  "A-DOOR-IDEN",
+  "A-FURN",
+  "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
+  "A-GRID",
+  "A-GRID-IDEN",
+  "A-STRS",
+  "A-WALL",
+  "Defpoints",
+  "ICT-CLRZ",
+  "ICT-RACK",
+  "ICT-RACK-DEV",
+  "ICT-RACK-IDEN"
+ ],
+ "insunits": 4,
+ "dxfversion": "AC1032",
+ "sheet": "ICT-201",
+ "world_revision": "P03",
+ "expected": {
+  "pages": 1,
+  "views": 3
+ },
+ "openings": {
+  "window_symbols": 0,
+  "windows_per_floor": {},
+  "door_leaves": 0,
+  "door_arcs": 0,
+  "elevation_hinge_marks": 0
+ }
+}

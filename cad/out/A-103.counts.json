@@ -1,0 +1,93 @@
+{
+ "file": "A-103.dxf",
+ "modelspace": {},
+ "paperspace": {
+  "paperspace:A-103-1": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 6,
+    "LWPOLYLINE": 1,
+    "HATCH": 4
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 21,
+    "TEXT": 454,
+    "LWPOLYLINE": 42
+   }
+  },
+  "paperspace:A-103-2": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 10,
+    "LWPOLYLINE": 2,
+    "HATCH": 5
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 44,
+    "TEXT": 783,
+    "LWPOLYLINE": 89
+   }
+  }
+ },
+ "totals": {
+  "modelspace": 0,
+  "paperspace": 1473
+ },
+ "layers": [
+  "0",
+  "A-ANNO-DIMS",
+  "A-ANNO-NOTE",
+  "A-ANNO-RMNM",
+  "A-ANNO-SCHD",
+  "A-ANNO-TTLB",
+  "A-ANNO-VPRT",
+  "A-ANNO-WMRK",
+  "A-AREA",
+  "A-DOOR",
+  "A-DOOR-IDEN",
+  "A-FURN",
+  "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
+  "A-GRID",
+  "A-GRID-IDEN",
+  "A-STRS",
+  "A-WALL",
+  "Defpoints"
+ ],
+ "insunits": 4,
+ "dxfversion": "AC1032",
+ "sheet": "A-103",
+ "world_revision": "P03",
+ "expected": {
+  "pages": 2,
+  "views": 0
+ },
+ "openings": {
+  "window_symbols": 0,
+  "windows_per_floor": {},
+  "door_leaves": 0,
+  "door_arcs": 0,
+  "elevation_hinge_marks": 0
+ }
+}

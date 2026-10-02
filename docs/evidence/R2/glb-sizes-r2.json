@@ -1,0 +1,545 @@
+{
+ "description": "R2 GLB sizes before (Blender export, byte-identical to the previously shipped files) and after tools/glb_optimize.mjs, per file. Budgets are project targets (R2), not measured device limits; MB = 1,000,000 bytes.",
+ "generatedBy": "inline script over app/public/assets and blender/out/raw-glb after the pipeline run in asset-pipeline.txt",
+ "gitHead": "0a5b58799fcffde8edc9de4c5a25a2902b7083da",
+ "budgetsProjectTarget": {
+  "characters": 3000000,
+  "furniture": 1500000,
+  "charactersPlusFurniture": 4500000
+ },
+ "totals": {
+  "characters": {
+   "files": 7,
+   "before": 7033948,
+   "after": 3551104,
+   "saved": 3482844,
+   "ratio": 0.5049
+  },
+  "furniture": {
+   "files": 54,
+   "before": 2240192,
+   "after": 1394224,
+   "saved": 845968,
+   "ratio": 0.6224
+  }
+ },
+ "totalCharactersPlusFurniture": {
+  "before": 9274140,
+  "after": 4945328
+ },
+ "budgetResult": {
+  "characters": false,
+  "furniture": true,
+  "charactersPlusFurniture": false
+ },
+ "compositionAfter": {
+  "ch-ceo.glb": {
+   "totalBytes": 620616,
+   "vertices": 13780,
+   "bytesByUse": {
+    "indices": 157608,
+    "POSITION": 110240,
+    "JOINTS_0": 55120,
+    "NORMAL": 55120,
+    "TEXCOORD_0": 55120,
+    "WEIGHTS_0": 55120,
+    "animation output": 50316,
+    "JSON chunk": 49900,
+    "morph POSITION (sparse)": 29120,
+    "animation input": 1452,
+    "inverse bind matrices": 1152,
+    "image (PNG atlas)": 318
+   },
+   "bytesPerVertex": {
+    "POSITION": 8.0,
+    "NORMAL": 4.0,
+    "TEXCOORD_0": 4.0,
+    "JOINTS_0": 4.0,
+    "WEIGHTS_0": 4.0
+   }
+  },
+  "ch-architect.glb": {
+   "totalBytes": 469056,
+   "vertices": 9597,
+   "bytesByUse": {
+    "indices": 109026,
+    "POSITION": 76776,
+    "animation output": 50316,
+    "JSON chunk": 47308,
+    "JOINTS_0": 38388,
+    "NORMAL": 38388,
+    "TEXCOORD_0": 38388,
+    "WEIGHTS_0": 38388,
+    "morph POSITION (sparse)": 29120,
+    "animation input": 1452,
+    "inverse bind matrices": 1152,
+    "image (PNG atlas)": 318
+   },
+   "bytesPerVertex": {
+    "POSITION": 8.0,
+    "NORMAL": 4.0,
+    "TEXCOORD_0": 4.0,
+    "JOINTS_0": 4.0,
+    "WEIGHTS_0": 4.0
+   }
+  }
+ },
+ "diagnosis": [
+  "Characters stop at 3,551,104 bytes (target 3,000,000). Vertex data is at the KHR_mesh_quantization floor: POSITION int16 x3 padded to 8 bytes, NORMAL int8 x3 padded to 4, TEXCOORD_0 4, JOINTS_0 4, WEIGHTS_0 4 = 24 bytes per vertex (glTF requires 4-byte aligned vertex elements, so 8-bit UVs or 12-bit positions cost the same bytes).",
+  "Welding cannot help: after quantization every vertex of every mesh is still unique (checked on ch-ceo: body 5751 of 5751, hair and lod1 all unique).",
+  "Triangle indices are already uint16 and are the largest single block (ch-ceo 157,608 bytes, 25 percent).",
+  "Keyframe resampling was measured and rejected: tolerance 1e-5 grew the character total to 3,574,292 bytes, 1e-4 reached 3,487,332 bytes (65 KB less for seven files) and is lossy.",
+  "Reaching 3.0 MB needs either fewer vertices/triangles (an art decision on body, hair or lod1 meshes), or compressed encodings (EXT_meshopt_compression / Draco) that need a decoder and WebAssembly, which the task and the proposed CSP exclude."
+ ],
+ "runtimeNotes": [
+  "Furniture (BLOCKING for the current runtime): app/src/world/furniture-kit.ts clones the geometry, calls applyMatrix4 on it and slices attribute.array as Float32Array into new non-normalized BufferAttributes. Shipped furniture now has POSITION Int16Array (normalized, node scale + translation) and NORMAL Int8Array (normalized); applyMatrix4 would write metres back into Int16 through setXYZ and the sliced arrays lose the normalized flag. Dequantize every attribute to Float32 (BufferAttribute.getComponent) right after mesh.geometry.clone() and before applyMatrix4. The node transform is already handled because the code uses mesh.matrixWorld.",
+  "Characters: positions and morph deltas are non-normalized Int16 with the scale in the skin inverse bind matrices; normals Int8 normalized; UV Uint16 normalized; weights Uint8 normalized; rotation outputs Int16 normalized (GLTFLoader dequantizes animation outputs itself). avatar.ts does not read attribute arrays, so no change is expected; geometry.boundingBox from attributes is in quantized units, but avatars set frustumCulled = false.",
+  "Clips: rest-pose channels are removed (184 of 702 kept per character). A clip now animates only the bones that move or hold a non-rest pose; three.js blends the node's original (rest) state for the remaining weight, so crossfades give the same result.",
+  "GLTFLoader must accept the required extension KHR_mesh_quantization (built into three 0.186.1 GLTFLoader); no Draco/Meshopt/KTX2 loader is needed."
+ ],
+ "files": [
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-architect.glb",
+   "beforeBytes": 936748,
+   "afterBytes": 469056,
+   "ratio": 0.5007
+  },
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-ceo.glb",
+   "beforeBytes": 1205812,
+   "afterBytes": 620616,
+   "ratio": 0.5147
+  },
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-ictspec.glb",
+   "beforeBytes": 970436,
+   "afterBytes": 488328,
+   "ratio": 0.5032
+  },
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-netinstall.glb",
+   "beforeBytes": 956716,
+   "afterBytes": 479500,
+   "ratio": 0.5012
+  },
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-qa.glb",
+   "beforeBytes": 994288,
+   "afterBytes": 501392,
+   "ratio": 0.5043
+  },
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-supervisor.glb",
+   "beforeBytes": 989132,
+   "afterBytes": 498316,
+   "ratio": 0.5038
+  },
+  {
+   "kind": "characters",
+   "file": "app/public/assets/characters/ch-visual.glb",
+   "beforeBytes": 980816,
+   "afterBytes": 493896,
+   "ratio": 0.5036
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/arcade_cabinet.glb",
+   "beforeBytes": 41532,
+   "afterBytes": 27844,
+   "ratio": 0.6704
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/armchair.glb",
+   "beforeBytes": 36444,
+   "afterBytes": 25204,
+   "ratio": 0.6916
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/beanbag.glb",
+   "beforeBytes": 15568,
+   "afterBytes": 11384,
+   "ratio": 0.7312
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/bench.glb",
+   "beforeBytes": 23032,
+   "afterBytes": 15240,
+   "ratio": 0.6617
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/billiard_table.glb",
+   "beforeBytes": 94028,
+   "afterBytes": 59868,
+   "ratio": 0.6367
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/board_table.glb",
+   "beforeBytes": 49788,
+   "afterBytes": 30040,
+   "ratio": 0.6034
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/bookshelf.glb",
+   "beforeBytes": 95804,
+   "afterBytes": 58148,
+   "ratio": 0.6069
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/chair.glb",
+   "beforeBytes": 40464,
+   "afterBytes": 26084,
+   "ratio": 0.6446
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/chair_guest.glb",
+   "beforeBytes": 27668,
+   "afterBytes": 18136,
+   "ratio": 0.6555
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/coffee_bar.glb",
+   "beforeBytes": 66704,
+   "afterBytes": 42488,
+   "ratio": 0.637
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/coffee_table.glb",
+   "beforeBytes": 24644,
+   "afterBytes": 15144,
+   "ratio": 0.6145
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/cue_rack.glb",
+   "beforeBytes": 28936,
+   "afterBytes": 18800,
+   "ratio": 0.6497
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/desk.glb",
+   "beforeBytes": 38240,
+   "afterBytes": 24164,
+   "ratio": 0.6319
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/desk_exec.glb",
+   "beforeBytes": 57924,
+   "afterBytes": 35264,
+   "ratio": 0.6088
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/dining_table.glb",
+   "beforeBytes": 16756,
+   "afterBytes": 11668,
+   "ratio": 0.6963
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/directory_sign.glb",
+   "beforeBytes": 29436,
+   "afterBytes": 18160,
+   "ratio": 0.6169
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/drafting_table.glb",
+   "beforeBytes": 27380,
+   "afterBytes": 17336,
+   "ratio": 0.6332
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/dumbbell_rack.glb",
+   "beforeBytes": 83104,
+   "afterBytes": 46572,
+   "ratio": 0.5604
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/easel.glb",
+   "beforeBytes": 22232,
+   "afterBytes": 15328,
+   "ratio": 0.6895
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/exercise_bike.glb",
+   "beforeBytes": 43216,
+   "afterBytes": 28372,
+   "ratio": 0.6565
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/exercise_mat.glb",
+   "beforeBytes": 12636,
+   "afterBytes": 8328,
+   "ratio": 0.6591
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/fridge.glb",
+   "beforeBytes": 24828,
+   "afterBytes": 15308,
+   "ratio": 0.6166
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/gallery_panel.glb",
+   "beforeBytes": 23620,
+   "afterBytes": 13792,
+   "ratio": 0.5839
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/high_table.glb",
+   "beforeBytes": 19260,
+   "afterBytes": 13220,
+   "ratio": 0.6864
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/lab_bench.glb",
+   "beforeBytes": 51264,
+   "afterBytes": 30360,
+   "ratio": 0.5922
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/lab_rack_open.glb",
+   "beforeBytes": 79360,
+   "afterBytes": 48356,
+   "ratio": 0.6093
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/lift.glb",
+   "beforeBytes": 11200,
+   "afterBytes": 8392,
+   "ratio": 0.7493
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/locker.glb",
+   "beforeBytes": 104148,
+   "afterBytes": 58140,
+   "ratio": 0.5582
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/media_console.glb",
+   "beforeBytes": 39688,
+   "afterBytes": 23312,
+   "ratio": 0.5874
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/meeting_table.glb",
+   "beforeBytes": 28384,
+   "afterBytes": 18112,
+   "ratio": 0.6381
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/model_shelf.glb",
+   "beforeBytes": 65180,
+   "afterBytes": 41128,
+   "ratio": 0.631
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/pantry_counter.glb",
+   "beforeBytes": 51316,
+   "afterBytes": 32960,
+   "ratio": 0.6423
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/partition.glb",
+   "beforeBytes": 13128,
+   "afterBytes": 8224,
+   "ratio": 0.6264
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/plan_table.glb",
+   "beforeBytes": 48944,
+   "afterBytes": 30756,
+   "ratio": 0.6284
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/plant_large.glb",
+   "beforeBytes": 40112,
+   "afterBytes": 27892,
+   "ratio": 0.6954
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/plant_small.glb",
+   "beforeBytes": 29960,
+   "afterBytes": 20496,
+   "ratio": 0.6841
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/planter_box.glb",
+   "beforeBytes": 35848,
+   "afterBytes": 22996,
+   "ratio": 0.6415
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/poster.glb",
+   "beforeBytes": 17428,
+   "afterBytes": 10968,
+   "ratio": 0.6293
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/rack_42u.glb",
+   "beforeBytes": 158380,
+   "afterBytes": 91072,
+   "ratio": 0.575
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/reception_desk.glb",
+   "beforeBytes": 49992,
+   "afterBytes": 30732,
+   "ratio": 0.6147
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/round_table.glb",
+   "beforeBytes": 16644,
+   "afterBytes": 11656,
+   "ratio": 0.7003
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/shower_stall.glb",
+   "beforeBytes": 25208,
+   "afterBytes": 16412,
+   "ratio": 0.6511
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/sink.glb",
+   "beforeBytes": 16868,
+   "afterBytes": 10828,
+   "ratio": 0.6419
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/sofa.glb",
+   "beforeBytes": 38796,
+   "afterBytes": 23228,
+   "ratio": 0.5987
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/stair_u.glb",
+   "beforeBytes": 34672,
+   "afterBytes": 21068,
+   "ratio": 0.6076
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/stool.glb",
+   "beforeBytes": 18140,
+   "afterBytes": 12088,
+   "ratio": 0.6664
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/storage_shelf.glb",
+   "beforeBytes": 118496,
+   "afterBytes": 71476,
+   "ratio": 0.6032
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/tool_cabinet.glb",
+   "beforeBytes": 49488,
+   "afterBytes": 30768,
+   "ratio": 0.6217
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/treadmill.glb",
+   "beforeBytes": 34516,
+   "afterBytes": 21296,
+   "ratio": 0.617
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/tree_planter.glb",
+   "beforeBytes": 38700,
+   "afterBytes": 23176,
+   "ratio": 0.5989
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/wall_display.glb",
+   "beforeBytes": 14232,
+   "afterBytes": 8816,
+   "ratio": 0.6194
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/wc.glb",
+   "beforeBytes": 17876,
+   "afterBytes": 12516,
+   "ratio": 0.7002
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/whiteboard.glb",
+   "beforeBytes": 28900,
+   "afterBytes": 17652,
+   "ratio": 0.6108
+  },
+  {
+   "kind": "furniture",
+   "file": "app/public/assets/furniture/work_table.glb",
+   "beforeBytes": 20080,
+   "afterBytes": 13456,
+   "ratio": 0.6701
+  },
+  {
+   "kind": "building",
+   "file": "app/public/assets/building/building-L1.glb",
+   "beforeBytes": 370932,
+   "afterBytes": 370932,
+   "ratio": 1.0,
+   "note": "not optimised: not loaded by the runtime, not in the budget"
+  },
+  {
+   "kind": "building",
+   "file": "app/public/assets/building/building-L2.glb",
+   "beforeBytes": 308492,
+   "afterBytes": 308492,
+   "ratio": 1.0,
+   "note": "not optimised: not loaded by the runtime, not in the budget"
+  }
+ ]
+}

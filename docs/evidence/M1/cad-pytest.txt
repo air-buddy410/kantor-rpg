@@ -1,0 +1,31 @@
+# 2026-10-01T10:41:07Z git HEAD 93d2ec5 (working tree, uncommitted)
+$ python3 -m pytest tests/py/test_cad.py -q
+................                                                         [100%]
+16 passed in 19.61s
+exit code: 0
+
+$ python3 -m pytest tests/py/test_cad.py --co -q   (test inventory)
+tests/py/test_cad.py::test_dxf_reopens_and_audits_clean
+tests/py/test_cad.py::test_dxf_required_layers
+tests/py/test_cad.py::test_dxf_rooms_match_world
+tests/py/test_cad.py::test_dxf_room_check_detects_off_grid_room
+tests/py/test_cad.py::test_dxf_door_and_fixture_ids
+tests/py/test_cad.py::test_dxf_walls_count_and_extents
+tests/py/test_cad.py::test_dxf_dimensions_and_grid
+tests/py/test_cad.py::test_dxf_sheet_metadata_and_viewport
+tests/py/test_cad.py::test_counts_file_matches_dxf
+tests/py/test_cad.py::test_dxf_preview_renders
+tests/py/test_cad.py::test_pdf_text_content
+tests/py/test_cad.py::test_pdf_page_is_a2_landscape_vector
+tests/py/test_cad.py::test_scale_bar_true_to_scale
+tests/py/test_cad.py::test_plan_origin_maps_world_metres_to_paper
+tests/py/test_cad.py::test_unimplemented_content_is_refused
+tests/py/test_cad.py::test_autocad_count_comparison_tool
+
+16 tests collected in 0.33s
+exit code: 0
+
+$ python3 -m pytest tests/py -q   (full Python suite, regression check)
+..............................................                           [100%]
+46 passed in 31.10s
+exit code: 0

@@ -1,0 +1,287 @@
+/* Tokens are checked by tools/contrast.py (WCAG ratios computed, not eyeballed).
+   Pairs: ink/bg, ink/surface, ink-2/surface, on-green/green, on-accent/accent,
+   accent-ink/surface, control-border/surface, focus/bg. */
+@import '@fontsource/alegreya-sans/400.css';
+@import '@fontsource/alegreya-sans/500.css';
+@import '@fontsource/alegreya-sans/700.css';
+
+:root {
+  --bg: #f4ecdc;
+  --surface: #fffaf0;
+  --surface-2: #efe3cc;
+  --ink: #1d2a23;
+  --ink-2: #4b5a51;
+  --green: #1f4d3a;
+  --on-green: #fffaf0;
+  --accent: #a34a27;
+  --on-accent: #fffaf0;
+  --accent-ink: #9a4322;
+  --control-border: #7d6a4f;
+  --focus: #b8571f;
+  --scrim: rgba(29, 42, 35, 0.45);
+  --shadow: 0 6px 24px rgba(40, 30, 15, 0.18);
+  --radius: 14px;
+  --font: 'Alegreya Sans', 'Segoe UI', system-ui, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #121d18;
+    --surface: #1b2a22;
+    --surface-2: #24372d;
+    --ink: #f2e9d6;
+    --ink-2: #c2b8a2;
+    --green: #9bd0b1;
+    --on-green: #10201a;
+    --accent: #e48b62;
+    --on-accent: #1b120c;
+    --accent-ink: #f0a07a;
+    --control-border: #8e9f94;
+    --focus: #f2b36b;
+    --scrim: rgba(0, 0, 0, 0.55);
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #121d18;
+  --surface: #1b2a22;
+  --surface-2: #24372d;
+  --ink: #f2e9d6;
+  --ink-2: #c2b8a2;
+  --green: #9bd0b1;
+  --on-green: #10201a;
+  --accent: #e48b62;
+  --on-accent: #1b120c;
+  --accent-ink: #f0a07a;
+  --control-border: #8e9f94;
+  --focus: #f2b36b;
+  --scrim: rgba(0, 0, 0, 0.55);
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.4;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3 { line-height: 1.15; margin: 0 0 0.4em; }
+h2 { font-size: 1.35rem; }
+.muted { color: var(--ink-2); }
+.small { font-size: 0.9rem; }
+kbd {
+  font-family: var(--font);
+  font-size: 0.8em;
+  border: 1px solid var(--control-border);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 0 0.35em;
+  margin-left: 0.3em;
+  background: var(--surface);
+  color: var(--ink);
+}
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.skip-link { position: absolute; left: -9999px; top: 8px; z-index: 50; background: var(--surface); color: var(--ink); padding: 10px 14px; border-radius: 10px; min-height: 44px; display: inline-flex; align-items: center; }
+.skip-link:focus { left: 8px; }
+
+.app { position: fixed; inset: 0; }
+.stage { position: absolute; inset: 0; }
+.stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.room-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: #1d2a23;
+  background: rgba(255, 250, 240, 0.82);
+  border-radius: 999px;
+  padding: 2px 9px;
+  white-space: nowrap;
+  transition: opacity 160ms;
+}
+.room-label.locked { color: #8a3b1c; }
+
+.hud-top {
+  position: absolute; top: max(10px, env(safe-area-inset-top)); left: 12px; right: 12px;
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap; pointer-events: none;
+}
+.hud-top > * { pointer-events: auto; }
+.hud-brand, .hud-place, .sim-badge {
+  background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 14px; box-shadow: var(--shadow);
+}
+.brand-text { font-weight: 700; color: var(--green); letter-spacing: 0.01em; }
+.hud-place { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.floor-chip { background: var(--green); color: var(--on-green); border-radius: 999px; padding: 1px 10px; font-weight: 700; }
+.room-name { font-weight: 500; }
+.sim-badge { background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 0.88rem; }
+.hud-actions { margin-left: auto; display: flex; gap: 8px; }
+
+.btn {
+  font: inherit; font-weight: 500;
+  min-height: 44px; min-width: 44px; padding: 8px 14px;
+  border-radius: 12px; border: 2px solid var(--control-border);
+  background: var(--surface); color: var(--ink); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px; box-shadow: var(--shadow);
+}
+.btn:hover { background: var(--surface-2); }
+.btn.primary { background: var(--green); color: var(--on-green); border-color: var(--green); }
+.btn.link { box-shadow: none; }
+.btn[aria-disabled='true'], .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.prompt {
+  position: absolute; left: 50%; bottom: 120px; transform: translateX(-50%);
+  background: var(--surface); color: var(--ink); border: 2px solid var(--accent);
+  border-radius: 999px; padding: 8px 18px; font-weight: 700; box-shadow: var(--shadow);
+}
+.toast {
+  position: absolute; left: 50%; top: 84px; transform: translateX(-50%);
+  background: var(--green); color: var(--on-green); padding: 8px 16px; border-radius: 12px; box-shadow: var(--shadow); max-width: min(90vw, 520px);
+}
+.activity-chip {
+  position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px; background: var(--surface); color: var(--ink);
+  border: 2px solid var(--green); border-radius: 999px; padding: 6px 6px 6px 16px; box-shadow: var(--shadow); max-width: calc(100vw - 24px);
+}
+.activity-chip .btn { box-shadow: none; }
+.fade { position: absolute; inset: 0; background: #1d2a23; opacity: 0; pointer-events: none; transition: opacity 260ms ease; }
+.fade.on { opacity: 1; }
+
+.panel {
+  position: absolute; z-index: 20;
+  background: var(--surface); color: var(--ink); box-shadow: var(--shadow);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px 16px 8px; border-bottom: 1px solid var(--surface-2); }
+.panel-head h2 { margin: 0; }
+.directory { top: 72px; right: 12px; bottom: 12px; width: min(420px, calc(100vw - 24px)); border-radius: var(--radius); }
+.directory-body { overflow: auto; padding: 8px 16px 16px; }
+.directory-body h3 { font-size: 1.05rem; margin: 14px 0 6px; color: var(--green); }
+.dir-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.dir-item {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center;
+  border: 1px solid var(--surface-2); border-radius: 12px; padding: 8px 10px; background: var(--surface);
+}
+.dir-item .meta { color: var(--ink-2); font-size: 0.88rem; grid-column: 1; }
+.dir-item > .btn, .dir-item .dir-actions { grid-row: 1 / span 2; grid-column: 2; }
+.dir-item .btn { box-shadow: none; }
+.dir-actions { display: flex; gap: 6px; }
+.npc-label {
+  position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap;
+  font-size: 0.78rem; font-weight: 700; color: #fffaf0; background: rgba(31, 77, 58, 0.92);
+  border-radius: 999px; padding: 1px 8px; transition: opacity 160ms;
+}
+.sim-clock { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 0.9rem; }
+.quote { font-size: 1.1rem; border-left: 4px solid var(--accent); padding-left: 12px; margin: 8px 0 12px; }
+.sim-note { font-weight: 700; color: var(--accent-ink); font-size: 0.9rem; margin: 0 0 4px; }
+.tag { display: inline-block; font-size: 0.78rem; border-radius: 999px; padding: 0 8px; background: var(--surface-2); color: var(--ink); margin-left: 4px; }
+.tag.locked { background: var(--accent); color: var(--on-accent); }
+.doc-list a { color: var(--accent-ink); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
+
+.dialog {
+  border: none; border-radius: var(--radius); padding: 20px 22px; max-width: min(560px, calc(100vw - 24px));
+  background: var(--surface); color: var(--ink); box-shadow: var(--shadow);
+}
+.dialog.wide { max-width: min(760px, calc(100vw - 24px)); }
+.dialog::backdrop { background: var(--scrim); }
+.keys { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0 0 16px; }
+.keys dt { font-weight: 700; }
+.keys dd { margin: 0; }
+.settings fieldset { border: 1px solid var(--surface-2); border-radius: 12px; margin: 0 0 12px; padding: 8px 12px; }
+.settings legend { font-weight: 700; padding: 0 4px; }
+.settings label { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.settings input { width: 22px; height: 22px; accent-color: var(--green); }
+.settings select { font: inherit; min-height: 44px; border-radius: 10px; border: 2px solid var(--control-border); background: var(--surface); color: var(--ink); padding: 4px 8px; }
+.row { display: flex; gap: 8px; justify-content: flex-end; }
+.info-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0 0 12px; }
+.info-grid dt { color: var(--ink-2); }
+.info-grid dd { margin: 0; }
+
+.touch { position: absolute; inset: auto 0 0 0; height: 0; display: none; }
+.joystick {
+  position: absolute; left: max(18px, env(safe-area-inset-left)); bottom: max(22px, env(safe-area-inset-bottom));
+  width: 132px; height: 132px; border-radius: 50%;
+  background: rgba(255, 250, 240, 0.55); border: 2px solid rgba(29, 42, 35, 0.55); touch-action: none;
+}
+.joystick-knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: var(--green); }
+.touch-buttons { position: absolute; right: max(18px, env(safe-area-inset-right)); bottom: max(26px, env(safe-area-inset-bottom)); display: flex; gap: 12px; align-items: flex-end; }
+.touch-btn {
+  font: inherit; font-weight: 700; min-width: 64px; min-height: 64px; border-radius: 50%;
+  border: 2px solid var(--control-border); background: var(--surface); color: var(--ink); touch-action: manipulation;
+}
+.touch-btn.primary { min-width: 84px; min-height: 84px; background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.touch-btn[aria-pressed='true'] { background: var(--green); color: var(--on-green); }
+
+.studio { top: 72px; left: 12px; bottom: 12px; width: min(380px, calc(100vw - 24px)); border-radius: var(--radius); }
+.studio-body { overflow: auto; padding: 10px 16px; display: grid; gap: 10px; }
+.studio-body select { font: inherit; min-height: 44px; border-radius: 10px; border: 2px solid var(--control-border); background: var(--surface); color: var(--ink); padding: 4px 8px; }
+.studio-status { padding: 8px 16px 14px; border-top: 1px solid var(--surface-2); max-height: 30vh; overflow: auto; }
+.studio-status p { margin: 0 0 4px; font-weight: 500; }
+.issues { margin: 0; padding-left: 18px; color: var(--accent-ink); font-size: 0.92rem; }
+.seg { display: flex; gap: 6px; }
+.seg .btn[aria-pressed='true'] { background: var(--green); color: var(--on-green); border-color: var(--green); }
+.tool-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.tool-grid .btn { justify-content: center; box-shadow: none; padding: 6px; }
+.add-row { display: grid; grid-template-columns: 1fr auto; gap: 6px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.avatar-layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: start; }
+.avatar-preview { width: 260px; min-height: 312px; border-radius: 12px; overflow: hidden; background: var(--surface-2); }
+.swatch { display: inline-block; width: 28px; height: 18px; border-radius: 6px; border: 1px solid var(--control-border); }
+.fallback { position: absolute; inset: 72px 12px 12px 12px; max-width: 640px; padding: 20px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: auto; }
+/* Fallback: HUD and directory stack in normal flow so the wrapped phone HUD
+   never sits under the panel (R2 failure-path test found the overlap). */
+.app[data-mode='fallback'] { overflow: auto; }
+.app[data-mode='fallback'] .hud-top { position: relative; top: auto; left: auto; right: auto; padding: max(10px, env(safe-area-inset-top)) 12px 0; }
+.app[data-mode='fallback'] .fallback { position: relative; inset: auto; margin: 12px; }
+.app[data-mode='fallback'] .directory { top: auto; position: relative; width: auto; right: auto; bottom: auto; margin-top: 12px; box-shadow: none; }
+
+/* Phone: compact top bar, joystick visible, directory becomes a bottom sheet. */
+@media (pointer: coarse), (max-width: 599px) {
+  .touch { display: block; }
+  .prompt { bottom: 170px; }
+}
+@media (max-width: 599px) {
+  body { font-size: 16px; }
+  .hud-top { gap: 6px; }
+  .hud-brand { display: none; }
+  .hud-actions .btn kbd { display: none; }
+  .hud-actions { margin-left: 0; width: 100%; justify-content: space-between; }
+  .hud-actions .btn { flex: 1; justify-content: center; padding: 6px 8px; }
+  .sim-badge { font-size: 0.8rem; }
+  .toast { top: auto; bottom: 180px; }
+  .activity-chip { bottom: 240px; font-size: 0.9rem; }
+  .directory, .studio { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 72vh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  .tool-grid { grid-template-columns: repeat(4, 1fr); }
+  .avatar-layout { grid-template-columns: 1fr; }
+  .avatar-preview { width: 100%; }
+}
+/* Tablet: side sheet on the left so the right-hand thumb keeps the action button. */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .directory { left: 12px; right: auto; width: min(380px, 46vw); }
+  .studio { left: auto; right: 12px; width: min(380px, 46vw); }
+  .hud-brand { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade, .room-label { transition: none; }
+}
+:root[data-reduced-motion='true'] .fade, :root[data-reduced-motion='true'] .room-label, :root[data-reduced-motion='true'] .npc-label { transition: none; }
+
+/* Device validation panels (?perf=route&report=1, ?a11ylog=1). */
+.perf-report { position: fixed; inset: auto 16px 16px 16px; max-height: 50vh; overflow: auto; z-index: 50;
+  background: var(--surface); color: var(--ink); border: 2px solid var(--ink); border-radius: 12px; padding: 12px 16px; }
+.perf-report pre { max-height: 28vh; overflow: auto; font-size: 0.8rem; white-space: pre-wrap; }
+.perf-report .btn { min-height: 44px; }
+/* Bottom of the screen so it never covers the HUD buttons it is logging. */
+.a11y-log-panel { inset: auto 16px 16px auto; width: min(420px, calc(100vw - 32px)); max-height: 30vh; }

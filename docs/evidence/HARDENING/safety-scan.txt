@@ -1,0 +1,1 @@
+scanned_text_files=279 findings=0

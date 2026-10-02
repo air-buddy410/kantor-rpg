@@ -1,0 +1,111 @@
+{
+ "file": "ICT-401.dxf",
+ "modelspace": {},
+ "paperspace": {
+  "paperspace:ICT-401-1": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 3
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 23,
+    "TEXT": 495,
+    "LWPOLYLINE": 46
+   }
+  },
+  "paperspace:ICT-401-2": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 3
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 15,
+    "TEXT": 330,
+    "LWPOLYLINE": 31
+   }
+  },
+  "paperspace:ICT-401-3": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 14,
+    "LWPOLYLINE": 3
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 10,
+    "TEXT": 69,
+    "LWPOLYLINE": 21
+   }
+  }
+ },
+ "totals": {
+  "modelspace": 0,
+  "paperspace": 1081
+ },
+ "layers": [
+  "0",
+  "A-ANNO-DIMS",
+  "A-ANNO-NOTE",
+  "A-ANNO-RMNM",
+  "A-ANNO-SCHD",
+  "A-ANNO-TTLB",
+  "A-ANNO-VPRT",
+  "A-ANNO-WMRK",
+  "A-AREA",
+  "A-DOOR",
+  "A-DOOR-IDEN",
+  "A-FURN",
+  "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
+  "A-GRID",
+  "A-GRID-IDEN",
+  "A-STRS",
+  "A-WALL",
+  "Defpoints"
+ ],
+ "insunits": 4,
+ "dxfversion": "AC1032",
+ "sheet": "ICT-401",
+ "world_revision": "P03",
+ "expected": {
+  "pages": 3,
+  "views": 0
+ },
+ "openings": {
+  "window_symbols": 0,
+  "windows_per_floor": {},
+  "door_leaves": 0,
+  "door_arcs": 0,
+  "elevation_hinge_marks": 0
+ }
+}

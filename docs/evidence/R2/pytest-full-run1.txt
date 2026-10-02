@@ -1,0 +1,32 @@
+# python3 -m pytest -q tests/py (after optimisation), git_head=0a5b58799fcffde8edc9de4c5a25a2902b7083da + uncommitted worktree, 2026-10-02T00:06:43Z
+F.F..................................................................... [ 20%]
+........................................................................ [ 41%]
+........................................................................ [ 62%]
+........................................................................ [ 82%]
+............................................................             [100%]
+=================================== FAILURES ===================================
+______________________ test_character_glbs_within_budget _______________________
+
+    def test_character_glbs_within_budget():
+        files = glbs("characters")
+        assert len(files) == len(IDS)
+>       assert total("characters") <= BUDGET_CHARACTERS, {p.name: p.stat().st_size for p in files}
+E       AssertionError: {'ch-architect.glb': 469056, 'ch-ceo.glb': 620616, 'ch-ictspec.glb': 488328, 'ch-netinstall.glb': 479500, ...}
+E       assert 3551104 <= 3000000.0
+E        +  where 3551104 = total('characters')
+
+tests/py/test_asset_size.py:62: AssertionError
+______________________ test_first_load_glbs_within_budget ______________________
+
+    def test_first_load_glbs_within_budget():
+>       assert total("characters") + total("furniture") <= BUDGET_TOTAL
+E       AssertionError: assert (3551104 + 1394224) <= 4500000.0
+E        +  where 3551104 = total('characters')
+E        +  and   1394224 = total('furniture')
+
+tests/py/test_asset_size.py:71: AssertionError
+=========================== short test summary info ============================
+FAILED tests/py/test_asset_size.py::test_character_glbs_within_budget - Asser...
+FAILED tests/py/test_asset_size.py::test_first_load_glbs_within_budget - Asse...
+2 failed, 346 passed in 170.74s (0:02:50)
+exit=1

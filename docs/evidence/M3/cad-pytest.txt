@@ -1,0 +1,87 @@
+# 2026-10-01T12:14:14Z git HEAD 8a0cb6b (working tree, uncommitted)
+$ python3 -m pytest tests/py/test_cad.py tests/py/test_cad_m3.py -q
+.....................................................................    [100%]
+69 passed in 74.52s (0:01:14)
+exit code: 0
+
+$ python3 -m pytest tests/py/test_cad.py tests/py/test_cad_m3.py --co -q   (inventory)
+tests/py/test_cad.py::test_dxf_reopens_and_audits_clean
+tests/py/test_cad.py::test_dxf_required_layers
+tests/py/test_cad.py::test_dxf_rooms_match_world
+tests/py/test_cad.py::test_dxf_room_check_detects_off_grid_room
+tests/py/test_cad.py::test_dxf_door_and_fixture_ids
+tests/py/test_cad.py::test_dxf_walls_count_and_extents
+tests/py/test_cad.py::test_dxf_dimensions_and_grid
+tests/py/test_cad.py::test_dxf_sheet_metadata_and_viewport
+tests/py/test_cad.py::test_counts_file_matches_dxf
+tests/py/test_cad.py::test_dxf_preview_renders
+tests/py/test_cad.py::test_pdf_text_content
+tests/py/test_cad.py::test_pdf_page_is_a2_landscape_vector
+tests/py/test_cad.py::test_scale_bar_true_to_scale
+tests/py/test_cad.py::test_plan_origin_maps_world_metres_to_paper
+tests/py/test_cad.py::test_unknown_sheet_is_refused
+tests/py/test_cad.py::test_autocad_count_comparison_tool
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-001]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-101]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-102]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-103]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-201]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-202]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-301]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[A-401]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[I-101]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[ICT-001]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[ICT-101]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[ICT-102]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[ICT-201]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[ICT-301]
+tests/py/test_cad_m3.py::test_sheet_dxf_reopens_with_title_block[ICT-401]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-001]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-101]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-102]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-103]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-201]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-202]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-301]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[A-401]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[I-101]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[ICT-001]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[ICT-101]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[ICT-102]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[ICT-201]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[ICT-301]
+tests/py/test_cad_m3.py::test_sheet_pdf_size_and_text[ICT-401]
+tests/py/test_cad_m3.py::test_room_schedule_matches_world
+tests/py/test_cad_m3.py::test_room_schedule_helper_detects_wrong_area
+tests/py/test_cad_m3.py::test_furniture_sheet_has_every_fixture[A-201-L1]
+tests/py/test_cad_m3.py::test_furniture_sheet_has_every_fixture[A-202-L2]
+tests/py/test_cad_m3.py::test_furniture_check_detects_missing_fixture
+tests/py/test_cad_m3.py::test_ict_plan_ids_and_no_wet_cameras[ICT-101-L1]
+tests/py/test_cad_m3.py::test_ict_plan_ids_and_no_wet_cameras[ICT-102-L2]
+tests/py/test_cad_m3.py::test_ict_plan_refuses_camera_in_wet_room
+tests/py/test_cad_m3.py::test_rack_elevation_devices_and_u
+tests/py/test_cad_m3.py::test_port_schedule_matches_portmap
+tests/py/test_cad_m3.py::test_port_schedule_helper_detects_changed_total
+tests/py/test_cad_m3.py::test_port_schedule_flags_inconsistent_portmap
+tests/py/test_cad_m3.py::test_pathways_route_count_per_floor
+tests/py/test_cad_m3.py::test_finish_plan_contrast_and_area
+tests/py/test_cad_m3.py::test_elevations_and_sections_from_world
+tests/py/test_cad_m3.py::test_topology_counts
+tests/py/test_cad_m3.py::test_cover_index_lists_every_sheet
+tests/py/test_cad_m3.py::test_consolidated_pdf_pages_bookmarks_labels[kantor-rpg-sheets-all.pdf-None]
+tests/py/test_cad_m3.py::test_consolidated_pdf_pages_bookmarks_labels[kantor-rpg-sheets-A.pdf-A]
+tests/py/test_cad_m3.py::test_consolidated_pdf_pages_bookmarks_labels[kantor-rpg-sheets-I.pdf-I]
+tests/py/test_cad_m3.py::test_consolidated_pdf_pages_bookmarks_labels[kantor-rpg-sheets-ICT.pdf-ICT]
+tests/py/test_cad_m3.py::test_register_written_for_all_sheets
+tests/py/test_cad_m3.py::test_committed_register_matches_files
+
+69 tests collected in 0.45s
+exit code: 0
+
+$ python3 -m pytest tests/py -q   (full Python suite)
+........................................................................ [ 32%]
+........................................................................ [ 65%]
+........................................................................ [ 98%]
+...                                                                      [100%]
+219 passed in 83.33s (0:01:23)
+exit code: 0

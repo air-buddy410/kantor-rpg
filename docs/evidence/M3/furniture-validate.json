@@ -1,0 +1,5928 @@
+{
+ "tool": "blender/furniture/validate_furniture.py",
+ "blender": "4.0.2",
+ "passed": true,
+ "types": 54,
+ "checks": 654,
+ "blendTypes": 54,
+ "blendHasAllTypes": true,
+ "contactSheet": {
+  "path": "assets/previews/furniture-sheet.png",
+  "ok": true,
+  "bytes": 375144
+ },
+ "failed": {},
+ "seconds": 4.0,
+ "results": {
+  "desk": {
+   "type": "desk",
+   "glb": "app/public/assets/furniture/desk.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-desk"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.6, 0.8, 0.75] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.8,
+      0.764
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 976,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "desk",
+      "kantor_size": [
+       1.6,
+       0.8,
+       0.75
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.345,
+      "vertices": 288
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-desk"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.8,
+      0.764
+     ]
+    }
+   ],
+   "dims": [
+    1.6,
+    0.8,
+    0.764
+   ],
+   "triangles": 976,
+   "budget": 5000,
+   "materials": [
+    "fabricSage",
+    "metalLight",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 38240,
+   "class": "large"
+  },
+  "desk_exec": {
+   "type": "desk_exec",
+   "glb": "app/public/assets/furniture/desk_exec.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-desk_exec"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.9, 0.75] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.9,
+      0.764
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1476,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "desk_exec",
+      "kantor_size": [
+       1.8,
+       0.9,
+       0.75
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.395,
+      "vertices": 576
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-desk_exec"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.9,
+      0.764
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.9,
+    0.764
+   ],
+   "triangles": 1476,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricGreen",
+    "metalLight",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 57924,
+   "class": "large"
+  },
+  "chair": {
+   "type": "chair",
+   "glb": "app/public/assets/furniture/chair.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-chair"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 0.6, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.5988,
+      0.9
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1312,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "chair",
+      "kantor_size": [
+       0.6,
+       0.6,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "front probe: fabricGreen on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.2544,
+      "vertices": 48
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-chair"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.5988,
+      0.9
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    0.5988,
+    0.9
+   ],
+   "triangles": 1312,
+   "budget": 2000,
+   "materials": [
+    "fabricGreen",
+    "metal",
+    "rubber"
+   ],
+   "bytes": 40464,
+   "class": "small"
+  },
+  "chair_guest": {
+   "type": "chair_guest",
+   "glb": "app/public/assets/furniture/chair_guest.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-chair_guest"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.55, 0.55, 0.85] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.55,
+      0.55,
+      0.85
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 792,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "chair_guest",
+      "kantor_size": [
+       0.55,
+       0.55,
+       0.85
+      ]
+     }
+    },
+    {
+     "check": "front probe: wood on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.2317,
+      "vertices": 288
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-chair_guest"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.55,
+      0.55,
+      0.85
+     ]
+    }
+   ],
+   "dims": [
+    0.55,
+    0.55,
+    0.85
+   ],
+   "triangles": 792,
+   "budget": 2000,
+   "materials": [
+    "fabricSage",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 27668,
+   "class": "small"
+  },
+  "stool": {
+   "type": "stool",
+   "glb": "app/public/assets/furniture/stool.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-stool"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.45, 0.45, 0.7] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.4456,
+      0.4456,
+      0.7041
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 516,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "stool",
+      "kantor_size": [
+       0.45,
+       0.45,
+       0.7
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-stool"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.4456,
+      0.4456,
+      0.7041
+     ]
+    }
+   ],
+   "dims": [
+    0.4456,
+    0.4456,
+    0.7041
+   ],
+   "triangles": 516,
+   "budget": 2000,
+   "materials": [
+    "fabricMustard",
+    "woodDark"
+   ],
+   "bytes": 18140,
+   "class": "small"
+  },
+  "meeting_table": {
+   "type": "meeting_table",
+   "glb": "app/public/assets/furniture/meeting_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-meeting_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [4.0, 1.4, 0.75] within 0.02 m",
+     "ok": true,
+     "detail": [
+      4,
+      1.4,
+      0.766
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 768,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "meeting_table",
+      "kantor_size": [
+       4.0,
+       1.4,
+       0.75
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-meeting_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      4.0,
+      1.4,
+      0.766
+     ]
+    }
+   ],
+   "dims": [
+    4,
+    1.4,
+    0.766
+   ],
+   "triangles": 768,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "metal",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 28384,
+   "class": "large"
+  },
+  "round_table": {
+   "type": "round_table",
+   "glb": "app/public/assets/furniture/round_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-round_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 1.2, 0.75] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      1.2,
+      0.75
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 620,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "round_table",
+      "kantor_size": [
+       1.2,
+       1.2,
+       0.75
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-round_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      1.2,
+      0.75
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    1.2,
+    0.75
+   ],
+   "triangles": 620,
+   "budget": 5000,
+   "materials": [
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 16644,
+   "class": "large"
+  },
+  "high_table": {
+   "type": "high_table",
+   "glb": "app/public/assets/furniture/high_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-high_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 0.7, 1.05] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.7,
+      1.05
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 552,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "high_table",
+      "kantor_size": [
+       1.2,
+       0.7,
+       1.05
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-high_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.7,
+      1.05
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    0.7,
+    1.05
+   ],
+   "triangles": 552,
+   "budget": 5000,
+   "materials": [
+    "metal",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 19260,
+   "class": "large"
+  },
+  "dining_table": {
+   "type": "dining_table",
+   "glb": "app/public/assets/furniture/dining_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-dining_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.9, 0.75] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.9,
+      0.762
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 452,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "dining_table",
+      "kantor_size": [
+       1.8,
+       0.9,
+       0.75
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-dining_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.9,
+      0.762
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.9,
+    0.762
+   ],
+   "triangles": 452,
+   "budget": 5000,
+   "materials": [
+    "fabricSage",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 16756,
+   "class": "large"
+  },
+  "coffee_table": {
+   "type": "coffee_table",
+   "glb": "app/public/assets/furniture/coffee_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-coffee_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.0, 0.6, 0.4] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.0,
+      0.6,
+      0.4
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 492,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "coffee_table",
+      "kantor_size": [
+       1.0,
+       0.6,
+       0.4
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-coffee_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.0,
+      0.6,
+      0.4
+     ]
+    }
+   ],
+   "dims": [
+    1.0,
+    0.6,
+    0.4
+   ],
+   "triangles": 492,
+   "budget": 2000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricMustard",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 24644,
+   "class": "small"
+  },
+  "work_table": {
+   "type": "work_table",
+   "glb": "app/public/assets/furniture/work_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-work_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.6, 0.8, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.8,
+      0.9
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 648,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "work_table",
+      "kantor_size": [
+       1.6,
+       0.8,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-work_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.8,
+      0.9
+     ]
+    }
+   ],
+   "dims": [
+    1.6,
+    0.8,
+    0.9
+   ],
+   "triangles": 648,
+   "budget": 5000,
+   "materials": [
+    "metal",
+    "woodLight"
+   ],
+   "bytes": 20080,
+   "class": "large"
+  },
+  "plan_table": {
+   "type": "plan_table",
+   "glb": "app/public/assets/furniture/plan_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-plan_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.9, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.9,
+      0.904
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1152,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "plan_table",
+      "kantor_size": [
+       1.8,
+       0.9,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.414,
+      "vertices": 384
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-plan_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.9,
+      0.904
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.9,
+    0.904
+   ],
+   "triangles": 1152,
+   "budget": 5000,
+   "materials": [
+    "fabricBlue",
+    "white",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 48944,
+   "class": "large"
+  },
+  "drafting_table": {
+   "type": "drafting_table",
+   "glb": "app/public/assets/furniture/drafting_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-drafting_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.4, 1.0, 0.95] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.4,
+      1.0,
+      0.9494
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 660,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "drafting_table",
+      "kantor_size": [
+       1.4,
+       1.0,
+       0.95
+      ]
+     }
+    },
+    {
+     "check": "front probe: metal on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.1327,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-drafting_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.4,
+      1.0,
+      0.9494
+     ]
+    }
+   ],
+   "dims": [
+    1.4,
+    1.0,
+    0.9494
+   ],
+   "triangles": 660,
+   "budget": 5000,
+   "materials": [
+    "metal",
+    "paper",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 27380,
+   "class": "large"
+  },
+  "reception_desk": {
+   "type": "reception_desk",
+   "glb": "app/public/assets/furniture/reception_desk.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-reception_desk"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [3.0, 0.9, 1.1] within 0.02 m",
+     "ok": true,
+     "detail": [
+      3.0,
+      0.91,
+      1.1
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1216,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "reception_desk",
+      "kantor_size": [
+       3.0,
+       0.9,
+       1.1
+      ]
+     }
+    },
+    {
+     "check": "front probe: accent on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.425,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-reception_desk"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      3.0,
+      0.91,
+      1.1
+     ]
+    }
+   ],
+   "dims": [
+    3.0,
+    0.91,
+    1.1
+   ],
+   "triangles": 1216,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricCream",
+    "metalLight",
+    "wallCap",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 49992,
+   "class": "large"
+  },
+  "sofa": {
+   "type": "sofa",
+   "glb": "app/public/assets/furniture/sofa.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-sofa"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [2.0, 0.9, 0.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      2,
+      0.9,
+      0.8
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1944,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "sofa",
+      "kantor_size": [
+       2.0,
+       0.9,
+       0.8
+      ]
+     }
+    },
+    {
+     "check": "front probe: fabricGreen on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.1865,
+      "vertices": 92
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-sofa"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      2.0,
+      0.9,
+      0.8
+     ]
+    }
+   ],
+   "dims": [
+    2,
+    0.9,
+    0.8
+   ],
+   "triangles": 1944,
+   "budget": 5000,
+   "materials": [
+    "fabricCream",
+    "fabricGreen",
+    "fabricMustard",
+    "woodDark"
+   ],
+   "bytes": 38796,
+   "class": "large"
+  },
+  "armchair": {
+   "type": "armchair",
+   "glb": "app/public/assets/furniture/armchair.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-armchair"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.9, 0.9, 0.85] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1536,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "armchair",
+      "kantor_size": [
+       0.9,
+       0.9,
+       0.85
+      ]
+     }
+    },
+    {
+     "check": "front probe: fabricSage on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.1865,
+      "vertices": 92
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-armchair"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    }
+   ],
+   "dims": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "triangles": 1536,
+   "budget": 2000,
+   "materials": [
+    "fabricCream",
+    "fabricSage",
+    "fabricTerracotta",
+    "woodDark"
+   ],
+   "bytes": 36444,
+   "class": "small"
+  },
+  "beanbag": {
+   "type": "beanbag",
+   "glb": "app/public/assets/furniture/beanbag.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-beanbag"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.8, 0.8, 0.5] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.79,
+      0.7895,
+      0.5
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 712,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "beanbag",
+      "kantor_size": [
+       0.8,
+       0.8,
+       0.5
+      ]
+     }
+    },
+    {
+     "check": "front probe: fabricMustard on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.1901,
+      "vertices": 50
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-beanbag"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.79,
+      0.7895,
+      0.5
+     ]
+    }
+   ],
+   "dims": [
+    0.79,
+    0.7895,
+    0.5
+   ],
+   "triangles": 712,
+   "budget": 2000,
+   "materials": [
+    "fabricMustard",
+    "fabricTerracotta"
+   ],
+   "bytes": 15568,
+   "class": "small"
+  },
+  "bench": {
+   "type": "bench",
+   "glb": "app/public/assets/furniture/bench.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-bench"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.6, 0.45, 0.45] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.441,
+      0.45
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 756,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "bench",
+      "kantor_size": [
+       1.6,
+       0.45,
+       0.45
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-bench"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.441,
+      0.45
+     ]
+    }
+   ],
+   "dims": [
+    1.6,
+    0.441,
+    0.45
+   ],
+   "triangles": 756,
+   "budget": 5000,
+   "materials": [
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 23032,
+   "class": "large"
+  },
+  "bookshelf": {
+   "type": "bookshelf",
+   "glb": "app/public/assets/furniture/bookshelf.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-bookshelf"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 0.4, 2.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.4,
+      2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 2048,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "bookshelf",
+      "kantor_size": [
+       1.2,
+       0.4,
+       2.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodDark on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.0554,
+      "vertices": 456
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-bookshelf"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.4,
+      2.0
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    0.4,
+    2
+   ],
+   "triangles": 2048,
+   "budget": 5000,
+   "materials": [
+    "fabricBlue",
+    "fabricCream",
+    "fabricGreen",
+    "fabricMustard",
+    "fabricSage",
+    "fabricTerracotta",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 95804,
+   "class": "large"
+  },
+  "model_shelf": {
+   "type": "model_shelf",
+   "glb": "app/public/assets/furniture/model_shelf.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-model_shelf"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 0.4, 1.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.4,
+      1.8
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 2000,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "model_shelf",
+      "kantor_size": [
+       1.2,
+       0.4,
+       1.8
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodDark on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.0376,
+      "vertices": 480
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-model_shelf"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.4,
+      1.8
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    0.4,
+    1.8
+   ],
+   "triangles": 2000,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricSage",
+    "plantLeaf",
+    "white",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 65180,
+   "class": "large"
+  },
+  "tool_cabinet": {
+   "type": "tool_cabinet",
+   "glb": "app/public/assets/furniture/tool_cabinet.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-tool_cabinet"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.0, 0.5, 1.2] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.0,
+      0.5,
+      1.2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1208,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "tool_cabinet",
+      "kantor_size": [
+       1.0,
+       0.5,
+       1.2
+      ]
+     }
+    },
+    {
+     "check": "front probe: metalLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.218,
+      "vertices": 576
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-tool_cabinet"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.0,
+      0.5,
+      1.2
+     ]
+    }
+   ],
+   "dims": [
+    1.0,
+    0.5,
+    1.2
+   ],
+   "triangles": 1208,
+   "budget": 5000,
+   "materials": [
+    "metal",
+    "metalLight",
+    "rubber",
+    "woodDark"
+   ],
+   "bytes": 49488,
+   "class": "large"
+  },
+  "storage_shelf": {
+   "type": "storage_shelf",
+   "glb": "app/public/assets/furniture/storage_shelf.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-storage_shelf"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.5, 2.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.5,
+      2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 3148,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "storage_shelf",
+      "kantor_size": [
+       1.8,
+       0.5,
+       2.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: paper on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.214,
+      "vertices": 1536
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-storage_shelf"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.5,
+      2.0
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.5,
+    2
+   ],
+   "triangles": 3148,
+   "budget": 5000,
+   "materials": [
+    "fabricCream",
+    "fabricSage",
+    "metal",
+    "paper",
+    "woodLight"
+   ],
+   "bytes": 118496,
+   "class": "large"
+  },
+  "locker": {
+   "type": "locker",
+   "glb": "app/public/assets/furniture/locker.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-locker"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 0.5, 1.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.499,
+      1.8
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 2184,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "locker",
+      "kantor_size": [
+       1.2,
+       0.5,
+       1.8
+      ]
+     }
+    },
+    {
+     "check": "front probe: paper on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.2345,
+      "vertices": 576
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-locker"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.499,
+      1.8
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    0.499,
+    1.8
+   ],
+   "triangles": 2184,
+   "budget": 5000,
+   "materials": [
+    "fabricBlue",
+    "metal",
+    "metalLight",
+    "paper",
+    "woodDark"
+   ],
+   "bytes": 104148,
+   "class": "large"
+  },
+  "whiteboard": {
+   "type": "whiteboard",
+   "glb": "app/public/assets/furniture/whiteboard.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-whiteboard"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.1, 1.2] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.1,
+      1.2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 524,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "whiteboard",
+      "kantor_size": [
+       1.8,
+       0.1,
+       1.2
+      ]
+     }
+    },
+    {
+     "check": "mount height extra",
+     "ok": true,
+     "detail": 0.9
+    },
+    {
+     "check": "front probe: metal on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.025,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-whiteboard"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.1,
+      1.2
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.1,
+    1.2
+   ],
+   "triangles": 524,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricGreen",
+    "metal",
+    "metalLight",
+    "white"
+   ],
+   "bytes": 28900,
+   "class": "large"
+  },
+  "wall_display": {
+   "type": "wall_display",
+   "glb": "app/public/assets/furniture/wall_display.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-wall_display"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.6, 0.1, 0.95] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.098,
+      0.95
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 240,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "wall_display",
+      "kantor_size": [
+       1.6,
+       0.1,
+       0.95
+      ]
+     }
+    },
+    {
+     "check": "mount height extra",
+     "ok": true,
+     "detail": 1.1
+    },
+    {
+     "check": "front probe: screenGlow on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.042,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-wall_display"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.098,
+      0.95
+     ]
+    }
+   ],
+   "dims": [
+    1.6,
+    0.098,
+    0.95
+   ],
+   "triangles": 240,
+   "budget": 5000,
+   "materials": [
+    "fabricCream",
+    "screen",
+    "screenGlow",
+    "white"
+   ],
+   "bytes": 14232,
+   "class": "large"
+  },
+  "gallery_panel": {
+   "type": "gallery_panel",
+   "glb": "app/public/assets/furniture/gallery_panel.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-gallery_panel"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.5, 0.3, 2.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.5,
+      0.3,
+      2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 532,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "gallery_panel",
+      "kantor_size": [
+       1.5,
+       0.3,
+       2.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: art_a on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.084,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-gallery_panel"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.5,
+      0.3,
+      2.0
+     ]
+    }
+   ],
+   "dims": [
+    1.5,
+    0.3,
+    2
+   ],
+   "triangles": 532,
+   "budget": 5000,
+   "materials": [
+    "art_a",
+    "art_b",
+    "art_c",
+    "fabricCream",
+    "paper",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 23620,
+   "class": "large"
+  },
+  "poster": {
+   "type": "poster",
+   "glb": "app/public/assets/furniture/poster.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-poster"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.7, 0.05, 1.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.7,
+      0.05,
+      1
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 316,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "poster",
+      "kantor_size": [
+       0.7,
+       0.05,
+       1.0
+      ]
+     }
+    },
+    {
+     "check": "mount height extra",
+     "ok": true,
+     "detail": 1.2
+    },
+    {
+     "check": "front probe: art_a on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.019,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-poster"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.7,
+      0.05,
+      1.0
+     ]
+    }
+   ],
+   "dims": [
+    0.7,
+    0.05,
+    1
+   ],
+   "triangles": 316,
+   "budget": 2000,
+   "materials": [
+    "art_a",
+    "art_b",
+    "art_c",
+    "paper",
+    "woodLight"
+   ],
+   "bytes": 17428,
+   "class": "small"
+  },
+  "directory_sign": {
+   "type": "directory_sign",
+   "glb": "app/public/assets/furniture/directory_sign.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-directory_sign"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 0.08, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.078,
+      0.9
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 504,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "directory_sign",
+      "kantor_size": [
+       1.2,
+       0.08,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "mount height extra",
+     "ok": true,
+     "detail": 1.0
+    },
+    {
+     "check": "front probe: fabricCream on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.031,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-directory_sign"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.078,
+      0.9
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    0.078,
+    0.9
+   ],
+   "triangles": 504,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricCream",
+    "wallCap"
+   ],
+   "bytes": 29436,
+   "class": "large"
+  },
+  "easel": {
+   "type": "easel",
+   "glb": "app/public/assets/furniture/easel.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-easel"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.8, 0.8, 1.7] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.7988,
+      0.7989,
+      1.7095
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 448,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "easel",
+      "kantor_size": [
+       0.8,
+       0.8,
+       1.7
+      ]
+     }
+    },
+    {
+     "check": "front probe: art_a on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.1004,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-easel"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.7988,
+      0.7989,
+      1.7095
+     ]
+    }
+   ],
+   "dims": [
+    0.7988,
+    0.7989,
+    1.7095
+   ],
+   "triangles": 448,
+   "budget": 5000,
+   "materials": [
+    "art_a",
+    "art_b",
+    "art_c",
+    "paper",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 22232,
+   "class": "large"
+  },
+  "plant_large": {
+   "type": "plant_large",
+   "glb": "app/public/assets/furniture/plant_large.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-plant_large"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 0.6, 1.6] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.5949,
+      1.6
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1820,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "plant_large",
+      "kantor_size": [
+       0.6,
+       0.6,
+       1.6
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-plant_large"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.5949,
+      1.6
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    0.5949,
+    1.6
+   ],
+   "triangles": 1820,
+   "budget": 5000,
+   "materials": [
+    "plantLeaf",
+    "plantLeafDark",
+    "pot",
+    "woodDark"
+   ],
+   "bytes": 40112,
+   "class": "large"
+  },
+  "plant_small": {
+   "type": "plant_small",
+   "glb": "app/public/assets/furniture/plant_small.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-plant_small"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.4, 0.4, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.4,
+      0.4,
+      0.9
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1048,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "plant_small",
+      "kantor_size": [
+       0.4,
+       0.4,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-plant_small"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.4,
+      0.4,
+      0.9
+     ]
+    }
+   ],
+   "dims": [
+    0.4,
+    0.4,
+    0.9
+   ],
+   "triangles": 1048,
+   "budget": 2000,
+   "materials": [
+    "plantLeaf",
+    "plantLeafDark",
+    "pot",
+    "woodDark"
+   ],
+   "bytes": 29960,
+   "class": "small"
+  },
+  "planter_box": {
+   "type": "planter_box",
+   "glb": "app/public/assets/furniture/planter_box.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-planter_box"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.6, 0.6, 0.7] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.6,
+      0.7
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1312,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "planter_box",
+      "kantor_size": [
+       1.6,
+       0.6,
+       0.7
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-planter_box"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.6,
+      0.6,
+      0.7
+     ]
+    }
+   ],
+   "dims": [
+    1.6,
+    0.6,
+    0.7
+   ],
+   "triangles": 1312,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricMustard",
+    "plantLeaf",
+    "plantLeafDark",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 35848,
+   "class": "large"
+  },
+  "tree_planter": {
+   "type": "tree_planter",
+   "glb": "app/public/assets/furniture/tree_planter.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-tree_planter"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 1.2, 2.6] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      1.2,
+      2.6
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1960,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "tree_planter",
+      "kantor_size": [
+       1.2,
+       1.2,
+       2.6
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-tree_planter"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      1.2,
+      2.6
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    1.2,
+    2.6
+   ],
+   "triangles": 1960,
+   "budget": 5000,
+   "materials": [
+    "plantLeaf",
+    "plantLeafDark",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 38700,
+   "class": "large"
+  },
+  "pantry_counter": {
+   "type": "pantry_counter",
+   "glb": "app/public/assets/furniture/pantry_counter.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-pantry_counter"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [3.0, 0.65, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      3.0,
+      0.65,
+      0.915
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1214,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "pantry_counter",
+      "kantor_size": [
+       3.0,
+       0.65,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "front probe: metalLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.307,
+      "vertices": 480
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-pantry_counter"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      3.0,
+      0.65,
+      0.915
+     ]
+    }
+   ],
+   "dims": [
+    3.0,
+    0.65,
+    0.915
+   ],
+   "triangles": 1214,
+   "budget": 5000,
+   "materials": [
+    "fabricCream",
+    "metal",
+    "metalLight",
+    "white",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 51316,
+   "class": "large"
+  },
+  "coffee_bar": {
+   "type": "coffee_bar",
+   "glb": "app/public/assets/furniture/coffee_bar.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-coffee_bar"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [2.4, 0.6, 1.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      2.4,
+      0.6,
+      1
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1894,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "coffee_bar",
+      "kantor_size": [
+       2.4,
+       0.6,
+       1.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: accent on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.278,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-coffee_bar"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      2.4,
+      0.6,
+      1.0
+     ]
+    }
+   ],
+   "dims": [
+    2.4,
+    0.6,
+    1
+   ],
+   "triangles": 1894,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricCream",
+    "metal",
+    "metalLight",
+    "pot",
+    "screenGlow",
+    "white",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 66704,
+   "class": "large"
+  },
+  "fridge": {
+   "type": "fridge",
+   "glb": "app/public/assets/furniture/fridge.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-fridge"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.7, 0.7, 1.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.7,
+      0.7,
+      1.8
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 596,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "fridge",
+      "kantor_size": [
+       0.7,
+       0.7,
+       1.8
+      ]
+     }
+    },
+    {
+     "check": "front probe: metal on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.335,
+      "vertices": 192
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-fridge"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.7,
+      0.7,
+      1.8
+     ]
+    }
+   ],
+   "dims": [
+    0.7,
+    0.7,
+    1.8
+   ],
+   "triangles": 596,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricMustard",
+    "metal",
+    "metalLight",
+    "white"
+   ],
+   "bytes": 24828,
+   "class": "large"
+  },
+  "sink": {
+   "type": "sink",
+   "glb": "app/public/assets/furniture/sink.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-sink"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 0.45, 0.85] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.4525,
+      0.865
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 464,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "sink",
+      "kantor_size": [
+       0.6,
+       0.45,
+       0.85
+      ]
+     }
+    },
+    {
+     "check": "front probe: metalLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.0237,
+      "vertices": 290
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-sink"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.4525,
+      0.865
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    0.4525,
+    0.865
+   ],
+   "triangles": 464,
+   "budget": 2000,
+   "materials": [
+    "metalLight",
+    "white",
+    "woodLight"
+   ],
+   "bytes": 16868,
+   "class": "small"
+  },
+  "wc": {
+   "type": "wc",
+   "glb": "app/public/assets/furniture/wc.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-wc"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.4, 0.7, 0.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.4,
+      0.6959,
+      0.8
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within small budget",
+     "ok": true,
+     "detail": {
+      "triangles": 560,
+      "budget": 2000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "wc",
+      "kantor_size": [
+       0.4,
+       0.7,
+       0.8
+      ]
+     }
+    },
+    {
+     "check": "front probe: white on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.2479,
+      "vertices": 48
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-wc"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.4,
+      0.6959,
+      0.8
+     ]
+    }
+   ],
+   "dims": [
+    0.4,
+    0.6959,
+    0.8
+   ],
+   "triangles": 560,
+   "budget": 2000,
+   "materials": [
+    "metalLight",
+    "rubber",
+    "white"
+   ],
+   "bytes": 17876,
+   "class": "small"
+  },
+  "partition": {
+   "type": "partition",
+   "glb": "app/public/assets/furniture/partition.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-partition"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.5, 0.05, 2.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.5,
+      0.05,
+      2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 176,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "partition",
+      "kantor_size": [
+       1.5,
+       0.05,
+       2.0
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-partition"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.5,
+      0.05,
+      2.0
+     ]
+    }
+   ],
+   "dims": [
+    1.5,
+    0.05,
+    2
+   ],
+   "triangles": 176,
+   "budget": 5000,
+   "materials": [
+    "fabricSage",
+    "metal",
+    "metalLight"
+   ],
+   "bytes": 13128,
+   "class": "large"
+  },
+  "shower_stall": {
+   "type": "shower_stall",
+   "glb": "app/public/assets/furniture/shower_stall.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-shower_stall"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.9, 0.9, 2.1] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.9,
+      0.9,
+      2.1
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 476,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "shower_stall",
+      "kantor_size": [
+       0.9,
+       0.9,
+       2.1
+      ]
+     }
+    },
+    {
+     "check": "front probe: glass on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.435,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-shower_stall"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.9,
+      0.9,
+      2.1
+     ]
+    }
+   ],
+   "dims": [
+    0.9,
+    0.9,
+    2.1
+   ],
+   "triangles": 476,
+   "budget": 5000,
+   "materials": [
+    "glass",
+    "metal",
+    "metalLight",
+    "white"
+   ],
+   "bytes": 25208,
+   "class": "large"
+  },
+  "rack_42u": {
+   "type": "rack_42u",
+   "glb": "app/public/assets/furniture/rack_42u.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-rack_42u"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 1.0, 2.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.99,
+      2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 2736,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "rack_42u",
+      "kantor_size": [
+       0.6,
+       1.0,
+       2.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: screenGlow on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.493,
+      "vertices": 2016
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-rack_42u"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.99,
+      2.0
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    0.99,
+    2
+   ],
+   "triangles": 2736,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricCream",
+    "metal",
+    "metalLight",
+    "rubber",
+    "screen",
+    "screenGlow"
+   ],
+   "bytes": 158380,
+   "class": "large"
+  },
+  "lab_bench": {
+   "type": "lab_bench",
+   "glb": "app/public/assets/furniture/lab_bench.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-lab_bench"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.75, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.75,
+      0.904
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1068,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "lab_bench",
+      "kantor_size": [
+       1.8,
+       0.75,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "front probe: metalLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.325,
+      "vertices": 192
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-lab_bench"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.75,
+      0.904
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.75,
+    0.904
+   ],
+   "triangles": 1068,
+   "budget": 5000,
+   "materials": [
+    "fabricBlue",
+    "fabricSage",
+    "metal",
+    "metalLight",
+    "screen",
+    "screenGlow",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 51264,
+   "class": "large"
+  },
+  "lab_rack_open": {
+   "type": "lab_rack_open",
+   "glb": "app/public/assets/furniture/lab_rack_open.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-lab_rack_open"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 0.6, 1.2] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.6,
+      1.2
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1624,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "lab_rack_open",
+      "kantor_size": [
+       0.6,
+       0.6,
+       1.2
+      ]
+     }
+    },
+    {
+     "check": "front probe: screenGlow on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.253,
+      "vertices": 864
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-lab_rack_open"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.6,
+      1.2
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    0.6,
+    1.2
+   ],
+   "triangles": 1624,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricCream",
+    "metal",
+    "metalLight",
+    "screen",
+    "screenGlow"
+   ],
+   "bytes": 79360,
+   "class": "large"
+  },
+  "billiard_table": {
+   "type": "billiard_table",
+   "glb": "app/public/assets/furniture/billiard_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-billiard_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [2.84, 1.57, 0.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      2.84,
+      1.57,
+      0.816
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 3532,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "billiard_table",
+      "kantor_size": [
+       2.84,
+       1.57,
+       0.8
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-billiard_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      2.84,
+      1.57,
+      0.816
+     ]
+    }
+   ],
+   "dims": [
+    2.84,
+    1.57,
+    0.816
+   ],
+   "triangles": 3532,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricGreen",
+    "fabricMustard",
+    "felt",
+    "rubber",
+    "screen",
+    "white",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 94028,
+   "class": "large"
+  },
+  "cue_rack": {
+   "type": "cue_rack",
+   "glb": "app/public/assets/furniture/cue_rack.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-cue_rack"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 0.12, 1.4] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.119,
+      1.4
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 660,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "cue_rack",
+      "kantor_size": [
+       0.6,
+       0.12,
+       1.4
+      ]
+     }
+    },
+    {
+     "check": "front probe: white on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.0435,
+      "vertices": 192
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-cue_rack"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      0.119,
+      1.4
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    0.119,
+    1.4
+   ],
+   "triangles": 660,
+   "budget": 5000,
+   "materials": [
+    "white",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 28936,
+   "class": "large"
+  },
+  "media_console": {
+   "type": "media_console",
+   "glb": "app/public/assets/furniture/media_console.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-media_console"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [2.0, 0.5, 1.6] within 0.02 m",
+     "ok": true,
+     "detail": [
+      2,
+      0.5,
+      1.6
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1116,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "media_console",
+      "kantor_size": [
+       2.0,
+       0.5,
+       1.6
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodLight on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.24,
+      "vertices": 192
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-media_console"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      2.0,
+      0.5,
+      1.6
+     ]
+    }
+   ],
+   "dims": [
+    2,
+    0.5,
+    1.6
+   ],
+   "triangles": 1116,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricMustard",
+    "metal",
+    "screen",
+    "screenGlow",
+    "white",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 39688,
+   "class": "large"
+  },
+  "arcade_cabinet": {
+   "type": "arcade_cabinet",
+   "glb": "app/public/assets/furniture/arcade_cabinet.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-arcade_cabinet"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.75, 0.85, 1.8] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.75,
+      0.85,
+      1.8
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1020,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "arcade_cabinet",
+      "kantor_size": [
+       0.75,
+       0.85,
+       1.8
+      ]
+     }
+    },
+    {
+     "check": "front probe: screenGlow on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -0.2589,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-arcade_cabinet"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.75,
+      0.85,
+      1.8
+     ]
+    }
+   ],
+   "dims": [
+    0.75,
+    0.85,
+    1.8
+   ],
+   "triangles": 1020,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricCream",
+    "fabricGreen",
+    "fabricMustard",
+    "fabricTerracotta",
+    "metal",
+    "paper",
+    "screen",
+    "screenGlow",
+    "woodDark"
+   ],
+   "bytes": 41532,
+   "class": "large"
+  },
+  "board_table": {
+   "type": "board_table",
+   "glb": "app/public/assets/furniture/board_table.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-board_table"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 1.2, 0.75] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      1.2,
+      0.766
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1152,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "board_table",
+      "kantor_size": [
+       1.2,
+       1.2,
+       0.75
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-board_table"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      1.2,
+      0.766
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    1.2,
+    0.766
+   ],
+   "triangles": 1152,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "white",
+    "wood",
+    "woodDark",
+    "woodLight"
+   ],
+   "bytes": 49788,
+   "class": "large"
+  },
+  "treadmill": {
+   "type": "treadmill",
+   "glb": "app/public/assets/furniture/treadmill.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-treadmill"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.9, 2.0, 1.4] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.9,
+      2,
+      1.4
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 864,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "treadmill",
+      "kantor_size": [
+       0.9,
+       2.0,
+       1.4
+      ]
+     }
+    },
+    {
+     "check": "front probe: screenGlow on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.85,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-treadmill"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.9,
+      2.0,
+      1.4
+     ]
+    }
+   ],
+   "dims": [
+    0.9,
+    2,
+    1.4
+   ],
+   "triangles": 864,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricGreen",
+    "metal",
+    "metalLight",
+    "rubber",
+    "screen",
+    "screenGlow",
+    "woodDark"
+   ],
+   "bytes": 34516,
+   "class": "large"
+  },
+  "exercise_bike": {
+   "type": "exercise_bike",
+   "glb": "app/public/assets/furniture/exercise_bike.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-exercise_bike"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [0.6, 1.2, 1.2] within 0.02 m",
+     "ok": true,
+     "detail": [
+      0.6,
+      1.2,
+      1.1902
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 1152,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "exercise_bike",
+      "kantor_size": [
+       0.6,
+       1.2,
+       1.2
+      ]
+     }
+    },
+    {
+     "check": "front probe: screenGlow on back (+Y)",
+     "ok": true,
+     "detail": {
+      "meanY": 0.3163,
+      "vertices": 96
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-exercise_bike"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      0.6,
+      1.2,
+      1.1902
+     ]
+    }
+   ],
+   "dims": [
+    0.6,
+    1.2,
+    1.1902
+   ],
+   "triangles": 1152,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "metal",
+    "metalLight",
+    "rubber",
+    "screen",
+    "screenGlow"
+   ],
+   "bytes": 43216,
+   "class": "large"
+  },
+  "exercise_mat": {
+   "type": "exercise_mat",
+   "glb": "app/public/assets/furniture/exercise_mat.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-exercise_mat"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.8, 0.6, 0.02] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.6,
+      0.0205
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 176,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "exercise_mat",
+      "kantor_size": [
+       1.8,
+       0.6,
+       0.02
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-exercise_mat"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.8,
+      0.6,
+      0.0205
+     ]
+    }
+   ],
+   "dims": [
+    1.8,
+    0.6,
+    0.0205
+   ],
+   "triangles": 176,
+   "budget": 5000,
+   "materials": [
+    "fabricCream",
+    "fabricSage"
+   ],
+   "bytes": 12636,
+   "class": "large"
+  },
+  "dumbbell_rack": {
+   "type": "dumbbell_rack",
+   "glb": "app/public/assets/furniture/dumbbell_rack.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-dumbbell_rack"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.2, 0.5, 0.9] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.4985,
+      0.9062
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 2024,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "dumbbell_rack",
+      "kantor_size": [
+       1.2,
+       0.5,
+       0.9
+      ]
+     }
+    },
+    {
+     "check": "orientation-free type declared symmetric",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-dumbbell_rack"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.2,
+      0.4985,
+      0.9062
+     ]
+    }
+   ],
+   "dims": [
+    1.2,
+    0.4985,
+    0.9062
+   ],
+   "triangles": 2024,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "fabricBlue",
+    "fabricGreen",
+    "fabricMustard",
+    "metal",
+    "metalLight",
+    "rubber"
+   ],
+   "bytes": 83104,
+   "class": "large"
+  },
+  "stair_u": {
+   "type": "stair_u",
+   "glb": "app/public/assets/furniture/stair_u.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-stair_u"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [2.6, 4.4, 4.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      2.6,
+      4.4,
+      4
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 600,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "stair_u",
+      "kantor_size": [
+       2.6,
+       4.4,
+       4.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: woodDark on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -2.175,
+      "vertices": 24
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-stair_u"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      2.6,
+      4.4,
+      4.0
+     ]
+    }
+   ],
+   "dims": [
+    2.6,
+    4.4,
+    4
+   ],
+   "triangles": 600,
+   "budget": 5000,
+   "materials": [
+    "wallInterior",
+    "wood",
+    "woodDark"
+   ],
+   "bytes": 34672,
+   "class": "large"
+  },
+  "lift": {
+   "type": "lift",
+   "glb": "app/public/assets/furniture/lift.glb",
+   "checks": [
+    {
+     "check": "glb exists",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "single mesh node FURN-<type>",
+     "ok": true,
+     "detail": [
+      "FURN-lift"
+     ]
+    },
+    {
+     "check": "node has no transform",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "bbox equals catalog [1.9, 2.2, 3.0] within 0.02 m",
+     "ok": true,
+     "detail": [
+      1.9,
+      2.2,
+      3
+     ]
+    },
+    {
+     "check": "footprint centred on origin",
+     "ok": true,
+     "detail": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "check": "rests on floor (min z = 0)",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "triangles within large budget",
+     "ok": true,
+     "detail": {
+      "triangles": 154,
+      "budget": 5000
+     }
+    },
+    {
+     "check": "materials from shared palette",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "extras carry type and size",
+     "ok": true,
+     "detail": {
+      "kantor_type": "lift",
+      "kantor_size": [
+       1.9,
+       2.2,
+       3.0
+      ]
+     }
+    },
+    {
+     "check": "front probe: accent on front (-Y)",
+     "ok": true,
+     "detail": {
+      "meanY": -1.09,
+      "vertices": 24
+     }
+    },
+    {
+     "check": "reimport: one FURN mesh",
+     "ok": true,
+     "detail": [
+      "FURN-lift"
+     ]
+    },
+    {
+     "check": "reimport: bbox matches glb",
+     "ok": true,
+     "detail": [
+      1.9,
+      2.2,
+      3.0
+     ]
+    }
+   ],
+   "dims": [
+    1.9,
+    2.2,
+    3
+   ],
+   "triangles": 154,
+   "budget": 5000,
+   "materials": [
+    "accent",
+    "metal",
+    "metalLight",
+    "wallExterior"
+   ],
+   "bytes": 11200,
+   "class": "large"
+  }
+ }
+}

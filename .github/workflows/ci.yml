@@ -1,0 +1,56 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main, "claude/**"]
+permissions:
+  contents: read
+jobs:
+  design:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: System packages for PDF rendering and the OFL font
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils fonts-alegreya-sans
+      - run: pip install -r requirements-dev.txt
+      - name: Safety scan
+        run: python3 tools/safety_scan.py
+      - name: Validate world dataset
+        run: python3 tools/validate_world.py
+      - name: Contrast tokens
+        run: python3 tools/contrast.py
+      - name: Python tests
+        run: python3 -m pytest tests/py -q
+  app:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - name: Unit tests
+        run: npx vitest run
+      - name: Build
+        run: npm run build
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+      - name: E2E world (desktop, tablet, mobile viewports)
+        run: npx playwright test tests/e2e/world.spec.ts
+      - name: E2E NPC, activities, studios, states, axe (desktop)
+        run: npx playwright test tests/e2e/npc.spec.ts tests/e2e/activity.spec.ts tests/e2e/studio.spec.ts tests/e2e/states.spec.ts tests/e2e/a11y.spec.ts tests/e2e/doors.spec.ts tests/e2e/controls.spec.ts tests/e2e/failures.spec.ts tests/e2e/device.spec.ts tests/e2e/bundle.spec.ts --project=desktop
+      # Draw calls and triangles do not depend on GPU speed, so the software
+      # renderer on the runner measures the mobile budget faithfully.
+      - name: Render budget gate (desktop, tablet, mobile) and touch greeting
+        run: npx playwright test tests/e2e/budget.spec.ts tests/e2e/npc.spec.ts tests/e2e/controls.spec.ts tests/e2e/failures.spec.ts --project=tablet --project=mobile && npx playwright test tests/e2e/budget.spec.ts --project=desktop
+      - name: Licence audit
+        working-directory: .
+        run: python3 tools/license_audit.py --out /tmp/license-audit.json

@@ -1,0 +1,1495 @@
+{
+ "tool": "Khronos glTF Validator (npm gltf-validator 2.0.0-dev.3.10, Apache-2.0), installed in a scratch directory, not a repo dependency",
+ "command": "node run.js <files> (validateBytes, maxIssues 50); severity 0 = error, 1 = warning",
+ "summary": {
+  "raw": {
+   "files": 61,
+   "errors": 0,
+   "warnings": 26,
+   "warningCodes": [
+    "NODE_SKINNED_MESH_NON_ROOT"
+   ]
+  },
+  "shipped": {
+   "files": 61,
+   "errors": 0,
+   "warnings": 26,
+   "warningCodes": [
+    "NODE_SKINNED_MESH_NON_ROOT"
+   ]
+  }
+ },
+ "raw": {
+  "blender/out/raw-glb/characters/ch-architect.glb": {
+   "errors": 0,
+   "warnings": 3,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/characters/ch-ceo.glb": {
+   "errors": 0,
+   "warnings": 5,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/22 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/characters/ch-ictspec.glb": {
+   "errors": 0,
+   "warnings": 4,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/characters/ch-netinstall.glb": {
+   "errors": 0,
+   "warnings": 3,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/characters/ch-qa.glb": {
+   "errors": 0,
+   "warnings": 4,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/characters/ch-supervisor.glb": {
+   "errors": 0,
+   "warnings": 3,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/characters/ch-visual.glb": {
+   "errors": 0,
+   "warnings": 4,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/arcade_cabinet.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/armchair.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/beanbag.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/bench.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/billiard_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/board_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/bookshelf.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/chair.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/chair_guest.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/coffee_bar.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/coffee_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/cue_rack.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/desk.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/desk_exec.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/dining_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/directory_sign.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/drafting_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/dumbbell_rack.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/easel.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/exercise_bike.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/exercise_mat.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/fridge.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/gallery_panel.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/high_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/lab_bench.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/lab_rack_open.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/lift.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/locker.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/media_console.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/meeting_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/model_shelf.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/pantry_counter.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/partition.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/plan_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/plant_large.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/plant_small.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/planter_box.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/poster.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/rack_42u.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/reception_desk.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/round_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/shower_stall.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/sink.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/sofa.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/stair_u.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/stool.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/storage_shelf.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/tool_cabinet.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/treadmill.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/tree_planter.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/wall_display.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/wc.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/whiteboard.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  },
+  "blender/out/raw-glb/furniture/work_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_specular",
+    "KHR_materials_ior"
+   ]
+  }
+ },
+ "shipped": {
+  "app/public/assets/characters/ch-architect.glb": {
+   "errors": 0,
+   "warnings": 3,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/characters/ch-ceo.glb": {
+   "errors": 0,
+   "warnings": 5,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/22 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/characters/ch-ictspec.glb": {
+   "errors": 0,
+   "warnings": 4,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/characters/ch-netinstall.glb": {
+   "errors": 0,
+   "warnings": 3,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/characters/ch-qa.glb": {
+   "errors": 0,
+   "warnings": 4,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/characters/ch-supervisor.glb": {
+   "errors": 0,
+   "warnings": 3,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/characters/ch-visual.glb": {
+   "errors": 0,
+   "warnings": 4,
+   "infos": 0,
+   "hints": 0,
+   "messages": [
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/18 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/19 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/20 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+    "W NODE_SKINNED_MESH_NON_ROOT /nodes/21 Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh."
+   ],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/arcade_cabinet.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/armchair.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/beanbag.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/bench.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/billiard_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/board_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/bookshelf.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/chair.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/chair_guest.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/coffee_bar.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/coffee_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/cue_rack.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/desk.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/desk_exec.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/dining_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/directory_sign.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/drafting_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/dumbbell_rack.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/easel.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/exercise_bike.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/exercise_mat.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/fridge.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/gallery_panel.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/high_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/lab_bench.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/lab_rack_open.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/lift.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/locker.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/media_console.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/meeting_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/model_shelf.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/pantry_counter.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/partition.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/plan_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/plant_large.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/plant_small.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/planter_box.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/poster.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/rack_42u.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/reception_desk.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/round_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/shower_stall.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/sink.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/sofa.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/stair_u.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/stool.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/storage_shelf.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/tool_cabinet.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/treadmill.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/tree_planter.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/wall_display.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/wc.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/whiteboard.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  },
+  "app/public/assets/furniture/work_table.glb": {
+   "errors": 0,
+   "warnings": 0,
+   "infos": 0,
+   "hints": 0,
+   "messages": [],
+   "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular",
+    "KHR_mesh_quantization"
+   ]
+  }
+ }
+}

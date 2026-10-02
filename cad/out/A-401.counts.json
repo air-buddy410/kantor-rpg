@@ -1,0 +1,122 @@
+{
+ "file": "A-401.dxf",
+ "modelspace": {
+  "A-SECT-GRND": {
+   "LWPOLYLINE": 2,
+   "HATCH": 2
+  },
+  "A-SECT-SLAB": {
+   "HATCH": 8
+  },
+  "A-SECT-WALL": {
+   "HATCH": 24
+  },
+  "A-SECT-CLNG": {
+   "LWPOLYLINE": 19
+  },
+  "A-SECT-IDEN": {
+   "TEXT": 26,
+   "HATCH": 1,
+   "LWPOLYLINE": 1
+  },
+  "A-SECT-STRS": {
+   "HATCH": 3,
+   "LWPOLYLINE": 4
+  },
+  "A-ANNO-NOTE": {
+   "HATCH": 10,
+   "LWPOLYLINE": 20,
+   "TEXT": 10
+  },
+  "A-ANNO-DIMS": {
+   "LWPOLYLINE": 10,
+   "TEXT": 6
+  },
+  "A-SECT-GLAZ": {
+   "LWPOLYLINE": 3
+  },
+  "A-AREA": {
+   "LWPOLYLINE": 20
+  },
+  "A-STRS": {
+   "LWPOLYLINE": 1
+  },
+  "A-SECT-MARK": {
+   "LWPOLYLINE": 2,
+   "TEXT": 4
+  }
+ },
+ "paperspace": {
+  "paperspace:A-401": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 9,
+    "LWPOLYLINE": 2,
+    "HATCH": 4
+   },
+   "A-ANNO-VPRT": {
+    "VIEWPORT": 3
+   }
+  }
+ },
+ "totals": {
+  "modelspace": 176,
+  "paperspace": 24
+ },
+ "layers": [
+  "0",
+  "A-ANNO-DIMS",
+  "A-ANNO-NOTE",
+  "A-ANNO-RMNM",
+  "A-ANNO-TTLB",
+  "A-ANNO-VPRT",
+  "A-ANNO-WMRK",
+  "A-AREA",
+  "A-DOOR",
+  "A-DOOR-IDEN",
+  "A-FURN",
+  "A-FURN-IDEN",
+  "A-GLAZ",
+  "A-GLAZ-IDEN",
+  "A-GRID",
+  "A-GRID-IDEN",
+  "A-SECT-CLNG",
+  "A-SECT-GLAZ",
+  "A-SECT-GRND",
+  "A-SECT-IDEN",
+  "A-SECT-MARK",
+  "A-SECT-SLAB",
+  "A-SECT-STRS",
+  "A-SECT-WALL",
+  "A-STRS",
+  "A-WALL",
+  "Defpoints"
+ ],
+ "insunits": 4,
+ "dxfversion": "AC1032",
+ "sheet": "A-401",
+ "world_revision": "P03",
+ "expected": {
+  "pages": 1,
+  "views": 3
+ },
+ "openings": {
+  "window_symbols": 1,
+  "windows_per_floor": {
+   "L1": 1
+  },
+  "door_leaves": 0,
+  "door_arcs": 0,
+  "elevation_hinge_marks": 0
+ }
+}

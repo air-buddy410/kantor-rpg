@@ -1,0 +1,115 @@
+{
+ "runtimeAllow": [
+  "0BSD",
+  "Apache-2.0",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "MIT",
+  "OFL-1.1"
+ ],
+ "npmRuntime": [
+  {
+   "name": "@fontsource/alegreya-sans",
+   "version": "5.3.0",
+   "license": "OFL-1.1",
+   "scope": "runtime",
+   "optional": false
+  },
+  {
+   "name": "three",
+   "version": "0.186.1",
+   "license": "MIT",
+   "scope": "runtime",
+   "optional": false
+  }
+ ],
+ "npmDevCount": 74,
+ "npmDevLicenses": [
+  "Apache-2.0",
+  "BSD-3-Clause",
+  "ISC",
+  "MIT",
+  "MPL-2.0"
+ ],
+ "npmDevNotAllowListed": [],
+ "python": [
+  {
+   "name": "ezdxf",
+   "version": "1.4.4",
+   "license": "MIT License",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "fonttools",
+   "version": "4.66.1",
+   "license": "MIT",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "jsonschema",
+   "version": "4.26.0",
+   "license": "MIT",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "matplotlib",
+   "version": "3.11.2",
+   "license": "License agreement for matplotlib versions 1.3.0 and later",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "numpy",
+   "version": "2.4.6",
+   "license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "pillow",
+   "version": "12.3.0",
+   "license": "MIT-CMU",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "pypdf",
+   "version": "6.19.0",
+   "license": "BSD-3-Clause",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "pytest",
+   "version": "8.4.2",
+   "license": "MIT",
+   "scope": "dev (generators/tests, not shipped)"
+  },
+  {
+   "name": "reportlab",
+   "version": "5.0.1",
+   "license": "BSD license (see license.txt for details), Copyright (c) 200",
+   "scope": "dev (generators/tests, not shipped)"
+  }
+ ],
+ "other": [
+  {
+   "name": "Alegreya Sans (Debian fonts-alegreya-sans, converted as KantorRPG Sans for PDFs)",
+   "license": "OFL-1.1",
+   "scope": "embedded subsets in generated PDFs"
+  },
+  {
+   "name": "@fontsource/alegreya-sans (web font files in the app build)",
+   "license": "OFL-1.1",
+   "scope": "runtime"
+  },
+  {
+   "name": "Blender 4.0.2 (Ubuntu package)",
+   "license": "GPL-2.0-or-later",
+   "scope": "tool only; generated .blend/.glb are project output, not Blender code"
+  },
+  {
+   "name": "Chromium (Playwright build)",
+   "license": "BSD-3-Clause and others",
+   "scope": "test tool only"
+  }
+ ],
+ "runtimeProblems": []
+}

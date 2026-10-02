@@ -1,0 +1,4 @@
+=========================== short test summary info ============================
+ERROR tests/py/test_door_leaves.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.17s

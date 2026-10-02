@@ -1,0 +1,37 @@
+# kantor-rpg M1 character validation log (trimmed: Blender banner and glTF importer INFO lines removed)
+# date_utc=2026-10-01T11:07:23Z git_head=e1d5ecefe63b8c30e981a169cb0b23f57755d6e8 branch=claude/kantor-rpg-m2 (generated files uncommitted on top of HEAD)
+# blender=Blender 4.0.2
+$ blender -b --factory-startup -noaudio --python blender/characters/render_sheet.py
+SHEET CH-CEO -> assets/previews/ch-ceo-sheet.png bytes=147700
+SHEET CH-SUPERVISOR -> assets/previews/ch-supervisor-sheet.png bytes=156968
+SHEET CH-ARCHITECT -> assets/previews/ch-architect-sheet.png bytes=170341
+SHEET CH-ICTSPEC -> assets/previews/ch-ictspec-sheet.png bytes=131680
+SHEET CH-NETINSTALL -> assets/previews/ch-netinstall-sheet.png bytes=159124
+SHEET CH-VISUAL -> assets/previews/ch-visual-sheet.png bytes=164760
+SHEET CH-QA -> assets/previews/ch-qa-sheet.png bytes=153424
+DEFORM CH-CEO -> assets/previews/ch-ceo-deform.png bytes=274216
+VARIANTS CH-CEO -> assets/previews/ch-ceo-variants.png bytes=216938
+RENDER_DONE
+exit_code=0 wall_seconds=156
+$ blender -b --factory-startup -noaudio --python blender/validate_assets.py
+VALIDATE CH-CEO: PASS checks=83 failed=0 tris_lod0=14788 tris_all=21396 height=1.6412 glb_bytes=909716
+VALIDATE CH-SUPERVISOR: PASS checks=80 failed=0 tris_lod0=14884 tris_all=14884 height=1.5844 glb_bytes=720136
+VALIDATE CH-ARCHITECT: PASS checks=80 failed=0 tris_lod0=13300 tris_all=13300 height=1.6305 glb_bytes=676244
+VALIDATE CH-ICTSPEC: PASS checks=80 failed=0 tris_lod0=14292 tris_all=14292 height=1.4939 glb_bytes=703484
+VALIDATE CH-NETINSTALL: PASS checks=80 failed=0 tris_lod0=13736 tris_all=13736 height=1.562 glb_bytes=692452
+VALIDATE CH-VISUAL: PASS checks=80 failed=0 tris_lod0=14512 tris_all=14512 height=1.5612 glb_bytes=710520
+VALIDATE CH-QA: PASS checks=80 failed=0 tris_lod0=14912 tris_all=14912 height=1.5543 glb_bytes=723692
+VALIDATE_DONE passed=True characters=7 seconds=32.2
+exit_code=0
+# per-clip measurements (from docs/evidence/M1/blender-validate.json)
+CH-CEO walk slip=0.0005 native=0.845 m/s | run slip=0.0 native=2.416 m/s | sit pelvis_z=0.442 | min mesh z over standing clips=-0.0033
+CH-SUPERVISOR walk slip=0.0007 native=0.835 m/s | run slip=0.0002 native=2.388 m/s | sit pelvis_z=0.442 | min mesh z over standing clips=-0.0033
+CH-ARCHITECT walk slip=0.0007 native=0.873 m/s | run slip=0.0 native=2.499 m/s | sit pelvis_z=0.442 | min mesh z over standing clips=-0.0032
+CH-ICTSPEC walk slip=0.0006 native=0.795 m/s | run slip=0.0001 native=2.274 m/s | sit pelvis_z=0.442 | min mesh z over standing clips=-0.0029
+CH-NETINSTALL walk slip=0.0005 native=0.818 m/s | run slip=0.0002 native=2.338 m/s | sit pelvis_z=0.4305 | min mesh z over standing clips=-0.0037
+CH-VISUAL walk slip=0.0003 native=0.811 m/s | run slip=0.0001 native=2.32 m/s | sit pelvis_z=0.442 | min mesh z over standing clips=-0.003
+CH-QA walk slip=0.0007 native=0.826 m/s | run slip=0.0 native=2.361 m/s | sit pelvis_z=0.442 | min mesh z over standing clips=-0.0031
+$ python3 -m pytest tests/py/test_assets.py -q
+...............................................                          [100%]
+47 passed in 0.09s
+exit_code=0
