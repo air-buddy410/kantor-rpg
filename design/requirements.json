@@ -223,6 +223,17 @@
       "docs/evidence/HARDENING/vitest.txt"
      ],
      "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: nol langkah NPC berjalan yang masuk ke cakram agen lain (CEO termasuk) pada soak seed 42 (2 jam), 11 dan 3 (sebelumnya 401); give-way untuk saling-tunggu",
+     "tests": [
+      "app/tests/unit/collision.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/npc-overlap-red.txt",
+      "docs/evidence/R2/vitest.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -341,6 +352,33 @@
       "docs/evidence/HARDENING/vitest.txt"
      ],
      "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: daun pintu runtime dari derivasi yang sama dengan navgrid Python/TS, busur CAD dan engsel LEAF-* Blender; buka otomatis, posisi terbuka solid, terkunci pada mode visitor; Studio menolak furniture di area ayun",
+     "tests": [
+      "tests/py/test_door_leaves.py",
+      "app/tests/unit/doors.test.ts",
+      "app/tests/e2e/doors.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/door-leaves-red.txt",
+      "docs/evidence/R2/doors-ts-red.txt",
+      "docs/evidence/R2/pytest.txt",
+      "docs/evidence/R2/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: semua teks 15 sheet A/I/ICT >= 2,5 mm saat dicetak A3 (ukuran font, pembacaan longgar ISO 3098), tanpa tumpang tindih; tag pendek dengan tabel lookup",
+     "tests": [
+      "tests/py/test_cad_legibility.py"
+     ],
+     "evidence": [
+      "docs/evidence/R2/cad-legibility-all-red.txt",
+      "docs/evidence/R2/cad-legibility-sizes.json",
+      "docs/evidence/R2/pytest-cad.txt"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -446,6 +484,30 @@
      "tests": [],
      "evidence": [],
      "status": "belum diuji"
+    },
+    {
+     "scope": "R2: setiap kontrol dan shortcut punya test (61, sebelumnya 25 tanpa test); jalur gagal context loss, aksi tanpa target, GLB hilang; tiga cacat fallback ditemukan dan diperbaiki",
+     "tests": [
+      "tools/control_audit.py",
+      "tests/py/test_control_audit.py",
+      "app/tests/e2e/controls.spec.ts",
+      "app/tests/e2e/failures.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/control-audit-red.txt",
+      "docs/evidence/R2/control-audit.json"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "Screen reader nyata (NVDA/VoiceOver/TalkBack): hook ?a11ylog=1 dan runbook siap; uji fisik belum dijalankan",
+     "tests": [
+      "app/tests/e2e/device.spec.ts"
+     ],
+     "evidence": [
+      "docs/DEVICE-VALIDATION.md"
+     ],
+     "status": "belum diuji"
     }
    ]
   },
@@ -523,6 +585,21 @@
       "docs/evidence/HARDENING/e2e-unskipped-touch.txt"
      ],
      "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: muat awal <= 6 MB (5,40 MB, sebelumnya 9,73 MB), chunk entry <= 250 kB, three.js chunk terpisah, Studio dimuat saat dipakai; GLB terkuantisasi dengan galat <= 1 mm",
+     "tests": [
+      "app/tests/e2e/bundle.spec.ts",
+      "tests/py/test_asset_size.py",
+      "app/tests/unit/furniture-kit.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/R2/bundle-red.txt",
+      "docs/evidence/R2/bundle-desktop.json",
+      "docs/evidence/R2/glb-sizes-r2.json",
+      "docs/evidence/R2/glb-compare.json"
+     ],
+     "status": "terverifikasi"
     }
    ]
   },
@@ -588,6 +665,17 @@
       "docs/evidence/HARDENING/license-audit.json",
       "docs/evidence/HARDENING/e2e-csp-desktop.txt",
       "docs/evidence/HARDENING/e2e-csp-desktop-run1.txt"
+     ],
+     "status": "terverifikasi"
+    },
+    {
+     "scope": "R2: audit Must per AC/test/failure/boundary untuk 12 REQ PRD bagian 12, referensi diperiksa ada",
+     "tests": [
+      "tools/must_audit.py",
+      "tests/py/test_must_audit.py"
+     ],
+     "evidence": [
+      "docs/MUST-AUDIT.md"
      ],
      "status": "terverifikasi"
     }
