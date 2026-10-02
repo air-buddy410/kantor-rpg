@@ -1,0 +1,36 @@
+OK   A-ANNO-RMNM    HATCH        generator     2  autocad     2
+OK   A-ANNO-RMNM    LWPOLYLINE   generator     2  autocad     2
+OK   A-ANNO-RMNM    TEXT         generator    18  autocad    18
+OK   A-AREA         LWPOLYLINE   generator    18  autocad    18
+OK   A-DOOR         ARC          generator    15  autocad    15
+OK   A-DOOR         HATCH        generator     4  autocad     4
+OK   A-DOOR         LWPOLYLINE   generator    31  autocad    31
+OK   A-FURN         LWPOLYLINE   generator    89  autocad    89
+OK   A-GLAZ         LWPOLYLINE   generator   186  autocad   186
+OK   A-GRID         LWPOLYLINE   generator    11  autocad    11
+OK   A-GRID-IDEN    CIRCLE       generator    22  autocad    22
+OK   A-GRID-IDEN    HATCH        generator    22  autocad    22
+OK   A-GRID-IDEN    TEXT         generator    22  autocad    22
+OK   A-STRS         LWPOLYLINE   generator    31  autocad    31
+OK   A-STRS         TEXT         generator     2  autocad     2
+OK   A-WALL         HATCH        generator    61  autocad    61
+OK   A-WALL         LWPOLYLINE   generator    61  autocad    61
+OK   ICT-AP         CIRCLE       generator     6  autocad     6
+OK   ICT-AP         HATCH        generator     6  autocad     6
+OK   ICT-AP         TEXT         generator     6  autocad     6
+OK   ICT-CAM        HATCH        generator     4  autocad     4
+OK   ICT-CAM        LWPOLYLINE   generator     4  autocad     4
+OK   ICT-DEV-IDEN   TEXT         generator     2  autocad     2
+OK   ICT-OUTL       HATCH        generator    15  autocad    15
+OK   ICT-OUTL       LWPOLYLINE   generator    15  autocad    15
+OK   ICT-OUTL-IDEN  LWPOLYLINE   generator     8  autocad     8
+OK   ICT-OUTL-IDEN  TEXT         generator    15  autocad    15
+OK   ICT-RISR       HATCH        generator     1  autocad     1
+OK   ICT-RISR       LWPOLYLINE   generator     1  autocad     1
+OK   ICT-RISR       TEXT         generator     1  autocad     1
+OK   ICT-TRAY       LWPOLYLINE   generator     8  autocad     8
+OK   ICT-TRAY       TEXT         generator     3  autocad     3
+openings generator: jendela 19 {'L2': 19}, daun pintu 15, busur 15
+  busur pintu (A-DOOR ARC): generator 15, autocad 15
+total model space generator 692 autocad 692
+HASIL: cocok

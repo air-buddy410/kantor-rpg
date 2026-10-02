@@ -444,7 +444,12 @@ export class IdleSim {
     if (blocker) {
       if (npc.yieldTo !== blocker.id) { npc.yieldTo = blocker.id; npc.yieldSince = this.time; this.yields++; }
       else if (this.mutualAndMineToGive(npc, blocker.id) && this.time - npc.yieldSince >= YIELD_DETOUR_SECONDS / 2) this.giveWay(npc, blocker.pos);
-      else if (this.time - npc.yieldSince >= this.detourDelay(npc)) this.detour(npc);
+      else if (this.time - npc.yieldSince >= this.detourDelay(npc)) {
+        // The first snapped path cell can be inside a stationary agent's disc.
+        // Back out in continuous space before asking the grid for a new route.
+        if (!npc.resumeTo) this.giveWay(npc, blocker.pos);
+        if (!npc.resumeTo) this.detour(npc);
+      }
     } else {
       npc.yieldTo = null;
       if (d <= stepLen) {
@@ -568,6 +573,11 @@ export class IdleSim {
     this.log.push({ t: this.time, npc: npc.id, event: 'fail', detail: why });
     this.release(npc, why);
     npc.group = null;
+    npc.resumeTo = null;
+    npc.holdUntil = 0;
+    npc.yieldTo = null;
+    npc.yieldSince = 0;
+    npc.via = null;
     if (npc.failures <= 1 && npc.phase !== 'recover') {
       npc.phase = 'choose';
       npc.activity = 'idle';

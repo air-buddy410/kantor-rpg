@@ -305,11 +305,17 @@ def write_register(results: list, sheets_doc: dict, register_path: Path, command
             for i, pp in enumerate(r.get("preview_pages", [])[1:], start=2):
                 files[f"preview_pdf_p{i}"] = pp
             w, h = PAPER_MM[sh["size"]]
+            from tools.kantor.native_dwg import verified_native_dwg
+            dwg = Path(r['dxf']).with_suffix('.dwg')
+            native_ok = verified_native_dwg(dwg, ROOT)
+            if native_ok:
+                files['dwg'] = dwg
             entry = {**base, "status": "produced (konsep)", "revision": r["meta"]["KR_REVISION"],
                      "generated_utc": generated_utc, "generator_command": command,
                      "pdf_pages": r["pages"], "page_size_mm": [w, h],
                      "page_size_pt": [round(w * PT_PER_MM, 2), round(h * PT_PER_MM, 2)],
-                     "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+                     "native_dwg": ('GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)'
+                                    if native_ok else 'BLOCKED (no matching native evidence)'),
                      "files": {k: {"path": _rel(v), "sha256": sha256(v)}
                                for k, v in files.items() if v}}
         elif sh["id"] in old and old[sh["id"]].get("files") and all(
@@ -321,7 +327,8 @@ def write_register(results: list, sheets_doc: dict, register_path: Path, command
         entries.append(entry)
     doc = {"project": sheets_doc["project"], "source": "design/sheets.json", "generated_utc": generated_utc,
            "note": "Dibuat oleh cad/generate.py. Status 'produced (konsep)' = DXF/PDF dihasilkan dan dibaca ulang; "
-                   "native DWG BLOCKED.", "sheets": entries, "sets": []}
+                   "Native DWG availability is attested separately; native plot/font review is pending.",
+           "sheets": entries, "sets": []}
     for st in sets or []:
         if "path" in st:
             doc["sets"].append({"file": _rel(st["path"]), "discipline": st["discipline"],

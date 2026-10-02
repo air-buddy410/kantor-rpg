@@ -647,7 +647,8 @@ def _pdf_title_strip(c, sheet, world, plan, layout, tf):
     c.setFont(tf.medium, B)
     for m, x in zip(sb["marks_m"], xs):
         c.drawCentredString(x, y + h + 2.5, str(m))
-    c.drawString(xs[-1] + 5, y + 0.6, "m")
+    unit_x = xs[-1] + c.stringWidth(str(sb["marks_m"][-1]), tf.medium, B) / 2 + 5
+    c.drawString(unit_x, y + h + 2.5, "m")
     c.setFont(tf.regular, B)
     c.setFillColor(col(GREY_TEXT))
     c.drawString(xs[0], y - B - 1.5, f"Benar pada cetak {sheet['size']} 100%: 10 m = {sb['length_mm']:.0f} mm")

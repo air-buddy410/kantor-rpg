@@ -1,0 +1,27 @@
+OK   A-ANNO-RMNM    HATCH        generator     2  autocad     2
+OK   A-ANNO-RMNM    LWPOLYLINE   generator     2  autocad     2
+OK   A-ANNO-RMNM    TEXT         generator    18  autocad    18
+OK   A-AREA         LWPOLYLINE   generator    18  autocad    18
+OK   A-DOOR         ARC          generator    15  autocad    15
+OK   A-DOOR         HATCH        generator     4  autocad     4
+OK   A-DOOR         LWPOLYLINE   generator    31  autocad    31
+OK   A-FURN         LWPOLYLINE   generator    89  autocad    89
+OK   A-FURN-IDEN    LWPOLYLINE   generator     7  autocad     7
+OK   A-FURN-IDEN    TEXT         generator    91  autocad    91
+OK   A-GLAZ         LWPOLYLINE   generator   186  autocad   186
+OK   A-GLAZ-IDEN    HATCH        generator    19  autocad    19
+OK   A-GLAZ-IDEN    LWPOLYLINE   generator    19  autocad    19
+OK   A-GLAZ-IDEN    TEXT         generator    19  autocad    19
+OK   A-GRID         LWPOLYLINE   generator    11  autocad    11
+OK   A-GRID-IDEN    CIRCLE       generator    22  autocad    22
+OK   A-GRID-IDEN    HATCH        generator    22  autocad    22
+OK   A-GRID-IDEN    TEXT         generator    22  autocad    22
+OK   A-STRS         LWPOLYLINE   generator    31  autocad    31
+OK   A-STRS         TEXT         generator     2  autocad     2
+OK   A-WALL         HATCH        generator    61  autocad    61
+OK   A-WALL         LWPOLYLINE   generator    61  autocad    61
+openings generator: jendela 19 {'L2': 19}, daun pintu 15, busur 15
+  jendela (A-GLAZ-IDEN TEXT): generator 19, autocad 19
+  busur pintu (A-DOOR ARC): generator 15, autocad 15
+total model space generator 752 autocad 752
+HASIL: cocok

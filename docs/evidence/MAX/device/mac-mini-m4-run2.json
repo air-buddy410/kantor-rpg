@@ -1,0 +1,66 @@
+{
+  "label": "fixed route benchmark; client-specific measurement",
+  "seconds": 60,
+  "frames": 10738,
+  "fpsAverage": 179,
+  "frameMsMedian": 5.6,
+  "frameMsP95": 6.9,
+  "frameMsMax": 51.1,
+  "framesOver33ms": 4,
+  "dropRate": 0,
+  "distanceM": 71,
+  "floorSwitches": 2,
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "lowQuality": false,
+  "pixelRatio": 1,
+  "viewport": [
+    1366,
+    820
+  ],
+  "jsHeapMB": 45.8,
+  "stats": {
+    "drawCalls": 99,
+    "triangles": 337820,
+    "geometries": 129,
+    "textures": 43,
+    "floorTriangles": {
+      "L1": 120510,
+      "L2": 100032
+    },
+    "furnitureKit": {
+      "loaded": 54,
+      "failed": []
+    },
+    "npcLod": {
+      "lod0": 1,
+      "lod1": 4
+    }
+  },
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "peak": {
+    "drawCalls": 107,
+    "triangles": 387062,
+    "at": [
+      15.16862077357242,
+      11.228021664362661
+    ],
+    "floor": "L1"
+  },
+  "device": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "platform": "macOS",
+    "screen": [
+      1366,
+      820
+    ],
+    "viewport": [
+      1366,
+      820
+    ],
+    "devicePixelRatio": 1,
+    "hardwareConcurrency": 10,
+    "deviceMemoryGB": 16,
+    "gpuRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)"
+  },
+  "url": "?perf=route&seconds=60&report=1"
+}

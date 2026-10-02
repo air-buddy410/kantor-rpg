@@ -708,7 +708,7 @@ def build_sections(sheet, ctx):
         kv.line(a, bb, "A-SECT-MARK", stroke=TERRA, width=0.8, dash=(4, 1.5))
         for p in (a, bb):
             kv.text(p, cut["key"], "A-SECT-MARK", size=7, font="B", color=TERRA, align="c", knock=True)
-    page.text((kx - 6, ky + Y * 2 + 5), "KUNCI POTONGAN L1 (1:500)", "A-ANNO-NOTE", size=7, font="B", color=GREEN)
+    page.text((kx - 6, ky + Y * 2 + 14), "KUNCI POTONGAN L1 (1:500)", "A-ANNO-NOTE", size=7, font="B", color=GREEN)
     x = fx0 + 4
     y = fy0 + 46
     notes = [f"Diturunkan dari world.json: tinggi antar lantai {fmt_m(ff)} m, plafon {fmt_m(ceil)} m, pelat "

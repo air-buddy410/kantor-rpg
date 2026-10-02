@@ -13,13 +13,18 @@ export async function loadFurnitureKit(types: string[], base = 'assets/furniture
   const loader = new GLTFLoader();
   const kit: FurnitureKit = new Map();
   const failed: string[] = [];
-  await Promise.all(types.map(async (type) => {
-    try {
-      const gltf = await loader.loadAsync(`${base}/${type}.glb`);
-      const { parts, mount, triangles } = kitEntryFromScene(gltf.scene);
-      kit.set(type, { parts, mount, triangles });
-    } catch {
-      failed.push(type);
+  let next = 0;
+  // Leave network capacity for playable/NPC characters instead of launching 54 background requests.
+  await Promise.all(Array.from({ length: Math.min(4, types.length) }, async () => {
+    while (next < types.length) {
+      const type = types[next++];
+      try {
+        const gltf = await loader.loadAsync(`${base}/${type}.glb`);
+        const { parts, mount, triangles } = kitEntryFromScene(gltf.scene);
+        kit.set(type, { parts, mount, triangles });
+      } catch {
+        failed.push(type);
+      }
     }
   }));
   return { kit, failed };

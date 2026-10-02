@@ -1,0 +1,95 @@
+/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/characters/build_characters.py:1458: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+blender 5.2.2 LTS; building ['CH-CEO', 'CH-SUPERVISOR', 'CH-ARCHITECT', 'CH-ICTSPEC', 'CH-NETINSTALL', 'CH-VISUAL', 'CH-QA']
+Info: Saved as "ch-ceo.blend"
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+11:09:24 | INFO: Starting glTF 2.0 export
+11:09:24 | INFO: Extracting primitive: body
+11:09:24 | INFO: Primitives created: 1
+11:09:24 | INFO: Extracting primitive: hair_short_tuft
+11:09:24 | INFO: Primitives created: 1
+11:09:24 | INFO: Extracting primitive: hair_spiky_soft
+11:09:24 | INFO: Primitives created: 1
+11:09:24 | INFO: Extracting primitive: hair_swept
+11:09:24 | INFO: Primitives created: 1
+11:09:24 | INFO: Extracting primitive: lod1
+11:09:24 | INFO: Primitives created: 1
+11:09:25 | INFO: Finished glTF 2.0 export in 0.5403859615325928 s
+
+BUILD CH-CEO: tris={'body': 11100, 'hair_short_tuft': 3760, 'hair_swept': 3152, 'hair_spiky_soft': 3456, 'lod1': 4800} visible_lod0=14860 lod1=4800 (decimated from 14788) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.845, 'run_native_speed_mps': 2.416, 'walk_stance_travel_m': 0.49, 'run_stance_travel_m': 0.551} glb_bytes=1157336 blend=blender/out/ch-ceo.blend glb=blender/out/raw-glb/characters/ch-ceo.glb secs=0.7
+Info: Saved as "ch-supervisor.blend"
+11:09:25 | INFO: Starting glTF 2.0 export
+11:09:25 | INFO: Extracting primitive: body
+11:09:25 | INFO: Primitives created: 1
+11:09:25 | INFO: Extracting primitive: hair_swept
+11:09:25 | INFO: Primitives created: 1
+11:09:25 | INFO: Extracting primitive: lod1
+11:09:25 | INFO: Primitives created: 1
+11:09:25 | INFO: Finished glTF 2.0 export in 0.4947957992553711 s
+
+BUILD CH-SUPERVISOR: tris={'body': 11804, 'hair_swept': 3152, 'lod1': 4800} visible_lod0=14956 lod1=4800 (decimated from 14884) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.835, 'run_native_speed_mps': 2.388, 'walk_stance_travel_m': 0.485, 'run_stance_travel_m': 0.545} glb_bytes=939408 blend=blender/out/ch-supervisor.blend glb=blender/out/raw-glb/characters/ch-supervisor.glb secs=0.6
+Info: Saved as "ch-architect.blend"
+11:09:25 | INFO: Starting glTF 2.0 export
+11:09:25 | INFO: Extracting primitive: body
+11:09:25 | INFO: Primitives created: 1
+11:09:25 | INFO: Extracting primitive: hair_bun
+11:09:25 | INFO: Primitives created: 1
+11:09:25 | INFO: Extracting primitive: lod1
+11:09:25 | INFO: Primitives created: 1
+11:09:26 | INFO: Finished glTF 2.0 export in 0.4792640209197998 s
+
+BUILD CH-ARCHITECT: tris={'body': 10312, 'hair_bun': 3060, 'lod1': 4799} visible_lod0=13372 lod1=4799 (decimated from 13300) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.873, 'run_native_speed_mps': 2.499, 'walk_stance_travel_m': 0.507, 'run_stance_travel_m': 0.57} glb_bytes=887228 blend=blender/out/ch-architect.blend glb=blender/out/raw-glb/characters/ch-architect.glb secs=0.6
+Info: Saved as "ch-ictspec.blend"
+11:09:26 | INFO: Starting glTF 2.0 export
+11:09:26 | INFO: Extracting primitive: body
+11:09:26 | INFO: Primitives created: 1
+11:09:26 | INFO: Extracting primitive: hair_bob
+11:09:26 | INFO: Primitives created: 1
+11:09:26 | INFO: Extracting primitive: lod1
+11:09:26 | INFO: Primitives created: 1
+11:09:26 | INFO: Extracting primitive: prop_tablet
+11:09:26 | INFO: Primitives created: 1
+11:09:26 | INFO: Finished glTF 2.0 export in 0.5080876350402832 s
+
+BUILD CH-ICTSPEC: tris={'body': 10344, 'hair_bob': 3536, 'prop_tablet': 484, 'lod1': 4800} visible_lod0=14364 lod1=4800 (decimated from 14292) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.795, 'run_native_speed_mps': 2.274, 'walk_stance_travel_m': 0.461, 'run_stance_travel_m': 0.519} glb_bytes=921020 blend=blender/out/ch-ictspec.blend glb=blender/out/raw-glb/characters/ch-ictspec.glb secs=0.6
+Info: Saved as "ch-netinstall.blend"
+11:09:26 | INFO: Starting glTF 2.0 export
+11:09:26 | INFO: Extracting primitive: body
+11:09:26 | INFO: Primitives created: 1
+11:09:26 | INFO: Extracting primitive: hair_cap
+11:09:26 | INFO: Primitives created: 1
+11:09:26 | INFO: Extracting primitive: lod1
+11:09:27 | INFO: Primitives created: 1
+11:09:27 | INFO: Finished glTF 2.0 export in 0.5561347007751465 s
+
+BUILD CH-NETINSTALL: tris={'body': 11852, 'hair_cap': 1956, 'lod1': 4799} visible_lod0=13808 lod1=4799 (decimated from 13736) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.818, 'run_native_speed_mps': 2.338, 'walk_stance_travel_m': 0.475, 'run_stance_travel_m': 0.533} glb_bytes=907540 blend=blender/out/ch-netinstall.blend glb=blender/out/raw-glb/characters/ch-netinstall.glb secs=0.7
+Info: Saved as "ch-visual.blend"
+11:09:27 | INFO: Starting glTF 2.0 export
+11:09:27 | INFO: Extracting primitive: body
+11:09:27 | INFO: Primitives created: 1
+11:09:27 | INFO: Extracting primitive: hair_spiky_soft
+11:09:27 | INFO: Primitives created: 1
+11:09:27 | INFO: Extracting primitive: lod1
+11:09:27 | INFO: Primitives created: 1
+11:09:27 | INFO: Extracting primitive: prop_sketchbook
+11:09:27 | INFO: Primitives created: 1
+11:09:28 | INFO: Finished glTF 2.0 export in 0.50003981590271 s
+
+BUILD CH-VISUAL: tris={'body': 10716, 'hair_spiky_soft': 3456, 'prop_sketchbook': 412, 'lod1': 4800} visible_lod0=14584 lod1=4800 (decimated from 14512) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.811, 'run_native_speed_mps': 2.32, 'walk_stance_travel_m': 0.47, 'run_stance_travel_m': 0.529} glb_bytes=931224 blend=blender/out/ch-visual.blend glb=blender/out/raw-glb/characters/ch-visual.glb secs=0.6
+Info: Saved as "ch-qa.blend"
+11:09:28 | INFO: Starting glTF 2.0 export
+11:09:28 | INFO: Extracting primitive: body
+11:09:28 | INFO: Primitives created: 1
+11:09:28 | INFO: Extracting primitive: hair_side_part
+11:09:28 | INFO: Primitives created: 1
+11:09:28 | INFO: Extracting primitive: lod1
+11:09:28 | INFO: Primitives created: 1
+11:09:28 | INFO: Extracting primitive: prop_clipboard
+11:09:28 | INFO: Primitives created: 1
+11:09:28 | INFO: Finished glTF 2.0 export in 0.5020020008087158 s
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+BUILD CH-QA: tris={'body': 11024, 'hair_side_part': 3356, 'prop_clipboard': 604, 'lod1': 4799} visible_lod0=14984 lod1=4799 (decimated from 14912) actions=['idle', 'walk', 'run', 'wave', 'talk', 'sit', 'type', 'read', 'coffee', 'stretch', 'exercise', 'billiards', 'game'] loco={'walk_native_speed_mps': 0.826, 'run_native_speed_mps': 2.361, 'walk_stance_travel_m': 0.479, 'run_stance_travel_m': 0.538} glb_bytes=943744 blend=blender/out/ch-qa.blend glb=blender/out/raw-glb/characters/ch-qa.glb secs=0.6
+VARIANTS CH-CEO hair=['short_tuft', 'swept', 'spiky_soft'] palettes=['forest', 'terracotta', 'oat'] (embedded in ch-ceo.glb)
+BUILD_DONE failures=0

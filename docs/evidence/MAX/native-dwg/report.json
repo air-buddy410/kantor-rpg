@@ -1,0 +1,232 @@
+[
+  {
+    "sheet": "A-001",
+    "dxf_sha256": "e3ffab45a906f35c2467f50bffcf319f5673a4291c61f9cd05108d1db2242d6d",
+    "dwg_sha256": "52c0bb1c638c38795fb8af45e9ede0559d2a83f6c5fb5bca92b0664d9d077e7f",
+    "bytes": 35889,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-001",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-101",
+    "dxf_sha256": "a905b6dbbeb53584769aaeee667d7f51f94c9dd7f47bb199d661488e111a4f78",
+    "dwg_sha256": "8fb479495c3ede7e42d06594f647d1e5fff5c65b23f341e7008e077f156659ed",
+    "bytes": 71986,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-101",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-102",
+    "dxf_sha256": "0d6f687fee8b8350005cba2dd151827e2dabf1e2529f5354849251e2976f1dd4",
+    "dwg_sha256": "28a4db24b1762b755253d6d8d50f9e5607ab0e78d76100a742ef2c1ea8e486cb",
+    "bytes": 69329,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-102",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-103",
+    "dxf_sha256": "f4dd28894b160cea69caf15c8e3535485f5973cff437de3e0598307fd7ccff21",
+    "dwg_sha256": "5745663a76589373e1d7a4d57eab9d2c3c2c484d169188d5e21ac5d9bdf8a3c0",
+    "bytes": 77453,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-103-1",
+      "A-103-2",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-201",
+    "dxf_sha256": "56203578c6d327ce11765d01c8063f6cdcdeb4068af3884355bb03f4022a27fa",
+    "dwg_sha256": "32d5ee3247affacf1bc983ef41f046aaebae32796f89d83d83bc7b0b8460668e",
+    "bytes": 92216,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-201-1",
+      "A-201-2",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-202",
+    "dxf_sha256": "6527a19f0e225414397a975967e58d97b6b17f78f96cdc2fad0545b4fb45dfa7",
+    "dwg_sha256": "0e797bb6707da8fe19a0234e53da3f913f0a99c5e29763a98c283bb509cf9dd5",
+    "bytes": 85012,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-202-1",
+      "A-202-2",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-301",
+    "dxf_sha256": "2a27c99f3be4c044fcb32040ddf76ac0dd22011603b9beb514059ea437e0ecf4",
+    "dwg_sha256": "f8c890d53ff935ad05ca1bc521fa6a066883037277802fd7c2455fb96d27d349",
+    "bytes": 51707,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-301",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "A-401",
+    "dxf_sha256": "94d33520bf4c52683637bcd400d0a1d65e34d0860c2674d3ef5bc5fe2f171cad",
+    "dwg_sha256": "5228442f46ac90a427ad68129875c44878d2a287842e5c31af186ba91b11d3a0",
+    "bytes": 35157,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "A-401",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "I-101",
+    "dxf_sha256": "de9fd03419e0b79d58864b385aeed2bc8da8f9ee5b64754f536fa9ee4b362d9f",
+    "dwg_sha256": "de0f20a7e3ef142e7733b1a83a603f4dadd2657e757590558032a1b783d9a40c",
+    "bytes": 68312,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "I-101",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "ICT-001",
+    "dxf_sha256": "0aee43913ee1304cf37523ebff56c069fdeb9c78ebb9b9be7e79bfe7f9ebfaee",
+    "dwg_sha256": "56e1bbea34f392a251622f0e7e567bed148f28c3d82822d63c5e69809c40c801",
+    "bytes": 32879,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "ICT-001",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "ICT-101",
+    "dxf_sha256": "ee82a1f30d023ceaecf70f3dfff3af760ab13af6c290ff1040e7f1a0e92e90d5",
+    "dwg_sha256": "5343f865a194a743681d2c0f696ad3fce3e70b5609a18b32c1c817df2158f2ca",
+    "bytes": 70738,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "ICT-101",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "ICT-102",
+    "dxf_sha256": "0245e9b311cb507c4961b747f9d8fb90915ce41fccb38c592c153bd48590d2c9",
+    "dwg_sha256": "7d0c0724528bce48acd0744b9d96102baf3e28d4305ace7bc3109d859774fd74",
+    "bytes": 64236,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "ICT-102",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "ICT-201",
+    "dxf_sha256": "2b3ea8861b9ed496259bd49cc82f83336a64f55246b4fea324647d7266014fd8",
+    "dwg_sha256": "6b9559a55761fbee29c6fbd025c33549156dee85f6fb20f23a75171d776eb3e2",
+    "bytes": 41175,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "ICT-201",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "ICT-301",
+    "dxf_sha256": "c29f6e6f2f197f78d86d25e5cb1948a3406394185ad1bebf3b3cda44adcfa6ba",
+    "dwg_sha256": "cc7c8af3d9721bb4ae6b4d077be911f9e98e8cc0d3c750cb1c4e7cc80396f185",
+    "bytes": 62581,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "ICT-301",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  },
+  {
+    "sheet": "ICT-401",
+    "dxf_sha256": "af9c6083e70693e6a290c9c6a79719a9f6bc3f6893abfaba3fcd063b0978822e",
+    "dwg_sha256": "b00f9bd936034e101309f9c269b44c3e728aa1a92a444129feefd4af8bcb2c65",
+    "bytes": 64456,
+    "reopen": true,
+    "audit_errors": 0,
+    "units": 4,
+    "model_counts_match": true,
+    "paper_layouts": [
+      "ICT-401-1",
+      "ICT-401-2",
+      "ICT-401-3",
+      "Model"
+    ],
+    "font_note": "See convert log: substituted fonts; visual native plot review not complete."
+  }
+]

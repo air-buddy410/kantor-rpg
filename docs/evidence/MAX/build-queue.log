@@ -1,0 +1,65 @@
+
+> kantor-rpg-app@0.1.0 prebuild
+> node scripts/sync-public.mjs
+
+synced 8 docs
+
+> kantor-rpg-app@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 43 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/alegreya-sans-greek-400-normal-8U5NAP_q.woff            6.82 kB
+dist/assets/alegreya-sans-greek-700-normal-BZuMtSJ5.woff            6.86 kB
+dist/assets/alegreya-sans-greek-500-normal-BwxJMQU_.woff            6.87 kB
+dist/assets/alegreya-sans-greek-ext-400-normal-D6j-TQLM.woff        7.22 kB
+dist/assets/alegreya-sans-greek-ext-500-normal-Cp0bGOKK.woff        7.28 kB
+dist/assets/alegreya-sans-greek-ext-700-normal-BVJ8GoGc.woff        7.34 kB
+dist/index.html                                                     7.39 kB │ gzip:   2.20 kB
+dist/assets/alegreya-sans-vietnamese-400-normal-BFvpiE3j.woff       7.64 kB
+dist/assets/alegreya-sans-vietnamese-500-normal-B1LHNMw0.woff       7.64 kB
+dist/assets/alegreya-sans-vietnamese-700-normal-D0056cUE.woff       7.67 kB
+dist/assets/alegreya-sans-greek-ext-500-normal-8OvC5Vmr.woff2       8.43 kB
+dist/assets/alegreya-sans-greek-ext-400-normal-CaUEPd_u.woff2       8.44 kB
+dist/assets/alegreya-sans-greek-ext-700-normal-ChNZoGr1.woff2       8.64 kB
+dist/assets/alegreya-sans-greek-500-normal-CjlmbScm.woff2           8.78 kB
+dist/assets/alegreya-sans-greek-400-normal-B87Md6o9.woff2           8.82 kB
+dist/assets/alegreya-sans-greek-700-normal-CTof9pYC.woff2           8.93 kB
+dist/assets/alegreya-sans-cyrillic-ext-400-normal-ClLgPhqT.woff     8.98 kB
+dist/assets/alegreya-sans-cyrillic-ext-500-normal-CBZLRaMr.woff     9.05 kB
+dist/assets/alegreya-sans-cyrillic-ext-700-normal-YOec_wOb.woff     9.05 kB
+dist/assets/alegreya-sans-vietnamese-500-normal-CFLbXWhL.woff2      9.09 kB
+dist/assets/alegreya-sans-vietnamese-400-normal-D7fwYHgb.woff2      9.10 kB
+dist/assets/alegreya-sans-vietnamese-700-normal-CHYTK2w7.woff2      9.36 kB
+dist/assets/alegreya-sans-cyrillic-500-normal-gEBUHwKD.woff        10.32 kB
+dist/assets/alegreya-sans-cyrillic-700-normal-qSextXl4.woff        10.36 kB
+dist/assets/alegreya-sans-cyrillic-400-normal-C2XSGevv.woff        10.36 kB
+dist/assets/alegreya-sans-cyrillic-ext-400-normal-CBouUAPx.woff2   11.04 kB
+dist/assets/alegreya-sans-cyrillic-ext-700-normal-Cpzx2u2L.woff2   11.14 kB
+dist/assets/alegreya-sans-cyrillic-ext-500-normal-BjdEjhHc.woff2   11.17 kB
+dist/assets/alegreya-sans-cyrillic-500-normal-kQHBM3cE.woff2       12.19 kB
+dist/assets/alegreya-sans-cyrillic-400-normal-CFUoBDld.woff2       12.28 kB
+dist/assets/alegreya-sans-cyrillic-700-normal-BMO00Gdb.woff2       12.34 kB
+dist/assets/alegreya-sans-latin-ext-400-normal-DpBVrRWA.woff       19.99 kB
+dist/assets/alegreya-sans-latin-ext-700-normal-CkNjzB9Y.woff       20.07 kB
+dist/assets/alegreya-sans-latin-ext-500-normal-CxFoZ42m.woff       20.17 kB
+dist/assets/alegreya-sans-latin-ext-400-normal-D7N6b6bd.woff2      21.27 kB
+dist/assets/alegreya-sans-latin-ext-500-normal-TH5u60nj.woff2      21.50 kB
+dist/assets/alegreya-sans-latin-400-normal-DmA8jeke.woff           21.54 kB
+dist/assets/alegreya-sans-latin-700-normal-BnzUNlma.woff           21.60 kB
+dist/assets/alegreya-sans-latin-500-normal-vXxrTKJT.woff           21.71 kB
+dist/assets/alegreya-sans-latin-ext-700-normal-HuHd3-Mg.woff2      21.86 kB
+dist/assets/alegreya-sans-latin-400-normal-DtLlO8BS.woff2          23.70 kB
+dist/assets/alegreya-sans-latin-500-normal-DS713u5J.woff2          23.92 kB
+dist/assets/alegreya-sans-latin-700-normal-DEbcy2sF.woff2          23.97 kB
+dist/assets/index-BKjuikM6.css                                     18.65 kB │ gzip:   4.16 kB
+dist/assets/harness-CUDjIoLw.js                                     2.20 kB │ gzip:   1.02 kB
+dist/assets/report-_UVKwB2z.js                                      2.55 kB │ gzip:   1.30 kB
+dist/assets/studio-CGjv5PB6.js                                     22.25 kB │ gzip:   8.09 kB
+dist/assets/index-DX9lJc0e.js                                     228.29 kB │ gzip:  58.26 kB
+dist/assets/three-CVTpx1NJ.js                                     666.99 kB │ gzip: 168.84 kB
+
+✓ built in 252ms

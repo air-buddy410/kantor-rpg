@@ -1,0 +1,32 @@
+[
+  {
+    "step": "characters",
+    "exit": 0,
+    "seconds": 5.75
+  },
+  {
+    "step": "optimize",
+    "exit": 0,
+    "seconds": 2.24
+  },
+  {
+    "step": "compare",
+    "exit": 0,
+    "seconds": 14.22
+  },
+  {
+    "step": "validate-assets",
+    "exit": 0,
+    "seconds": 9.12
+  },
+  {
+    "step": "validate-building",
+    "exit": 0,
+    "seconds": 1.03
+  },
+  {
+    "step": "validate-furniture",
+    "exit": 0,
+    "seconds": 2.02
+  }
+]

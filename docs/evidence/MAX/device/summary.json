@@ -1,0 +1,12 @@
+{
+  "device": "Mac mini M4 16GB / real Metal GPU / visible Chrome",
+  "viewport": [
+    1366,
+    820
+  ],
+  "durationSeconds": 60,
+  "runs": 3,
+  "medianFps": 179,
+  "medianP95Ms": 6.9,
+  "passesDesktopTarget": true
+}

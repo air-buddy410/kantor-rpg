@@ -29,7 +29,7 @@ CHARS = json.loads((ROOT / "design" / "characters.json").read_text(encoding="utf
 IDS = list(CHARS["characters"])
 ASSETS = ROOT / "app" / "public" / "assets"
 RAW = ROOT / "blender" / "out" / "raw-glb"
-COMPARE = ROOT / "docs" / "evidence" / "R2" / "glb-compare.json"
+COMPARE = ROOT / "docs" / "evidence" / "current" / "glb-compare.json"
 
 MB = 1_000_000
 # ADR-014: the R2 character target of 3.0 MB was not reachable with

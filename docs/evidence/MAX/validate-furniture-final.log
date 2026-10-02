@@ -1,0 +1,166 @@
+00:00.282  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/furniture.blend"
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node desk
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node desk_exec
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node chair
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node chair_guest
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node stool
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node meeting_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node round_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node high_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node dining_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node coffee_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node work_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node plan_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node drafting_table
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node reception_desk
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node sofa
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node armchair
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node beanbag
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node bench
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node bookshelf
+11:09:56 | INFO: glTF import finished in 0.01s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node model_shelf
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node tool_cabinet
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node storage_shelf
+11:09:56 | INFO: glTF import finished in 0.01s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node locker
+11:09:56 | INFO: glTF import finished in 0.01s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node whiteboard
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node wall_display
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node gallery_panel
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node poster
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node directory_sign
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node easel
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node plant_large
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node plant_small
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node planter_box
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node tree_planter
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node pantry_counter
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node coffee_bar
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node fridge
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:56 | INFO: Data are loaded, start creating Blender stuff
+11:09:56 | INFO: Blender create Mesh node sink
+11:09:56 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node wc
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node partition
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node shower_stall
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node rack_42u
+11:09:57 | INFO: glTF import finished in 0.01s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node lab_bench
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node lab_rack_open
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node billiard_table
+11:09:57 | INFO: glTF import finished in 0.01s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node cue_rack
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node media_console
+11:09:57 | INFO: glTF import finished in 0.01s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node arcade_cabinet
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node board_table
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node treadmill
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node exercise_bike
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node exercise_mat
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node dumbbell_rack
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node stair_u
+11:09:57 | INFO: glTF import finished in 0.00s
+11:09:57 | INFO: Data are loaded, start creating Blender stuff
+11:09:57 | INFO: Blender create Mesh node lift
+11:09:57 | INFO: glTF import finished in 0.00s
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+furniture validation: PASS types=54 checks=708 failed_types=0 blend_types=54 sheet_ok=True blender=5.2.2 LTS
+FURNITURE_VALIDATE_DONE passed=True

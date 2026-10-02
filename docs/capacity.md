@@ -6,8 +6,8 @@ Sumber: `design/world.json` revisi P03; script `tools/capacity.py`. Status: asum
 
 | Lantai | Gross m2 | Ruang | Sirkulasi | Kursi fixture | Workstation | Beban hunian pembanding | Walkable navgrid m2 | Exit |
 |---|---|---|---|---|---|---|---|---|
-| L1 | 768.0 | 20 | 23.4% | 41 | 13 | 110 | 494.0 | 4 |
-| L2 | 768.0 | 18 | 23.4% | 42 | 0 | 302 | 506.3 | 1 |
+| L1 | 768.0 | 20 | 23.4% | 41 | 13 | 110 | 483.2 | 4 |
+| L2 | 768.0 | 18 | 23.4% | 42 | 0 | 302 | 498.2 | 1 |
 
 Total gross: 1536.0 m2 (proposal AS-DIM-01).
 
@@ -59,7 +59,7 @@ Beban hunian pembanding memakai faktor IBC 2021 Table 1004.5 (AS-OCC-01); bukan 
 ## Kompleksitas eksplorasi vs baseline pixel
 
 - Baseline: 3388 sel tile, 47 area, 297 furniture.
-- Dunia ini: 34 ruang (tanpa shaft), 199 fixture, 117 slot aktivitas, walkable 1000.3 m2.
+- Dunia ini: 34 ruang (tanpa shaft), 199 fixture, 117 slot aktivitas, walkable 981.4 m2.
 - Rasio ruang/area 0.72, fixture/furniture 0.67. Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).
 
 ## Egress snapshot private (perencanaan, M4 disabled)

@@ -107,7 +107,7 @@
             1
           ]
         },
-        "pngBytes": 318,
+        "pngBytes": 391,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -237,8 +237,8 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 620616,
-      "glbExportBytes": 1205812,
+      "glbBytes": 620612,
+      "glbExportBytes": 1157336,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -364,7 +364,7 @@
             1
           ]
         },
-        "pngBytes": 314,
+        "pngBytes": 387,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -488,8 +488,8 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 498316,
-      "glbExportBytes": 989132,
+      "glbBytes": 498320,
+      "glbExportBytes": 939408,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -595,7 +595,7 @@
             1
           ]
         },
-        "pngBytes": 318,
+        "pngBytes": 391,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -719,8 +719,8 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 469056,
-      "glbExportBytes": 936748,
+      "glbBytes": 468836,
+      "glbExportBytes": 887228,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -826,7 +826,7 @@
             1
           ]
         },
-        "pngBytes": 318,
+        "pngBytes": 391,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -955,8 +955,8 @@
         ],
         "lod1": "lod1"
       },
-      "glbBytes": 488328,
-      "glbExportBytes": 970436,
+      "glbBytes": 488336,
+      "glbExportBytes": 921020,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -1062,7 +1062,7 @@
             1
           ]
         },
-        "pngBytes": 319,
+        "pngBytes": 392,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -1186,8 +1186,8 @@
         "props": [],
         "lod1": "lod1"
       },
-      "glbBytes": 479500,
-      "glbExportBytes": 956716,
+      "glbBytes": 479504,
+      "glbExportBytes": 907540,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -1293,7 +1293,7 @@
             1
           ]
         },
-        "pngBytes": 318,
+        "pngBytes": 391,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -1422,8 +1422,8 @@
         ],
         "lod1": "lod1"
       },
-      "glbBytes": 493896,
-      "glbExportBytes": 980816,
+      "glbBytes": 493900,
+      "glbExportBytes": 931224,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -1529,7 +1529,7 @@
             1
           ]
         },
-        "pngBytes": 317,
+        "pngBytes": 390,
         "filter": "nearest",
         "extras": "scene + rig extras kantor_atlas"
       },
@@ -1658,8 +1658,8 @@
         ],
         "lod1": "lod1"
       },
-      "glbBytes": 501392,
-      "glbExportBytes": 994288,
+      "glbBytes": 501396,
+      "glbExportBytes": 943744,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/validate_assets.py",
@@ -1831,8 +1831,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 27844,
-      "glbExportBytes": 41532,
+      "glbBytes": 27308,
+      "glbExportBytes": 40996,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -1877,8 +1877,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 25204,
-      "glbExportBytes": 36444,
+      "glbBytes": 25016,
+      "glbExportBytes": 36236,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -1921,8 +1921,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 11384,
-      "glbExportBytes": 15568,
+      "glbBytes": 11272,
+      "glbExportBytes": 15456,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -1965,8 +1965,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 15240,
-      "glbExportBytes": 23032,
+      "glbBytes": 15128,
+      "glbExportBytes": 22940,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2017,8 +2017,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 59868,
-      "glbExportBytes": 94028,
+      "glbBytes": 59376,
+      "glbExportBytes": 93536,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2064,8 +2064,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 30040,
-      "glbExportBytes": 49788,
+      "glbBytes": 29784,
+      "glbExportBytes": 49536,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2114,8 +2114,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 58148,
-      "glbExportBytes": 95804,
+      "glbBytes": 57752,
+      "glbExportBytes": 95408,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2159,8 +2159,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 26084,
-      "glbExportBytes": 40464,
+      "glbBytes": 25924,
+      "glbExportBytes": 40300,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2204,8 +2204,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 18136,
-      "glbExportBytes": 27668,
+      "glbBytes": 17972,
+      "glbExportBytes": 27504,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2256,8 +2256,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 42488,
-      "glbExportBytes": 66704,
+      "glbBytes": 42000,
+      "glbExportBytes": 66236,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2303,8 +2303,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 15144,
-      "glbExportBytes": 24644,
+      "glbBytes": 14888,
+      "glbExportBytes": 24388,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2349,8 +2349,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 18800,
-      "glbExportBytes": 28936,
+      "glbBytes": 18592,
+      "glbExportBytes": 28728,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2396,8 +2396,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 24164,
-      "glbExportBytes": 38240,
+      "glbBytes": 23908,
+      "glbExportBytes": 38004,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2444,8 +2444,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 35264,
-      "glbExportBytes": 57924,
+      "glbBytes": 34964,
+      "glbExportBytes": 57644,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2489,8 +2489,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 11668,
-      "glbExportBytes": 16756,
+      "glbBytes": 11504,
+      "glbExportBytes": 16596,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2534,8 +2534,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 18160,
-      "glbExportBytes": 29436,
+      "glbBytes": 18000,
+      "glbExportBytes": 29276,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2581,8 +2581,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 17336,
-      "glbExportBytes": 27380,
+      "glbBytes": 17128,
+      "glbExportBytes": 27172,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2630,8 +2630,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 46572,
-      "glbExportBytes": 83104,
+      "glbBytes": 46224,
+      "glbExportBytes": 82756,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2678,8 +2678,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 15328,
-      "glbExportBytes": 22232,
+      "glbBytes": 15024,
+      "glbExportBytes": 21932,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2726,8 +2726,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 28372,
-      "glbExportBytes": 43216,
+      "glbBytes": 28068,
+      "glbExportBytes": 42916,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2770,8 +2770,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 8328,
-      "glbExportBytes": 12636,
+      "glbBytes": 8216,
+      "glbExportBytes": 12524,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2818,8 +2818,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 15308,
-      "glbExportBytes": 24828,
+      "glbBytes": 15004,
+      "glbExportBytes": 24548,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2867,8 +2867,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 13792,
-      "glbExportBytes": 23620,
+      "glbBytes": 13444,
+      "glbExportBytes": 23272,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2912,8 +2912,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 13220,
-      "glbExportBytes": 19260,
+      "glbBytes": 13060,
+      "glbExportBytes": 19100,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -2962,8 +2962,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 30360,
-      "glbExportBytes": 51264,
+      "glbBytes": 29964,
+      "glbExportBytes": 50888,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3011,8 +3011,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 48356,
-      "glbExportBytes": 79360,
+      "glbBytes": 48008,
+      "glbExportBytes": 79028,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3057,8 +3057,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 8392,
-      "glbExportBytes": 11200,
+      "glbBytes": 8184,
+      "glbExportBytes": 10992,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3104,8 +3104,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 58140,
-      "glbExportBytes": 104148,
+      "glbBytes": 57884,
+      "glbExportBytes": 103892,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3156,8 +3156,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 23312,
-      "glbExportBytes": 39688,
+      "glbBytes": 22824,
+      "glbExportBytes": 39200,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3202,8 +3202,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 18112,
-      "glbExportBytes": 28384,
+      "glbBytes": 17904,
+      "glbExportBytes": 28176,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3250,8 +3250,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 41128,
-      "glbExportBytes": 65180,
+      "glbBytes": 40828,
+      "glbExportBytes": 64880,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3299,8 +3299,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 32960,
-      "glbExportBytes": 51316,
+      "glbBytes": 32612,
+      "glbExportBytes": 50984,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3344,8 +3344,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 8224,
-      "glbExportBytes": 13128,
+      "glbBytes": 8064,
+      "glbExportBytes": 12968,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3391,8 +3391,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 30756,
-      "glbExportBytes": 48944,
+      "glbBytes": 30500,
+      "glbExportBytes": 48688,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3437,8 +3437,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 27892,
-      "glbExportBytes": 40112,
+      "glbBytes": 27684,
+      "glbExportBytes": 39904,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3483,8 +3483,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 20496,
-      "glbExportBytes": 29960,
+      "glbBytes": 20288,
+      "glbExportBytes": 29752,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3531,8 +3531,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 22996,
-      "glbExportBytes": 35848,
+      "glbBytes": 22692,
+      "glbExportBytes": 35564,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3578,8 +3578,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 10968,
-      "glbExportBytes": 17428,
+      "glbBytes": 10732,
+      "glbExportBytes": 17192,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3628,8 +3628,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 91072,
-      "glbExportBytes": 158380,
+      "glbBytes": 90724,
+      "glbExportBytes": 158032,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3677,8 +3677,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 30732,
-      "glbExportBytes": 49992,
+      "glbBytes": 30380,
+      "glbExportBytes": 49640,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3721,8 +3721,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 11656,
-      "glbExportBytes": 16644,
+      "glbBytes": 11544,
+      "glbExportBytes": 16532,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3767,8 +3767,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 16412,
-      "glbExportBytes": 25208,
+      "glbBytes": 16224,
+      "glbExportBytes": 25000,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3812,8 +3812,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 10828,
-      "glbExportBytes": 16868,
+      "glbBytes": 10664,
+      "glbExportBytes": 16708,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3858,8 +3858,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 23228,
-      "glbExportBytes": 38796,
+      "glbBytes": 23044,
+      "glbExportBytes": 38588,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3903,8 +3903,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 21068,
-      "glbExportBytes": 34672,
+      "glbBytes": 20908,
+      "glbExportBytes": 34512,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3947,8 +3947,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 12088,
-      "glbExportBytes": 18140,
+      "glbBytes": 11972,
+      "glbExportBytes": 18024,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -3994,8 +3994,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 71476,
-      "glbExportBytes": 118496,
+      "glbBytes": 71220,
+      "glbExportBytes": 118264,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4040,8 +4040,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 30768,
-      "glbExportBytes": 49488,
+      "glbBytes": 30560,
+      "glbExportBytes": 49280,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4090,8 +4090,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 21296,
-      "glbExportBytes": 34516,
+      "glbBytes": 20900,
+      "glbExportBytes": 34120,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4136,8 +4136,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 23176,
-      "glbExportBytes": 38700,
+      "glbBytes": 22968,
+      "glbExportBytes": 38492,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4182,8 +4182,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 8816,
-      "glbExportBytes": 14232,
+      "glbBytes": 8608,
+      "glbExportBytes": 14024,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4228,8 +4228,8 @@
         "class": "small"
       },
       "lod": "LOD0 only",
-      "glbBytes": 12516,
-      "glbExportBytes": 17876,
+      "glbBytes": 12352,
+      "glbExportBytes": 17716,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4276,8 +4276,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 17652,
-      "glbExportBytes": 28900,
+      "glbBytes": 17368,
+      "glbExportBytes": 28600,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",
@@ -4321,8 +4321,8 @@
         "class": "large"
       },
       "lod": "LOD0 only",
-      "glbBytes": 13456,
-      "glbExportBytes": 20080,
+      "glbBytes": 13340,
+      "glbExportBytes": 19968,
       "glbOptimisedBy": "tools/glb_optimize.mjs (KHR_mesh_quantization); equality with the export: tools/glb_compare.py",
       "status": "generated+validated",
       "validatedBy": "blender/furniture/validate_furniture.py",

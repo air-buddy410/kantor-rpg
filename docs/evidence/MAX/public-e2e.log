@@ -1,0 +1,298 @@
+(node:54250) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 90 tests using 2 workers
+
+(node:54263) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:54262) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   2 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light world (15.1s)
+  ✓   1 [desktop] › tests/e2e/studio.spec.ts:23:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (25.3s)
+  ✓   4 [desktop] › tests/e2e/studio.spec.ts:57:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (2.7s)
+  ✓   5 [desktop] › tests/e2e/studio.spec.ts:68:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (5.9s)
+  ✓   6 [desktop] › tests/e2e/studio.spec.ts:93:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (3.8s)
+  ✓   7 [desktop] › tests/e2e/studio.spec.ts:124:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (5.1s)
+  ✓   8 [desktop] › tests/e2e/studio.spec.ts:172:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (3.4s)
+  ✘   9 [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (22.4s)
+(node:56775) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   3 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light directory (1.2m)
+  ✓  11 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light help-dialog (3.5s)
+  ✘  10 [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (23.4s)
+(node:57606) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  12 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe light settings-dialog (3.0s)
+  ✘  13 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (42.0s)
+  ✘  14 [desktop] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (42.0s)
+(node:59654) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:59653) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  16 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark directory (4.3s)
+  ✓  15 [desktop] › tests/e2e/world.spec.ts:4:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.4s)
+  ✓  17 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark help-dialog (3.9s)
+  ✓  18 [desktop] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (5.4s)
+  ✓  19 [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark settings-dialog (3.7s)
+  ✓  21 [desktop] › tests/e2e/a11y.spec.ts:51:1 › axe fallback (no WebGL) (1.9s)
+(node:60063) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  22 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light world (4.4s)
+  ✓  23 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light directory (4.2s)
+  ✓  24 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light help-dialog (3.2s)
+  ✓  20 [desktop] › tests/e2e/world.spec.ts:48:3 › world vertical slice › stair interaction changes floor only at the marked point (18.0s)
+  ✓  25 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe light settings-dialog (3.5s)
+  ✓  27 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (4.0s)
+  ✓  28 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark directory (5.8s)
+  ✓  26 [desktop] › tests/e2e/world.spec.ts:75:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (13.0s)
+  ✓  29 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark help-dialog (4.1s)
+  ✓  30 [desktop] › tests/e2e/world.spec.ts:94:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (4.2s)
+  ✓  31 [tablet] › tests/e2e/a11y.spec.ts:24:5 › axe dark settings-dialog (3.6s)
+  ✓  32 [desktop] › tests/e2e/world.spec.ts:116:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (3.3s)
+  ✓  33 [tablet] › tests/e2e/a11y.spec.ts:51:1 › axe fallback (no WebGL) (2.0s)
+  ✓  34 [desktop] › tests/e2e/world.spec.ts:136:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (1.8s)
+  -  36 [desktop] › tests/e2e/world.spec.ts:152:3 › world vertical slice › touch joystick walks the CEO
+  ✓  37 [desktop] › tests/e2e/world.spec.ts:176:3 › world vertical slice › dark theme renders with computed token colours (2.1s)
+  ✓  35 [tablet] › tests/e2e/studio.spec.ts:23:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (5.4s)
+  ✓  39 [tablet] › tests/e2e/studio.spec.ts:57:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (3.6s)
+  ✓  38 [desktop] › tests/e2e/world.spec.ts:188:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (7.9s)
+  ✓  40 [tablet] › tests/e2e/studio.spec.ts:68:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (6.5s)
+  ✓  41 [desktop] › tests/e2e/world.spec.ts:201:3 › world vertical slice › only same-origin requests are made (no external endpoints) (7.0s)
+  ✓  42 [tablet] › tests/e2e/studio.spec.ts:93:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (3.8s)
+  ✓  43 [desktop] › tests/e2e/world.spec.ts:224:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (2.4s)
+(node:62170) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  44 [tablet] › tests/e2e/studio.spec.ts:124:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (3.9s)
+  ✓  46 [tablet] › tests/e2e/studio.spec.ts:172:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (3.8s)
+  ✓  45 [tablet] › tests/e2e/world.spec.ts:4:3 › world vertical slice › boots in lobby with simulation badge and no page errors (6.3s)
+  ✓  48 [tablet] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (4.5s)
+  ✘  47 [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (22.7s)
+(node:62966) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  49 [tablet] › tests/e2e/world.spec.ts:48:3 › world vertical slice › stair interaction changes floor only at the marked point (20.0s)
+  ✓  51 [tablet] › tests/e2e/world.spec.ts:75:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (10.3s)
+  ✓  52 [tablet] › tests/e2e/world.spec.ts:94:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (4.7s)
+  ✓  53 [tablet] › tests/e2e/world.spec.ts:116:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (6.7s)
+  ✘  50 [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (24.1s)
+(node:64147) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  54 [tablet] › tests/e2e/world.spec.ts:136:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (2.5s)
+  ✓  55 [tablet] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.6s)
+(node:64249) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  56 [tablet] › tests/e2e/world.spec.ts:152:3 › world vertical slice › touch joystick walks the CEO (2.7s)
+  ✓  57 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light world (2.9s)
+  ✓  58 [tablet] › tests/e2e/world.spec.ts:176:3 › world vertical slice › dark theme renders with computed token colours (2.6s)
+  ✓  59 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light directory (2.4s)
+  ✓  61 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light help-dialog (2.4s)
+  ✓  60 [tablet] › tests/e2e/world.spec.ts:188:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (6.3s)
+  ✓  62 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe light settings-dialog (3.0s)
+  ✓  64 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark world (2.7s)
+  ✓  63 [tablet] › tests/e2e/world.spec.ts:201:3 › world vertical slice › only same-origin requests are made (no external endpoints) (4.0s)
+  ✓  65 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark directory (2.2s)
+  ✓  66 [tablet] › tests/e2e/world.spec.ts:224:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (2.1s)
+(node:64730) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  67 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark help-dialog (2.0s)
+  ✓  69 [mobile] › tests/e2e/a11y.spec.ts:24:5 › axe dark settings-dialog (2.6s)
+  ✓  68 [mobile] › tests/e2e/studio.spec.ts:23:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts (5.8s)
+  ✓  70 [mobile] › tests/e2e/a11y.spec.ts:51:1 › axe fallback (no WebGL) (3.6s)
+  ✓  71 [mobile] › tests/e2e/studio.spec.ts:57:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason (2.5s)
+  ✓  72 [mobile] › tests/e2e/world.spec.ts:4:3 › world vertical slice › boots in lobby with simulation badge and no page errors (4.4s)
+  ✓  73 [mobile] › tests/e2e/studio.spec.ts:68:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset (5.7s)
+  ✓  75 [mobile] › tests/e2e/studio.spec.ts:93:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing (2.8s)
+  ✓  74 [mobile] › tests/e2e/world.spec.ts:15:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it (7.3s)
+  ✓  76 [mobile] › tests/e2e/studio.spec.ts:124:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback (5.7s)
+  ✓  78 [mobile] › tests/e2e/studio.spec.ts:172:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot (4.1s)
+  ✓  77 [mobile] › tests/e2e/world.spec.ts:48:3 › world vertical slice › stair interaction changes floor only at the marked point (19.6s)
+  ✓  80 [mobile] › tests/e2e/world.spec.ts:75:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory) (10.6s)
+  ✘  79 [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default (23.0s)
+(node:66892) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  81 [mobile] › tests/e2e/world.spec.ts:94:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape (2.6s)
+  ✓  83 [mobile] › tests/e2e/world.spec.ts:116:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards (2.7s)
+  ✓  84 [mobile] › tests/e2e/world.spec.ts:136:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class (3.6s)
+  ✓  85 [mobile] › tests/e2e/world.spec.ts:152:3 › world vertical slice › touch joystick walks the CEO (4.4s)
+  ✓  86 [mobile] › tests/e2e/world.spec.ts:176:3 › world vertical slice › dark theme renders with computed token colours (2.8s)
+  ✓  87 [mobile] › tests/e2e/world.spec.ts:188:3 › world vertical slice › reduced motion makes floor changes instant (no fade) (7.3s)
+  ✘  82 [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default (23.7s)
+(node:67610) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓  88 [mobile] › tests/e2e/world.spec.ts:201:3 › world vertical slice › only same-origin requests are made (no external endpoints) (3.8s)
+  ✓  89 [mobile] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL (1.9s)
+  ✓  90 [mobile] › tests/e2e/world.spec.ts:224:3 › fallback without WebGL › directory, room cards and documents work with keyboard only (1.6s)
+
+
+  1) [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark world ──────────────────────────────────────
+
+    TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.
+
+       at helpers.ts:16
+
+      14 |   page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text()}`); });
+      15 |   await page.goto(`/${query}`);
+    > 16 |   await page.waitForFunction(() => !!window.__kantor, null, { timeout: 30_000 });
+         |              ^
+      17 |   return errors;
+      18 | }
+      19 |
+        at boot (/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/helpers.ts:16:14)
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/a11y.spec.ts:20:7
+
+    Error Context: test-results/a11y-axe-dark-world-desktop/error-context.md
+
+  2) [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      154 |     await page.evaluate(() => { try { localStorage.clear(); } catch { /* ignore */ } });
+      155 |     await boot(page);
+    > 156 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      157 |     await page.locator('#btn-avatar').click();
+      158 |     await page.getByLabel('Disisir ke samping').check();
+      159 |     await page.getByLabel('Terakota').check();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:156:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-a08f7-ad-reset-returns-to-default-desktop/error-context.md
+
+  3) [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      178 |     await page.reload();
+      179 |     await page.waitForFunction(() => !!window.__kantor);
+    > 180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      181 |   });
+      182 |
+      183 |   test('studios are hidden (not dead) without WebGL', async ({ page }) => {
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:180:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-desktop/error-context.md
+
+  4) [desktop] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL 
+
+    TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.
+
+       at helpers.ts:16
+
+      14 |   page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text()}`); });
+      15 |   await page.goto(`/${query}`);
+    > 16 |   await page.waitForFunction(() => !!window.__kantor, null, { timeout: 30_000 });
+         |              ^
+      17 |   return errors;
+      18 | }
+      19 |
+        at boot (/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/helpers.ts:16:14)
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:184:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-f2b48-dden-not-dead-without-WebGL-desktop/error-context.md
+
+  5) [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      154 |     await page.evaluate(() => { try { localStorage.clear(); } catch { /* ignore */ } });
+      155 |     await boot(page);
+    > 156 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      157 |     await page.locator('#btn-avatar').click();
+      158 |     await page.getByLabel('Disisir ke samping').check();
+      159 |     await page.getByLabel('Terakota').check();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:156:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-a08f7-ad-reset-returns-to-default-tablet/error-context.md
+
+  6) [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      178 |     await page.reload();
+      179 |     await page.waitForFunction(() => !!window.__kantor);
+    > 180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      181 |   });
+      182 |
+      183 |   test('studios are hidden (not dead) without WebGL', async ({ page }) => {
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:180:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-tablet/error-context.md
+
+  7) [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      154 |     await page.evaluate(() => { try { localStorage.clear(); } catch { /* ignore */ } });
+      155 |     await boot(page);
+    > 156 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      157 |     await page.locator('#btn-avatar').click();
+      158 |     await page.getByLabel('Disisir ke samping').check();
+      159 |     await page.getByLabel('Terakota').check();
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:156:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-a08f7-ad-reset-returns-to-default-mobile/error-context.md
+
+  8) [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"hair_short_tuft"[39m
+    Received: [31m""[39m
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      178 |     await page.reload();
+      179 |     await page.waitForFunction(() => !!window.__kantor);
+    > 180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');
+          |     ^
+      181 |   });
+      182 |
+      183 |   test('studios are hidden (not dead) without WebGL', async ({ page }) => {
+        at /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:180:5
+
+    Error Context: test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-mobile/error-context.md
+
+  8 failed
+    [desktop] › tests/e2e/a11y.spec.ts:24:5 › axe dark world ───────────────────────────────────────
+    [desktop] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+    [desktop] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+    [desktop] › tests/e2e/studio.spec.ts:244:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL 
+    [tablet] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+    [tablet] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+    [mobile] › tests/e2e/studio.spec.ts:192:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default 
+    [mobile] › tests/e2e/studio.spec.ts:230:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default 
+  1 skipped
+  81 passed (5.9m)

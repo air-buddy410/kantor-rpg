@@ -14,6 +14,22 @@ beforeAll(() => { nav = { L1: new NavGrid(W, WALLS, 'L1'), L2: new NavGrid(W, WA
 const d = (a: Vec2, b: Vec2) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 
 describe('CEO / persona collision', () => {
+  it('cancelling a giving-way route clears the old goal, hold, blocker and floor link', () => {
+    const sim = new IdleSim(W, nav, { seed: 11, startHour: 9 });
+    const npc = sim.npcs[1];
+    npc.phase = 'travel';
+    npc.resumeTo = [2.15, 12.55];
+    npc.holdUntil = 999;
+    npc.yieldTo = sim.npcs[0].id;
+    npc.yieldSince = 12;
+    npc.via = { link: 'old-link', to: 'L2', arrive: [17, 9] };
+    sim['fail'](npc, 'stuck');
+    expect(npc.resumeTo).toBeNull();
+    expect(npc.holdUntil).toBe(0);
+    expect(npc.yieldTo).toBeNull();
+    expect(npc.yieldSince).toBe(0);
+    expect(npc.via).toBeNull();
+  });
   it('a walking NPC never closes in on the CEO standing in the corridor, and is not stuck for good (30 min)', () => {
     const sim = new IdleSim(W, nav, { seed: 11, startHour: 9 });
     const player: Vec2 = [17, 9.25]; // L1 corridor in front of the core: busiest crossing
