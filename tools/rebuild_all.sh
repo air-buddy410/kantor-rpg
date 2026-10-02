@@ -33,5 +33,5 @@ step "Python tests"; python3 -m pytest tests/py -q
 EV="${KANTOR_REBUILD_EVIDENCE:-REBUILD}"
 step "Safety + licences + contrast"; python3 tools/safety_scan.py; python3 tools/license_audit.py --out "docs/evidence/$EV/license-audit.json"; python3 tools/contrast.py "$EV"
 step "App (install, unit, build)"; (cd app && npm ci && npx vitest run && npm run build)
-step "App E2E (Chromium)"; (cd app && KANTOR_MILESTONE="$EV" npx playwright test tests/e2e/world.spec.ts tests/e2e/npc.spec.ts tests/e2e/activity.spec.ts tests/e2e/studio.spec.ts tests/e2e/a11y.spec.ts tests/e2e/states.spec.ts tests/e2e/budget.spec.ts)
+step "App E2E (Chromium)"; (cd app && KANTOR_MILESTONE="$EV" npx playwright test tests/e2e/world.spec.ts tests/e2e/npc.spec.ts tests/e2e/activity.spec.ts tests/e2e/studio.spec.ts tests/e2e/a11y.spec.ts tests/e2e/states.spec.ts tests/e2e/budget.spec.ts tests/e2e/doors.spec.ts tests/e2e/controls.spec.ts tests/e2e/failures.spec.ts tests/e2e/device.spec.ts tests/e2e/bundle.spec.ts)
 echo; echo "rebuild complete"
