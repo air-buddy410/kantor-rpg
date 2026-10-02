@@ -1,8 +1,8 @@
 {
  "project": "kantor-rpg",
  "source": "design/sheets.json",
- "generated_utc": "2026-10-02T00:29:26Z",
- "note": "Dibuat oleh cad/generate.py. Status 'produced (konsep)' = DXF/PDF dihasilkan dan dibaca ulang; native DWG BLOCKED.",
+ "generated_utc": "2026-10-02T02:42:18Z",
+ "note": "DXF/PDF concept drawings. Native DWG hashes/reopen evidence attached separately; native plot/font review pending.",
  "sheets": [
   {
    "id": "A-001",
@@ -14,7 +14,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -25,27 +25,31 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-001.dxf",
-     "sha256": "e7cca0e27983d78f3cdb3be9984b2252f66cd2174987c2c4aa00354ab363adfd"
+     "sha256": "e3ffab45a906f35c2467f50bffcf319f5673a4291c61f9cd05108d1db2242d6d"
     },
     "pdf": {
      "path": "drawings/pdf/A-001.pdf",
-     "sha256": "9b74dffa7a41f3a3f7bd24428809efd5071beaf84772e8e851bdb680c5db3546"
+     "sha256": "242626828acb65edc9af6548099daa66300f5c50b8b809af38da62b352a66cc8"
     },
     "counts": {
      "path": "cad/out/A-001.counts.json",
-     "sha256": "11143ef41f56de4daf2e7452fd51d96fa803be2fda75129d17726c8091a42f85"
+     "sha256": "ea80ff8bc6318805f3af3540adf1c16178c66065367d61e8d8180cc855c53025"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-001.png",
-     "sha256": "42b870dce4536d3f093daa20bd76fd149110175365fd117148f2364b2758cd05"
+     "sha256": "9900cb5d2e2f8ae834381741f359c8fa063519c478886832b70f94aeebcee47e"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-001-dxf.png",
-     "sha256": "add9884dfd6df86439bcb3020d1dbd4f54b0752caf414bc786bd66738c5f62f6"
+     "sha256": "c955afcd156bf9cf007762349a607be10e2a4e251ddf93c85b23a17bc12be8f7"
+    },
+    "dwg": {
+     "path": "cad/out/A-001.dwg",
+     "sha256": "52c0bb1c638c38795fb8af45e9ede0559d2a83f6c5fb5bca92b0664d9d077e7f"
     }
    }
   },
@@ -59,7 +63,7 @@
    "milestone": "M1",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -70,15 +74,15 @@
     1683.78,
     1190.55
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-101.dxf",
-     "sha256": "9196397d54603d0589c1bd4c954d327ca526dbc522936b89863b15449def89cc"
+     "sha256": "a905b6dbbeb53584769aaeee667d7f51f94c9dd7f47bb199d661488e111a4f78"
     },
     "pdf": {
      "path": "drawings/pdf/A-101.pdf",
-     "sha256": "9513b9fa158e4e12ee967d8ad984efe64f212371798ab9661e69c8e511e2d193"
+     "sha256": "c78f9ea50cba9f18d4093bea2b49edd3aaac25c9e31d5d7053783aa2d04b68fb"
     },
     "counts": {
      "path": "cad/out/A-101.counts.json",
@@ -86,11 +90,15 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/A-101.png",
-     "sha256": "10789d3f7f25a9bbbe0b3c12d03eb78f2f73901c63da6edbf2fee0dc2fa8d78a"
+     "sha256": "2a636110853ef723fe7899bec95fab25a5628d3ce86ad0665108ac4c49b6ae36"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-101-dxf.png",
-     "sha256": "b66844069f46f0c501de01723a493acc75f465cd4b9f5df305a8a1e2ed3a6d9e"
+     "sha256": "e19c6017532f049e6ae999da7b59e272aa408b8cc528e0fb682259db4e6e82e4"
+    },
+    "dwg": {
+     "path": "cad/out/A-101.dwg",
+     "sha256": "8fb479495c3ede7e42d06594f647d1e5fff5c65b23f341e7008e077f156659ed"
     }
    }
   },
@@ -104,7 +112,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -115,15 +123,15 @@
     1683.78,
     1190.55
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-102.dxf",
-     "sha256": "feddcba2df1262a99c5a27e246b959ceb39242a93c018b3bdee3e15511473006"
+     "sha256": "0d6f687fee8b8350005cba2dd151827e2dabf1e2529f5354849251e2976f1dd4"
     },
     "pdf": {
      "path": "drawings/pdf/A-102.pdf",
-     "sha256": "2aa48e3cc9eb8d8f0d4a05f83363df6e6d81fdd07859c4f1ff3ef7f3964991da"
+     "sha256": "ac0cfdbca92d5b19958b42cee059b12431564efa00b05bd9bb43d196b2865d8b"
     },
     "counts": {
      "path": "cad/out/A-102.counts.json",
@@ -131,11 +139,15 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/A-102.png",
-     "sha256": "5297278cb94acba11f5e894cb4ce457232b130346c40f7769beff119c93c9e01"
+     "sha256": "99c2438377291f0aeeaccef2283d915c12e63b67b8bbb34abc3379d9af603e2f"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-102-dxf.png",
-     "sha256": "af1d56a9f027d75ca9aec4d38a8d9460bfa406c9981f27330814e3ff71a61a0e"
+     "sha256": "0fea0d62b702b3efc3ce069e8a25f3d757eb547abf58bc26d39998c88b5681ab"
+    },
+    "dwg": {
+     "path": "cad/out/A-102.dwg",
+     "sha256": "28a4db24b1762b755253d6d8d50f9e5607ab0e78d76100a742ef2c1ea8e486cb"
     }
    }
   },
@@ -149,7 +161,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 2,
    "page_size_mm": [
@@ -160,31 +172,35 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-103.dxf",
-     "sha256": "1fe774b6857284d48b3f7627f9064027dd9950f82ebe1a23980cba8e4795ed6e"
+     "sha256": "f4dd28894b160cea69caf15c8e3535485f5973cff437de3e0598307fd7ccff21"
     },
     "pdf": {
      "path": "drawings/pdf/A-103.pdf",
-     "sha256": "4407e6add6ed4227105f3020d63418665f128246ea287cef6eabf57f2ff9ce6d"
+     "sha256": "92d0065fa8cc007dd00cfff0f16bc24e9aeae48eeb997ef74ddc4bb744c54276"
     },
     "counts": {
      "path": "cad/out/A-103.counts.json",
-     "sha256": "16dc43fd8f98abfaeb1e0cd44b810e94f679bcbbf20e2d26cd8e1dd0ee92811b"
+     "sha256": "d04b5f3aa16e87e92f3d291a29a6bc70b4b572f52d1d8d46c422c77e88ad3607"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-103.png",
-     "sha256": "98a74514a43acaf9a5579de144d89336e13877d161a6daa8f6e21a111a848e80"
+     "sha256": "74faccebadcc8592d3431ca7c56124a91cdfb0ccba0f4b77dcaefa17a14da636"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-103-dxf.png",
-     "sha256": "5888d08012a8a35d3b660097516ba6f42d721a63ecd73c2e6d10a450c679e13d"
+     "sha256": "af4e367ad0106a1fed9f1a6a7dc7365d28e502e795fe6228ce5d1e942aa24460"
     },
     "preview_pdf_p2": {
      "path": "drawings/previews/A-103-p2.png",
-     "sha256": "8d82bb34fbd7347553d4c5c59f7ea98eb526f620132a4bbcabad707ad8726dfd"
+     "sha256": "27ed5f21043534ae817a38de537d57d8b14998f0858604526eb01659789c94dc"
+    },
+    "dwg": {
+     "path": "cad/out/A-103.dwg",
+     "sha256": "5745663a76589373e1d7a4d57eab9d2c3c2c484d169188d5e21ac5d9bdf8a3c0"
     }
    }
   },
@@ -198,7 +214,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 2,
    "page_size_mm": [
@@ -209,31 +225,35 @@
     1683.78,
     1190.55
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-201.dxf",
-     "sha256": "389975294a4564873ec3babf54fbd832f3bdab7943f19b1bca80ad486492506a"
+     "sha256": "56203578c6d327ce11765d01c8063f6cdcdeb4068af3884355bb03f4022a27fa"
     },
     "pdf": {
      "path": "drawings/pdf/A-201.pdf",
-     "sha256": "99bb48d412ad6e30bb9670a414271cb7e47b06fc9e230afd59cdf3d19cb2ab3f"
+     "sha256": "1e76d09deef754e74e96df0c0ac3e0a8e359a7e29cdbf486861478f9b63ed58a"
     },
     "counts": {
      "path": "cad/out/A-201.counts.json",
-     "sha256": "91fc590660fd87983694001be4bcfba91bcebb2adca092f6df776babd59950b4"
+     "sha256": "02f4dbfa492ecdd3f41509e6b54b560575d22134b14655f89c6109b8fe9d36f2"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-201.png",
-     "sha256": "04d92d9130fe0ed67663dbe924051f512df4efdd079b24d3883113a4ede3a427"
+     "sha256": "ce6a57d873e9fc06f9e8c2231447615e0da462222c5a15d00f4b0fa4dbec6c9b"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-201-dxf.png",
-     "sha256": "e1e6f810974acf647405552d299cbf7efec3d81f7d8cdfefcf907a87fcf6f409"
+     "sha256": "cbbb7d0455b40e40e2151d22bc7c3fbf6e98aeadf593e12422e0af7c70c6f094"
     },
     "preview_pdf_p2": {
      "path": "drawings/previews/A-201-p2.png",
-     "sha256": "2e9197a1e686e45f8ba72eb19022d1b3d124ecc162261e7b1f338d3f15ffbf94"
+     "sha256": "da9dec564e77cdee7a769c8acbb68c18ae2f1468ec06746427764cd8b6c11b8c"
+    },
+    "dwg": {
+     "path": "cad/out/A-201.dwg",
+     "sha256": "32d5ee3247affacf1bc983ef41f046aaebae32796f89d83d83bc7b0b8460668e"
     }
    }
   },
@@ -247,7 +267,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 2,
    "page_size_mm": [
@@ -258,31 +278,35 @@
     1683.78,
     1190.55
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-202.dxf",
-     "sha256": "21a18f18d8eaa2eb2b4e88fafcbc732ee9aff0b1400447c056e6e0d0a0d3c8ea"
+     "sha256": "6527a19f0e225414397a975967e58d97b6b17f78f96cdc2fad0545b4fb45dfa7"
     },
     "pdf": {
      "path": "drawings/pdf/A-202.pdf",
-     "sha256": "c9522c73588fc5a5c255248ba9e04670f1f412b0c017e3d8ccb9925fae683337"
+     "sha256": "d32801ec6eeac508f744a5643937b2c5b09f314c97762e0905a7ee8b5144101c"
     },
     "counts": {
      "path": "cad/out/A-202.counts.json",
-     "sha256": "0bebbabff6cdf6990a4c576703ec71fd096ffb5f93713780b9ecc0e8d01df502"
+     "sha256": "b5f692f5cb64ebecdc38b1f4dffb13d6885702802dd4312cf73e0a50e63e035a"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-202.png",
-     "sha256": "21a12d352ef9a9eb3d74f6d3bb74a219a446df767f7275b43d0bf12f0246a4c5"
+     "sha256": "04768a2896828e169ccbda190f9a85aa338290994b9bd1bf59c03f182db3d181"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-202-dxf.png",
-     "sha256": "2372583f526c877175a1e15ead13978bf448d9676a1fca27387ae624be0b02ab"
+     "sha256": "828111ce3038d3bba02aea7eb3b6db693b24818d75b448fd78204eff696b61e5"
     },
     "preview_pdf_p2": {
      "path": "drawings/previews/A-202-p2.png",
-     "sha256": "db4c22b0694486f6ef1a5fa36f4cb04fb64af592e56f6415629ed883b5a2814f"
+     "sha256": "ef352b064af6ac63b92ef99cc13fbf888cc90337b4e13129b778854ee658f82c"
+    },
+    "dwg": {
+     "path": "cad/out/A-202.dwg",
+     "sha256": "0e797bb6707da8fe19a0234e53da3f913f0a99c5e29763a98c283bb509cf9dd5"
     }
    }
   },
@@ -296,7 +320,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -307,15 +331,15 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-301.dxf",
-     "sha256": "563839b1529aa55cf59691e544b7bb32d7bc5e6e8326ab6aed5ccf4c67b62c65"
+     "sha256": "2a27c99f3be4c044fcb32040ddf76ac0dd22011603b9beb514059ea437e0ecf4"
     },
     "pdf": {
      "path": "drawings/pdf/A-301.pdf",
-     "sha256": "10fd18440738167162fa95e7ae96f4681c23d9e3e2249368f65d05004fb10f11"
+     "sha256": "be9ffa69e37c77d107714620ec7a7f54350bcfb5a6e075560354cba9202205f4"
     },
     "counts": {
      "path": "cad/out/A-301.counts.json",
@@ -323,11 +347,15 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/A-301.png",
-     "sha256": "1c7079382c8e5d4279a8fbb80e640c9b2f81e8217376c6aa9c65e5c9aadf5615"
+     "sha256": "e3472df48f2b24a12cd3de20f6ad058bbebfb814462585cd3992e2e8cbd7f709"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-301-dxf.png",
-     "sha256": "42cc14bdffe5f736f46ce1426ff0453c64fc1980d023830e71258aefc8ad8104"
+     "sha256": "81cd980f41ba22d7aa655842485d62a5d0c67cee829591766eb9fbafca20b5d4"
+    },
+    "dwg": {
+     "path": "cad/out/A-301.dwg",
+     "sha256": "f8c890d53ff935ad05ca1bc521fa6a066883037277802fd7c2455fb96d27d349"
     }
    }
   },
@@ -341,7 +369,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -352,15 +380,15 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/A-401.dxf",
-     "sha256": "bed735cb113090665d19a2c53bffc6a33f158b7999b736a302b09f4f3f3a401e"
+     "sha256": "94d33520bf4c52683637bcd400d0a1d65e34d0860c2674d3ef5bc5fe2f171cad"
     },
     "pdf": {
      "path": "drawings/pdf/A-401.pdf",
-     "sha256": "df76942f5f34af4fe1bbeb8d9cf6807a16f2315651555616f53942949ab6f09e"
+     "sha256": "ed87737cb917a2dbbd473478aa042a5024ae7b9d7839ac8b5a634487714fd0bd"
     },
     "counts": {
      "path": "cad/out/A-401.counts.json",
@@ -368,11 +396,15 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/A-401.png",
-     "sha256": "ff9abb296bdeeb8ce692c4ae80d7590f99016355f7177fdc2a07758e43140e18"
+     "sha256": "0c0c4563541d87f27877a45bbaa96b58c4d0d00accd137e6028fec126dc654f7"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-401-dxf.png",
-     "sha256": "d35e44e5453f27cc301b08f7ba65615fe5d93a77b87dd911f77c41ac61b76795"
+     "sha256": "63e07d14e1a92ef759db31d4818e033e89de5c559eee29c7eb265c71642f009e"
+    },
+    "dwg": {
+     "path": "cad/out/A-401.dwg",
+     "sha256": "5228442f46ac90a427ad68129875c44878d2a287842e5c31af186ba91b11d3a0"
     }
    }
   },
@@ -386,7 +418,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -397,15 +429,15 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/I-101.dxf",
-     "sha256": "97c37ba9f60bc00961ecb078ddbecccce44b1762aa5a8ec78480fa51745c0a0d"
+     "sha256": "de9fd03419e0b79d58864b385aeed2bc8da8f9ee5b64754f536fa9ee4b362d9f"
     },
     "pdf": {
      "path": "drawings/pdf/I-101.pdf",
-     "sha256": "1a87ac28987dde1f095c6d4a8d7b104299b96e9c525a52bfcf9518faf59af119"
+     "sha256": "feaa5f04a226d58fa2380e87b8f73b1a5190d89efe11adabbdf942861884e57a"
     },
     "counts": {
      "path": "cad/out/I-101.counts.json",
@@ -413,11 +445,15 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/I-101.png",
-     "sha256": "1dd4dba165e474b3f5ee9b5b573fb211ca25730fecf5c5465b039972f99d28e7"
+     "sha256": "531396c7cd7e74b4561b2354cc9194dbd65ba3dbb6a16d9c6ae90104aaaada0a"
     },
     "preview_dxf": {
      "path": "drawings/previews/I-101-dxf.png",
-     "sha256": "edde108942b54fe86f8eab614081dcb547fece8cd035e3de4bcf8fcec273ac34"
+     "sha256": "58f61cdadb7058fc9687a0eec9ad6b193e370f02215a219868389f9d96a57e2e"
+    },
+    "dwg": {
+     "path": "cad/out/I-101.dwg",
+     "sha256": "de0f20a7e3ef142e7733b1a83a603f4dadd2657e757590558032a1b783d9a40c"
     }
    }
   },
@@ -431,7 +467,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -442,27 +478,31 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/ICT-001.dxf",
-     "sha256": "d0e95946c32f2f96a406a13afba07d884a6dc525389b0ed924b33a9e2c80572c"
+     "sha256": "0aee43913ee1304cf37523ebff56c069fdeb9c78ebb9b9be7e79bfe7f9ebfaee"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-001.pdf",
-     "sha256": "f9a4e2116666da2fbbd8c9d6b88b0751289d3733af480a6eb7604e8d841dc4e0"
+     "sha256": "609d4e52f45af89627be794e469caacca58be45638b9537685d2e8bc8694dd7c"
     },
     "counts": {
      "path": "cad/out/ICT-001.counts.json",
-     "sha256": "2ee273a17b6834e73ca35584c208ae7e76387e1a0f7fca1c6e91207485c683b7"
+     "sha256": "b153f37062150bd1c8077661a7cf5d40042f5b9ca18cc69060c6748776bc6256"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-001.png",
-     "sha256": "85769d04bad88407de9b551228943d07c738a7cb60c476aec3d1e4d85ac10929"
+     "sha256": "6f7adcaf56f83f17fcb682b56a5f93a9e5816f1e33f6d11bdd36bcfd9bfb9c75"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-001-dxf.png",
-     "sha256": "e316212bbb32fd83fe8962b1309d88cffeb0bf364cc1cbd006b9d23efce28543"
+     "sha256": "d7b07020a30259c6859b6a9af366a869bbf1cc8d7b96a76fbc3ca3cd75e3213c"
+    },
+    "dwg": {
+     "path": "cad/out/ICT-001.dwg",
+     "sha256": "56e1bbea34f392a251622f0e7e567bed148f28c3d82822d63c5e69809c40c801"
     }
    }
   },
@@ -476,7 +516,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -487,27 +527,31 @@
     1683.78,
     1190.55
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/ICT-101.dxf",
-     "sha256": "76c131ba686929462648f2a40a2fd1eafdd4778b95531b4cff972b02e308f5fc"
+     "sha256": "ee82a1f30d023ceaecf70f3dfff3af760ab13af6c290ff1040e7f1a0e92e90d5"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-101.pdf",
-     "sha256": "b24d16dd0cc830c5c6f45e7bb3d2212f234fa22d4848aec12661cbd78a9ca418"
+     "sha256": "a646f149139dd3ef3fe9c2a9d0fdc8e21e3f6c726754350ddade214a613c8d98"
     },
     "counts": {
      "path": "cad/out/ICT-101.counts.json",
-     "sha256": "80fc24534a31e260fbf7abec4a5ffa3f134265244f72270d866a4c83550b003a"
+     "sha256": "16583191262cdf484aebb716cdc5f4c92fa0d9f6a8fe2cf3bec42559f7b86308"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-101.png",
-     "sha256": "c9f8866d069720197fa0f1d52ba449029d5e7512c213a7ff9db39e1eedf5c942"
+     "sha256": "8f191fe287805313b58acac039d531e50959ccb441844f267a0080444aa70934"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-101-dxf.png",
-     "sha256": "ed4ca8378e9772e2050e7aaff648ace7c37fab9f252bcc506b1ab9707287e29e"
+     "sha256": "2502c2deb872a49248972b7ce64e0872df16eadeb8bd67316e83043c37596264"
+    },
+    "dwg": {
+     "path": "cad/out/ICT-101.dwg",
+     "sha256": "5343f865a194a743681d2c0f696ad3fce3e70b5609a18b32c1c817df2158f2ca"
     }
    }
   },
@@ -521,7 +565,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -532,27 +576,31 @@
     1683.78,
     1190.55
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/ICT-102.dxf",
-     "sha256": "1fa9a46c831ca71c9c5dddca9e7114a7ab53c488f27c2ae1f25637547821757e"
+     "sha256": "0245e9b311cb507c4961b747f9d8fb90915ce41fccb38c592c153bd48590d2c9"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-102.pdf",
-     "sha256": "4f05858d55234bba600cbc657ce678c73d08111bcb1d79ef123fe5b437203569"
+     "sha256": "f726d10ef91c459829f365ac5a10fb136237b4056ef8a6f9fbd668b951f28821"
     },
     "counts": {
      "path": "cad/out/ICT-102.counts.json",
-     "sha256": "cd9c5c12b96f69f59257d0fb8201ca853b6927307352774d770c75adb23def7e"
+     "sha256": "fd7db736519b3ec36eacbc9a2f7d9d20874cf285ba12fe21da3ad11876d24238"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-102.png",
-     "sha256": "a01b85ebaf1b8e6b1fb8131ba64d80a6a07fb5adb288d06ba0fba98d7e19b6d4"
+     "sha256": "a97f376cbff3390fa8d38334e3e8459f25eee08102fd2def57eb94eaf74d6310"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-102-dxf.png",
-     "sha256": "e3d9b2b4de268cf0fc18e638dcd03e677aeda0b13d7df02e824600fd0b615b7f"
+     "sha256": "7f49a80438557419d10249a4766cc485ea7b436d05ffbe7f1d67ed452cad8728"
+    },
+    "dwg": {
+     "path": "cad/out/ICT-102.dwg",
+     "sha256": "7d0c0724528bce48acd0744b9d96102baf3e28d4305ace7bc3109d859774fd74"
     }
    }
   },
@@ -566,7 +614,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -577,15 +625,15 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/ICT-201.dxf",
-     "sha256": "f23cd5cb4163e7129951f1bdc4c72989d965530a3839e2a41a77343edebdcbf0"
+     "sha256": "2b3ea8861b9ed496259bd49cc82f83336a64f55246b4fea324647d7266014fd8"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-201.pdf",
-     "sha256": "ae9a013940bd55bbc72559f395e136ab5c7e0b5349a7a95f55ac847e0811858b"
+     "sha256": "c799dcf8fe09405b41617a5aaedaa6621905d56a3091c9ea634768d6fb3d9ad1"
     },
     "counts": {
      "path": "cad/out/ICT-201.counts.json",
@@ -593,11 +641,15 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-201.png",
-     "sha256": "6ac7c30bf199a9aa90530c020caf112623939ea91edf6080488fb8a6beecdf87"
+     "sha256": "447b138a7f638f43ddb6153b18b4ed209d9d9a527eb4d274fe3c72742de1ae0d"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-201-dxf.png",
-     "sha256": "5aa58ebdb90664e5016d4c1de5d79d8204a1fa661bd45834f678223ad985582d"
+     "sha256": "2be1a929f42797c2630239102bb8146a6bb9632b39e5f0c7a3fb7184ac985e59"
+    },
+    "dwg": {
+     "path": "cad/out/ICT-201.dwg",
+     "sha256": "6b9559a55761fbee29c6fbd025c33549156dee85f6fb20f23a75171d776eb3e2"
     }
    }
   },
@@ -611,7 +663,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -622,27 +674,31 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/ICT-301.dxf",
-     "sha256": "8aaea39409cf41d1bbafb48ff646419b98b9614125e03444e7fcaf025addc250"
+     "sha256": "c29f6e6f2f197f78d86d25e5cb1948a3406394185ad1bebf3b3cda44adcfa6ba"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-301.pdf",
-     "sha256": "6fcc44ebb035a00d9d223cd268f61efabd0c2397320aa2a5935a166ad12661b2"
+     "sha256": "f7c435ec20ebde933dc1bd3472c39b6a2e7896835c13f5aa56c720a0ec31edf6"
     },
     "counts": {
      "path": "cad/out/ICT-301.counts.json",
-     "sha256": "12afe176fe71b9432525d0ffe38d3982c151afecd9f9cf609d37e16197c8faa7"
+     "sha256": "7675cec913553930db593aa3a40c63ca4976763e37765050aa72e0b28f85c93b"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-301.png",
-     "sha256": "d777724ba1306917cba2c67792c2ab11fb8d3e7e470f43a2e44dae50aa3a0e98"
+     "sha256": "73d06d6dfc3cb121affc42a65d492dd1f890e9c823a110333a522a385a67ec04"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-301-dxf.png",
-     "sha256": "21e243fee77bdf10978fe0632b255b3e85e3a6bbb1f80a10f3cc9b393523b703"
+     "sha256": "69b99406a9945a321e664065799b245861839efc9eb0bb304fca1715bab24a98"
+    },
+    "dwg": {
+     "path": "cad/out/ICT-301.dwg",
+     "sha256": "cc7c8af3d9721bb4ae6b4d077be911f9e98e8cc0d3c750cb1c4e7cc80396f185"
     }
    }
   },
@@ -656,7 +712,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-02T00:29:26Z",
+   "generated_utc": "2026-10-02T02:42:18Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 3,
    "page_size_mm": [
@@ -667,15 +723,15 @@
     1190.55,
     841.89
    ],
-   "native_dwg": "BLOCKED (AutoCAD tidak tersedia)",
+   "native_dwg": "GENERATED (Autodesk reopen/AUDIT/counts; native plot pending)",
    "files": {
     "dxf": {
      "path": "cad/out/ICT-401.dxf",
-     "sha256": "2459adaf99519d0698106d181aa983c05cbcb9d52956e5de19e2bc62683ff8d6"
+     "sha256": "af9c6083e70693e6a290c9c6a79719a9f6bc3f6893abfaba3fcd063b0978822e"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-401.pdf",
-     "sha256": "5be6bca770a59654edf3806047d547d2c84644e119058c9b13dabf43db442c3f"
+     "sha256": "04f689b792ecea8b15c2f39d6fc803321ec943ee65441ad8aa7a1900c9de08f9"
     },
     "counts": {
      "path": "cad/out/ICT-401.counts.json",
@@ -683,19 +739,23 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-401.png",
-     "sha256": "de2ada5676ced8fd2277e698137f5cfaa6c03f61d2626bd6c3547adcf30f8ee9"
+     "sha256": "3db0b8b183dee2843d960fc60e1807217c60303c2e053c8c82241c5153f4eb4d"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-401-dxf.png",
-     "sha256": "4dbb7777c2cf5503963da4c4e7cdd03497c1e1a7d87b10f7f0f8268287c82d01"
+     "sha256": "36ddcd9616cdf82fb286bf544a6c935b08fa539d9e78910776a8ce76641a8ecf"
     },
     "preview_pdf_p2": {
      "path": "drawings/previews/ICT-401-p2.png",
-     "sha256": "f68dfd5d2648c9069fa9a38eec089a11d99ea551716c76ca56d5a4ad3ff8f1f2"
+     "sha256": "033484db4f2ad3c8949dd7809348cd0a1f56ff8c927d285ff9b6eeff93124925"
     },
     "preview_pdf_p3": {
      "path": "drawings/previews/ICT-401-p3.png",
-     "sha256": "17dc2af03a3010e0d61524ad21c00e4afe0723def9a6ebf71d8e7bd2254b92a4"
+     "sha256": "b6ddc512fc6e118fd642957ea0e36f260ed1bcdddaf066ecae7addb980c403aa"
+    },
+    "dwg": {
+     "path": "cad/out/ICT-401.dwg",
+     "sha256": "b00f9bd936034e101309f9c269b44c3e728aa1a92a444129feefd4af8bcb2c65"
     }
    }
   }
@@ -745,7 +805,7 @@
     "ICT-401-3"
    ],
    "bookmarks": 15,
-   "sha256": "88cdfa1da7faf8b2b42a5c6aed443e609a9b89d7a3afc8dcec16bcc466488932"
+   "sha256": "bd7469b1a3f708fe62f95f72000b241f79be5723d242e81ca750c9101cb684c2"
   },
   {
    "file": "drawings/pdf/kantor-rpg-sheets-A.pdf",
@@ -775,7 +835,7 @@
     "A-401"
    ],
    "bookmarks": 8,
-   "sha256": "ad7821dd7736f5a1d6ff81d7ab834cddd33269c8248debd5e7c8dcbe0b172acb"
+   "sha256": "bbabbb5c13594be124ca496dcdeec75a0a9c74f2365ea71a31e4d60571a87791"
   },
   {
    "file": "drawings/pdf/kantor-rpg-sheets-I.pdf",
@@ -788,7 +848,7 @@
     "I-101"
    ],
    "bookmarks": 1,
-   "sha256": "1aa16851f021965113d706561d390bb362013001b98abdbc42daeaa58175819b"
+   "sha256": "2fef4fc6ed319b734b888fc5ad6287d1fcc063b72c8c88d8d85ebe8ecffac422"
   },
   {
    "file": "drawings/pdf/kantor-rpg-sheets-ICT.pdf",
@@ -813,7 +873,7 @@
     "ICT-401-3"
    ],
    "bookmarks": 6,
-   "sha256": "27595a94fee6afdb4bda439c5babdd4bdca18015ca2973192f1bed64cce2e0af"
+   "sha256": "60f70fb777509ed00b069199f354c6fbac901f22a6603255cd37261c925b2309"
   }
  ]
 }

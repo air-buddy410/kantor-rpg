@@ -51,8 +51,11 @@ test.describe('persona NPCs (M2)', () => {
 
   test('walking up to a seated NPC and pressing E (or tapping Aksi) greets it', async ({ page }, info) => {
     await boot(page);
-    const target = (await npcs(page)).find((n) => n.phase === 'perform' && n.floor === 'L1' && n.activity === 'desk')!;
-    expect(target).toBeTruthy();
+    const seatedDeskNpc = async () => (await npcs(page)).find((n) => n.phase === 'perform' && n.floor === 'L1' && n.activity === 'desk');
+    // Boot exposes the harness before the first simulation tick; wait for an
+    // actual desk activity rather than depending on renderer startup timing.
+    await expect.poll(seatedDeskNpc, { timeout: 60_000 }).toBeTruthy();
+    const target = (await seatedDeskNpc())!;
     expect(await walkTo(page, target.pos[0], target.pos[1] - 0.9)).toBe(true);
     await expect(page.locator('#prompt')).toContainText('Sapa');
     // Touch projects use the on-screen action button, desktop the E key.

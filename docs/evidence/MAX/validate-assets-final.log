@@ -1,0 +1,56 @@
+00:00.475  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-ceo.blend"
+11:09:47 | INFO: Data are loaded, start creating Blender stuff
+11:09:47 | INFO: Blender create Mesh node body
+11:09:47 | INFO: Blender create Mesh node hair_short_tuft
+11:09:47 | INFO: Blender create Mesh node hair_spiky_soft
+11:09:47 | INFO: Blender create Mesh node hair_swept
+11:09:47 | INFO: Blender create Mesh node lod1
+11:09:47 | INFO: glTF import finished in 0.05s
+00:01.749  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-supervisor.blend"
+VALIDATE CH-CEO: PASS checks=171 failed=0 materials=1 primitives_lod0=2 tris_lod0=14860 tris_lod1=4800 tris_all_lod0_nodes=21468 height=1.6412 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=620612
+11:09:48 | INFO: Data are loaded, start creating Blender stuff
+11:09:48 | INFO: Blender create Mesh node body
+11:09:48 | INFO: Blender create Mesh node hair_swept
+11:09:48 | INFO: Blender create Mesh node lod1
+11:09:48 | INFO: glTF import finished in 0.04s
+00:02.931  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-architect.blend"
+VALIDATE CH-SUPERVISOR: PASS checks=164 failed=0 materials=1 primitives_lod0=2 tris_lod0=14956 tris_lod1=4800 tris_all_lod0_nodes=14956 height=1.5844 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=498320
+11:09:49 | INFO: Data are loaded, start creating Blender stuff
+11:09:49 | INFO: Blender create Mesh node body
+11:09:49 | INFO: Blender create Mesh node hair_bun
+11:09:49 | INFO: Blender create Mesh node lod1
+11:09:49 | INFO: glTF import finished in 0.05s
+00:04.033  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-ictspec.blend"
+VALIDATE CH-ARCHITECT: PASS checks=164 failed=0 materials=1 primitives_lod0=2 tris_lod0=13372 tris_lod1=4799 tris_all_lod0_nodes=13372 height=1.6305 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=468836
+11:09:50 | INFO: Data are loaded, start creating Blender stuff
+11:09:50 | INFO: Blender create Mesh node body
+11:09:50 | INFO: Blender create Mesh node hair_bob
+11:09:50 | INFO: Blender create Mesh node lod1
+11:09:50 | INFO: Blender create Mesh node prop_tablet
+11:09:50 | INFO: glTF import finished in 0.04s
+00:05.158  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-netinstall.blend"
+VALIDATE CH-ICTSPEC: PASS checks=165 failed=0 materials=1 primitives_lod0=3 tris_lod0=14364 tris_lod1=4800 tris_all_lod0_nodes=14364 height=1.4939 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=488336
+11:09:51 | INFO: Data are loaded, start creating Blender stuff
+11:09:51 | INFO: Blender create Mesh node body
+11:09:51 | INFO: Blender create Mesh node hair_cap
+11:09:51 | INFO: Blender create Mesh node lod1
+11:09:52 | INFO: glTF import finished in 0.04s
+00:06.327  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-visual.blend"
+VALIDATE CH-NETINSTALL: PASS checks=164 failed=0 materials=1 primitives_lod0=2 tris_lod0=13808 tris_lod1=4799 tris_all_lod0_nodes=13808 height=1.562 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=479504
+11:09:53 | INFO: Data are loaded, start creating Blender stuff
+11:09:53 | INFO: Blender create Mesh node body
+11:09:53 | INFO: Blender create Mesh node hair_spiky_soft
+11:09:53 | INFO: Blender create Mesh node lod1
+11:09:53 | INFO: Blender create Mesh node prop_sketchbook
+11:09:53 | INFO: glTF import finished in 0.04s
+00:07.479  blend            | Read blend: "/Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/blender/out/ch-qa.blend"
+VALIDATE CH-VISUAL: PASS checks=165 failed=0 materials=1 primitives_lod0=3 tris_lod0=14584 tris_lod1=4800 tris_all_lod0_nodes=14584 height=1.5612 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=493900
+11:09:54 | INFO: Data are loaded, start creating Blender stuff
+11:09:54 | INFO: Blender create Mesh node body
+11:09:54 | INFO: Blender create Mesh node hair_side_part
+11:09:54 | INFO: Blender create Mesh node lod1
+11:09:54 | INFO: Blender create Mesh node prop_clipboard
+11:09:54 | INFO: glTF import finished in 0.04s
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+VALIDATE CH-QA: PASS checks=165 failed=0 materials=1 primitives_lod0=3 tris_lod0=14984 tris_lod1=4799 tris_all_lod0_nodes=14984 height=1.5543 morphs=['blink', 'smile', 'talk', 'surprised', 'frown'] glb_bytes=501396
+VALIDATE_DONE passed=True characters=7 checks=1158 failed=0 seconds=8.2

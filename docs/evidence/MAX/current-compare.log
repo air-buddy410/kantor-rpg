@@ -1,0 +1,65 @@
+PASS characters/ch-architect.glb: 887228 -> 468836 bytes maxPositionErrorM=1.35e-05 maxNormalErrorDeg=0.368 maxRestTrsDeviation=3.34e-06 maxMorphErrorM=1.35e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=3.46e-06 maxPosedErrorM=0.000253
+PASS characters/ch-ceo.glb: 1157336 -> 620612 bytes maxPositionErrorM=1.36e-05 maxNormalErrorDeg=0.369 maxRestTrsDeviation=4.29e-06 maxMorphErrorM=1.36e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=2.16e-07 maxScaleError=4.41e-06 maxPosedErrorM=0.000261
+PASS characters/ch-ictspec.glb: 921020 -> 488336 bytes maxPositionErrorM=1.25e-05 maxNormalErrorDeg=0.367 maxRestTrsDeviation=2.92e-06 maxMorphErrorM=1.24e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=3.04e-06 maxPosedErrorM=0.000232
+PASS characters/ch-netinstall.glb: 907540 -> 479504 bytes maxPositionErrorM=1.3e-05 maxNormalErrorDeg=0.361 maxRestTrsDeviation=5.01e-06 maxMorphErrorM=1.3e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=5.13e-06 maxPosedErrorM=0.000282
+PASS characters/ch-qa.glb: 943744 -> 501396 bytes maxPositionErrorM=1.29e-05 maxNormalErrorDeg=0.359 maxRestTrsDeviation=3.93e-06 maxMorphErrorM=1.29e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.49e-07 maxScaleError=3.93e-06 maxPosedErrorM=0.000255
+PASS characters/ch-supervisor.glb: 939408 -> 498320 bytes maxPositionErrorM=1.32e-05 maxNormalErrorDeg=0.37 maxRestTrsDeviation=3.7e-06 maxMorphErrorM=1.32e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=3.81e-06 maxPosedErrorM=0.000255
+PASS characters/ch-visual.glb: 931224 -> 493900 bytes maxPositionErrorM=1.3e-05 maxNormalErrorDeg=0.375 maxRestTrsDeviation=4.29e-06 maxMorphErrorM=1.3e-05 morphNewlyMovedVertices=0 uvCellMismatches=0 maxUvError=6.68e-06 maxUvErrorTexels=0.000214 maxWeightError=0.00196 channelsRaw=702 channelsShipped=184 maxRotationErrorDeg=0.00308 maxTranslationErrorM=1.79e-07 maxScaleError=4.29e-06 maxPosedErrorM=0.000243
+PASS furniture/arcade_cabinet.glb: 40996 -> 27308 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.34 maxRestTrsDeviation=0
+PASS furniture/armchair.glb: 36236 -> 25016 bytes maxPositionErrorM=6.86e-06 maxNormalErrorDeg=0.262 maxRestTrsDeviation=0
+PASS furniture/beanbag.glb: 15456 -> 11272 bytes maxPositionErrorM=6.03e-06 maxNormalErrorDeg=0.289 maxRestTrsDeviation=0
+PASS furniture/bench.glb: 22940 -> 15128 bytes maxPositionErrorM=1.19e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/billiard_table.glb: 93536 -> 59376 bytes maxPositionErrorM=2.16e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/board_table.glb: 49536 -> 29784 bytes maxPositionErrorM=8.83e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/bookshelf.glb: 95408 -> 57752 bytes maxPositionErrorM=1.52e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/chair.glb: 40300 -> 25924 bytes maxPositionErrorM=6.86e-06 maxNormalErrorDeg=0.366 maxRestTrsDeviation=0
+PASS furniture/chair_guest.glb: 27504 -> 17972 bytes maxPositionErrorM=6.45e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/coffee_bar.glb: 66236 -> 42000 bytes maxPositionErrorM=1.82e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/coffee_table.glb: 24388 -> 14888 bytes maxPositionErrorM=7.42e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/cue_rack.glb: 28728 -> 18592 bytes maxPositionErrorM=1.07e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/desk.glb: 38004 -> 23908 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/desk_exec.glb: 57644 -> 34964 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/dining_table.glb: 16596 -> 11504 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/directory_sign.glb: 29276 -> 18000 bytes maxPositionErrorM=9.07e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/drafting_table.glb: 27172 -> 17128 bytes maxPositionErrorM=1.07e-05 maxNormalErrorDeg=0.323 maxRestTrsDeviation=0
+PASS furniture/dumbbell_rack.glb: 82756 -> 46224 bytes maxPositionErrorM=9.11e-06 maxNormalErrorDeg=0.256 maxRestTrsDeviation=0
+PASS furniture/easel.glb: 21932 -> 15024 bytes maxPositionErrorM=1.29e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/exercise_bike.glb: 42916 -> 28068 bytes maxPositionErrorM=9.16e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/exercise_mat.glb: 12524 -> 8216 bytes maxPositionErrorM=1.27e-05 maxNormalErrorDeg=0.00936 maxRestTrsDeviation=0
+PASS furniture/fridge.glb: 24548 -> 15004 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/gallery_panel.glb: 23272 -> 13444 bytes maxPositionErrorM=1.51e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/high_table.glb: 19100 -> 13060 bytes maxPositionErrorM=9.06e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/lab_bench.glb: 50888 -> 29964 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/lab_rack_open.glb: 79028 -> 48008 bytes maxPositionErrorM=9.16e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/lift.glb: 10992 -> 8184 bytes maxPositionErrorM=2.21e-05 maxNormalErrorDeg=0 maxRestTrsDeviation=0
+PASS furniture/locker.glb: 103892 -> 57884 bytes maxPositionErrorM=1.35e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/media_console.glb: 39200 -> 22824 bytes maxPositionErrorM=1.51e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/meeting_table.glb: 28176 -> 17904 bytes maxPositionErrorM=3.04e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/model_shelf.glb: 64880 -> 40828 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/pantry_counter.glb: 50984 -> 32612 bytes maxPositionErrorM=2.26e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/partition.glb: 12968 -> 8064 bytes maxPositionErrorM=1.51e-05 maxNormalErrorDeg=0.00468 maxRestTrsDeviation=0
+PASS furniture/plan_table.glb: 48688 -> 30500 bytes maxPositionErrorM=1.37e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/plant_large.glb: 39904 -> 27684 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.299 maxRestTrsDeviation=0
+PASS furniture/plant_small.glb: 29752 -> 20288 bytes maxPositionErrorM=6.86e-06 maxNormalErrorDeg=0.277 maxRestTrsDeviation=0
+PASS furniture/planter_box.glb: 35564 -> 22692 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.32 maxRestTrsDeviation=0
+PASS furniture/poster.glb: 17192 -> 10732 bytes maxPositionErrorM=7.39e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/rack_42u.glb: 158032 -> 90724 bytes maxPositionErrorM=1.53e-05 maxNormalErrorDeg=0.311 maxRestTrsDeviation=0
+PASS furniture/reception_desk.glb: 49640 -> 30380 bytes maxPositionErrorM=2.27e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/round_table.glb: 16532 -> 11544 bytes maxPositionErrorM=8.92e-06 maxNormalErrorDeg=0.306 maxRestTrsDeviation=0
+PASS furniture/shower_stall.glb: 25000 -> 16224 bytes maxPositionErrorM=1.58e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/sink.glb: 16708 -> 10664 bytes maxPositionErrorM=6.6e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/sofa.glb: 38588 -> 23044 bytes maxPositionErrorM=1.52e-05 maxNormalErrorDeg=0.262 maxRestTrsDeviation=0
+PASS furniture/stair_u.glb: 34512 -> 20908 bytes maxPositionErrorM=3.36e-05 maxNormalErrorDeg=0.191 maxRestTrsDeviation=0
+PASS furniture/stool.glb: 18024 -> 11972 bytes maxPositionErrorM=5.37e-06 maxNormalErrorDeg=0.267 maxRestTrsDeviation=0
+PASS furniture/storage_shelf.glb: 118264 -> 71220 bytes maxPositionErrorM=1.53e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/tool_cabinet.glb: 49280 -> 30560 bytes maxPositionErrorM=9.11e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/treadmill.glb: 34120 -> 20900 bytes maxPositionErrorM=1.47e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/tree_planter.glb: 38492 -> 22968 bytes maxPositionErrorM=1.98e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/wall_display.glb: 14024 -> 8608 bytes maxPositionErrorM=1.2e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/wc.glb: 17716 -> 12352 bytes maxPositionErrorM=6.09e-06 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/whiteboard.glb: 28600 -> 17368 bytes maxPositionErrorM=1.34e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+PASS furniture/work_table.glb: 19968 -> 13340 bytes maxPositionErrorM=1.22e-05 maxNormalErrorDeg=0.308 maxRestTrsDeviation=0
+COMPARE_TOTAL characters: files=7 raw=6687500 shipped=3550904
+COMPARE_TOTAL furniture: files=54 raw=2226612 shipped=1380500
+COMPARE_WORST channelsRaw=702 channelsShipped=184 maxMorphErrorM=1.362e-05 maxNormalErrorDeg=0.375 maxPosedErrorM=0.0002823 maxPositionErrorM=3.357e-05 maxRestTrsDeviation=5.007e-06 maxRotationErrorDeg=0.003083 maxScaleError=5.126e-06 maxTranslationErrorM=2.161e-07 maxUvError=6.676e-06 maxUvErrorTexels=0.0002136 maxWeightError=0.001961 morphNewlyMovedVertices=0 uvCellMismatches=0
+COMPARE_DONE passed=True files=61 failed=0 out=docs/evidence/current/glb-compare.json

@@ -359,4 +359,15 @@ def test_committed_register_matches_files():
     for s in reg["sets"]:
         r = PdfReader(str(ROOT / s["file"]))
         assert len(r.pages) == s["pages"] and list(r.page_labels) == s["page_labels"]
-    assert not list((ROOT / "cad").rglob("*.dwg"))
+    dwgs = list((ROOT / 'cad').rglob('*.dwg'))
+    if dwgs:
+        evidence = ROOT / 'docs/evidence/MAX/native-dwg/report.json'
+        rows = {r['sheet']: r for r in json.loads(evidence.read_text())}
+        assert len(dwgs) == len(SHEETS) == len(rows)
+        for dwg in dwgs:
+            row = rows[dwg.stem]
+            assert dwg.read_bytes()[:6] == b'AC1032'
+            assert hashlib.sha256(dwg.read_bytes()).hexdigest() == row['dwg_sha256']
+            assert hashlib.sha256(dwg.with_suffix('.dxf').read_bytes()).hexdigest() == row['dxf_sha256']
+            assert row['reopen'] and row['audit_errors'] == 0 and row['units'] == 4
+            assert row['model_counts_match'] and row['paper_layouts']

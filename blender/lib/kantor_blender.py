@@ -269,8 +269,11 @@ def make_object(B: Builder, mats: dict, collection=None, clean=True, autosmooth=
         # Blender 4.0 auto smooth: rounded parts shade soft, flat faces stay crisp;
         # the glTF exporter writes the resulting split normals
         me.polygons.foreach_set("use_smooth", [True] * len(me.polygons))
-        me.use_auto_smooth = True
-        me.auto_smooth_angle = math.radians(autosmooth)
+        if hasattr(me, 'set_sharp_from_angle'):
+            me.set_sharp_from_angle(angle=math.radians(autosmooth))
+        else:
+            me.use_auto_smooth = True
+            me.auto_smooth_angle = math.radians(autosmooth)
     me.update()
     ob = bpy.data.objects.new(B.name, me)
     (collection or bpy.context.scene.collection).objects.link(ob)
@@ -473,6 +476,9 @@ def save_png(arr, path, quant=1):
 
 
 def export_glb(path, objects, extras=True):
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from tools.kantor.blender_compat import without_vertex_colors
     bpy.ops.object.select_all(action="DESELECT")
     for o in objects:
         o.select_set(True)
@@ -481,7 +487,8 @@ def export_glb(path, objects, extras=True):
     bpy.ops.export_scene.gltf(
         filepath=str(path), export_format="GLB", use_selection=True, export_extras=extras, export_yup=True,
         export_apply=False, export_texcoords=False, export_normals=True, export_tangents=False,
-        export_colors=False, export_materials="EXPORT", export_cameras=False, export_lights=False,
+        **without_vertex_colors(bpy.ops.export_scene.gltf.get_rna_type().properties),
+        export_materials="EXPORT", export_cameras=False, export_lights=False,
         export_skins=False, export_morph=False, export_animations=False, export_image_format="NONE")
 
 

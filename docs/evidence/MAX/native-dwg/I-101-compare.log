@@ -1,0 +1,17 @@
+OK   A-ANNO-RMNM    HATCH        generator     4  autocad     4
+OK   A-ANNO-RMNM    LWPOLYLINE   generator     4  autocad     4
+OK   A-ANNO-RMNM    TEXT         generator    38  autocad    38
+OK   A-AREA         LWPOLYLINE   generator    38  autocad    38
+OK   A-DOOR         ARC          generator    38  autocad    38
+OK   A-DOOR         HATCH        generator     6  autocad     6
+OK   A-DOOR         LWPOLYLINE   generator    66  autocad    66
+OK   A-GLAZ         LWPOLYLINE   generator   364  autocad   364
+OK   A-STRS         LWPOLYLINE   generator    62  autocad    62
+OK   A-STRS         TEXT         generator     4  autocad     4
+OK   A-WALL         HATCH        generator   131  autocad   131
+OK   A-WALL         LWPOLYLINE   generator   131  autocad   131
+OK   I-FLOR-PATT    HATCH        generator    38  autocad    38
+openings generator: jendela 39 {'L1': 20, 'L2': 19}, daun pintu 38, busur 38
+  busur pintu (A-DOOR ARC): generator 38, autocad 38
+total model space generator 924 autocad 924
+HASIL: cocok

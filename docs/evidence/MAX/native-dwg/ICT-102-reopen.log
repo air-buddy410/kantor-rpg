@@ -1,0 +1,65 @@
+Attribute Qt::AA_PluginApplication must be set before QCoreApplication is created.
+Redirect stdout (file: /var/tmp/accc82929FrgCdi).
+AcCoreConsole: StdOutConsoleMode: processed-output: enabled,auto
+AutoCAD Core Engine Console - Copyright 2024 Autodesk, Inc.  All rights reserved. (V.58.M.214)
+
+Execution Path:
+/Applications/Autodesk/AutoCAD 2025/AutoCAD 2025.app/Contents/Helpers/AcCoreConsole.app
+Current Directory: /Users/air_buddy/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg
+
+Version Number: V.58.M.214 (UNICODE)
+LogFilePath has been set to the working folder.
+.
+Substituting [simplex.shx] for [OpenSans-LightItalic.ttf].
+Substituting [simplex.shx] for [OpenSans-Regular.ttf].
+Substituting [simplex.shx] for [OpenSans-Italic.ttf].
+Substituting [simplex.shx] for [OpenSans-SemiBold.ttf].
+Substituting [simplex.shx] for [OpenSans-SemiBoldItalic.ttf].
+Substituting [simplex.shx] for [OpenSans-Bold.ttf].
+Substituting [simplex.shx] for [OpenSans-BoldItalic.ttf].
+Substituting [simplex.shx] for [OpenSans-ExtraBold.ttf].
+Substituting [simplex.shx] for [OpenSans-ExtraBoldItalic.ttf].
+Substituting [simplex.shx] for [OpenSansCondensed-Bold.ttf].
+Substituting [simplex.shx] for [OpenSansCondensed-Light.ttf].
+Substituting [simplex.shx] for [OpenSansCondensed-LightItalic.ttf].
+Substituting [simplex.shx] for [LiberationSans-Regular.ttf].
+Substituting [simplex.shx] for [LiberationSans-Bold.ttf].
+Substituting [simplex.shx] for [LiberationSans-BoldItalic.ttf].
+Substituting [simplex.shx] for [LiberationSans-Italic.ttf].
+Substituting [simplex.shx] for [LiberationSerif-Regular.ttf].
+Substituting [simplex.shx] for [LiberationSerif-Bold.ttf].
+Substituting [simplex.shx] for [LiberationSerif-BoldItalic.ttf].
+Substituting [simplex.shx] for [LiberationSerif-Italic.ttf].
+Substituting [simplex.shx] for [LiberationMono-Regular.ttf].
+Substituting [simplex.shx] for [LiberationMono-Bold.ttf].
+Substituting [simplex.shx] for [LiberationMono-BoldItalic.ttf].
+Substituting [simplex.shx] for [LiberationMono-Italic.ttf].
+Substituting [simplex.shx] for [DejaVuSans.ttf].
+Regenerating model.
+; error: File load canceled: /Applications/Autodesk/AutoCAD 2025/AutoCAD 2025.app/Contents/Resources/Support/@en@/acad2025.LSP
+Command: 
+Command: 
+Command: 
+Command: (defun c:KRCOUNT (/ ss i ed key pair lst fn f total) (setq ss (ssget "_X" '((410 . "Model"))) lst '() total 0) (if ss (progn (setq i 0 total (sslength ss)) (repeat total (setq ed (entget (ssname ss i)) key (strcat (cdr (assoc 8 ed)) " " (cdr (assoc 0 ed))) pair (assoc key lst)) (if pair (setq lst (subst (cons key (1+ (cdr pair))) pair lst)) (setq lst (cons (cons key 1) lst))) (setq i (1+ i))))) (setq fn (strcat (getvar "DWGPREFIX") (vl-filename-base (getvar "DWGNAME")) ".autocad-counts.txt") f (open fn "w")) (foreach p (vl-sort lst '(lambda (a b) (< (car a) (car b)))) (write-line (strcat (car p) " " (itoa (cdr p))) f)) (write-line (strcat "TOTAL MODELSPACE " (itoa total)) f) (close f) (princ (strcat "\nNATIVE_UNITS=" (itoa (getvar "INSUNITS")))) (foreach x (dictsearch (namedobjdict) "ACAD_LAYOUT") (if (= (car x) 3) (princ (strcat "\nNATIVE_LAYOUT=" (cdr x))))) (princ))
+C:KRCOUNT
+Command: _.AUDIT
+Fix any errors detected? [Yes/No] <N>: _Y
+                                       
+                                       
+                              
+Pass 1 100     objects audited
+                              
+Pass 2 100     objects audited
+                                      
+ 4       Blocks audited
+                                  
+Total errors found 0 fixed 0
+Erased 0 objects
+Command: KRCOUNT
+NATIVE_UNITS=4
+NATIVE_LAYOUT=ICT-102
+NATIVE_LAYOUT=Model
+Command: 
+Command: _.QUIT
+_N
+Really want to discard all changes to drawing? <N> _NLogFilePath has been restored to ''.

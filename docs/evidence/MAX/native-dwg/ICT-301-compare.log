@@ -1,0 +1,17 @@
+OK   A-AREA         LWPOLYLINE   generator    38  autocad    38
+OK   A-GLAZ         LWPOLYLINE   generator   364  autocad   364
+OK   A-STRS         LWPOLYLINE   generator    62  autocad    62
+OK   A-STRS         TEXT         generator     4  autocad     4
+OK   A-WALL         HATCH        generator   131  autocad   131
+OK   A-WALL         LWPOLYLINE   generator   131  autocad   131
+OK   ICT-OUTL       HATCH        generator    45  autocad    45
+OK   ICT-RACK       HATCH        generator     2  autocad     2
+OK   ICT-RACK       LWPOLYLINE   generator     2  autocad     2
+OK   ICT-RISR       HATCH        generator     2  autocad     2
+OK   ICT-RISR       LWPOLYLINE   generator     2  autocad     2
+OK   ICT-RISR       TEXT         generator     2  autocad     2
+OK   ICT-ROUT       LWPOLYLINE   generator    89  autocad    89
+OK   ICT-TRAY       LWPOLYLINE   generator     6  autocad     6
+openings generator: jendela 39 {'L1': 20, 'L2': 19}, daun pintu 0, busur 0
+total model space generator 880 autocad 880
+HASIL: cocok

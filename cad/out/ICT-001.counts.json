@@ -15,12 +15,12 @@
     "TEXT": 1
    },
    "ICT-TOPO": {
-    "TEXT": 73,
+    "TEXT": 74,
     "HATCH": 13,
     "LWPOLYLINE": 23
    },
    "A-ANNO-NOTE": {
-    "TEXT": 13,
+    "TEXT": 14,
     "LWPOLYLINE": 3
    },
    "A-ANNO-SCHD": {
@@ -32,7 +32,7 @@
  },
  "totals": {
   "modelspace": 0,
-  "paperspace": 165
+  "paperspace": 167
  },
  "layers": [
   "0",

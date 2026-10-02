@@ -1,0 +1,14 @@
+OK   A-ANNO-RMNM    TEXT         generator     1  autocad     1
+OK   A-WALL         LWPOLYLINE   generator     1  autocad     1
+OK   ICT-CLRZ       HATCH        generator     4  autocad     4
+OK   ICT-CLRZ       LWPOLYLINE   generator     4  autocad     4
+OK   ICT-CLRZ       TEXT         generator     2  autocad     2
+OK   ICT-RACK       HATCH        generator     4  autocad     4
+OK   ICT-RACK       LWPOLYLINE   generator    92  autocad    92
+OK   ICT-RACK-DEV   HATCH        generator    17  autocad    17
+OK   ICT-RACK-DEV   LWPOLYLINE   generator    17  autocad    17
+OK   ICT-RACK-IDEN  LWPOLYLINE   generator    17  autocad    17
+OK   ICT-RACK-IDEN  TEXT         generator   120  autocad   120
+openings generator: jendela 0 {}, daun pintu 0, busur 0
+total model space generator 279 autocad 279
+HASIL: cocok

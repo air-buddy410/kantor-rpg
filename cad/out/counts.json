@@ -5,7 +5,7 @@
    "file": "A-001.counts.json",
    "world_revision": "P03",
    "modelspace_total": 0,
-   "paperspace_total": 219,
+   "paperspace_total": 224,
    "openings": {
     "window_symbols": 0,
     "windows_per_floor": {},
@@ -48,7 +48,7 @@
    "file": "A-103.counts.json",
    "world_revision": "P03",
    "modelspace_total": 0,
-   "paperspace_total": 1473,
+   "paperspace_total": 1475,
    "openings": {
     "window_symbols": 0,
     "windows_per_floor": {},
@@ -60,7 +60,7 @@
   "A-201": {
    "file": "A-201.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 819,
+   "modelspace_total": 827,
    "paperspace_total": 839,
    "openings": {
     "window_symbols": 20,
@@ -75,7 +75,7 @@
   "A-202": {
    "file": "A-202.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 750,
+   "modelspace_total": 752,
    "paperspace_total": 746,
    "openings": {
     "window_symbols": 19,
@@ -138,7 +138,7 @@
    "file": "ICT-001.counts.json",
    "world_revision": "P03",
    "modelspace_total": 0,
-   "paperspace_total": 165,
+   "paperspace_total": 167,
    "openings": {
     "window_symbols": 0,
     "windows_per_floor": {},
@@ -150,7 +150,7 @@
   "ICT-101": {
    "file": "ICT-101.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 789,
+   "modelspace_total": 790,
    "paperspace_total": 307,
    "openings": {
     "window_symbols": 20,
@@ -165,7 +165,7 @@
   "ICT-102": {
    "file": "ICT-102.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 690,
+   "modelspace_total": 692,
    "paperspace_total": 225,
    "openings": {
     "window_symbols": 19,
@@ -194,7 +194,7 @@
    "file": "ICT-301.counts.json",
    "world_revision": "P03",
    "modelspace_total": 880,
-   "paperspace_total": 77,
+   "paperspace_total": 78,
    "openings": {
     "window_symbols": 39,
     "windows_per_floor": {

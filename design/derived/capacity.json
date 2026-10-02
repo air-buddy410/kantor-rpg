@@ -20,7 +20,7 @@
    "seats_from_fixtures": 41,
    "workstations": 13,
    "occupant_load_comparison": 110,
-   "walkable_m2_navgrid": 494.0,
+   "walkable_m2_navgrid": 483.2,
    "exits_on_floor": 4
   },
   "L2": {
@@ -39,7 +39,7 @@
    "seats_from_fixtures": 42,
    "workstations": 0,
    "occupant_load_comparison": 302,
-   "walkable_m2_navgrid": 506.3,
+   "walkable_m2_navgrid": 498.2,
    "exits_on_floor": 1
   }
  },
@@ -470,7 +470,7 @@
   "world_rooms_non_shaft": 34,
   "world_fixtures": 199,
   "world_activity_slots": 117,
-  "world_walkable_m2": 1000.3,
+  "world_walkable_m2": 981.4,
   "note": "Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).",
   "rooms_vs_pixel_areas_ratio": 0.72,
   "fixtures_vs_pixel_furniture_ratio": 0.67

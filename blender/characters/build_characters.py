@@ -42,6 +42,8 @@ import numpy as np
 from mathutils import Matrix, Quaternion, Vector
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+from tools.kantor.blender_compat import without_vertex_colors
 DATA = ROOT / "design" / "characters.json"
 OUT_BLEND = ROOT / "blender" / "out"
 OUT_GLB = ROOT / "blender" / "out" / "raw-glb" / "characters"  # export; shipped file comes from tools/glb_optimize.mjs
@@ -1933,7 +1935,17 @@ def bake_actions(arm, P, anim_spec, fps):
         act.use_frame_range = True
         act.frame_start, act.frame_end = 0, n
         act.use_cyclic = bool(spec["loop"])
-        act.id_root = "OBJECT"
+        action_slot = None
+        if hasattr(act, 'slots'):
+            action_slot = act.slots.new(id_type='OBJECT', name=arm.name)
+            keyframes = act.layers.new(name).strips.new(type='KEYFRAME')
+            curves = keyframes.channelbag(action_slot, ensure=True).fcurves
+            def new_curve(path, index, group):
+                return curves.new(path, index=index, group_name=group)
+        else:
+            act.id_root = 'OBJECT'
+            def new_curve(path, index, group):
+                return act.fcurves.new(path, index=index, action_group=group)
         series = {b: [] for b in BONES if b != "root"}
         hips_loc = []
         for f in range(n + 1):
@@ -1952,7 +1964,7 @@ def bake_actions(arm, P, anim_spec, fps):
         frames = list(range(n + 1))
         for b, qs in series.items():
             for i in range(4):
-                fc = act.fcurves.new(f'pose.bones["{b}"].rotation_quaternion', index=i, action_group=b)
+                fc = new_curve(f'pose.bones["{b}"].rotation_quaternion', i, b)
                 fc.keyframe_points.add(len(frames))
                 co = []
                 for fr, q in zip(frames, qs):
@@ -1961,7 +1973,7 @@ def bake_actions(arm, P, anim_spec, fps):
                 fc.keyframe_points.foreach_set("interpolation", [1] * len(frames))  # LINEAR
                 fc.update()
         for i in range(3):
-            fc = act.fcurves.new('pose.bones["hips"].location', index=i, action_group="hips")
+            fc = new_curve('pose.bones["hips"].location', i, 'hips')
             fc.keyframe_points.add(len(frames))
             co = []
             for fr, v in zip(frames, hips_loc):
@@ -1972,6 +1984,8 @@ def bake_actions(arm, P, anim_spec, fps):
         track = ad.nla_tracks.new()
         track.name = name
         strip = track.strips.new(name, 0, act)
+        if action_slot is not None and hasattr(strip, 'action_slot'):
+            strip.action_slot = action_slot
         strip.name = name
         track.mute = True
         made.append(act)
@@ -2069,7 +2083,8 @@ def build_character(cid, spec, data, variants_spec):
     bpy.ops.export_scene.gltf(
         filepath=str(glb_path), export_format="GLB", use_selection=False, export_extras=True,
         export_yup=True, export_apply=False, export_texcoords=True, export_normals=True,
-        export_tangents=False, export_colors=False, export_materials="EXPORT", export_cameras=False,
+        export_tangents=False, **without_vertex_colors(bpy.ops.export_scene.gltf.get_rna_type().properties),
+        export_materials="EXPORT", export_cameras=False,
         export_lights=False, export_skins=True, export_all_influences=False,
         # morph targets as sparse accessors without a zero base buffer: only the
         # face vertices are stored, so five expressions cost a few kilobytes

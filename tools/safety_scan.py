@@ -58,8 +58,11 @@ def main():
                 findings.append(f"{rel}: binary {size} bytes > {MAX_BINARY}")
             if not rel.startswith(allowed_binary_dirs):
                 findings.append(f"{rel}: binary outside allowed output dirs")
-            if ext == ".dwg":
-                findings.append(f"{rel}: DWG present; native DWG must come from a verified native tool (see capability report)")
+            if ext == '.dwg':
+                sys.path.insert(0, str(ROOT))
+                from tools.kantor.native_dwg import verified_native_dwg
+                if not verified_native_dwg(p, ROOT):
+                    findings.append(f'{rel}: DWG has no matching Autodesk reopen/hash/count evidence')
             continue
         if rel in SKIP_SCAN or size > 5 * 1024 * 1024:
             continue

@@ -1,0 +1,23 @@
+OK   A-ANNO-DIMS    LWPOLYLINE   generator    10  autocad    10
+OK   A-ANNO-DIMS    TEXT         generator     6  autocad     6
+OK   A-ANNO-NOTE    HATCH        generator    10  autocad    10
+OK   A-ANNO-NOTE    LWPOLYLINE   generator    20  autocad    20
+OK   A-ANNO-NOTE    TEXT         generator    10  autocad    10
+OK   A-AREA         LWPOLYLINE   generator    20  autocad    20
+OK   A-SECT-CLNG    LWPOLYLINE   generator    19  autocad    19
+OK   A-SECT-GLAZ    LWPOLYLINE   generator     3  autocad     3
+OK   A-SECT-GRND    HATCH        generator     2  autocad     2
+OK   A-SECT-GRND    LWPOLYLINE   generator     2  autocad     2
+OK   A-SECT-IDEN    HATCH        generator     1  autocad     1
+OK   A-SECT-IDEN    LWPOLYLINE   generator     1  autocad     1
+OK   A-SECT-IDEN    TEXT         generator    26  autocad    26
+OK   A-SECT-MARK    LWPOLYLINE   generator     2  autocad     2
+OK   A-SECT-MARK    TEXT         generator     4  autocad     4
+OK   A-SECT-SLAB    HATCH        generator     8  autocad     8
+OK   A-SECT-STRS    HATCH        generator     3  autocad     3
+OK   A-SECT-STRS    LWPOLYLINE   generator     4  autocad     4
+OK   A-SECT-WALL    HATCH        generator    24  autocad    24
+OK   A-STRS         LWPOLYLINE   generator     1  autocad     1
+openings generator: jendela 1 {'L1': 1}, daun pintu 0, busur 0
+total model space generator 176 autocad 176
+HASIL: cocok

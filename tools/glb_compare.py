@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compare every shipped GLB with the Blender export it was optimised from.
 
-  python3 tools/glb_compare.py [--out docs/evidence/R2/glb-compare.json]
+  python3 tools/glb_compare.py [--out docs/evidence/current/glb-compare.json]
 
 Pairs blender/out/raw-glb/<kind>/<name>.glb (Blender export) with
 app/public/assets/<kind>/<name>.glb (tools/glb_optimize.mjs output) for kind in
@@ -371,7 +371,7 @@ def skin(pos, joints, weights, mats):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(ROOT / "docs" / "evidence" / "R2" / "glb-compare.json"))
+    ap.add_argument("--out", default=str(ROOT / "docs" / "evidence" / "current" / "glb-compare.json"))
     ap.add_argument("--raw", default=str(RAW), help="Blender exports (default blender/out/raw-glb)")
     ap.add_argument("--shipped", default=str(SHIP), help="optimised files (default app/public/assets)")
     args = ap.parse_args()
