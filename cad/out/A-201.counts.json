@@ -17,6 +17,8 @@
    "LWPOLYLINE": 178
   },
   "A-GLAZ-IDEN": {
+   "HATCH": 20,
+   "LWPOLYLINE": 20,
    "TEXT": 20
   },
   "A-FURN": {
@@ -35,14 +37,17 @@
    "TEXT": 22
   },
   "A-ANNO-RMNM": {
-   "TEXT": 20
+   "TEXT": 20,
+   "LWPOLYLINE": 1,
+   "HATCH": 1
   },
   "A-FURN-IDEN": {
-   "TEXT": 108
+   "TEXT": 108,
+   "LWPOLYLINE": 15
   }
  },
  "paperspace": {
-  "paperspace:A-201": {
+  "paperspace:A-201-1": {
    "VIEWPORTS": {
     "VIEWPORT": 1
    },
@@ -57,22 +62,44 @@
     "TEXT": 1
    },
    "A-ANNO-NOTE": {
-    "TEXT": 8,
-    "LWPOLYLINE": 3
+    "TEXT": 9,
+    "LWPOLYLINE": 2
    },
    "A-ANNO-SCHD": {
-    "HATCH": 76,
-    "TEXT": 447,
-    "LWPOLYLINE": 153
+    "HATCH": 19,
+    "TEXT": 114,
+    "LWPOLYLINE": 39
    },
    "A-ANNO-VPRT": {
     "VIEWPORT": 1
    }
+  },
+  "paperspace:A-201-2": {
+   "VIEWPORTS": {
+    "VIEWPORT": 1
+   },
+   "A-ANNO-TTLB": {
+    "LWPOLYLINE": 2,
+    "HATCH": 1,
+    "INSERT": 1
+   },
+   "A-ANNO-WMRK": {
+    "TEXT": 1
+   },
+   "A-ANNO-NOTE": {
+    "TEXT": 2,
+    "LWPOLYLINE": 1
+   },
+   "A-ANNO-SCHD": {
+    "HATCH": 56,
+    "TEXT": 448,
+    "LWPOLYLINE": 116
+   }
   }
  },
  "totals": {
-  "modelspace": 762,
-  "paperspace": 714
+  "modelspace": 819,
+  "paperspace": 839
  },
  "layers": [
   "0",
@@ -101,7 +128,7 @@
  "sheet": "A-201",
  "world_revision": "P03",
  "expected": {
-  "pages": 1,
+  "pages": 2,
   "views": 1
  },
  "openings": {

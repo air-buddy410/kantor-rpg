@@ -1,7 +1,7 @@
 {
  "project": "kantor-rpg",
  "source": "design/sheets.json",
- "generated_utc": "2026-10-01T15:47:39Z",
+ "generated_utc": "2026-10-02T00:29:26Z",
  "note": "Dibuat oleh cad/generate.py. Status 'produced (konsep)' = DXF/PDF dihasilkan dan dibaca ulang; native DWG BLOCKED.",
  "sheets": [
   {
@@ -14,7 +14,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -29,11 +29,11 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-001.dxf",
-     "sha256": "11403ce730c20bd76b7456a0ceaec8ef14860a662caf6bf2f44f5f3640c8974d"
+     "sha256": "e7cca0e27983d78f3cdb3be9984b2252f66cd2174987c2c4aa00354ab363adfd"
     },
     "pdf": {
      "path": "drawings/pdf/A-001.pdf",
-     "sha256": "56c712e8d5e966aff4d1cb364fbe4e3cff36c1458c2e2a467a8b298334c2c7ec"
+     "sha256": "9b74dffa7a41f3a3f7bd24428809efd5071beaf84772e8e851bdb680c5db3546"
     },
     "counts": {
      "path": "cad/out/A-001.counts.json",
@@ -41,11 +41,11 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/A-001.png",
-     "sha256": "d426f8855da91227c86f0e24f5d5a955341dd2fe5298c222e08b3137275d4df7"
+     "sha256": "42b870dce4536d3f093daa20bd76fd149110175365fd117148f2364b2758cd05"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-001-dxf.png",
-     "sha256": "b124b45b7f71b8c373bd4fec62d39835f2849caecc6b9d2f4af826577fa7ddd7"
+     "sha256": "add9884dfd6df86439bcb3020d1dbd4f54b0752caf414bc786bd66738c5f62f6"
     }
    }
   },
@@ -59,7 +59,7 @@
    "milestone": "M1",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -74,23 +74,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-101.dxf",
-     "sha256": "9d98b7fe51bdffcfe670b503cb7b3de0633a45929e97a7f259170f1d01315980"
+     "sha256": "9196397d54603d0589c1bd4c954d327ca526dbc522936b89863b15449def89cc"
     },
     "pdf": {
      "path": "drawings/pdf/A-101.pdf",
-     "sha256": "dddeba96c6ba4b71897410f2f9ef86d522603ea6d3d1f929c92941bd1ec8c0ba"
+     "sha256": "9513b9fa158e4e12ee967d8ad984efe64f212371798ab9661e69c8e511e2d193"
     },
     "counts": {
      "path": "cad/out/A-101.counts.json",
-     "sha256": "a2e3c235cde5454e90e245117dad0e94443066679c10c984503f55328eab69a4"
+     "sha256": "de72ee7e5434f7ff3647e04da01e4ea07864e86acffa1f8c8163d6548bbd7092"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-101.png",
-     "sha256": "8a9233a91a8f90db615224786b037d9cea974b0065e4f54cb12f53dfdd97f6c4"
+     "sha256": "10789d3f7f25a9bbbe0b3c12d03eb78f2f73901c63da6edbf2fee0dc2fa8d78a"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-101-dxf.png",
-     "sha256": "5b069f579cb6d0aafda9edb153efe2968299c8c1444de475d3faa4ca966fc39d"
+     "sha256": "b66844069f46f0c501de01723a493acc75f465cd4b9f5df305a8a1e2ed3a6d9e"
     }
    }
   },
@@ -104,7 +104,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -119,23 +119,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-102.dxf",
-     "sha256": "cf3f5d2f826445f3627d080aed1d2563ac82b08d2ad6da7e85dec8a66ee00009"
+     "sha256": "feddcba2df1262a99c5a27e246b959ceb39242a93c018b3bdee3e15511473006"
     },
     "pdf": {
      "path": "drawings/pdf/A-102.pdf",
-     "sha256": "adbcdfdefac968fae7c36e91b260f6e2d211a99d2964e252f0537ab575764401"
+     "sha256": "2aa48e3cc9eb8d8f0d4a05f83363df6e6d81fdd07859c4f1ff3ef7f3964991da"
     },
     "counts": {
      "path": "cad/out/A-102.counts.json",
-     "sha256": "50a50dc83bab55654475da2079e77e431ab7919f2c1af96dde4f9abc9a2c3d9e"
+     "sha256": "d7d0454cf7d1f7080af883a7e1c2d01d041cfacb3b50407ec2d4458cd1ad476b"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-102.png",
-     "sha256": "5a0aa6cc3cf74c04108985ec06a079dbc86c11308b21d01e914bd5d1bec64106"
+     "sha256": "5297278cb94acba11f5e894cb4ce457232b130346c40f7769beff119c93c9e01"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-102-dxf.png",
-     "sha256": "d840e948e626f134db417fdb032032bebaceac94285eeb754f3ebd9d3dc7e64f"
+     "sha256": "af1d56a9f027d75ca9aec4d38a8d9460bfa406c9981f27330814e3ff71a61a0e"
     }
    }
   },
@@ -149,7 +149,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 2,
    "page_size_mm": [
@@ -164,27 +164,27 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-103.dxf",
-     "sha256": "4d6c977f206c6e41531d98700421a1cdedbc955bb80afe452f2720b659d41f70"
+     "sha256": "1fe774b6857284d48b3f7627f9064027dd9950f82ebe1a23980cba8e4795ed6e"
     },
     "pdf": {
      "path": "drawings/pdf/A-103.pdf",
-     "sha256": "14f562ae9be8fbf3ea78cc4600da2aa357cec2ae4534c58112f62e188c1fce13"
+     "sha256": "4407e6add6ed4227105f3020d63418665f128246ea287cef6eabf57f2ff9ce6d"
     },
     "counts": {
      "path": "cad/out/A-103.counts.json",
-     "sha256": "3a4d324639ae0617ef4864978e6ca5afe151bbd164ce3bfacc61692b182d705a"
+     "sha256": "16dc43fd8f98abfaeb1e0cd44b810e94f679bcbbf20e2d26cd8e1dd0ee92811b"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-103.png",
-     "sha256": "2bed9a13cd389c5d8807ecbc59749edf09c4f38312bfb3fd1e785c917064e649"
+     "sha256": "98a74514a43acaf9a5579de144d89336e13877d161a6daa8f6e21a111a848e80"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-103-dxf.png",
-     "sha256": "87e06db9ab19afb6fc5502f9537c54ab30f297e23d2ac541e24a3c2d879883bf"
+     "sha256": "5888d08012a8a35d3b660097516ba6f42d721a63ecd73c2e6d10a450c679e13d"
     },
     "preview_pdf_p2": {
      "path": "drawings/previews/A-103-p2.png",
-     "sha256": "975de23f1ac24a898df00b939cd2e6b00af1184cc1a073687b3c9ce028b0a0bf"
+     "sha256": "8d82bb34fbd7347553d4c5c59f7ea98eb526f620132a4bbcabad707ad8726dfd"
     }
    }
   },
@@ -198,9 +198,9 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
-   "pdf_pages": 1,
+   "pdf_pages": 2,
    "page_size_mm": [
     594,
     420
@@ -213,23 +213,27 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-201.dxf",
-     "sha256": "bdee2c998b8a02d586e83b20c7ca55efa5285f1732b1344f8b95f48b2bd24523"
+     "sha256": "389975294a4564873ec3babf54fbd832f3bdab7943f19b1bca80ad486492506a"
     },
     "pdf": {
      "path": "drawings/pdf/A-201.pdf",
-     "sha256": "e0cf446c63b39145eb0cdb70b7a8138627c2b6e125bbdce29ab01a265d4e54a0"
+     "sha256": "99bb48d412ad6e30bb9670a414271cb7e47b06fc9e230afd59cdf3d19cb2ab3f"
     },
     "counts": {
      "path": "cad/out/A-201.counts.json",
-     "sha256": "4739fb6523dd1630a5a281cb826b479502651e798abcbaffd8f161a48ca7ce08"
+     "sha256": "91fc590660fd87983694001be4bcfba91bcebb2adca092f6df776babd59950b4"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-201.png",
-     "sha256": "1555525265d16936c85212dc1b4980bcd02aa3fb4d2af2017f45a7a3c302fed8"
+     "sha256": "04d92d9130fe0ed67663dbe924051f512df4efdd079b24d3883113a4ede3a427"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-201-dxf.png",
-     "sha256": "f74775cdb6eb10490fc4bed0301dc2229af1bbbafdbe9a2c5f0d2d340d775c49"
+     "sha256": "e1e6f810974acf647405552d299cbf7efec3d81f7d8cdfefcf907a87fcf6f409"
+    },
+    "preview_pdf_p2": {
+     "path": "drawings/previews/A-201-p2.png",
+     "sha256": "2e9197a1e686e45f8ba72eb19022d1b3d124ecc162261e7b1f338d3f15ffbf94"
     }
    }
   },
@@ -243,9 +247,9 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
-   "pdf_pages": 1,
+   "pdf_pages": 2,
    "page_size_mm": [
     594,
     420
@@ -258,23 +262,27 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-202.dxf",
-     "sha256": "dd73bde0b1e6b13cb5a89fc3f0f0985a9aa8b1c5a32ba11f35e5647cd6a6218d"
+     "sha256": "21a18f18d8eaa2eb2b4e88fafcbc732ee9aff0b1400447c056e6e0d0a0d3c8ea"
     },
     "pdf": {
      "path": "drawings/pdf/A-202.pdf",
-     "sha256": "a384ba404029dff2c1344e8768c068a17963a5c8f568fd37b793f1dbce774071"
+     "sha256": "c9522c73588fc5a5c255248ba9e04670f1f412b0c017e3d8ccb9925fae683337"
     },
     "counts": {
      "path": "cad/out/A-202.counts.json",
-     "sha256": "cfbabcee31ef4ce64c1bc81729dc39e2419ca7ec10bc1e1477f5deeb345f8000"
+     "sha256": "0bebbabff6cdf6990a4c576703ec71fd096ffb5f93713780b9ecc0e8d01df502"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-202.png",
-     "sha256": "33be68544e48102ed0aa900bdb7ce3c28f526f5e6be1a75b7a8ec4a7ecc64368"
+     "sha256": "21a12d352ef9a9eb3d74f6d3bb74a219a446df767f7275b43d0bf12f0246a4c5"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-202-dxf.png",
-     "sha256": "37139f7ceaa01be10068cefd3e075da4c6ab34a4e10c89c75a752c7e515ebafa"
+     "sha256": "2372583f526c877175a1e15ead13978bf448d9676a1fca27387ae624be0b02ab"
+    },
+    "preview_pdf_p2": {
+     "path": "drawings/previews/A-202-p2.png",
+     "sha256": "db4c22b0694486f6ef1a5fa36f4cb04fb64af592e56f6415629ed883b5a2814f"
     }
    }
   },
@@ -288,7 +296,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -303,23 +311,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-301.dxf",
-     "sha256": "65f1ef0958620c078ecf93484440c3ab31206f9021c67bc1c4105a10b3d206db"
+     "sha256": "563839b1529aa55cf59691e544b7bb32d7bc5e6e8326ab6aed5ccf4c67b62c65"
     },
     "pdf": {
      "path": "drawings/pdf/A-301.pdf",
-     "sha256": "7bfc8717c59ec0c00d02162d9199b21986b1cfcd9548c5a877c5a7ca7f4893b5"
+     "sha256": "10fd18440738167162fa95e7ae96f4681c23d9e3e2249368f65d05004fb10f11"
     },
     "counts": {
      "path": "cad/out/A-301.counts.json",
-     "sha256": "cc6ff68b8c6da7f32cded717644b4ec684d179a752ca6d7a99e53f362adf1f6a"
+     "sha256": "8afe018a3764799375dc39534785179ca7668b34a3e398d7dd4ea1c2cf0cdb68"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-301.png",
-     "sha256": "15c44bea04fc79c362f1b95135c77c46dea08b3f4a4420d3b8b4b4556ab9b7ed"
+     "sha256": "1c7079382c8e5d4279a8fbb80e640c9b2f81e8217376c6aa9c65e5c9aadf5615"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-301-dxf.png",
-     "sha256": "8e4f3fd924d9935ff1fdbaf186e6ef713798c81af52ea6d7775bfee0dffab837"
+     "sha256": "42cc14bdffe5f736f46ce1426ff0453c64fc1980d023830e71258aefc8ad8104"
     }
    }
   },
@@ -333,7 +341,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -348,23 +356,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/A-401.dxf",
-     "sha256": "ff738091f8c74e9e2804202921dd43767ac4af6617eb6a52c95613b20c2eb86a"
+     "sha256": "bed735cb113090665d19a2c53bffc6a33f158b7999b736a302b09f4f3f3a401e"
     },
     "pdf": {
      "path": "drawings/pdf/A-401.pdf",
-     "sha256": "9b3d31d165a28257d3afbf5694b0c1c23640a0f022e8a5aeafc9fc7845e41296"
+     "sha256": "df76942f5f34af4fe1bbeb8d9cf6807a16f2315651555616f53942949ab6f09e"
     },
     "counts": {
      "path": "cad/out/A-401.counts.json",
-     "sha256": "6c5a8a09181770bd4fbd1b349d9c2627faaa2c4c29acfc570b57517eed945ed7"
+     "sha256": "149a5e7d8b80d506dfd15d76f57c630aa4ca0b193cc35e66290b00fe8863cb83"
     },
     "preview_pdf": {
      "path": "drawings/previews/A-401.png",
-     "sha256": "de3e64e4797f742a9bfd5f389978cca3e6e47bc85b6eb17554a9658927205fc0"
+     "sha256": "ff9abb296bdeeb8ce692c4ae80d7590f99016355f7177fdc2a07758e43140e18"
     },
     "preview_dxf": {
      "path": "drawings/previews/A-401-dxf.png",
-     "sha256": "0f3e02556c0c8245f692d93189474e3b811d2602be4600b7df205d8748b08fc4"
+     "sha256": "d35e44e5453f27cc301b08f7ba65615fe5d93a77b87dd911f77c41ac61b76795"
     }
    }
   },
@@ -378,7 +386,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -393,23 +401,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/I-101.dxf",
-     "sha256": "a886c02c8dd20ac58d494cfa28d6bfdc0ccea07178f9712aa8b61d1d4b31a2cd"
+     "sha256": "97c37ba9f60bc00961ecb078ddbecccce44b1762aa5a8ec78480fa51745c0a0d"
     },
     "pdf": {
      "path": "drawings/pdf/I-101.pdf",
-     "sha256": "7a072970a742acbb912cb30cd76a129a0f8595fc5f34d43d0cd4dc4b64297d05"
+     "sha256": "1a87ac28987dde1f095c6d4a8d7b104299b96e9c525a52bfcf9518faf59af119"
     },
     "counts": {
      "path": "cad/out/I-101.counts.json",
-     "sha256": "bb18cb9c74123af4304188fac7d87848244ea6da88726febff941353f0b37e43"
+     "sha256": "c0405bea6ccdfd20cc9361e5189abbf55788560bf33ee25aa702618dbe15fa54"
     },
     "preview_pdf": {
      "path": "drawings/previews/I-101.png",
-     "sha256": "2069e2f78a7a91d1725721995cf81a75ee979a37de7c33462881d6b398de3723"
+     "sha256": "1dd4dba165e474b3f5ee9b5b573fb211ca25730fecf5c5465b039972f99d28e7"
     },
     "preview_dxf": {
      "path": "drawings/previews/I-101-dxf.png",
-     "sha256": "86e53f361d31e0f7f00242505d42686ec27a7f71b2503145743043cb3f1dc8d3"
+     "sha256": "edde108942b54fe86f8eab614081dcb547fece8cd035e3de4bcf8fcec273ac34"
     }
    }
   },
@@ -423,7 +431,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -438,11 +446,11 @@
    "files": {
     "dxf": {
      "path": "cad/out/ICT-001.dxf",
-     "sha256": "3d5c7f1e5152479bac1e4ba829959f7f7d4a88ae4f34b1600629085c0094f86b"
+     "sha256": "d0e95946c32f2f96a406a13afba07d884a6dc525389b0ed924b33a9e2c80572c"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-001.pdf",
-     "sha256": "1714972a29f6252978a1728dc5a371a84a1ea7502eb40ef33f0da292c10875de"
+     "sha256": "f9a4e2116666da2fbbd8c9d6b88b0751289d3733af480a6eb7604e8d841dc4e0"
     },
     "counts": {
      "path": "cad/out/ICT-001.counts.json",
@@ -450,11 +458,11 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-001.png",
-     "sha256": "2c76ecf21190de45e0db4ca38e3e6282f61ce93b1bf641a106ad6c92a394aa8c"
+     "sha256": "85769d04bad88407de9b551228943d07c738a7cb60c476aec3d1e4d85ac10929"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-001-dxf.png",
-     "sha256": "459b0651b21f11a78ab8978f8de4fdc194a738253d626674601140e1da13e5bb"
+     "sha256": "e316212bbb32fd83fe8962b1309d88cffeb0bf364cc1cbd006b9d23efce28543"
     }
    }
   },
@@ -468,7 +476,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -483,23 +491,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/ICT-101.dxf",
-     "sha256": "22c69c30a85ac8e7e2ae37ab4d6592e8040c9cd27d1efe8e421e59cef6fe6d03"
+     "sha256": "76c131ba686929462648f2a40a2fd1eafdd4778b95531b4cff972b02e308f5fc"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-101.pdf",
-     "sha256": "96af4f789e63e6a3a855d9f17a72b2f182e066d873f5ebda481c5891b40126a9"
+     "sha256": "b24d16dd0cc830c5c6f45e7bb3d2212f234fa22d4848aec12661cbd78a9ca418"
     },
     "counts": {
      "path": "cad/out/ICT-101.counts.json",
-     "sha256": "5a651361e3158654ceb45c7640205576062819e5be4c4ab392899a916b287c2f"
+     "sha256": "80fc24534a31e260fbf7abec4a5ffa3f134265244f72270d866a4c83550b003a"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-101.png",
-     "sha256": "64eadb3de45c3f8c641fbc71d7eb3126790028879271d33d37dcdb502911a5de"
+     "sha256": "c9f8866d069720197fa0f1d52ba449029d5e7512c213a7ff9db39e1eedf5c942"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-101-dxf.png",
-     "sha256": "63d3a8fea4be4e7c28bd07195bf6c5f669de7b3481709c08d5342ed8a7ee70e2"
+     "sha256": "ed4ca8378e9772e2050e7aaff648ace7c37fab9f252bcc506b1ab9707287e29e"
     }
    }
   },
@@ -513,7 +521,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -528,23 +536,23 @@
    "files": {
     "dxf": {
      "path": "cad/out/ICT-102.dxf",
-     "sha256": "c2800ddd8f357ad4f568a24d1cc6c9e9b96765414cc8892839bb2320f05f0bfa"
+     "sha256": "1fa9a46c831ca71c9c5dddca9e7114a7ab53c488f27c2ae1f25637547821757e"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-102.pdf",
-     "sha256": "1c66c5096dae9d09499b056335690cb1f0d99b97bd115b47a2215744b5a5c541"
+     "sha256": "4f05858d55234bba600cbc657ce678c73d08111bcb1d79ef123fe5b437203569"
     },
     "counts": {
      "path": "cad/out/ICT-102.counts.json",
-     "sha256": "f98a200698a0071ee6fab7eef5b1add3805b314064f8e625315a373383f622ae"
+     "sha256": "cd9c5c12b96f69f59257d0fb8201ca853b6927307352774d770c75adb23def7e"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-102.png",
-     "sha256": "1c71d732b366d6c5b7df360164b8840402d24f39eb7e88898a3a90577907371b"
+     "sha256": "a01b85ebaf1b8e6b1fb8131ba64d80a6a07fb5adb288d06ba0fba98d7e19b6d4"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-102-dxf.png",
-     "sha256": "b18e322d34763fd7acbd8a82f36bcd6bd9809467ff2049e266b41933c01253c2"
+     "sha256": "e3d9b2b4de268cf0fc18e638dcd03e677aeda0b13d7df02e824600fd0b615b7f"
     }
    }
   },
@@ -553,12 +561,12 @@
    "title": "Elevasi rack",
    "discipline": "ICT",
    "size": "A3",
-   "scale": "1:20",
+   "scale": "1:10",
    "content": "rack_elevation",
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -573,11 +581,11 @@
    "files": {
     "dxf": {
      "path": "cad/out/ICT-201.dxf",
-     "sha256": "150655034b2f6696fa70a16f159f6454f97cc695a4972b21f98d68fe0c4d708e"
+     "sha256": "f23cd5cb4163e7129951f1bdc4c72989d965530a3839e2a41a77343edebdcbf0"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-201.pdf",
-     "sha256": "605de184221209cf8fb4e8587057c64935cacd8854c6e895d0bf04cb399eb6e4"
+     "sha256": "ae9a013940bd55bbc72559f395e136ab5c7e0b5349a7a95f55ac847e0811858b"
     },
     "counts": {
      "path": "cad/out/ICT-201.counts.json",
@@ -585,11 +593,11 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-201.png",
-     "sha256": "05a183ced18a0f7ff0ee9dca635b3e04559f97f3df067e4fb2736cf24a1438ca"
+     "sha256": "6ac7c30bf199a9aa90530c020caf112623939ea91edf6080488fb8a6beecdf87"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-201-dxf.png",
-     "sha256": "e4053e24887f34c6f631382453a0dafe254edc1f242710398a312e7e04560a6b"
+     "sha256": "5aa58ebdb90664e5016d4c1de5d79d8204a1fa661bd45834f678223ad985582d"
     }
    }
   },
@@ -603,7 +611,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 1,
    "page_size_mm": [
@@ -618,11 +626,11 @@
    "files": {
     "dxf": {
      "path": "cad/out/ICT-301.dxf",
-     "sha256": "8da3564fa80e769d2de5949819ba8c6565e07b59b3cc2d36e2d9af37fb52535e"
+     "sha256": "8aaea39409cf41d1bbafb48ff646419b98b9614125e03444e7fcaf025addc250"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-301.pdf",
-     "sha256": "9811e88795e9fbccd554dc0fd7b915c9c8b967c8c14a8aa79fdaaa8ebee45b4c"
+     "sha256": "6fcc44ebb035a00d9d223cd268f61efabd0c2397320aa2a5935a166ad12661b2"
     },
     "counts": {
      "path": "cad/out/ICT-301.counts.json",
@@ -630,11 +638,11 @@
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-301.png",
-     "sha256": "a8a5277a8ccab15f534697ee4c23586a69279e9c05706b825b7ce36522f96f08"
+     "sha256": "d777724ba1306917cba2c67792c2ab11fb8d3e7e470f43a2e44dae50aa3a0e98"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-301-dxf.png",
-     "sha256": "f28cdd70e072246b5b4c024bf320c46176976bbb54ea9860fc1e0f3ae5486028"
+     "sha256": "21e243fee77bdf10978fe0632b255b3e85e3a6bbb1f80a10f3cc9b393523b703"
     }
    }
   },
@@ -648,7 +656,7 @@
    "milestone": "M3",
    "status": "produced (konsep)",
    "revision": "P03",
-   "generated_utc": "2026-10-01T15:47:39Z",
+   "generated_utc": "2026-10-02T00:29:26Z",
    "generator_command": "python3 cad/generate.py --all-available",
    "pdf_pages": 3,
    "page_size_mm": [
@@ -663,31 +671,31 @@
    "files": {
     "dxf": {
      "path": "cad/out/ICT-401.dxf",
-     "sha256": "64876685ad68b491194fdf84e7aa36cab9e60b5b9eb0e1c7ce3725d78007a59a"
+     "sha256": "2459adaf99519d0698106d181aa983c05cbcb9d52956e5de19e2bc62683ff8d6"
     },
     "pdf": {
      "path": "drawings/pdf/ICT-401.pdf",
-     "sha256": "fd4b831a85e8595d90373515583169a1ac214960a5c4dc8ff5a2109ea016e446"
+     "sha256": "5be6bca770a59654edf3806047d547d2c84644e119058c9b13dabf43db442c3f"
     },
     "counts": {
      "path": "cad/out/ICT-401.counts.json",
-     "sha256": "f89cca7c8b5fe00db0602e4b4826406d6c424d44302c6d69366ef5d43fbf5f64"
+     "sha256": "2faa61a9c67e1b23970b31b860f1f1a9e31477191a9178f36a1e9b33b61c958a"
     },
     "preview_pdf": {
      "path": "drawings/previews/ICT-401.png",
-     "sha256": "73e455ebd8cc398b5e562186f80908b2597c08ee9b05a0521305c700e457bf87"
+     "sha256": "de2ada5676ced8fd2277e698137f5cfaa6c03f61d2626bd6c3547adcf30f8ee9"
     },
     "preview_dxf": {
      "path": "drawings/previews/ICT-401-dxf.png",
-     "sha256": "d2a94a60422da3c42e08d621db6259f08e123caf0a19309e1590ac03fd90919e"
+     "sha256": "4dbb7777c2cf5503963da4c4e7cdd03497c1e1a7d87b10f7f0f8268287c82d01"
     },
     "preview_pdf_p2": {
      "path": "drawings/previews/ICT-401-p2.png",
-     "sha256": "53741ad585176479efdd439db2829a23280b5e00cd8cd8a84361ebc1f2c59a3f"
+     "sha256": "f68dfd5d2648c9069fa9a38eec089a11d99ea551716c76ca56d5a4ad3ff8f1f2"
     },
     "preview_pdf_p3": {
      "path": "drawings/previews/ICT-401-p3.png",
-     "sha256": "e5d6c528a6bde657e2e087fc8e747f15e6d546448bd1309b1cac819ca847947e"
+     "sha256": "17dc2af03a3010e0d61524ad21c00e4afe0723def9a6ebf71d8e7bd2254b92a4"
     }
    }
   }
@@ -713,15 +721,17 @@
     "ICT-301",
     "ICT-401"
    ],
-   "pages": 18,
+   "pages": 20,
    "page_labels": [
     "A-001",
     "A-101",
     "A-102",
     "A-103-1",
     "A-103-2",
-    "A-201",
-    "A-202",
+    "A-201-1",
+    "A-201-2",
+    "A-202-1",
+    "A-202-2",
     "A-301",
     "A-401",
     "I-101",
@@ -735,7 +745,7 @@
     "ICT-401-3"
    ],
    "bookmarks": 15,
-   "sha256": "30e1850ffd27e97f3b61f433df39aff242e0bb957c7dc077e1c9fbe5c05a083f"
+   "sha256": "88cdfa1da7faf8b2b42a5c6aed443e609a9b89d7a3afc8dcec16bcc466488932"
   },
   {
    "file": "drawings/pdf/kantor-rpg-sheets-A.pdf",
@@ -750,20 +760,22 @@
     "A-301",
     "A-401"
    ],
-   "pages": 9,
+   "pages": 11,
    "page_labels": [
     "A-001",
     "A-101",
     "A-102",
     "A-103-1",
     "A-103-2",
-    "A-201",
-    "A-202",
+    "A-201-1",
+    "A-201-2",
+    "A-202-1",
+    "A-202-2",
     "A-301",
     "A-401"
    ],
    "bookmarks": 8,
-   "sha256": "1577a1367c77f72f3b7003624b07dc8b976380d98d32024181466e67939f59ec"
+   "sha256": "ad7821dd7736f5a1d6ff81d7ab834cddd33269c8248debd5e7c8dcbe0b172acb"
   },
   {
    "file": "drawings/pdf/kantor-rpg-sheets-I.pdf",
@@ -776,7 +788,7 @@
     "I-101"
    ],
    "bookmarks": 1,
-   "sha256": "7faea6adec70458a467e755e8395495b2b1fe7976b72bbf9e352eee59e57a9ed"
+   "sha256": "1aa16851f021965113d706561d390bb362013001b98abdbc42daeaa58175819b"
   },
   {
    "file": "drawings/pdf/kantor-rpg-sheets-ICT.pdf",
@@ -801,7 +813,7 @@
     "ICT-401-3"
    ],
    "bookmarks": 6,
-   "sha256": "6e366494e5ab804d8d4e758597a98e555a532308e8fe1f1c6c5810adc9644eb4"
+   "sha256": "27595a94fee6afdb4bda439c5babdd4bdca18015ca2973192f1bed64cce2e0af"
   }
  ]
 }

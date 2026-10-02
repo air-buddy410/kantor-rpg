@@ -290,15 +290,52 @@ def test_plan_door_arcs_on_hinge_and_into_side(built, world_master, sid):
     assert counts["door_arcs"] == counts["door_leaves"] == leaves_per_floor(world_master, floor)
 
 
+def short_tag(win_id):
+    """Drawing tag written independently of the generator: W + window number."""
+    return "W" + str(int(win_id.rsplit("-", 1)[1]))
+
+
+def dxf_tag_map(dxf_path, layer):
+    """{window id: [TEXT strings]} and {window id: closed hexagons} on a tag layer."""
+    texts, shapes = {}, {}
+    for e in ezdxf.readfile(dxf_path).modelspace().query(f'TEXT LWPOLYLINE[layer=="{layer}"]'):
+        kind, ident, _ = xd(e)
+        if kind != "window":
+            continue
+        if e.dxftype() == "TEXT":
+            texts.setdefault(ident, []).append(e.dxf.text)
+        elif e.closed and len(e) == 6:
+            shapes[ident] = shapes.get(ident, 0) + 1
+    return texts, shapes
+
+
 def test_plan_window_tags_legible_and_clear(built, world_master):
+    """Short tag per window on the plans: placed clear of swings, door tags and
+    extension lines; >= 2,5 mm when the A2 sheet is printed on A3; one TEXT and
+    one hexagon per window in the DXF carrying the full window ID in xdata."""
+    a3_scale = min(1.0, 420 / 594, 297 / 420)
     for sid in ("A-101", "A-102"):
         plan = built[sid]["plan"]
-        assert all(w["tag_overlap_m2"] == 0 for w in plan["windows"]), sid
-        assert all(w["tag_size"] >= 5.0 for w in plan["windows"])
-        text = subprocess.run(["pdftotext", str(built[sid]["pdf"]), "-"], capture_output=True, text=True,
-                              check=True).stdout
         ids = {w["id"] for w in world_master["windows"] if w["floor"] == PLAN_SHEETS[sid]}
-        assert {i for i in ids if i not in text} == set()
+        assert {w["id"] for w in plan["windows"]} == ids
+        assert all(w["tag_overlap_m2"] == 0 for w in plan["windows"]), sid
+        assert all(w["tag_text"] == short_tag(w["id"]) for w in plan["windows"]), sid
+        assert all(w["tag_size"] * 25.4 / 72 * a3_scale >= 2.5 for w in plan["windows"]), sid
+        texts, shapes = dxf_tag_map(built[sid]["dxf"], "A-GLAZ-IDEN")
+        assert texts == {i: [short_tag(i)] for i in ids}, sid
+        assert shapes == {i: 1 for i in ids}, sid
+        words = subprocess.run(["pdftotext", str(built[sid]["pdf"]), "-"], capture_output=True, text=True,
+                               check=True).stdout.split()
+        assert {i: words.count(short_tag(i)) for i in ids} == {i: 1 for i in ids}, sid
+
+
+def test_elevation_and_section_window_tags(built, world_master):
+    texts, shapes = dxf_tag_map(built["A-301"]["dxf"], "A-ELEV-GLAZ-IDEN")
+    assert texts == {w["id"]: [short_tag(w["id"])] for w in world_master["windows"]}
+    assert shapes == {w["id"]: 1 for w in world_master["windows"]}
+    assert built["A-301"]["summary"]["window_tag_pt"] * 25.4 / 72 >= 2.5  # A3 prints at 1:1 on A3
+    texts, _ = dxf_tag_map(built["A-401"]["dxf"], "A-SECT-IDEN")
+    assert texts == {"W-L1-016": ["W16"]}
 
 
 def test_plan_layers_present(built):

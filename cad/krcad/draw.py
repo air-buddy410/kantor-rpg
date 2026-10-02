@@ -20,6 +20,26 @@ from krcad.common import _setup_dxf, _xdata
 FONT_KEYS = ("R", "M", "B")
 CAP = 0.7  # cap height / em, used to convert PDF point sizes to DXF text height
 
+# Smallest font size on the sheet being built (pt). Every text helper raises a
+# requested size to this floor, so tables, paragraphs and labels reflow at a
+# size that prints >= 2,5 mm on A3 (common.legible_pt). SheetDoc sets it; the
+# builders run one sheet at a time, so a module value is enough.
+_FLOOR = 0.0
+
+
+def set_text_floor(pt: float) -> None:
+    global _FLOOR
+    _FLOOR = pt
+
+
+def text_floor() -> float:
+    return _FLOOR
+
+
+def fs(size: float, rel: float = 1.0) -> float:
+    """Requested size raised to the sheet floor (x rel, for headings above body text)."""
+    return max(size, _FLOOR * rel)
+
 
 @dataclass
 class Style:
@@ -70,7 +90,9 @@ class Layer:
                              xd, only))
 
     def text(self, pos, text, layer, size=7.0, font="R", color=INK, align="l", rot=0.0, knock=False, xd=None,
-             only=None, z=1, alpha=1.0):
+             only=None, z=1, alpha=1.0, floor=True):
+        # floor=False only for the diagonal watermark, which is background.
+        size = fs(size) if floor else size
         return self.add(Prim("text", {"pos": tuple(pos), "text": str(text), "size": size, "font": font,
                                       "align": align, "rot": rot, "knock": knock}, layer,
                              Style(None, color, 0, None, alpha), xd, only, z))
@@ -116,6 +138,8 @@ class SheetDoc:
         self.meta = meta  # header custom vars + title block attributes
         self.pages: list[Page] = []
         self.summary: dict = {}  # sheet-specific facts for logs/tests
+        set_text_floor(legible_pt(sheet["size"]))
+        self.body = text_floor()
 
     def new_page(self, label=""):
         w, h = PAPER_MM[self.sheet["size"]]
@@ -142,12 +166,12 @@ def font_name(key):
 
 
 def text_w_mm(text, size, font="R"):
-    return tf().width(str(text), font_name(font), size) / PT_PER_MM
+    return tf().width(str(text), font_name(font), fs(size)) / PT_PER_MM
 
 
 def wrap(text, size, width_mm, font="R"):
     from reportlab.lib.utils import simpleSplit
-    return simpleSplit(str(text), font_name(font), size, width_mm * PT_PER_MM) or [""]
+    return simpleSplit(str(text), font_name(font), fs(size), width_mm * PT_PER_MM) or [""]
 
 
 # ------------------------------------------------------------------ tables
@@ -160,20 +184,23 @@ class Col:
     font: str = "R"
 
 
-def table_rows_height(cols, rows, size, lead):
+def table_rows_height(cols, rows, size, lead, pad=1.4):
+    size = fs(size)
     hs = []
     for row in rows:
         n = max(len(wrap(cell, size, c.width - 2, c.font)) for cell, c in zip(row, cols))
-        hs.append(n * size * lead / PT_PER_MM + 1.4)
+        hs.append(n * size * lead / PT_PER_MM + pad)
     return hs
 
 
 def draw_table(page, x, y_top, cols, rows, size=6.6, lead=1.2, layer="A-ANNO-SCHD", max_h=None, zebra=True,
-               head_size=None, row_xd=None):
+               head_size=None, row_xd=None, pad=1.4):
     """Draw a table from y_top downwards; returns (rows drawn, bottom y).
 
-    Stops before a row would cross y_top - max_h so callers can paginate."""
-    head_size = head_size or size
+    Stops before a row would cross y_top - max_h so callers can paginate.
+    pad = vertical cell padding (mm) added to each row's text height."""
+    size = fs(size)
+    head_size = fs(head_size or size)
     width = sum(c.width for c in cols)
     hh = head_size * lead / PT_PER_MM + 2.0
     page.rect(x, y_top - hh, x + width, y_top, layer, stroke=None, fill="#dfe9e3")
@@ -183,7 +210,7 @@ def draw_table(page, x, y_top, cols, rows, size=6.6, lead=1.2, layer="A-ANNO-SCH
         page.text((tx, y_top - hh + 0.75), c.head, layer, size=head_size, font="B", color=GREEN, align=c.align)
         cx += c.width
     y = y_top - hh
-    heights = table_rows_height(cols, rows, size, lead)
+    heights = table_rows_height(cols, rows, size, lead, pad)
     drawn = 0
     for i, (row, h) in enumerate(zip(rows, heights)):
         if max_h is not None and (y_top - (y - h)) > max_h:
@@ -209,64 +236,97 @@ def draw_table(page, x, y_top, cols, rows, size=6.6, lead=1.2, layer="A-ANNO-SCH
 
 # ------------------------------------------------------------------ frame, title block, watermark
 
-TB_W, TB_H = 175.0, 50.0
+TB_W = 175.0
+
+
+def _tb_lines(sheet, world, page_no, page_count, generated_utc, world_sha, tb_w):
+    """Title block content and its height, from the sheet's body size."""
+    b = fs(0)
+    rev = world["revision"]
+    lh = b * 1.3 / PT_PER_MM  # field row pitch, mm
+    title_pt = max(11.0, b * 1.3)
+    titles = wrap(sheet["title"], title_pt, tb_w - 6, "B")[:2]
+    fields = [("Skala", f"{sheet['scale']} @ {sheet['size']} lanskap"), ("Revisi", f"{rev['id']} · {rev['date']}"),
+              ("Render", generated_utc.replace("T", " ").replace("Z", " UTC")),
+              ("Halaman", f"{page_no}/{page_count}"), ("Digambar", DRAWN_BY), ("Diperiksa", CHECKED_BY),
+              ("Sumber", f"world.json sha256 {world_sha[:16]}")]
+    note = wrap(font_source_note(tf().fonts), b, tb_w - 6)
+    band = b * 1.15 * 1.55 / PT_PER_MM
+    brand = max(13.0, b * 1.45)
+    h = (band + 1.5 + brand * 1.15 / PT_PER_MM + 1.0 + len(titles) * title_pt * 1.15 / PT_PER_MM + 1.0
+         + len(fields) * lh + 1.0 + len(note) * lh + 2.0)
+    return {"b": b, "lh": lh, "title_pt": title_pt, "titles": titles, "fields": fields, "note": note, "band": band,
+            "brand": brand, "h": h}
 
 
 def frame_and_title(doc: SheetDoc, page: Page, page_no: int, page_count: int, generated_utc: str, world_sha: str,
                     tb_origin=None, tb_w=TB_W):
-    """Border, title block (bottom right), watermark. Returns usable content rect (paper mm)."""
+    """Border, title block (bottom right), watermark. Returns usable content rect (paper mm).
+
+    The title block grows with the sheet's body size, so callers place their
+    content against the returned title block rect, never a fixed height."""
     sheet, world = doc.sheet, doc.world
     W, H = page.size
     fx0, fy0, fx1, fy1 = 20.0, 10.0, W - 10.0, H - 10.0
     page.rect(fx0, fy0, fx1, fy1, "A-ANNO-TTLB", stroke=GREEN, width=1.2)
     page.rect(4, 4, W - 4, H - 4, "A-ANNO-TTLB", stroke=GREEN, width=0.4, only="pdf")
+    t = _tb_lines(sheet, world, page_no, page_count, generated_utc, world_sha, tb_w)
+    b, lh = t["b"], t["lh"]
     tx0 = tb_origin[0] if tb_origin else fx1 - tb_w
     ty0 = tb_origin[1] if tb_origin else fy0
-    tx1, ty1 = tx0 + tb_w, ty0 + TB_H
+    tx1, ty1 = tx0 + tb_w, ty0 + t["h"]
     lay = "A-ANNO-TTLB"
     page.rect(tx0, ty0, tx1, ty1, lay, stroke=GREEN, width=0.9, fill="#ffffff")
     rev = world["revision"]
-    # Status band.
-    page.rect(tx0, ty1 - 7.5, tx1, ty1, lay, stroke=None, fill=GREEN, only="pdf")
-    page.text((tx0 + 3, ty1 - 5.4), f"STATUS {STATUS}", lay, size=9, font="B", color="#ffffff", only="pdf")
-    page.text((tx1 - 3, ty1 - 5.4), "Bukan untuk konstruksi", lay, size=8, font="M", color="#ffffff", align="r",
+    # Status band: white on deep green.
+    y = ty1 - t["band"]
+    page.rect(tx0, y, tx1, ty1, lay, stroke=None, fill=GREEN, only="pdf")
+    base = y + (t["band"] - b * 1.15 * 0.7 / PT_PER_MM) / 2
+    page.text((tx0 + 3, base), f"STATUS {STATUS}", lay, size=b * 1.15, font="B", color="#ffffff", only="pdf")
+    page.text((tx1 - 3, base), "Bukan untuk konstruksi", lay, size=b, font="M", color="#ffffff", align="r",
               only="pdf")
-    page.text((tx0 + 3, ty1 - 13.5), "kantor-rpg", lay, size=13, font="B", color=GREEN, only="pdf")
-    page.text((tx0 + 3 + text_w_mm("kantor-rpg", 13, "B") + 3, ty1 - 13.2),
-              f"Proyek kantor-rpg · gedung {world['building']['id']}", lay, size=7, color=INK, only="pdf")
-    for j, ln in enumerate(wrap(sheet["title"], 11, tb_w - 52, "B")[:2]):
-        page.text((tx0 + 3, ty1 - 19.5 - j * 4.6), ln, lay, size=11, font="B", color=GREEN, only="pdf")
-    pages_txt = f"halaman {page_no}/{page_count}"
-    fields = [("Skala", f"{sheet['scale']} @ {sheet['size']} lanskap"), ("Revisi", f"{rev['id']} · {rev['date']}"),
-              ("Render", generated_utc.replace("T", " ").replace("Z", " UTC")), ("Halaman", pages_txt),
-              ("Digambar", DRAWN_BY), ("Diperiksa", CHECKED_BY),
-              ("Sumber", f"world.json sha256 {world_sha[:16]}")]
-    fy = ty1 - 25.5 - (4.6 if len(wrap(sheet["title"], 11, tb_w - 52, "B")) > 1 else 0)
-    for i, (k, v) in enumerate(fields):
-        col = i % 2
-        row = i // 2
-        bx = tx0 + 3 + col * (tb_w - 48) / 2
-        by = fy - row * 5.0
-        page.text((bx, by), k, lay, size=5.6, font="M", color=GREY_TEXT, only="pdf")
-        page.text((bx + 13, by), v, lay, size=6.2, color=INK, only="pdf")
-    # Sheet number box.
-    page.rect(tx1 - 44, ty0 + 3, tx1 - 3, ty1 - 10, lay, stroke=GREEN, width=0.8, only="pdf")
-    page.text((tx1 - 41, ty1 - 14.5), "Nomor lembar", lay, size=6, font="M", color=GREY_TEXT, only="pdf")
-    big = 20 if len(sheet["id"]) <= 5 else 16
-    page.text((tx1 - 23.5, ty0 + 14), sheet["id"], lay, size=big, font="B", color=GREEN, align="c", only="pdf")
-    page.text((tx1 - 23.5, ty0 + 7), f"Rev {rev['id']}  ·  {page_no}/{page_count}", lay, size=6.5,
+    y -= 1.5 + t["brand"] * 0.95 / PT_PER_MM
+    page.text((tx0 + 3, y), "kantor-rpg", lay, size=t["brand"], font="B", color=GREEN, only="pdf")
+    page.text((tx0 + 3 + text_w_mm("kantor-rpg", t["brand"], "B") + 3, y),
+              f"Proyek kantor-rpg · gedung {world['building']['id']}", lay, size=b, color=INK, only="pdf")
+    y -= t["brand"] * 0.2 / PT_PER_MM + 1.0
+    for ln in t["titles"]:
+        y -= t["title_pt"] * 1.15 / PT_PER_MM
+        page.text((tx0 + 3, y + t["title_pt"] * 0.2 / PT_PER_MM), ln, lay, size=t["title_pt"], font="B",
+                  color=GREEN, only="pdf")
+    y -= 1.0
+    label_w = max(text_w_mm(k, b, "M") for k, _ in t["fields"]) + 2.0
+    fields_top = y
+    for k, v in t["fields"]:
+        y -= lh
+        page.text((tx0 + 3, y + 0.25 * lh), k, lay, size=b, font="M", color=GREY_TEXT, only="pdf")
+        page.text((tx0 + 3 + label_w, y + 0.25 * lh), v, lay, size=b, color=INK, only="pdf")
+    # Sheet number box beside the fields.
+    bw = 40.0
+    big = max(20.0, b * 2.2) if len(sheet["id"]) <= 5 else max(16.0, b * 1.9)
+    page.rect(tx1 - bw - 3, y, tx1 - 3, fields_top, lay, stroke=GREEN, width=0.8, only="pdf")
+    page.text((tx1 - bw, fields_top - lh * 0.85), "Nomor lembar", lay, size=b, font="M", color=GREY_TEXT,
+              only="pdf")
+    mid = (y + fields_top) / 2
+    page.text((tx1 - 3 - bw / 2, mid - big * 0.3 / PT_PER_MM), sheet["id"], lay, size=big, font="B", color=GREEN,
+              align="c", only="pdf")
+    page.text((tx1 - 3 - bw / 2, y + lh * 0.35), f"Rev {rev['id']} · {page_no}/{page_count}", lay, size=b,
               font="M", color=INK, align="c", only="pdf")
+    y -= 1.0
+    for ln in t["note"]:
+        y -= lh
+        page.text((tx0 + 3, y + 0.25 * lh), ln, lay, size=b, color=GREY_TEXT, only="pdf")
     page.title_attrs = dict(doc.meta, KR_PAGE=f"{page_no}/{page_count}")
     page.title_pos = (tx0, ty0)
     # Watermark under everything.
     page.text(((fx0 + fx1) / 2, (fy0 + fy1) / 2), "KONSEP - BUKAN UNTUK KONSTRUKSI", "A-ANNO-WMRK",
               size=56 if W > 500 else 44, font="B", color=GREEN, align="c",
-              rot=math.degrees(math.atan2(fy1 - fy0, fx1 - fx0)), z=0, alpha=0.05)
-    page.text((fx0 + 1, fy0 - 5.5), font_source_note(tf().fonts), lay, size=5, color=GREY_TEXT, only="pdf")
+              rot=math.degrees(math.atan2(fy1 - fy0, fx1 - fx0)), z=0, alpha=0.05, floor=False)
     return (fx0, fy0, fx1, fy1), (tx0, ty0, tx1, ty1)
 
 
 def heading(page, x, y, text, width, size=8.5, layer="A-ANNO-NOTE"):
+    size = fs(size, 1.1)
     page.text((x, y - size / PT_PER_MM), text, layer, size=size, font="B", color=GREEN)
     yl = y - size / PT_PER_MM - 1.4
     page.line((x, yl), (x + width, yl), layer, stroke=GREEN, width=0.4)
@@ -274,6 +334,7 @@ def heading(page, x, y, text, width, size=8.5, layer="A-ANNO-NOTE"):
 
 
 def paragraph(page, x, y, text, width, size=6.6, font="R", color=INK, layer="A-ANNO-NOTE", lead=1.25, bullet=False):
+    size = fs(size)
     lines = wrap(text, size, width - (3 if bullet else 0), font)
     dy = size * lead / PT_PER_MM
     for j, ln in enumerate(lines):
@@ -288,7 +349,7 @@ def scale_bar(page, x, y, den, marks, layer="A-ANNO-TTLB", label=None):
     for i, (a, b) in enumerate(zip(sb["x_mm"], sb["x_mm"][1:])):
         page.rect(a, y, b, y + 1.8, layer, stroke=GREEN, width=0.4, fill=GREEN if i % 2 == 0 else "#ffffff")
     for m, xx in zip(sb["marks_m"], sb["x_mm"]):
-        page.text((xx, y + 2.8), fmt_m(m), layer, size=6, font="M", align="c")
+        page.text((xx, y + 2.2 + fs(6) * 0.15 / PT_PER_MM * 2), fmt_m(m), layer, size=6, font="M", align="c")
     page.text((sb["x_mm"][-1] + 2.5, y + 0.2), label or f"m  (1:{den})", layer, size=6)
     return sb
 
@@ -313,7 +374,11 @@ class LabelPlacer:
     def place(self, anchor, text, size, font="M", gap=0.15, prefer=None, extra_cands=()):
         mpm = self.view.m_per_mm()
         w = text_w_mm(text, size, font) * mpm + 0.08
-        h = size / PT_PER_MM * mpm * 1.05
+        h = fs(size) / PT_PER_MM * mpm * 1.05
+        return self.place_box(anchor, w, h, gap, prefer, extra_cands)
+
+    def place_box(self, anchor, w, h, gap=0.15, prefer=None, extra_cands=()):
+        """Same candidate search for a box of w x h world metres."""
         ax, ay = anchor
         cands = list(extra_cands) + [
             (ax + gap, ay - h / 2), (ax - gap - w, ay - h / 2), (ax - w / 2, ay + gap), (ax - w / 2, ay - gap - h),
@@ -331,6 +396,26 @@ class LabelPlacer:
                 best = (cost, box, hit)
         self.boxes.append(best[1])
         return best[1], best[2]
+
+
+def window_tag_size_m(view: View, text, size):
+    """(width, height) in view metres of a hexagon window tag (common.window_tag_shape)."""
+    _, hw, hh = window_tag_shape(tf().width(text, font_name("M"), size), size)
+    k = view.m_per_mm() / PT_PER_MM
+    return 2 * hw * k, 2 * hh * k
+
+
+def window_tag(view: View, centre, text, size, layer, xd=None, rot=0.0, stroke=GREEN):
+    """Hexagon tag with the short window tag text centred in it (view metres)."""
+    pts, _, _ = window_tag_shape(tf().width(text, font_name("M"), size), size)
+    k = view.m_per_mm() / PT_PER_MM
+    r = math.radians(rot)
+    c, s = math.cos(r), math.sin(r)
+    x0, y0 = centre
+    view.poly([(x0 + (px * c - py * s) * k, y0 + (px * s + py * c) * k) for px, py in pts], layer, closed=True,
+              stroke=stroke, fill="#ffffff", width=0.45, xd=xd)
+    off = size * 0.35 * k  # baseline 0,35 em below centre centres the cap height
+    view.text((x0 + off * s, y0 - off * c), text, layer, size=size, font="M", color=INK, align="c", rot=rot, xd=xd)
 
 
 # ------------------------------------------------------------------ DXF backend
@@ -418,9 +503,9 @@ def _title_block_def(doc):
     for i, tag in enumerate(tags):
         col, row = i // 7, i % 7
         h = 4.0 if tag == "KR_SHEET_ID" else 1.3 if tag == "KR_WORLD_SHA256" else 2.0
-        blk.add_attdef(tag, insert=(3 + col * 85, TB_H - 7 - row * 6.2), height=h,
+        blk.add_attdef(tag, insert=(3 + col * 85, 50.0 - 7 - row * 6.2), height=h,
                        dxfattribs={"layer": "A-ANNO-TTLB", "style": "KR-SANS"})
-    blk.add_lwpolyline([(0, 0), (TB_W, 0), (TB_W, TB_H), (0, TB_H)], close=True, dxfattribs={"layer": "A-ANNO-TTLB"})
+    blk.add_lwpolyline([(0, 0), (TB_W, 0), (TB_W, 50.0), (0, 50.0)], close=True, dxfattribs={"layer": "A-ANNO-TTLB"})
     return name
 
 

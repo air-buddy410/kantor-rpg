@@ -18,13 +18,15 @@
    "LWPOLYLINE": 20
   },
   "A-GLAZ-IDEN": {
+   "LWPOLYLINE": 20,
    "TEXT": 20
   },
   "A-AREA": {
    "LWPOLYLINE": 20
   },
   "A-ANNO-RMNM": {
-   "MTEXT": 20
+   "MTEXT": 20,
+   "LINE": 2
   },
   "A-FURN": {
    "LWPOLYLINE": 106
@@ -75,7 +77,7 @@
   }
  },
  "totals": {
-  "modelspace": 796,
+  "modelspace": 818,
   "paperspace": 23
  },
  "layers": [

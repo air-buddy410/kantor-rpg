@@ -1,0 +1,476 @@
+# R2 red run: every text run on every A/I/ICT sheet (extended tests/py/test_cad_legibility.py) against drawings/pdf
+# drawings/pdf at this point = output of the window-tag fix (first R2 task), before any all-text fix
+# HEAD 0a5b58799fcffde8edc9de4c5a25a2902b7083da  branch claude/kantor-rpg-m3-hardening  utc 2026-10-02T00:08:06Z
+# command: python3 -m pytest -q -rf tests/py/test_cad_legibility.py
+...............FFFFFFFFFFFFFFF....FF..........                           [100%]
+=================================== FAILURES ===================================
+_____________________ test_all_text_printed_height[A-001] ______________________
+
+sid = 'A-001'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-001: text below 2.5 mm printed on A3, per class: text: 54 runs, min 1.76 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'text': 54}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-101] ______________________
+
+sid = 'A-101'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-101: text below 2.5 mm printed on A3, per class: area or size: 42 runs, min 1.12 mm (p1 4.5 pt '1,50 m²'); dimension or key: 29 runs, min 1.5 mm (p1 6.0 pt '8000'); door tag: 26 runs, min 1.3 mm (p1 5.2 pt 'D-L1-21'); grid or key: 28 runs, min 1.62 mm (p1 6.5 pt '1'); room id: 40 runs, min 1.31 mm (p1 5.2 pt 'L1-RISER'); text: 131 runs, min 1.37 mm (p1 5.5 pt 'D-ID')
+E       assert not {'area or size': 42, 'dimension or key': 29, 'door tag': 26, 'grid or key': 28, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-102] ______________________
+
+sid = 'A-102'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-102: text below 2.5 mm printed on A3, per class: area or size: 38 runs, min 1.12 mm (p1 4.5 pt '1,50 m²'); dimension or key: 28 runs, min 1.5 mm (p1 6.0 pt '8000'); door tag: 20 runs, min 1.3 mm (p1 5.2 pt 'D-L2-18'); grid or key: 28 runs, min 1.62 mm (p1 6.5 pt '1'); room id: 36 runs, min 1.31 mm (p1 5.2 pt 'L2-RISER'); text: 128 runs, min 1.37 mm (p1 5.5 pt 'D-ID')
+E       assert not {'area or size': 38, 'dimension or key': 28, 'door tag': 20, 'grid or key': 28, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-103] ______________________
+
+sid = 'A-103'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-103: text below 2.5 mm printed on A3, per class: area or size: 40 runs, min 2.33 mm (p1 6.6 pt '768,00'); door tag: 22 runs, min 2.33 mm (p1 6.6 pt 'D-L2-18'); grid or key: 40 runs, min 2.33 mm (p1 6.6 pt '42'); room id: 38 runs, min 2.33 mm (p1 6.6 pt 'L2-SERVICE'); text: 343 runs, min 1.76 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'area or size': 40, 'door tag': 22, 'grid or key': 40, 'room id': 38, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-201] ______________________
+
+sid = 'A-201'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-201: text below 2.5 mm printed on A3, per class: area or size: 31 runs, min 1.47 mm (p1 5.9 pt '0,6 x 0,6'); dimension or key: 108 runs, min 1.1 mm (p1 4.4 pt '108'); grid or key: 64 runs, min 1.47 mm (p1 5.9 pt '24'); room id: 20 runs, min 1.55 mm (p1 6.2 pt 'L1-STORE'); text: 411 runs, min 1.25 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'area or size': 31, 'dimension or key': 108, 'grid or key': 64, 'room id': 20, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-202] ______________________
+
+sid = 'A-202'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-202: text below 2.5 mm printed on A3, per class: area or size: 33 runs, min 1.47 mm (p1 5.9 pt '0,6 x 0,6'); dimension or key: 91 runs, min 1.1 mm (p1 4.4 pt '091'); grid or key: 64 runs, min 1.47 mm (p1 5.9 pt '8'); room id: 18 runs, min 1.55 mm (p1 6.2 pt 'L2-SERVICE'); text: 358 runs, min 1.25 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'area or size': 33, 'dimension or key': 91, 'grid or key': 64, 'room id': 18, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-301] ______________________
+
+sid = 'A-301'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-301: text below 2.5 mm printed on A3, per class: door tag: 5 runs, min 1.9 mm (p1 5.4 pt 'D-L1-ENT'); grid or key: 26 runs, min 2.12 mm (p1 6.0 pt '10'); level: 16 runs, min 2.19 mm (p1 6.2 pt '+9,00 parapet*'); text: 34 runs, min 1.76 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'door tag': 5, 'grid or key': 26, 'level': 16, 'text': 34}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[A-401] ______________________
+
+sid = 'A-401'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: A-401: text below 2.5 mm printed on A3, per class: dimension or key: 6 runs, min 1.98 mm (p1 5.6 pt '1000'); door tag: 1 runs, min 1.76 mm (p1 5.0 pt 'D-L1-ENT'); grid or key: 4 runs, min 2.47 mm (p1 7.0 pt 'B'); level: 10 runs, min 2.19 mm (p1 6.2 pt '+8,00 atap konsep'); room id: 19 runs, min 2.26 mm (p1 6.4 pt 'L2-GYM'); text: 30 runs, min 1.62 mm (p1 4.6 pt 'F1 +0,67')
+E       assert not {'dimension or key': 6, 'door tag': 1, 'grid or key': 4, 'level': 10, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_____________________ test_all_text_printed_height[I-101] ______________________
+
+sid = 'I-101'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: I-101: text below 2.5 mm printed on A3, per class: area or size: 8 runs, min 2.26 mm (p1 6.4 pt '49,50'); grid or key: 13 runs, min 2.12 mm (p1 6.0 pt '20'); room id: 38 runs, min 1.5 mm (p1 4.2 pt 'L2-RISER'); text: 50 runs, min 1.76 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'area or size': 8, 'grid or key': 13, 'room id': 38, 'text': 50}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+____________________ test_all_text_printed_height[ICT-001] _____________________
+
+sid = 'ICT-001'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: ICT-001: text below 2.5 mm printed on A3, per class: grid or key: 5 runs, min 2.19 mm (p1 6.2 pt '0'); text: 106 runs, min 1.76 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'grid or key': 5, 'text': 106}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+____________________ test_all_text_printed_height[ICT-101] _____________________
+
+sid = 'ICT-101'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: ICT-101: text below 2.5 mm printed on A3, per class: grid or key: 65 runs, min 1.4 mm (p1 5.6 pt '1'); room id: 20 runs, min 1.35 mm (p1 5.4 pt 'L1-STORE'); text: 275 runs, min 1.15 mm (p1 4.6 pt 'AP')
+E       assert not {'grid or key': 65, 'room id': 20, 'text': 275}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+____________________ test_all_text_printed_height[ICT-102] _____________________
+
+sid = 'ICT-102'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: ICT-102: text below 2.5 mm printed on A3, per class: grid or key: 50 runs, min 1.4 mm (p1 5.6 pt '1'); room id: 18 runs, min 1.35 mm (p1 5.4 pt 'L2-SERVICE'); text: 199 runs, min 1.15 mm (p1 4.6 pt 'AP')
+E       assert not {'grid or key': 50, 'room id': 18, 'text': 199}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+____________________ test_all_text_printed_height[ICT-201] _____________________
+
+sid = 'ICT-201'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: ICT-201: text below 2.5 mm printed on A3, per class: grid or key: 114 runs, min 1.34 mm (p1 3.8 pt '1'); room id: 1 runs, min 2.12 mm (p1 6.0 pt 'L1-SERVER'); text: 139 runs, min 1.52 mm (p1 4.3 pt 'UPS-01')
+E       assert not {'grid or key': 114, 'room id': 1, 'text': 139}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+____________________ test_all_text_printed_height[ICT-301] _____________________
+
+sid = 'ICT-301'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: ICT-301: text below 2.5 mm printed on A3, per class: area or size: 12 runs, min 2.26 mm (p1 6.4 pt '28,8'); grid or key: 8 runs, min 2.12 mm (p1 6.0 pt '20'); text: 43 runs, min 1.76 mm (p1 5.0 pt 'RISER')
+E       assert not {'area or size': 12, 'grid or key': 8, 'text': 43}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+____________________ test_all_text_printed_height[ICT-401] _____________________
+
+sid = 'ICT-401'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_all_text_printed_height(sid):
+        pdf, n = sheet_pages(sid)
+        exempt = EXEMPTIONS.get(sid, {})
+        small, lo = {}, {}
+        for i in range(n):
+            runs, s = text_runs(pdf, i)
+            for text, size, x, y, direction in runs:
+                if is_diagonal(direction):
+                    continue
+                mm = size * PT_MM * s
+                cls = text_class(text)
+                if mm < MIN_PRINTED_MM and cls not in exempt:
+                    small[cls] = small.get(cls, 0) + 1
+                    if mm < lo.get(cls, (99, ""))[0]:
+                        lo[cls] = (round(mm, 2), f"p{i + 1} {size:.1f} pt '{text[:30]}'")
+>       assert not small, f"{sid}: text below {MIN_PRINTED_MM} mm printed on A3, per class: " + "; ".join(
+            f"{c}: {small[c]} runs, min {lo[c][0]} mm ({lo[c][1]})" for c in sorted(small))
+E       AssertionError: ICT-401: text below 2.5 mm printed on A3, per class: area or size: 74 runs, min 2.19 mm (p2 6.2 pt '2074,8'); dimension or key: 1 runs, min 2.19 mm (p3 6.2 pt '407'); grid or key: 34 runs, min 2.19 mm (p3 6.2 pt '0'); room id: 72 runs, min 2.19 mm (p2 6.2 pt 'L2-GYM'); text: 775 runs, min 1.76 mm (p1 5.0 pt 'Huruf: KantorRPG Sans, turunan')
+E       assert not {'area or size': 74, 'dimension or key': 1, 'grid or key': 34, 'room id': 72, ...}
+
+tests/py/test_cad_legibility.py:352: AssertionError
+_______________________ test_no_overlapping_words[A-201] _______________________
+
+sid = 'A-201'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_no_overlapping_words(sid):
+        """No word box overlaps another word box (watermark glyphs excluded)."""
+        pdf, n = sheet_pages(sid)
+        hits = []
+        for i in range(n):
+            words = word_boxes(pdf, i + 1)
+            mark = diagonal_words(pdf, i, words)
+            words = sorted((w for k, w in enumerate(words) if k not in mark), key=lambda w: w[1][0])
+            for a in range(len(words)):
+                ta, ba = words[a]
+                for b in range(a + 1, len(words)):
+                    tb, bb = words[b]
+                    if bb[0] >= ba[2]:
+                        break
+                    area = overlap(ba, bb)
+                    if area > OVERLAP_TOL_PT2:
+                        hits.append(f"p{i + 1} '{ta}' ({text_class(ta)}) x '{tb}' ({text_class(tb)}) {area:.1f} pt2")
+>       assert hits == [], f"{sid}: {len(hits)} overlapping words: {hits[:8]}"
+E       AssertionError: A-201: 1 overlapping words: ["p1 'LIFT' (text) x '068' (dimension or key) 21.9 pt2"]
+E       assert ["p1 'LIFT' (...ey) 21.9 pt2"] == []
+E         
+E         Left contains one more item: "p1 'LIFT' (text) x '068' (dimension or key) 21.9 pt2"
+E         Use -v to get more diff
+
+tests/py/test_cad_legibility.py:374: AssertionError
+_______________________ test_no_overlapping_words[A-202] _______________________
+
+sid = 'A-202'
+
+    @pytest.mark.parametrize("sid", [s["id"] for s in SHEETS])
+    def test_no_overlapping_words(sid):
+        """No word box overlaps another word box (watermark glyphs excluded)."""
+        pdf, n = sheet_pages(sid)
+        hits = []
+        for i in range(n):
+            words = word_boxes(pdf, i + 1)
+            mark = diagonal_words(pdf, i, words)
+            words = sorted((w for k, w in enumerate(words) if k not in mark), key=lambda w: w[1][0])
+            for a in range(len(words)):
+                ta, ba = words[a]
+                for b in range(a + 1, len(words)):
+                    tb, bb = words[b]
+                    if bb[0] >= ba[2]:
+                        break
+                    area = overlap(ba, bb)
+                    if area > OVERLAP_TOL_PT2:
+                        hits.append(f"p{i + 1} '{ta}' ({text_class(ta)}) x '{tb}' ({text_class(tb)}) {area:.1f} pt2")
+>       assert hits == [], f"{sid}: {len(hits)} overlapping words: {hits[:8]}"
+E       AssertionError: A-202: 1 overlapping words: ["p1 'LIFT' (text) x '057' (dimension or key) 20.3 pt2"]
+E       assert ["p1 'LIFT' (...ey) 20.3 pt2"] == []
+E         
+E         Left contains one more item: "p1 'LIFT' (text) x '057' (dimension or key) 20.3 pt2"
+E         Use -v to get more diff
+
+tests/py/test_cad_legibility.py:374: AssertionError
+=========================== short test summary info ============================
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-001]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-101]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-102]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-103]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-201]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-202]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-301]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[A-401]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[I-101]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[ICT-001]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[ICT-101]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[ICT-102]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[ICT-201]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[ICT-301]
+FAILED tests/py/test_cad_legibility.py::test_all_text_printed_height[ICT-401]
+FAILED tests/py/test_cad_legibility.py::test_no_overlapping_words[A-201] - As...
+FAILED tests/py/test_cad_legibility.py::test_no_overlapping_words[A-202] - As...
+17 failed, 29 passed in 5.60s
+# exit 1

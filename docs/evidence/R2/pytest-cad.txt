@@ -1,0 +1,8 @@
+# R2 CAD test run after regeneration (all-text legibility)
+# HEAD 4fc39b00e7a464f2b5c560c3c2c5d843ca8042b0  utc 2026-10-02T00:30:35Z
+# command: python3 -m pytest -q tests/py/test_cad.py tests/py/test_cad_m3.py tests/py/test_cad_openings.py tests/py/test_cad_legibility.py tests/py/test_openings.py
+........................................................................ [ 46%]
+........................................................................ [ 92%]
+...........                                                              [100%]
+155 passed in 140.62s (0:02:20)
+# exit 0

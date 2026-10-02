@@ -18,7 +18,11 @@
   },
   "A-ELEV-GLAZ": {
    "HATCH": 39,
-   "LWPOLYLINE": 221,
+   "LWPOLYLINE": 221
+  },
+  "A-ELEV-GLAZ-IDEN": {
+   "HATCH": 39,
+   "LWPOLYLINE": 39,
    "TEXT": 39
   },
   "A-GRID": {
@@ -50,9 +54,9 @@
     "TEXT": 1
    },
    "A-ANNO-NOTE": {
-    "TEXT": 19,
+    "TEXT": 20,
     "LWPOLYLINE": 5,
-    "HATCH": 6
+    "HATCH": 7
    },
    "A-ANNO-VPRT": {
     "VIEWPORT": 4
@@ -60,8 +64,8 @@
   }
  },
  "totals": {
-  "modelspace": 536,
-  "paperspace": 51
+  "modelspace": 614,
+  "paperspace": 53
  },
  "layers": [
   "0",
@@ -76,6 +80,7 @@
   "A-DOOR-IDEN",
   "A-ELEV-DOOR",
   "A-ELEV-GLAZ",
+  "A-ELEV-GLAZ-IDEN",
   "A-ELEV-GRND",
   "A-ELEV-HIDN",
   "A-ELEV-OTLN",

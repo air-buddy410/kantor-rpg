@@ -128,10 +128,15 @@ def test_dxf_room_check_detects_off_grid_room(world, world_master, tmp_path):
 def test_dxf_door_and_fixture_ids(built, world):
     msp = ezdxf.readfile(built["dxf"]).modelspace()
     door_x = {_xdata_ids(e)[1] for e in msp.query('*[layer=="A-DOOR"]') if _xdata_ids(e)}
-    door_t = {e.dxf.text for e in msp.query('TEXT[layer=="A-DOOR-IDEN"]')}
+    # Door tags are short (D-L1-15 -> D15, D-L1-ENT -> DENT) so they stay legible
+    # on an A3 print; each TEXT carries its full door ID in xdata.
+    door_t = {_xdata_ids(e)[1]: e.dxf.text for e in msp.query('TEXT[layer=="A-DOOR-IDEN"]') if _xdata_ids(e)}
     want_doors = {d["id"] for d in world["doors"] if d["floor"] == FLOOR}
     assert want_doors <= door_x, want_doors - door_x
-    assert want_doors <= door_t, want_doors - door_t
+    assert want_doors <= set(door_t), want_doors - set(door_t)
+    for did in want_doors:
+        code = did.rsplit("-", 1)[1]
+        assert door_t[did] == "D" + (str(int(code)) if code.isdigit() else code), (did, door_t[did])
     fx_x = {_xdata_ids(e)[1] for e in msp.query('LWPOLYLINE[layer=="A-FURN" | layer=="A-STRS"]') if _xdata_ids(e)}
     fx_t = {e.dxf.text for e in msp.query('TEXT[layer=="A-FURN-IDEN"]')}
     want_fx = {f["id"] for f in world["fixtures"] if f["floor"] == FLOOR}

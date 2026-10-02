@@ -17,7 +17,7 @@
   "A-101": {
    "file": "A-101.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 796,
+   "modelspace_total": 818,
    "paperspace_total": 23,
    "openings": {
     "window_symbols": 20,
@@ -32,7 +32,7 @@
   "A-102": {
    "file": "A-102.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 727,
+   "modelspace_total": 748,
    "paperspace_total": 23,
    "openings": {
     "window_symbols": 19,
@@ -48,7 +48,7 @@
    "file": "A-103.counts.json",
    "world_revision": "P03",
    "modelspace_total": 0,
-   "paperspace_total": 1383,
+   "paperspace_total": 1473,
    "openings": {
     "window_symbols": 0,
     "windows_per_floor": {},
@@ -60,8 +60,8 @@
   "A-201": {
    "file": "A-201.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 762,
-   "paperspace_total": 714,
+   "modelspace_total": 819,
+   "paperspace_total": 839,
    "openings": {
     "window_symbols": 20,
     "windows_per_floor": {
@@ -75,8 +75,8 @@
   "A-202": {
    "file": "A-202.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 703,
-   "paperspace_total": 637,
+   "modelspace_total": 750,
+   "paperspace_total": 746,
    "openings": {
     "window_symbols": 19,
     "windows_per_floor": {
@@ -90,8 +90,8 @@
   "A-301": {
    "file": "A-301.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 536,
-   "paperspace_total": 51,
+   "modelspace_total": 614,
+   "paperspace_total": 53,
    "openings": {
     "window_symbols": 39,
     "windows_per_floor": {
@@ -106,7 +106,7 @@
   "A-401": {
    "file": "A-401.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 174,
+   "modelspace_total": 176,
    "paperspace_total": 24,
    "openings": {
     "window_symbols": 1,
@@ -121,7 +121,7 @@
   "I-101": {
    "file": "I-101.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 916,
+   "modelspace_total": 924,
    "paperspace_total": 118,
    "openings": {
     "window_symbols": 39,
@@ -150,8 +150,8 @@
   "ICT-101": {
    "file": "ICT-101.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 781,
-   "paperspace_total": 347,
+   "modelspace_total": 789,
+   "paperspace_total": 307,
    "openings": {
     "window_symbols": 20,
     "windows_per_floor": {
@@ -165,8 +165,8 @@
   "ICT-102": {
    "file": "ICT-102.counts.json",
    "world_revision": "P03",
-   "modelspace_total": 686,
-   "paperspace_total": 250,
+   "modelspace_total": 690,
+   "paperspace_total": 225,
    "openings": {
     "window_symbols": 19,
     "windows_per_floor": {

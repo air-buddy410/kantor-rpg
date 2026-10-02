@@ -182,18 +182,18 @@ def build_sheet(sheet: dict, world: dict, out_dxf: Path, out_pdf: Path, out_prev
     counts_path = Path(out_dxf) / f"{sheet['id']}.counts.json"
     if content == "plan":
         den = int(sheet["scale"].split(":")[1])
-        plan = build_plan(world, sheet["floor"], den)
+        plan = build_plan(world, sheet["floor"], den, paper=sheet["size"])
         layout = sheet_layout(sheet, plan)
         meta = write_dxf(sheet, world, plan, layout, dxf_path, generated_utc, world_sha)
         pdf_info = write_pdf(sheet, world, plan, layout, pdf_path, generated_utc, world_sha)
         expected = {"walls": len(plan["walls"]), "doors": len(plan["doors"]), "rooms": len(plan["rooms"]),
                     "windows": len(plan["windows"]), "fixtures": len(plan["fixtures"]) + len(plan["vlinks"]),
                     "dimension_segments": sum(len(ch["segments"]) for ch in plan["chains"])}
-        result = {"plan": plan, "layout": layout, "scale_bar": layout["scale_bar"],
-                  "forced_tags": [rid for rid, t in plan["tags"].items() if t.get("forced")],
+        leader_tags = [rid for rid, t in plan["tags"].items() if t.get("leader")]
+        result = {"plan": plan, "layout": layout, "scale_bar": layout["scale_bar"], "leader_tags": leader_tags,
                   "tag_overlaps": {rid: round(t["overlap_m2"], 3) for rid, t in plan["tags"].items()
                                    if t.get("overlap_m2")},
-                  "summary": {"forced_tags": [rid for rid, t in plan["tags"].items() if t.get("forced")]}}
+                  "summary": {"leader_tags": leader_tags}}
     else:
         ctx = ctx or make_ctx(world, world_sha, generated_utc, out_pdf)
         sd = BUILDERS[content](sheet, ctx)

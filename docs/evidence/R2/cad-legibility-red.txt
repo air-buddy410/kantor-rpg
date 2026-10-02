@@ -1,0 +1,209 @@
+# R2 red run: tests/py/test_cad_legibility.py against the committed drawings/pdf (before the fix)
+# HEAD b109cdec57badfa2a80b3957d18a6b4ebd9da596  branch claude/kantor-rpg-m3-hardening  utc 2026-10-01T23:51:55Z
+# drawings/pdf/A-101.pdf sha256 dddeba96c6ba4b71897410f2f9ef86d522603ea6d3d1f929c92941bd1ec8c0ba
+# drawings/pdf/A-102.pdf sha256 adbcdfdefac968fae7c36e91b260f6e2d211a99d2964e252f0537ab575764401
+# drawings/pdf/A-103.pdf sha256 14f562ae9be8fbf3ea78cc4600da2aa357cec2ae4534c58112f62e188c1fce13
+# drawings/pdf/A-201.pdf sha256 e0cf446c63b39145eb0cdb70b7a8138627c2b6e125bbdce29ab01a265d4e54a0
+# drawings/pdf/A-202.pdf sha256 a384ba404029dff2c1344e8768c068a17963a5c8f568fd37b793f1dbce774071
+# drawings/pdf/A-301.pdf sha256 7bfc8717c59ec0c00d02162d9199b21986b1cfcd9548c5a877c5a7ca7f4893b5
+# drawings/pdf/A-401.pdf sha256 9b3d31d165a28257d3afbf5694b0c1c23640a0f022e8a5aeafc9fc7845e41296
+# command: python3 -m pytest -q -rf tests/py/test_cad_legibility.py
+FFFFFFF........                                                          [100%]
+=================================== FAILURES ===================================
+____________________ test_window_tags_printed_height[A-101] ____________________
+
+sid = 'A-101'
+
+    @pytest.mark.parametrize("sid", list(TAG_SHEETS))
+    def test_window_tags_printed_height(sid):
+        wd = world()
+        wins = sheet_windows(sid, wd)
+        forms = tag_forms(wins)
+        runs, s = text_runs(PDF / f"{sid}.pdf", 0)
+        found = {}
+        for text, size, x, y, _ in runs:
+            if text in forms:
+                found.setdefault(forms[text], []).append((text, size))
+        missing = sorted({w["id"] for w in wins} - set(found)) if sid in ALL_TAGGED else ([] if found else ["any"])
+        repeated = sorted(k for k, v in found.items() if len(v) != 1)
+        assert not missing and not repeated, f"{sid}: tags missing {missing}, not exactly once {repeated}"
+        sizes = {wid: v[0][1] for wid, v in found.items()}
+        small = {wid: sz for wid, sz in sizes.items() if sz * PT_MM * s < MIN_PRINTED_MM}
+        lo = min(sizes.values())
+>       assert not small, (f"{sid}: {len(small)}/{len(sizes)} window tags below {MIN_PRINTED_MM} mm printed on A3 "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM:.2f} mm on the sheet = "
+                           f"{lo * PT_MM * s:.2f} mm printed; need >= {MIN_PRINTED_MM / s / PT_MM:.2f} pt")
+E       AssertionError: A-101: 20/20 window tags below 2.5 mm printed on A3 (scale 0.707); smallest 5.20 pt = 1.83 mm on the sheet = 1.30 mm printed; need >= 10.02 pt
+E       assert not {'W-L1-001': 5.2, 'W-L1-002': 5.2, 'W-L1-003': 5.2, 'W-L1-004': 5.2, ...}
+
+tests/py/test_cad_legibility.py:174: AssertionError
+____________________ test_window_tags_printed_height[A-102] ____________________
+
+sid = 'A-102'
+
+    @pytest.mark.parametrize("sid", list(TAG_SHEETS))
+    def test_window_tags_printed_height(sid):
+        wd = world()
+        wins = sheet_windows(sid, wd)
+        forms = tag_forms(wins)
+        runs, s = text_runs(PDF / f"{sid}.pdf", 0)
+        found = {}
+        for text, size, x, y, _ in runs:
+            if text in forms:
+                found.setdefault(forms[text], []).append((text, size))
+        missing = sorted({w["id"] for w in wins} - set(found)) if sid in ALL_TAGGED else ([] if found else ["any"])
+        repeated = sorted(k for k, v in found.items() if len(v) != 1)
+        assert not missing and not repeated, f"{sid}: tags missing {missing}, not exactly once {repeated}"
+        sizes = {wid: v[0][1] for wid, v in found.items()}
+        small = {wid: sz for wid, sz in sizes.items() if sz * PT_MM * s < MIN_PRINTED_MM}
+        lo = min(sizes.values())
+>       assert not small, (f"{sid}: {len(small)}/{len(sizes)} window tags below {MIN_PRINTED_MM} mm printed on A3 "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM:.2f} mm on the sheet = "
+                           f"{lo * PT_MM * s:.2f} mm printed; need >= {MIN_PRINTED_MM / s / PT_MM:.2f} pt")
+E       AssertionError: A-102: 19/19 window tags below 2.5 mm printed on A3 (scale 0.707); smallest 5.20 pt = 1.83 mm on the sheet = 1.30 mm printed; need >= 10.02 pt
+E       assert not {'W-L2-021': 5.2, 'W-L2-022': 5.2, 'W-L2-023': 5.2, 'W-L2-024': 5.2, ...}
+
+tests/py/test_cad_legibility.py:174: AssertionError
+____________________ test_window_tags_printed_height[A-201] ____________________
+
+sid = 'A-201'
+
+    @pytest.mark.parametrize("sid", list(TAG_SHEETS))
+    def test_window_tags_printed_height(sid):
+        wd = world()
+        wins = sheet_windows(sid, wd)
+        forms = tag_forms(wins)
+        runs, s = text_runs(PDF / f"{sid}.pdf", 0)
+        found = {}
+        for text, size, x, y, _ in runs:
+            if text in forms:
+                found.setdefault(forms[text], []).append((text, size))
+        missing = sorted({w["id"] for w in wins} - set(found)) if sid in ALL_TAGGED else ([] if found else ["any"])
+        repeated = sorted(k for k, v in found.items() if len(v) != 1)
+        assert not missing and not repeated, f"{sid}: tags missing {missing}, not exactly once {repeated}"
+        sizes = {wid: v[0][1] for wid, v in found.items()}
+        small = {wid: sz for wid, sz in sizes.items() if sz * PT_MM * s < MIN_PRINTED_MM}
+        lo = min(sizes.values())
+>       assert not small, (f"{sid}: {len(small)}/{len(sizes)} window tags below {MIN_PRINTED_MM} mm printed on A3 "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM:.2f} mm on the sheet = "
+                           f"{lo * PT_MM * s:.2f} mm printed; need >= {MIN_PRINTED_MM / s / PT_MM:.2f} pt")
+E       AssertionError: A-201: 20/20 window tags below 2.5 mm printed on A3 (scale 0.707); smallest 5.20 pt = 1.83 mm on the sheet = 1.30 mm printed; need >= 10.02 pt
+E       assert not {'W-L1-001': 5.2, 'W-L1-002': 5.2, 'W-L1-003': 5.2, 'W-L1-004': 5.2, ...}
+
+tests/py/test_cad_legibility.py:174: AssertionError
+____________________ test_window_tags_printed_height[A-202] ____________________
+
+sid = 'A-202'
+
+    @pytest.mark.parametrize("sid", list(TAG_SHEETS))
+    def test_window_tags_printed_height(sid):
+        wd = world()
+        wins = sheet_windows(sid, wd)
+        forms = tag_forms(wins)
+        runs, s = text_runs(PDF / f"{sid}.pdf", 0)
+        found = {}
+        for text, size, x, y, _ in runs:
+            if text in forms:
+                found.setdefault(forms[text], []).append((text, size))
+        missing = sorted({w["id"] for w in wins} - set(found)) if sid in ALL_TAGGED else ([] if found else ["any"])
+        repeated = sorted(k for k, v in found.items() if len(v) != 1)
+        assert not missing and not repeated, f"{sid}: tags missing {missing}, not exactly once {repeated}"
+        sizes = {wid: v[0][1] for wid, v in found.items()}
+        small = {wid: sz for wid, sz in sizes.items() if sz * PT_MM * s < MIN_PRINTED_MM}
+        lo = min(sizes.values())
+>       assert not small, (f"{sid}: {len(small)}/{len(sizes)} window tags below {MIN_PRINTED_MM} mm printed on A3 "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM:.2f} mm on the sheet = "
+                           f"{lo * PT_MM * s:.2f} mm printed; need >= {MIN_PRINTED_MM / s / PT_MM:.2f} pt")
+E       AssertionError: A-202: 19/19 window tags below 2.5 mm printed on A3 (scale 0.707); smallest 5.20 pt = 1.83 mm on the sheet = 1.30 mm printed; need >= 10.02 pt
+E       assert not {'W-L2-021': 5.2, 'W-L2-022': 5.2, 'W-L2-023': 5.2, 'W-L2-024': 5.2, ...}
+
+tests/py/test_cad_legibility.py:174: AssertionError
+____________________ test_window_tags_printed_height[A-301] ____________________
+
+sid = 'A-301'
+
+    @pytest.mark.parametrize("sid", list(TAG_SHEETS))
+    def test_window_tags_printed_height(sid):
+        wd = world()
+        wins = sheet_windows(sid, wd)
+        forms = tag_forms(wins)
+        runs, s = text_runs(PDF / f"{sid}.pdf", 0)
+        found = {}
+        for text, size, x, y, _ in runs:
+            if text in forms:
+                found.setdefault(forms[text], []).append((text, size))
+        missing = sorted({w["id"] for w in wins} - set(found)) if sid in ALL_TAGGED else ([] if found else ["any"])
+        repeated = sorted(k for k, v in found.items() if len(v) != 1)
+        assert not missing and not repeated, f"{sid}: tags missing {missing}, not exactly once {repeated}"
+        sizes = {wid: v[0][1] for wid, v in found.items()}
+        small = {wid: sz for wid, sz in sizes.items() if sz * PT_MM * s < MIN_PRINTED_MM}
+        lo = min(sizes.values())
+>       assert not small, (f"{sid}: {len(small)}/{len(sizes)} window tags below {MIN_PRINTED_MM} mm printed on A3 "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM:.2f} mm on the sheet = "
+                           f"{lo * PT_MM * s:.2f} mm printed; need >= {MIN_PRINTED_MM / s / PT_MM:.2f} pt")
+E       AssertionError: A-301: 39/39 window tags below 2.5 mm printed on A3 (scale 1.000); smallest 5.00 pt = 1.76 mm on the sheet = 1.76 mm printed; need >= 7.09 pt
+E       assert not {'W-L1-001': 5.0, 'W-L1-002': 5.0, 'W-L1-003': 5.0, 'W-L1-004': 5.0, ...}
+
+tests/py/test_cad_legibility.py:174: AssertionError
+____________________ test_window_tags_printed_height[A-401] ____________________
+
+sid = 'A-401'
+
+    @pytest.mark.parametrize("sid", list(TAG_SHEETS))
+    def test_window_tags_printed_height(sid):
+        wd = world()
+        wins = sheet_windows(sid, wd)
+        forms = tag_forms(wins)
+        runs, s = text_runs(PDF / f"{sid}.pdf", 0)
+        found = {}
+        for text, size, x, y, _ in runs:
+            if text in forms:
+                found.setdefault(forms[text], []).append((text, size))
+        missing = sorted({w["id"] for w in wins} - set(found)) if sid in ALL_TAGGED else ([] if found else ["any"])
+        repeated = sorted(k for k, v in found.items() if len(v) != 1)
+        assert not missing and not repeated, f"{sid}: tags missing {missing}, not exactly once {repeated}"
+        sizes = {wid: v[0][1] for wid, v in found.items()}
+        small = {wid: sz for wid, sz in sizes.items() if sz * PT_MM * s < MIN_PRINTED_MM}
+        lo = min(sizes.values())
+>       assert not small, (f"{sid}: {len(small)}/{len(sizes)} window tags below {MIN_PRINTED_MM} mm printed on A3 "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM:.2f} mm on the sheet = "
+                           f"{lo * PT_MM * s:.2f} mm printed; need >= {MIN_PRINTED_MM / s / PT_MM:.2f} pt")
+E       AssertionError: A-401: 1/1 window tags below 2.5 mm printed on A3 (scale 1.000); smallest 5.00 pt = 1.76 mm on the sheet = 1.76 mm printed; need >= 7.09 pt
+E       assert not {'W-L1-016': 5.0}
+
+tests/py/test_cad_legibility.py:174: AssertionError
+_____________________ test_opening_schedule_printed_height _____________________
+
+    def test_opening_schedule_printed_height():
+        """Every text run inside the schedule band (header row down to the lowest
+        row, both tables and the notes beside them) prints at >= 2,5 mm."""
+        wd = world()
+        pdf = PDF / "A-103.pdf"
+        idx = opening_schedule_page(pdf)
+        runs, s = text_runs(pdf, idx)
+        ids = {d["id"] for d in wd["doors"]} | {w["id"] for w in wd["windows"]}
+        rows = [r for r in runs if r[0] in ids]
+        assert {r[0] for r in rows} == ids, f"rows missing: {sorted(ids - {r[0] for r in rows})}"
+        heads = [r for r in runs if r[0] in ("ID pintu", "ID jendela")]
+        assert len(heads) == 2
+        y_lo = min(r[3] for r in rows) - 2.0
+        y_hi = max(r[3] for r in heads) + 2.0
+        band = [r for r in runs if y_lo <= r[3] <= y_hi]
+        small = sorted({(round(r[1], 2), r[0]) for r in band if r[1] * PT_MM * s < MIN_PRINTED_MM})
+        lo = min(r[1] for r in band)
+>       assert not small, (f"A-103 p{idx + 1}: {len(small)} schedule text sizes below {MIN_PRINTED_MM} mm printed "
+                           f"(scale {s:.3f}); smallest {lo:.2f} pt = {lo * PT_MM * s:.2f} mm; e.g. {small[:4]}")
+E       AssertionError: A-103 p2: 208 schedule text sizes below 2.5 mm printed (scale 1.000); smallest 6.20 pt = 2.19 mm; e.g. [(6.2, '-'), (6.2, '0,6'), (6.2, '0,8'), (6.2, '0,9')]
+E       assert not [(6.2, '-'), (6.2, '0,6'), (6.2, '0,8'), (6.2, '0,9'), (6.2, '1'), (6.2, '1,2'), ...]
+
+tests/py/test_cad_legibility.py:204: AssertionError
+=========================== short test summary info ============================
+FAILED tests/py/test_cad_legibility.py::test_window_tags_printed_height[A-101]
+FAILED tests/py/test_cad_legibility.py::test_window_tags_printed_height[A-102]
+FAILED tests/py/test_cad_legibility.py::test_window_tags_printed_height[A-201]
+FAILED tests/py/test_cad_legibility.py::test_window_tags_printed_height[A-202]
+FAILED tests/py/test_cad_legibility.py::test_window_tags_printed_height[A-301]
+FAILED tests/py/test_cad_legibility.py::test_window_tags_printed_height[A-401]
+FAILED tests/py/test_cad_legibility.py::test_opening_schedule_printed_height
+7 failed, 8 passed in 2.43s
+# exit 1

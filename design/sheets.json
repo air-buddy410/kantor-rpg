@@ -15,7 +15,7 @@
   {"id": "ICT-001", "title": "Topologi jaringan (virtual)", "discipline": "ICT", "size": "A3", "scale": "NTS", "content": "topology", "milestone": "M3"},
   {"id": "ICT-101", "title": "Outlet, AP dan kamera Lantai 1", "discipline": "ICT", "size": "A2", "scale": "1:100", "floor": "L1", "content": "ict_plan", "milestone": "M3"},
   {"id": "ICT-102", "title": "Outlet, AP dan kamera Lantai 2", "discipline": "ICT", "size": "A2", "scale": "1:100", "floor": "L2", "content": "ict_plan", "milestone": "M3"},
-  {"id": "ICT-201", "title": "Elevasi rack", "discipline": "ICT", "size": "A3", "scale": "1:20", "content": "rack_elevation", "milestone": "M3"},
+  {"id": "ICT-201", "title": "Elevasi rack", "discipline": "ICT", "size": "A3", "scale": "1:10", "content": "rack_elevation", "milestone": "M3"},
   {"id": "ICT-301", "title": "Pathway dan riser", "discipline": "ICT", "size": "A3", "scale": "1:200", "content": "pathways", "milestone": "M3"},
   {"id": "ICT-401", "title": "Port dan device schedule", "discipline": "ICT", "size": "A3", "scale": "NTS", "content": "port_schedule", "milestone": "M3"}
  ]

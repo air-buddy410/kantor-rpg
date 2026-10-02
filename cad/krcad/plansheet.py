@@ -9,7 +9,7 @@ from tools.kantor.geometry import fixture_corners
 
 from krcad.common import *  # noqa: F401,F403
 from krcad.common import _setup_dxf, _xdata
-from krcad.planmodel import _fixture_local
+from krcad.planmodel import _fixture_local, window_tag_outline
 
 def sheet_layout(sheet, plan):
     pw_mm, ph_mm = PAPER_MM[sheet["size"]]
@@ -68,10 +68,10 @@ def write_dxf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
         for poly in d["panels"]:
             e = msp.add_lwpolyline([P(p) for p in poly], close=True, dxfattribs=att)
             _xdata(e, "door", d["id"], type=d["type"])
-        t = msp.add_text(d["id"], height=d["tag_size"] / PT_PER_MM * den * 0.72,
+        t = msp.add_text(d["tag_text"], height=d["tag_size"] / PT_PER_MM * den * 0.72,
                          rotation=d["tag_rot"], dxfattribs={"layer": "A-DOOR-IDEN", "style": "KR-SANS"})
         t.set_placement(P(d["tag_pos"]), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
-        _xdata(t, "door", d["id"])
+        _xdata(t, "door", d["id"], tag=d["tag_text"])
 
     for w in plan["windows"]:
         xd = dict(glazing=w["glazing"], room=w["room"], sill=w["sill"], head=w["head"], width=w["width"])
@@ -80,10 +80,13 @@ def write_dxf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
             _xdata(e, "window", w["id"], **xd)
         e = msp.add_lwpolyline([P(p) for p in w["sill_line"]], dxfattribs={"layer": "A-GLAZ"})
         _xdata(e, "window", w["id"], **xd)
-        t = msp.add_text(w["id"], height=w["tag_size"] / PT_PER_MM * den * 0.72, rotation=w["tag_rot"],
+        hx = msp.add_lwpolyline([P(q) for q in window_tag_outline(w, den, plan["fonts"])], close=True,
+                                dxfattribs={"layer": "A-GLAZ-IDEN"})
+        _xdata(hx, "window", w["id"], tag=w["tag_text"])
+        t = msp.add_text(w["tag_text"], height=w["tag_size"] / PT_PER_MM * den * 0.72, rotation=w["tag_rot"],
                          dxfattribs={"layer": "A-GLAZ-IDEN", "style": "KR-SANS"})
         t.set_placement(P(w["tag_pos"]), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
-        _xdata(t, "window", w["id"])
+        _xdata(t, "window", w["id"], tag=w["tag_text"])
 
     for r in plan["rooms"]:
         pl = msp.add_lwpolyline([P(p) for p in r["polygon"]], close=True, dxfattribs={"layer": "A-AREA"})
@@ -92,9 +95,12 @@ def write_dxf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
         text = "\\P".join(t for t, _, _, _ in tag["lines"])
         # Cap height ~ 0.72 em, converted from the PDF point size at sheet scale.
         mt = msp.add_mtext(text, dxfattribs={"layer": "A-ANNO-RMNM", "style": "KR-SANS",
-                                             "char_height": 6.6 * tag["scale"] / PT_PER_MM * den * 0.72})
+                                             "char_height": tag["lines"][-1][2] / PT_PER_MM * den * 0.72})
         mt.set_location(P(tag["pos"]), attachment_point=5)
         _xdata(mt, "room", r["id"], area_m2=f"{r['area']:.4f}")
+        if tag.get("leader"):
+            e = msp.add_line(P(tag["leader"][0]), P(tag["leader"][1]), dxfattribs={"layer": "A-ANNO-RMNM"})
+            _xdata(e, "room", r["id"])
 
     for fx in plan["fixtures"]:
         pts = [P(p) for p in fixture_corners(fx)]
@@ -264,6 +270,7 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
 
     tf = plan["fonts"]
     F, FM, FB = tf.regular, tf.medium, tf.bold
+    B = legible_pt(sheet["size"])  # every text on the sheet is at least this (prints >= 2,5 mm on A3)
     den = plan["den"]
     pw_mm, ph_mm = layout["paper"]
     page = (pw_mm * PT_PER_MM, ph_mm * PT_PER_MM)
@@ -333,8 +340,8 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
             c.setFillColor(colors.white)
             c.circle(px, py, mm(BUBBLE_R_MM), stroke=1, fill=1)
             c.setFillColor(col(INK))
-            c.setFont(FB, 10)
-            c.drawCentredString(px, py - 3.5, g["label"])
+            c.setFont(FB, B)
+            c.drawCentredString(px, py - B * 0.35, g["label"])
 
     # Furniture: thin warm grey; a few types get a symbol detail.
     c.setStrokeColor(col(FURN))
@@ -427,13 +434,12 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
             c.drawPath(pth, stroke=0, fill=1)
         if v["label"]:
             lx, ly = W(v["label_pos"])
-            c.setFont(FB, 7)
-            if v["type"] == "lift":
-                tw = tf.width(v["label"], FB, 7)
-                c.setFillColor(colors.white)
-                c.rect(lx - tw / 2 - 2, ly - 3.5, tw + 4, 9.5, stroke=0, fill=1)
-                c.setFillColor(col(TERRA))
-            c.drawCentredString(lx, ly - 2.4, v["label"])
+            c.setFont(FB, B)
+            tw = tf.width(v["label"], FB, B)
+            c.setFillColor(colors.white)
+            c.rect(lx - tw / 2 - 1.5, ly - B * 0.5, tw + 3, B, stroke=0, fill=1)
+            c.setFillColor(col(TERRA))
+            c.drawCentredString(lx, ly - B * 0.35, v["label"])
 
     # Walls: interior first so exterior poche covers the overlapping caps.
     for ext in (False, True):
@@ -478,12 +484,12 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
         c.saveState()
         c.translate(tx, ty)
         c.rotate(d["tag_rot"])
-        tw = tf.width(d["id"], FM, d["tag_size"])
+        tw = tf.width(d["tag_text"], FM, d["tag_size"])
         c.setFillColor(colors.white)
         c.rect(-tw / 2 - 1, -d["tag_size"] * 0.55, tw + 2, d["tag_size"] * 1.1, stroke=0, fill=1)
         c.setFillColor(col(GREY_TEXT))
         c.setFont(FM, d["tag_size"])
-        c.drawCentredString(0, -d["tag_size"] * 0.34, d["id"])
+        c.drawCentredString(0, -d["tag_size"] * 0.34, d["tag_text"])
         c.restoreState()
 
     # Windows: wall faces and sill board in ink, glass as a thin double line,
@@ -507,17 +513,31 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
         c.saveState()
         c.translate(tx, ty)
         c.rotate(w["tag_rot"])
-        tw = tf.width(w["id"], FM, w["tag_size"])
+        hexpts, _, _ = window_tag_shape(tf.width(w["tag_text"], FM, w["tag_size"]), w["tag_size"])
+        pth = c.beginPath()
+        pth.moveTo(*hexpts[0])
+        for q in hexpts[1:]:
+            pth.lineTo(*q)
+        pth.close()
         c.setFillColor(colors.white)
-        c.rect(-tw / 2 - 1, -w["tag_size"] * 0.55, tw + 2, w["tag_size"] * 1.1, stroke=0, fill=1)
-        c.setFillColor(col(GREY_TEXT))
+        c.setStrokeColor(col(GREEN))
+        c.setLineWidth(0.5)
+        c.drawPath(pth, stroke=1, fill=1)
+        c.setFillColor(col(INK))
         c.setFont(FM, w["tag_size"])
-        c.drawCentredString(0, -w["tag_size"] * 0.34, w["id"])
+        c.drawCentredString(0, -w["tag_size"] * 0.35, w["tag_text"])
         c.restoreState()
 
     # Room tags with a paper knockout so grid lines never cut through text.
     for r in plan["rooms"]:
         tag = plan["tags"][r["id"]]
+        if tag.get("leader"):
+            a, b_ = tag["leader"]
+            c.setStrokeColor(col(GREY_TEXT))
+            c.setLineWidth(0.4)
+            c.line(*W(a), *W(b_))
+            c.setFillColor(col(GREY_TEXT))
+            c.circle(*W(a), 1.3, stroke=0, fill=1)
         px, py = W(tag["pos"])
         tw = max(tf.width(t, f, sz) for t, f, sz, _ in tag["lines"])
         th = sum(sz * 1.16 for _, _, sz, _ in tag["lines"])
@@ -534,7 +554,7 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
     ext = world["building"]["wall"]["exterior"] / 2
     c.setStrokeColor(col(DIM))
     c.setFillColor(col(DIM))
-    dim_font = 6.6
+    dim_font = B
     for ch in plan["chains"]:
         horiz = ch["side"] in ("S", "N")
         out = -1 if ch["side"] in ("S", "W") else 1
@@ -588,16 +608,19 @@ def write_pdf(sheet, world, plan, layout, path: Path, generated_utc: str, world_
                 c.drawCentredString(0, 0, label)
                 c.restoreState()
 
-    _pdf_title_strip(c, sheet, plan, layout, tf)
+    _pdf_title_strip(c, sheet, world, plan, layout, tf)
     _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha)
     c.showPage()
     c.save()
     return {"page_pt": page}
 
 
-def _pdf_title_strip(c, sheet, plan, layout, tf):
+def _pdf_title_strip(c, sheet, world, plan, layout, tf):
+    """Title, scale line, graphic scale bar and the floor key, all at the
+    sheet's legible size (B)."""
     from reportlab.lib import colors
     col = colors.HexColor
+    B = legible_pt(sheet["size"])
 
     def mm(v):
         return v * PT_PER_MM
@@ -605,11 +628,11 @@ def _pdf_title_strip(c, sheet, plan, layout, tf):
     floor = plan["floor"]
     c.setFillColor(col(GREEN))
     c.setFont(tf.bold, 20)
-    c.drawString(mm(ts[0] + 8), mm(ts[1] + 19), sheet["title"].upper())
+    c.drawString(mm(ts[0] + 8), mm(ts[1] + 21), sheet["title"].upper())
     c.setFillColor(col(INK))
-    c.setFont(tf.regular, 9)
-    c.drawString(mm(ts[0] + 8), mm(ts[1] + 12),
-                 f"Skala {sheet['scale']} @ {sheet['size']}  ·  lantai {floor}  ·  ukuran dalam mm, as ke as dinding")
+    c.setFont(tf.regular, B)
+    c.drawString(mm(ts[0] + 8), mm(ts[1] + 14.5), f"Skala {sheet['scale']} @ {sheet['size']}  ·  lantai {floor}")
+    c.drawString(mm(ts[0] + 8), mm(ts[1] + 9.5), "Ukuran dalam mm, as ke as dinding")
     # Graphic scale bar: geometry comes from scale_bar_geometry() and is asserted by tests.
     sb = layout["scale_bar"]
     y = mm(sb["y_mm"])
@@ -621,24 +644,26 @@ def _pdf_title_strip(c, sheet, plan, layout, tf):
         c.setFillColor(col(GREEN) if i % 2 == 0 else colors.white)
         c.rect(a, y, b - a, h, stroke=1, fill=1)
     c.setFillColor(col(INK))
-    c.setFont(tf.medium, 7.5)
+    c.setFont(tf.medium, B)
     for m, x in zip(sb["marks_m"], xs):
         c.drawCentredString(x, y + h + 2.5, str(m))
     c.drawString(xs[-1] + 5, y + 0.6, "m")
-    c.setFont(tf.regular, 7)
+    c.setFont(tf.regular, B)
     c.setFillColor(col(GREY_TEXT))
-    c.drawString(xs[0], y - 9, f"Skala grafis benar pada cetak {sheet['size']} 100%: 10 m = {sb['length_mm']:.0f} mm di kertas")
+    c.drawString(xs[0], y - B - 1.5, f"Benar pada cetak {sheet['size']} 100%: 10 m = {sb['length_mm']:.0f} mm")
+    # Floor key at the right end of the strip.
+    _pdf_floor_key(c, world, plan, tf, B, mm(ts[2] - 112), mm(ts[3] - 3))
 
 
-def _pdf_floor_key(c, world, plan, tf, left, right, top):
+def _pdf_floor_key(c, world, plan, tf, B, left, top):
     """Schematic floor stack (not to scale) with the current floor filled."""
     from reportlab.lib import colors
     col = colors.HexColor
     floors = sorted(world["floors"], key=lambda f: f["level"])
-    band = 8.5 * PT_PER_MM
-    gap = 2.0 * PT_PER_MM
-    bw = 52 * PT_PER_MM
-    y = top - 4 - len(floors) * (band + gap)
+    band = B * 1.55
+    gap = 1.5 * PT_PER_MM
+    bw = 46 * PT_PER_MM
+    y = top - len(floors) * (band + gap)
     for f in floors:
         current = f["id"] == plan["floor"]
         c.setStrokeColor(col(GREEN))
@@ -646,22 +671,306 @@ def _pdf_floor_key(c, world, plan, tf, left, right, top):
         c.setFillColor(col("#d9e6df") if current else colors.white)
         c.rect(left, y, bw, band, stroke=1, fill=1)
         c.setFillColor(col(GREEN))
-        c.setFont(tf.bold, 9)
-        c.drawString(left + 6, y + band / 2 - 3.2, f["id"])
+        c.setFont(tf.bold, B)
+        c.drawString(left + 5, y + band / 2 - B * 0.35, f["id"])
         c.setFillColor(col(INK))
-        c.setFont(tf.regular, 7.8)
-        c.drawString(left + 30, y + band / 2 - 2.8, f"elevasi {fmt_elev(f['elevation'])} m")
-        c.setFont(tf.bold if current else tf.regular, 7.8)
-        label = f["name"] + ("  (lembar ini)" if current else "")
-        c.drawString(left + bw + 8, y + band / 2 - 2.8, label)
+        c.setFont(tf.regular, B)
+        c.drawString(left + 6 + tf.width("L2", tf.bold, B) + 6, y + band / 2 - B * 0.35,
+                     f"{fmt_elev(f['elevation'])} m")
+        c.setFont(tf.bold if current else tf.regular, B)
+        c.drawString(left + bw + 6, y + band / 2 - B * 0.35, f["name"].split(" - ")[-1]
+                     + (" (lembar ini)" if current else ""))
         y += band + gap
     c.setStrokeColor(col(GREEN))
     c.setLineWidth(1.2)
-    base = top - 4 - len(floors) * (band + gap) - 1.5
+    base = top - len(floors) * (band + gap) - 1.5
     c.line(left - 4, base, left + bw + 4, base)
 
 
 def _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha):
+    """Right panel at the sheet's legible size: north arrow, legend, room list,
+    notes, revision history and the title block. The full assumption texts
+    live on A-001; this panel cites their IDs."""
+    from reportlab.lib import colors
+    from reportlab.lib.utils import simpleSplit
+    col = colors.HexColor
+    B = legible_pt(sheet["size"])
+    LH = B * 1.2  # line pitch, pt
+
+    def mm(v):
+        return v * PT_PER_MM
+    px0, py0, px1, py1 = layout["panel"]
+    left = mm(px0 + 6)
+    right = mm(px1 - 6)
+    width = right - left
+    y = mm(py1 - 5)
+
+    def heading(text):
+        nonlocal y
+        c.setFillColor(col(GREEN))
+        c.setFont(tf.bold, B * 1.1)
+        c.drawString(left, y - B * 1.1, text)
+        y -= B * 1.1 + 4
+        c.setStrokeColor(col(GREEN))
+        c.setLineWidth(0.4)
+        c.line(left, y, right, y)
+        y -= 4
+
+    def para(text, x=None, w=None, font=None, color=INK, bullet=False):
+        nonlocal y
+        x = left if x is None else x
+        w = width if w is None else w
+        c.setFont(font or tf.regular, B)
+        c.setFillColor(col(color))
+        lines = simpleSplit(text, font or tf.regular, B, w - (7 if bullet else 0))
+        if bullet:
+            c.circle(x + 2, y - B * 0.62, 1.1, stroke=0, fill=1)
+        for ln in lines:
+            y -= LH
+            c.drawString(x + (7 if bullet else 0), y + B * 0.22, ln)
+        y -= 2
+
+    # North arrow + orientation notes beside it.
+    r = mm(8)
+    nx, ny = left + r, y - r - B * 1.2
+    c.setStrokeColor(col(GREEN))
+    c.setLineWidth(0.8)
+    c.circle(nx, ny, r, stroke=1, fill=0)
+    for side, fill in ((-1, col(GREEN)), (1, colors.white)):
+        pth = c.beginPath()
+        pth.moveTo(nx, ny + r)
+        pth.lineTo(nx + side * r * 0.4, ny - r * 0.6)
+        pth.lineTo(nx, ny - r * 0.33)
+        pth.close()
+        c.setFillColor(fill)
+        c.drawPath(pth, stroke=1 if side > 0 else 0, fill=1)
+    c.setFillColor(col(GREEN))
+    c.setFont(tf.bold, B * 1.1)
+    c.drawCentredString(nx, ny + r + 2.5, "U")
+    top = y
+    para("Utara = sumbu Y+ dunia", x=left + 2 * r + 8, w=width - 2 * r - 8, font=tf.bold)
+    para("Origin (0,0) sudut barat daya L1, X timur. Grid acuan konsep (1..n, A..n), bukan grid struktur "
+         "(AS-DIM-03).", x=left + 2 * r + 8, w=width - 2 * r - 8)
+    y = min(y, top - 2 * r - B * 1.6) - 3
+
+    heading("LEGENDA")
+    sw = mm(13)
+    items = [("wall_ext", "Dinding luar 0,30 m"), ("wall_int", "Dinding dalam 0,15 m"),
+             ("door1", "Pintu tunggal, buka 90°"), ("door2", "Pintu ganda"),
+             ("opening", "Bukaan tanpa daun"), ("hatch", "Akses shaft / riser"),
+             ("furn", "Furniture (AS-DIM-04)"), ("stair", "Tangga U / lift"),
+             ("grid", "Grid acuan konsep"), ("dim", "Dimensi mm, as ke as"),
+             ("tag", "Tag ruang: ID, nama, luas"), ("dtag", "Tag pintu Dnn"),
+             ("win", "Jendela bening, tag Wnn"), ("win_obs", "Jendela kaca buram")]
+    colw = width / 2
+    for i in range(0, len(items), 2):
+        pair = items[i:i + 2]
+        nlines = max(len(simpleSplit(t, tf.regular, B, colw - sw - 8)) for _, t in pair)
+        row = max(mm(6.5), nlines * LH + 3)
+        cy_ = y - row / 2
+        for k, (kind, text) in enumerate(pair):
+            x0s = left + k * colw
+            _legend_symbol(c, kind, x0s, cy_, sw, tf, B)
+            lines = simpleSplit(text, tf.regular, B, colw - sw - 8)
+            c.setFillColor(col(INK))
+            c.setFont(tf.regular, B)
+            for j, ln in enumerate(lines):
+                c.drawString(x0s + sw + 5, cy_ - B * 0.35 + (len(lines) - 1) * LH / 2 - j * LH, ln)
+        y -= row
+    y -= 3
+
+    heading(f"DAFTAR RUANG {plan['floor']} (luas as-drawn)")
+    c.setFillColor(col(GREY_TEXT))
+    c.setFont(tf.medium, B)
+    c.drawString(left, y - B, "ID")
+    c.drawString(left + mm(27), y - B, "Nama")
+    c.drawRightString(right, y - B, "Luas")
+    y -= B + 4
+    for r_ in plan["rooms"]:
+        name_lines = simpleSplit(r_["name"], tf.regular, B, width - mm(27) - tf.width("000,00 m²", tf.medium, B) - 6)
+        c.setFillColor(col(GREEN))
+        c.setFont(tf.bold, B)
+        c.drawString(left, y - B, r_["id"])
+        c.setFillColor(col(INK))
+        c.setFont(tf.regular, B)
+        for j, ln in enumerate(name_lines):
+            c.drawString(left + mm(27), y - B - j * LH, ln)
+        c.setFont(tf.medium, B)
+        c.drawRightString(right, y - B, fmt_area(r_["area"]))
+        y -= LH * len(name_lines) + 1
+    total = sum(r_["area"] for r_ in plan["rooms"])
+    x0e, y0e, x1e, y1e = plan["extent"]
+    c.setStrokeColor(col(GREEN))
+    c.setLineWidth(0.4)
+    c.line(left, y - 1, right, y - 1)
+    y -= 2
+    c.setFillColor(col(INK))
+    c.setFont(tf.bold, B)
+    c.drawString(left, y - B, f"Jumlah {len(plan['rooms'])} ruang")
+    c.drawRightString(right, y - B, fmt_area(total))
+    y -= LH + 1
+    para(f"= envelope {fmt_m(x1e - x0e)} x {fmt_m(y1e - y0e)} m ({fmt_area((x1e - x0e) * (y1e - y0e))})",
+         color=GREY_TEXT)
+    y -= 3
+
+    heading("CATATAN")
+    floor_meta = floor_of(world, plan["floor"])
+    seats = sum(1 for sl in world["activitySlots"] if sl["floor"] == plan["floor"] and sl.get("pose") == "sit")
+    exits = sum(1 for d in plan["doors"] if d["target"] == "EXT")
+    notes = [
+        f"Sumber tunggal design/world.json revisi {world['revision']['id']}; dinding dari tools/kantor/geometry.py.",
+        f"Pintu: arah buka dan engsel dari doors[].swing. Tag Dnn = pintu D-{plan['floor']}-nn; daftar di A-103.",
+        f"Jendela: {len(plan['windows'])} di lantai ini, "
+        f"{sum(1 for w in plan['windows'] if w['glazing'] == 'obscured')} buram. Tag Wnn = W-{plan['floor']}-0nn; "
+        "ambang dan kepala di A-103 dan A-301.",
+        f"Lantai {floor_meta['id']}: {len(plan['rooms'])} ruang, {len(plan['doors'])} pintu/bukaan, "
+        f"{len(plan['fixtures']) + len(plan['vlinks'])} fixture, {seats} slot duduk (AS-OCC-02). Exit konsep: {exits}, "
+        "belum dinilai terhadap peraturan (AS-OCC-01).",
+        "Asumsi AS-DIM-01, AS-DIM-02, AS-DIM-04 dan AS-DIM-05: teks lengkap di A-001.",
+        f"DXF pasangan cad/out/{sheet['id']}.dxf (mm, 1:1). DWG native BLOCKED, lihat cad/AUTOCAD-RUNBOOK.md.",
+    ]
+    for v in world["verticalLinks"]:
+        if v["type"] == "escape_concept" and any(e["floor"] == plan["floor"] for e in v["ends"]):
+            notes.append(f"{v['id']}: {v['prompt']}; di luar envelope, tidak digambar (AS-EXIT-01).")
+    for n in notes:
+        para(n, bullet=True)
+    notes_bottom = y
+
+    # Revision history sits directly on the title block, as on a paper set.
+    rev = world["revision"]
+    tb_top = _pdf_title_block(c, sheet, world, plan, layout, tf, generated_utc, world_sha, B)
+    rev_lines = simpleSplit(f"{rev['note']}. Lembar dihasilkan dari world.json revisi ini.", tf.regular, B,
+                            width - mm(30))
+    y = tb_top + 4 + B * 1.1 + 8 + B + 4 + len(rev_lines) * LH + 2
+    assert notes_bottom > y + 2, f"{sheet['id']}: panel content runs into the revision table"
+    heading("RIWAYAT REVISI")
+    c.setFillColor(col(GREY_TEXT))
+    c.setFont(tf.medium, B)
+    c.drawString(left, y - B, "Rev")
+    c.drawString(left + mm(10), y - B, "Tanggal")
+    c.drawString(left + mm(30), y - B, "Keterangan")
+    y -= B + 4
+    c.setFillColor(col(INK))
+    c.setFont(tf.bold, B)
+    c.drawString(left, y - B, rev["id"])
+    c.setFont(tf.regular, B)
+    c.drawString(left + mm(10), y - B, rev["date"])
+    for j, ln in enumerate(rev_lines):
+        c.drawString(left + mm(30), y - B - j * LH, ln)
+
+
+def _legend_symbol(c, kind, x0s, cy_, sw, tf, B):
+    from reportlab.lib import colors
+    col = colors.HexColor
+
+    def mm(v):
+        return v * PT_PER_MM
+    if kind in ("wall_ext", "wall_int"):
+        c.setFillColor(col(GREEN if kind == "wall_ext" else WALL_INT))
+        hh = mm(3.0 if kind == "wall_ext" else 1.5)
+        c.rect(x0s, cy_ - hh / 2, sw, hh, stroke=0, fill=1)
+    elif kind in ("door1", "door2"):
+        c.setStrokeColor(col(GREEN))
+        c.setLineWidth(0.8)
+        if kind == "door1":
+            c.line(x0s + 3, cy_ - 5, x0s + 3, cy_ + 6)
+            c.setLineWidth(0.3)
+            c.arc(x0s + 3 - 11, cy_ - 5 - 11, x0s + 3 + 11, cy_ - 5 + 11, 0, 90)
+        else:
+            c.line(x0s + 2, cy_ - 5, x0s + 2, cy_ + 5)
+            c.line(x0s + 22, cy_ - 5, x0s + 22, cy_ + 5)
+            c.setLineWidth(0.3)
+            c.arc(x0s + 2 - 10, cy_ - 15, x0s + 12, cy_ + 5, 0, 90)
+            c.arc(x0s + 12, cy_ - 15, x0s + 32, cy_ + 5, 90, 90)
+    elif kind == "opening":
+        c.setStrokeColor(col(GREEN))
+        c.setLineWidth(0.3)
+        c.setDash([3, 2])
+        c.line(x0s, cy_ + 2, x0s + sw, cy_ + 2)
+        c.line(x0s, cy_ - 2, x0s + sw, cy_ - 2)
+        c.setDash()
+    elif kind == "hatch":
+        c.setStrokeColor(col(GREEN))
+        c.setLineWidth(0.3)
+        c.rect(x0s + 6, cy_ - 3, 20, 6)
+        c.line(x0s + 6, cy_ - 3, x0s + 26, cy_ + 3)
+        c.line(x0s + 6, cy_ + 3, x0s + 26, cy_ - 3)
+    elif kind == "furn":
+        c.setStrokeColor(col(FURN))
+        c.setLineWidth(0.35)
+        c.rect(x0s + 4, cy_ - 4, 24, 8)
+        c.line(x0s + 8, cy_ + 2, x0s + 24, cy_ + 2)
+    elif kind == "stair":
+        c.setStrokeColor(col(TERRA))
+        c.setFillColor(col(TERRA))
+        c.setLineWidth(0.35)
+        for k in range(5):
+            c.line(x0s + 4 + k * 5, cy_ - 5, x0s + 4 + k * 5, cy_ + 5)
+        c.setLineWidth(0.7)
+        c.line(x0s + 2, cy_, x0s + 30, cy_)
+        pth = c.beginPath()
+        pth.moveTo(x0s + 35, cy_)
+        pth.lineTo(x0s + 29, cy_ + 2.6)
+        pth.lineTo(x0s + 29, cy_ - 2.6)
+        pth.close()
+        c.drawPath(pth, stroke=0, fill=1)
+    elif kind == "grid":
+        c.setStrokeColor(col(GRID))
+        c.setLineWidth(0.35)
+        c.setDash([10, 2.5, 1.5, 2.5])
+        c.line(x0s, cy_, x0s + sw - 10, cy_)
+        c.setDash()
+        c.setStrokeColor(col(DIM))
+        c.setFillColor(colors.white)
+        c.circle(x0s + sw - 4.5, cy_, B * 0.62, stroke=1, fill=1)
+        c.setFillColor(col(INK))
+        c.setFont(tf.bold, B)
+        c.drawCentredString(x0s + sw - 4.5, cy_ - B * 0.35, "1")
+    elif kind == "dim":
+        c.setStrokeColor(col(DIM))
+        c.setLineWidth(0.35)
+        c.line(x0s, cy_ - 4, x0s + sw, cy_ - 4)
+        c.setLineWidth(0.9)
+        for q in (x0s + 2, x0s + sw - 2):
+            c.line(q - 1.6, cy_ - 5.6, q + 1.6, cy_ - 2.4)
+        c.setFillColor(col(DIM))
+        c.setFont(tf.medium, B)
+        c.drawCentredString(x0s + sw / 2, cy_ - 2.5, "8000")
+    elif kind == "tag":
+        c.setFillColor(col(GREEN))
+        c.setFont(tf.bold, B)
+        c.drawCentredString(x0s + sw / 2, cy_ - B * 0.35, "ID")
+    elif kind in ("win", "win_obs"):
+        c.setStrokeColor(col(GREEN))
+        wx0, wx1 = x0s + 3, x0s + sw - 3
+        c.setFillColor(col(GREEN))
+        c.rect(x0s, cy_ - mm(1.5), 3, mm(3.0), stroke=0, fill=1)
+        c.rect(wx1, cy_ - mm(1.5), 3, mm(3.0), stroke=0, fill=1)
+        c.setLineWidth(0.45)
+        for dy in (-mm(1.5), mm(1.5)):
+            c.line(wx0, cy_ + dy, wx1, cy_ + dy)
+        c.setLineWidth(0.3)
+        for dy in (-mm(0.25), mm(0.25)):
+            c.line(wx0, cy_ + dy, wx1, cy_ + dy)
+        if kind == "win_obs":
+            c.setLineWidth(0.25)
+            pth = c.beginPath()
+            pth.rect(wx0, cy_ - mm(1.5), wx1 - wx0, mm(3.0))
+            c.saveState()
+            c.clipPath(pth, stroke=0, fill=0)
+            xk = wx0 - mm(3.0)
+            while xk < wx1:
+                c.line(xk, cy_ - mm(1.5), xk + mm(3.0), cy_ + mm(1.5))
+                xk += mm(0.9)
+            c.restoreState()
+    elif kind == "dtag":
+        c.setFillColor(col(GREY_TEXT))
+        c.setFont(tf.medium, B)
+        c.drawCentredString(x0s + sw / 2, cy_ - B * 0.35, "Dnn")
+
+
+def _pdf_title_block(c, sheet, world, plan, layout, tf, generated_utc, world_sha, B):
+    """Title block at the bottom of the panel; returns its top (pt)."""
     from reportlab.lib import colors
     from reportlab.lib.utils import simpleSplit
     col = colors.HexColor
@@ -672,321 +981,9 @@ def _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha):
     left = mm(px0 + 6)
     right = mm(px1 - 6)
     width = right - left
-    y = mm(py1 - 6)
-
-    def heading(text):
-        nonlocal y
-        c.setFillColor(col(GREEN))
-        c.setFont(tf.bold, 9.5)
-        c.drawString(left, y - 9.5, text)
-        y -= 14
-        c.setStrokeColor(col(GREEN))
-        c.setLineWidth(0.4)
-        c.line(left, y + 2, right, y + 2)
-        y -= 3
-
-    # North arrow + project mark.
-    nx, ny = left + mm(12), y - mm(13)
-    c.setStrokeColor(col(GREEN))
-    c.setLineWidth(0.8)
-    c.circle(nx, ny, mm(9), stroke=1, fill=0)
-    pth = c.beginPath()
-    pth.moveTo(nx, ny + mm(9))
-    pth.lineTo(nx - mm(3.6), ny - mm(5.5))
-    pth.lineTo(nx, ny - mm(3))
-    pth.close()
-    c.setFillColor(col(GREEN))
-    c.drawPath(pth, stroke=0, fill=1)
-    pth = c.beginPath()
-    pth.moveTo(nx, ny + mm(9))
-    pth.lineTo(nx + mm(3.6), ny - mm(5.5))
-    pth.lineTo(nx, ny - mm(3))
-    pth.close()
-    c.setFillColor(colors.white)
-    c.drawPath(pth, stroke=1, fill=1)
-    c.setFillColor(col(GREEN))
-    c.setFont(tf.bold, 11)
-    c.drawCentredString(nx, ny + mm(10.5), "U")
-    c.setFillColor(col(INK))
-    c.setFont(tf.bold, 10)
-    c.drawString(nx + mm(16), ny + mm(4), "Utara = sumbu Y+ dunia")
-    c.setFont(tf.regular, 7.5)
-    for i, line in enumerate(["Origin (0,0) sudut barat daya L1, X timur.",
-                              "Grid acuan konsep dari tepi ruang (1..n, A..n),",
-                              "bukan grid struktur (AS-DIM-03)."]):
-        c.drawString(nx + mm(16), ny + mm(0.5) - i * 9, line)
-    y = ny - mm(14)
-
-    heading("LEGENDA")
-    sw = mm(14)
-    items = [("wall_ext", "Dinding luar 0,30 m (poche hijau tua)"), ("wall_int", "Dinding dalam 0,15 m"),
-             ("door1", "Pintu tunggal + arah buka 90°"), ("door2", "Pintu ganda"),
-             ("opening", "Bukaan tanpa daun (garis atas putus)"), ("hatch", "Hatch akses shaft / riser"),
-             ("furn", "Furniture dan fixture (catalog, AS-DIM-04)"),
-             ("stair", "Tangga U / lift, panah dari lantai ini"),
-             ("grid", "Garis grid acuan konsep"), ("dim", "Dimensi mm, as ke as (AS-DIM-02)"),
-             ("tag", "Tag ruang: ID, nama, luas as-drawn"), ("dtag", "ID pintu (sisi tanpa ayunan)"),
-             ("win", "Jendela konsep kaca bening, ID di luar dinding"),
-             ("win_obs", "Jendela kaca buram (arsir diagonal)")]
-    row = 18.0
-    for i, (kind, text) in enumerate(items):
-        colx = left + (i % 2) * width / 2
-        cy_ = y - (i // 2) * row - 8
-        x0s = colx
-        if kind in ("wall_ext", "wall_int"):
-            c.setFillColor(col(GREEN if kind == "wall_ext" else WALL_INT))
-            hh = mm(3.0 if kind == "wall_ext" else 1.5)
-            c.rect(x0s, cy_ - hh / 2, sw, hh, stroke=0, fill=1)
-        elif kind in ("door1", "door2"):
-            c.setStrokeColor(col(GREEN))
-            c.setLineWidth(0.8)
-            if kind == "door1":
-                c.line(x0s + 3, cy_ - 5, x0s + 3, cy_ + 6)
-                c.setLineWidth(0.3)
-                c.arc(x0s + 3 - 11, cy_ - 5 - 11, x0s + 3 + 11, cy_ - 5 + 11, 0, 90)
-            else:
-                c.line(x0s + 2, cy_ - 5, x0s + 2, cy_ + 5)
-                c.line(x0s + 22, cy_ - 5, x0s + 22, cy_ + 5)
-                c.setLineWidth(0.3)
-                c.arc(x0s + 2 - 10, cy_ - 15, x0s + 12, cy_ + 5, 0, 90)
-                c.arc(x0s + 12, cy_ - 15, x0s + 32, cy_ + 5, 90, 90)
-        elif kind == "opening":
-            c.setStrokeColor(col(GREEN))
-            c.setLineWidth(0.3)
-            c.setDash([3, 2])
-            c.line(x0s, cy_ + 2, x0s + sw, cy_ + 2)
-            c.line(x0s, cy_ - 2, x0s + sw, cy_ - 2)
-            c.setDash()
-        elif kind == "hatch":
-            c.setStrokeColor(col(GREEN))
-            c.setLineWidth(0.3)
-            c.rect(x0s + 6, cy_ - 3, 20, 6)
-            c.line(x0s + 6, cy_ - 3, x0s + 26, cy_ + 3)
-            c.line(x0s + 6, cy_ + 3, x0s + 26, cy_ - 3)
-        elif kind == "furn":
-            c.setStrokeColor(col(FURN))
-            c.setLineWidth(0.35)
-            c.rect(x0s + 4, cy_ - 4, 24, 8)
-            c.line(x0s + 8, cy_ + 2, x0s + 24, cy_ + 2)
-        elif kind == "stair":
-            c.setStrokeColor(col(TERRA))
-            c.setFillColor(col(TERRA))
-            c.setLineWidth(0.35)
-            for k in range(5):
-                c.line(x0s + 4 + k * 5, cy_ - 5, x0s + 4 + k * 5, cy_ + 5)
-            c.setLineWidth(0.7)
-            c.line(x0s + 2, cy_, x0s + 30, cy_)
-            pth = c.beginPath()
-            pth.moveTo(x0s + 35, cy_)
-            pth.lineTo(x0s + 29, cy_ + 2.6)
-            pth.lineTo(x0s + 29, cy_ - 2.6)
-            pth.close()
-            c.drawPath(pth, stroke=0, fill=1)
-        elif kind == "grid":
-            c.setStrokeColor(col(GRID))
-            c.setLineWidth(0.35)
-            c.setDash([10, 2.5, 1.5, 2.5])
-            c.line(x0s, cy_, x0s + sw - 8, cy_)
-            c.setDash()
-            c.setStrokeColor(col(DIM))
-            c.setFillColor(colors.white)
-            c.circle(x0s + sw - 3, cy_, 5.5, stroke=1, fill=1)
-            c.setFillColor(col(INK))
-            c.setFont(tf.bold, 6.5)
-            c.drawCentredString(x0s + sw - 3, cy_ - 2.3, "1")
-        elif kind == "dim":
-            c.setStrokeColor(col(DIM))
-            c.setLineWidth(0.35)
-            c.line(x0s, cy_ - 2, x0s + sw, cy_ - 2)
-            c.setLineWidth(0.9)
-            for q in (x0s + 2, x0s + sw - 2):
-                c.line(q - 1.6, cy_ - 3.6, q + 1.6, cy_ - 0.4)
-            c.setFillColor(col(DIM))
-            c.setFont(tf.medium, 6)
-            c.drawCentredString(x0s + sw / 2, cy_, "8000")
-        elif kind == "tag":
-            c.setFillColor(col(GREEN))
-            c.setFont(tf.bold, 6)
-            c.drawCentredString(x0s + sw / 2, cy_ + 2, "ID-RUANG")
-            c.setFillColor(col(GREY_TEXT))
-            c.setFont(tf.medium, 5.5)
-            c.drawCentredString(x0s + sw / 2, cy_ - 5, "00,00 m²")
-        elif kind in ("win", "win_obs"):
-            c.setStrokeColor(col(GREEN))
-            wx0, wx1 = x0s + 3, x0s + sw - 3
-            c.setFillColor(col(GREEN))
-            c.rect(x0s, cy_ - mm(1.5), 3, mm(3.0), stroke=0, fill=1)
-            c.rect(wx1, cy_ - mm(1.5), 3, mm(3.0), stroke=0, fill=1)
-            c.setLineWidth(0.45)
-            for dy in (-mm(1.5), mm(1.5)):
-                c.line(wx0, cy_ + dy, wx1, cy_ + dy)
-            c.setLineWidth(0.3)
-            for dy in (-mm(0.25), mm(0.25)):
-                c.line(wx0, cy_ + dy, wx1, cy_ + dy)
-            c.setLineWidth(0.4)
-            c.line(wx0 - 1.4, cy_ + mm(1.5), wx0 - 1.4, cy_ + mm(2.0))
-            c.line(wx0 - 1.4, cy_ + mm(2.0), wx1 + 1.4, cy_ + mm(2.0))
-            c.line(wx1 + 1.4, cy_ + mm(2.0), wx1 + 1.4, cy_ + mm(1.5))
-            if kind == "win_obs":
-                c.setLineWidth(0.25)
-                pth = c.beginPath()
-                pth.rect(wx0, cy_ - mm(1.5), wx1 - wx0, mm(3.0))
-                c.saveState()
-                c.clipPath(pth, stroke=0, fill=0)
-                xk = wx0 - mm(3.0)
-                while xk < wx1:
-                    c.line(xk, cy_ - mm(1.5), xk + mm(3.0), cy_ + mm(1.5))
-                    xk += mm(0.9)
-                c.restoreState()
-        elif kind == "dtag":
-            c.setFillColor(col(GREY_TEXT))
-            c.setFont(tf.medium, 5.5)
-            c.drawCentredString(x0s + sw / 2, cy_ - 2, "D-ID")
-        c.setFillColor(col(INK))
-        c.setFont(tf.regular, 7.8)
-        lines = simpleSplit(text, tf.regular, 7.8, width / 2 - sw - 8)
-        for j, ln in enumerate(lines[:2]):
-            c.drawString(x0s + sw + 4, cy_ - 2.7 + (len(lines[:2]) - 1) * 4.3 - j * 8.6, ln)
-    y -= (len(items) + 1) // 2 * row + 6
-
-    heading("ASUMSI (lengkap di design/world.json dan docs/assumptions.md)")
-    ids = {a["id"] for a in world["assumptions"]}
-    for aid, text in ASSUMPTION_SHORT.items():
-        assert aid in ids, f"{aid} missing from world.json assumptions"
-        c.setFillColor(col(GREEN))
-        c.setFont(tf.bold, 7.8)
-        c.drawString(left, y - 8.5, aid)
-        c.setFillColor(col(INK))
-        c.setFont(tf.regular, 7.8)
-        lines = simpleSplit(text, tf.regular, 7.8, width - mm(18))
-        for j, ln in enumerate(lines):
-            c.drawString(left + mm(18), y - 8.5 - j * 9.4, ln)
-        y -= 9.4 * len(lines) + 4
-    y -= 4
-
-    heading(f"DAFTAR RUANG {plan['floor']} (luas as-drawn dari polygon)")
-    rh = 9.8
-    c.setFont(tf.medium, 7.2)
-    c.setFillColor(col(GREY_TEXT))
-    c.drawString(left, y - 7, "ID")
-    c.drawString(left + mm(24), y - 7, "Nama")
-    c.drawRightString(right, y - 7, "Luas")
-    y -= rh + 2
-    for i, r in enumerate(plan["rooms"]):
-        if i % 2 == 0:
-            c.setFillColor(col("#eef3f0"))
-            c.rect(left - 2, y - rh - 0.6, width + 4, rh, stroke=0, fill=1)
-        c.setFillColor(col(GREEN))
-        c.setFont(tf.bold, 7.6)
-        c.drawString(left, y - 7.6, r["id"])
-        c.setFillColor(col(INK))
-        c.setFont(tf.regular, 7.6)
-        c.drawString(left + mm(24), y - 7.6, r["name"])
-        c.setFont(tf.medium, 7.6)
-        c.drawRightString(right, y - 7.6, fmt_area(r["area"]))
-        y -= rh
-    total = sum(r["area"] for r in plan["rooms"])
-    x0e, y0e, x1e, y1e = plan["extent"]
-    c.setStrokeColor(col(GREEN))
-    c.setLineWidth(0.4)
-    c.line(left, y - 2, right, y - 2)
-    c.setFillColor(col(INK))
-    c.setFont(tf.bold, 7)
-    c.drawString(left, y - 10.5, f"Jumlah {len(plan['rooms'])} ruang")
-    c.drawRightString(right, y - 10.5, fmt_area(total))
-    c.setFont(tf.regular, 6.8)
-    c.setFillColor(col(GREY_TEXT))
-    c.drawString(left + mm(24), y - 10.5,
-                 f"= envelope {fmt_m(x1e - x0e)} x {fmt_m(y1e - y0e)} m ({fmt_area((x1e - x0e) * (y1e - y0e))})")
-    y -= 20
-
-    heading("CATATAN")
-    floor_meta = floor_of(world, plan["floor"])
-    seats = sum(1 for sl in world["activitySlots"] if sl["floor"] == plan["floor"] and sl.get("pose") == "sit")
-    notes = [
-        f"Sumber tunggal: design/world.json revisi {world['revision']['id']}; dinding diturunkan oleh "
-        "tools/kantor/geometry.py (tepi polygon ruang dikurangi bukaan pintu).",
-        "Arah buka dan sisi engsel pintu dibaca dari world.json (doors[].swing.into dan .hinge); generator "
-        "menolak pintu tunggal/ganda tanpa data swing.",
-        f"Jendela konsep dari world.json windows: {len(plan['windows'])} di lantai ini, "
-        f"{sum(1 for w in plan['windows'] if w['glazing'] == 'obscured')} kaca buram. Ambang dan kepala jendela "
-        "ada di schedule pintu dan jendela A-103 halaman 2 dan di A-301.",
-        f"Lantai {floor_meta['id']}: elevasi {fmt_elev(floor_meta['elevation'])} m; {len(plan['rooms'])} ruang, "
-        f"{len(plan['doors'])} pintu/bukaan, {len(plan['fixtures']) + len(plan['vlinks'])} fixture, "
-        f"{seats} slot duduk (AS-OCC-02).",
-        "DXF pasangan: cad/out/" + sheet["id"] + ".dxf (mm, 1:1). DWG native BLOCKED: tidak ada AutoCAD "
-        "berlisensi di container; lihat cad/AUTOCAD-RUNBOOK.md.",
-    ]
-    exits = sum(1 for d in plan["doors"] if d["target"] == "EXT")
-    notes.append(f"Pintu exit konsep di lantai ini: {exits}. Jalur keluar belum dinilai terhadap peraturan "
-                 "(AS-OCC-01).")
-    for v in world["verticalLinks"]:
-        if v["type"] == "escape_concept" and any(e["floor"] == plan["floor"] for e in v["ends"]):
-            notes.append(f"{v['id']}: {v['prompt']}; tidak digambar karena di luar envelope (AS-EXIT-01).")
-    c.setFont(tf.regular, 7.8)
-    c.setFillColor(col(INK))
-    for n in notes:
-        lines = simpleSplit(n, tf.regular, 7.8, width - 8)
-        c.circle(left + 2, y - 5.8, 1.1, stroke=0, fill=1)
-        for j, ln in enumerate(lines):
-            c.drawString(left + 7, y - 8.4 - j * 9.4, ln)
-        y -= 9.4 * len(lines) + 3.5
-    y -= 4
-
-    heading("KUNCI LANTAI")
-    _pdf_floor_key(c, world, plan, tf, left, right, y)
-    y -= mm(26)
-    notes_bottom = y
-
-    # Title block.
-    tb_top = mm(py0 + 78)
+    LH = B * 1.3
     rev = world["revision"]
-    # Revision history sits directly on the title block, as on a paper set.
-    y = tb_top + mm(26)
-    assert notes_bottom > y + 4, "panel content runs into the revision table"
-    heading("RIWAYAT REVISI")
-    c.setFillColor(col(GREY_TEXT))
-    c.setFont(tf.medium, 7.2)
-    c.drawString(left, y - 7, "Rev")
-    c.drawString(left + mm(12), y - 7, "Tanggal")
-    c.drawString(left + mm(32), y - 7, "Keterangan")
-    y -= 10
-    c.setFillColor(col(INK))
-    c.setFont(tf.bold, 7.8)
-    c.drawString(left, y - 8, rev["id"])
-    c.setFont(tf.regular, 7.8)
-    c.drawString(left + mm(12), y - 8, rev["date"])
-    for j, ln in enumerate(simpleSplit(f"{rev['note']}. Lembar dihasilkan dari world.json revisi ini.",
-                                       tf.regular, 7.8, width - mm(32))):
-        c.drawString(left + mm(32), y - 8 - j * 9.4, ln)
-    c.setStrokeColor(col(GREEN))
-    c.setLineWidth(0.9)
-    c.line(mm(px0), tb_top, mm(px1), tb_top)
-    yy = tb_top - 18
-    c.setFillColor(col(GREEN))
-    c.setFont(tf.bold, 17)
-    c.drawString(left, yy, "kantor-rpg")
-    c.setFont(tf.regular, 8)
-    c.setFillColor(col(INK))
-    c.drawString(left + tf.width("kantor-rpg", tf.bold, 17) + 8, yy + 1,
-                 f"Proyek kantor-rpg  ·  gedung {world['building']['id']}")
-    yy -= 22
-    # Status band: white on deep green.
-    c.setFillColor(col(GREEN))
-    c.rect(left, yy - 4, width, 17, stroke=0, fill=1)
-    c.setFillColor(colors.white)
-    c.setFont(tf.bold, 10.5)
-    c.drawString(left + 6, yy + 1, f"STATUS {STATUS}")
-    c.setFont(tf.medium, 9)
-    c.drawRightString(right - 6, yy + 1, "Bukan untuk konstruksi")
-    yy -= 22
-    c.setFillColor(col(GREEN))
-    c.setFont(tf.bold, 14)
-    c.drawString(left, yy, sheet["title"])
-    c.setFillColor(col(INK))
-    c.setFont(tf.regular, 8)
-    c.drawString(left, yy - 11, f"{floor_meta['id']}: {floor_meta['name']}")
-    yy -= 22
+    floor_meta = floor_of(world, plan["floor"])
     fields = [("Skala", f"{sheet['scale']} @ {sheet['size']} lanskap"),
               ("Revisi", f"{rev['id']}  ·  {rev['date']}"),
               ("Render", generated_utc.replace("T", " ").replace("Z", " UTC")),
@@ -995,36 +992,73 @@ def _pdf_panel(c, sheet, world, plan, layout, tf, generated_utc, world_sha):
               ("Diperiksa", CHECKED_BY),
               ("Sumber", f"world.json sha256 {world_sha[:16]}"),
               ("Generator", f"{GENERATOR} v{GENERATOR_VERSION}")]
-    c.setStrokeColor(col(GRID))
-    c.setLineWidth(0.3)
-    row_h = 12.2
-    label_w = mm(17)
-    for i, (k, v) in enumerate(fields):
-        ry = yy - i * row_h
-        c.line(left, ry - 3.5, right - mm(42), ry - 3.5)
-        c.setFillColor(col(GREY_TEXT))
-        c.setFont(tf.medium, 7)
-        c.drawString(left, ry, k)
-        c.setFillColor(col(INK))
-        c.setFont(tf.regular, 7.6)
-        c.drawString(left + label_w, ry, v)
-    # Sheet number block.
-    bx0, by0 = right - mm(39), yy - (len(fields) - 1) * row_h - 3.5
-    bh = mm(31)
+    note = simpleSplit(font_source_note(tf.fonts), tf.regular, B, width)
+    # Heights bottom-up: font note, fields, title, status band, brand line.
+    h_note = len(note) * LH + 3
+    h_fields = len(fields) * LH + 4
+    h_title = B * 1.4 * 1.2 + LH + 4
+    h_band = B * 1.15 * 1.6
+    h_brand = 17 * 1.3 + 4
+    tb_top = mm(py0) + 6 + h_note + h_fields + h_title + h_band + h_brand
     c.setStrokeColor(col(GREEN))
     c.setLineWidth(0.9)
-    c.rect(bx0, by0, mm(39), bh, stroke=1, fill=0)
-    c.setFillColor(col(GREY_TEXT))
-    c.setFont(tf.medium, 7)
-    c.drawString(bx0 + 5, by0 + bh - 11, "Nomor lembar")
+    c.line(mm(px0), tb_top, mm(px1), tb_top)
+    yy = tb_top - 17 - 3
     c.setFillColor(col(GREEN))
-    c.setFont(tf.bold, 27)
-    c.drawCentredString(bx0 + mm(19.5), by0 + mm(12), sheet["id"])
+    c.setFont(tf.bold, 17)
+    c.drawString(left, yy, "kantor-rpg")
+    c.setFont(tf.regular, B)
     c.setFillColor(col(INK))
-    c.setFont(tf.medium, 7.5)
-    c.drawCentredString(bx0 + mm(19.5), by0 + mm(5.5), f"Rev {rev['id']}")
+    c.drawString(left + tf.width("kantor-rpg", tf.bold, 17) + 8, yy + 1,
+                 f"Proyek kantor-rpg  ·  gedung {world['building']['id']}")
+    yy -= 8 + h_band
+    c.setFillColor(col(GREEN))
+    c.rect(left, yy, width, h_band, stroke=0, fill=1)
+    c.setFillColor(colors.white)
+    c.setFont(tf.bold, B * 1.15)
+    c.drawString(left + 6, yy + h_band / 2 - B * 0.4, f"STATUS {STATUS}")
+    c.setFont(tf.medium, B)
+    c.drawRightString(right - 6, yy + h_band / 2 - B * 0.4, "Bukan untuk konstruksi")
+    yy -= B * 1.4 + 4
+    c.setFillColor(col(GREEN))
+    c.setFont(tf.bold, B * 1.4)
+    c.drawString(left, yy, sheet["title"])
+    c.setFillColor(col(INK))
+    c.setFont(tf.regular, B)
+    yy -= LH
+    c.drawString(left, yy, f"{floor_meta['id']}: {floor_meta['name']}")
+    yy -= 4
+    label_w = max(tf.width(k, tf.medium, B) for k, _ in fields) + 6
+    c.setStrokeColor(col(GRID))
+    c.setLineWidth(0.3)
+    box_w = mm(36)
+    fields_top = yy
+    for k, v in fields:
+        yy -= LH
+        c.setFillColor(col(GREY_TEXT))
+        c.setFont(tf.medium, B)
+        c.drawString(left, yy + B * 0.25, k)
+        c.setFillColor(col(INK))
+        c.setFont(tf.regular, B)
+        c.drawString(left + label_w, yy + B * 0.25, v)
+    # Sheet number block beside the fields.
+    bx0 = right - box_w
+    c.setStrokeColor(col(GREEN))
+    c.setLineWidth(0.9)
+    c.rect(bx0, yy, box_w, fields_top - yy, stroke=1, fill=0)
     c.setFillColor(col(GREY_TEXT))
-    c.setFont(tf.regular, 6.2)
-    note = font_source_note(tf.fonts)
-    for j, ln in enumerate(simpleSplit(note, tf.regular, 6.2, width)):
-        c.drawString(left, mm(py0 + 3.5) + 7.5 - j * 7.5, ln)
+    c.setFont(tf.medium, B)
+    c.drawString(bx0 + 4, fields_top - B - 2, "Nomor lembar")
+    c.setFillColor(col(GREEN))
+    c.setFont(tf.bold, 26)
+    c.drawCentredString(bx0 + box_w / 2, (yy + fields_top) / 2 - 8, sheet["id"])
+    c.setFillColor(col(INK))
+    c.setFont(tf.medium, B)
+    c.drawCentredString(bx0 + box_w / 2, yy + 4, f"Rev {rev['id']}")
+    yy -= 3
+    c.setFillColor(col(GREY_TEXT))
+    c.setFont(tf.regular, B)
+    for ln in note:
+        yy -= LH
+        c.drawString(left, yy + B * 0.25, ln)
+    return tb_top

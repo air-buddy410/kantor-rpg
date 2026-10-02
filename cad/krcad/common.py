@@ -57,6 +57,48 @@ BUBBLE_R_MM = 4.0
 RING_MM = BUBBLE_MM + BUBBLE_R_MM + 1.0
 TITLE_STRIP_MM = 36.0
 
+# Print legibility (concept drafting target): Budi prints the set on A3, so an
+# A2 sheet is shrunk to fit A3 landscape (never enlarged). Text that must be
+# read off the print gets at least 2,5 mm (smallest ISO 3098 nominal height),
+# measured as em size, which is the lenient reading of ISO's cap height.
+PRINT_PAPER_MM = (420.0, 297.0)
+PRINT_MIN_TEXT_MM = 2.5
+
+
+def print_scale(size: str) -> float:
+    w, h = PAPER_MM[size]
+    return min(1.0, PRINT_PAPER_MM[0] / w, PRINT_PAPER_MM[1] / h)
+
+
+def legible_pt(size: str, margin: float = 1.05) -> float:
+    """Smallest font size (pt, 0,1 steps) that prints >= PRINT_MIN_TEXT_MM on
+    the print paper. The 5 % margin keeps pdf rounding off the limit."""
+    return math.ceil(PRINT_MIN_TEXT_MM / print_scale(size) * PT_PER_MM * margin * 10) / 10
+
+
+def window_tag_text(win_id: str) -> str:
+    """Short drawing tag: W + window number (W-L1-016 -> W16). Numbers are
+    unique over both floors, and A-103 lists tag next to full ID; the full ID
+    at a legible size would not fit between windows on the 1:200 elevations."""
+    return "W" + str(int(win_id.rsplit("-", 1)[1]))
+
+
+def door_tag_text(door_id: str) -> str:
+    """Short plan tag: D + door code (D-L1-15 -> D15, D-L1-ENT -> DENT). The
+    floor is the sheet's; A-103 lists tag and full ID side by side."""
+    code = door_id.rsplit("-", 1)[1]
+    return "D" + (str(int(code)) if code.isdigit() else code)
+
+
+def window_tag_shape(text_w_pt: float, size_pt: float):
+    """Elongated hexagon around a window tag, in pt about the tag centre with
+    the text along +x. The hexagon keeps window tags apart from the round grid
+    bubbles and the bare door IDs. Returns (points, half_w, half_h)."""
+    a = text_w_pt / 2 + 0.12 * size_pt
+    h = 0.62 * size_pt
+    p = 0.34 * size_pt
+    return [(-a - p, 0.0), (-a, h), (a, h), (a + p, 0.0), (a, -h), (-a, -h)], a + p, h
+
 LAYERS = {
     # name: (ACI, rgb, lineweight 1/100 mm, linetype, plot)
     "A-WALL": (3, (31, 77, 58), 50, "Continuous", True),

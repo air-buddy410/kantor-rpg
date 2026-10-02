@@ -90,8 +90,8 @@ def build_topology(sheet, ctx):
                                      f"{poe}; budget belum divalidasi"], ident=s["switch"])
         b = sw_boxes[s["switch"]]
         link(((b_agg[0] + b_agg[2]) / 2, b_agg[1]), ((b[0] + b[2]) / 2, b[3]), None, dash=(3, 2))
-    page.text((cx + 32, 198), "uplink konsep: hierarki dari tipe perangkat, port uplink belum dipetakan", lay,
-              size=5.4, color=GREY_TEXT)
+    paragraph(page, cx + 33, 221, "uplink konsep: hierarki dari tipe perangkat, port uplink belum dipetakan", 78,
+              size=5.4, color=GREY_TEXT, layer=lay)
     pps = sorted({c["patchPanel"] for c in pm["cables"]} | {d["device"] for r in ict["racks"] for d in r["contents"]
                                                              if d["type"] == "patch_panel_24"})
     pp_boxes = {}
@@ -168,13 +168,34 @@ def _outlet_symbol(v, pos, size_m, xd):
            fill="#ffffff", width=0.6, xd=xd)
 
 
+def outlet_tag(oid: str) -> str:
+    """In-plan outlet tag: T + outlet number (TO-L1-023 -> T23); the panel table maps it back."""
+    return "T" + str(int(oid.rsplit("-", 1)[1]))
+
+
+def device_tag(did: str) -> str:
+    """AP-L1-01 -> AP1, CAM-L1-02 -> CAM2 (floor is the sheet's)."""
+    kind, _, num = did.split("-")
+    return kind + str(int(num))
+
+
+def _leader(v, anchor, box, layer, color, min_gap):
+    """Thin leader from a symbol to its label when the label had to move away."""
+    ex, ey = min(max(anchor[0], box[0]), box[2]), min(max(anchor[1], box[1]), box[3])
+    if math.hypot(ex - anchor[0], ey - anchor[1]) > min_gap:
+        v.line(anchor, (ex, ey), layer, stroke=color, width=0.25)
+        return 1
+    return 0
+
+
 def build_ict_plan(sheet, ctx):
     world, pm = ctx["world"], ctx["portmap"]
     ict = world["ict"]
     floor = sheet["floor"]
     den = int(sheet["scale"].split(":")[1])
-    plan = build_plan(world, floor, den, with_tags=False)
+    plan = build_plan(world, floor, den, with_tags=False, paper=sheet["size"])
     sd = SheetDoc(sheet, world, make_meta(sheet, world, ctx, floor))
+    b = sd.body
     page = sd.new_page()
     lay = plan_paper_layout(sheet, plan, den)
     (fx0, fy0, fx1, fy1), tb = frame_and_title(sd, page, 1, 1, ctx["utc"], ctx["sha"],
@@ -182,8 +203,13 @@ def build_ict_plan(sheet, ctx):
     page.line((lay["panel"][0], fy0), (lay["panel"][0], fy1), "A-ANNO-TTLB", stroke=GREEN, width=0.8)
     z = lay["zone"]
     v = page.view("ict", den, lay["origin"], (z[0] + 1, z[1] + 1, z[2] - 1, z[3] - 1))
+    mpm = v.m_per_mm()
     plan_base(v, plan, mode="light", fixtures="faint")
     rooms_cat = {r["id"]: r["category"] for r in world["rooms"]}
+    wall_rects = [w["rect"] for w in plan["walls"]]
+    # Door swings are obstacles too: a label on a swing hides the arc.
+    placer = LabelPlacer(v, obstacles=list(wall_rects) + outside_strips(plan) + [d["swing_box"] for d in plan["doors"]])
+    th = b / PT_PER_MM * mpm  # label height in metres
     # Trays and riser.
     pw_ = ict["pathways"]
     for t in pw_["trays"]:
@@ -191,11 +217,19 @@ def build_ict_plan(sheet, ctx):
             continue
         v.line(t["from"], t["to"], "ICT-TRAY", stroke=TRAY, width=2.2, alpha=0.5, xd=("tray", t["id"]))
         v.line(t["from"], t["to"], "ICT-TRAY", stroke=TRAY, width=0.4, dash=(4, 2))
-        mx, my = (t["from"][0] + t["to"][0]) / 2, (t["from"][1] + t["to"][1]) / 2
         horiz = abs(t["from"][1] - t["to"][1]) < 1e-6
-        lab = (mx - 3.0, my + 0.35) if horiz else (mx + 0.35, my + 1.5)
-        v.text(lab, f"{t['id']} +{pw_['trayHeight']:.1f} m".replace(".", ","), "ICT-TRAY", size=5.2, font="M",
-               color=TRAY, rot=0 if horiz else 90, knock=True, xd=("tray", t["id"]))
+        label = f"{t['id']} +{pw_['trayHeight']:.1f} m".replace(".", ",")
+        tw = text_w_mm(label, b, "M") * mpm
+        mx, my = (t["from"][0] + t["to"][0]) / 2, (t["from"][1] + t["to"][1]) / 2
+        if horiz:
+            box = (mx - tw / 2, my + 0.12, mx + tw / 2, my + 0.12 + th)
+            v.text((mx, my + 0.12 + th * 0.2), label, "ICT-TRAY", size=b, font="M", color=TRAY, align="c",
+                   knock=True, xd=("tray", t["id"]))
+        else:
+            box = (mx + 0.12, my - tw / 2, mx + 0.12 + th, my + tw / 2)
+            v.text((mx + 0.12 + th * 0.8, my), label, "ICT-TRAY", size=b, font="M", color=TRAY, align="c", rot=90,
+                   knock=True, xd=("tray", t["id"]))
+        placer.boxes.append(box)
         for node, jp in t.get("joins", []):
             v.line(next(n["pos"] for n in pw_["nodes"] if n["id"] == node), jp, "ICT-TRAY", stroke=TRAY, width=1.2)
     for n in pw_["nodes"]:
@@ -203,96 +237,116 @@ def build_ict_plan(sheet, ctx):
             x, y = n["pos"]
             v.rect(x - 0.3, y - 0.3, x + 0.3, y + 0.3, "ICT-RISR", stroke=TRAY, fill="#f3e6d6", width=0.8,
                    xd=("node", n["id"]))
-            v.text((x, y + 0.45), "RISER", "ICT-RISR", size=5.2, font="B", color=TRAY, align="c", knock=True)
+            placer.boxes.append((x - 0.3, y - 0.3, x + 0.3, y + 0.3))
+            box, _ = placer.place((x, y), "RISER", b, "B", gap=0.35)
+            v.text(((box[0] + box[2]) / 2, box[1] + (box[3] - box[1]) * 0.2), "RISER", "ICT-RISR", size=b, font="B",
+                   color=TRAY, align="c", knock=True)
     for e in pw_["edges"]:
         a = next(n for n in pw_["nodes"] if n["id"] == e[0])
-        b = next(n for n in pw_["nodes"] if n["id"] == e[1])
-        if a["floor"] == b["floor"] == floor:
-            v.line(a["pos"], b["pos"], "ICT-TRAY", stroke=TRAY, width=1.2)
+        bb = next(n for n in pw_["nodes"] if n["id"] == e[1])
+        if a["floor"] == bb["floor"] == floor:
+            v.line(a["pos"], bb["pos"], "ICT-TRAY", stroke=TRAY, width=1.2)
     for r in ict["racks"]:
         if r["floor"] != floor:
             continue
         fx = next(f for f in world["fixtures"] if f["id"] == r["fixture"])
         v.poly(fixture_corners(fx), "ICT-RACK", closed=True, stroke=ICT, fill="#cfe0d6", width=0.7,
                xd=("rack", r["id"]))
-    wall_rects = [w["rect"] for w in plan["walls"]]
-    placer = LabelPlacer(v, obstacles=list(wall_rects) + outside_strips(plan))
+        placer.boxes.append(tuple(f(p[k] for p in fixture_corners(fx)) for f, k in ((min, 0), (min, 1), (max, 0),
+                                                                                       (max, 1))))
     # Rack labels as one block beside the pair of racks.
     rk = [r for r in ict["racks"] if r["floor"] == floor]
     if rk:
         fxs = [next(f for f in world["fixtures"] if f["id"] == r["fixture"]) for r in rk]
-        ax = max(f["pos"][0] for f in fxs) + 0.5
-        ay = max(f["pos"][1] for f in fxs) + 0.3
-        for i, r in enumerate(rk):
-            v.text((ax, ay - i * 0.42), r["id"], "ICT-RACK", size=5.4, font="B", color=ICT, knock=True,
-                   xd=("rack", r["id"]))
-        placer.boxes.append((ax, ay - 0.6, ax + 2.4, ay + 0.3))
+        anchor = (sum(f["pos"][0] for f in fxs) / len(fxs), sum(f["pos"][1] for f in fxs) / len(fxs))
+        lw = max(text_w_mm(r["id"], b, "B") for r in rk) * mpm + 0.08
+        lh = len(rk) * th * 1.15
+        box, _ = placer.place_box(anchor, lw, lh, gap=0.6)
+        for k, r in enumerate(rk):
+            v.text((box[0] + 0.04, box[3] - (k + 1) * th * 1.15 + th * 0.25), r["id"], "ICT-RACK", size=b, font="B",
+                   color=ICT, knock=True, xd=("rack", r["id"]))
+        _leader(v, anchor, box, "ICT-RACK", ICT, 0.5)
     outlets = [o for o in ict["outlets"] if o["floor"] == floor]
     devs = [d for d in ict["devices"] if d["floor"] == floor]
+    ap_r = {}
     for o in outlets:
         x, y = o["pos"]
         placer.boxes.append((x - 0.2, y - 0.2, x + 0.2, y + 0.2))
     for d in devs:
         x, y = d["pos"]
-        placer.boxes.append((x - 0.32, y - 0.32, x + 0.32, y + 0.32))
+        if d["type"] == "ap":
+            # AP symbol is a circle holding its own tag, sized for the legible tag.
+            ap_r[d["id"]] = max(0.3, text_w_mm(device_tag(d["id"]), b, "B") * mpm / 2 + 0.1)
+        rr = ap_r.get(d["id"], 0.32)
+        placer.boxes.append((x - rr, y - rr, x + rr, y + rr))
+        if d["type"] == "camera":
+            # The aim arrow is drawn later; reserve its box before any outlet tag is placed.
+            a = math.radians(d.get("aimDeg", 0))
+            tip = (x + 0.9 * math.cos(a), y + 0.9 * math.sin(a))
+            placer.boxes.append((min(x, tip[0]) - 0.1, min(y, tip[1]) - 0.1, max(x, tip[0]) + 0.1,
+                                 max(y, tip[1]) + 0.1))
+    leaders = 0
     for o in outlets:
         _outlet_symbol(v, o["pos"], 0.17, ("outlet", o["id"], {"ports": o["ports"], "domain": o["domain"]}))
-        label = f"{o['id']} ({o['ports']})"
-        box, _ = placer.place(o["pos"], label, 4.6, "M", gap=0.22)
-        v.text((box[0] + 0.04, box[1] + (box[3] - box[1]) * 0.2), label, "ICT-OUTL-IDEN", size=4.6, font="M",
-               color=INK, knock=True, xd=("outlet", o["id"]))
+        tag = outlet_tag(o["id"])
+        box, _ = placer.place(o["pos"], tag, b, "M", gap=0.22)
+        leaders += _leader(v, o["pos"], box, "ICT-OUTL-IDEN", INK, 0.45)
+        v.text(((box[0] + box[2]) / 2, box[1] + (box[3] - box[1]) * 0.2), tag, "ICT-OUTL-IDEN", size=b, font="M",
+               color=INK, align="c", knock=True, xd=("outlet", o["id"]))
     wet_cams = []
     for d in devs:
         x, y = d["pos"]
+        tag = device_tag(d["id"])
         if d["type"] == "ap":
-            v.circle((x, y), 0.3, "ICT-AP", stroke=ICT, fill="#ffffff", width=0.8, xd=("device", d["id"]))
-            v.text((x, y - 0.09), "AP", "ICT-AP", size=4.6, font="B", color=ICT, align="c")
-            label = f"{d['id']} placeholder"
-        else:
-            if rooms_cat.get(d["room"]) == "wet":
-                wet_cams.append(d["id"])
-            a = math.radians(d.get("aimDeg", 0))
-            v.rect(x - 0.18, y - 0.18, x + 0.18, y + 0.18, "ICT-CAM", stroke=TERRA, fill="#ffffff", width=0.8,
+            rr = ap_r[d["id"]]
+            v.circle((x, y), rr, "ICT-AP", stroke=ICT, fill="#ffffff", width=0.8, xd=("device", d["id"]))
+            v.text((x, y - th * 0.35), tag, "ICT-AP", size=b, font="B", color=ICT, align="c",
                    xd=("device", d["id"]))
-            tip = (x + 0.9 * math.cos(a), y + 0.9 * math.sin(a))
-            v.line((x, y), tip, "ICT-CAM", stroke=TERRA, width=0.6)
-            v.poly([tip, (tip[0] - 0.22 * math.cos(a - 0.45), tip[1] - 0.22 * math.sin(a - 0.45)),
-                    (tip[0] - 0.22 * math.cos(a + 0.45), tip[1] - 0.22 * math.sin(a + 0.45))], "ICT-CAM",
-                   closed=True, stroke=None, fill=TERRA)
-            placer.boxes.append((min(x, tip[0]) - 0.1, min(y, tip[1]) - 0.1, max(x, tip[0]) + 0.1,
-                                 max(y, tip[1]) + 0.1))
-            label = f"{d['id']} (arah konsep)"
-        box, _ = placer.place((x, y), label, 4.8, "B", gap=0.38)
-        v.text((box[0] + 0.04, box[1] + (box[3] - box[1]) * 0.2), label, "ICT-DEV-IDEN", size=4.8, font="B",
-               color=ICT if d["type"] == "ap" else TERRA, knock=True, xd=("device", d["id"]))
+            continue
+        if rooms_cat.get(d["room"]) == "wet":
+            wet_cams.append(d["id"])
+        a = math.radians(d.get("aimDeg", 0))
+        v.rect(x - 0.18, y - 0.18, x + 0.18, y + 0.18, "ICT-CAM", stroke=TERRA, fill="#ffffff", width=0.8,
+               xd=("device", d["id"]))
+        tip = (x + 0.9 * math.cos(a), y + 0.9 * math.sin(a))
+        v.line((x, y), tip, "ICT-CAM", stroke=TERRA, width=0.6)
+        v.poly([tip, (tip[0] - 0.22 * math.cos(a - 0.45), tip[1] - 0.22 * math.sin(a - 0.45)),
+                (tip[0] - 0.22 * math.cos(a + 0.45), tip[1] - 0.22 * math.sin(a + 0.45))], "ICT-CAM",
+               closed=True, stroke=None, fill=TERRA)
+        box, _ = placer.place((x, y), tag, b, "B", gap=0.3)
+        leaders += _leader(v, (x, y), box, "ICT-DEV-IDEN", TERRA, 0.5)
+        v.text(((box[0] + box[2]) / 2, box[1] + (box[3] - box[1]) * 0.2), tag, "ICT-DEV-IDEN", size=b, font="B",
+               color=TERRA, align="c", knock=True, xd=("device", d["id"]))
     if wet_cams:
         raise ValueError(f"camera in wet room on {floor}: {wet_cams}")
-    room_id_labels(v, plan, wall_rects, size=5.4, obstacles=placer.boxes, color=GREY_TEXT)
-    view_title(page, fx0 + 6, fy0 + 17, sheet["title"].upper(), f"Skala {sheet['scale']} @ {sheet['size']}")
-    page.text((fx0 + 6, fy0 + 9), "Label outlet: ID (jumlah port). Tray di +3,2 m (AS-ICT-02). "
-              "AP placeholder tanpa klaim radius Wi-Fi (AS-ICT-01).", "A-ANNO-NOTE", size=7)
+    room_id_labels(v, plan, wall_rects, size=b, obstacles=placer.boxes, color=GREY_TEXT)
+    view_title(page, fx0 + 6, fy0 + 19, sheet["title"].upper(), f"Skala {sheet['scale']} @ {sheet['size']}")
+    paragraph(page, fx0 + 6, fy0 + 14, "Tag Tnn = outlet TO-" + floor + "-0nn, APn/CAMn = perangkat; ID lengkap di "
+              "tabel panel. Tray di +3,2 m (AS-ICT-02). AP placeholder tanpa klaim radius Wi-Fi (AS-ICT-01).", 165,
+              size=b)
     scale_bar(page, fx0 + 200, fy0 + 12, den, (0, 1, 2, 5, 10))
     # Panel.
     px0 = lay["panel"][0] + 5
     pw = lay["panel"][2] - 5 - px0
     y = fy1 - 4
     north_arrow(page, px0 + 8, y - 11, r=6)
-    page.text((px0 + 20, y - 8), VIRTUAL.capitalize(), "A-ANNO-NOTE", size=7.4, font="B", color=TERRA)
-    page.text((px0 + 20, y - 12.5), f"Lantai {floor}: {floor_of(world, floor)['name']}", "A-ANNO-NOTE", size=7)
-    page.text((px0 + 20, y - 16.5), "Sumber: world.json ict + design/derived/ict-portmap.json", "A-ANNO-NOTE", size=6.5)
-    y -= 24
+    y = paragraph(page, px0 + 18, y - 2, VIRTUAL.capitalize(), pw - 18, size=b, font="B", color=TERRA)
+    y = paragraph(page, px0 + 18, y, f"Lantai {floor}: {floor_of(world, floor)['name']}. Sumber: world.json ict + "
+                  "design/derived/ict-portmap.json", pw - 18, size=b)
+    y = min(y, fy1 - 26) - 1
     y = heading(page, px0, y, "LEGENDA", pw)
-    leg = [("outlet", "Outlet data (segitiga), label ID (port)"), ("ap", "Access point placeholder (AS-ICT-01)"),
-           ("cam", "Kamera opsional + arah konsep (bukan FOV terukur)"), ("tray", "Tray kabel +3,2 m"),
-           ("riser", "Riser vertikal ke lantai lain"), ("rack", "Rack 42U (target)")]
+    leg = [("outlet", "Outlet data, tag Tnn"), ("ap", "AP placeholder, tag APn"),
+           ("cam", "Kamera opsional + arah konsep"), ("tray", "Tray kabel +3,2 m"),
+           ("riser", "Riser ke lantai lain"), ("rack", "Rack 42U (target)")]
+    row_h = b * 1.3 / PT_PER_MM + 1.6
     for i, (k, t) in enumerate(leg):
         cx_ = px0 + (i % 2) * pw / 2
-        cy_ = y - (i // 2) * 7 - 4
+        cy_ = y - (i // 2) * row_h - row_h / 2
         if k == "outlet":
             page.poly([(cx_ + 1, cy_ - 1.2), (cx_ + 5, cy_ - 1.2), (cx_ + 3, cy_ + 2)], "ICT-OUTL", closed=True,
                       stroke=ICT, fill="#ffffff", width=0.6)
         elif k == "ap":
-            page.circle((cx_ + 3, cy_), 2.2, "ICT-AP", stroke=ICT, width=0.7)
+            page.circle((cx_ + 3, cy_), 2.4, "ICT-AP", stroke=ICT, width=0.7)
         elif k == "cam":
             page.rect(cx_ + 1.5, cy_ - 1.2, cx_ + 3.9, cy_ + 1.2, "ICT-CAM", stroke=TERRA, width=0.7)
             page.line((cx_ + 3.9, cy_), (cx_ + 7, cy_), "ICT-CAM", stroke=TERRA, width=0.6)
@@ -302,32 +356,33 @@ def build_ict_plan(sheet, ctx):
             page.rect(cx_ + 1.5, cy_ - 1.6, cx_ + 4.7, cy_ + 1.6, "ICT-RISR", stroke=TRAY, fill="#f3e6d6", width=0.7)
         else:
             page.rect(cx_ + 1, cy_ - 1.6, cx_ + 6, cy_ + 1.6, "ICT-RACK", stroke=ICT, fill="#cfe0d6", width=0.6)
-        for j, ln in enumerate(wrap(t, 6.2, pw / 2 - 12)[:2]):
-            page.text((cx_ + 9, cy_ - 1 - j * 2.6 + (1.3 if len(wrap(t, 6.2, pw / 2 - 12)) > 1 else 0)), ln,
-                      "A-ANNO-NOTE", size=6.2)
-    y -= ((len(leg) + 1) // 2) * 7 + 3
+        page.text((cx_ + 9, cy_ - b * 0.35 / PT_PER_MM), t, "A-ANNO-NOTE", size=b)
+    y -= ((len(leg) + 1) // 2) * row_h + 2
     y = heading(page, px0, y, f"OUTLET {floor} ({len(outlets)} outlet, {sum(o['ports'] for o in outlets)} port)", pw)
-    fx_ids = {}
-    rows = [[o["id"], o["room"].split("-", 1)[1], str(o["ports"]), o["domain"].replace("NET-", ""),
-             o["serves"]] for o in outlets]
-    cols = [Col("ID", 18, "l", "B"), Col("Ruang", 14), Col("Port", 7, "r"), Col("Domain", 13), Col("Melayani", 17)]
+    rows = [[outlet_tag(o["id"]), o["id"], o["room"].split("-", 1)[1], str(o["ports"])] for o in outlets]
+    half_w = pw / 2 - 1.5
+    cols = [Col("Tag", 11, "l", "B"), Col("ID", 24, "l", "M"), Col("Ruang", half_w - 46), Col("Port", 11, "r")]
     half = (len(rows) + 1) // 2
-    _, y1 = draw_table(page, px0, y, cols, rows[:half], size=5.6, lead=1.15, row_xd=lambda r: ("outlet", r[0]))
-    _, y2 = draw_table(page, px0 + pw / 2 + 0.5, y, cols, rows[half:], size=5.6, lead=1.15,
-                       row_xd=lambda r: ("outlet", r[0])) if rows[half:] else (0, y)
-    y = min(y1, y2) - 4
-    y = heading(page, px0, y, f"PERANGKAT {floor} (AP {sum(1 for d in devs if d['type'] == 'ap')}, kamera "
+    _, y1 = draw_table(page, px0, y, cols, rows[:half], size=b, lead=1.06, pad=0.7,
+                       row_xd=lambda r: ("outlet", r[1]))
+    _, y2 = draw_table(page, px0 + pw / 2 + 1.5, y, cols, rows[half:], size=b, lead=1.06, pad=0.7,
+                       row_xd=lambda r: ("outlet", r[1])) if rows[half:] else (0, y)
+    y = min(y1, y2) - 1
+    y = paragraph(page, px0, y, "Domain dan endpoint per port: ICT-401.", pw, size=b, color=GREY_TEXT)
+    y = heading(page, px0, y - 1, f"PERANGKAT {floor} (AP {sum(1 for d in devs if d['type'] == 'ap')}, kamera "
                 f"{sum(1 for d in devs if d['type'] == 'camera')})", pw)
-    drows = [[d["id"], d["room"].split("-", 1)[1], d["outlet"], f"{d['z']:.1f} m".replace(".", ","),
-              str(d["poeClass"]), d["status"]] for d in devs]
-    _, y = draw_table(page, px0, y, [Col("ID", 18, "l", "B"), Col("Ruang", 16), Col("Outlet", 18), Col("Tinggi", 12),
-                                     Col("PoE", 8, "r"), Col("Status", pw - 72)], drows, size=5.8,
-                      row_xd=lambda r: ("device", r[0]))
-    y = assumptions_block(page, px0, y - 3, pw, world, ["AS-ICT-01", "AS-ICT-02", "AS-ICT-03", "AS-NET-01"], size=6.2)
+    drows = [[device_tag(d["id"]), d["id"], d["room"].split("-", 1)[1], outlet_tag(d["outlet"]),
+              f"{d['z']:.1f}".replace(".", ","), str(d["poeClass"])] for d in devs]
+    _, y = draw_table(page, px0, y, [Col("Tag", 14, "l", "B"), Col("ID", 26, "l", "M"), Col("Ruang", pw - 87),
+                                     Col("Outlet", 15), Col("z m", 14, "r"), Col("PoE", 12, "r")], drows, size=b,
+                      lead=1.06, pad=0.7, row_xd=lambda r: ("device", r[1]))
+    y = paragraph(page, px0, y - 1, "Semua AP placeholder (AS-ICT-01); kamera opsional konsep, arah bukan FOV "
+                  "terukur. Lihat juga AS-ICT-02, AS-ICT-03, AS-NET-01 di A-001.", pw, size=b)
     assert y > tb[3] + 2, f"{sheet['id']}: panel overflow {y:.1f}"
     sd.summary = {"outlets": len(outlets), "ports": sum(o["ports"] for o in outlets),
                   "aps": sum(1 for d in devs if d["type"] == "ap"),
-                  "cameras": sum(1 for d in devs if d["type"] == "camera"), "wet_room_cameras": wet_cams}
+                  "cameras": sum(1 for d in devs if d["type"] == "camera"), "wet_room_cameras": wet_cams,
+                  "label_leaders": leaders}
     return sd
 
 
@@ -336,61 +391,70 @@ def build_ict_plan(sheet, ctx):
 TYPE_FILL = {"patch_panel_24": "#cfe0d6", "cable_manager": "#eef0ee", "switch_access_48_poe": "#bcd3c6",
              "switch_aggregation": "#a9c6b6", "gateway_virtual": "#e8d5b9", "server_placeholder": "#d6e3ea",
              "storage_placeholder": "#e6dcef", "pdu": "#f0cfc4", "ups_placeholder": "#f3e3c3"}
-TYPE_LABEL = {"patch_panel_24": "patch panel 24 port", "cable_manager": "cable manager",
-              "switch_access_48_poe": "switch akses 48 port PoE (model TBD)",
-              "switch_aggregation": "switch agregasi (model TBD)", "gateway_virtual": "gateway virtual (demo)",
-              "server_placeholder": "server placeholder", "storage_placeholder": "storage placeholder",
-              "pdu": "PDU", "ups_placeholder": "UPS placeholder (rating TBD, AS-ICT-05)"}
+# Type names short enough to sit beside a 1U slot at a legible size; model,
+# PDU and UPS rating stay TBD (AS-ICT-04, AS-ICT-05, noted on the sheet).
+TYPE_SHORT = {"patch_panel_24": "patch panel 24", "cable_manager": "cable manager",
+              "switch_access_48_poe": "switch akses 48 PoE", "switch_aggregation": "switch agregasi",
+              "gateway_virtual": "gateway virtual", "server_placeholder": "server (placeholder)",
+              "storage_placeholder": "storage (placeholder)", "pdu": "PDU", "ups_placeholder": "UPS (rating TBD)"}
 
 
 def build_racks(sheet, ctx):
+    """Rack fronts at 1:10 so a 1U slot (4,4 mm) holds a legible U number and
+    device ID; at 1:20 a slot is 2,2 mm and no label can reach 2,5 mm."""
     world = ctx["world"]
     ict = world["ict"]
     den = int(sheet["scale"].split(":")[1])
     sd = SheetDoc(sheet, world, make_meta(sheet, world, ctx, "L1"))
     page = sd.new_page()
     (fx0, fy0, fx1, fy1), tb = frame_and_title(sd, page, 1, 1, ctx["utc"], ctx["sha"])
+    b = sd.body
     devices = 0
     for i, r in enumerate(ict["racks"]):
         fx = next(f for f in world["fixtures"] if f["id"] == r["fixture"])
         W, D, H = fx["size"]
         units = r["units"]
         base = (H - units * U_M) / 2
-        ox, oy = fx0 + 18 + i * 112, 150
-        v = page.view(f"rack-{r['id']}", den, (ox, oy), (ox - 14, oy - 8, ox + W * 1000 / den + 80, oy + H * 1000 / den + 8),
+        ox, oy = fx0 + 16 + i * 138, 64
+        v = page.view(f"rack-{r['id']}", den, (ox, oy),
+                      (ox - 12, oy - 6, ox + W * 1000 / den + 74, oy + H * 1000 / den + 4),
                       model_offset_m=(i * 3.0, -20.0))
         v.rect(0, 0, W, H, "ICT-RACK", stroke=ICT, fill="#f4f6f5", width=1.0, xd=("rack", r["id"]))
         rail0 = (W - 0.4826) / 2
         v.rect(rail0, base, W - rail0, base + units * U_M, "ICT-RACK", stroke=GRID, width=0.3)
+        cap = b * 0.7 / PT_PER_MM * den / 1000.0  # cap height in metres at this scale
         for u in range(1, units + 1):
             zb = base + (u - 1) * U_M
             v.line((rail0, zb), (rail0 + 0.02, zb), "ICT-RACK", stroke=GRID, width=0.2)
-            v.text((-0.03, zb + U_M * 0.25), str(u), "ICT-RACK-IDEN", size=3.8, color=GREY_TEXT, align="r")
+            v.text((-0.02, zb + (U_M - cap) / 2), str(u), "ICT-RACK-IDEN", size=b, color=GREY_TEXT, align="r")
         for d in sorted(r["contents"], key=lambda d: -d["u"]):
             zb = base + (d["u"] - 1) * U_M
             zt = zb + d["height"] * U_M
             v.rect(rail0 + 0.004, zb + 0.002, W - rail0 - 0.004, zt - 0.002, "ICT-RACK-DEV", stroke=ICT,
                    fill=TYPE_FILL.get(d["type"], "#ffffff"), width=0.4,
                    xd=("rack_device", d["device"], {"rack": r["id"], "u": d["u"], "height": d["height"]}))
-            v.text((W / 2, zb + U_M * 0.22), d["device"], "ICT-RACK-IDEN", size=4.3, font="B", color=INK, align="c",
-                   xd=("rack_device", d["device"]))
+            v.text((W / 2, (zb + zt - cap) / 2), d["device"], "ICT-RACK-IDEN", size=b, font="B", color=INK,
+                   align="c", xd=("rack_device", d["device"]))
             ulab = f"U{d['u']}" + (f"-{d['u'] + d['height'] - 1}" if d["height"] > 1 else "")
-            v.line((W, (zb + zt) / 2), (W + 0.12, (zb + zt) / 2), "ICT-RACK-IDEN", stroke=GREY_TEXT, width=0.25)
-            v.text((W + 0.15, (zb + zt) / 2 - U_M * 0.32), f"{ulab}  {TYPE_LABEL.get(d['type'], d['type'])}",
-                   "ICT-RACK-IDEN", size=4.9, color=INK)
+            v.line((W, (zb + zt) / 2), (W + 0.025, (zb + zt) / 2), "ICT-RACK-IDEN", stroke=GREY_TEXT, width=0.25)
+            v.text((W + 0.03, (zb + zt - cap) / 2), f"{ulab} {TYPE_SHORT.get(d['type'], d['type'])}",
+                   "ICT-RACK-IDEN", size=b, color=INK)
             devices += 1
-        v.line((-0.4, 0), (W + 1.6, 0), "ICT-RACK", stroke=INK, width=0.9)
-        view_title(page, ox - 6, oy + H * 1000 / den + 12, f"{r['id']} TAMPAK DEPAN",
+        v.line((-0.1, 0), (W + 0.6, 0), "ICT-RACK", stroke=INK, width=0.9)
+        view_title(page, ox - 6, oy + H * 1000 / den + 7, f"{r['id']} TAMPAK DEPAN",
                    f"1:{den} · {r['room']} · {units}U", size=9)
-    # Clearance plan 1:100 from the rack fixtures and catalog clearance (AS-ICT-06).
+    # Right column: clearance plan 1:100 (AS-ICT-06), then the contents table.
+    rx = fx0 + 286
+    rw = fx1 - 4 - rx
     cden = 100
     room = next(rr for rr in world["rooms"] if rr["id"] == ict["racks"][0]["room"])
     xs = [p[0] for p in room["polygon"]]
     ys = [p[1] for p in room["polygon"]]
-    cx0, cy0 = fx0 + 250, 168
+    top = fy1 - 6
+    page.text((rx, top - 3), "CLEARANCE RACK 1:100 (AS-ICT-06)", "A-ANNO-NOTE", size=b * 1.1, font="B", color=GREEN)
+    cx0, cy0 = rx + 2, top - 10 - (max(ys) - min(ys)) * 10
     cv = page.view("clearance", cden, (cx0 - min(xs) * 10, cy0 - min(ys) * 10),
-                   (cx0 - 6, cy0 - 6, cx0 + (max(xs) - min(xs)) * 10 + 34, cy0 + (max(ys) - min(ys)) * 10 + 6),
-                   model_offset_m=(0, 0))
+                   (cx0 - 2, cy0 - 2, rx + rw, cy0 + (max(ys) - min(ys)) * 10 + 2), model_offset_m=(0, 0))
     cv.poly(room["polygon"], "A-WALL", closed=True, stroke=GREEN, width=1.2)
     clr = world["catalog"]["rack_42u"]["clearance"]
     for r in ict["racks"]:
@@ -405,32 +469,31 @@ def build_racks(sheet, ctx):
         cv.poly(rear, "ICT-CLRZ", closed=True, stroke=TERRA, fill="#f6e3da", width=0.3, dash=(2, 1))
         cv.poly(fixture_corners(fx), "ICT-RACK", closed=True, stroke=ICT, fill="#cfe0d6", width=0.6,
                 xd=("rack", r["id"]))
-        cv.text(fx["pos"], r["id"][-2:], "ICT-RACK-IDEN", size=5, font="B", color=ICT, align="c")
-    cv.text((min(xs) + 0.3, min(ys) + 0.3), room["id"], "A-ANNO-RMNM", size=6, font="B", color=GREEN)
-    cv.text((max(xs) + 0.3, 21.0), f"depan {fmt_m(clr['front'])} m", "ICT-CLRZ", size=5.6, color=TERRA)
-    cv.text((max(xs) + 0.3, 23.3), f"belakang {fmt_m(clr['rear'])} m", "ICT-CLRZ", size=5.6, color=TERRA)
-    page.text((cx0 - 4, cy0 + (max(ys) - min(ys)) * 10 + 9), "CLEARANCE RACK 1:100 (AS-ICT-06)", "A-ANNO-NOTE",
-              size=8, font="B", color=GREEN)
-    # Contents table.
+    # Rack keys sit beside the pair, not inside the 6 mm footprints.
+    rk_fx = [next(f for f in world["fixtures"] if f["id"] == r["fixture"]) for r in ict["racks"]]
+    kx = min(f["pos"][0] for f in rk_fx) - 0.45
+    for k, (r, fx) in enumerate(zip(ict["racks"], rk_fx)):
+        cv.text((kx, fx["pos"][1] + 0.55 - k * 0.5), r["id"], "ICT-RACK-IDEN", size=b, font="B", color=ICT, align="r")
+    cv.text((min(xs) + 0.2, min(ys) + 0.25), room["id"], "A-ANNO-RMNM", size=b, font="B", color=GREEN)
+    cv.text((max(xs) + 0.25, 21.0), f"depan {fmt_m(clr['front'])} m", "ICT-CLRZ", size=b, color=TERRA)
+    cv.text((max(xs) + 0.25, 23.3), f"belakang {fmt_m(clr['rear'])} m", "ICT-CLRZ", size=b, color=TERRA)
     rows = []
     for r in ict["racks"]:
         for d in sorted(r["contents"], key=lambda d: -d["u"]):
             ports = ict["rackDeviceTypes"].get(d["type"], {}).get("ports")
-            rows.append([r["id"], f"U{d['u']}", str(d["height"]), d["device"], TYPE_LABEL.get(d["type"], d["type"]),
+            rows.append([r["id"], f"U{d['u']}", str(d["height"]), d["device"], TYPE_SHORT.get(d["type"], d["type"]),
                          str(ports) if ports else "-"])
-    x = fx0 + 250
-    y = 150
-    y = heading(page, x, y, "ISI RACK (world.json racks[].contents)", fx1 - x - 4, size=8)
-    _, y = draw_table(page, x, y, [Col("Rack", 18, "l", "B"), Col("U", 9), Col("Tinggi", 10, "r"),
-                                   Col("Perangkat", 23, "l", "B"), Col("Tipe", fx1 - x - 4 - 72), Col("Port", 12, "r")],
-                      rows, size=5.6, row_xd=lambda rr: ("rack_device", rr[3]))
-    yn = fy0 + 46
-    for n_ in [f"Skala tampak rack 1:{den}; 1U = 44,45 mm, nomor U dihitung dari bawah.",
+    y = heading(page, rx, cy0 - 6, "ISI RACK (world.json racks[].contents)", rw, size=8)
+    _, y = draw_table(page, rx, y, [Col("Rack", 21, "l", "B"), Col("U", 9), Col("Tg", 6, "r"),
+                                    Col("Perangkat", 23, "l", "B"), Col("Tipe", rw - 71), Col("Port", 12, "r")],
+                      rows, size=b, lead=1.1, pad=0.9, row_xd=lambda rr: ("rack_device", rr[3]))
+    assert y > tb[3] + 2, f"ICT-201 table overflow {y:.1f}"
+    yn = fy0 + 50
+    for n_ in [f"Skala tampak rack 1:{den}; 1U = 44,45 mm, nomor U dihitung dari bawah. Tg = tinggi dalam U.",
                "Model switch, PDU dan UPS belum dipilih (AS-ICT-04, AS-ICT-05); tidak ada harga.",
                f"Clearance depan {fmt_m(clr['front'])} m / belakang {fmt_m(clr['rear'])} m adalah target konsep dari "
                "catalog (AS-ICT-06), wajib diverifikasi ke standar yang dipilih."]:
-        yn = paragraph(page, fx0 + 4, yn, n_, tb[0] - fx0 - 12, size=6.2, bullet=True)
-    assert y > tb[3] + 2, f"ICT-201 table overflow {y:.1f}"
+        yn = paragraph(page, fx0 + 4, yn, n_, tb[0] - fx0 - 12, size=b, bullet=True)
     sd.summary = {"racks": len(ict["racks"]), "devices": devices}
     return sd
 

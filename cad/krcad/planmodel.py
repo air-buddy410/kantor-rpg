@@ -261,30 +261,42 @@ def _window_symbol(world, floor_id, win):
     return sym
 
 
-def _place_window_tags(windows, obstacles, tf, den, size=5.2):
-    """Tags sit outside the exterior wall, between the wall face and the first
-    dimension chain. Candidates slide along and away from the wall; the one
-    with least overlap against swings, door tags, extension lines and the
-    tags already placed wins."""
+def _place_window_tags(windows, obstacles, tf, den, size):
+    """Short hexagon tags (W16) outside the exterior wall, between the wall
+    face and the first dimension chain; text runs along the wall. Candidates
+    slide along and away from the wall; the one with least overlap against
+    swings, door tags, extension lines and the tags already placed wins."""
     pt_per_m = 1000.0 / den * PT_PER_MM
     placed = []
     for w in windows:
-        tw = (tf.width(w["id"], tf.medium, size) + 2) / pt_per_m
-        th = (size + 2) / pt_per_m
+        text = window_tag_text(w["id"])
+        _, hw_pt, hh_pt = window_tag_shape(tf.width(text, tf.medium, size), size)
+        along, across = hw_pt / pt_per_m, hh_pt / pt_per_m
         best = None
         mid = (w["from"] + w["to"]) / 2
-        for i, d in enumerate((0.42, 0.62, 0.85)):
-            for j, du in enumerate((0.0, -0.3, 0.3, -0.6, 0.6)):
+        for i, gap in enumerate((0.12, 0.3, 0.5)):
+            d = gap + across
+            for j, du in enumerate((0.0, -0.3, 0.3, -0.6, 0.6, -0.9, 0.9)):
                 x, y = w["to_world"](mid + du, w["out"] * (w["thickness"] / 2 + d))
-                box = (x - tw / 2, y - th / 2, x + tw / 2, y + th / 2) if w["tag_rot"] == 0 else \
-                    (x - th / 2, y - tw / 2, x + th / 2, y + tw / 2)
+                box = (x - along, y - across, x + along, y + across) if w["tag_rot"] == 0 else \
+                    (x - across, y - along, x + across, y + along)
                 hit = sum(rect_overlap(box, o) for o in obstacles + placed)
                 cost = hit * 100 + i * 0.05 + j * 0.01
                 if best is None or cost < best[0]:
                     best = (cost, (x, y), box, hit)
         w["tag_pos"], w["tag_box"], w["tag_overlap_m2"] = best[1], best[2], round(best[3], 5)
-        w["tag_size"] = size
+        w["tag_size"], w["tag_text"] = size, text
         placed.append(best[2])
+
+
+def window_tag_outline(w, den, tf):
+    """Hexagon of a placed window tag in world metres (DXF and generic views)."""
+    pts, _, _ = window_tag_shape(tf.width(w["tag_text"], tf.medium, w["tag_size"]), w["tag_size"])
+    k = den / 1000.0 / PT_PER_MM  # pt on paper -> world m
+    r = math.radians(w["tag_rot"])
+    c, s = math.cos(r), math.sin(r)
+    x0, y0 = w["tag_pos"]
+    return [(x0 + (px * c - py * s) * k, y0 + (px * s + py * c) * k) for px, py in pts]
 
 
 def _fixture_local(fx, lx, ly):
@@ -329,7 +341,8 @@ def _vertical_links(world, floor_id):
                              _fixture_local(fx, -xf, ytop), _fixture_local(fx, -xf, -hl + 0.45)]
             lowest = min(levels[e["floor"]] for e in vl["ends"]) if vl else levels[floor_id]
             item["label"] = "NAIK" if levels[floor_id] == lowest else "TURUN"
-            item["label_pos"] = _fixture_local(fx, xf, -hl - 0.28)
+            # Label centre clear of the first riser for a label up to ~0,4 m tall (1:100 A2 or 1:200 A3).
+            item["label_pos"] = _fixture_local(fx, xf, -hl - 0.42)
             if item["label"] == "NAIK":
                 # Cut line where the plan section plane crosses the up flight.
                 xa, xb = xf - STAIR_FLIGHT_W / 2, xf + STAIR_FLIGHT_W / 2
@@ -389,37 +402,60 @@ def _dim_chains(world, floor_id, grid, den):
     return chains, (xmin, ymin, xmax, ymax)
 
 
-def _tag_lines(room, area, tf, scale, compact=False):
+def _tag_lines(room, area, tf, body, compact=False):
     """Full tag = ID, name, area. Compact tag (ID + area) is for rooms too small
-    for a legible full tag; their names stay readable in the sheet's room list."""
+    for a full tag; their names stay readable in the sheet's room list. Sizes
+    never go below `body`, the sheet's legible size."""
     from reportlab.lib.utils import simpleSplit
-    id_size, name_size, area_size = 7.5 * scale, 6.6 * scale, 6.4 * scale
+    id_size, name_size, area_size = body * 1.12, body, body
     lines = [(room["id"], tf.bold, id_size, "id")]
     if not compact:
-        name_lines = simpleSplit(room["name"], tf.regular, name_size, 34 * PT_PER_MM * max(scale, 0.8))
+        name_lines = simpleSplit(room["name"], tf.regular, name_size, 34 * PT_PER_MM * body / 7.0)
         lines += [(n, tf.regular, name_size, "name") for n in name_lines]
     lines.append((fmt_area(area), tf.medium, area_size, "area"))
     return lines
 
 
-def _layout_room_tags(rooms, wall_rects, obstacles, tf, den):
-    """Pick a tag position per room that stays inside the room, off the walls,
-    and overlaps as little furniture, swing and door-tag area as possible."""
+def segment_hits(a, b, boxes, n=24):
+    """True when the segment a-b passes through any box (sampled, fine enough
+    for leaders a few metres long against tags tens of centimetres wide)."""
+    for k in range(1, n):
+        t = k / n
+        x, y = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
+        if any(bx[0] < x < bx[2] and bx[1] < y < bx[3] for bx in boxes):
+            return True
+    return False
+
+
+def _layout_room_tags(rooms, wall_rects, obstacles, hard, tf, den, body):
+    """Pick a tag position per room that stays inside the room, off the walls
+    and `hard` boxes (door tags, labels), and overlaps as little furniture and
+    swing area as possible. A room too small even for the compact tag gets it
+    in the nearest free spot of a neighbouring room, with a leader."""
     pt_per_m = 1000.0 / den * PT_PER_MM
-    # Compact tags sit in shafts and risers, so they get a tighter clearance.
     tags = {}
+    taken = []
+
+    def size_of(lines, compact):
+        w_pt = max(tf.width(t, f, s) for t, f, s, _ in lines) + (1.5 if compact else 3)
+        h_pt = sum(s * 1.16 for _, _, s, _ in lines) + 2
+        return w_pt / pt_per_m, h_pt / pt_per_m
+
+    def blocked(box):
+        return any(rect_overlap(box, wr) > 1e-9 for wr in wall_rects) or \
+            any(rect_overlap(box, hb) > 1e-9 for hb in hard + taken)
+
+    pending = []
     for room in rooms:
         poly = room["polygon"]
         xs = [p[0] for p in poly]
         ys = [p[1] for p in poly]
         cx, cy = poly_centroid(poly)
         best = None
-        for compact, scale in ((False, 1.0), (False, 0.86), (False, 0.76), (True, 0.8), (True, 0.7)):
-            lines = _tag_lines(room, room["area"], tf, scale, compact)
+        for compact in (False, True):
+            lines = _tag_lines(room, room["area"], tf, body, compact)
+            w, h = size_of(lines, compact)
             pad = 0.02 if compact else 0.06
-            w_pt = max(tf.width(t, f, s) for t, f, s, _ in lines) + (1.5 if compact else 3)
-            h_pt = sum(s * 1.16 for _, _, s, _ in lines) + 2
-            w, h = w_pt / pt_per_m, h_pt / pt_per_m
             step = 0.1
             nx = int((max(xs) - min(xs)) / step) + 1
             ny = int((max(ys) - min(ys)) / step) + 1
@@ -428,27 +464,56 @@ def _layout_room_tags(rooms, wall_rects, obstacles, tf, den):
                     px, py = min(xs) + i * step, min(ys) + j * step
                     box = (px - w / 2 - pad, py - h / 2 - pad, px + w / 2 + pad, py + h / 2 + pad)
                     corners = [(box[0], box[1]), (box[2], box[1]), (box[2], box[3]), (box[0], box[3])]
-                    if not all(point_in_polygon(c, poly) for c in corners):
-                        continue
-                    if any(rect_overlap(box, wr) > 1e-9 for wr in wall_rects):
+                    if not all(point_in_polygon(c, poly) for c in corners) or blocked(box):
                         continue
                     hit = sum(rect_overlap(box, ob) for ob in obstacles)
-                    cost = hit * 40 + math.hypot(px - cx, py - cy) + (1 - scale) * 6
+                    cost = hit * 40 + math.hypot(px - cx, py - cy) + (3 if compact else 0)
                     if best is None or cost < best["cost"]:
-                        best = {"cost": cost, "pos": (px, py), "lines": lines, "box_m": (w, h), "scale": scale,
+                        best = {"cost": cost, "pos": (px, py), "lines": lines, "box_m": (w, h), "box": box,
                                 "overlap_m2": hit, "compact": compact}
             if best is not None and best["overlap_m2"] < 1e-6:
                 break
         if best is None:
-            lines = _tag_lines(room, room["area"], tf, 0.7, True)
-            best = {"cost": 1e9, "pos": (cx, cy), "lines": lines, "scale": 0.7, "overlap_m2": None, "compact": True,
-                    "box_m": (max(tf.width(t, f, s) for t, f, s, _ in lines) / pt_per_m,
-                              sum(s * 1.16 for _, _, s, _ in lines) / pt_per_m), "forced": True}
+            pending.append(room)
+            continue
+        taken.append(best["box"])
+        tags[room["id"]] = best
+    for room in pending:
+        lines = _tag_lines(room, room["area"], tf, body, True)
+        w, h = size_of(lines, True)
+        cx, cy = poly_centroid(room["polygon"])
+        best = None
+        for k in range(1, 30):
+            rad = k * 0.25
+            for a in range(0, 360, 15):
+                px, py = cx + rad * math.cos(math.radians(a)), cy + rad * math.sin(math.radians(a))
+                box = (px - w / 2, py - h / 2, px + w / 2, py + h / 2)
+                corners = [(box[0], box[1]), (box[2], box[1]), (box[2], box[3]), (box[0], box[3])]
+                host = next((r for r in rooms if all(point_in_polygon(c, r["polygon"]) for c in corners)), None)
+                if host is None or host["id"] == room["id"] or blocked(box):
+                    continue
+                end = (min(max(cx, box[0]), box[2]), min(max(cy, box[1]), box[3]))
+                if segment_hits((cx, cy), end, hard + taken):
+                    continue  # a leader through a door tag or another label reads as pointing at it
+                hit = sum(rect_overlap(box, ob) for ob in obstacles)
+                cost = hit * 40 + rad
+                if best is None or cost < best["cost"]:
+                    best = {"cost": cost, "pos": (px, py), "lines": lines, "box_m": (w, h), "box": box,
+                            "overlap_m2": hit, "compact": True}
+            if best is not None and best["overlap_m2"] < 1e-6:
+                break
+        if best is None:
+            raise ValueError(f"{room['id']}: no spot for a legible room tag inside or beside the room")
+        bx = best["box"]
+        best["leader"] = ((cx, cy), (min(max(cx, bx[0]), bx[2]), min(max(cy, bx[1]), bx[3])))
+        taken.append(bx)
         tags[room["id"]] = best
     return tags
 
 
-def build_plan(world, floor_id, den=100, tf=None, with_tags=True):
+def build_plan(world, floor_id, den=100, tf=None, with_tags=True, paper="A2"):
+    """paper = sheet size the plan is drawn on; window tags are sized so they
+    print legibly when that sheet is shrunk to A3 (common.legible_pt)."""
     tf = tf or TagFonts()
     walls, openings = derive_walls(world, floor_id)
     env = floor_of(world, floor_id)["envelope"]
@@ -479,10 +544,11 @@ def build_plan(world, floor_id, den=100, tf=None, with_tags=True):
         pts = v["outline"]
         obstacles.append((min(p[0] for p in pts) - 0.1, min(p[1] for p in pts) - 0.45,
                           max(p[0] for p in pts) + 0.1, max(p[1] for p in pts) + 0.1))
-    door_tag_size = 5.2
+    door_tag_size = legible_pt(paper)
     for d in door_items:
         obstacles.append(d["swing_box"])
-        tw = (tf.width(d["id"], tf.medium, door_tag_size) + 2) / pt_per_m
+        d["tag_text"] = door_tag_text(d["id"])
+        tw = (tf.width(d["tag_text"], tf.medium, door_tag_size) + 2) / pt_per_m
         th = (door_tag_size + 2) / pt_per_m
         x, y = d["tag_pos"]
         if d["tag_rot"] == 0:
@@ -491,6 +557,7 @@ def build_plan(world, floor_id, den=100, tf=None, with_tags=True):
             d["tag_box"] = (x - th / 2, y - tw / 2, x + th / 2, y + tw / 2)
         d["tag_size"] = door_tag_size
         obstacles.append(d["tag_box"])
+    hard = [d["tag_box"] for d in door_items]
     # Window tags avoid swings, door tags and the dimension extension lines
     # that run from the wall face out to the first chain.
     x0e, y0e, x1e, y1e = extent
@@ -511,14 +578,21 @@ def build_plan(world, floor_id, den=100, tf=None, with_tags=True):
         win_obstacles.append((g["at"] - 0.03, y0e - 3, g["at"] + 0.03, y1e + 3))
     for g in grid["y"]:
         win_obstacles.append((x0e - 3, g["at"] - 0.03, x1e + 3, g["at"] + 0.03))
-    _place_window_tags(window_items, win_obstacles, tf, den)
+    _place_window_tags(window_items, win_obstacles, tf, den, legible_pt(paper))
     for w in window_items:
         del w["to_world"]  # keep the plan model plain data
         obstacles.append(w["box"])
         xs, ys = [q[0] for q in w["sill_line"]], [q[1] for q in w["sill_line"]]
         obstacles.append((min(xs), min(ys), max(xs), max(ys)))
     # The tag search is the slow part; overlay sheets place their own labels.
-    tags = _layout_room_tags(rooms, [w["rect"] for w in wall_items], obstacles, tf, den) if with_tags else {}
+    for vl in vlinks:
+        if vl["label"]:
+            lw = tf.width(vl["label"], tf.bold, door_tag_size) / pt_per_m + 0.1
+            lh = door_tag_size / pt_per_m
+            lx, ly = vl["label_pos"]
+            hard.append((lx - lw / 2, ly - lh / 2, lx + lw / 2, ly + lh / 2))
+    tags = _layout_room_tags(rooms, [w["rect"] for w in wall_items], obstacles, hard, tf, den,
+                             legible_pt(paper)) if with_tags else {}
     return {"floor": floor_id, "den": den, "walls": wall_items, "openings": openings, "doors": door_items,
             "windows": window_items, "rooms": rooms, "fixtures": fixtures, "vlinks": vlinks, "grid": grid, "chains": chains,
             "extent": extent, "tags": tags, "fonts": tf}

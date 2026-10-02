@@ -15,7 +15,9 @@
    "LWPOLYLINE": 19
   },
   "A-SECT-IDEN": {
-   "TEXT": 26
+   "TEXT": 26,
+   "HATCH": 1,
+   "LWPOLYLINE": 1
   },
   "A-SECT-STRS": {
    "HATCH": 3,
@@ -68,7 +70,7 @@
   }
  },
  "totals": {
-  "modelspace": 174,
+  "modelspace": 176,
   "paperspace": 24
  },
  "layers": [

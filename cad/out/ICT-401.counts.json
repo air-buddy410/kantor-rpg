@@ -18,9 +18,9 @@
     "TEXT": 3
    },
    "A-ANNO-SCHD": {
-    "HATCH": 26,
-    "TEXT": 561,
-    "LWPOLYLINE": 52
+    "HATCH": 23,
+    "TEXT": 495,
+    "LWPOLYLINE": 46
    }
   },
   "paperspace:ICT-401-2": {
@@ -39,9 +39,9 @@
     "TEXT": 3
    },
    "A-ANNO-SCHD": {
-    "HATCH": 12,
-    "TEXT": 264,
-    "LWPOLYLINE": 25
+    "HATCH": 15,
+    "TEXT": 330,
+    "LWPOLYLINE": 31
    }
   },
   "paperspace:ICT-401-3": {

@@ -21,7 +21,7 @@
    },
    "A-ANNO-SCHD": {
     "HATCH": 21,
-    "TEXT": 453,
+    "TEXT": 454,
     "LWPOLYLINE": 42
    }
   },
@@ -38,20 +38,20 @@
     "TEXT": 1
    },
    "A-ANNO-NOTE": {
-    "TEXT": 9,
+    "TEXT": 10,
     "LWPOLYLINE": 2,
-    "HATCH": 4
+    "HATCH": 5
    },
    "A-ANNO-SCHD": {
     "HATCH": 44,
-    "TEXT": 696,
+    "TEXT": 783,
     "LWPOLYLINE": 89
    }
   }
  },
  "totals": {
   "modelspace": 0,
-  "paperspace": 1383
+  "paperspace": 1473
  },
  "layers": [
   "0",

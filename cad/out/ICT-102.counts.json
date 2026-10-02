@@ -45,22 +45,25 @@
    "LWPOLYLINE": 15
   },
   "ICT-OUTL-IDEN": {
-   "TEXT": 15
+   "TEXT": 15,
+   "LWPOLYLINE": 8
   },
   "ICT-AP": {
    "HATCH": 6,
    "CIRCLE": 6,
    "TEXT": 6
   },
-  "ICT-DEV-IDEN": {
-   "TEXT": 8
-  },
   "ICT-CAM": {
    "HATCH": 4,
    "LWPOLYLINE": 4
   },
+  "ICT-DEV-IDEN": {
+   "TEXT": 2
+  },
   "A-ANNO-RMNM": {
-   "TEXT": 18
+   "TEXT": 18,
+   "LWPOLYLINE": 1,
+   "HATCH": 1
   }
  },
  "paperspace": {
@@ -79,8 +82,8 @@
     "TEXT": 1
    },
    "A-ANNO-NOTE": {
-    "TEXT": 26,
-    "LWPOLYLINE": 5
+    "TEXT": 19,
+    "LWPOLYLINE": 4
    },
    "ICT-OUTL": {
     "HATCH": 1,
@@ -105,7 +108,7 @@
    },
    "A-ANNO-SCHD": {
     "HATCH": 14,
-    "TEXT": 139,
+    "TEXT": 122,
     "LWPOLYLINE": 29
    },
    "A-ANNO-VPRT": {
@@ -114,8 +117,8 @@
   }
  },
  "totals": {
-  "modelspace": 686,
-  "paperspace": 250
+  "modelspace": 690,
+  "paperspace": 225
  },
  "layers": [
   "0",
