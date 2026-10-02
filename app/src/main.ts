@@ -2,13 +2,12 @@ import './styles.css';
 import worldJson from '@design/world.json';
 import wallsJson from '@design/derived/walls.json';
 import { Game } from './game/game';
-import { runPerfRoute } from './perf/harness';
 import { renderDirectory } from './ui/directory';
 import { $, openDialog, toast } from './ui/dom';
 import { applyTheme, loadSettings, saveSettings, type Settings } from './ui/settings';
 import type { DerivedWalls, Vec2, World } from './world/types';
 import { showPersonaCard, showRoomCard } from './game/game';
-import { StudioUI } from './studio/ui';
+import type { StudioUI } from './studio/ui';
 import { AvatarStudio, availableHair, loadChoice, paletteColors } from './studio/avatar-studio';
 import { store } from './studio/layout';
 
@@ -119,8 +118,11 @@ function boot() {
   const pub = store.loadPublished(world);
   if (pub.doc) game.applyFixtures(pub.doc.fixtures);
   else if (pub.error) setTimeout(() => toast(`Layout lokal diabaikan: ${pub.error}`, 5000), 500);
-  const studio = new StudioUI(game);
-  $('btn-studio').addEventListener('click', () => (studio.isOpen ? studio.close() : studio.open()));
+  // Office Studio (editor, validation, plan UI) is fetched on first use so the
+  // first download carries only the world (R2 bundle test).
+  let studio: StudioUI | null = null;
+  const studioLoad = () => import('./studio/ui').then((m) => (studio ??= new m.StudioUI(game)));
+  $('btn-studio').addEventListener('click', () => void studioLoad().then((s) => (s.isOpen ? s.close() : s.open())));
   const applyAvatar = (c: { hair: string; palette: string }) => game.player.avatar.applyVariant(c.hair, paletteColors(c.palette));
   const avatarStudio = new AvatarStudio(applyAvatar, () => game.player.avatar.model);
   game.onAvatarLoaded = () => applyAvatar(loadChoice(availableHair(game.player.avatar.model)));
@@ -136,11 +138,11 @@ function boot() {
     mode: 'world',
     state: () => ({ floor: game.player.floor, pos: game.player.pos, facing: game.player.facing, room: game.roomId, visitor: game.settings.visitor, avatarPlaceholder: game.player.avatar.isPlaceholder, clips: game.player.avatar.clipNames, recoveries: game.player.stuckRecoveries, floorSwitches: game.floorSwitches }),
     stats: () => game.stats(),
-    studioOpen: () => studio.isOpen,
+    studioOpen: () => studio?.isOpen ?? false,
     npcFace: (id: string) => game.npcs.face(id),
     doors: () => (['L1', 'L2'] as const).flatMap((f) => game.doors.leaves(f).map((l) => ({ id: l.id, door: l.door, floor: f, openness: game.doors.openness(l.id) }))),
-    studioFixtures: () => studio.editor?.fixtures.length ?? null,
-    studioOutlet: (fixtureId: string) => studio.editor?.outlets().find((o) => o.serves === fixtureId) ?? null,
+    studioFixtures: () => studio?.editor?.fixtures.length ?? null,
+    studioOutlet: (fixtureId: string) => studio?.editor?.outlets().find((o) => o.serves === fixtureId) ?? null,
     fixtures: () => game.world.fixtures.map((f) => ({ id: f.id, pos: f.pos, rot: f.rot, floor: f.floor, room: f.room })),
     avatar: () => { let hair = ''; game.player.avatar.model?.traverse((o) => { if (o.name.startsWith('hair_') && o.visible) hair = o.name; }); return { hair, choice: loadChoice() }; },
     npcs: () => game.npcs.sim.npcs.map((n) => ({ id: n.id, floor: n.floor, pos: n.pos, phase: n.phase, activity: n.activity, slot: n.slot, workStatus: n.workStatus })),
@@ -189,7 +191,7 @@ function boot() {
   if (params.get('perf') === 'route') {
     const secs = Number(params.get('seconds') ?? 60);
     toast(`Benchmark rute tetap ${secs} s berjalan`, 3000);
-    runPerfRoute(game, secs).then((r) => { window.__perfResult = r; toast('Benchmark selesai'); });
+    void import('./perf/harness').then(({ runPerfRoute }) => runPerfRoute(game, secs)).then((r) => { window.__perfResult = r; toast('Benchmark selesai'); });
   }
 }
 

@@ -10,7 +10,15 @@ export default defineConfig({
   build: {
     target: 'es2022',
     sourcemap: false,
-    chunkSizeWarningLimit: 900,
+    // three.js (~650 kB minified) is the bulk of the JS: its own chunk keeps it
+    // cacheable across app releases and lets the warning limit stay at the
+    // default instead of being raised to hide the size (R2).
+    rolldownOptions: {
+      output: {
+        codeSplitting: { groups: [{ name: 'three', test: /[\\/]node_modules[\\/]three[\\/]/ }, { name: 'studio', test: /[\\/]src[\\/]studio[\\/](ui|editor|validate)\.ts$/, includeDependenciesRecursively: false }] },
+      },
+    },
+    chunkSizeWarningLimit: 700,
   },
   test: {
     include: ['tests/unit/**/*.test.ts'],

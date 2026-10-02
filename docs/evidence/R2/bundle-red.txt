@@ -1,0 +1,5 @@
+  ✘  1 [desktop] › tests/e2e/bundle.spec.ts:14:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand (5.5s)
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+    Expected: <= [32m6000000[39m
+    Received:    [31m9735497[39m
+  1 failed
