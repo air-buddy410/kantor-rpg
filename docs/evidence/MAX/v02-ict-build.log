@@ -1,0 +1,62 @@
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python design/authoring/seed_world.py
+design/world.json
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/validate_world.py --report design/derived/validate-world.json
+PASS schema
+PASS unique_ids
+PASS rooms_orthogonal_L1
+PASS rooms_in_envelope_L1
+PASS rooms_cover_envelope_L1
+PASS rooms_no_overlap_L1
+PASS rooms_no_gap_L1
+PASS rooms_orthogonal_L2
+PASS rooms_in_envelope_L2
+PASS rooms_cover_envelope_L2
+PASS rooms_no_overlap_L2
+PASS rooms_no_gap_L2
+PASS doors_on_shared_walls
+PASS fixtures_inside_rooms
+PASS fixtures_no_overlap
+PASS door_zones_clear
+PASS functional_clearances
+PASS door_swing_metadata
+PASS door_swing_clear_of_fixtures
+PASS windows_on_exterior_walls
+PASS windows_clear_of_doors_and_each_other
+PASS windows_not_blocked_by_tall_fixtures
+PASS nav_all_rooms_reachable_staff
+PASS nav_restricted_locked_for_visitor
+PASS nav_public_rooms_reachable_visitor
+PASS nav_activity_slots_approachable
+PASS nav_vertical_links_usable
+PASS nav_waypoints_walkable
+PASS nav_doors_passable
+PASS nav_walkable_counts
+PASS adjacency_ADJ-01
+PASS adjacency_ADJ-02
+PASS adjacency_ADJ-03
+PASS adjacency_ADJ-04
+PASS adjacency_ADJ-05
+PASS adjacency_ADJ-06
+PASS adjacency_ADJ-07
+PASS adjacency_ADJ-08
+PASS adjacency_ADJ-09
+PASS adjacency_ADJ-10
+PASS adjacency_ADJ-11
+PASS ict_foreign_keys
+PASS ict_no_camera_in_wet_rooms
+PASS actors_home_seats_exist
+PASS world_matches_authoring_seed
+PASS walls_derived
+passed=46 failed=0
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/export_runtime.py
+{"L1_staff": 48324, "L1_visitor": 48181, "L2_staff": 49821, "L2_visitor": 49741}
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/capacity.py
+{"gross_m2": 1536.0, "world_revision": "P03", "floors": {"L1": {"rooms": 20, "seats_from_fixtures": 41, "workstations": 13, "walkable_m2_navgrid": 483.2}, "L2": {"rooms": 18, "seats_from_fixtures": 42, "workstations": 0, "walkable_m2_navgrid": 498.2}}, "explore": {"tile_baseline_cells": 3388, "pixel_areas": 47, "pixel_furniture": 297, "world_rooms_non_shaft": 34, "world_fixtures": 199, "world_activity_slots": 117, "world_walkable_m2": 981.4, "note": "Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).", "rooms_vs_pixel_areas_ratio": 0.72, "fixtures_vs_pixel_furniture_ratio": 0.67}, "transfer_s": 20.0, "maint": 6}
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/room_schedule.py
+rooms=38 rules_ok=11/11
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/ict_derive.py
+{"totals": {"outlets": 45, "ports": 72, "cable_m": 2074.8, "max_length_m": 50.6, "min_length_m": 12.7, "patchPanelPorts": 96, "patchPanelPortsUsed": 72}, "poeTotalWorstCaseW": 407.0, "switches": [["SW-ACC-01", 24, 0.455], ["SW-ACC-02", 24, 0.455], ["SW-ACC-03", 24, 0.455]], "errors": []}
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/req_matrix.py
+{'terverifikasi': 45, 'tidak didukung': 2, 'asumsi': 2}
++ /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/.venv/bin/python tools/render_prd.py --source PRD/PRD-v0.2.md --output PRD/PRD-v0.2.pdf
+PRD/PRD-v0.2.pdf
