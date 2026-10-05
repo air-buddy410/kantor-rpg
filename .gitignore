@@ -17,3 +17,4 @@ __pycache__/
 blender/out/_render_tmp/
 /build/
 /blender/out/raw-glb/
+docs/evidence/**/_work/
