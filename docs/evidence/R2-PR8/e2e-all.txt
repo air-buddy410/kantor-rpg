@@ -1,0 +1,176 @@
+# Full Playwright regression, desktop/tablet/mobile, 4d9896f (after PR #8 merge and CAD resync), KANTOR_MILESTONE=R2-PR8
+Running 171 tests using 1 worker
+[1/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light world
+[2/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light directory
+[3/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog
+[4/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog
+[5/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark world
+[6/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory
+[7/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog
+[8/171] [desktop] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog
+[9/171] [desktop] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL)
+[10/171] [desktop] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it
+[11/171] [desktop] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it
+[12/171] [desktop] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route
+[13/171] [desktop] › tests/e2e/bundle.spec.ts:14:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand
+[14/171] [desktop] › tests/e2e/controls.spec.ts:17:3 › controls without earlier coverage (R2 control audit) › skip link jumps to the directory; the close button hides it and returns focus
+[15/171] [desktop] › tests/e2e/controls.spec.ts:29:3 › controls without earlier coverage (R2 control audit) › theme radios switch and persist; quality radio is stored and applied after reload
+[16/171] [desktop] › tests/e2e/controls.spec.ts:56:3 › controls without earlier coverage (R2 control audit) › keyboard: H opens help, R/Q/Z/+/- move the camera, Shift runs
+[17/171] [desktop] › tests/e2e/controls.spec.ts:83:3 › controls without earlier coverage (R2 control audit) › touch: Lari toggles running
+[18/171] [desktop] › tests/e2e/controls.spec.ts:93:3 › controls without earlier coverage (R2 control audit) › Studio: floor switch, nudge north/east, rotate (button and R), arrows, Delete, Ctrl+Z/Ctrl+Y, Simpan draft
+[19/171] [desktop] › tests/e2e/device.spec.ts:6:3 › device validation hooks (R2) › ?perf=route&report=1 shows the result with device info, copy and download
+[20/171] [desktop] › tests/e2e/device.spec.ts:23:3 › device validation hooks (R2) › ?a11ylog=1 lists live-region announcements in order
+[21/171] [desktop] › tests/e2e/doors.spec.ts:8:3 › door leaves (R2) › every swing door has its leaves, they open for the CEO and close after
+[22/171] [desktop] › tests/e2e/doors.spec.ts:22:3 › door leaves (R2) › in visitor mode the server door stays shut even with the CEO next to it
+[23/171] [desktop] › tests/e2e/failures.spec.ts:6:3 › failure paths (PRD 12) › AC-ACCESS/AC-PERF: losing the WebGL context mid-session falls back to the keyboard directory
+[24/171] [desktop] › tests/e2e/failures.spec.ts:26:3 › failure paths (PRD 12) › AC-INTERACT: pressing the action with nothing in reach says so instead of doing nothing
+[25/171] [desktop] › tests/e2e/failures.spec.ts:36:3 › failure paths (PRD 12) › AC-CHAR: a missing character GLB gives an honest labelled placeholder, not a crash
+[26/171] [desktop] › tests/e2e/hud-labels.spec.ts:4:1 › world labels stay clear of the HUD while walking
+[27/171] [desktop] › tests/e2e/hud-labels.spec.ts:23:1 › world labels stay clear of touch controls and action prompt
+[28/171] [desktop] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status
+[29/171] [desktop] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape
+[30/171] [desktop] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it
+[31/171] [desktop] › tests/e2e/npc.spec.ts:68:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback
+[32/171] [desktop] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times
+[33/171] [desktop] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails
+[34/171] [desktop] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated
+[35/171] [desktop] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives
+[36/171] [desktop] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly
+[37/171] [desktop] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts
+[38/171] [desktop] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason
+[39/171] [desktop] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset
+[40/171] [desktop] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing
+[41/171] [desktop] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback
+[42/171] [desktop] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot
+[43/171] [desktop] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default
+[44/171] [desktop] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default
+[45/171] [desktop] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL
+[46/171] [desktop] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors
+[47/171] [desktop] › tests/e2e/world.spec.ts:17:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+[48/171] [desktop] › tests/e2e/world.spec.ts:45:3 › world vertical slice › stair interaction changes floor only at the marked point
+[49/171] [desktop] › tests/e2e/world.spec.ts:67:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory)
+[50/171] [desktop] › tests/e2e/world.spec.ts:81:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape
+[51/171] [desktop] › tests/e2e/world.spec.ts:102:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards
+[52/171] [desktop] › tests/e2e/world.spec.ts:115:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class
+[53/171] [desktop] › tests/e2e/world.spec.ts:131:3 › world vertical slice › touch joystick walks the CEO
+[54/171] [desktop] › tests/e2e/world.spec.ts:150:3 › world vertical slice › dark theme renders with computed token colours
+[55/171] [desktop] › tests/e2e/world.spec.ts:159:3 › world vertical slice › reduced motion makes floor changes instant (no fade)
+[56/171] [desktop] › tests/e2e/world.spec.ts:169:3 › world vertical slice › only same-origin requests are made (no external endpoints)
+[57/171] [desktop] › tests/e2e/world.spec.ts:186:3 › fallback without WebGL › directory, room cards and documents work with keyboard only
+[58/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light world
+[59/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light directory
+[60/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog
+[61/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog
+[62/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark world
+[63/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory
+[64/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog
+[65/171] [tablet] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog
+[66/171] [tablet] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL)
+[67/171] [tablet] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it
+[68/171] [tablet] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it
+[69/171] [tablet] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route
+[70/171] [tablet] › tests/e2e/bundle.spec.ts:14:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand
+[71/171] [tablet] › tests/e2e/controls.spec.ts:17:3 › controls without earlier coverage (R2 control audit) › skip link jumps to the directory; the close button hides it and returns focus
+[72/171] [tablet] › tests/e2e/controls.spec.ts:29:3 › controls without earlier coverage (R2 control audit) › theme radios switch and persist; quality radio is stored and applied after reload
+[73/171] [tablet] › tests/e2e/controls.spec.ts:56:3 › controls without earlier coverage (R2 control audit) › keyboard: H opens help, R/Q/Z/+/- move the camera, Shift runs
+[74/171] [tablet] › tests/e2e/controls.spec.ts:83:3 › controls without earlier coverage (R2 control audit) › touch: Lari toggles running
+[75/171] [tablet] › tests/e2e/controls.spec.ts:93:3 › controls without earlier coverage (R2 control audit) › Studio: floor switch, nudge north/east, rotate (button and R), arrows, Delete, Ctrl+Z/Ctrl+Y, Simpan draft
+[76/171] [tablet] › tests/e2e/device.spec.ts:6:3 › device validation hooks (R2) › ?perf=route&report=1 shows the result with device info, copy and download
+[77/171] [tablet] › tests/e2e/device.spec.ts:23:3 › device validation hooks (R2) › ?a11ylog=1 lists live-region announcements in order
+[78/171] [tablet] › tests/e2e/doors.spec.ts:8:3 › door leaves (R2) › every swing door has its leaves, they open for the CEO and close after
+[79/171] [tablet] › tests/e2e/doors.spec.ts:22:3 › door leaves (R2) › in visitor mode the server door stays shut even with the CEO next to it
+[80/171] [tablet] › tests/e2e/failures.spec.ts:6:3 › failure paths (PRD 12) › AC-ACCESS/AC-PERF: losing the WebGL context mid-session falls back to the keyboard directory
+[81/171] [tablet] › tests/e2e/failures.spec.ts:26:3 › failure paths (PRD 12) › AC-INTERACT: pressing the action with nothing in reach says so instead of doing nothing
+[82/171] [tablet] › tests/e2e/failures.spec.ts:36:3 › failure paths (PRD 12) › AC-CHAR: a missing character GLB gives an honest labelled placeholder, not a crash
+[83/171] [tablet] › tests/e2e/hud-labels.spec.ts:4:1 › world labels stay clear of the HUD while walking
+[84/171] [tablet] › tests/e2e/hud-labels.spec.ts:23:1 › world labels stay clear of touch controls and action prompt
+[85/171] [tablet] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status
+[86/171] [tablet] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape
+[87/171] [tablet] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it
+[88/171] [tablet] › tests/e2e/npc.spec.ts:68:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback
+[89/171] [tablet] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times
+[90/171] [tablet] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails
+[91/171] [tablet] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated
+[92/171] [tablet] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives
+[93/171] [tablet] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly
+[94/171] [tablet] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts
+[95/171] [tablet] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason
+[96/171] [tablet] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset
+[97/171] [tablet] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing
+[98/171] [tablet] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback
+[99/171] [tablet] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot
+[100/171] [tablet] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default
+[101/171] [tablet] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default
+[102/171] [tablet] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL
+[103/171] [tablet] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors
+[104/171] [tablet] › tests/e2e/world.spec.ts:17:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+[105/171] [tablet] › tests/e2e/world.spec.ts:45:3 › world vertical slice › stair interaction changes floor only at the marked point
+[106/171] [tablet] › tests/e2e/world.spec.ts:67:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory)
+[107/171] [tablet] › tests/e2e/world.spec.ts:81:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape
+[108/171] [tablet] › tests/e2e/world.spec.ts:102:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards
+[109/171] [tablet] › tests/e2e/world.spec.ts:115:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class
+[110/171] [tablet] › tests/e2e/world.spec.ts:131:3 › world vertical slice › touch joystick walks the CEO
+[111/171] [tablet] › tests/e2e/world.spec.ts:150:3 › world vertical slice › dark theme renders with computed token colours
+[112/171] [tablet] › tests/e2e/world.spec.ts:159:3 › world vertical slice › reduced motion makes floor changes instant (no fade)
+[113/171] [tablet] › tests/e2e/world.spec.ts:169:3 › world vertical slice › only same-origin requests are made (no external endpoints)
+[114/171] [tablet] › tests/e2e/world.spec.ts:186:3 › fallback without WebGL › directory, room cards and documents work with keyboard only
+[115/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light world
+[116/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light directory
+[117/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light help-dialog
+[118/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe light settings-dialog
+[119/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark world
+[120/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark directory
+[121/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark help-dialog
+[122/171] [mobile] › tests/e2e/a11y.spec.ts:18:5 › axe dark settings-dialog
+[123/171] [mobile] › tests/e2e/a11y.spec.ts:31:1 › axe fallback (no WebGL)
+[124/171] [mobile] › tests/e2e/activity.spec.ts:5:3 › player activities (M2) › billiards: sit/stand slot, shots counted, reservation blocks NPCs, movement ends it
+[125/171] [mobile] › tests/e2e/activity.spec.ts:30:3 › player activities (M2) › sitting on a free lounge seat, busy seats are refused, Selesai ends it
+[126/171] [mobile] › tests/e2e/budget.spec.ts:11:1 › peak draw calls and triangles stay inside the mobile budget on the fixed route
+[127/171] [mobile] › tests/e2e/bundle.spec.ts:14:1 › first download and JS chunks stay inside the R2 targets; Studio code loads on demand
+[128/171] [mobile] › tests/e2e/controls.spec.ts:17:3 › controls without earlier coverage (R2 control audit) › skip link jumps to the directory; the close button hides it and returns focus
+[129/171] [mobile] › tests/e2e/controls.spec.ts:29:3 › controls without earlier coverage (R2 control audit) › theme radios switch and persist; quality radio is stored and applied after reload
+[130/171] [mobile] › tests/e2e/controls.spec.ts:56:3 › controls without earlier coverage (R2 control audit) › keyboard: H opens help, R/Q/Z/+/- move the camera, Shift runs
+[131/171] [mobile] › tests/e2e/controls.spec.ts:83:3 › controls without earlier coverage (R2 control audit) › touch: Lari toggles running
+[132/171] [mobile] › tests/e2e/controls.spec.ts:93:3 › controls without earlier coverage (R2 control audit) › Studio: floor switch, nudge north/east, rotate (button and R), arrows, Delete, Ctrl+Z/Ctrl+Y, Simpan draft
+[133/171] [mobile] › tests/e2e/device.spec.ts:6:3 › device validation hooks (R2) › ?perf=route&report=1 shows the result with device info, copy and download
+[134/171] [mobile] › tests/e2e/device.spec.ts:23:3 › device validation hooks (R2) › ?a11ylog=1 lists live-region announcements in order
+[135/171] [mobile] › tests/e2e/doors.spec.ts:8:3 › door leaves (R2) › every swing door has its leaves, they open for the CEO and close after
+[136/171] [mobile] › tests/e2e/doors.spec.ts:22:3 › door leaves (R2) › in visitor mode the server door stays shut even with the CEO next to it
+[137/171] [mobile] › tests/e2e/failures.spec.ts:6:3 › failure paths (PRD 12) › AC-ACCESS/AC-PERF: losing the WebGL context mid-session falls back to the keyboard directory
+[138/171] [mobile] › tests/e2e/failures.spec.ts:26:3 › failure paths (PRD 12) › AC-INTERACT: pressing the action with nothing in reach says so instead of doing nothing
+[139/171] [mobile] › tests/e2e/failures.spec.ts:36:3 › failure paths (PRD 12) › AC-CHAR: a missing character GLB gives an honest labelled placeholder, not a crash
+[140/171] [mobile] › tests/e2e/hud-labels.spec.ts:4:1 › world labels stay clear of the HUD while walking
+[141/171] [mobile] › tests/e2e/hud-labels.spec.ts:23:1 › world labels stay clear of touch controls and action prompt
+[142/171] [mobile] › tests/e2e/npc.spec.ts:8:3 › persona NPCs (M2) › six simulated personas spawn, move over time and never claim a work status
+[143/171] [mobile] › tests/e2e/npc.spec.ts:21:3 › persona NPCs (M2) › directory "Temui" opens the persona dialog, pauses the NPC and restores focus on Escape
+[144/171] [mobile] › tests/e2e/npc.spec.ts:52:3 › persona NPCs (M2) › walking up to a seated NPC and pressing E (or tapping Aksi) greets it
+[145/171] [mobile] › tests/e2e/npc.spec.ts:68:3 › persona NPCs (M2) › blueprint table and virtual activities give real feedback
+[146/171] [mobile] › tests/e2e/perf.spec.ts:8:1 › fixed route benchmark records frame times
+[147/171] [mobile] › tests/e2e/states.spec.ts:6:3 › document list states › error state when the manifest fails
+[148/171] [mobile] › tests/e2e/states.spec.ts:13:3 › document list states › empty state when no documents were generated
+[149/171] [mobile] › tests/e2e/states.spec.ts:20:3 › document list states › loading state is announced before the list arrives
+[150/171] [mobile] › tests/e2e/states.spec.ts:31:3 › document list states › blueprint card reports a missing PDF honestly
+[151/171] [mobile] › tests/e2e/studio.spec.ts:22:3 › Office Studio (REQ-STUDIO-01) › move, reject overlap, undo/redo, exit without publish reverts
+[152/171] [mobile] › tests/e2e/studio.spec.ts:47:3 › Office Studio (REQ-STUDIO-01) › structural fixtures are locked with a reason
+[153/171] [mobile] › tests/e2e/studio.spec.ts:55:3 › Office Studio (REQ-STUDIO-01) › publish persists across reload, rollback returns to the dataset
+[154/171] [mobile] › tests/e2e/studio.spec.ts:73:3 › Office Studio (REQ-STUDIO-01) › export round-trips; a broken or invalid import is rejected and changes nothing
+[155/171] [mobile] › tests/e2e/studio.spec.ts:101:3 › Office Studio (REQ-STUDIO-01) › ICT outlet follows its desk through move, undo, export, publish and rollback
+[156/171] [mobile] › tests/e2e/studio.spec.ts:137:3 › Office Studio (REQ-STUDIO-01) › adding a fixture places it on a valid free spot
+[157/171] [mobile] › tests/e2e/studio.spec.ts:152:3 › Avatar Studio (REQ-AVATAR-01) › preview, save persists across reload, reset returns to default
+[158/171] [mobile] › tests/e2e/studio.spec.ts:175:3 › Avatar Studio (REQ-AVATAR-01) › a stored choice without an asset falls back to the default
+[159/171] [mobile] › tests/e2e/studio.spec.ts:183:3 › Avatar Studio (REQ-AVATAR-01) › studios are hidden (not dead) without WebGL
+[160/171] [mobile] › tests/e2e/world.spec.ts:5:3 › world vertical slice › boots in lobby with simulation badge and no page errors
+[161/171] [mobile] › tests/e2e/world.spec.ts:17:3 › world vertical slice › keyboard walking moves the CEO and the reception desk collider stops it
+[162/171] [mobile] › tests/e2e/world.spec.ts:45:3 › world vertical slice › stair interaction changes floor only at the marked point
+[163/171] [mobile] › tests/e2e/world.spec.ts:67:3 › world vertical slice › visitor mode locks the server room (UI toggle, path and directory)
+[164/171] [mobile] › tests/e2e/world.spec.ts:81:3 › world vertical slice › dialogs trap focus, block locomotion and return focus on Escape
+[165/171] [mobile] › tests/e2e/world.spec.ts:102:3 › world vertical slice › directory "Pergi" moves the CEO to a room and opens persona cards
+[166/171] [mobile] › tests/e2e/world.spec.ts:115:3 › world vertical slice › tap targets are at least 44 px and layout differs per device class
+[167/171] [mobile] › tests/e2e/world.spec.ts:131:3 › world vertical slice › touch joystick walks the CEO
+[168/171] [mobile] › tests/e2e/world.spec.ts:150:3 › world vertical slice › dark theme renders with computed token colours
+[169/171] [mobile] › tests/e2e/world.spec.ts:159:3 › world vertical slice › reduced motion makes floor changes instant (no fade)
+[170/171] [mobile] › tests/e2e/world.spec.ts:169:3 › world vertical slice › only same-origin requests are made (no external endpoints)
+[171/171] [mobile] › tests/e2e/world.spec.ts:186:3 › fallback without WebGL › directory, room cards and documents work with keyboard only
+  5 skipped
+  166 passed (23.4m)
+exit=0

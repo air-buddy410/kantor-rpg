@@ -20,6 +20,8 @@ Hasil (detail `docs/QA-REPORT.md` bagian R2, setiap perbaikan dengan evidence me
 - Audit: kontrol tanpa test 25/58 menjadi 0/61; Must 50 terverifikasi, 2 tidak didukung (M4); 9 skip menjadi 5 berjustifikasi (`docs/SKIP-LEDGER.md`).
 - Hook perangkat `?perf=route&report=1`, `?a11ylog=1`, runbook `docs/DEVICE-VALIDATION.md`. Budi/Max menjalankannya: iPhone 13 Pro 59,5 FPS, macOS VoiceOver 8 skenario. Temuan VoiceOver (judul halaman) diperbaiki di e9a58fc.
 
+- Setelah Budi me-merge PR #8 (fa666c9, perbaikan pintu ruang rapat, arah sofa, riser): `cad/out` ternyata digambar dari world.json bac532f. Test baru `test_cad_source_sync.py` merah dulu, set CAD digenerate ulang, batch DWG native lama diarsipkan utuh (ADR-015): 4d9896f, CI hijau. Regresi penuh 4d9896f: Playwright 166 lolos, 0 gagal, 5 skip; axe 0 pelanggaran (24 laporan); draw call puncak 50 sampai 56; muat awal 5,39 MB; pytest 401; vitest 116 (`docs/evidence/R2-PR8/`).
+
 Blocked / belum diuji: DWG native untuk dataset sekarang (setelah PR #8) belum ada: batch 15 DWG + 20/20 plot native Max/Budi menggambarkan dataset 488597bb dan diarsipkan (ADR-015); `cad/autocad/native_batch.py` perlu dijalankan ulang di mesin berlisensi; Android, tablet fisik, iOS VoiceOver dan TalkBack belum diuji; M4 disabled dan ditunda ke M5.
 
 Next safe action: Max/Budi review PR #5 dan putuskan merge ke main; bila DXF berubah lagi, jalankan ulang `cad/autocad/native_batch.py` di mesin berlisensi; uji Android/tablet dan TalkBack dengan `docs/DEVICE-VALIDATION.md`.

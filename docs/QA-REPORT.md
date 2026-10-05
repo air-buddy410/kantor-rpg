@@ -22,7 +22,7 @@ Permintaan Budi/Max: tutup cacat produk sisa, test gagal dulu lalu perbaikan, re
 | axe WCAG 2.1 A/AA tiga viewport, dua tema | - | 0 pelanggaran di 24 laporan | `docs/evidence/R2/axe/` |
 | Skip | 9 | 5 tersisa, semua berjustifikasi (perf gated tiga viewport dijalankan terpisah; joystick dan Lari tidak ada di desktop) | `docs/SKIP-LEDGER.md` |
 
-Angka akhir setelah merge PR #6 (lokal, kode e9a58fc): pytest 399, vitest 116, Playwright 166 lolos, 0 gagal, 5 skip (`e2e-final-e9a58fc.txt`). Angka sebelum merge (27423cb): pytest 380 lolos (`pytest.txt`), vitest 113 lolos (`vitest.txt`), Playwright penuh desktop/tablet/mobile 160 lolos, 0 gagal, 5 skip (`e2e-all.txt`), benchmark 60 s tiga viewport lolos (`perf-route-*.json`), draw call puncak 52 sampai 57, triangle <= 194k.
+Angka akhir setelah merge PR #8 dan resinkron CAD (lokal, 4d9896f): pytest 401, vitest 116, Playwright 166 lolos, 0 gagal, 5 skip, axe 0 pelanggaran, draw call puncak 50 sampai 56, muat awal 5,39 MB (`docs/evidence/R2-PR8/`). Angka akhir setelah merge PR #6 (lokal, kode e9a58fc): pytest 399, vitest 116, Playwright 166 lolos, 0 gagal, 5 skip (`e2e-final-e9a58fc.txt`). Angka sebelum merge (27423cb): pytest 380 lolos (`pytest.txt`), vitest 113 lolos (`vitest.txt`), Playwright penuh desktop/tablet/mobile 160 lolos, 0 gagal, 5 skip (`e2e-all.txt`), benchmark 60 s tiga viewport lolos (`perf-route-*.json`), draw call puncak 52 sampai 57, triangle <= 194k.
 
 ### Target (belum terbukti di perangkat)
 
