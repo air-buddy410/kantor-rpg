@@ -62,8 +62,8 @@
   },
   "A-ANNO-RMNM": {
    "TEXT": 18,
-   "LWPOLYLINE": 2,
-   "HATCH": 2
+   "LWPOLYLINE": 1,
+   "HATCH": 1
   }
  },
  "paperspace": {
@@ -117,7 +117,7 @@
   }
  },
  "totals": {
-  "modelspace": 692,
+  "modelspace": 690,
   "paperspace": 225
  },
  "layers": [

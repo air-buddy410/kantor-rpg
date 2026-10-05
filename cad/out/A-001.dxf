@@ -73,7 +73,7 @@ KR_RENDER_UTC
   9
 $CUSTOMPROPERTY
   1
-2026-10-02T02:42:18Z
+2026-10-05T05:43:54Z
   9
 $CUSTOMPROPERTYTAG
   1
@@ -113,7 +113,7 @@ KR_WORLD_SHA256
   9
 $CUSTOMPROPERTY
   1
-488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+9361e1355d660520199c318756e2779087541372961ee28e7b5d9b72a469ab0c
   9
 $CUSTOMPROPERTYTAG
   1
@@ -597,7 +597,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461316.446273148
+2461319.2394097224
   9
 $TDUCREATE
  40
@@ -605,7 +605,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461316.446273148
+2461319.2394097224
   9
 $TDUUPDATE
  40
@@ -657,7 +657,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-1A1
+1A7
   9
 $SURFTAB1
  70
@@ -1037,11 +1037,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{1A3B0654-12AD-42B4-B101-4A0AEF33510E}
+{7558E5AD-B0AC-4EE9-AC33-070E6CEEAAB3}
   9
 $VERSIONGUID
   2
-{8D764DF0-BB62-4BF3-A040-E32A6B457CAF}
+{B2B32F18-4BE2-450E-A59B-4CDC14A7DD13}
   9
 $EXTNAMES
 290
@@ -3705,7 +3705,7 @@ KANTOR_RPG
   0
 APPID
   5
-19E
+1A4
 330
 3
 100
@@ -3719,7 +3719,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-19F
+1A5
 330
 3
 100
@@ -13629,7 +13629,7 @@ AcDbText
  40
 1.852083333333333
   1
-Satuan: dimensi gambar dalam mm (DXF model space 1:1 mm, $INSUNITS = 4), luas dalam m², elevasi dalam m. Origin (0,0) sudut barat daya L1; X timur,
+Satuan: dimensi gambar dalam mm (DXF model space 1:1 mm, $INSUNITS = 4), luas dalam m², elevasi dalam m. Origin (0,0) sudut barat daya L1; X timur, Y utara.
   7
 KR-SANS
  41
@@ -13643,47 +13643,9 @@ KR-SANS
 100
 AcDbText
   0
-TEXT
-  5
-160
-330
-1B
-100
-AcDbEntity
- 67
-1
-  8
-A-ANNO-NOTE
-420
-2240554
-100
-AcDbText
- 10
-29.0
- 20
-117.59330555555576
- 30
-0.0
- 40
-1.852083333333333
-  1
-Y utara.
-  7
-KR-SANS
- 41
-0.8
- 11
-29.0
- 21
-117.59330555555576
- 31
-0.0
-100
-AcDbText
-  0
 HATCH
   5
-161
+160
 330
 1B
 100
@@ -13727,7 +13689,7 @@ SOLID
  10
 26.8
  20
-114.34278472222242
+117.65007638888908
  40
 0.38
  50
@@ -13744,6 +13706,44 @@ SOLID
 1
  98
 0
+  0
+TEXT
+  5
+161
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2240554
+100
+AcDbText
+ 10
+29.0
+ 20
+116.79330555555575
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+Semua lembar adalah KONSEP untuk review, bukan gambar konstruksi bertanda tangan. Ukuran adalah proposal (AS-DIM-01), bukan lahan, struktur, atau okupansi yang disahkan
+  7
+KR-SANS
+ 41
+0.8
+ 11
+29.0
+ 21
+116.79330555555575
+ 31
+0.0
+100
+AcDbText
   0
 TEXT
   5
@@ -13769,7 +13769,7 @@ AcDbText
  40
 1.852083333333333
   1
-Semua lembar adalah KONSEP untuk review, bukan gambar konstruksi bertanda tangan. Ukuran adalah proposal (AS-DIM-01), bukan lahan, struktur, atau
+(AS-SITE-01).
   7
 KR-SANS
  41
@@ -13783,47 +13783,9 @@ KR-SANS
 100
 AcDbText
   0
-TEXT
-  5
-163
-330
-1B
-100
-AcDbEntity
- 67
-1
-  8
-A-ANNO-NOTE
-420
-2240554
-100
-AcDbText
- 10
-29.0
- 20
-110.17872222222243
- 30
-0.0
- 40
-1.852083333333333
-  1
-okupansi yang disahkan (AS-SITE-01).
-  7
-KR-SANS
- 41
-0.8
- 11
-29.0
- 21
-110.17872222222243
- 31
-0.0
-100
-AcDbText
-  0
 HATCH
   5
-164
+163
 330
 1B
 100
@@ -13867,7 +13829,7 @@ SOLID
  10
 26.8
  20
-106.9282013888891
+110.23549305555575
  40
 0.38
  50
@@ -13887,7 +13849,7 @@ SOLID
   0
 TEXT
   5
-165
+164
 330
 1B
 100
@@ -13903,7 +13865,7 @@ AcDbText
  10
 29.0
  20
-106.07143055555576
+109.37872222222242
  30
 0.0
  40
@@ -13917,7 +13879,7 @@ KR-SANS
  11
 29.0
  21
-106.07143055555576
+109.37872222222242
  31
 0.0
 100
@@ -13925,7 +13887,7 @@ AcDbText
   0
 TEXT
   5
-166
+165
 330
 1B
 100
@@ -13947,7 +13909,7 @@ AcDbText
  40
 2.0990277777777773
   1
-DAFTAR ASUMSI (17, dari world.json)
+DAFTAR ASUMSI (20, dari world.json)
   7
 KR-SANS
  41
@@ -13963,7 +13925,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-167
+166
 330
 1B
 100
@@ -13991,7 +13953,7 @@ AcDbPolyline
   0
 TEXT
   5
-168
+167
 330
 1B
 100
@@ -14029,7 +13991,7 @@ AcDbText
   0
 TEXT
   5
-169
+168
 330
 1B
 100
@@ -14067,7 +14029,7 @@ AcDbText
   0
 TEXT
   5
-16A
+169
 330
 1B
 100
@@ -14105,7 +14067,7 @@ AcDbText
   0
 TEXT
   5
-16B
+16A
 330
 1B
 100
@@ -14143,7 +14105,7 @@ AcDbText
   0
 TEXT
   5
-16C
+16B
 330
 1B
 100
@@ -14181,7 +14143,7 @@ AcDbText
   0
 TEXT
   5
-16D
+16C
 330
 1B
 100
@@ -14219,7 +14181,7 @@ AcDbText
   0
 TEXT
   5
-16E
+16D
 330
 1B
 100
@@ -14257,6 +14219,44 @@ AcDbText
   0
 TEXT
   5
+16E
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2240554
+100
+AcDbText
+ 10
+240.0
+ 20
+222.30138888888882
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+Ukuran furniture dari catalog adalah target konsep (bukan katalog vendor). Meja biliar 9 ft memakai luas main 2,54 x 1,27 m dan clearance stik 1,47 m sebagai
+  7
+KR-SANS
+ 41
+0.8
+ 11
+240.0
+ 21
+222.30138888888882
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
 16F
 330
 1B
@@ -14273,13 +14273,13 @@ AcDbText
  10
 240.0
  20
-222.30138888888882
+219.12638888888884
  30
 0.0
  40
 1.852083333333333
   1
-Ukuran furniture dari catalog adalah target konsep (bukan katalog vendor). Meja biliar 9 ft memakai luas main 2,54 x 1,27 m dan clearance
+target ukuran umum, wajib dicek ulang ke spesifikasi produk.
   7
 KR-SANS
  41
@@ -14287,7 +14287,7 @@ KR-SANS
  11
 240.0
  21
-222.30138888888882
+219.12638888888884
  31
 0.0
 100
@@ -14296,44 +14296,6 @@ AcDbText
 TEXT
   5
 170
-330
-1B
-100
-AcDbEntity
- 67
-1
-  8
-A-ANNO-NOTE
-420
-2240554
-100
-AcDbText
- 10
-240.0
- 20
-219.12638888888884
- 30
-0.0
- 40
-1.852083333333333
-  1
-stik 1,47 m sebagai target ukuran umum, wajib dicek ulang ke spesifikasi produk.
-  7
-KR-SANS
- 41
-0.8
- 11
-240.0
- 21
-219.12638888888884
- 31
-0.0
-100
-AcDbText
-  0
-TEXT
-  5
-171
 330
 1B
 100
@@ -14371,7 +14333,7 @@ AcDbText
   0
 TEXT
   5
-172
+171
 330
 1B
 100
@@ -14409,7 +14371,7 @@ AcDbText
   0
 TEXT
   5
-173
+172
 330
 1B
 100
@@ -14447,7 +14409,7 @@ AcDbText
   0
 TEXT
   5
-174
+173
 330
 1B
 100
@@ -14469,7 +14431,7 @@ AcDbText
  40
 1.852083333333333
   1
-Faktor beban hunian memakai IBC 2021 Table 1004.5 sebagai pembanding, bukan regulasi Indonesia yang berlaku. Perhitungan egress
+Faktor beban hunian memakai IBC 2021 Table 1004.5 sebagai pembanding, bukan regulasi Indonesia yang berlaku. Perhitungan egress resmi butuh profesional.
   7
 KR-SANS
  41
@@ -14478,6 +14440,44 @@ KR-SANS
 240.0
  21
 211.1763888888888
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+174
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2051386
+100
+AcDbText
+ 10
+222.0
+ 20
+207.07638888888877
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+AS-OCC-02
+  7
+KR-SANS
+ 41
+0.8
+ 11
+222.0
+ 21
+207.07638888888877
  31
 0.0
 100
@@ -14501,13 +14501,13 @@ AcDbText
  10
 240.0
  20
-208.0013888888888
+207.20138888888877
  30
 0.0
  40
 1.852083333333333
   1
-resmi butuh profesional.
+Kapasitas kursi dihitung dari fixture; bukan target okupansi manusia yang diputuskan Budi.
   7
 KR-SANS
  41
@@ -14515,7 +14515,7 @@ KR-SANS
  11
 240.0
  21
-208.0013888888888
+207.20138888888877
  31
 0.0
 100
@@ -14539,13 +14539,13 @@ AcDbText
  10
 222.0
  20
-203.9013888888888
+203.10138888888875
  30
 0.0
  40
 1.852083333333333
   1
-AS-OCC-02
+AS-EXIT-01
   7
 KR-SANS
  41
@@ -14553,7 +14553,7 @@ KR-SANS
  11
 222.0
  21
-203.9013888888888
+203.10138888888875
  31
 0.0
 100
@@ -14577,13 +14577,13 @@ AcDbText
  10
 240.0
  20
-204.0263888888888
+203.22638888888875
  30
 0.0
  40
 1.852083333333333
   1
-Kapasitas kursi dihitung dari fixture; bukan target okupansi manusia yang diputuskan Budi.
+Tangga darurat timur L2 hanya penanda konsep di luar envelope; jalur keluar belum dinilai memenuhi peraturan.
   7
 KR-SANS
  41
@@ -14591,7 +14591,7 @@ KR-SANS
  11
 240.0
  21
-204.0263888888888
+203.22638888888875
  31
 0.0
 100
@@ -14615,13 +14615,13 @@ AcDbText
  10
 222.0
  20
-199.92638888888877
+199.12638888888873
  30
 0.0
  40
 1.852083333333333
   1
-AS-EXIT-01
+AS-ICT-01
   7
 KR-SANS
  41
@@ -14629,7 +14629,7 @@ KR-SANS
  11
 222.0
  21
-199.92638888888877
+199.12638888888873
  31
 0.0
 100
@@ -14653,13 +14653,13 @@ AcDbText
  10
 240.0
  20
-200.05138888888877
+199.25138888888873
  30
 0.0
  40
 1.852083333333333
   1
-Tangga darurat timur L2 hanya penanda konsep di luar envelope; jalur keluar belum dinilai memenuhi peraturan.
+Jumlah AP adalah placeholder; belum ada model site/material dan target coverage. Tidak ada radius Wi-Fi efektif yang diklaim.
   7
 KR-SANS
  41
@@ -14667,7 +14667,7 @@ KR-SANS
  11
 240.0
  21
-200.05138888888877
+199.25138888888873
  31
 0.0
 100
@@ -14691,13 +14691,13 @@ AcDbText
  10
 222.0
  20
-195.95138888888874
+195.1513888888887
  30
 0.0
  40
 1.852083333333333
   1
-AS-ICT-01
+AS-ICT-02
   7
 KR-SANS
  41
@@ -14705,7 +14705,7 @@ KR-SANS
  11
 222.0
  21
-195.95138888888874
+195.1513888888887
  31
 0.0
 100
@@ -14729,13 +14729,13 @@ AcDbText
  10
 240.0
  20
-196.07638888888874
+195.2763888888887
  30
 0.0
  40
 1.852083333333333
   1
-Jumlah AP adalah placeholder; belum ada model site/material dan target coverage. Tidak ada radius Wi-Fi efektif yang diklaim.
+Slack kabel: 3,0 m sisi rack + 0,3 m sisi outlet; tray pada 3,2 m di atas lantai jadi; outlet meja 0,3 m; outlet plafon 3,0 m. Asumsi proyek, bukan standar.
   7
 KR-SANS
  41
@@ -14743,7 +14743,7 @@ KR-SANS
  11
 240.0
  21
-196.07638888888874
+195.2763888888887
  31
 0.0
 100
@@ -14767,13 +14767,13 @@ AcDbText
  10
 222.0
  20
-191.97638888888872
+191.17638888888868
  30
 0.0
  40
 1.852083333333333
   1
-AS-ICT-02
+AS-ICT-03
   7
 KR-SANS
  41
@@ -14781,7 +14781,7 @@ KR-SANS
  11
 222.0
  21
-191.97638888888872
+191.17638888888868
  31
 0.0
 100
@@ -14805,13 +14805,13 @@ AcDbText
  10
 240.0
  20
-192.10138888888872
+191.30138888888868
  30
 0.0
  40
 1.852083333333333
   1
-Slack kabel: 3,0 m sisi rack + 0,3 m sisi outlet; tray pada 3,2 m di atas lantai jadi; outlet meja 0,3 m; outlet plafon 3,0 m. Asumsi proyek,
+Batas panjang permanent link 90 m dipakai sebagai target konsep (praktik umum kabel tembaga terstruktur), wajib diverifikasi ke standar yang dipilih.
   7
 KR-SANS
  41
@@ -14819,7 +14819,7 @@ KR-SANS
  11
 240.0
  21
-192.10138888888872
+191.30138888888868
  31
 0.0
 100
@@ -14837,27 +14837,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2240554
+2051386
 100
 AcDbText
  10
-240.0
+222.0
  20
-188.92638888888874
+187.20138888888866
  30
 0.0
  40
 1.852083333333333
   1
-bukan standar.
+AS-ICT-04
   7
 KR-SANS
  41
 0.8
  11
-240.0
+222.0
  21
-188.92638888888874
+187.20138888888866
  31
 0.0
 100
@@ -14875,27 +14875,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2051386
+2240554
 100
 AcDbText
  10
-222.0
+240.0
  20
-184.82638888888872
+187.32638888888866
  30
 0.0
  40
 1.852083333333333
   1
-AS-ICT-03
+Daya PoE worst-case per kelas memakai nilai PSE IEEE 802.3af/at/bt (Class 3 = 15,4 W, Class 4 = 30 W). Kelas perangkat placeholder sampai datasheet dipilih.
   7
 KR-SANS
  41
 0.8
  11
-222.0
+240.0
  21
-184.82638888888872
+187.32638888888866
  31
 0.0
 100
@@ -14913,27 +14913,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2240554
+2051386
 100
 AcDbText
  10
-240.0
+222.0
  20
-184.95138888888872
+183.22638888888864
  30
 0.0
  40
 1.852083333333333
   1
-Batas panjang permanent link 90 m dipakai sebagai target konsep (praktik umum kabel tembaga terstruktur), wajib diverifikasi ke standar
+AS-ICT-05
   7
 KR-SANS
  41
 0.8
  11
-240.0
+222.0
  21
-184.95138888888872
+183.22638888888864
  31
 0.0
 100
@@ -14957,13 +14957,13 @@ AcDbText
  10
 240.0
  20
-181.77638888888873
+183.35138888888864
  30
 0.0
  40
 1.852083333333333
   1
-yang dipilih.
+Harga dan pengadaan belum ditentukan; tidak ada harga dalam paket ini. Rating UPS dan panas ICT memakai model referensi konsep (AS-ICT-07/08); sizing
   7
 KR-SANS
  41
@@ -14971,7 +14971,7 @@ KR-SANS
  11
 240.0
  21
-181.77638888888873
+183.35138888888864
  31
 0.0
 100
@@ -14989,27 +14989,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2051386
+2240554
 100
 AcDbText
  10
-222.0
+240.0
  20
-177.6763888888887
+180.17638888888865
  30
 0.0
  40
 1.852083333333333
   1
-AS-ICT-04
+AC/listrik oleh MEP.
   7
 KR-SANS
  41
 0.8
  11
-222.0
+240.0
  21
-177.6763888888887
+180.17638888888865
  31
 0.0
 100
@@ -15027,27 +15027,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2240554
+2051386
 100
 AcDbText
  10
-240.0
+222.0
  20
-177.8013888888887
+176.07638888888863
  30
 0.0
  40
 1.852083333333333
   1
-Daya PoE worst-case per kelas memakai nilai PSE IEEE 802.3af/at/bt (Class 3 = 15,4 W, Class 4 = 30 W). Kelas perangkat placeholder
+AS-ICT-06
   7
 KR-SANS
  41
 0.8
  11
-240.0
+222.0
  21
-177.8013888888887
+176.07638888888863
  31
 0.0
 100
@@ -15071,13 +15071,13 @@ AcDbText
  10
 240.0
  20
-174.62638888888873
+176.20138888888863
  30
 0.0
  40
 1.852083333333333
   1
-sampai datasheet dipilih.
+Clearance rack depan 1,2 m / belakang 0,9 m adalah target konsep; verifikasi ke standar/panduan yang dipilih.
   7
 KR-SANS
  41
@@ -15085,7 +15085,7 @@ KR-SANS
  11
 240.0
  21
-174.62638888888873
+176.20138888888863
  31
 0.0
 100
@@ -15109,13 +15109,13 @@ AcDbText
  10
 222.0
  20
-170.5263888888887
+172.1013888888886
  30
 0.0
  40
 1.852083333333333
   1
-AS-ICT-05
+AS-ICT-07
   7
 KR-SANS
  41
@@ -15123,7 +15123,7 @@ KR-SANS
  11
 222.0
  21
-170.5263888888887
+172.1013888888886
  31
 0.0
 100
@@ -15147,13 +15147,13 @@ AcDbText
  10
 240.0
  20
-170.6513888888887
+172.2263888888886
  30
 0.0
  40
 1.852083333333333
   1
-Rating UPS, thermal/AC dan harga belum ditentukan; tidak ada harga pengadaan dalam paket ini.
+Model referensi (USW-Pro-48-POE, USW-Pro-Aggregation, UDM-Pro-Max, R760xs PSU 600 W, RS2423+, OL3000ERTXL2U) dipilih untuk menutup gate
   7
 KR-SANS
  41
@@ -15161,7 +15161,7 @@ KR-SANS
  11
 240.0
  21
-170.6513888888887
+172.2263888888886
  31
 0.0
 100
@@ -15179,27 +15179,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2051386
+2240554
 100
 AcDbText
  10
-222.0
+240.0
  20
-166.55138888888868
+169.05138888888862
  30
 0.0
  40
 1.852083333333333
   1
-AS-ICT-06
+PoE/UPS/panas konsep dari datasheet vendor bertanggal 2026-10-04. Bukan keputusan pengadaan; revisi hardware dan konfigurasi final wajib dicek ulang.
   7
 KR-SANS
  41
 0.8
  11
-222.0
+240.0
  21
-166.55138888888868
+169.05138888888862
  31
 0.0
 100
@@ -15217,27 +15217,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2240554
+2051386
 100
 AcDbText
  10
-240.0
+222.0
  20
-166.67638888888868
+164.9513888888886
  30
 0.0
  40
 1.852083333333333
   1
-Clearance rack depan 1,2 m / belakang 0,9 m adalah target konsep; verifikasi ke standar/panduan yang dipilih.
+AS-ICT-08
   7
 KR-SANS
  41
 0.8
  11
-240.0
+222.0
  21
-166.67638888888868
+164.9513888888886
  31
 0.0
 100
@@ -15255,27 +15255,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2051386
+2240554
 100
 AcDbText
  10
-222.0
+240.0
  20
-162.57638888888866
+165.0763888888886
  30
 0.0
  40
 1.852083333333333
   1
-AS-NET-01
+Metode daya: switch dengan PD memakai plafon vendor termasuk PoE, tanpa switch memakai maksimum vendor tanpa PoE; server = rating PSU aktif / efisiensi
   7
 KR-SANS
  41
 0.8
  11
-222.0
+240.0
  21
-162.57638888888866
+165.0763888888886
  31
 0.0
 100
@@ -15299,13 +15299,13 @@ AcDbText
  10
 240.0
  20
-162.70138888888866
+161.90138888888862
  30
 0.0
  40
 1.852083333333333
   1
-Domain jaringan office/demo/guest/lab/server adalah ID abstrak; bukan subnet, VLAN atau perangkat produksi.
+0,90 (asumsi); PF beban 0,90 (asumsi); margin 1,25; allowance aksesori 30 W (asumsi). Panas ruang server = input AC − daya PD yang keluar ruang + disipasi UPS
   7
 KR-SANS
  41
@@ -15313,7 +15313,7 @@ KR-SANS
  11
 240.0
  21
-162.70138888888866
+161.90138888888862
  31
 0.0
 100
@@ -15331,27 +15331,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2051386
+2240554
 100
 AcDbText
  10
-222.0
+240.0
  20
-158.60138888888864
+158.7263888888886
  30
 0.0
  40
 1.852083333333333
   1
-AS-PERF-01
+vendor; rugi kabel PoE dihitung di ruang server (konservatif). Runtime UPS dan sizing AC belum dievaluasi.
   7
 KR-SANS
  41
 0.8
  11
-222.0
+240.0
  21
-158.60138888888864
+158.7263888888886
  31
 0.0
 100
@@ -15369,27 +15369,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2240554
+2051386
 100
 AcDbText
  10
-240.0
+222.0
  20
-158.72638888888864
+154.62638888888858
  30
 0.0
  40
 1.852083333333333
   1
-Target FPS/transfer/triangle adalah target PRD; angka hanya disebut terukur setelah benchmark tercatat.
+AS-ICT-09
   7
 KR-SANS
  41
 0.8
  11
-240.0
+222.0
  21
-158.72638888888864
+154.62638888888858
  31
 0.0
 100
@@ -15407,27 +15407,27 @@ AcDbEntity
   8
 A-ANNO-NOTE
 420
-2051386
+2240554
 100
 AcDbText
  10
-222.0
+240.0
  20
-154.6263888888886
+154.75138888888858
  30
 0.0
  40
 1.852083333333333
   1
-AS-SITE-01
+Target otonomi UPS 10 menit pada beban terhubung (Budi, 2026-10-05). Runtime dibaca dari kurva vendor (baterai baru) dengan interpolasi linier, lalu dikali 0,8
   7
 KR-SANS
  41
 0.8
  11
-222.0
+240.0
  21
-154.6263888888886
+154.75138888888858
  31
 0.0
 100
@@ -15451,7 +15451,235 @@ AcDbText
  10
 240.0
  20
-154.7513888888886
+151.5763888888886
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+untuk penuaan baterai (asumsi). Baterai internal saja tidak cukup; 1 EBM BPE72V60ART2U ditambahkan sebagai model referensi, bukan keputusan pengadaan.
+  7
+KR-SANS
+ 41
+0.8
+ 11
+240.0
+ 21
+151.5763888888886
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+18F
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2051386
+100
+AcDbText
+ 10
+222.0
+ 20
+147.47638888888858
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+AS-NET-01
+  7
+KR-SANS
+ 41
+0.8
+ 11
+222.0
+ 21
+147.47638888888858
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+190
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2240554
+100
+AcDbText
+ 10
+240.0
+ 20
+147.60138888888858
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+Domain jaringan office/demo/guest/lab/server adalah ID abstrak; bukan subnet, VLAN atau perangkat produksi.
+  7
+KR-SANS
+ 41
+0.8
+ 11
+240.0
+ 21
+147.60138888888858
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+191
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2051386
+100
+AcDbText
+ 10
+222.0
+ 20
+143.50138888888856
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+AS-PERF-01
+  7
+KR-SANS
+ 41
+0.8
+ 11
+222.0
+ 21
+143.50138888888856
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+192
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2240554
+100
+AcDbText
+ 10
+240.0
+ 20
+143.62638888888856
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+Target FPS/transfer/triangle adalah target PRD; angka hanya disebut terukur setelah benchmark tercatat.
+  7
+KR-SANS
+ 41
+0.8
+ 11
+240.0
+ 21
+143.62638888888856
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+193
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2051386
+100
+AcDbText
+ 10
+222.0
+ 20
+139.52638888888853
+ 30
+0.0
+ 40
+1.852083333333333
+  1
+AS-SITE-01
+  7
+KR-SANS
+ 41
+0.8
+ 11
+222.0
+ 21
+139.52638888888853
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+194
+330
+1B
+100
+AcDbEntity
+ 67
+1
+  8
+A-ANNO-NOTE
+420
+2240554
+100
+AcDbText
+ 10
+240.0
+ 20
+139.65138888888853
  30
 0.0
  40
@@ -15465,7 +15693,7 @@ KR-SANS
  11
 240.0
  21
-154.7513888888886
+139.65138888888853
  31
 0.0
 100
@@ -15473,7 +15701,7 @@ AcDbText
   0
 INSERT
   5
-18F
+195
 330
 1B
 100
@@ -15497,7 +15725,7 @@ KR-TTLB-G
   0
 ATTRIB
   5
-191
+197
 330
 1B
 100
@@ -15545,7 +15773,7 @@ KR_SHEET_ID
   0
 ATTRIB
   5
-192
+198
 330
 1B
 100
@@ -15593,7 +15821,7 @@ KR_TITLE
   0
 ATTRIB
   5
-193
+199
 330
 1B
 100
@@ -15641,7 +15869,7 @@ KR_FLOOR
   0
 ATTRIB
   5
-194
+19A
 330
 1B
 100
@@ -15689,7 +15917,7 @@ KR_SCALE
   0
 ATTRIB
   5
-195
+19B
 330
 1B
 100
@@ -15737,7 +15965,7 @@ KR_REVISION
   0
 ATTRIB
   5
-196
+19C
 330
 1B
 100
@@ -15785,7 +16013,7 @@ KR_REV_DATE
   0
 ATTRIB
   5
-197
+19D
 330
 1B
 100
@@ -15805,7 +16033,7 @@ AcDbText
  40
 2.0
   1
-2026-10-02T02:42:18Z
+2026-10-05T05:43:54Z
   7
 KR-SANS
  11
@@ -15833,7 +16061,7 @@ KR_RENDER_UTC
   0
 ATTRIB
   5
-198
+19E
 330
 1B
 100
@@ -15881,7 +16109,7 @@ KR_STATUS
   0
 ATTRIB
   5
-199
+19F
 330
 1B
 100
@@ -15929,7 +16157,7 @@ KR_NOTE
   0
 ATTRIB
   5
-19A
+1A0
 330
 1B
 100
@@ -15977,7 +16205,7 @@ KR_DRAWN
   0
 ATTRIB
   5
-19B
+1A1
 330
 1B
 100
@@ -16025,7 +16253,7 @@ KR_CHECK
   0
 ATTRIB
   5
-19C
+1A2
 330
 1B
 100
@@ -16073,7 +16301,7 @@ KR_PAGE
   0
 ATTRIB
   5
-19D
+1A3
 330
 1B
 100
@@ -16093,7 +16321,7 @@ AcDbText
  40
 1.3
   1
-488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+9361e1355d660520199c318756e2779087541372961ee28e7b5d9b72a469ab0c
   7
 KR-SANS
  11
@@ -16121,9 +16349,9 @@ KR_WORLD_SHA256
   0
 SEQEND
   5
-190
+196
 330
-18F
+195
 100
 AcDbEntity
  67
@@ -17225,7 +17453,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-1A0
+1A6
   0
 DICTIONARYVAR
   5
@@ -17237,7 +17465,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-02T02:42:38.861748+00:00
+1.4.4 @ 2026-10-05T05:44:45.073656+00:00
   0
 VISUALSTYLE
   5
@@ -23791,7 +24019,7 @@ strokes_ogs.tif
   0
 DICTIONARYVAR
   5
-1A0
+1A6
 330
 2D
 100
@@ -23799,7 +24027,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-02T02:42:38.868078+00:00
+1.4.4 @ 2026-10-05T05:44:45.087589+00:00
   0
 ENDSEC
   0

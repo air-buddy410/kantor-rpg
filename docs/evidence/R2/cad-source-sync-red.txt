@@ -1,0 +1,26 @@
+# Red: tests/py/test_cad_source_sync.py on fa666c9 (cad/out drawn from world.json of bac532f)
+            if got != want:
+                stale.append(f"{dxf.name}: {got}")
+>       assert not stale, f"world.json is {want}; regenerate with python3 cad/generate.py --all-available:\n" + "\n".join(stale)
+E       AssertionError: world.json is 9361e1355d660520199c318756e2779087541372961ee28e7b5d9b72a469ab0c; regenerate with python3 cad/generate.py --all-available:
+E         A-001.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-101.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-102.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-103.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-201.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-202.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-301.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         A-401.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         I-101.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         ICT-001.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         ICT-101.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         ICT-102.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         ICT-201.dxf: 5094f43e94ea4719099a0b50bd05bde928a3238dc6c8d9e8d4c7f93720015b66
+E         ICT-301.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E         ICT-401.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969
+E       assert not ['A-001.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969', 'A-101.dxf: 488597bb0552fbde4c67baa4ff...f6cb6882cb8f02fcb10adbc3fc07e5969', 'A-202.dxf: 488597bb0552fbde4c67baa4ffa6f73f6cb6882cb8f02fcb10adbc3fc07e5969', ...]
+
+tests/py/test_cad_source_sync.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED tests/py/test_cad_source_sync.py::test_every_committed_dxf_was_drawn_from_the_committed_world
+1 failed, 1 passed in 1.68s

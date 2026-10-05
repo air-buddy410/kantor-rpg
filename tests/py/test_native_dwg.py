@@ -17,7 +17,8 @@ def test_bad_magic_is_rejected(tmp_path):
 
 
 def test_changed_native_file_is_rejected(tmp_path):
-    source = ROOT / 'cad/out/A-101.dwg'
+    # Archived with its source DXF when cad/out was regenerated (ADR-015).
+    source = ROOT / 'cad/archive/native-dwg-world-488597bb/A-101.dwg'
     p = tmp_path / 'A-101.dwg'
     p.write_bytes(source.read_bytes() + b'changed')
     assert not verified_native_dwg(p, ROOT)

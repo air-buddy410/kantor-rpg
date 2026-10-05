@@ -65,4 +65,4 @@ def test_registry_entries_are_original_and_scripted():
 def test_public_pdfs_are_byte_copies_of_generated_ones():
     for f in (PUBLIC / "docs").glob("*.pdf"):
         src = ROOT / ("PRD" if f.name.startswith("PRD") else "drawings/pdf") / f.name
-        assert src.exists() and src.read_bytes() == f.read_bytes(), f"{f.name} differs from its generated source; run npm run sync"
+        assert src.exists() and src.read_bytes() == f.read_bytes(), f"{f.name} differs from its generated source; run node app/scripts/sync-public.mjs (npm run build does it)"

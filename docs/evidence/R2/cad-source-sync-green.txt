@@ -1,0 +1,5 @@
+# Green: after regenerating cad/out from world.json 9361e1355d66 and archiving the 488597bb native batch (ADR-015)
+...........................................................              [100%]
+59 passed in 39.99s
+full suite: 401 passed
+scanned_text_files=593 findings=0

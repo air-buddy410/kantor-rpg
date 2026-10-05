@@ -63,13 +63,13 @@
    "LWPOLYLINE": 6
   },
   "ICT-DEV-IDEN": {
-   "LWPOLYLINE": 1,
+   "LWPOLYLINE": 2,
    "TEXT": 3
   },
   "A-ANNO-RMNM": {
    "TEXT": 20,
-   "LWPOLYLINE": 2,
-   "HATCH": 2
+   "LWPOLYLINE": 1,
+   "HATCH": 1
   }
  },
  "paperspace": {
@@ -123,7 +123,7 @@
   }
  },
  "totals": {
-  "modelspace": 790,
+  "modelspace": 789,
   "paperspace": 307
  },
  "layers": [

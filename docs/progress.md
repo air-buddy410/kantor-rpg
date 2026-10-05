@@ -20,7 +20,7 @@ Hasil (detail `docs/QA-REPORT.md` bagian R2, setiap perbaikan dengan evidence me
 - Audit: kontrol tanpa test 25/58 menjadi 0/61; Must 50 terverifikasi, 2 tidak didukung (M4); 9 skip menjadi 5 berjustifikasi (`docs/SKIP-LEDGER.md`).
 - Hook perangkat `?perf=route&report=1`, `?a11ylog=1`, runbook `docs/DEVICE-VALIDATION.md`. Budi/Max menjalankannya: iPhone 13 Pro 59,5 FPS, macOS VoiceOver 8 skenario. Temuan VoiceOver (judul halaman) diperbaiki di e9a58fc.
 
-Blocked / belum diuji: DWG native tidak dapat dibuat ulang di cloud (AutoCAD berlisensi hanya di mesin Max/Budi; 15 DWG dan 20/20 plot native sudah tercatat); Android, tablet fisik, iOS VoiceOver dan TalkBack belum diuji; M4 disabled dan ditunda ke M5.
+Blocked / belum diuji: DWG native untuk dataset sekarang (setelah PR #8) belum ada: batch 15 DWG + 20/20 plot native Max/Budi menggambarkan dataset 488597bb dan diarsipkan (ADR-015); `cad/autocad/native_batch.py` perlu dijalankan ulang di mesin berlisensi; Android, tablet fisik, iOS VoiceOver dan TalkBack belum diuji; M4 disabled dan ditunda ke M5.
 
 Next safe action: Max/Budi review PR #5 dan putuskan merge ke main; bila DXF berubah lagi, jalankan ulang `cad/autocad/native_batch.py` di mesin berlisensi; uji Android/tablet dan TalkBack dengan `docs/DEVICE-VALIDATION.md`.
 

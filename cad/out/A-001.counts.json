@@ -15,7 +15,7 @@
     "TEXT": 1
    },
    "A-ANNO-NOTE": {
-    "TEXT": 58,
+    "TEXT": 64,
     "LWPOLYLINE": 4,
     "HATCH": 3
    },
@@ -28,7 +28,7 @@
  },
  "totals": {
   "modelspace": 0,
-  "paperspace": 224
+  "paperspace": 230
  },
  "layers": [
   "0",
