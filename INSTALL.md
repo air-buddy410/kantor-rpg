@@ -131,7 +131,7 @@ server/deploy/muat-launchd.sh       # mulai ulang layanan id.perumnet.kantor-rpg
 
 Log tersimpan di `~/.hermes/log/kantor-rpg-api.log`. Rollback: arahkan symlink `~/.hermes/kantor-rpg/current` ke rilis lama, lalu jalankan `launchctl kickstart -k gui/$UID/id.perumnet.kantor-rpg-api`.
 
-`pasang-mac.sh` memakai bind/port milik setup asli; sesuaikan `KANTOR_RPG_BIND` di skrip untuk jaringan Anda.
+`pasang-mac.sh` bind ke `KANTOR_RPG_BIND` bila di-set, kalau tidak ke IP Tailscale mesin itu (`tailscale ip -4`), dan terakhir ke contoh `192.168.1.10`. `sambung-nginx.sh` memakai urutan yang sama untuk upstream (`KANTOR_RPG_UPSTREAM`).
 
 ### Sambungkan nginx ke backend
 

@@ -9,7 +9,9 @@ HOST=webserver-101
 VHOST=/etc/nginx/sites-available/employee-rpg.air-buddy.site
 SNIP=/etc/nginx/snippets/kantor-rpg-api.conf
 SECRET_FILE="$HOME/.hermes/kantor-rpg/data/proxy-secret"
-UPSTREAM="${KANTOR_RPG_UPSTREAM:-http://100.122.121.27:3242}"
+# Upstream: KANTOR_RPG_UPSTREAM, atau IP Tailscale mesin backend ini, atau contoh LAN.
+BACKEND_IP="$(tailscale ip -4 2>/dev/null | head -1)"
+UPSTREAM="${KANTOR_RPG_UPSTREAM:-http://${BACKEND_IP:-192.168.1.10}:3242}"
 [ -s "$SECRET_FILE" ] || { echo "proxy-secret belum ada; jalankan pasang-mac.sh dulu" >&2; exit 2; }
 STAMP=$(date +%Y%m%d-%H%M%S)
 TMP=$(mktemp)

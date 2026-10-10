@@ -11,6 +11,9 @@ SRC="$(cd "$(dirname "$0")/.." && pwd)"
 BASE="$HOME/.hermes/kantor-rpg"
 REL="$BASE/releases/$SHA"
 LABEL=id.perumnet.kantor-rpg-api
+# Alamat bind: KANTOR_RPG_BIND, atau IP Tailscale mesin ini, atau contoh LAN.
+BIND="${KANTOR_RPG_BIND:-$(tailscale ip -4 2>/dev/null | head -1)}"
+BIND="${BIND:-192.168.1.10}"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 mkdir -p "$BASE/releases" "$BASE/data" "$HOME/.hermes/log"
 chmod 700 "$BASE" "$BASE/data"
@@ -32,7 +35,7 @@ cat > "$PLIST" <<PL
   <key>EnvironmentVariables</key><dict>
     <key>PATH</key><string>$HERMES_BIN:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
     <key>KANTOR_RPG_DATA</key><string>$BASE/data</string>
-    <key>KANTOR_RPG_BIND</key><string>100.122.121.27</string>
+    <key>KANTOR_RPG_BIND</key><string>$BIND</string>
     <key>KANTOR_RPG_PORT</key><string>3242</string>
   </dict>
   <key>WorkingDirectory</key><string>$HOME</string>
