@@ -1,0 +1,760 @@
+{
+ "floor": "L1",
+ "mode": "glb",
+ "doorsOpen": false,
+ "gapM": 0.002,
+ "minAreaM2": 0.0001,
+ "triangles": 123098,
+ "meshes": 70,
+ "hits": 44,
+ "list": [
+  {
+   "a": "floor-L1#e2d3b6",
+   "b": "floor-L1#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 1.1325,
+   "at": [
+    30.33,
+    0,
+    -0.33
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0.259,
+    -0.966,
+    0
+   ],
+   "planeD": 2.4946,
+   "gapM": 0.00151,
+   "areaM2": 0.01324,
+   "at": [
+    12.67,
+    0.82,
+    -21.41
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[1]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 15,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    15,
+    0.03,
+    0.05
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -13,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    13,
+    0.03,
+    -0.05
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[2]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -3.1,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    7.95,
+    0.03,
+    -3.1
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[3]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 4.9,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    8.05,
+    0.03,
+    -4.9
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[4]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 4.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    4.5,
+    0.03,
+    -7.95
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[4]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -3.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    3.5,
+    0.03,
+    -8.05
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[5]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 23.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    23.5,
+    0.03,
+    -7.95
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[5]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -22.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    22.5,
+    0.03,
+    -8.05
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[6]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 28.25,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    28.25,
+    0.03,
+    -7.95
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[6]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -27.25,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    27.25,
+    0.03,
+    -8.05
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[7]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 31.25,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    31.25,
+    0.03,
+    -7.95
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[7]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -30.25,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    30.25,
+    0.03,
+    -8.05
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[8]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -8.65,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    -0.05,
+    0.03,
+    -8.65
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[8]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 9.85,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    0.05,
+    0.03,
+    -9.85
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[9]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -8.65,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    31.95,
+    0.03,
+    -8.65
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[9]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 9.85,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    32.05,
+    0.03,
+    -9.85
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[10]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 3.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    3.5,
+    0.03,
+    -10.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[10]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -2.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    2.5,
+    0.03,
+    -10.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[11]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 10.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    10.5,
+    0.03,
+    -10.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[11]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -9.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    9.5,
+    0.03,
+    -10.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[12]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 23.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    23.5,
+    0.03,
+    -10.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[12]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -22.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    22.5,
+    0.03,
+    -10.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[13]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 29.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    29.5,
+    0.03,
+    -10.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[13]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -28.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    28.5,
+    0.03,
+    -10.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[14]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 17.85,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    17.85,
+    0.03,
+    -16.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[14]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -16.85,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    16.85,
+    0.03,
+    -16.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[15]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 28.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    28.5,
+    0.03,
+    -16.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[15]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -27.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    27.5,
+    0.03,
+    -16.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[16]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -16.9,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    -0.05,
+    0.03,
+    -16.9
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[16]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 18.1,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    0.05,
+    0.03,
+    -18.1
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[17]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 4,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    4,
+    0.03,
+    -18.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[17]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -3,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    3,
+    0.03,
+    -18.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[18]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 11,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    11,
+    0.03,
+    -18.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[18]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -10,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    10,
+    0.03,
+    -18.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[19]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 17.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    17.5,
+    0.03,
+    -18.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[19]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -16.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    16.5,
+    0.03,
+    -18.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[20]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 23,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    23,
+    0.03,
+    -18.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[20]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -22,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    22,
+    0.03,
+    -18.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[21]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 31.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    31.5,
+    0.03,
+    -18.45
+   ]
+  },
+  {
+   "a": "door-leaves-L1#7d5a3c[21]",
+   "b": "floor-L1#7d5a3c",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -30.5,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    30.5,
+    0.03,
+    -18.55
+   ]
+  },
+  {
+   "a": "door-leaves-L1-restricted#c0643f",
+   "b": "floor-L1#c0643f",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -19.75,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    24.95,
+    0.03,
+    -19.75
+   ]
+  },
+  {
+   "a": "door-leaves-L1-restricted#c0643f",
+   "b": "floor-L1#c0643f",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 20.75,
+   "gapM": 0,
+   "areaM2": 0.00048,
+   "at": [
+    25.05,
+    0.03,
+    -20.75
+   ]
+  }
+ ]
+}

@@ -37,8 +37,11 @@ MB = 1_000_000
 # revised to 3.6 MB because the user-facing first-load target (<= 6 MB,
 # app/tests/e2e/bundle.spec.ts) is met. Lower needs meshopt/Draco (wasm, CSP)
 # or fewer triangles.
-BUDGET_TOTAL = 5.0 * MB
-BUDGET_CHARACTERS = 3.6 * MB
+# ADR-015: two more personas (Echo, Leo; ~0.5 MB each) raise the character
+# target to 4.6 MB and the GLB total to 6.0 MB. Over the wire nginx gzips GLBs
+# (about 2.0 MB for all of them, measured with gzip -6).
+BUDGET_TOTAL = 6.0 * MB
+BUDGET_CHARACTERS = 4.6 * MB
 BUDGET_FURNITURE = 1.5 * MB
 
 # Limits the comparison report must stay within (project targets).

@@ -12,7 +12,7 @@ Status v0.2: dataset dunia, room schedule, adjacency, perhitungan kapasitas, por
 - Program ruang dua lantai dikunci sebagai proposal: 20 ruang di L1, 18 ruang di L2, termasuk sirkulasi, shaft dan riser, total 1536 m2 gross.
 - Validator `tools/validate_world.py` menjalankan 46 pemeriksaan (schema, overlap, coverage, pintu, arah bukaan, jendela, fixture, clearance, navigasi staff/visitor, adjacency, foreign key ICT). Test negatif membuktikan validator menolak data rusak.
 - Kapasitas dihitung oleh `tools/capacity.py`; temuan baru: target cold start 8 s pada 10 Mbps hanya mengizinkan sekitar 10 MB awal, bukan 25 MB.
-- ICT diturunkan oleh `tools/ict_derive.py`: 45 outlet, 72 port, panjang kabel dari route tray, tiga access switch agar spare tetap di atas 20 persen.
+- ICT diturunkan oleh `tools/ict_derive.py`: 46 outlet, 74 port, panjang kabel dari route tray, tiga access switch agar spare tetap di atas 20 persen.
 - Audit tool: Blender 4.0.2 tersedia di container; AutoCAD tidak tersedia sehingga native DWG BLOCKED.
 - Matriks requirement memakai status per bagian (target, asumsi, belum diuji, terverifikasi, tidak didukung) dengan path evidence.
 
@@ -29,7 +29,7 @@ D-01 sampai D-07 dari v0.1 tetap berlaku: dua lantai dengan kerja terpisah dari 
 Belum diputuskan dan tetap terbuka: lahan fisik, lokasi, luas yang disahkan, target okupansi manusia, biaya pembangunan, client benchmark, hosting publik dan izin integrasi data real Hermes. Default aman: demo simulasi offline; integrasi private disabled.
 
 Butuh masukan Budi (NEEDS_INPUT, tidak memblokir M1 sampai M3). Max mencatat keputusan provisional untuk keempatnya (ADR-008 sampai ADR-011 di `docs/decisions.md`); Budi tetap dapat membatalkannya:
-- Q-01: apakah 34 ruang bernama (tanpa shaft) dan 117 slot aktivitas cukup mewakili "keragaman setara" 47 area kantor pixel, atau perlu sub-zona tambahan? Provisional: keragaman ruang dipertahankan karena 27 fungsi PRD bagian 5 terlacak ke 38 ruang dan sebaliknya (`tools/prd_trace.py`).
+- Q-01: apakah 34 ruang bernama (tanpa shaft) dan 118 slot aktivitas cukup mewakili "keragaman setara" 47 area kantor pixel, atau perlu sub-zona tambahan? Provisional: keragaman ruang dipertahankan karena 27 fungsi PRD bagian 5 terlacak ke 38 ruang dan sebaliknya (`tools/prd_trace.py`).
 - Q-02: apakah L2 boleh bergantung pada satu tangga utama, lift dan penanda tangga darurat konsep di sisi timur, atau perlu tangga kedua di dalam envelope? Provisional: tangga dan lift internal untuk gameplay; tangga darurat timur hanya penanda konsep tertaut, tanpa klaim kepatuhan peraturan.
 - Q-03: apakah ruang gym di atas studio Kevin/area Bruno dapat diterima secara konsep, mengingat isu getaran/akustik yang harus dikaji profesional? Provisional: gym tetap, dengan risiko getaran/akustik tercatat dan aturan ADJ-11 (tidak di atas ruang tenang, rapat atau server).
 - Q-04: perangkat client benchmark untuk target FPS (desktop dan mobile). Provisional: harness performa reproducible; FPS perangkat nyata belum diuji sampai diukur.
@@ -38,7 +38,7 @@ Butuh masukan Budi (NEEDS_INPUT, tidak memblokir M1 sampai M3). Max mencatat kep
 
 Holixora menampilkan kontrol WASD, Shift, E, drag kamera, R, panduan teks, mode ringan, departemen dan akses ruang terbatas; halaman demo menyatakan tidak ada pekerjaan atau data pelanggan asli [1]. Pembuat menyebut prototype/data contoh serta tur 3D, percakapan persona, Office Studio dan Avatar Studio [2]. Fitur tersebut menjadi target proyek ini, bukan klaim sudah berjalan, dan tidak ada kode/aset Holixora yang disalin.
 
-Baseline kantor pixel lokal: 77 kolom, 44 baris (3388 sel), 47 area, 297 instance furniture. Dataset P03 memiliki 34 ruang non-shaft (rasio 0,72), 199 fixture (rasio 0,67), 117 slot aktivitas dan sekitar 1000 m2 area walkable pada navgrid. Angka ini perbandingan kompleksitas eksplorasi, bukan spesifikasi bangunan.
+Baseline kantor pixel lokal: 77 kolom, 44 baris (3388 sel), 47 area, 297 instance furniture. Dataset P03 memiliki 34 ruang non-shaft (rasio 0,72), 201 fixture (rasio 0,68), 118 slot aktivitas dan sekitar 1000 m2 area walkable pada navgrid. Angka ini perbandingan kompleksitas eksplorasi, bukan spesifikasi bangunan.
 
 Pokopia memberi referensi dunia yang dibangun bersama dan suasana santai [7]. Story of Seasons memberi referensi keseharian komunitas [5]. Final Fantasy adalah arahan rasa RPG dari pemilik, bukan sumber aset. Blender mendukung ekspor glTF dengan animasi keyframe, shape key dan skinning [3]. Three.js GLTFLoader dan AnimationMixer adalah kandidat pipeline [8]. Ketersediaan WebGL bergantung client [4], maka fallback DOM wajib.
 
@@ -68,7 +68,7 @@ Style: silhouette tebal, sudut furniture lembut, material matte, warna lingkunga
 
 Karakter: silhouette berbeda per peran, pakaian dan prop relevan, character sheet depan/samping/belakang, rig spec, deform test. Animasi minimum: idle, walk, sit, typing, wave, talk; tambahan sesuai aktivitas. Asset registry wajib memuat ID, pembuat, lisensi, source blend, GLB, dimensi, pivot, collider, triangle count, LOD dan preview. Primitif blocking tidak disebut final art.
 
-Budget target: karakter utama 25k triangle, NPC LOD0 15k dan LOD1 5k, prop kecil 2k, atlas 1k default; scene mobile 250k triangle dan 150 draw call. Dengan 6 NPC, anggaran karakter LOD0 = 115k sehingga sisa lingkungan 135k pada scene mobile. Semua target diukur dahulu sebelum disebut terpenuhi.
+Budget target: karakter utama 25k triangle, NPC LOD0 15k dan LOD1 5k, prop kecil 2k, atlas 1k default; scene mobile 250k triangle dan 150 draw call. Dengan 8 NPC, anggaran karakter LOD0 = 145k sehingga sisa lingkungan 105k pada scene mobile. Semua target diukur dahulu sebelum disebut terpenuhi.
 
 ## 7. Gameplay, kamera dan UX
 
@@ -102,7 +102,7 @@ Drawing register (target, `design/sheets.json`): A-001 cover/index/catatan (A3);
 
 ## 11. ICT sebagai rancangan virtual
 
-Hasil derivasi P03: 45 outlet, 72 port (desk 2 port, bench lab 4 port, AP dan kamera 1 port), 4 patch panel 24 port (96 port, 72 terpakai), 3 access switch 48 port PoE dengan 4 uplink dicadangkan per switch (spare 45,5 persen per switch), 11 AP placeholder (AS-ICT-01), 5 kamera konsep opsional tanpa kamera di toilet/shower. Panjang kabel = route tray + naik rack 1,2 m + riser 4,0 m untuk L2 + drop ke outlet + slack 3,3 m (AS-ICT-02); total 2074,8 m, terpanjang 50,6 m, semua di bawah target 90 m (AS-ICT-03). PoE worst-case 407 W dari kelas IEEE (AS-ICT-04); budget PoE switch belum divalidasi karena datasheet belum dipilih. Tidak ada harga (AS-ICT-05).
+Hasil derivasi P03: 46 outlet, 74 port (desk 2 port, bench lab 4 port, AP dan kamera 1 port), 4 patch panel 24 port (96 port, 74 terpakai), 3 access switch 48 port PoE dengan 4 uplink dicadangkan per switch (spare minimal 43,2 persen per switch), 11 AP placeholder (AS-ICT-01), 5 kamera konsep opsional tanpa kamera di toilet/shower. Panjang kabel = route tray + naik rack 1,2 m + riser 4,0 m untuk L2 + drop ke outlet + slack 3,3 m (AS-ICT-02); total 2126,6 m, terpanjang 50,6 m, semua di bawah target 90 m (AS-ICT-03). PoE worst-case 407 W dari kelas IEEE (AS-ICT-04); budget PoE switch belum divalidasi karena datasheet belum dipilih. Tidak ada harga (AS-ICT-05).
 
 Domain jaringan office/demo/guest/lab/server adalah ID abstrak (AS-NET-01), bukan subnet atau VLAN produksi. Port map, label dua ujung dan BOM ada di `design/derived/ict-portmap.json` dan `.csv`.
 
@@ -141,7 +141,7 @@ Should, Could dan Won't v1 tetap seperti v0.1: soundscape opt-in, day/night, pho
 Semua angka dihitung oleh `tools/capacity.py` dari dataset dan asumsi berlabel (`docs/capacity.md`).
 
 - Luas: 768 m2 per lantai, 1536 m2 gross; sirkulasi 23,4 persen per lantai.
-- Kursi dari fixture: L1 41 kursi dan 13 workstation; L2 42 kursi. Beban hunian pembanding (IBC 2021 Table 1004.5, AS-OCC-01): L1 110 orang, L2 302 orang. Ini pembanding egress, bukan target okupansi.
+- Kursi dari fixture: L1 42 kursi dan 14 workstation; L2 42 kursi. Beban hunian pembanding (IBC 2021 Table 1004.5, AS-OCC-01): L1 110 orang, L2 302 orang. Ini pembanding egress, bukan target okupansi.
 - Demo: 1 pemain lokal, 6 NPC simulasi (maksimal 12 per client), render client-side, backend demo nol.
 - Transfer: 25 MB pada 10 Mbps = 20 s; 60 MB = 48 s. Target cold start 8 s hanya memberi ruang sekitar 10 MB, sehingga first playable harus 10 MB atau kurang dan sisanya lazy load per lantai/props.
 - Private planning (M4 disabled): 12 aktor x 1 KB x viewer / 5 s; 40 viewer = 98304 B/s (0,354 GB/jam); 200 viewer = 491520 B/s (1,769 GB/jam). Server membaca sumber bersama 720 kali per jam, bukan per viewer.

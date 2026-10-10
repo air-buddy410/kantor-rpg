@@ -1,0 +1,17 @@
+{
+ "totalTransferBytes": 648179,
+ "js": [
+  {
+   "file": "index-C8cmo7rj.js",
+   "decoded": 233457,
+   "transfer": 61091
+  },
+  {
+   "file": "three-CVTpx1NJ.js",
+   "decoded": 666992,
+   "transfer": 169228
+  }
+ ],
+ "glbBytes": 207296,
+ "measuredAt": "2026-10-05T00:41:08.596Z"
+}

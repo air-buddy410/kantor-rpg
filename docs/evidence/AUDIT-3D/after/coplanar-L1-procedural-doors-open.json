@@ -1,0 +1,216 @@
+{
+ "floor": "L1",
+ "mode": "procedural",
+ "doorsOpen": true,
+ "gapM": 0.002,
+ "minAreaM2": 0.0001,
+ "triangles": 26510,
+ "meshes": 72,
+ "hits": 12,
+ "list": [
+  {
+   "a": "floor-L1#e2d3b6",
+   "b": "floor-L1#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 1.1325,
+   "at": [
+    30.33,
+    0,
+    -0.33
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 0.15816,
+   "at": [
+    0.44,
+    0,
+    -12.01
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 0.148,
+   "at": [
+    15.07,
+    0,
+    -15.61
+   ]
+  },
+  {
+   "a": "fixtures-L1#4f7a5f",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.268,
+   "gapM": 0,
+   "areaM2": 0.00921,
+   "at": [
+    25.63,
+    0.27,
+    -3.22
+   ]
+  },
+  {
+   "a": "fixtures-L1#eadfc8",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.268,
+   "gapM": 0,
+   "areaM2": 0.00921,
+   "at": [
+    22.98,
+    0.27,
+    -6.13
+   ]
+  },
+  {
+   "a": "fixtures-L1#d6a646",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.268,
+   "gapM": 0,
+   "areaM2": 0.00921,
+   "at": [
+    21.72,
+    0.27,
+    -0.37
+   ]
+  },
+  {
+   "a": "fixtures-L1#6f8fa6",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.268,
+   "gapM": 0,
+   "areaM2": 0.00921,
+   "at": [
+    24.52,
+    0.27,
+    -0.37
+   ]
+  },
+  {
+   "a": "fixtures-L1#c0643f",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.268,
+   "gapM": 0,
+   "areaM2": 0.00921,
+   "at": [
+    25.63,
+    0.27,
+    -5.82
+   ]
+  },
+  {
+   "a": "fixtures-L1#2f5a45",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -1.28,
+   "gapM": 0,
+   "areaM2": 0.00857,
+   "at": [
+    19.86,
+    1.28,
+    -6.1
+   ]
+  },
+  {
+   "a": "fixtures-L1#9cb197",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -1.28,
+   "gapM": 0,
+   "areaM2": 0.00428,
+   "at": [
+    20.1,
+    1.28,
+    -18.43
+   ]
+  },
+  {
+   "a": "fixtures-L1#d6a646",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -1.28,
+   "gapM": 0,
+   "areaM2": 0.00428,
+   "at": [
+    19.87,
+    1.28,
+    -20.6
+   ]
+  },
+  {
+   "a": "fixtures-L1#d6a646",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.806,
+   "gapM": 0,
+   "areaM2": 0.00367,
+   "at": [
+    19.31,
+    0.81,
+    -19.98
+   ]
+  }
+ ]
+}

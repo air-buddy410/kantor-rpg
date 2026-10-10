@@ -302,14 +302,15 @@
      "status": "terverifikasi"
     },
     {
-     "scope": "M0: capability CAD dilaporkan; native DWG",
+     "scope": "M0: capability CAD dilaporkan; native DWG (15 DWG R2018 AutoCAD 2025: reopen, AUDIT 0 error, unit mm, jumlah entitas cocok DXF). Plot PDF native AutoCAD dikeluarkan dari lingkup atas keputusan Budi 2026-10-10 (tanpa akun Autodesk); PDF resmi = PDF vektor generator",
      "tests": [
       "docs/evidence/M0/capability-report.md"
      ],
      "evidence": [
-      "docs/evidence/M0/capability-report.md"
+      "docs/evidence/M0/capability-report.md",
+      "docs/evidence/MAX/native-dwg/report.json"
      ],
-     "status": "tidak didukung"
+     "status": "terverifikasi"
     },
     {
      "scope": "M1: A-101/A-102 DXF+PDF konsisten dengan dataset (reopen, audit, luas, ID pintu/fixture, skala)",
@@ -544,19 +545,23 @@
   },
   {
    "id": "REQ-DATA-01",
-   "milestone": "M4 gated",
+   "milestone": "M4",
    "story": "Sebagai owner private, saya ingin status tersanitasi agar melihat kerja real.",
    "ac": "AC-DATA-01: Given approved adapter, When snapshot fresh/stale/offline, Then status/time/source benar dan unknown saat timeout.",
    "failure": "disconnect -> stale/unknown",
    "boundary": "visitor/unauth tidak menerima payload private. Disabled sebelum izin.",
    "parts": [
     {
-     "scope": "Integrasi private M4 (AC-DATA-01): DITUNDA ke M5 atas keputusan Budi 2026-10-05; tidak dibangun di v0.2",
-     "tests": [],
-     "evidence": [
-      "docs/MAX-CLOSURE.md"
+     "scope": "Integrasi private M4 (AC-DATA-01): backend privat membaca Kanban/_Bersama/agent.log/omp; snapshot berisi source + observedAt per papan; sumber gagal ok=false, bukan kosong sukses (ADR-016)",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
      ],
-     "status": "tidak didukung"
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
     },
     {
      "scope": "Kontrak adapter (sanitasi allowlist, stale -> unknown) diuji dengan fixture; tanpa sumber nyata",
@@ -730,6 +735,439 @@
      ],
      "evidence": [
       "docs/MUST-AUDIT.md"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-BOARD-01",
+   "milestone": "M4",
+   "story": "PRD v1.1 bagian 18.5",
+   "ac": "Lihat PRD-v1.1.md 18.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Papan Handoff: tiap tugas Kanban HANDOFF muncul sekali dengan dari/ke/status/umur/badan, rantai kerja, >24 jam belum diterima berlabel Perlu perhatian",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-BOARD-02",
+   "milestone": "M4",
+   "story": "PRD v1.1 bagian 18.5",
+   "ac": "Lihat PRD-v1.1.md 18.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Daftar Pekerjaan: filter bot/badan/status, urutan diblokir-jalan-antre-selesai, drop omp aktif, profil pribadi tersamar",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-BOARD-03",
+   "milestone": "M4",
+   "story": "PRD v1.1 bagian 18.5",
+   "ac": "Lihat PRD-v1.1.md 18.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Log Aktivitas: 24 jam terurut waktu, kuota 50 tugas + 110 alat, kata kerja Indonesia, tanpa path/token/isi obrolan; baris tugas membuka tugas terkait",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-BOARD-04",
+   "milestone": "M4",
+   "story": "PRD v1.1 bagian 18.5",
+   "ac": "Lihat PRD-v1.1.md 18.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Visitor: papan berlabel Demo, API menolak tanpa login, bundle dan respons publik tanpa judul tugas nyata",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-BOARD-05",
+   "milestone": "M4",
+   "story": "PRD v1.1 bagian 18.5",
+   "ac": "Lihat PRD-v1.1.md 18.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Sumber gagal tampil Tidak diketahui; pembaruan gagal tampil Basi dengan waktu observasi terakhir",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CMD-01",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Owner login memberi tugas dari karakter (Bicara & beri tugas) atau directory (Beri tugas); profil tujuan menerima tepat pesan itu; riwayat profil lain terpisah",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CHOICE-01",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Tepat tiga opsi berbeda + Ketik manual, tanpa auto-submit; opsi dikirim sesuai turn ID; opsi lama/palsu ditolak",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-MANUAL-01",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Teks manual diteruskan utuh; fokus input menghentikan locomotion; Escape menutup tanpa mengirim",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CMD-02",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Status queued/working/waiting_owner/completed/failed/unknown dari server dengan sumber dan waktu; pembatalan",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CMD-03",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Aksi berisiko menunggu approval terpisah, terikat tugas, 15 menit, sekali pakai; tolak/kedaluwarsa/replay/salah tugas = nol dispatch",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CMD-04",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Visitor/tanpa header proxy/tanpa CSRF/origin asing ditolak; nol dispatch",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CMD-05",
+   "milestone": "M5",
+   "story": "PRD v1.1 bagian 17.5",
+   "ac": "Lihat PRD-v1.1.md 17.5",
+   "failure": "lihat AC",
+   "boundary": "owner login saja; visitor Demo",
+   "parts": [
+    {
+     "scope": "Idempotency key: klik ganda dan kirim ulang tidak membuat tugas kedua; gagal dan unknown ditampilkan jujur tanpa retry otomatis",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-AUTH-01",
+   "milestone": "M4/M5",
+   "story": "Sebagai Budi, saya login dengan sandi + 2FA di aplikasi sendiri (keputusan 2026-10-10).",
+   "ac": "Sandi salah/kode salah/kode dipakai ulang ditolak; 5 gagal per 15 menit dikunci; setup sekali pakai; owner.json 0600 tanpa sandi polos; logout mematikan sesi.",
+   "failure": "backend mati -> papan Demo, perintah tidak tersedia",
+   "boundary": "rahasia tidak pernah dikirim ke browser",
+   "parts": [
+    {
+     "scope": "Login sandi scrypt + TOTP RFC 6238, setup sekali pakai, rate limit, logout",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/server-test.txt",
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-PRESENCE-01",
+   "milestone": "M6",
+   "story": "Sebagai Budi, karakter agen yang sedang bekerja terlihat bekerja (status nyata).",
+   "ac": "NPC dengan bukti kerja (tugas RPG, Kanban running/claimed, agent.log <=5 menit) duduk di mejanya dan mengetik sampai bukti hilang; visitor tetap simulasi.",
+   "failure": "sumber tidak terbaca -> status tidak diketahui, bukan bekerja",
+   "boundary": "profil pribadi tidak muncul; ringkasan disaring",
+   "parts": [
+    {
+     "scope": "NPC dengan bukti kerja (tugas RPG, Kanban running/claimed, agent.log <=5 menit) duduk di mejanya dan mengetik sampai bukti hilang; visitor tetap simulasi.",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/unit/idle.test.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M6/server-test.txt",
+      "docs/evidence/M45/vitest.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CHATKEY-01",
+   "milestone": "M6",
+   "story": "Sebagai Budi, saya membuka chat agen mana pun dengan tombol C / Chat agen.",
+   "ac": "Daftar semua agen dengan lane + status; memilih membuka profil yang benar; menu HUD HP tidak terpotong.",
+   "failure": "visitor mendapat penjelasan khusus owner",
+   "boundary": "tanpa data nyata untuk visitor",
+   "parts": [
+    {
+     "scope": "Daftar semua agen dengan lane + status; memilih membuka profil yang benar; menu HUD HP tidak terpotong.",
+     "tests": [
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M45/e2e-private.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-TGSYNC-01",
+   "milestone": "M6",
+   "story": "Sebagai Budi, chat agen di RPG = percakapan Telegram DM yang sama (ADR-017).",
+   "ac": "Transkrip Telegram tampil; kirim dari RPG melanjutkan sesi Telegram aktif; /new diikuti; balasan ikut ke Telegram; pilihan kedaluwarsa bila obrolan Telegram berlanjut.",
+   "failure": "riwayat tidak terbaca -> peringatan; sesi hilang -> gagal dengan alasan",
+   "boundary": "token bot hanya di server; state.db dibaca -readonly",
+   "parts": [
+    {
+     "scope": "Transkrip Telegram tampil; kirim dari RPG melanjutkan sesi Telegram aktif; /new diikuti; balasan ikut ke Telegram; pilihan kedaluwarsa bila obrolan Telegram berlanjut.",
+     "tests": [
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M6/server-test.txt",
+      "docs/evidence/M6/desktop-agent-telegram-sync.jpg"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-SHARE-01",
+   "milestone": "M6",
+   "story": "Kantor RPG dibagikan gratis ke komunitas tanpa data internal.",
+   "ac": "Repo komunitas riwayat baru, konfigurasi pemakai, pindai pola nol temuan sebelum publikasi.",
+   "failure": "temuan pindai -> tidak dipublikasi",
+   "boundary": "repo kerja internal tetap privat",
+   "parts": [
+    {
+     "scope": "Ekspor repo komunitas + INSTALL + pindai",
+     "tests": [],
+     "evidence": [],
+     "status": "target"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CHATFEEL-01",
+   "milestone": "M7",
+   "story": "Sebagai Budi, chat agen terasa seperti Telegram: mengetik, centang, terakhir aktif.",
+   "ac": "Mengetik dari tugas RPG berjalan atau pesan Telegram Budi belum dibalas (maks 10 menit); centang sent/delivered/read; aktif X menit lalu; pemisah tanggal WITA; Balas/Salin; bunyi + (n) di judul tab.",
+   "failure": "tanpa data -> baris status kosong, bukan karangan",
+   "boundary": "status diturunkan dari tugas + transkrip; tidak dikarang",
+   "parts": [
+    {
+     "scope": "Mengetik dari tugas RPG berjalan atau pesan Telegram Budi belum dibalas (maks 10 menit); centang sent/delivered/read; aktif X menit lalu; pemisah tanggal WITA; Balas/Salin; bunyi + (n) di judul tab.",
+     "tests": [
+      "server/test/chat-state.test.mjs",
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M7/server-test.txt",
+      "docs/evidence/M7/desktop-agent-telegram-sync.jpg"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CHATPUSH-01",
+   "milestone": "M7",
+   "story": "Sebagai Budi, notifikasi balasan agen walau tab ditutup.",
+   "ac": "Web Push RFC 8291 + VAPID ES256 dari backend sendiri; izin lewat tombol; bisu per bot per perangkat; ketuk membuka chat; manifest PWA + ikon.",
+   "failure": "endpoint bukan push service resmi -> 400; langganan 404/410 dihapus",
+   "boundary": "isi notifikasi nama bot + <=120 karakter; kunci VAPID 0600",
+   "parts": [
+    {
+     "scope": "Web Push RFC 8291 + VAPID ES256 dari backend sendiri; izin lewat tombol; bisu per bot per perangkat; ketuk membuka chat; manifest PWA + ikon.",
+     "tests": [
+      "server/test/media-push.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M7/server-test.txt"
+     ],
+     "status": "terverifikasi"
+    }
+   ]
+  },
+  {
+   "id": "REQ-CHATMEDIA-01",
+   "milestone": "M7",
+   "story": "Sebagai Budi, kirim foto/berkas/pesan suara dan cari pesan lama.",
+   "ac": "Lampiran <=10 MB, <=5/pesan, daftar putih + magic bytes; agen menerima path lokal format gateway Telegram; suara -> mlx-whisper lokal; URL bertanda tangan HMAC; lampiran Telegram tampil; cari seluruh riwayat sesi; retensi 30 hari.",
+   "failure": "jenis/isi tidak cocok -> 415; token palsu/keluar folder -> 404; berkas hilang -> 'sudah dihapus'",
+   "boundary": "path server tidak pernah ke browser; transkrip lokal tanpa API berbayar",
+   "parts": [
+    {
+     "scope": "Lampiran <=10 MB, <=5/pesan, daftar putih + magic bytes; agen menerima path lokal format gateway Telegram; suara -> mlx-whisper lokal; URL bertanda tangan HMAC; lampiran Telegram tampil; cari seluruh riwayat sesi; retensi 30 hari.",
+     "tests": [
+      "server/test/media-push.test.mjs",
+      "server/test/api.test.mjs",
+      "app/tests/e2e/private.spec.ts"
+     ],
+     "evidence": [
+      "docs/evidence/M7/server-test.txt",
+      "docs/evidence/M7/desktop-agent-media-search.jpg"
      ],
      "status": "terverifikasi"
     }

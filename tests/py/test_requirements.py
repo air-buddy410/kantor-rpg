@@ -22,6 +22,7 @@ def test_verified_parts_have_existing_evidence():
 
 
 def test_prd_requirements_all_present():
-    prd = (ROOT / "PRD" / "PRD-v0.2.md").read_text(encoding="utf-8")
+    # v0.2 is the design baseline; M4/M5 requirements live in v1.1.
+    prd = "".join((ROOT / "PRD" / f).read_text(encoding="utf-8") for f in ("PRD-v0.2.md", "PRD-v1.1.md"))
     for r in REQ["requirements"]:
         assert r["id"] in prd, r["id"]

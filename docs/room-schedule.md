@@ -22,7 +22,7 @@ Luas diukur pada garis as dinding (AS-DIM-02). Kursi = slot duduk dari fixture (
 | L1-NCORR | Koridor utara L1 | circulation | staff | moderate | 64.0 | 0 | D-L1-14, D-L1-22, D-L1-EXN, D-L1-15, D-L1-16, D-L1-17, D-L1-18, D-L1-20, D-L1-21 | EXT, L1-BRUNO, L1-CEO, L1-CORE, L1-HUGO, L1-KEVIN, L1-LAB, L1-RISER, L1-STORE | 2/2 | vinyl motif kayu |
 | L1-CEO | Ruang CEO | quiet | staff | quiet | 38.5 | 5 | D-L1-15 | L1-NCORR | 1/2 | karpet tile matte |
 | L1-HUGO | Studio Hugo | work | staff | quiet | 38.5 | 2 | D-L1-16 | L1-NCORR | 2/4 | vinyl motif kayu |
-| L1-KEVIN | Studio Kevin | work | staff | quiet | 33.0 | 1 | D-L1-17 | L1-NCORR | 1/2 | vinyl motif kayu |
+| L1-KEVIN | Studio Kevin | work | staff | quiet | 33.0 | 2 | D-L1-17 | L1-NCORR | 2/4 | vinyl motif kayu |
 | L1-BRUNO | Area Bruno | work | staff | moderate | 27.5 | 1 | D-L1-18, D-L1-19 | L1-NCORR, L1-SERVER | 2/3 | vinyl anti-statik (target) |
 | L1-SERVER | Ruang server | restricted | restricted | moderate | 22.0 | 0 | D-L1-19 | L1-BRUNO | 0/0 | vinyl anti-statik (target) |
 | L1-RISER | Riser ICT | shaft | restricted | quiet | 1.5 | 0 | D-L1-20 | L1-NCORR | 0/0 | - |
@@ -67,7 +67,7 @@ Luas diukur pada garis as dinding (AS-DIM-02). Kursi = slot duduk dari fixture (
 - L1-NCORR: plant_small x1, poster x1
 - L1-CEO: bookshelf x1, chair x1, chair_guest x2, desk_exec x1, plant_large x1, sofa x1
 - L1-HUGO: chair x2, desk x2, drafting_table x1, model_shelf x1, plant_small x1
-- L1-KEVIN: chair x1, desk x1, easel x1, poster x1, work_table x1
+- L1-KEVIN: chair x2, desk x2, easel x1, poster x1, work_table x1
 - L1-BRUNO: chair x1, desk x1, plant_small x1, tool_cabinet x1
 - L1-SERVER: rack_42u x2
 - L1-STORE: storage_shelf x2

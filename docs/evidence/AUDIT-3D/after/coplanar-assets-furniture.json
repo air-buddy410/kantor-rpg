@@ -1,0 +1,473 @@
+{
+ "kind": "furniture",
+ "gapM": 0.002,
+ "rows": [
+  {
+   "file": "arcade_cabinet.glb",
+   "hits": 11,
+   "seenAreaM2": 1.6685,
+   "top": [
+    "arcade_cabinet:fabricTerracotta#c0643f/2side vs arcade_cabinet_1:fabricCream#eadfc8/2side n=1,0,0 1.3302 m2",
+    "arcade_cabinet_3:screen#1f2a2b/2side vs arcade_cabinet_4:screenGlow#8fc7c2/2side n=0,-0.242,0.97 0.20365 m2",
+    "arcade_cabinet_2:fabricMustard#d6a646/2side vs arcade_cabinet_5:paper#f4eedf/2side n=0,0,1 0.06215 m2",
+    "arcade_cabinet:fabricTerracotta#c0643f/2side vs arcade_cabinet_10:woodDark#7d5a3c/2side n=-1,0,0 0.03319 m2",
+    "arcade_cabinet:fabricTerracotta#c0643f/2side vs arcade_cabinet_3:screen#1f2a2b/2side n=1,0,0 0.02699 m2"
+   ]
+  },
+  {
+   "file": "armchair.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "beanbag.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "bench.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "billiard_table.glb",
+   "hits": 5,
+   "seenAreaM2": 3.7478,
+   "top": [
+    "billiard_table:woodDark#7d5a3c/2side vs billiard_table_1:felt#2f7a57/2side n=0,1,0 3.74695 m2",
+    "billiard_table:woodDark#7d5a3c/2side vs billiard_table_1:felt#2f7a57/2side n=0,0.383,-0.924 0.00022 m2",
+    "billiard_table:woodDark#7d5a3c/2side vs billiard_table_1:felt#2f7a57/2side n=0.924,0.383,0 0.00022 m2",
+    "billiard_table:woodDark#7d5a3c/2side vs billiard_table_1:felt#2f7a57/2side n=0,0.383,0.924 0.00022 m2",
+    "billiard_table:woodDark#7d5a3c/2side vs billiard_table_1:felt#2f7a57/2side n=-0.924,0.383,0 0.00022 m2"
+   ]
+  },
+  {
+   "file": "board_table.glb",
+   "hits": 4,
+   "seenAreaM2": 0.2587,
+   "top": [
+    "board_table:wood#b88a5d/2side vs board_table_1:woodDark#7d5a3c/2side n=0,1,0 0.125 m2",
+    "board_table:wood#b88a5d/2side vs board_table_2:woodLight#d8b98f/2side n=0,1,0 0.125 m2",
+    "board_table_1:woodDark#7d5a3c/2side vs board_table_3:accent#c0643f/2side n=0,1,0 0.00436 m2",
+    "board_table_2:woodLight#d8b98f/2side vs board_table_4:white#f7f3ea/2side n=0,1,0 0.00436 m2"
+   ]
+  },
+  {
+   "file": "bookshelf.glb",
+   "hits": 33,
+   "seenAreaM2": 1.1637,
+   "top": [
+    "bookshelf:wood#b88a5d/2side vs bookshelf_1:woodDark#7d5a3c/2side n=0,1,0 0.07989 m2",
+    "bookshelf:wood#b88a5d/2side vs bookshelf_6:fabricTerracotta#c0643f/2side n=0,1,0 0.06166 m2",
+    "bookshelf:wood#b88a5d/2side vs bookshelf_1:woodDark#7d5a3c/2side n=0,1,0 0.05784 m2",
+    "bookshelf:wood#b88a5d/2side vs bookshelf_6:fabricTerracotta#c0643f/2side n=0,1,0 0.05686 m2",
+    "bookshelf:wood#b88a5d/2side vs bookshelf_3:fabricMustard#d6a646/2side n=0,1,0 0.05553 m2"
+   ]
+  },
+  {
+   "file": "chair.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0004,
+   "top": [
+    "chair:metal#5d625f/2side vs chair_1:rubber#3e4a44/2side n=0,1,0 0.00045 m2"
+   ]
+  },
+  {
+   "file": "chair_guest.glb",
+   "hits": 1,
+   "seenAreaM2": 0.176,
+   "top": [
+    "chair_guest_1:wood#b88a5d/2side vs chair_guest_2:fabricSage#9cb197/2side n=0,1,0 0.17601 m2"
+   ]
+  },
+  {
+   "file": "coffee_bar.glb",
+   "hits": 5,
+   "seenAreaM2": 1.2897,
+   "top": [
+    "coffee_bar_1:wood#b88a5d/2side vs coffee_bar_4:woodLight#d8b98f/2side n=0,1,0 1.17001 m2",
+    "coffee_bar_4:woodLight#d8b98f/2side vs coffee_bar_6:metal#5d625f/2side n=0,1,0 0.078 m2",
+    "coffee_bar_4:woodLight#d8b98f/2side vs coffee_bar_9:pot#c98a62/2side n=0,1,0 0.01848 m2",
+    "coffee_bar_3:metalLight#a7aca6/2side vs coffee_bar_6:metal#5d625f/2side n=0,0,-1 0.01445 m2",
+    "coffee_bar_4:woodLight#d8b98f/2side vs coffee_bar_8:white#f7f3ea/2side n=0,1,0 0.00875 m2"
+   ]
+  },
+  {
+   "file": "coffee_table.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0417,
+   "top": [
+    "coffee_table_1:woodDark#7d5a3c/2side vs coffee_table_2:accent#c0643f/2side n=0,1,0 0.04166 m2"
+   ]
+  },
+  {
+   "file": "cue_rack.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0009,
+   "top": [
+    "cue_rack_2:woodLight#d8b98f/2side vs cue_rack_3:white#f7f3ea/2side n=0,1,0 0.00092 m2"
+   ]
+  },
+  {
+   "file": "desk.glb",
+   "hits": 2,
+   "seenAreaM2": 0.3088,
+   "top": [
+    "desk:wood#b88a5d/2side vs desk_3:fabricSage#9cb197/2side n=0,1,0 0.23406 m2",
+    "desk:wood#b88a5d/2side vs desk_4:metalLight#a7aca6/2side n=0,1,0 0.07479 m2"
+   ]
+  },
+  {
+   "file": "desk_exec.glb",
+   "hits": 3,
+   "seenAreaM2": 0.3488,
+   "top": [
+    "desk_exec:wood#b88a5d/2side vs desk_exec_3:fabricGreen#4f7a5f/2side n=0,1,0 0.23407 m2",
+    "desk_exec:wood#b88a5d/2side vs desk_exec_4:metalLight#a7aca6/2side n=0,1,0 0.07479 m2",
+    "desk_exec:wood#b88a5d/2side vs desk_exec_5:accent#c0643f/2side n=0,1,0 0.03991 m2"
+   ]
+  },
+  {
+   "file": "dining_table.glb",
+   "hits": 1,
+   "seenAreaM2": 0.037,
+   "top": [
+    "dining_table:wood#b88a5d/2side vs dining_table_2:fabricSage#9cb197/2side n=0,1,0 0.03705 m2"
+   ]
+  },
+  {
+   "file": "directory_sign.glb",
+   "hits": 2,
+   "seenAreaM2": 0.0778,
+   "top": [
+    "directory_sign:wallCap#2f5a45/2side vs directory_sign_1:fabricCream#eadfc8/2side n=0,0,-1 0.07505 m2",
+    "directory_sign_1:fabricCream#eadfc8/2side vs directory_sign_2:accent#c0643f/2side n=0,0,1 0.00275 m2"
+   ]
+  },
+  {
+   "file": "drafting_table.glb",
+   "hits": 2,
+   "seenAreaM2": 0.4028,
+   "top": [
+    "drafting_table:woodLight#d8b98f/2side vs drafting_table_1:paper#f4eedf/2side n=0,0.966,0.259 0.38485 m2",
+    "drafting_table:woodLight#d8b98f/2side vs drafting_table_2:metal#5d625f/2side n=0,0.966,0.259 0.01798 m2"
+   ]
+  },
+  {
+   "file": "dumbbell_rack.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "easel.glb",
+   "hits": 2,
+   "seenAreaM2": 0.0904,
+   "top": [
+    "easel_2:paper#f4eedf/2side vs easel_3:art_a#2f5a45/2side n=0,0.156,0.988 0.08391 m2",
+    "easel_2:paper#f4eedf/2side vs easel_5:art_b#eadfc8/2side n=0,0.156,0.988 0.00645 m2"
+   ]
+  },
+  {
+   "file": "exercise_bike.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "exercise_mat.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "fridge.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0068,
+   "top": [
+    "fridge:white#f7f3ea/2side vs fridge_2:metal#5d625f/2side n=0,0,1 0.00683 m2"
+   ]
+  },
+  {
+   "file": "gallery_panel.glb",
+   "hits": 3,
+   "seenAreaM2": 1.5839,
+   "top": [
+    "gallery_panel_1:fabricCream#eadfc8/2side vs gallery_panel_2:woodLight#d8b98f/2side n=0,0,1 1.41725 m2",
+    "gallery_panel_3:paper#f4eedf/2side vs gallery_panel_5:art_c#c0643f/2side n=0,0,1 0.08386 m2",
+    "gallery_panel:woodDark#7d5a3c/2side vs gallery_panel_1:fabricCream#eadfc8/2side n=0,1,0 0.0828 m2"
+   ]
+  },
+  {
+   "file": "high_table.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "lab_bench.glb",
+   "hits": 4,
+   "seenAreaM2": 0.7888,
+   "top": [
+    "lab_bench:woodLight#d8b98f/2side vs lab_bench_1:fabricSage#9cb197/2side n=0,1,0 0.59354 m2",
+    "lab_bench_3:woodDark#7d5a3c/2side vs lab_bench_5:screen#1f2a2b/2side n=0,1,0 0.0759 m2",
+    "lab_bench_2:metal#5d625f/2side vs lab_bench_4:metalLight#a7aca6/2side n=0,0,1 0.06176 m2",
+    "lab_bench_3:woodDark#7d5a3c/2side vs lab_bench_7:fabricBlue#6f8fa6/2side n=0,1,0 0.0576 m2"
+   ]
+  },
+  {
+   "file": "lab_rack_open.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "lift.glb",
+   "hits": 5,
+   "seenAreaM2": 0.6788,
+   "top": [
+    "lift:wallExterior#e2d3b6/2side vs lift_2:metal#5d625f/2side n=0,0,1 0.32883 m2",
+    "lift:wallExterior#e2d3b6/2side vs lift_1:metalLight#a7aca6/2side n=1,0,0 0.16804 m2",
+    "lift:wallExterior#e2d3b6/2side vs lift_1:metalLight#a7aca6/2side n=1,0,0 0.11394 m2",
+    "lift:wallExterior#e2d3b6/2side vs lift_1:metalLight#a7aca6/2side n=0,0,1 0.04798 m2",
+    "lift:wallExterior#e2d3b6/2side vs lift_3:accent#c0643f/2side n=0,0,1 0.02 m2"
+   ]
+  },
+  {
+   "file": "locker.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "media_console.glb",
+   "hits": 3,
+   "seenAreaM2": 0.6836,
+   "top": [
+    "media_console:wood#b88a5d/2side vs media_console_2:woodLight#d8b98f/2side n=0,0,1 0.58931 m2",
+    "media_console:wood#b88a5d/2side vs media_console_7:white#f7f3ea/2side n=0,1,0 0.0551 m2",
+    "media_console:wood#b88a5d/2side vs media_console_3:metal#5d625f/2side n=0,1,0 0.03919 m2"
+   ]
+  },
+  {
+   "file": "meeting_table.glb",
+   "hits": 2,
+   "seenAreaM2": 0.0396,
+   "top": [
+    "meeting_table:wood#b88a5d/2side vs meeting_table_2:metal#5d625f/2side n=0,1,0 0.03853 m2",
+    "meeting_table_2:metal#5d625f/2side vs meeting_table_3:accent#c0643f/2side n=0,1,0 0.00107 m2"
+   ]
+  },
+  {
+   "file": "model_shelf.glb",
+   "hits": 8,
+   "seenAreaM2": 0.3276,
+   "top": [
+    "model_shelf:woodLight#d8b98f/2side vs model_shelf_2:white#f7f3ea/2side n=0,1,0 0.0627 m2",
+    "model_shelf:woodLight#d8b98f/2side vs model_shelf_2:white#f7f3ea/2side n=0,1,0 0.0627 m2",
+    "model_shelf:woodLight#d8b98f/2side vs model_shelf_2:white#f7f3ea/2side n=0,1,0 0.0627 m2",
+    "model_shelf:woodLight#d8b98f/2side vs model_shelf_2:white#f7f3ea/2side n=0,1,0 0.0627 m2",
+    "model_shelf:woodLight#d8b98f/2side vs model_shelf_4:fabricSage#9cb197/2side n=0,1,0 0.0192 m2"
+   ]
+  },
+  {
+   "file": "pantry_counter.glb",
+   "hits": 3,
+   "seenAreaM2": 1.8296,
+   "top": [
+    "pantry_counter_1:wood#b88a5d/2side vs pantry_counter_4:white#f7f3ea/2side n=0,1,0 1.61694 m2",
+    "pantry_counter_4:white#f7f3ea/2side vs pantry_counter_5:metal#5d625f/2side n=0,1,0 0.13679 m2",
+    "pantry_counter_4:white#f7f3ea/2side vs pantry_counter_6:woodLight#d8b98f/2side n=0,1,0 0.0759 m2"
+   ]
+  },
+  {
+   "file": "partition.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0006,
+   "top": [
+    "partition:fabricSage#9cb197/2side vs partition_2:metalLight#a7aca6/2side n=0,0,1 0.00062 m2"
+   ]
+  },
+  {
+   "file": "plan_table.glb",
+   "hits": 2,
+   "seenAreaM2": 0.8635,
+   "top": [
+    "plan_table:wood#b88a5d/2side vs plan_table_1:fabricBlue#6f8fa6/2side n=0,1,0 0.84109 m2",
+    "plan_table_1:fabricBlue#6f8fa6/2side vs plan_table_2:white#f7f3ea/2side n=0,1,0 0.02236 m2"
+   ]
+  },
+  {
+   "file": "plant_large.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "plant_small.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0885,
+   "top": [
+    "plant_small:pot#c98a62/2side vs plant_small_1:woodDark#7d5a3c/2side n=0,1,0 0.08847 m2"
+   ]
+  },
+  {
+   "file": "planter_box.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "poster.glb",
+   "hits": 1,
+   "seenAreaM2": 0.03,
+   "top": [
+    "poster_1:paper#f4eedf/2side vs poster_3:art_c#c0643f/2side n=0,0,1 0.03002 m2"
+   ]
+  },
+  {
+   "file": "rack_42u.glb",
+   "hits": 5,
+   "seenAreaM2": 1.6074,
+   "top": [
+    "rack_42u:screen#1f2a2b/2side vs rack_42u_2:metal#5d625f/2side n=0,0,1 0.9912 m2",
+    "rack_42u:screen#1f2a2b/2side vs rack_42u_2:metal#5d625f/2side n=0,0,-1 0.2882 m2",
+    "rack_42u_2:metal#5d625f/2side vs rack_42u_3:metalLight#a7aca6/2side n=0,0,1 0.13083 m2",
+    "rack_42u:screen#1f2a2b/2side vs rack_42u_2:metal#5d625f/2side n=0,1,0 0.12509 m2",
+    "rack_42u_2:metal#5d625f/2side vs rack_42u_6:fabricCream#eadfc8/2side n=0,0,1 0.07204 m2"
+   ]
+  },
+  {
+   "file": "reception_desk.glb",
+   "hits": 4,
+   "seenAreaM2": 0.3375,
+   "top": [
+    "reception_desk:wood#b88a5d/2side vs reception_desk_4:accent#c0643f/2side n=0,0,1 0.13447 m2",
+    "reception_desk:wood#b88a5d/2side vs reception_desk_3:fabricCream#eadfc8/2side n=0,0,1 0.12588 m2",
+    "reception_desk:wood#b88a5d/2side vs reception_desk_6:metalLight#a7aca6/2side n=0,1,0 0.07479 m2",
+    "reception_desk:wood#b88a5d/2side vs reception_desk_1:woodDark#7d5a3c/2side n=-1,0,0 0.0024 m2"
+   ]
+  },
+  {
+   "file": "round_table.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "shower_stall.glb",
+   "hits": 8,
+   "seenAreaM2": 0.0444,
+   "top": [
+    "shower_stall_1:glass#cfe3e0/glass/2side vs shower_stall_2:metal#5d625f/2side n=1,0,0 0.01577 m2",
+    "shower_stall:white#f7f3ea/2side vs shower_stall_1:glass#cfe3e0/glass/2side n=1,0,0 0.01575 m2",
+    "shower_stall_1:glass#cfe3e0/glass/2side vs shower_stall_2:metal#5d625f/2side n=0,1,0 0.00679 m2",
+    "shower_stall:white#f7f3ea/2side vs shower_stall_2:metal#5d625f/2side n=0,1,0 0.00481 m2",
+    "shower_stall:white#f7f3ea/2side vs shower_stall_2:metal#5d625f/2side n=0,0,1 0.00043 m2"
+   ]
+  },
+  {
+   "file": "sink.glb",
+   "hits": 2,
+   "seenAreaM2": 0.2112,
+   "top": [
+    "sink:woodLight#d8b98f/2side vs sink_1:white#f7f3ea/2side n=0,1,0 0.1998 m2",
+    "sink_1:white#f7f3ea/2side vs sink_2:metalLight#a7aca6/2side n=0,1,0 0.01136 m2"
+   ]
+  },
+  {
+   "file": "sofa.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "stair_u.glb",
+   "hits": 34,
+   "seenAreaM2": 7.7705,
+   "top": [
+    "stair_u:wood#b88a5d/2side vs stair_u_2:wallInterior#f1e7d3/2side n=-1,0,0 3.83993 m2",
+    "stair_u:wood#b88a5d/2side vs stair_u_2:wallInterior#f1e7d3/2side n=1,0,0 3.20966 m2",
+    "stair_u:wood#b88a5d/2side vs stair_u_2:wallInterior#f1e7d3/2side n=0,1,0 0.15606 m2",
+    "stair_u:wood#b88a5d/2side vs stair_u_2:wallInterior#f1e7d3/2side n=0,0,-1 0.12191 m2",
+    "stair_u:wood#b88a5d/2side vs stair_u_2:wallInterior#f1e7d3/2side n=0,0,1 0.04399 m2"
+   ]
+  },
+  {
+   "file": "stool.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "storage_shelf.glb",
+   "hits": 7,
+   "seenAreaM2": 0.7477,
+   "top": [
+    "storage_shelf_1:woodLight#d8b98f/2side vs storage_shelf_2:fabricSage#9cb197/2side n=0,1,0 0.34921 m2",
+    "storage_shelf_1:woodLight#d8b98f/2side vs storage_shelf_2:fabricSage#9cb197/2side n=0,1,0 0.13295 m2",
+    "storage_shelf_1:woodLight#d8b98f/2side vs storage_shelf_4:fabricCream#eadfc8/2side n=0,1,0 0.13119 m2",
+    "storage_shelf_1:woodLight#d8b98f/2side vs storage_shelf_2:fabricSage#9cb197/2side n=0,1,0 0.11923 m2",
+    "storage_shelf:metal#5d625f/2side vs storage_shelf_1:woodLight#d8b98f/2side n=-1,0,0 0.0066 m2"
+   ]
+  },
+  {
+   "file": "tool_cabinet.glb",
+   "hits": 1,
+   "seenAreaM2": 0.376,
+   "top": [
+    "tool_cabinet:metal#5d625f/2side vs tool_cabinet_1:rubber#3e4a44/2side n=0,1,0 0.376 m2"
+   ]
+  },
+  {
+   "file": "treadmill.glb",
+   "hits": 1,
+   "seenAreaM2": 0.9469,
+   "top": [
+    "treadmill:rubber#3e4a44/2side vs treadmill_1:screen#1f2a2b/2side n=0,1,0 0.94686 m2"
+   ]
+  },
+  {
+   "file": "tree_planter.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  },
+  {
+   "file": "wall_display.glb",
+   "hits": 3,
+   "seenAreaM2": 1.5686,
+   "top": [
+    "wall_display:screen#1f2a2b/2side vs wall_display_1:screenGlow#8fc7c2/2side n=0,0,1 1.30856 m2",
+    "wall_display_1:screenGlow#8fc7c2/2side vs wall_display_3:fabricCream#eadfc8/2side n=0,0,1 0.2239 m2",
+    "wall_display_1:screenGlow#8fc7c2/2side vs wall_display_2:white#f7f3ea/2side n=0,0,1 0.03614 m2"
+   ]
+  },
+  {
+   "file": "wc.glb",
+   "hits": 1,
+   "seenAreaM2": 0.0038,
+   "top": [
+    "wc:white#f7f3ea/2side vs wc_1:metalLight#a7aca6/2side n=0,1,0 0.00377 m2"
+   ]
+  },
+  {
+   "file": "whiteboard.glb",
+   "hits": 2,
+   "seenAreaM2": 0.015,
+   "top": [
+    "whiteboard_1:white#f7f3ea/2side vs whiteboard_3:fabricBlue#6f8fa6/2side n=0,0,1 0.01168 m2",
+    "whiteboard_1:white#f7f3ea/2side vs whiteboard_4:accent#c0643f/2side n=0,0,1 0.00332 m2"
+   ]
+  },
+  {
+   "file": "work_table.glb",
+   "hits": 0,
+   "seenAreaM2": 0,
+   "top": []
+  }
+ ]
+}

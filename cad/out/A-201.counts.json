@@ -22,7 +22,7 @@
    "TEXT": 20
   },
   "A-FURN": {
-   "LWPOLYLINE": 106
+   "LWPOLYLINE": 108
   },
   "A-STRS": {
    "LWPOLYLINE": 31,
@@ -42,7 +42,7 @@
    "HATCH": 1
   },
   "A-FURN-IDEN": {
-   "TEXT": 108,
+   "TEXT": 110,
    "LWPOLYLINE": 15
   }
  },
@@ -91,15 +91,15 @@
     "LWPOLYLINE": 1
    },
    "A-ANNO-SCHD": {
-    "HATCH": 56,
-    "TEXT": 448,
-    "LWPOLYLINE": 116
+    "HATCH": 59,
+    "TEXT": 456,
+    "LWPOLYLINE": 118
    }
   }
  },
  "totals": {
-  "modelspace": 819,
-  "paperspace": 839
+  "modelspace": 823,
+  "paperspace": 852
  },
  "layers": [
   "0",

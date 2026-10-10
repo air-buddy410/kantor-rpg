@@ -1,4 +1,4 @@
-"""The committed drawing set must come from the committed world.json (ADR-015).
+"""The committed drawing set must come from the committed world.json (ADR-018).
 
 Every DXF stamps the sha256 of the dataset it was drawn from (KR_WORLD_SHA256).
 World edits in e44495a, f324078 and 76d5867 left cad/out drawn from an older

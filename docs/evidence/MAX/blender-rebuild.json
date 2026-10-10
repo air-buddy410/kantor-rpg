@@ -1,0 +1,17 @@
+[
+  {
+    "cmd": [
+      "/Applications/Blender.app/Contents/MacOS/Blender",
+      "-b",
+      "--factory-startup",
+      "-noaudio",
+      "--python-exit-code",
+      "1",
+      "--python",
+      "blender/building/build_building.py"
+    ],
+    "exit": 1,
+    "seconds": 3.15,
+    "log": "docs/evidence/MAX/blender-0.log"
+  }
+]

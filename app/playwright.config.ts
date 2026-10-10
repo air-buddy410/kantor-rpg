@@ -5,6 +5,8 @@ import { defineConfig, devices } from '@playwright/test';
 // KANTOR_BASE_URL points the suite at an already running build (for example a
 // preview deployment, see docs/PREVIEW-HANDOFF.md); no local server is started then.
 const external = process.env.KANTOR_BASE_URL;
+// Separate worktrees can test side by side: KANTOR_PORT picks the preview port.
+const port = process.env.KANTOR_PORT ?? '4173';
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -14,13 +16,13 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['json', { outputFile: 'test-results/e2e.json' }]],
   use: {
-    baseURL: external ?? 'http://127.0.0.1:4173',
+    baseURL: external ?? `http://127.0.0.1:${port}`,
     trace: 'off',
     launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] },
   },
   webServer: external ? undefined : {
-    command: 'npx vite preview --port 4173 --strictPort --host 127.0.0.1',
-    url: 'http://127.0.0.1:4173',
+    command: `npx vite preview --port ${port} --strictPort --host 127.0.0.1`,
+    url: `http://127.0.0.1:${port}`,
     reuseExistingServer: true,
     timeout: 60_000,
   },

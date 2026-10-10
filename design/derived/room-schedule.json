@@ -1010,7 +1010,7 @@
     ]
    ],
    "area_m2": 33.0,
-   "seats": 1,
+   "seats": 2,
    "doors": [
     "D-L1-17"
    ],
@@ -1023,14 +1023,14 @@
     "L1-NCORR"
    ],
    "furnishing": {
-    "desk": 1,
-    "chair": 1,
+    "desk": 2,
+    "chair": 2,
     "easel": 1,
     "work_table": 1,
     "poster": 1
    },
-   "ictOutlets": 1,
-   "ictPorts": 2,
+   "ictOutlets": 2,
+   "ictPorts": 4,
    "ictProfile": [
     "2 port per workstation"
    ],

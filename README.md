@@ -5,6 +5,8 @@ Badan usaha: PRIBADI, eksperimen visual. Status: M0 (PRD v0.2, dataset dunia, ro
 
 Mulai dari [PRD v0.2](PRD/PRD-v0.2.md) ([PDF](PRD/PRD-v0.2.pdf); baseline [v0.1](PRD/PRD-v0.1.md)), [progress](docs/progress.md), [prompt cloud](handoff/PROMPT-CLAUDE.md), dan [register deliverable](docs/DELIVERABLES.md).
 
+**Instalasi app 3D, situs, dan backend: lihat [INSTALL.md](INSTALL.md).**
+
 Rebuild artefak desain dari clean clone:
 
 ```

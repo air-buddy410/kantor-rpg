@@ -79,7 +79,7 @@ for i in range(30):
     if "Temui" in phrase():
         break
 record("3a tombol Temui persona bernama", ["Temui"], lambda: None, wait=0.3)
-record("3b Enter: dialog persona dibacakan", ["dialog", "Nova", "Max", "Rex", "Bruno", "Hugo", "Clara", "Stella", "Kevin"],
+record("3b Enter: dialog persona dibacakan", ["dialog", "Nova", "Max", "Rex", "Bruno", "Hugo", "Clara", "Stella", "Kevin", "Echo", "Leo"],
        lambda: key("return"), wait=1.8)
 record("3c Escape: fokus kembali ke Temui", ["Temui"], lambda: key("escape"), wait=1.5)
 

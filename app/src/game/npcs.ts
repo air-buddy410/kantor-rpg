@@ -13,10 +13,13 @@ export const ACTIVITY_LABEL: Record<string, string> = {
   billiards: 'main biliar', exercise: 'olahraga', rest: 'istirahat', walk: 'berjalan', idle: 'santai', talk: 'bicara dengan CEO',
 };
 
+export const WORK_LABEL: Record<string, string> = { working: 'bekerja', waiting: 'menunggu keputusanmu' };
+
 const STEP = 0.1;
 // Personas further than this from the CEO (plan metres) render their LOD1
 // mesh: at the default 3/4 camera they cover a few dozen pixels there.
 export const LOD1_DISTANCE = 8;
+export const LOD_HYSTERESIS = 1;
 
 interface View { avatar: Avatar; prev: THREE.Vector3; next: THREE.Vector3; label: HTMLElement; floor: FloorId }
 
@@ -64,6 +67,7 @@ export class NpcLayer {
     if (npc.phase === 'travel' || npc.phase === 'recover') return 'walk';
     if (npc.phase === 'paused') return 'talk';
     if (npc.phase !== 'perform') return 'idle';
+    if (npc.workStatus === 'working' && npc.activity === 'idle') return 'type';
     const slot = npc.slot ? this.world.activitySlots.find((s) => s.id === npc.slot) : undefined;
     const sit = slot?.pose === 'sit';
     switch (npc.activity) {
@@ -102,7 +106,14 @@ export class NpcLayer {
       v.avatar.root.visible = visible;
       v.avatar.root.position.lerpVectors(v.prev, v.next, t);
       v.avatar.setFacing(npc.facing);
-      if (playerPos) v.avatar.setLod(Math.hypot(npc.pos[0] - playerPos[0], npc.pos[1] - playerPos[1]) > LOD1_DISTANCE ? 1 : 0);
+      if (playerPos) {
+        // Hysteresis band: an NPC walking along the LOD radius used to swap
+        // meshes every frame, which read as the model flashing.
+        const d = Math.hypot(npc.pos[0] - playerPos[0], npc.pos[1] - playerPos[1]);
+        const lod = v.avatar.lodLevel;
+        if (lod === 0 && d > LOD1_DISTANCE + LOD_HYSTERESIS) v.avatar.setLod(1);
+        else if (lod === 1 && d < LOD1_DISTANCE - LOD_HYSTERESIS) v.avatar.setLod(0);
+      }
       v.avatar.talking = npc.phase === 'paused';
       v.avatar.play(this.clipFor(npc));
       v.avatar.update(dt, npc.phase === 'travel' ? 1 : 0, reducedMotion);
@@ -110,7 +121,9 @@ export class NpcLayer {
       const s = v.avatar.root.position.clone().add(new THREE.Vector3(0, 1.9, 0)).project(camera);
       const screenY = ((1 - s.y) / 2) * h;
       const screenX = ((s.x + 1) / 2) * w;
-      const activityText = `${npc.name} · ${ACTIVITY_LABEL[npc.activity] ?? npc.activity}`;
+      const busy = npc.workStatus === 'working' || npc.workStatus === 'waiting';
+      const activityText = `${npc.name} · ${busy ? WORK_LABEL[npc.workStatus] : (ACTIVITY_LABEL[npc.activity] ?? npc.activity)}`;
+      v.label.classList.toggle('busy', busy);
       if (v.label.textContent !== activityText) v.label.textContent = activityText;
       const on = s.z < 1 && Math.abs(s.x) < 1.05 && Math.abs(s.y) < 1.05
         && labelClear(screenX - v.label.offsetWidth / 2, screenY - v.label.offsetHeight,

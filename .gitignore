@@ -20,3 +20,5 @@ blender/out/_render_tmp/
 # AutoCAD plot-session copies: unverified (saved during plotting) and backups
 docs/evidence/**/_work/*.dwg
 docs/evidence/**/_work/*.bak
+# Kode panel privat (bukan data privat) wajib ikut repo
+!app/src/private/

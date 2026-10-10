@@ -1,0 +1,14 @@
+{
+  "name": "kantor-rpg-server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node main.mjs",
+    "test": "node --test --test-concurrency=1 test/"
+  },
+  "dependencies": {
+    "qrcode": "1.5.4"
+  }
+}

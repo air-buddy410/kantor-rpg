@@ -1,0 +1,21 @@
+[
+  {
+    "cmd": [
+      "python",
+      "tools/build_design.py"
+    ],
+    "exit": 0,
+    "seconds": 2.72,
+    "log": "docs/evidence/MAX/rebuild-0.log"
+  },
+  {
+    "cmd": [
+      "python",
+      "cad/generate.py",
+      "--all-available"
+    ],
+    "exit": 1,
+    "seconds": 2.91,
+    "log": "docs/evidence/MAX/rebuild-1.log"
+  }
+]

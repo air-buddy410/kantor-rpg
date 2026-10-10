@@ -5851,11 +5851,48 @@
    "id": "FX-L1-098",
    "floor": "L1",
    "room": "L1-KEVIN",
+   "type": "desk",
+   "asset": "AST-DESK",
+   "pos": [
+    18.4,
+    23.4
+   ],
+   "rot": 0,
+   "size": [
+    1.6,
+    0.8,
+    0.75
+   ],
+   "collider": true
+  },
+  {
+   "id": "FX-L1-099",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "type": "chair",
+   "asset": "AST-CHAIR",
+   "pos": [
+    18.4,
+    22.65
+   ],
+   "rot": 180,
+   "size": [
+    0.6,
+    0.6,
+    0.9
+   ],
+   "collider": true,
+   "pairedWith": "FX-L1-098"
+  },
+  {
+   "id": "FX-L1-100",
+   "floor": "L1",
+   "room": "L1-KEVIN",
    "type": "easel",
    "asset": "AST-EASEL",
    "pos": [
-    18.7,
-    22.6
+    19.4,
+    20.0
    ],
    "rot": 0,
    "size": [
@@ -5866,7 +5903,7 @@
    "collider": true
   },
   {
-   "id": "FX-L1-099",
+   "id": "FX-L1-101",
    "floor": "L1",
    "room": "L1-KEVIN",
    "type": "work_table",
@@ -5884,7 +5921,7 @@
    "collider": true
   },
   {
-   "id": "FX-L1-100",
+   "id": "FX-L1-102",
    "floor": "L1",
    "room": "L1-KEVIN",
    "type": "poster",
@@ -5903,7 +5940,7 @@
    "artwork": "ART-09"
   },
   {
-   "id": "FX-L1-101",
+   "id": "FX-L1-103",
    "floor": "L1",
    "room": "L1-BRUNO",
    "type": "desk",
@@ -5921,7 +5958,7 @@
    "collider": true
   },
   {
-   "id": "FX-L1-102",
+   "id": "FX-L1-104",
    "floor": "L1",
    "room": "L1-BRUNO",
    "type": "chair",
@@ -5937,10 +5974,10 @@
     0.9
    ],
    "collider": true,
-   "pairedWith": "FX-L1-101"
+   "pairedWith": "FX-L1-103"
   },
   {
-   "id": "FX-L1-103",
+   "id": "FX-L1-105",
    "floor": "L1",
    "room": "L1-BRUNO",
    "type": "tool_cabinet",
@@ -5958,7 +5995,7 @@
    "collider": true
   },
   {
-   "id": "FX-L1-104",
+   "id": "FX-L1-106",
    "floor": "L1",
    "room": "L1-BRUNO",
    "type": "plant_small",
@@ -5976,7 +6013,7 @@
    "collider": true
   },
   {
-   "id": "FX-L1-105",
+   "id": "FX-L1-107",
    "floor": "L1",
    "room": "L1-SERVER",
    "type": "rack_42u",
@@ -5995,7 +6032,7 @@
    "ictRack": "RK-L1-01"
   },
   {
-   "id": "FX-L1-106",
+   "id": "FX-L1-108",
    "floor": "L1",
    "room": "L1-SERVER",
    "type": "rack_42u",
@@ -6014,7 +6051,7 @@
    "ictRack": "RK-L1-02"
   },
   {
-   "id": "FX-L1-107",
+   "id": "FX-L1-109",
    "floor": "L1",
    "room": "L1-STORE",
    "type": "storage_shelf",
@@ -6032,7 +6069,7 @@
    "collider": true
   },
   {
-   "id": "FX-L1-108",
+   "id": "FX-L1-110",
    "floor": "L1",
    "room": "L1-STORE",
    "type": "storage_shelf",
@@ -8492,22 +8529,36 @@
    "capacity": 1
   },
   {
-   "id": "SL-L1-098-1",
-   "fixture": "FX-L1-098",
+   "id": "SL-L1-099-1",
+   "fixture": "FX-L1-099",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "activity": "desk",
+   "pos": [
+    18.4,
+    22.65
+   ],
+   "facing": 90,
+   "pose": "sit",
+   "capacity": 1
+  },
+  {
+   "id": "SL-L1-100-1",
+   "fixture": "FX-L1-100",
    "floor": "L1",
    "room": "L1-KEVIN",
    "activity": "read",
    "pos": [
-    18.7,
-    21.9
+    19.4,
+    19.3
    ],
    "facing": 270,
    "pose": "stand",
    "capacity": 1
   },
   {
-   "id": "SL-L1-099-1",
-   "fixture": "FX-L1-099",
+   "id": "SL-L1-101-1",
+   "fixture": "FX-L1-101",
    "floor": "L1",
    "room": "L1-KEVIN",
    "activity": "read",
@@ -8520,8 +8571,8 @@
    "capacity": 1
   },
   {
-   "id": "SL-L1-102-1",
-   "fixture": "FX-L1-102",
+   "id": "SL-L1-104-1",
+   "fixture": "FX-L1-104",
    "floor": "L1",
    "room": "L1-BRUNO",
    "activity": "desk",
@@ -9497,7 +9548,7 @@
     "role",
     "activityState"
    ],
-   "homeSeat": "FX-L1-102",
+   "homeSeat": "FX-L1-104",
    "simulated": true
   },
   {
@@ -9541,6 +9592,50 @@
     "activityState"
    ],
    "homeSeat": "FX-L1-056",
+   "simulated": true
+  },
+  {
+   "id": "ACT-ECHO",
+   "displayName": "Echo",
+   "role": "Asisten 9router",
+   "kind": "npc",
+   "avatarAsset": "CH-ASSISTANT",
+   "homeRoom": "L1-IMPL",
+   "rolePreference": {
+    "desk": 3,
+    "read": 2,
+    "chat": 2,
+    "coffee": 1,
+    "billiards": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-058",
+   "simulated": true
+  },
+  {
+   "id": "ACT-LEO",
+   "displayName": "Leo",
+   "role": "Desain",
+   "kind": "npc",
+   "avatarAsset": "CH-DESIGNER",
+   "homeRoom": "L1-KEVIN",
+   "rolePreference": {
+    "desk": 3,
+    "read": 2,
+    "chat": 1,
+    "game": 1,
+    "rest": 1
+   },
+   "allowedPublicFields": [
+    "displayName",
+    "role",
+    "activityState"
+   ],
+   "homeSeat": "FX-L1-099",
    "simulated": true
   }
  ],
@@ -10084,6 +10179,24 @@
    {
     "id": "TO-L1-022",
     "floor": "L1",
+    "room": "L1-KEVIN",
+    "pos": [
+     18.4,
+     23.4
+    ],
+    "mount": "floor_wall",
+    "z": 0.3,
+    "ports": 2,
+    "serves": "FX-L1-098",
+    "domain": "NET-OFFICE",
+    "endpointTypes": [
+     "workstation",
+     "phone_or_spare"
+    ]
+   },
+   {
+    "id": "TO-L1-023",
+    "floor": "L1",
     "room": "L1-BRUNO",
     "pos": [
      22.4,
@@ -10092,7 +10205,7 @@
     "mount": "floor_wall",
     "z": 0.3,
     "ports": 2,
-    "serves": "FX-L1-101",
+    "serves": "FX-L1-103",
     "domain": "NET-OFFICE",
     "endpointTypes": [
      "workstation",
@@ -10221,7 +10334,7 @@
     ]
    },
    {
-    "id": "TO-L1-023",
+    "id": "TO-L1-024",
     "floor": "L1",
     "room": "L1-LOBBY",
     "pos": [
@@ -10238,7 +10351,7 @@
     ]
    },
    {
-    "id": "TO-L1-024",
+    "id": "TO-L1-025",
     "floor": "L1",
     "room": "L1-IMPL",
     "pos": [
@@ -10255,7 +10368,7 @@
     ]
    },
    {
-    "id": "TO-L1-025",
+    "id": "TO-L1-026",
     "floor": "L1",
     "room": "L1-CORR",
     "pos": [
@@ -10272,7 +10385,7 @@
     ]
    },
    {
-    "id": "TO-L1-026",
+    "id": "TO-L1-027",
     "floor": "L1",
     "room": "L1-NCORR",
     "pos": [
@@ -10289,7 +10402,7 @@
     ]
    },
    {
-    "id": "TO-L1-027",
+    "id": "TO-L1-028",
     "floor": "L1",
     "room": "L1-NCORR",
     "pos": [
@@ -10408,7 +10521,7 @@
     ]
    },
    {
-    "id": "TO-L1-028",
+    "id": "TO-L1-029",
     "floor": "L1",
     "room": "L1-LOBBY",
     "pos": [
@@ -10425,7 +10538,7 @@
     ]
    },
    {
-    "id": "TO-L1-029",
+    "id": "TO-L1-030",
     "floor": "L1",
     "room": "L1-CORR",
     "pos": [
@@ -10442,7 +10555,7 @@
     ]
    },
    {
-    "id": "TO-L1-030",
+    "id": "TO-L1-031",
     "floor": "L1",
     "room": "L1-BRUNO",
     "pos": [
@@ -10504,7 +10617,7 @@
      3.4
     ],
     "z": 3.0,
-    "outlet": "TO-L1-023",
+    "outlet": "TO-L1-024",
     "poeClass": 4,
     "status": "placeholder (AS-ICT-01)"
    },
@@ -10518,7 +10631,7 @@
      13.9
     ],
     "z": 3.0,
-    "outlet": "TO-L1-024",
+    "outlet": "TO-L1-025",
     "poeClass": 4,
     "status": "placeholder (AS-ICT-01)"
    },
@@ -10532,7 +10645,7 @@
      9.25
     ],
     "z": 3.0,
-    "outlet": "TO-L1-025",
+    "outlet": "TO-L1-026",
     "poeClass": 4,
     "status": "placeholder (AS-ICT-01)"
    },
@@ -10546,7 +10659,7 @@
      17.5
     ],
     "z": 3.0,
-    "outlet": "TO-L1-026",
+    "outlet": "TO-L1-027",
     "poeClass": 4,
     "status": "placeholder (AS-ICT-01)"
    },
@@ -10560,7 +10673,7 @@
      17.5
     ],
     "z": 3.0,
-    "outlet": "TO-L1-027",
+    "outlet": "TO-L1-028",
     "poeClass": 4,
     "status": "placeholder (AS-ICT-01)"
    },
@@ -10659,7 +10772,7 @@
     ],
     "z": 2.8,
     "aimDeg": 300,
-    "outlet": "TO-L1-028",
+    "outlet": "TO-L1-029",
     "poeClass": 3,
     "status": "opsional konsep, privacy mask perlu kajian"
    },
@@ -10674,7 +10787,7 @@
     ],
     "z": 2.8,
     "aimDeg": 180,
-    "outlet": "TO-L1-029",
+    "outlet": "TO-L1-030",
     "poeClass": 3,
     "status": "opsional konsep, privacy mask perlu kajian"
    },
@@ -10689,7 +10802,7 @@
     ],
     "z": 2.8,
     "aimDeg": 300,
-    "outlet": "TO-L1-030",
+    "outlet": "TO-L1-031",
     "poeClass": 3,
     "status": "opsional konsep, privacy mask perlu kajian"
    },
@@ -10727,7 +10840,7 @@
   "racks": [
    {
     "id": "RK-L1-01",
-    "fixture": "FX-L1-105",
+    "fixture": "FX-L1-107",
     "room": "L1-SERVER",
     "floor": "L1",
     "units": 42,
@@ -10814,7 +10927,7 @@
    },
    {
     "id": "RK-L1-02",
-    "fixture": "FX-L1-106",
+    "fixture": "FX-L1-108",
     "room": "L1-SERVER",
     "floor": "L1",
     "units": 42,

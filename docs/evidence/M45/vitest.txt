@@ -1,0 +1,9 @@
+
+ RUN  v5.0.3 /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app
+
+
+ Test Files  10 passed (10)
+      Tests  116 passed (116)
+   Start at  02:59:55
+   Duration  7.71s (tests 93%, transform 5%, import 2%)
+

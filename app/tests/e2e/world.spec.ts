@@ -25,12 +25,16 @@ test.describe('world vertical slice', () => {
     const personaNear = (p: number[]) => page.evaluate((q) => (window.__kantor!.npcs as () => { floor: string; pos: number[] }[])()
       .some((n) => n.floor === 'L1' && Math.hypot(n.pos[0] - q[0], n.pos[1] - q[1]) < 0.8), p);
     await page.keyboard.down('w');
+    // Two still samples in a row: with eight personas loading their GLBs a
+    // single 500 ms window can pass without a rendered frame on a busy host.
     let last = s0.pos[1];
+    let still = 0;
     for (let k = 0; k < 60; k++) {
       await page.waitForTimeout(500);
       const st = await state(page);
       const y = st.pos[1];
-      if (y > s0.pos[1] + 1 && Math.abs(y - last) < 0.01 && !(await personaNear(st.pos))) break;
+      still = y > s0.pos[1] + 1 && Math.abs(y - last) < 0.01 && !(await personaNear(st.pos)) ? still + 1 : 0;
+      if (still >= 2) break;
       last = y;
     }
     await page.keyboard.up('w');
@@ -66,11 +70,15 @@ test.describe('world vertical slice', () => {
 
   test('visitor mode locks the server room (UI toggle, path and directory)', async ({ page }) => {
     await boot(page);
-    expect(await page.evaluate(() => (window.__kantor!.walkTo as (x: number, y: number) => Promise<boolean>)(22.5, 17.5))).toBe(true);
+    // Route checks, not a full walk: the CI runner has no GPU and a cross-map
+    // walk there exceeded the 90 s driver timeout.
+    const canReach = (x: number, y: number) => page.evaluate(([px, py]) => (window.__kantor!.canReach as (a: number, b: number) => boolean)(px, py), [x, y]);
+    expect(await canReach(27, 21)).toBe(true);
     await page.locator('#btn-settings').click();
     await page.getByLabel('Mode visitor (ruang terbatas terkunci)').check();
     await page.getByRole('button', { name: 'Selesai' }).click();
     expect((await state(page)).visitor).toBe(true);
+    expect(await canReach(27, 21)).toBe(false);
     expect(await walkTo(page, 27, 21)).toBe(false);
     await page.locator('#btn-directory').click();
     const server = page.locator('.dir-item', { hasText: 'Ruang server' });

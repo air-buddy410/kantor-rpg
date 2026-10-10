@@ -1,0 +1,46 @@
+{
+ "floor": "L1",
+ "mode": "glb",
+ "doorsOpen": true,
+ "gapM": 0.002,
+ "minAreaM2": 0.0001,
+ "triangles": 123098,
+ "meshes": 70,
+ "hits": 2,
+ "list": [
+  {
+   "a": "floor-L1#e2d3b6",
+   "b": "floor-L1#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 1.1325,
+   "at": [
+    30.33,
+    0,
+    -0.33
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0.259,
+    -0.966,
+    0
+   ],
+   "planeD": 2.4946,
+   "gapM": 0.00151,
+   "areaM2": 0.01324,
+   "at": [
+    12.67,
+    0.82,
+    -21.41
+   ]
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 # Matriks requirement
 
-Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit fa666c9; evidence menunjuk file di repo).
+Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 55eb4de; evidence menunjuk file di repo).
 Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi pada commit tercatat. Evidence kosong = belum diuji.
 
 | REQ | Milestone | Bagian | Test | Evidence | Status |
@@ -24,7 +24,7 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-STUDIO-01 | M3 | M3: Office Studio edit/undo/redo/save/load/publish/rollback, validasi overlap/pintu/navigasi, import terjaga | app/tests/unit/studio.test.ts<br>app/tests/e2e/studio.spec.ts | docs/evidence/M3/vitest.txt<br>docs/evidence/M3/e2e-all.txt<br>docs/evidence/M3/screenshots/desktop-studio.jpg | terverifikasi |
 | REQ-AVATAR-01 | M3 | M3: Avatar Studio preview/save/reset, persist, fallback default untuk pilihan tanpa aset | app/tests/e2e/studio.spec.ts | docs/evidence/M3/e2e-all.txt<br>docs/evidence/M3/screenshots/desktop-avatar-studio.jpg | terverifikasi |
 | REQ-BLUEPRINT-01 | M0/M3 | M0: schema satu sumber, ruang tanpa overlap/gap, pintu di dinding bersama, fixture dalam ruang | tools/validate_world.py<br>tests/py/test_world.py | docs/evidence/M0/validate-world.json<br>docs/evidence/M0/pytest.txt | terverifikasi |
-| REQ-BLUEPRINT-01 | M0/M3 | M0: capability CAD dilaporkan; native DWG | docs/evidence/M0/capability-report.md | docs/evidence/M0/capability-report.md | tidak didukung |
+| REQ-BLUEPRINT-01 | M0/M3 | M0: capability CAD dilaporkan; native DWG (15 DWG R2018 AutoCAD 2025: reopen, AUDIT 0 error, unit mm, jumlah entitas cocok DXF). Plot PDF native AutoCAD dikeluarkan dari lingkup atas keputusan Budi 2026-10-10 (tanpa akun Autodesk); PDF resmi = PDF vektor generator | docs/evidence/M0/capability-report.md | docs/evidence/M0/capability-report.md<br>docs/evidence/MAX/native-dwg/report.json | terverifikasi |
 | REQ-BLUEPRINT-01 | M0/M3 | M1: A-101/A-102 DXF+PDF konsisten dengan dataset (reopen, audit, luas, ID pintu/fixture, skala) | tests/py/test_cad.py | docs/evidence/M1/cad-pytest.txt<br>drawings/register.json | terverifikasi |
 | REQ-BLUEPRINT-01 | M0/M3 | M3: 15 sheet DXF+PDF, paket gabungan; GLB bangunan konsisten dengan dataset (dinding, bukaan, slab, axis) | tests/py/test_cad_m3.py<br>blender/building/validate_building.py<br>tests/py/test_building.py | docs/evidence/M3/cad-pytest.txt<br>docs/evidence/M3/building-validate.json<br>drawings/register.json | terverifikasi |
 | REQ-BLUEPRINT-01 | M0/M3 | P03: arah bukaan pintu dan 39 jendela konsep satu sumber di world.json, dibaca CAD (denah, tampak, potongan, jadwal pintu/jendela), Blender (bukaan, kaca, daun pintu) dan runtime (dinding terpotong jendela) | tests/py/test_openings.py<br>tests/py/test_cad_openings.py<br>tests/py/test_building.py<br>blender/building/validate_building.py<br>app/tests/unit/openings.test.ts | docs/evidence/HARDENING/pytest.txt<br>docs/evidence/HARDENING/pytest-cad.txt<br>docs/evidence/HARDENING/blender-building-validate.txt<br>docs/evidence/HARDENING/vitest.txt | terverifikasi |
@@ -41,9 +41,9 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-ACCESS-01 | M1/M2 | Perangkat mobile nyata: iPhone 13 Pro, Safari, benchmark rute tetap 3x60 s tanpa error (tablet fisik dan iOS VoiceOver belum) | app/tests/e2e/perf.spec.ts | docs/evidence/DEVICE/2026-10-04-iphone13pro-summary.json | terverifikasi |
 | REQ-ACCESS-01 | M1/M2 | R2: setiap kontrol dan shortcut punya test (61, sebelumnya 25 tanpa test); jalur gagal context loss, aksi tanpa target, GLB hilang; tiga cacat fallback ditemukan dan diperbaiki | tools/control_audit.py<br>tests/py/test_control_audit.py<br>app/tests/e2e/controls.spec.ts<br>app/tests/e2e/failures.spec.ts | docs/evidence/R2/control-audit-red.txt<br>docs/evidence/R2/control-audit.json | terverifikasi |
 | REQ-ACCESS-01 | M1/M2 | Screen reader nyata: macOS VoiceOver + Safari, 8 skenario DEVICE-VALIDATION §2 lewat keyboard pada release a041f5a1 (iOS VoiceOver/TalkBack belum) | tools/voiceover_probe.py<br>tools/voiceover_keyboard.py<br>tools/voiceover_round4.py | docs/evidence/MAX/voiceover/HASIL.md<br>docs/evidence/MAX/voiceover/probe-1.json<br>docs/evidence/MAX/voiceover/probe-2.json<br>docs/evidence/MAX/voiceover/probe-3.json<br>docs/evidence/MAX/voiceover/probe-4.json<br>docs/evidence/MAX/voiceover/probe-5.json<br>docs/evidence/MAX/voiceover/probe-6.json | terverifikasi |
-| REQ-DATA-01 | M4 gated | Integrasi private M4 (AC-DATA-01): DITUNDA ke M5 atas keputusan Budi 2026-10-05; tidak dibangun di v0.2 | - | docs/MAX-CLOSURE.md | tidak didukung |
-| REQ-DATA-01 | M4 gated | Kontrak adapter (sanitasi allowlist, stale -> unknown) diuji dengan fixture; tanpa sumber nyata | app/tests/unit/adapter.test.ts | docs/evidence/M2/vitest.txt | terverifikasi |
-| REQ-DATA-01 | M4 gated | Boundary v0.2: build publik menolak mode private (AdapterDisabledError) dan hanya meminta origin sendiri | app/tests/unit/adapter.test.ts<br>app/tests/e2e/world.spec.ts | docs/evidence/M2/vitest.txt<br>docs/evidence/MAX/v02-public-deploy2-final-results.json | terverifikasi |
+| REQ-DATA-01 | M4 | Integrasi private M4 (AC-DATA-01): backend privat membaca Kanban/_Bersama/agent.log/omp; snapshot berisi source + observedAt per papan; sumber gagal ok=false, bukan kosong sukses (ADR-016) | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-DATA-01 | M4 | Kontrak adapter (sanitasi allowlist, stale -> unknown) diuji dengan fixture; tanpa sumber nyata | app/tests/unit/adapter.test.ts | docs/evidence/M2/vitest.txt | terverifikasi |
+| REQ-DATA-01 | M4 | Boundary v0.2: build publik menolak mode private (AdapterDisabledError) dan hanya meminta origin sendiri | app/tests/unit/adapter.test.ts<br>app/tests/e2e/world.spec.ts | docs/evidence/M2/vitest.txt<br>docs/evidence/MAX/v02-public-deploy2-final-results.json | terverifikasi |
 | REQ-PERF-01 | M1-M3 | Anggaran transfer/triangle: dihitung (capacity.json) lalu diukur. Muat awal 5,40 MB <= 6 MB; scene terlihat 189,6k triangle <= 250k pada kualitas tinggi dan rendah. Pass bayangan kualitas tinggi menambah 189k (total 378,6k/frame), dicatat terpisah; iPhone 13 Pro tetap 59,5 FPS | tools/capacity.py<br>app/tests/e2e/budget.spec.ts<br>app/tests/e2e/bundle.spec.ts | design/derived/capacity.json<br>docs/evidence/MAX/v02-triangle-split.json<br>docs/evidence/DEVICE/2026-10-04-iphone13pro-summary.json | terverifikasi |
 | REQ-PERF-01 | M1-M3 | M1: harness rute tetap 60 s berjalan dan tercatat (container SwiftShader) | app/tests/e2e/perf.spec.ts | docs/evidence/M1/perf-route-desktop.json | terverifikasi |
 | REQ-PERF-01 | M1-M3 | Target 30 FPS mobile: iPhone 13 Pro fisik, 3 run rute tetap 60 s, median 59,5 FPS (desktop Mac mini M4 179 FPS di MAX/device) | app/tests/e2e/perf.spec.ts | docs/evidence/DEVICE/2026-10-04-iphone13pro-summary.json<br>docs/evidence/DEVICE/2026-10-04-iphone13pro-run1.json<br>docs/evidence/DEVICE/2026-10-04-iphone13pro-run2.json<br>docs/evidence/DEVICE/2026-10-04-iphone13pro-run3.json | terverifikasi |
@@ -55,8 +55,28 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-SAFE-01 | semua | Provenance: setiap file app/public dipetakan ke generator repo (GLB registry, artwork make_signage, PDF hasil generate, teks lisensi); file asing gagal | tests/py/test_provenance.py | docs/evidence/HARDENING/pytest.txt | terverifikasi |
 | REQ-SAFE-01 | semua | Keamanan: safety scan teks repo, npm audit runtime + dev, audit lisensi | tools/safety_scan.py<br>tools/license_audit.py | docs/evidence/HARDENING/safety-scan.txt<br>docs/evidence/HARDENING/npm-audit-runtime.txt<br>docs/evidence/HARDENING/npm-audit-all.txt<br>docs/evidence/HARDENING/license-audit.json<br>docs/evidence/HARDENING/e2e-csp-desktop.txt<br>docs/evidence/HARDENING/e2e-csp-desktop-run1.txt | terverifikasi |
 | REQ-SAFE-01 | semua | R2: audit Must per AC/test/failure/boundary untuk 12 REQ PRD bagian 12, referensi diperiksa ada | tools/must_audit.py<br>tests/py/test_must_audit.py | docs/MUST-AUDIT.md | terverifikasi |
+| REQ-BOARD-01 | M4 | Papan Handoff: tiap tugas Kanban HANDOFF muncul sekali dengan dari/ke/status/umur/badan, rantai kerja, >24 jam belum diterima berlabel Perlu perhatian | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-BOARD-02 | M4 | Daftar Pekerjaan: filter bot/badan/status, urutan diblokir-jalan-antre-selesai, drop omp aktif, profil pribadi tersamar | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-BOARD-03 | M4 | Log Aktivitas: 24 jam terurut waktu, kuota 50 tugas + 110 alat, kata kerja Indonesia, tanpa path/token/isi obrolan; baris tugas membuka tugas terkait | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-BOARD-04 | M4 | Visitor: papan berlabel Demo, API menolak tanpa login, bundle dan respons publik tanpa judul tugas nyata | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-BOARD-05 | M4 | Sumber gagal tampil Tidak diketahui; pembaruan gagal tampil Basi dengan waktu observasi terakhir | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-CMD-01 | M5 | Owner login memberi tugas dari karakter (Bicara & beri tugas) atau directory (Beri tugas); profil tujuan menerima tepat pesan itu; riwayat profil lain terpisah | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-CHOICE-01 | M5 | Tepat tiga opsi berbeda + Ketik manual, tanpa auto-submit; opsi dikirim sesuai turn ID; opsi lama/palsu ditolak | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-MANUAL-01 | M5 | Teks manual diteruskan utuh; fokus input menghentikan locomotion; Escape menutup tanpa mengirim | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-CMD-02 | M5 | Status queued/working/waiting_owner/completed/failed/unknown dari server dengan sumber dan waktu; pembatalan | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-CMD-03 | M5 | Aksi berisiko menunggu approval terpisah, terikat tugas, 15 menit, sekali pakai; tolak/kedaluwarsa/replay/salah tugas = nol dispatch | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-CMD-04 | M5 | Visitor/tanpa header proxy/tanpa CSRF/origin asing ditolak; nol dispatch | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-CMD-05 | M5 | Idempotency key: klik ganda dan kirim ulang tidak membuat tugas kedua; gagal dan unknown ditampilkan jujur tanpa retry otomatis | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-AUTH-01 | M4/M5 | Login sandi scrypt + TOTP RFC 6238, setup sekali pakai, rate limit, logout | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M45/server-test.txt<br>docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-PRESENCE-01 | M6 | NPC dengan bukti kerja (tugas RPG, Kanban running/claimed, agent.log <=5 menit) duduk di mejanya dan mengetik sampai bukti hilang; visitor tetap simulasi. | server/test/api.test.mjs<br>app/tests/unit/idle.test.ts | docs/evidence/M6/server-test.txt<br>docs/evidence/M45/vitest.txt | terverifikasi |
+| REQ-CHATKEY-01 | M6 | Daftar semua agen dengan lane + status; memilih membuka profil yang benar; menu HUD HP tidak terpotong. | app/tests/e2e/private.spec.ts | docs/evidence/M45/e2e-private.txt | terverifikasi |
+| REQ-TGSYNC-01 | M6 | Transkrip Telegram tampil; kirim dari RPG melanjutkan sesi Telegram aktif; /new diikuti; balasan ikut ke Telegram; pilihan kedaluwarsa bila obrolan Telegram berlanjut. | server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M6/server-test.txt<br>docs/evidence/M6/desktop-agent-telegram-sync.jpg | terverifikasi |
+| REQ-SHARE-01 | M6 | Ekspor repo komunitas + INSTALL + pindai | - | - | target |
+| REQ-CHATFEEL-01 | M7 | Mengetik dari tugas RPG berjalan atau pesan Telegram Budi belum dibalas (maks 10 menit); centang sent/delivered/read; aktif X menit lalu; pemisah tanggal WITA; Balas/Salin; bunyi + (n) di judul tab. | server/test/chat-state.test.mjs<br>server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M7/server-test.txt<br>docs/evidence/M7/desktop-agent-telegram-sync.jpg | terverifikasi |
+| REQ-CHATPUSH-01 | M7 | Web Push RFC 8291 + VAPID ES256 dari backend sendiri; izin lewat tombol; bisu per bot per perangkat; ketuk membuka chat; manifest PWA + ikon. | server/test/media-push.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M7/server-test.txt | terverifikasi |
+| REQ-CHATMEDIA-01 | M7 | Lampiran <=10 MB, <=5/pesan, daftar putih + magic bytes; agen menerima path lokal format gateway Telegram; suara -> mlx-whisper lokal; URL bertanda tangan HMAC; lampiran Telegram tampil; cari seluruh riwayat sesi; retensi 30 hari. | server/test/media-push.test.mjs<br>server/test/api.test.mjs<br>app/tests/e2e/private.spec.ts | docs/evidence/M7/server-test.txt<br>docs/evidence/M7/desktop-agent-media-search.jpg | terverifikasi |
 
-Ringkasan status bagian: terverifikasi 48, tidak didukung 2.
+Ringkasan status bagian: target 1, terverifikasi 69.
 
 ## Story, AC, failure dan boundary
 
@@ -132,7 +152,7 @@ AC-ACCESS-01: Given WebGL unavailable/reduced motion, When membuka app, Then DOM
 
 Failure: render context loss -> fallback. Boundary: aksesible view tidak bypass private policy.
 
-### REQ-DATA-01 (M4 gated)
+### REQ-DATA-01 (M4)
 
 Sebagai owner private, saya ingin status tersanitasi agar melihat kerja real.
 
@@ -155,3 +175,163 @@ Sebagai pemilik, saya ingin publikasi aman agar data private/produksi tidak boco
 AC-SAFE-01: Given staged files and app build, When scanning and public negative tests, Then no secrets/private payload/copyright asset and no production endpoint/cost/control path.
 
 Failure: suspect -> stop publish. Boundary: no merge/deploy/paid upgrade.
+
+### REQ-BOARD-01 (M4)
+
+PRD v1.1 bagian 18.5
+
+Lihat PRD-v1.1.md 18.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-BOARD-02 (M4)
+
+PRD v1.1 bagian 18.5
+
+Lihat PRD-v1.1.md 18.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-BOARD-03 (M4)
+
+PRD v1.1 bagian 18.5
+
+Lihat PRD-v1.1.md 18.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-BOARD-04 (M4)
+
+PRD v1.1 bagian 18.5
+
+Lihat PRD-v1.1.md 18.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-BOARD-05 (M4)
+
+PRD v1.1 bagian 18.5
+
+Lihat PRD-v1.1.md 18.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-CMD-01 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-CHOICE-01 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-MANUAL-01 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-CMD-02 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-CMD-03 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-CMD-04 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-CMD-05 (M5)
+
+PRD v1.1 bagian 17.5
+
+Lihat PRD-v1.1.md 17.5
+
+Failure: lihat AC. Boundary: owner login saja; visitor Demo.
+
+### REQ-AUTH-01 (M4/M5)
+
+Sebagai Budi, saya login dengan sandi + 2FA di aplikasi sendiri (keputusan 2026-10-10).
+
+Sandi salah/kode salah/kode dipakai ulang ditolak; 5 gagal per 15 menit dikunci; setup sekali pakai; owner.json 0600 tanpa sandi polos; logout mematikan sesi.
+
+Failure: backend mati -> papan Demo, perintah tidak tersedia. Boundary: rahasia tidak pernah dikirim ke browser.
+
+### REQ-PRESENCE-01 (M6)
+
+Sebagai Budi, karakter agen yang sedang bekerja terlihat bekerja (status nyata).
+
+NPC dengan bukti kerja (tugas RPG, Kanban running/claimed, agent.log <=5 menit) duduk di mejanya dan mengetik sampai bukti hilang; visitor tetap simulasi.
+
+Failure: sumber tidak terbaca -> status tidak diketahui, bukan bekerja. Boundary: profil pribadi tidak muncul; ringkasan disaring.
+
+### REQ-CHATKEY-01 (M6)
+
+Sebagai Budi, saya membuka chat agen mana pun dengan tombol C / Chat agen.
+
+Daftar semua agen dengan lane + status; memilih membuka profil yang benar; menu HUD HP tidak terpotong.
+
+Failure: visitor mendapat penjelasan khusus owner. Boundary: tanpa data nyata untuk visitor.
+
+### REQ-TGSYNC-01 (M6)
+
+Sebagai Budi, chat agen di RPG = percakapan Telegram DM yang sama (ADR-017).
+
+Transkrip Telegram tampil; kirim dari RPG melanjutkan sesi Telegram aktif; /new diikuti; balasan ikut ke Telegram; pilihan kedaluwarsa bila obrolan Telegram berlanjut.
+
+Failure: riwayat tidak terbaca -> peringatan; sesi hilang -> gagal dengan alasan. Boundary: token bot hanya di server; state.db dibaca -readonly.
+
+### REQ-SHARE-01 (M6)
+
+Kantor RPG dibagikan gratis ke komunitas tanpa data internal.
+
+Repo komunitas riwayat baru, konfigurasi pemakai, pindai pola nol temuan sebelum publikasi.
+
+Failure: temuan pindai -> tidak dipublikasi. Boundary: repo kerja internal tetap privat.
+
+### REQ-CHATFEEL-01 (M7)
+
+Sebagai Budi, chat agen terasa seperti Telegram: mengetik, centang, terakhir aktif.
+
+Mengetik dari tugas RPG berjalan atau pesan Telegram Budi belum dibalas (maks 10 menit); centang sent/delivered/read; aktif X menit lalu; pemisah tanggal WITA; Balas/Salin; bunyi + (n) di judul tab.
+
+Failure: tanpa data -> baris status kosong, bukan karangan. Boundary: status diturunkan dari tugas + transkrip; tidak dikarang.
+
+### REQ-CHATPUSH-01 (M7)
+
+Sebagai Budi, notifikasi balasan agen walau tab ditutup.
+
+Web Push RFC 8291 + VAPID ES256 dari backend sendiri; izin lewat tombol; bisu per bot per perangkat; ketuk membuka chat; manifest PWA + ikon.
+
+Failure: endpoint bukan push service resmi -> 400; langganan 404/410 dihapus. Boundary: isi notifikasi nama bot + <=120 karakter; kunci VAPID 0600.
+
+### REQ-CHATMEDIA-01 (M7)
+
+Sebagai Budi, kirim foto/berkas/pesan suara dan cari pesan lama.
+
+Lampiran <=10 MB, <=5/pesan, daftar putih + magic bytes; agen menerima path lokal format gateway Telegram; suara -> mlx-whisper lokal; URL bertanda tangan HMAC; lampiran Telegram tampil; cari seluruh riwayat sesi; retensi 30 hari.
+
+Failure: jenis/isi tidak cocok -> 415; token palsu/keluar folder -> 404; berkas hilang -> 'sudah dihapus'. Boundary: path server tidak pernah ke browser; transkrip lokal tanpa API berbayar.

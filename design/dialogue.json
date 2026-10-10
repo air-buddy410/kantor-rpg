@@ -7,6 +7,8 @@
   "ACT-NOVA": ["Halo! Setiap meja di sini punya dua port data di catatan rancangan.", "Jumlah access point masih placeholder sampai ada model material dan target coverage.", "Kamera konsep tidak pernah dipasang di toilet atau shower."],
   "ACT-BRUNO": ["Yo Budi. Pintu server hanya bisa dibuka dari area ini, sengaja.", "Panjang kabel dihitung dari jalur tray, bukan garis lurus menembus dinding.", "Habis ini mungkin aku ke gym sebentar, kalau treadmill-nya kosong."],
   "ACT-KEVIN": ["Halo Budi! Poster di koridor itu komposisi geometris buatan generator proyek.", "Signage final belum dibuat; yang ada sekarang masih tahap konsep.", "Ruang game di lantai dua jadi tempat favoritku kalau jam istirahat."],
-  "ACT-REX": ["Halo. Aku suka memeriksa apakah setiap tombol benar-benar melakukan sesuatu.", "Angka FPS dari container tanpa GPU tidak boleh diklaim sebagai performa perangkat.", "Kalau test gagal dua kali karena sebab yang sama, kita berhenti dan tulis checkpoint."]
+  "ACT-REX": ["Halo. Aku suka memeriksa apakah setiap tombol benar-benar melakukan sesuatu.", "Angka FPS dari container tanpa GPU tidak boleh diklaim sebagai performa perangkat.", "Kalau test gagal dua kali karena sebab yang sama, kita berhenti dan tulis checkpoint."],
+  "ACT-ECHO": ["Halo Budi. Aku Echo, asisten kedua; aku bantu Max menjaga antrean tetap rapi.", "Kalau Max sedang sibuk, catatanmu tetap aku simpan dulu lalu aku teruskan.", "Simulasi ini tidak tahu pekerjaan nyata siapa pun; status kerja tetap 'tidak diketahui'."],
+  "ACT-LEO": ["Hai Budi. Aku Leo; urusanku selera desain grafis, web, dan video.", "Sebelum memilih warna, aku cek dulu kontrasnya dengan angka, bukan perasaan.", "Studio ini aku bagi dengan Kevin; dia mengerjakan pamflet, aku menjaga arah visualnya."]
  }
 }

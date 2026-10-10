@@ -2,7 +2,7 @@
 
 Dibuat oleh `tools/must_audit.py` dari `design/must-audit.json`. Status per elemen AC, test, failure dan boundary; referensi diperiksa ada di repo. Elemen selain terverifikasi adalah gap yang terbuka, bukan selesai.
 
-Ringkasan: terverifikasi 50, tidak didukung 2
+Ringkasan: terverifikasi 52
 
 ## REQ-WORLD-01
 
@@ -65,7 +65,7 @@ Ringkasan: terverifikasi 50, tidak didukung 2
 |---|---|---|---|---|
 | AC | dimensi/pintu/fixture ID konsisten di DXF, PDF, GLB; ketersediaan CAD dilaporkan | terverifikasi | `tests/py/test_cad.py` (test_dxf_door_and_fixture_ids)<br>`tests/py/test_cad_openings.py` (def test_)<br>`tests/py/test_door_leaves.py` (test_blender_leaf_nodes_hinge_where_the_runtime_hinges)<br>`tests/py/test_building.py` (def test_) |  |
 | test | CAD reopen/parse, PDF extract/render, GLB validator, koordinat | terverifikasi | `tests/py/test_cad.py` (test_dxf_reopens_and_audits_clean)<br>`tests/py/test_cad.py` (test_pdf_text_content)<br>`tests/py/test_cad_legibility.py` (def test_)<br>`tests/py/test_cad.py` (test_plan_origin_maps_world_metres_to_paper) |  |
-| failure | AutoCAD tidak tersedia -> native DWG BLOCKED, bukan sukses palsu | terverifikasi | `tests/py/test_native_dwg.py` (test_unattested_dwg_is_rejected)<br>`tests/py/test_native_dwg.py` (test_changed_native_file_is_rejected)<br>`tests/py/test_native_dwg.py` (test_native_batch_is_attested_by_reopen_logs_and_source_hashes)<br>`docs/evidence/MAX/native-plot-20261005/native-plot-results.json` (creator_autocad) | DWG tanpa bukti reopen/hash AutoCAD ditolak (safety scan + test). Batch native 15 DWG + 20/20 plot (Max/Budi) untuk dataset 488597bb diarsipkan di cad/archive (ADR-015); DWG dataset sekarang BLOCKED di cloud sampai native_batch.py dijalankan ulang di mesin berlisensi. |
+| failure | AutoCAD tidak tersedia -> native DWG BLOCKED, bukan sukses palsu | terverifikasi | `tests/py/test_native_dwg.py` (test_unattested_dwg_is_rejected)<br>`tests/py/test_native_dwg.py` (test_changed_native_file_is_rejected)<br>`tests/py/test_native_dwg.py` (test_native_batch_is_attested_by_reopen_logs_and_source_hashes)<br>`docs/evidence/MAX/native-plot-20261005/native-plot-results.json` (creator_autocad) | DWG tanpa bukti reopen/hash AutoCAD ditolak (safety scan + test). Batch native 15 DWG + 20/20 plot (Max/Budi) untuk dataset 488597bb diarsipkan di cad/archive (ADR-018); DWG dataset sekarang BLOCKED di cloud sampai native_batch.py dijalankan ulang di mesin berlisensi. |
 | boundary | konsep bukan signed construction | terverifikasi | `tests/py/test_cad_m3.py` (KONSEP) |  |
 
 ## REQ-ICT-01
@@ -92,10 +92,10 @@ Ringkasan: terverifikasi 50, tidak didukung 2
 
 | Elemen | Isi | Status | Bukti | Catatan |
 |---|---|---|---|---|
-| AC | status/time/source benar, unknown saat timeout | tidak didukung | `app/tests/unit/adapter.test.ts` (stale snapshots degrade to unknown) | M4 ditunda ke M5 atas keputusan Budi 2026-10-05; boundary publik diuji |
-| test | contract/integration + public isolation | tidak didukung | `app/tests/unit/adapter.test.ts` (sanitizer drops unknown fields) | integrasi private tidak dibangun |
-| failure | disconnect -> stale/unknown | terverifikasi | `app/tests/unit/adapter.test.ts` (stale snapshots degrade to unknown) |  |
-| boundary | visitor/unauth tidak menerima payload private | terverifikasi | `app/tests/unit/adapter.test.ts` (private mode is disabled) |  |
+| AC | status/time/source benar, unknown saat timeout | terverifikasi | `server/test/api.test.mjs` (sumber Kanban rusak tampil gagal)<br>`app/tests/e2e/private.spec.ts` (Basi: pembaruan gagal) | M4 dibangun 2026-10-10 (ADR-016) |
+| test | contract/integration + public isolation | terverifikasi | `server/test/api.test.mjs` (papan: handoff/pekerjaan/log sesuai sumber)<br>`app/tests/e2e/private.spec.ts` (pengunjung: papan Demo) |  |
+| failure | disconnect -> stale/unknown | terverifikasi | `app/tests/unit/adapter.test.ts` (stale snapshots degrade to unknown)<br>`app/tests/e2e/private.spec.ts` (Basi: pembaruan gagal) |  |
+| boundary | visitor/unauth tidak menerima payload private | terverifikasi | `server/test/api.test.mjs` (visitor tanpa login ditolak)<br>`app/tests/e2e/private.spec.ts` (not.toMatch(/Villa E2E) |  |
 
 ## REQ-PERF-01
 

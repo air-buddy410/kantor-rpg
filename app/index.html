@@ -6,6 +6,12 @@
   <meta name="color-scheme" content="light dark" />
   <meta name="description" content="kantor-rpg: kantor virtual dua lantai, demo simulasi offline." />
   <title>Kantor RPG, kantor virtual 3D (simulasi)</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png" />
+  <meta name="theme-color" content="#1f4d3a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Kantor RPG" />
 </head>
 <body>
   <a class="skip-link" href="#directory-panel">Lewati ke direktori</a>
@@ -25,6 +31,8 @@
         <button type="button" class="btn" id="btn-directory" aria-controls="directory-panel" aria-expanded="false"><span>Direktori</span><kbd>M</kbd></button>
         <button type="button" class="btn" id="btn-studio" aria-controls="studio-panel"><span>Studio</span></button>
         <button type="button" class="btn" id="btn-avatar" aria-haspopup="dialog"><span>Avatar</span></button>
+        <button type="button" class="btn" id="btn-chat" aria-haspopup="dialog"><span>Chat agen</span><kbd>C</kbd></button>
+        <button type="button" class="btn" id="btn-boards" aria-haspopup="dialog"><span>Papan kerja</span><kbd>B</kbd></button>
         <button type="button" class="btn" id="btn-settings" aria-haspopup="dialog"><span>Pengaturan</span></button>
         <button type="button" class="btn" id="btn-help" aria-haspopup="dialog"><span>Kontrol</span><kbd>H</kbd></button>
       </nav>
@@ -80,6 +88,8 @@
       <dt>Roda mouse / <kbd>+</kbd> <kbd>-</kbd></dt><dd>Zoom (terbatas)</dd>
       <dt>Seret di dunia</dt><dd>Putar kamera</dd>
       <dt><kbd>M</kbd></dt><dd>Buka/tutup direktori (Tab tetap untuk berpindah fokus)</dd>
+      <dt><kbd>C</kbd></dt><dd>Chat agen: pilih agen dan beri tugas tanpa mendatanginya (owner)</dd>
+      <dt><kbd>B</kbd></dt><dd>Papan kerja tim</dd>
       <dt><kbd>Esc</kbd></dt><dd>Tutup dialog atau panel</dd>
       <dt>Sentuh</dt><dd>Joystick kiri untuk berjalan, tombol Aksi di kanan, seret sisi kanan untuk kamera</dd>
     </dl>
@@ -123,6 +133,18 @@
       <button type="button" class="btn" id="avatar-cancel">Batal</button>
       <button type="button" class="btn primary" id="avatar-save">Simpan</button>
     </div>
+  </dialog>
+
+  <dialog class="dialog wide" id="dlg-boards" aria-labelledby="dlg-boards-title">
+    <h2 id="dlg-boards-title">Papan kerja tim</h2>
+    <div id="boards-body"></div>
+    <form method="dialog"><button class="btn primary" value="close">Tutup</button></form>
+  </dialog>
+
+  <dialog class="dialog wide" id="dlg-agent" aria-labelledby="agent-title">
+    <h2 id="agent-title">Bicara &amp; beri tugas</h2>
+    <div id="agent-body"></div>
+    <form method="dialog"><button class="btn" value="close">Tutup</button></form>
   </dialog>
 
   <dialog class="dialog wide" id="dlg-info" aria-labelledby="dlg-info-title">

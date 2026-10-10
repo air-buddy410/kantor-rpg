@@ -1,0 +1,33 @@
+[
+  {
+    "cmd": [
+      "python",
+      "cad/generate.py",
+      "--all-available"
+    ],
+    "exit": 0,
+    "seconds": 25.5,
+    "log": "docs/evidence/MAX/closure-0.log"
+  },
+  {
+    "cmd": [
+      "python",
+      "tools/make_signage.py"
+    ],
+    "exit": 0,
+    "seconds": 0.36,
+    "log": "docs/evidence/MAX/closure-1.log"
+  },
+  {
+    "cmd": [
+      "python",
+      "-m",
+      "pytest",
+      "tests/py",
+      "-q"
+    ],
+    "exit": 1,
+    "seconds": 49.08,
+    "log": "docs/evidence/MAX/closure-2.log"
+  }
+]

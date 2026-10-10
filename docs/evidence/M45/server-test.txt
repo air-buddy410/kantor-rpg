@@ -1,0 +1,23 @@
+✔ visitor tanpa login ditolak di semua API privat (AC-CMD-04, REQ-BOARD-04) (45.451417ms)
+✔ tanpa header proxy ditolak (backend tidak bisa diakses langsung) (3.983ms)
+✔ login: sandi salah, kode salah, kode dipakai ulang, dan rate limit (298.295833ms)
+✔ CSRF dan origin asing ditolak untuk owner yang login (39.454958ms)
+✔ pesan manual sampai ke profil yang tepat, receipt + idempotensi (AC-CMD-01, AC-CMD-05, AC-MANUAL-01) (49.089375ms)
+✔ pilihan: dikirim sesuai ID turn, pilihan lama kedaluwarsa, ID palsu ditolak (AC-CHOICE-01) (43.496625ms)
+✔ aksi berisiko menunggu approval terpisah; ditolak/kedaluwarsa/replay tidak mengirim (AC-CMD-03) (160.159875ms)
+✔ rahasia di chat ditolak; gagal/offline jujur; cancel (REQ-CMD-02, REQ-CMD-05) (47.947541ms)
+✔ logout mematikan sesi (34.683458ms)
+✔ papan: handoff/pekerjaan/log sesuai sumber, tanpa rahasia/path, profil pribadi tersamar (REQ-BOARD-01..03) (48.297125ms)
+✔ sumber Kanban rusak tampil gagal, bukan kosong sukses (REQ-BOARD-05) (3.869958ms)
+✔ cache papan: viewer berulang dalam TTL tidak membaca sumber lagi (9.820125ms)
+✔ kebijakan: parseOptions tepat tiga, berbeda; scrub; deteksi risiko (0.170833ms)
+✔ setup owner: tautan sekali pakai, kode wajib benar, lalu tidak berlaku (88.919833ms)
+✔ presence: status nyata per agen untuk NPC (Kanban running = bekerja, profil pribadi tidak ada) (44.148833ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1088.255584

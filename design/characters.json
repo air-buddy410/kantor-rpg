@@ -377,6 +377,68 @@
         "prop_detail": "#2A2A2E"
       },
       "silhouette": "round glasses, neat side part, collared shirt under a sweater vest, clipboard held at the chest"
+    },
+    "CH-ASSISTANT": {
+      "displayName": "Echo",
+      "role": "Asisten 9router",
+      "actor": "ACT-ECHO",
+      "kind": "npc",
+      "body": { "heightM": 1.52, "headRatio": 3.6, "legRatio": 0.375, "shoulderWidth": 0.33, "torsoWidth": 0.97, "torsoDepth": 0.97, "limbScale": 0.97, "headWidth": 1.0 },
+      "skin": "#E0B48C",
+      "eyes": { "iris": "#3C5B6E" },
+      "hair": { "style": "side_part", "color": "#3E4A5E" },
+      "outfit": {
+        "top": "sweater",
+        "colors": {
+          "outfit_main": "#7FA08A",
+          "outfit_inner": "#F4EEE2",
+          "outfit_bottom": "#3B4250",
+          "outfit_accent": "#4F6E5A",
+          "shoes": "#2F2A28",
+          "shoe_sole": "#E2D4BA"
+        }
+      },
+      "props": [
+        "headset",
+        "tablet"
+      ],
+      "propColors": {
+        "prop_main": "#2D3036",
+        "prop_accent": "#9CC5B0",
+        "prop_detail": "#C8643B"
+      },
+      "silhouette": "slate side part under a headset, sage sweater, tablet in the left hand; reads as a cooler, lighter echo of Max's headset silhouette"
+    },
+    "CH-DESIGNER": {
+      "displayName": "Leo",
+      "role": "Desain",
+      "actor": "ACT-LEO",
+      "kind": "npc",
+      "body": { "heightM": 1.57, "headRatio": 3.6, "legRatio": 0.38, "shoulderWidth": 0.34, "torsoWidth": 0.96, "torsoDepth": 0.96, "limbScale": 0.98, "headWidth": 1.0 },
+      "skin": "#B98463",
+      "eyes": { "iris": "#5A3D2B" },
+      "hair": { "style": "bun", "color": "#1F1B1C" },
+      "outfit": {
+        "top": "jacket",
+        "colors": {
+          "outfit_main": "#33323A",
+          "outfit_inner": "#EFE6D6",
+          "outfit_bottom": "#2A2A30",
+          "outfit_accent": "#C8643B",
+          "shoes": "#1E1C1F",
+          "shoe_sole": "#F0E6D2"
+        }
+      },
+      "props": [
+        "glasses",
+        "sketchbook"
+      ],
+      "propColors": {
+        "prop_main": "#C8643B",
+        "prop_accent": "#F7F1E4",
+        "prop_detail": "#2A2A2E"
+      },
+      "silhouette": "dark top knot, charcoal jacket with terracotta trim, round glasses, sketchbook under the arm; muted dark against Kevin's bright apron"
     }
   },
   "avatarVariants": {

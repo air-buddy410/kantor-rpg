@@ -254,7 +254,12 @@ def mark_zone_edges(ob):
     np.minimum.at(lo, edge_of_loop, zl)
     np.maximum.at(hi, edge_of_loop, zl)
     marks = (hi >= 0) & (lo != hi)
-    me.edges.foreach_set("use_freestyle_mark", marks.tolist())
+    if hasattr(me.edges[0], "use_freestyle_mark") if len(me.edges) else True:
+        me.edges.foreach_set("use_freestyle_mark", marks.tolist())
+    else:
+        # Blender 4.3+ dropped the edge property; Freestyle reads this boolean edge attribute instead.
+        attr = me.attributes.get("freestyle_edge") or me.attributes.new("freestyle_edge", "BOOLEAN", "EDGE")
+        attr.data.foreach_set("value", marks.tolist())
     return int(marks.sum())
 
 

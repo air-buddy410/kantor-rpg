@@ -23,7 +23,9 @@ export class DoorMeshes {
         // length and to the cutaway height of its wall (exterior or interior).
         const geo = new THREE.BoxGeometry(1, 1, LEAF_T);
         geo.translate(0.5, 0.5, 0);
-        const mesh = new THREE.InstancedMesh(geo, materials.get(restricted ? ENV.accent : ENV.woodDark), leaves.length);
+        // Leaves are cut with the walls around them; with a plain material a leaf
+        // stayed whole inside a cut wall and seemed to jump as the camera moved.
+        const mesh = new THREE.InstancedMesh(geo, materials.occluder(restricted ? ENV.accent : ENV.woodDark), leaves.length);
         mesh.name = `door-leaves-${f.id}${restricted ? '-restricted' : ''}`;
         mesh.frustumCulled = false;
         mesh.castShadow = false;

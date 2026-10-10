@@ -277,7 +277,7 @@
      "tests/py/test_native_dwg.py::test_native_batch_is_attested_by_reopen_logs_and_source_hashes",
      "docs/evidence/MAX/native-plot-20261005/native-plot-results.json::creator_autocad"
     ],
-    "note": "DWG tanpa bukti reopen/hash AutoCAD ditolak (safety scan + test). Batch native 15 DWG + 20/20 plot (Max/Budi) untuk dataset 488597bb diarsipkan di cad/archive (ADR-015); DWG dataset sekarang BLOCKED di cloud sampai native_batch.py dijalankan ulang di mesin berlisensi."
+    "note": "DWG tanpa bukti reopen/hash AutoCAD ditolak (safety scan + test). Batch native 15 DWG + 20/20 plot (Max/Budi) untuk dataset 488597bb diarsipkan di cad/archive (ADR-018); DWG dataset sekarang BLOCKED di cloud sampai native_batch.py dijalankan ulang di mesin berlisensi."
    },
    {
     "kind": "boundary",
@@ -387,27 +387,29 @@
    {
     "kind": "AC",
     "text": "status/time/source benar, unknown saat timeout",
-    "status": "tidak didukung",
+    "status": "terverifikasi",
     "refs": [
-     "app/tests/unit/adapter.test.ts::stale snapshots degrade to unknown"
+     "server/test/api.test.mjs::sumber Kanban rusak tampil gagal",
+     "app/tests/e2e/private.spec.ts::Basi: pembaruan gagal"
     ],
-    "note": "M4 ditunda ke M5 atas keputusan Budi 2026-10-05; boundary publik diuji"
+    "note": "M4 dibangun 2026-10-10 (ADR-016)"
    },
    {
     "kind": "test",
     "text": "contract/integration + public isolation",
-    "status": "tidak didukung",
+    "status": "terverifikasi",
     "refs": [
-     "app/tests/unit/adapter.test.ts::sanitizer drops unknown fields"
-    ],
-    "note": "integrasi private tidak dibangun"
+     "server/test/api.test.mjs::papan: handoff/pekerjaan/log sesuai sumber",
+     "app/tests/e2e/private.spec.ts::pengunjung: papan Demo"
+    ]
    },
    {
     "kind": "failure",
     "text": "disconnect -> stale/unknown",
     "status": "terverifikasi",
     "refs": [
-     "app/tests/unit/adapter.test.ts::stale snapshots degrade to unknown"
+     "app/tests/unit/adapter.test.ts::stale snapshots degrade to unknown",
+     "app/tests/e2e/private.spec.ts::Basi: pembaruan gagal"
     ]
    },
    {
@@ -415,7 +417,8 @@
     "text": "visitor/unauth tidak menerima payload private",
     "status": "terverifikasi",
     "refs": [
-     "app/tests/unit/adapter.test.ts::private mode is disabled"
+     "server/test/api.test.mjs::visitor tanpa login ditolak",
+     "app/tests/e2e/private.spec.ts::not.toMatch(/Villa E2E"
     ]
    }
   ],

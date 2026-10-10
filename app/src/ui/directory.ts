@@ -10,6 +10,9 @@ export interface DirectoryHooks {
   showRoom: (room: Room) => void;
   showPersona: (actorId: string) => void;
   meet?: (actorId: string) => void;
+  command?: (profile: string) => void;
+  boards?: (tab: 'handoffs' | 'tasks' | 'log') => void;
+  profiles?: Record<string, string>;
   mode3d: boolean;
 }
 
@@ -69,10 +72,42 @@ export function renderDirectory(world: World, hooks: DirectoryHooks): void {
       meet.addEventListener('click', () => hooks.meet!(a.id));
       actions.append(meet);
     }
+    const prof = hooks.profiles?.[a.id];
+    if (hooks.command && prof) {
+      const cmd = el('button', { type: 'button', class: 'btn', 'aria-label': `Beri tugas ke ${a.displayName}` }, 'Beri tugas');
+      cmd.addEventListener('click', () => hooks.command!(prof));
+      actions.append(cmd);
+    }
     li.append(actions);
     people.append(li);
   }
   body.append(people);
+  if (hooks.command) {
+    body.append(el('h3', {}, 'Agen tanpa karakter'));
+    const extra = el('ul', { class: 'dir-list' });
+    for (const [name, prof, lane] of [['Atlas', 'perumnet', 'Aplikasi PerumNet'], ['Clara', 'finance', 'Keuangan'], ['Stella', 'legal', 'Legal']]) {
+      const li = el('li', { class: 'dir-item' });
+      li.append(el('span', {}, name), el('span', { class: 'meta' }, `${lane} · agen Hermes`));
+      const cmd = el('button', { type: 'button', class: 'btn', 'aria-label': `Beri tugas ke ${name}` }, 'Beri tugas');
+      cmd.addEventListener('click', () => hooks.command!(prof));
+      li.append(cmd);
+      extra.append(li);
+    }
+    body.append(extra);
+  }
+  if (hooks.boards) {
+    body.append(el('h3', {}, 'Papan kerja'));
+    const bl = el('ul', { class: 'dir-list' });
+    for (const [tab, label] of [['handoffs', 'Papan Handoff'], ['tasks', 'Daftar Pekerjaan'], ['log', 'Log Aktivitas']] as const) {
+      const li = el('li', { class: 'dir-item' });
+      li.append(el('span', {}, label));
+      const b = el('button', { type: 'button', class: 'btn', 'aria-label': `Buka ${label}` }, 'Buka');
+      b.addEventListener('click', () => hooks.boards!(tab));
+      li.append(b);
+      bl.append(li);
+    }
+    body.append(bl);
+  }
   body.append(el('h3', {}, 'Dokumen'));
   const docs = el('ul', { class: 'dir-list doc-list', 'aria-busy': 'true' });
   const state = el('p', { class: 'muted', role: 'status' }, 'Memuat daftar dokumen...');

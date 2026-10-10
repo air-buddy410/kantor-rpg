@@ -5,10 +5,11 @@ interface Npc { id: string; floor: string; pos: [number, number]; phase: string;
 const npcs = (page: Page) => page.evaluate(() => (window.__kantor!.npcs as () => Npc[])());
 
 test.describe('persona NPCs (M2)', () => {
-  test('six simulated personas spawn, move over time and never claim a work status', async ({ page }, info) => {
+  test('eight simulated personas spawn, move over time and never claim a work status', async ({ page }, info) => {
     const errors = await boot(page);
     const a = await npcs(page);
-    expect(a).toHaveLength(6);
+    expect(a).toHaveLength(8);
+    expect(a.map((n) => n.id)).toEqual(expect.arrayContaining(['ACT-ECHO', 'ACT-LEO']));
     expect(a.every((n) => n.workStatus === 'unknown')).toBe(true);
     await expect.poll(async () => page.evaluate(() => (window.__kantor!.simTime as () => number)()), { timeout: 60_000 }).toBeGreaterThan(8);
     const b = await npcs(page);

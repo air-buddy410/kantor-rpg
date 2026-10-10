@@ -53,7 +53,7 @@ Pelaksana: Max sendiri. Baseline Claude R2: `27423cbafcf3d68ffce1e2e48adca0303f1
 2. Pengujian screen reader nyata dan sign-off manusia. Akses System Events/VoiceOver tidak berhasil diverifikasi; pemeriksaan keyboard/axe bukan penggantinya.
 3. Native plot DWG/font visual. Reopen/AUDIT/counts/layouts lulus, tetapi bukan bukti hasil cetak native.
 4. Pilihan model dan datasheet PoE/UPS/thermal untuk rancangan ICT. Dataset sengaja mempertahankan nilai TBD dan asumsi yang belum disetujui.
-5. M4/private Hermes: tetap dimatikan. Tugas penyelesaian umum tidak dipakai sebagai izin membuka integrasi privat atau mempublikasikan data bot.
+5. M4/private Hermes: ditutup 2026-10-10 atas perintah Budi (lihat bagian M4 + M5 di bawah).
 
 Tidak ada Rex/Bruno/worker baru yang mengerjakan implementasi ini. Tidak ada perubahan perangkat produksi ISP, DNS, tunnel, VM atau situs lain.
 
@@ -70,3 +70,24 @@ Python: `.venv/bin/python -m pytest tests/py -q`. Setelah mengubah/regenerasi DX
 - Keputusan Budi: M4 ditunda ke M5; target otonomi UPS 10 menit (1 EBM, 28,7 menit setelah penuaan).
 - Bukti perangkat: iPhone 13 Pro fisik median 59,5 FPS; macOS VoiceOver asli 8 skenario.
 - Matriks: 48 bagian terverifikasi, 2 tidak didukung (M4 ditunda; plot native AutoCAD belum ada). Review manusia gambar karakter dan ICT-401 belum tercatat.
+
+## M4 + M5: papan kerja dan perintah agen, 2026-10-10
+
+Perintah Budi: "M4 + M5 sekaligus", login sandi + 2FA di aplikasi sendiri, lalu autopilot sampai PRD selesai. Keputusan teknis yang belum diisi pemilik dikunci Max di ADR-016.
+
+- Backend privat `server/` (Node 24, `node:sqlite`, satu dependensi `qrcode`): login sandi + TOTP, tiga papan (Kanban, `_Bersama`, `agent.log`, sesi omp), percakapan per profil lewat `hermes chat --oneshot`, approval aksi berisiko, idempotensi, retensi.
+- UI: tombol `Papan kerja` (B), papan di dunia, `Bicara & beri tugas` di kartu persona, `Beri tugas` di directory (termasuk Atlas, Clara, Stella). Pengunjung melihat papan `Demo` dan tidak bisa mengirim apa pun.
+- Tes: `server/test/api.test.mjs` 14 lulus; `app/tests/e2e/private.spec.ts` 12 lulus (desktop/tablet/mobile) dengan backend asli + runner palsu. Bukti `docs/evidence/M45/`.
+- Uji asap runner nyata (profil leo, Claude): dua giliran pada satu sesi Hermes; giliran kedua mengingat giliran pertama dan memberi tepat tiga pilihan yang lolos validasi.
+- Matriks: REQ-DATA-01 sekarang terverifikasi; REQ-BOARD-01..05, REQ-CMD-01..05, REQ-CHOICE-01, REQ-MANUAL-01, REQ-AUTH-01 ditambahkan dan terverifikasi. Satu bagian tetap `tidak didukung`: plot native AutoCAD.
+
+Yang masih terbuka setelah M4/M5 (tidak bisa ditutup pelaksana):
+1. Setup akun owner: Budi membuka tautan setup sekali pakai, memindai QR, dan memilih sandi. Max tidak memegang sandi atau seed.
+2. Uji perintah nyata pertama dari HP Budi, termasuk satu approval.
+3. Item lama: plot native AutoCAD, screen reader/HP pada fitur baru, model/datasheet ICT, sign-off manusia.
+
+## Keputusan lingkup CAD, 2026-10-10
+
+Budi tidak punya akun Autodesk, dan AutoCAD 2025 di Mac mini menolak plot karena belum login. Atas keputusan Budi ("hapus"), plot PDF native AutoCAD dikeluarkan dari lingkup PRD. DWG native 15 sheet (reopen, AUDIT 0 error, mm, entitas cocok) tetap berlaku; PDF vektor generator menjadi PDF resmi. Matriks: 63/63 bagian terverifikasi.
+
+Masih terbuka di luar matriks: uji di HP fisik, VoiceOver nyata, dan sign-off manusia.

@@ -393,7 +393,10 @@ def seed_fixtures():
     f("L1-HUGO", "plant_small", 13.5, 23.5)
     # Kevin
     b.ws("L1-KEVIN", 16.0, 23.4, 0)
-    f("L1-KEVIN", "easel", 18.7, 22.6, 0)
+    # Leo (design director) shares the studio; the easel moved to the east
+    # wall so his desk and chair keep 0.8 m of aisle from Kevin's.
+    b.ws("L1-KEVIN", 18.4, 23.4, 0)
+    f("L1-KEVIN", "easel", 19.4, 20.0, 0)
     f("L1-KEVIN", "work_table", 16.6, 20.8, 0)
     f("L1-KEVIN", "poster", 19.9, 20.5, 270, artwork="ART-09")
     # Bruno
@@ -601,6 +604,12 @@ ACTORS = [
      "allowedPublicFields": ["displayName", "role", "activityState"]},
     {"id": "ACT-REX", "displayName": "Rex", "role": "Review & QA", "kind": "npc", "avatarAsset": "CH-QA",
      "homeRoom": "L1-IMPL", "rolePreference": {"desk": 4, "read": 1, "coffee": 2, "game": 1},
+     "allowedPublicFields": ["displayName", "role", "activityState"]},
+    {"id": "ACT-ECHO", "displayName": "Echo", "role": "Asisten 9router", "kind": "npc", "avatarAsset": "CH-ASSISTANT",
+     "homeRoom": "L1-IMPL", "rolePreference": {"desk": 3, "read": 2, "chat": 2, "coffee": 1, "billiards": 1},
+     "allowedPublicFields": ["displayName", "role", "activityState"]},
+    {"id": "ACT-LEO", "displayName": "Leo", "role": "Desain", "kind": "npc", "avatarAsset": "CH-DESIGNER",
+     "homeRoom": "L1-KEVIN", "rolePreference": {"desk": 3, "read": 2, "chat": 1, "game": 1, "rest": 1},
      "allowedPublicFields": ["displayName", "role", "activityState"]},
 ]
 

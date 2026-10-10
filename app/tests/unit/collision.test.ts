@@ -60,9 +60,11 @@ describe('CEO / persona collision', () => {
     for (const n of sim.npcs) expect(Object.values(n.stats.activities).reduce((a, b) => a + b, 0), n.id).toBeGreaterThan(2);
   });
 
-  it('no NPC freezes on a corner-clipping step (seeds 3, 11, 23; 30 min each)', () => {
+  it('no NPC freezes on a corner-clipping step (seeds 2, 3, 11, 23; 30 min each)', () => {
     // Seed 11 froze Kevin for good before lineWalkable became an exact traversal.
-    for (const seed of [3, 11, 23]) {
+    // With eight personas seed 11 trapped Bruno behind a treadmill user and
+    // seed 2 livelocked Max and Echo giving way through each other (149 s).
+    for (const seed of [2, 3, 11, 23]) {
       const sim = new IdleSim(W, nav, { seed, startHour: 9 });
       const since = new Map<string, number>();
       const last = new Map<string, Vec2>();

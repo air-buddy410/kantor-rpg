@@ -17,7 +17,7 @@
    "LWPOLYLINE": 178
   },
   "A-FURN": {
-   "LWPOLYLINE": 106
+   "LWPOLYLINE": 108
   },
   "A-STRS": {
    "LWPOLYLINE": 31,
@@ -46,11 +46,11 @@
    "TEXT": 2
   },
   "ICT-OUTL": {
-   "HATCH": 30,
-   "LWPOLYLINE": 30
+   "HATCH": 31,
+   "LWPOLYLINE": 31
   },
   "ICT-OUTL-IDEN": {
-   "TEXT": 30,
+   "TEXT": 31,
    "LWPOLYLINE": 8
   },
   "ICT-AP": {
@@ -113,9 +113,9 @@
     "LWPOLYLINE": 1
    },
    "A-ANNO-SCHD": {
-    "HATCH": 21,
-    "TEXT": 182,
-    "LWPOLYLINE": 44
+    "HATCH": 22,
+    "TEXT": 186,
+    "LWPOLYLINE": 45
    },
    "A-ANNO-VPRT": {
     "VIEWPORT": 1
@@ -123,8 +123,8 @@
   }
  },
  "totals": {
-  "modelspace": 789,
-  "paperspace": 307
+  "modelspace": 794,
+  "paperspace": 313
  },
  "layers": [
   "0",

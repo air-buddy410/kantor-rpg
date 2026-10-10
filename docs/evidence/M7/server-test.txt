@@ -1,0 +1,35 @@
+
+> kantor-rpg-server@0.1.0 test
+> node --test --test-concurrency=1 test/
+
+✔ visitor tanpa login ditolak di semua API privat (AC-CMD-04, REQ-BOARD-04) (32.06625ms)
+✔ tanpa header proxy ditolak (backend tidak bisa diakses langsung) (2.278958ms)
+✔ login: sandi salah, kode salah, kode dipakai ulang, dan rate limit (342.648083ms)
+✔ CSRF dan origin asing ditolak untuk owner yang login (44.943833ms)
+✔ pesan manual sampai ke profil yang tepat, receipt + idempotensi (AC-CMD-01, AC-CMD-05, AC-MANUAL-01) (68.018792ms)
+✔ pilihan: dikirim sesuai ID turn, pilihan lama kedaluwarsa, ID palsu ditolak (AC-CHOICE-01) (61.8085ms)
+✔ aksi berisiko menunggu approval terpisah; ditolak/kedaluwarsa/replay tidak mengirim (AC-CMD-03) (207.931083ms)
+✔ rahasia di chat ditolak; gagal/offline jujur; cancel (REQ-CMD-02, REQ-CMD-05) (84.287833ms)
+✔ logout mematikan sesi (53.035833ms)
+✔ papan: handoff/pekerjaan/log sesuai sumber, tanpa rahasia/path, profil pribadi tersamar (REQ-BOARD-01..03) (68.27175ms)
+✔ sumber Kanban rusak tampil gagal, bukan kosong sukses (REQ-BOARD-05) (8.4895ms)
+✔ cache papan: viewer berulang dalam TTL tidak membaca sumber lagi (21.947209ms)
+✔ kebijakan: parseOptions tepat tiga, berbeda; scrub; deteksi risiko (0.343667ms)
+✔ setup owner: tautan sekali pakai, kode wajib benar, lalu tidak berlaku (140.458584ms)
+✔ presence: status nyata per agen untuk NPC (Kanban running = bekerja, profil pribadi tidak ada) (58.590792ms)
+✔ sync Telegram: transkrip DM nyata, kirim dari RPG melanjutkan sesi Telegram, balasan ikut ke Telegram (ADR-017) (448.533208ms)
+✔ lampiran + cari + push lewat API: hanya owner, path asli tidak bocor, agen menerima path lokal (71.747333ms)
+✔ centang: dibalas = read, menunggu agen = delivered, belum diambil = sent (2.120625ms)
+✔ mengetik dari pesan Telegram: pesan terakhir Budi masih segar, lalu padam setelah dibalas atau kedaluwarsa (0.150583ms)
+✔ pesan sistem tidak memicu mengetik dan tidak diberi centang (0.103375ms)
+✔ push: payload RFC 8291 bisa didekripsi browser, VAPID ES256 sah (11.127667ms)
+✔ push: hanya endpoint push service resmi (bukan relay SSRF) (0.4095ms)
+✔ media: tipe & isi divalidasi, token tidak bisa dipalsukan/keluar folder, path tidak bocor (8.274333ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2089.306583

@@ -104,4 +104,28 @@ describe('idle simulation (REQ-IDLE-01)', () => {
     expect(sim.log.some((l) => l.t > tSeal && l.event === 'assign' && l.detail?.startsWith(slotId))).toBe(false);
     for (const [, ids] of sim.occupancy()) expect(ids.length).toBeLessThanOrEqual(1);
   });
+
+  it('real work: an agent marked working leaves leisure, sits at its own desk and stays typing until idle', () => {
+    const sim = new IdleSim(W, nav, { seed: 5, startHour: 12.2, minutesPerSecond: 2 });
+    for (let t = 0; t < 120; t += 0.1) sim.step(0.1); // lunch: everyone on leisure
+    const id = 'ACT-REX';
+    const desk = W.activitySlots.find((s) => s.fixture === W.actors.find((a) => a.id === id)!.homeSeat)!;
+    sim.setWork(id, 'working', 'uji', 'Fitur Lokalink');
+    const npc = sim.npcs.find((n) => n.id === id)!;
+    let seated = -1;
+    for (let t = 0; t < 180; t += 0.1) {
+      sim.step(0.1);
+      if (seated < 0 && npc.phase === 'perform' && npc.slot === desk.id) seated = t;
+    }
+    expect(seated, 'reaches its desk').toBeGreaterThanOrEqual(0);
+    // Keeps working far past a normal desk activity, never picks leisure.
+    const seen = new Set<string>();
+    for (let t = 0; t < 600; t += 0.1) { sim.step(0.1); seen.add(`${npc.phase}:${npc.activity}:${npc.slot}`); }
+    expect([...seen]).toEqual([`perform:desk:${desk.id}`]);
+    expect(npc.group).toBeNull();
+    sim.setWork(id, 'done', 'uji');
+    let left = false;
+    for (let t = 0; t < 900 && !left; t += 0.1) { sim.step(0.1); left = npc.slot !== desk.id; }
+    expect(left, 'idle simulation resumes after the task').toBe(true);
+  });
 });

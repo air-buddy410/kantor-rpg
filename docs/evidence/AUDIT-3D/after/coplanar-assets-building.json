@@ -1,0 +1,30 @@
+{
+ "kind": "building",
+ "gapM": 0.002,
+ "rows": [
+  {
+   "file": "building-L1.glb",
+   "hits": 425,
+   "seenAreaM2": 78.7496,
+   "top": [
+    "SLAB-L1:slab#6f6252/2side vs WALL-L1-027_1:wall_interior#f1e7d3/2side n=0,1,0 4.79999 m2",
+    "SLAB-L1:slab#6f6252/2side vs STAIR-FX-L1-067_1:stair_tread#b88a5d/2side n=0,1,0 4 m2",
+    "STAIR-FX-L1-067_1:stair_tread#b88a5d/2side vs STAIR-FX-L1-067_3:stair_core#f1e7d3/2side n=1,0,0 3.2 m2",
+    "STAIR-FX-L1-067_1:stair_tread#b88a5d/2side vs STAIR-FX-L1-067_3:stair_core#f1e7d3/2side n=-1,0,0 3.2 m2",
+    "SLAB-L1:slab#6f6252/2side vs WALL-L1-001_1:wall_interior#f1e7d3/2side n=0,1,0 2.55 m2"
+   ]
+  },
+  {
+   "file": "building-L2.glb",
+   "hits": 341,
+   "seenAreaM2": 118.1469,
+   "top": [
+    "FASCIA-L2:fascia#2f5a45/2side vs ROOF_1:roof#a7aca6/2side n=0,1,0 33.6 m2",
+    "ROOF_1:roof#a7aca6/2side vs ROOF_2:fascia#2f5a45/2side n=0,1,0 22.47998 m2",
+    "SLAB-L2:slab#6f6252/2side vs WALL-L2-000_1:wall_interior#f1e7d3/2side n=0,1,0 4.8 m2",
+    "SLAB-L2:slab#6f6252/2side vs WALL-L2-025_1:wall_interior#f1e7d3/2side n=0,1,0 4.79999 m2",
+    "SLAB-L2:slab#6f6252/2side vs WALL-L2-026_1:wall_interior#f1e7d3/2side n=0,1,0 3.555 m2"
+   ]
+  }
+ ]
+}

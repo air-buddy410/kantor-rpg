@@ -17,10 +17,10 @@
     "service": 15.0
    },
    "circulation_ratio": 0.234,
-   "seats_from_fixtures": 41,
-   "workstations": 13,
+   "seats_from_fixtures": 42,
+   "workstations": 14,
    "occupant_load_comparison": 110,
-   "walkable_m2_navgrid": 483.8,
+   "walkable_m2_navgrid": 481.9,
    "exits_on_floor": 4
   },
   "L2": {
@@ -215,8 +215,8 @@
    "name": "Studio Kevin",
    "category": "work",
    "area_m2": 33.0,
-   "seats_from_fixtures": 1,
-   "workstations": 1,
+   "seats_from_fixtures": 2,
+   "workstations": 2,
    "occupant_load_comparison": 3,
    "load_factor": "business"
   },
@@ -468,12 +468,12 @@
   "pixel_areas": 47,
   "pixel_furniture": 297,
   "world_rooms_non_shaft": 34,
-  "world_fixtures": 199,
-  "world_activity_slots": 117,
-  "world_walkable_m2": 982.0,
+  "world_fixtures": 201,
+  "world_activity_slots": 118,
+  "world_walkable_m2": 980.1,
   "note": "Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).",
   "rooms_vs_pixel_areas_ratio": 0.72,
-  "fixtures_vs_pixel_furniture_ratio": 0.67
+  "fixtures_vs_pixel_furniture_ratio": 0.68
  },
  "private_snapshot_egress": {
   "formula": "actors * bytes_per_actor * viewers / interval_s",
@@ -523,9 +523,9 @@
    "prop_small_max": 2000,
    "draw_calls_mobile_max": 150
   },
-  "npc_count": 6,
-  "characters_lod0_budget": 115000,
-  "environment_remaining_mobile": 135000
+  "npc_count": 8,
+  "characters_lod0_budget": 145000,
+  "environment_remaining_mobile": 105000
  },
  "maintenance_hours_monthly": {
   "items": {

@@ -1,0 +1,1574 @@
+{
+  "config": {
+    "configFile": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/playwright.config.ts",
+    "rootDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "npc.spec.ts",
+      "file": "npc.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "persona NPCs (M2)",
+          "file": "npc.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "six simulated personas spawn, move over time and never claim a work status",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10148,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:43:55.590Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-2fee26dcfe2742be3a25",
+              "file": "npc.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "directory \"Temui\" opens the persona dialog, pauses the NPC and restores focus on Escape",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 19172,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"blink,frown,smile,surprised,talk\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"blink,frown,smile,surprised,talk\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n    at /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5",
+                        "location": {
+                          "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                          "column": 5,
+                          "line": 34
+                        },
+                        "snippet": "  32 |     type Face = { expressions: Record<string, number>; lod: number } | null;\n  33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));\n> 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');\n     |     ^\n  35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);\n  36 |     const first = await dlg.locator('.quote').innerText();\n  37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                            "column": 5,
+                            "line": 34
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"blink,frown,smile,surprised,talk\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n\n  32 |     type Face = { expressions: Record<string, number>; lod: number } | null;\n  33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));\n> 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');\n     |     ^\n  35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);\n  36 |     const first = await dlg.locator('.quote').innerText();\n  37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();\n    at /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:05.822Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results/npc-persona-NPCs-M2-direct-cad28-nd-restores-focus-on-Escape-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                        "column": 5,
+                        "line": 34
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-066c394b7e002e388b92",
+              "file": "npc.spec.ts",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "walking up to a seated NPC and pressing E (or tapping Aksi) greets it",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8551,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:25.403Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-d3d3149a8b83beeec113",
+              "file": "npc.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "blueprint table and virtual activities give real feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17515,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:34.068Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-03138b6b917a832ce8c3",
+              "file": "npc.spec.ts",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "six simulated personas spawn, move over time and never claim a work status",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 46057,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:52.022Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-190233a1ee00428defe9",
+              "file": "npc.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "directory \"Temui\" opens the persona dialog, pauses the NPC and restores focus on Escape",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 55652,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"blink,frown,smile,surprised,talk\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"blink,frown,smile,surprised,talk\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n    at /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5",
+                        "location": {
+                          "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                          "column": 5,
+                          "line": 34
+                        },
+                        "snippet": "  32 |     type Face = { expressions: Record<string, number>; lod: number } | null;\n  33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));\n> 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');\n     |     ^\n  35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);\n  36 |     const first = await dlg.locator('.quote').innerText();\n  37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                            "column": 5,
+                            "line": 34
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"blink,frown,smile,surprised,talk\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n\n  32 |     type Face = { expressions: Record<string, number>; lod: number } | null;\n  33 |     const face = () => page.evaluate(() => (window.__kantor!.npcFace as (id: string) => Face)('ACT-NOVA'));\n> 34 |     await expect.poll(async () => Object.keys((await face())?.expressions ?? {}).sort().join(','), { timeout: 15_000 }).toBe('blink,frown,smile,surprised,talk');\n     |     ^\n  35 |     await expect.poll(async () => (await face())!.expressions.smile).toBeGreaterThan(0.4);\n  36 |     const first = await dlg.locator('.quote').innerText();\n  37 |     await dlg.getByRole('button', { name: 'Topik lain' }).click();\n    at /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:34:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:45:38.180Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results/npc-persona-NPCs-M2-direct-cad28-nd-restores-focus-on-Escape-tablet/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                        "column": 5,
+                        "line": 34
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-f1a158206ce4729a1827",
+              "file": "npc.spec.ts",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "walking up to a seated NPC and pressing E (or tapping Aksi) greets it",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 120127,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts",
+                            "column": 48,
+                            "line": 63
+                          },
+                          "message": "Error: locator.tap: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#touch-interact')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" id=\"touch-interact\" class=\"touch-btn primary\">Aksi</button>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    136 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is not visible\u001b[22m\n\u001b[2m      - retrying tap action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n\n\n  61 |     // Touch projects use the on-screen action button, desktop the E key.\n  62 |     if (info.project.name === 'desktop') await page.keyboard.press('e');\n> 63 |     else await page.locator('#touch-interact').tap();\n     |                                                ^\n  64 |     await expect(page.locator('#dlg-info')).toBeVisible();\n  65 |     await page.keyboard.press('Escape');\n  66 |   });\n    at /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/npc.spec.ts:63:48"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:46:34.242Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results/npc-persona-NPCs-M2-walkin-33c49-E-or-tapping-Aksi-greets-it-tablet/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-3b82e3dd907cbe2e3c5d",
+              "file": "npc.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "blueprint table and virtual activities give real feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9099,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:34.823Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-18f340865e5c9ad89d9f",
+              "file": "npc.spec.ts",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "six simulated personas spawn, move over time and never claim a work status",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 11783,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:19.232Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-f8da00a78d503d5c1f10",
+              "file": "npc.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "directory \"Temui\" opens the persona dialog, pauses the NPC and restores focus on Escape",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 18259,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:31.139Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-4a3d97092a781139903c",
+              "file": "npc.spec.ts",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "walking up to a seated NPC and pressing E (or tapping Aksi) greets it",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7469,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:49.409Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-7716f9460485b3e0f802",
+              "file": "npc.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "blueprint table and virtual activities give real feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:56.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3600321bf1ff72e45419-a6555f3779c5fff2ef12",
+              "file": "npc.spec.ts",
+              "line": 82,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "studio.spec.ts",
+      "file": "studio.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Office Studio (REQ-STUDIO-01)",
+          "file": "studio.spec.ts",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "move, reject overlap, undo/redo, exit without publish reverts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6912,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:43:55.594Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-140678b8a90b2ef28405",
+              "file": "studio.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "structural fixtures are locked with a reason",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9109,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:02.586Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-671a925bee0b856259f1",
+              "file": "studio.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "publish persists across reload, rollback returns to the dataset",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 8765,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:11.702Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-d7e66530af15f96ef1d5",
+              "file": "studio.spec.ts",
+              "line": 68,
+              "column": 3
+            },
+            {
+              "title": "export round-trips; a broken or invalid import is rejected and changes nothing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5496,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:20.476Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-dfb42663df0d7cb1cf95",
+              "file": "studio.spec.ts",
+              "line": 93,
+              "column": 3
+            },
+            {
+              "title": "ICT outlet follows its desk through move, undo, export, publish and rollback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5039,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:25.982Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-0d06b4771e150533c6e4",
+              "file": "studio.spec.ts",
+              "line": 124,
+              "column": 3
+            },
+            {
+              "title": "adding a fixture places it on a valid free spot",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4843,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:31.028Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-485f45022a8de0f03a95",
+              "file": "studio.spec.ts",
+              "line": 172,
+              "column": 3
+            },
+            {
+              "title": "move, reject overlap, undo/redo, exit without publish reverts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9911,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:09.234Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-d00a16a21e4458be944c",
+              "file": "studio.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "structural fixtures are locked with a reason",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3519,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:19.251Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-28fb82ca3f795b0b09dc",
+              "file": "studio.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "publish persists across reload, rollback returns to the dataset",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7628,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:22.782Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-8141c0e3348afb2e1742",
+              "file": "studio.spec.ts",
+              "line": 68,
+              "column": 3
+            },
+            {
+              "title": "export round-trips; a broken or invalid import is rejected and changes nothing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4340,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:30.419Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-514632bc7e90c61eff30",
+              "file": "studio.spec.ts",
+              "line": 93,
+              "column": 3
+            },
+            {
+              "title": "ICT outlet follows its desk through move, undo, export, publish and rollback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5838,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:34.768Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-1d230d44b7fdb430d8f5",
+              "file": "studio.spec.ts",
+              "line": 124,
+              "column": 3
+            },
+            {
+              "title": "adding a fixture places it on a valid free spot",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5632,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:40.619Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-56e2c21c80a0d9bb0863",
+              "file": "studio.spec.ts",
+              "line": 172,
+              "column": 3
+            },
+            {
+              "title": "move, reject overlap, undo/redo, exit without publish reverts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6467,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:44.456Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-50cf84a3ebe9acbed5df",
+              "file": "studio.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "structural fixtures are locked with a reason",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2777,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:51.023Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-8b215c8b32296619517b",
+              "file": "studio.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "publish persists across reload, rollback returns to the dataset",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6292,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:53.807Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-5665221b40df22be9020",
+              "file": "studio.spec.ts",
+              "line": 68,
+              "column": 3
+            },
+            {
+              "title": "export round-trips; a broken or invalid import is rejected and changes nothing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3793,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:49:00.107Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-eaa3350698a4c948935b",
+              "file": "studio.spec.ts",
+              "line": 93,
+              "column": 3
+            },
+            {
+              "title": "ICT outlet follows its desk through move, undo, export, publish and rollback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3231,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:49:03.907Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-dbc0d08a8820f4c2855b",
+              "file": "studio.spec.ts",
+              "line": 124,
+              "column": 3
+            },
+            {
+              "title": "adding a fixture places it on a valid free spot",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2261,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:49:07.146Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-b693a7dce95a9cc16177",
+              "file": "studio.spec.ts",
+              "line": 172,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Avatar Studio (REQ-AVATAR-01)",
+          "file": "studio.spec.ts",
+          "line": 191,
+          "column": 6,
+          "specs": [
+            {
+              "title": "preview, save persists across reload, reset returns to default",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 30452,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:44:35.883Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-bb3b38cb22eb06a7cb59",
+              "file": "studio.spec.ts",
+              "line": 192,
+              "column": 3
+            },
+            {
+              "title": "a stored choice without an asset falls back to the default",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 120027,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts",
+                            "column": 16,
+                            "line": 179
+                          },
+                          "message": "Error: page.waitForFunction: Test timeout of 120000ms exceeded.\n\n  177 |     await page.evaluate(() => localStorage.setItem('kantor-rpg.avatar.v1', JSON.stringify({ hair: 'mohawk', palette: 'neon' })));\n  178 |     await page.reload();\n> 179 |     await page.waitForFunction(() => !!window.__kantor);\n      |                ^\n  180 |     await expect.poll(async () => (await page.evaluate(() => (window.__kantor!.avatar as () => { hair: string })())).hair, { timeout: 20_000 }).toBe('hair_short_tuft');\n  181 |   });\n  182 |\n    at /Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/tests/e2e/studio.spec.ts:179:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:45:06.340Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Volumes/Air_Buddy-Work/Local/Hermes/00-Umum/Riset/2026-10-02-kantor-rpg-max/kantor-rpg/app/test-results/studio-Avatar-Studio-REQ-A-88e6c-t-falls-back-to-the-default-desktop/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-e1363bd128207734653f",
+              "file": "studio.spec.ts",
+              "line": 230,
+              "column": 3
+            },
+            {
+              "title": "studios are hidden (not dead) without WebGL",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1855,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:06.893Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-9887d05b25e9ad3a4a06",
+              "file": "studio.spec.ts",
+              "line": 244,
+              "column": 3
+            },
+            {
+              "title": "preview, save persists across reload, reset returns to default",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 20796,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:47:46.261Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-c41b9ddc56b9ed39d254",
+              "file": "studio.spec.ts",
+              "line": 192,
+              "column": 3
+            },
+            {
+              "title": "a stored choice without an asset falls back to the default",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10855,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:07.065Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-1ee171c63febf27f1c9d",
+              "file": "studio.spec.ts",
+              "line": 230,
+              "column": 3
+            },
+            {
+              "title": "studios are hidden (not dead) without WebGL",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet",
+                  "projectName": "tablet",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 766,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:48:17.928Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-ba891f91cc10d4475c09",
+              "file": "studio.spec.ts",
+              "line": 244,
+              "column": 3
+            },
+            {
+              "title": "preview, save persists across reload, reset returns to default",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12992,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:49:09.414Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-130ea1b9a591e3f215a4",
+              "file": "studio.spec.ts",
+              "line": 192,
+              "column": 3
+            },
+            {
+              "title": "a stored choice without an asset falls back to the default",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9578,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:49:22.411Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-44763cc45b8cb1b4efd4",
+              "file": "studio.spec.ts",
+              "line": 230,
+              "column": 3
+            },
+            {
+              "title": "studios are hidden (not dead) without WebGL",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 859,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-05T00:49:31.994Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "64bdea7002f9c9cea9f4-14f749e3868d5962e203",
+              "file": "studio.spec.ts",
+              "line": 244,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-05T00:43:55.333Z",
+    "duration": 337547.866,
+    "expected": 35,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

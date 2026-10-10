@@ -359,7 +359,7 @@ def test_committed_register_matches_files():
     for s in reg["sets"]:
         r = PdfReader(str(ROOT / s["file"]))
         assert len(r.pages) == s["pages"] and list(r.page_labels) == s["page_labels"]
-    # Only the deliverable set; superseded native batches live in cad/archive (ADR-015).
+    # Only the deliverable set; superseded native batches live in cad/archive (ADR-018).
     dwgs = list((ROOT / 'cad' / 'out').glob('*.dwg'))
     if dwgs:
         evidence = ROOT / 'docs/evidence/MAX/native-dwg/report.json'

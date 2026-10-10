@@ -1,0 +1,80 @@
+{
+ "floor": "L2",
+ "mode": "procedural",
+ "doorsOpen": true,
+ "gapM": 0.002,
+ "minAreaM2": 0.0001,
+ "triangles": 25958,
+ "meshes": 58,
+ "hits": 4,
+ "list": [
+  {
+   "a": "floor-L2#e2d3b6",
+   "b": "floor-L2#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -4,
+   "gapM": 0,
+   "areaM2": 1.09875,
+   "at": [
+    30.33,
+    4,
+    -0.33
+   ]
+  },
+  {
+   "a": "fixtures-L2#7d5a3c",
+   "b": "fixtures-L2#b88a5d",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -4,
+   "gapM": 0,
+   "areaM2": 0.17016,
+   "at": [
+    0.21,
+    4,
+    -1.81
+   ]
+  },
+  {
+   "a": "fixtures-L2#c0643f",
+   "b": "fixtures-L2#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -5.28,
+   "gapM": 0,
+   "areaM2": 0.00428,
+   "at": [
+    22.1,
+    5.28,
+    -10.44
+   ]
+  },
+  {
+   "a": "fixtures-L2#6f8fa6",
+   "b": "fixtures-L2#f4eedf",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -5.28,
+   "gapM": 0,
+   "areaM2": 0.00428,
+   "at": [
+    8.13,
+    5.28,
+    -5.9
+   ]
+  }
+ ]
+}

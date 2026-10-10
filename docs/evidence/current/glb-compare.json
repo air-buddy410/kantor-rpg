@@ -11,9 +11,9 @@
  },
  "totals": {
   "characters": {
-   "files": 7,
-   "rawBytes": 6687500,
-   "shippedBytes": 3550904
+   "files": 9,
+   "rawBytes": 8554840,
+   "shippedBytes": 4541776
   },
   "furniture": {
    "files": 54,
@@ -514,6 +514,522 @@
      "check": "skinned vertices in every key pose within 1 mm",
      "ok": true,
      "detail": 0.00025328128518897763
+    }
+   ]
+  },
+  {
+   "kind": "characters",
+   "raw": "blender/out/raw-glb/characters/ch-assistant.glb",
+   "shipped": "app/public/assets/characters/ch-assistant.glb",
+   "rawBytes": 939064,
+   "shippedBytes": 498604,
+   "rawSha256": "cf66f2141469191d6bbb1cef10626c62d51ac0baa7077545bc59f87f1255a006",
+   "shippedSha256": "56499ec614a04416d4a9ad14c5756e40502946dd33282fb1ffceddfa1d7040de",
+   "ok": true,
+   "measured": {
+    "maxPositionErrorM": 1.2839576124079599e-05,
+    "maxNormalErrorDeg": 0.3712780178796982,
+    "maxRestTrsDeviation": 2.9206275939941406e-06,
+    "maxMorphErrorM": 1.2831813364755362e-05,
+    "morphNewlyMovedVertices": 0,
+    "morphMovedVerticesRawShipped": {
+     "body:blink": [
+      828,
+      828
+     ],
+     "body:smile": [
+      910,
+      910
+     ],
+     "body:talk": [
+      82,
+      82
+     ],
+     "body:surprised": [
+      910,
+      910
+     ],
+     "body:frown": [
+      910,
+      910
+     ]
+    },
+    "uvCellMismatches": 0,
+    "maxUvError": 6.675822079804661e-06,
+    "maxUvErrorTexels": 0.00021362630655374915,
+    "maxWeightError": 0.0019607962346544494,
+    "channelsRaw": 702,
+    "channelsShipped": 184,
+    "maxRotationErrorDeg": 0.0030755462830340365,
+    "maxTranslationErrorM": 2.086162567138672e-07,
+    "maxScaleError": 3.039836883544922e-06,
+    "maxPosedErrorM": 0.0002466105576151012
+   },
+   "checks": [
+    {
+     "check": "node names identical",
+     "ok": true,
+     "detail": {
+      "raw": 23,
+      "shipped": 23
+     }
+    },
+    {
+     "check": "node parents identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "node extras identical",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "non-mesh node TRS identical within 1e-5",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "scene extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "material names identical (same order)",
+     "ok": true,
+     "detail": [
+      "kantor_atlas"
+     ]
+    },
+    {
+     "check": "material factors, extras and extensions identical",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "texture samplers identical",
+     "ok": true,
+     "detail": [
+      {
+       "magFilter": 9728,
+       "minFilter": 9984,
+       "wrapS": 33071,
+       "wrapT": 33071
+      }
+     ]
+    },
+    {
+     "check": "embedded images byte-identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "one skin, same joint names in order",
+     "ok": true,
+     "detail": 1
+    },
+    {
+     "check": "body: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      5764,
+      5764
+     ]
+    },
+    {
+     "check": "body[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph blink stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph smile stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph talk stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph surprised stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph frown stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_side_part: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_side_part: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_side_part: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_side_part[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_side_part[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_side_part[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      1738,
+      1738
+     ]
+    },
+    {
+     "check": "hair_side_part[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      2650,
+      2650
+     ]
+    },
+    {
+     "check": "lod1[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_tablet: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_tablet: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_tablet: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_tablet[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_tablet[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_tablet[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      246,
+      246
+     ]
+    },
+    {
+     "check": "prop_tablet[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "morph deltas within limit and no new moving vertices",
+     "ok": true,
+     "detail": {
+      "maxMorphErrorM": 1.2831813364755362e-05,
+      "newlyMoved": 0
+     }
+    },
+    {
+     "check": "every vertex keeps its atlas cell",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "rest positions within 1 mm",
+     "ok": true,
+     "detail": 1.2839576124079599e-05
+    },
+    {
+     "check": "clip names identical",
+     "ok": true,
+     "detail": [
+      "billiards",
+      "coffee",
+      "exercise",
+      "game",
+      "idle",
+      "read",
+      "run",
+      "sit",
+      "stretch",
+      "talk",
+      "type",
+      "walk",
+      "wave"
+     ]
+    },
+    {
+     "check": "clip billiards: duration identical",
+     "ok": true,
+     "detail": [
+      2.4000000953674316,
+      2.4000000953674316
+     ]
+    },
+    {
+     "check": "clip billiards: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip coffee: duration identical",
+     "ok": true,
+     "detail": [
+      3.0,
+      3.0
+     ]
+    },
+    {
+     "check": "clip coffee: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip exercise: duration identical",
+     "ok": true,
+     "detail": [
+      0.800000011920929,
+      0.800000011920929
+     ]
+    },
+    {
+     "check": "clip exercise: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip game: duration identical",
+     "ok": true,
+     "detail": [
+      1.600000023841858,
+      1.600000023841858
+     ]
+    },
+    {
+     "check": "clip game: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip idle: duration identical",
+     "ok": true,
+     "detail": [
+      2.0,
+      2.0
+     ]
+    },
+    {
+     "check": "clip idle: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip read: duration identical",
+     "ok": true,
+     "detail": [
+      2.4000000953674316,
+      2.4000000953674316
+     ]
+    },
+    {
+     "check": "clip read: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip run: duration identical",
+     "ok": true,
+     "detail": [
+      0.6000000238418579,
+      0.6000000238418579
+     ]
+    },
+    {
+     "check": "clip run: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip sit: duration identical",
+     "ok": true,
+     "detail": [
+      2.0,
+      2.0
+     ]
+    },
+    {
+     "check": "clip sit: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip stretch: duration identical",
+     "ok": true,
+     "detail": [
+      3.0,
+      3.0
+     ]
+    },
+    {
+     "check": "clip stretch: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip talk: duration identical",
+     "ok": true,
+     "detail": [
+      2.4000000953674316,
+      2.4000000953674316
+     ]
+    },
+    {
+     "check": "clip talk: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip type: duration identical",
+     "ok": true,
+     "detail": [
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "check": "clip type: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip walk: duration identical",
+     "ok": true,
+     "detail": [
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "check": "clip walk: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip wave: duration identical",
+     "ok": true,
+     "detail": [
+      1.600000023841858,
+      1.600000023841858
+     ]
+    },
+    {
+     "check": "clip wave: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "joint rotations within 0.05 degree",
+     "ok": true,
+     "detail": 0.0030755462830340365
+    },
+    {
+     "check": "joint translations within 1 mm",
+     "ok": true,
+     "detail": 2.086162567138672e-07
+    },
+    {
+     "check": "joint scales within 0.0001",
+     "ok": true,
+     "detail": 3.039836883544922e-06
+    },
+    {
+     "check": "skinned vertices in every key pose within 1 mm",
+     "ok": true,
+     "detail": 0.0002466105576151012
     }
    ]
   },
@@ -1068,6 +1584,522 @@
      "check": "skinned vertices in every key pose within 1 mm",
      "ok": true,
      "detail": 0.0002610260060595948
+    }
+   ]
+  },
+  {
+   "kind": "characters",
+   "raw": "blender/out/raw-glb/characters/ch-designer.glb",
+   "shipped": "app/public/assets/characters/ch-designer.glb",
+   "rawBytes": 928276,
+   "shippedBytes": 492268,
+   "rawSha256": "08300d3e50b4b36340d08951836a14ccc9e3eaf83b93da6289a43866e21326ee",
+   "shippedSha256": "d65e2d0407b32fd169519b71a2e6af1cd182b565aceae348c9e9e6f86a85e9eb",
+   "ok": true,
+   "measured": {
+    "maxPositionErrorM": 1.3297030527326115e-05,
+    "maxNormalErrorDeg": 0.3655793213428516,
+    "maxRestTrsDeviation": 3.635883331298828e-06,
+    "maxMorphErrorM": 1.327835255447718e-05,
+    "morphNewlyMovedVertices": 0,
+    "morphMovedVerticesRawShipped": {
+     "body:blink": [
+      828,
+      828
+     ],
+     "body:smile": [
+      910,
+      910
+     ],
+     "body:talk": [
+      82,
+      82
+     ],
+     "body:surprised": [
+      910,
+      910
+     ],
+     "body:frown": [
+      910,
+      910
+     ]
+    },
+    "uvCellMismatches": 0,
+    "maxUvError": 6.675822079804661e-06,
+    "maxUvErrorTexels": 0.00021362630655374915,
+    "maxWeightError": 0.0019607962346544494,
+    "channelsRaw": 702,
+    "channelsShipped": 184,
+    "maxRotationErrorDeg": 0.0030674617387244267,
+    "maxTranslationErrorM": 2.086162567138672e-07,
+    "maxScaleError": 3.6954879760742188e-06,
+    "maxPosedErrorM": 0.000250673525940881
+   },
+   "checks": [
+    {
+     "check": "node names identical",
+     "ok": true,
+     "detail": {
+      "raw": 23,
+      "shipped": 23
+     }
+    },
+    {
+     "check": "node parents identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "node extras identical",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "non-mesh node TRS identical within 1e-5",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "scene extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "material names identical (same order)",
+     "ok": true,
+     "detail": [
+      "kantor_atlas"
+     ]
+    },
+    {
+     "check": "material factors, extras and extensions identical",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "texture samplers identical",
+     "ok": true,
+     "detail": [
+      {
+       "magFilter": 9728,
+       "minFilter": 9984,
+       "wrapS": 33071,
+       "wrapT": 33071
+      }
+     ]
+    },
+    {
+     "check": "embedded images byte-identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "one skin, same joint names in order",
+     "ok": true,
+     "detail": 1
+    },
+    {
+     "check": "body: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      5780,
+      5780
+     ]
+    },
+    {
+     "check": "body[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph blink stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph smile stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph talk stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph surprised stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "body[0]: morph frown stays sparse",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_bun: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_bun: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_bun: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_bun[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_bun[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "hair_bun[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      1580,
+      1580
+     ]
+    },
+    {
+     "check": "hair_bun[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "lod1[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      2647,
+      2647
+     ]
+    },
+    {
+     "check": "lod1[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_sketchbook: mesh node present",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_sketchbook: mesh name and extras identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_sketchbook: primitive count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_sketchbook[0]: material, mode, attribute set, morph count identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_sketchbook[0]: index list identical",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "prop_sketchbook[0]: vertex count identical",
+     "ok": true,
+     "detail": [
+      210,
+      210
+     ]
+    },
+    {
+     "check": "prop_sketchbook[0]: shipped weights sum to 1",
+     "ok": true,
+     "detail": null
+    },
+    {
+     "check": "morph deltas within limit and no new moving vertices",
+     "ok": true,
+     "detail": {
+      "maxMorphErrorM": 1.327835255447718e-05,
+      "newlyMoved": 0
+     }
+    },
+    {
+     "check": "every vertex keeps its atlas cell",
+     "ok": true,
+     "detail": 0
+    },
+    {
+     "check": "rest positions within 1 mm",
+     "ok": true,
+     "detail": 1.3297030527326115e-05
+    },
+    {
+     "check": "clip names identical",
+     "ok": true,
+     "detail": [
+      "billiards",
+      "coffee",
+      "exercise",
+      "game",
+      "idle",
+      "read",
+      "run",
+      "sit",
+      "stretch",
+      "talk",
+      "type",
+      "walk",
+      "wave"
+     ]
+    },
+    {
+     "check": "clip billiards: duration identical",
+     "ok": true,
+     "detail": [
+      2.4000000953674316,
+      2.4000000953674316
+     ]
+    },
+    {
+     "check": "clip billiards: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip coffee: duration identical",
+     "ok": true,
+     "detail": [
+      3.0,
+      3.0
+     ]
+    },
+    {
+     "check": "clip coffee: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip exercise: duration identical",
+     "ok": true,
+     "detail": [
+      0.800000011920929,
+      0.800000011920929
+     ]
+    },
+    {
+     "check": "clip exercise: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip game: duration identical",
+     "ok": true,
+     "detail": [
+      1.600000023841858,
+      1.600000023841858
+     ]
+    },
+    {
+     "check": "clip game: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip idle: duration identical",
+     "ok": true,
+     "detail": [
+      2.0,
+      2.0
+     ]
+    },
+    {
+     "check": "clip idle: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip read: duration identical",
+     "ok": true,
+     "detail": [
+      2.4000000953674316,
+      2.4000000953674316
+     ]
+    },
+    {
+     "check": "clip read: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip run: duration identical",
+     "ok": true,
+     "detail": [
+      0.6000000238418579,
+      0.6000000238418579
+     ]
+    },
+    {
+     "check": "clip run: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip sit: duration identical",
+     "ok": true,
+     "detail": [
+      2.0,
+      2.0
+     ]
+    },
+    {
+     "check": "clip sit: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip stretch: duration identical",
+     "ok": true,
+     "detail": [
+      3.0,
+      3.0
+     ]
+    },
+    {
+     "check": "clip stretch: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip talk: duration identical",
+     "ok": true,
+     "detail": [
+      2.4000000953674316,
+      2.4000000953674316
+     ]
+    },
+    {
+     "check": "clip talk: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip type: duration identical",
+     "ok": true,
+     "detail": [
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "check": "clip type: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip walk: duration identical",
+     "ok": true,
+     "detail": [
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "check": "clip walk: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "clip wave: duration identical",
+     "ok": true,
+     "detail": [
+      1.600000023841858,
+      1.600000023841858
+     ]
+    },
+    {
+     "check": "clip wave: no channel added",
+     "ok": true,
+     "detail": []
+    },
+    {
+     "check": "joint rotations within 0.05 degree",
+     "ok": true,
+     "detail": 0.0030674617387244267
+    },
+    {
+     "check": "joint translations within 1 mm",
+     "ok": true,
+     "detail": 2.086162567138672e-07
+    },
+    {
+     "check": "joint scales within 0.0001",
+     "ok": true,
+     "detail": 3.6954879760742188e-06
+    },
+    {
+     "check": "skinned vertices in every key pose within 1 mm",
+     "ok": true,
+     "detail": 0.000250673525940881
     }
    ]
   },

@@ -6,7 +6,7 @@ Sumber: `design/world.json` revisi P03; script `tools/capacity.py`. Status: asum
 
 | Lantai | Gross m2 | Ruang | Sirkulasi | Kursi fixture | Workstation | Beban hunian pembanding | Walkable navgrid m2 | Exit |
 |---|---|---|---|---|---|---|---|---|
-| L1 | 768.0 | 20 | 23.4% | 41 | 13 | 110 | 483.8 | 4 |
+| L1 | 768.0 | 20 | 23.4% | 42 | 14 | 110 | 481.9 | 4 |
 | L2 | 768.0 | 18 | 23.4% | 42 | 0 | 302 | 498.2 | 1 |
 
 Total gross: 1536.0 m2 (proposal AS-DIM-01).
@@ -32,7 +32,7 @@ Beban hunian pembanding memakai faktor IBC 2021 Table 1004.5 (AS-OCC-01); bukan 
 | L1-NCORR | Koridor utara L1 | circulation | 64.0 | 0 | 0 | 0 |
 | L1-CEO | Ruang CEO | quiet | 38.5 | 5 | 1 | 3 |
 | L1-HUGO | Studio Hugo | work | 38.5 | 2 | 2 | 3 |
-| L1-KEVIN | Studio Kevin | work | 33.0 | 1 | 1 | 3 |
+| L1-KEVIN | Studio Kevin | work | 33.0 | 2 | 2 | 3 |
 | L1-BRUNO | Area Bruno | work | 27.5 | 1 | 1 | 2 |
 | L1-SERVER | Ruang server | restricted | 22.0 | 0 | 0 | 1 |
 | L1-RISER | Riser ICT | shaft | 1.5 | 0 | 0 | 0 |
@@ -59,8 +59,8 @@ Beban hunian pembanding memakai faktor IBC 2021 Table 1004.5 (AS-OCC-01); bukan 
 ## Kompleksitas eksplorasi vs baseline pixel
 
 - Baseline: 3388 sel tile, 47 area, 297 furniture.
-- Dunia ini: 34 ruang (tanpa shaft), 199 fixture, 117 slot aktivitas, walkable 982.0 m2.
-- Rasio ruang/area 0.72, fixture/furniture 0.67. Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).
+- Dunia ini: 34 ruang (tanpa shaft), 201 fixture, 118 slot aktivitas, walkable 980.1 m2.
+- Rasio ruang/area 0.72, fixture/furniture 0.68. Tile tidak dikonversi ke meter; perbandingan hanya untuk kompleksitas eksplorasi (D-02).
 
 ## Egress snapshot private (perencanaan, M4 disabled)
 
@@ -78,8 +78,8 @@ Rumus: `actors * bytes_per_actor * viewers / interval_s`.
 
 ## Anggaran triangle
 
-- Karakter LOD0: 1 pemain x 25k + 6 NPC x 15k = 115000.
-- Sisa untuk lingkungan pada scene mobile 250k: 135000.
+- Karakter LOD0: 1 pemain x 25k + 8 NPC x 15k = 145000.
+- Sisa untuk lingkungan pada scene mobile 250k: 105000.
 
 ## Pemeliharaan (proposal)
 

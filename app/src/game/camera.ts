@@ -15,7 +15,9 @@ export class CameraRig {
   enabled = true;
 
   constructor(dom: HTMLElement, aspect: number) {
-    this.camera = new THREE.PerspectiveCamera(38, aspect, 0.1, 200);
+    // near 0.5 (was 0.1): the camera stays >= 7 m from the CEO, and the 5x
+    // depth precision stops coplanar room plates and decals from flickering.
+    this.camera = new THREE.PerspectiveCamera(38, aspect, 0.5, 120);
     dom.addEventListener('pointerdown', (e) => {
       if (!this.enabled) return;
       // Touch on the left third belongs to the joystick area.

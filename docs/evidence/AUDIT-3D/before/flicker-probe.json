@@ -1,0 +1,754 @@
+{
+ "label": "before",
+ "url": "http://127.0.0.1:4173",
+ "threshold": 28,
+ "method": "A->B->A luminance oscillation over 3 consecutive captured micro-frames (1/4000 s each, manual rAF + performance.now driver), bursts separated by 12 uncaptured 1/60 s frames; hot (red) = pixel oscillated in >= 2 triplets; pop (blue) = change > 2T between two micro-frames, >= 2 times",
+ "environment": "headless Chromium, ANGLE SwiftShader (no GPU)",
+ "measuredAt": "2026-10-10T15:25:23.050Z",
+ "runs": [
+  {
+   "profile": "desktop",
+   "quality": "high",
+   "viewport": [
+    1280,
+    720
+   ],
+   "dpr": 1,
+   "analysisScale": 0.5,
+   "info": {
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "render": {
+     "lowQuality": false,
+     "shadows": true,
+     "theme": "light"
+    },
+    "stats": {
+     "drawCalls": 99,
+     "triangles": 352088,
+     "geometries": 80,
+     "textures": 28,
+     "floorTriangles": {
+      "L1": 122846,
+      "L2": 100080
+     },
+     "furnitureKit": {
+      "loaded": 54,
+      "failed": []
+     },
+     "npcLod": {
+      "lod0": 0,
+      "lod1": 8
+     }
+    }
+   },
+   "errors": [],
+   "results": [
+    {
+     "scenario": "lobby-walk-west-east",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      13.899183452557152,
+      1.5153532758103034
+     ],
+     "room": "L1-LOBBY",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 8.590133101851852e-7,
+     "oscP95Frac": 0.000008680555555555556,
+     "oscMaxFrac": 0.000008680555555555556,
+     "hotPixels": 3,
+     "hotFrac": 0.000013020833333333334,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "lobby-window-still",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      10.83546809524748,
+      1.1358114602705218
+     ],
+     "room": "L1-LOBBY",
+     "frames": 48,
+     "duplicateFrames": 24,
+     "triplets": 12,
+     "oscMeanFrac": 0,
+     "oscP95Frac": 0,
+     "oscMaxFrac": 0,
+     "hotPixels": 0,
+     "hotFrac": 0,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "lobby-window-rotate",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      10.83546809524748,
+      1.1358114602705218
+     ],
+     "room": "L1-LOBBY",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.000030454282407407406,
+     "oscP95Frac": 0.0001345486111111111,
+     "oscMaxFrac": 0.0001953125,
+     "hotPixels": 99,
+     "hotFrac": 0.0004296875,
+     "popMeanFrac": 0.00001674107142857143
+    },
+    {
+     "scenario": "lobby-walk-north",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      16.5153709682477,
+      2.560287416943084
+     ],
+     "room": "L1-LOBBY",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.00002423321759259259,
+     "oscP95Frac": 0.00011284722222222222,
+     "oscMaxFrac": 0.00014756944444444445,
+     "hotPixels": 159,
+     "hotFrac": 0.0006901041666666667,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "corridor-rotate",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      13.981221837056149,
+      9.431325368770905
+     ],
+     "room": "L1-CORR",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.00028884548611111114,
+     "oscP95Frac": 0.0008550347222222222,
+     "oscMaxFrac": 0.0009505208333333334,
+     "hotPixels": 1079,
+     "hotFrac": 0.004683159722222222,
+     "popMeanFrac": 0.0003267609126984127
+    },
+    {
+     "scenario": "meet-window-walk",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      2.946741654152409,
+      1.164834636558006
+     ],
+     "room": "L1-MEET",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000002170138888888889,
+     "oscP95Frac": 0.000008680555555555556,
+     "oscMaxFrac": 0.00001736111111111111,
+     "hotPixels": 16,
+     "hotFrac": 0.00006944444444444444,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "l1-walk-zoomout",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      18.89481204853106,
+      9.66578124547361
+     ],
+     "room": "L1-CORR",
+     "frames": 88,
+     "duplicateFrames": 6,
+     "triplets": 60,
+     "oscMeanFrac": 0.00005620659722222221,
+     "oscP95Frac": 0.00012152777777777777,
+     "oscMaxFrac": 0.00014322916666666667,
+     "hotPixels": 189,
+     "hotFrac": 0.0008203125,
+     "popMeanFrac": 0.00003883703102453102
+    },
+    {
+     "scenario": "stair-core-walk",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      13.375016782397694,
+      13.389784468758387
+     ],
+     "room": "L1-IMPL",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.00001577871817129629,
+     "oscP95Frac": 0.00005642361111111111,
+     "oscMaxFrac": 0.0001171875,
+     "hotPixels": 102,
+     "hotFrac": 0.0004427083333333333,
+     "popMeanFrac": 0.000012865823412698414
+    },
+    {
+     "scenario": "stair-core-rotate",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      13.547268589301034,
+      9.449175566658122
+     ],
+     "room": "L1-CORR",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.0001924189814814815,
+     "oscP95Frac": 0.0003862847222222222,
+     "oscMaxFrac": 0.0010763888888888889,
+     "hotPixels": 685,
+     "hotFrac": 0.0029730902777777776,
+     "popMeanFrac": 0.000220672123015873
+    },
+    {
+     "scenario": "ncorr-doors-walk",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      21.030363233242667,
+      18.16363935482072
+     ],
+     "room": "L1-NCORR",
+     "frames": 160,
+     "duplicateFrames": 1,
+     "triplets": 119,
+     "oscMeanFrac": 0.000015282154528478057,
+     "oscP95Frac": 0.00005642361111111111,
+     "oscMaxFrac": 0.00008680555555555556,
+     "hotPixels": 76,
+     "hotFrac": 0.0003298611111111111,
+     "popMeanFrac": 0.00002201140873015873
+    },
+    {
+     "scenario": "server-walk",
+     "profile": "desktop",
+     "quality": "high",
+     "endPos": [
+      26.355672606743923,
+      20.004388696907093
+     ],
+     "room": "L1-SERVER",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000010805483217592592,
+     "oscP95Frac": 0.00005208333333333334,
+     "oscMaxFrac": 0.0001388888888888889,
+     "hotPixels": 73,
+     "hotFrac": 0.00031684027777777776,
+     "popMeanFrac": 0.000005657862103174603
+    }
+   ]
+  },
+  {
+   "profile": "desktop",
+   "quality": "low",
+   "viewport": [
+    1280,
+    720
+   ],
+   "dpr": 1,
+   "analysisScale": 0.5,
+   "info": {
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "render": {
+     "lowQuality": true,
+     "shadows": false,
+     "theme": "light"
+    },
+    "stats": {
+     "drawCalls": 52,
+     "triangles": 176268,
+     "geometries": 55,
+     "textures": 26,
+     "floorTriangles": {
+      "L1": 122846,
+      "L2": 100080
+     },
+     "furnitureKit": {
+      "loaded": 54,
+      "failed": []
+     },
+     "npcLod": {
+      "lod0": 0,
+      "lod1": 8
+     }
+    }
+   },
+   "errors": [],
+   "results": [
+    {
+     "scenario": "lobby-walk-west-east",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      14.049868511802,
+      1.6213576553769784
+     ],
+     "room": "L1-LOBBY",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000001898871527777778,
+     "oscP95Frac": 0.000008680555555555556,
+     "oscMaxFrac": 0.000013020833333333334,
+     "hotPixels": 9,
+     "hotFrac": 0.0000390625,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "lobby-window-still",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      10.872208378488235,
+      1.1381712155905466
+     ],
+     "room": "L1-LOBBY",
+     "frames": 48,
+     "duplicateFrames": 22,
+     "triplets": 14,
+     "oscMeanFrac": 0,
+     "oscP95Frac": 0,
+     "oscMaxFrac": 0,
+     "hotPixels": 0,
+     "hotFrac": 0,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "lobby-window-rotate",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      10.872208378488235,
+      1.1381712155905466
+     ],
+     "room": "L1-LOBBY",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.000021918402777777774,
+     "oscP95Frac": 0.00007378472222222222,
+     "oscMaxFrac": 0.0001953125,
+     "hotPixels": 61,
+     "hotFrac": 0.00026475694444444447,
+     "popMeanFrac": 0.00003075396825396825
+    },
+    {
+     "scenario": "lobby-walk-north",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      16.399970036841385,
+      2.5647188593889285
+     ],
+     "room": "L1-LOBBY",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.00002549913194444445,
+     "oscP95Frac": 0.00011284722222222222,
+     "oscMaxFrac": 0.00015190972222222222,
+     "hotPixels": 146,
+     "hotFrac": 0.0006336805555555555,
+     "popMeanFrac": 0.00003104073660714286
+    },
+    {
+     "scenario": "corridor-rotate",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      14.086318650047936,
+      9.356413975208515
+     ],
+     "room": "L1-CORR",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.0003195891203703704,
+     "oscP95Frac": 0.0008854166666666666,
+     "oscMaxFrac": 0.0010243055555555556,
+     "hotPixels": 1260,
+     "hotFrac": 0.00546875,
+     "popMeanFrac": 0.00037177579365079365
+    },
+    {
+     "scenario": "meet-window-walk",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      3.1522163428150045,
+      1.1643566794494264
+     ],
+     "room": "L1-MEET",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000003029152199074074,
+     "oscP95Frac": 0.000013020833333333334,
+     "oscMaxFrac": 0.00002170138888888889,
+     "hotPixels": 16,
+     "hotFrac": 0.00006944444444444444,
+     "popMeanFrac": 0
+    },
+    {
+     "scenario": "l1-walk-zoomout",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      18.73348865459407,
+      9.249963418618565
+     ],
+     "room": "L1-CORR",
+     "frames": 88,
+     "duplicateFrames": 0,
+     "triplets": 66,
+     "oscMeanFrac": 0.00006714278198653198,
+     "oscP95Frac": 0.00016493055555555556,
+     "oscMaxFrac": 0.000234375,
+     "hotPixels": 277,
+     "hotFrac": 0.0012022569444444444,
+     "popMeanFrac": 0.00005726911976911977
+    },
+    {
+     "scenario": "stair-core-walk",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      13.374723322825782,
+      13.386230147355969
+     ],
+     "room": "L1-IMPL",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000025815610532407395,
+     "oscP95Frac": 0.00010850694444444444,
+     "oscMaxFrac": 0.00018663194444444445,
+     "hotPixels": 161,
+     "hotFrac": 0.0006987847222222222,
+     "popMeanFrac": 0.000022670200892857144
+    },
+    {
+     "scenario": "stair-core-rotate",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      13.572546439078424,
+      9.450120970845143
+     ],
+     "room": "L1-CORR",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.0002277922453703704,
+     "oscP95Frac": 0.0007118055555555556,
+     "oscMaxFrac": 0.0009548611111111111,
+     "hotPixels": 838,
+     "hotFrac": 0.0036371527777777778,
+     "popMeanFrac": 0.00029557291666666664
+    },
+    {
+     "scenario": "ncorr-doors-walk",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      20.808008265396154,
+      18.199858711935132
+     ],
+     "room": "L1-NCORR",
+     "frames": 160,
+     "duplicateFrames": 1,
+     "triplets": 119,
+     "oscMeanFrac": 0.000027682948179271705,
+     "oscP95Frac": 0.0001171875,
+     "oscMaxFrac": 0.0001996527777777778,
+     "hotPixels": 160,
+     "hotFrac": 0.0006944444444444445,
+     "popMeanFrac": 0.000039217509920634926
+    },
+    {
+     "scenario": "server-walk",
+     "profile": "desktop",
+     "quality": "low",
+     "endPos": [
+      26.533550242015217,
+      19.90278565207021
+     ],
+     "room": "L1-SERVER",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000009946469907407407,
+     "oscP95Frac": 0.00004774305555555556,
+     "oscMaxFrac": 0.00008246527777777778,
+     "hotPixels": 34,
+     "hotFrac": 0.00014756944444444445,
+     "popMeanFrac": 0.0000053090897817460325
+    }
+   ]
+  },
+  {
+   "profile": "phone",
+   "quality": "auto",
+   "viewport": [
+    464,
+    848
+   ],
+   "dpr": 3,
+   "analysisScale": 1,
+   "info": {
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "render": {
+     "lowQuality": true,
+     "shadows": false,
+     "theme": "light"
+    },
+    "stats": {
+     "drawCalls": 47,
+     "triangles": 176326,
+     "geometries": 53,
+     "textures": 21,
+     "floorTriangles": {
+      "L1": 122846,
+      "L2": 100080
+     },
+     "furnitureKit": {
+      "loaded": 54,
+      "failed": []
+     },
+     "npcLod": {
+      "lod0": 0,
+      "lod1": 8
+     }
+    }
+   },
+   "errors": [],
+   "results": [
+    {
+     "scenario": "lobby-walk-west-east",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      14.054627079323659,
+      1.674998261402242
+     ],
+     "room": "L1-LOBBY",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000022132028030795927,
+     "oscP95Frac": 0.00006607839947950553,
+     "oscMaxFrac": 0.00007878578399479505,
+     "hotPixels": 128,
+     "hotFrac": 0.00032530904359141186,
+     "popMeanFrac": 0.0000109374273863742
+    },
+    {
+     "scenario": "lobby-window-still",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      10.919730783415403,
+      1.1448814187099137
+     ],
+     "room": "L1-LOBBY",
+     "frames": 48,
+     "duplicateFrames": 4,
+     "triplets": 32,
+     "oscMeanFrac": 0.0000028591615159401434,
+     "oscP95Frac": 0.00001016590761223162,
+     "oscMaxFrac": 0.000012707384515289525,
+     "hotPixels": 4,
+     "hotFrac": 0.00001016590761223162,
+     "popMeanFrac": 8.471589676859683e-7
+    },
+    {
+     "scenario": "lobby-window-rotate",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      10.919730783415403,
+      1.1448814187099137
+     ],
+     "room": "L1-LOBBY",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.00008001416449793972,
+     "oscP95Frac": 0.00016773747560182173,
+     "oscMaxFrac": 0.0001982351984385166,
+     "hotPixels": 343,
+     "hotFrac": 0.0008717265777488614,
+     "popMeanFrac": 0.00022847877358490566
+    },
+    {
+     "scenario": "lobby-walk-north",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      16.34451181911035,
+      2.4888903497343473
+     ],
+     "room": "L1-LOBBY",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000013475122329754935,
+     "oscP95Frac": 0.00003049772283669486,
+     "oscMaxFrac": 0.00007624430709173715,
+     "hotPixels": 63,
+     "hotFrac": 0.000160113044892648,
+     "popMeanFrac": 0.000003539914257830653
+    },
+    {
+     "scenario": "corridor-rotate",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      13.991883015892961,
+      9.420868585258301
+     ],
+     "room": "L1-CORR",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.0003566539253957926,
+     "oscP95Frac": 0.0009505123617436564,
+     "oscMaxFrac": 0.0013037776512687053,
+     "hotPixels": 1947,
+     "hotFrac": 0.0049482555302537415,
+     "popMeanFrac": 0.0008236563574681662
+    },
+    {
+     "scenario": "meet-window-walk",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      3.026662672663846,
+      1.157006298106733
+     ],
+     "room": "L1-MEET",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.000023190976740403388,
+     "oscP95Frac": 0.00004828806115810019,
+     "oscMaxFrac": 0.00005591249186727391,
+     "hotPixels": 129,
+     "hotFrac": 0.00032785052049446976,
+     "popMeanFrac": 0.000011504721337949625
+    },
+    {
+     "scenario": "l1-walk-zoomout",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      18.753232836062885,
+      9.288148348466704
+     ],
+     "room": "L1-CORR",
+     "frames": 88,
+     "duplicateFrames": 5,
+     "triplets": 61,
+     "oscMeanFrac": 0.00010511715125270648,
+     "oscP95Frac": 0.00021602553675992192,
+     "oscMaxFrac": 0.00024398178269355888,
+     "hotPixels": 488,
+     "hotFrac": 0.0012402407286922577,
+     "popMeanFrac": 0.0001061149122510541
+    },
+    {
+     "scenario": "stair-core-walk",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      13.404282779966227,
+      13.384590597037183
+     ],
+     "room": "L1-IMPL",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.00009236680119551072,
+     "oscP95Frac": 0.0002871868900455433,
+     "oscMaxFrac": 0.00032530904359141186,
+     "hotPixels": 987,
+     "hotFrac": 0.002508437703318152,
+     "popMeanFrac": 0.00010676472168649503
+    },
+    {
+     "scenario": "stair-core-rotate",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      13.270728742814448,
+      9.454890916384684
+     ],
+     "room": "L1-CORR",
+     "frames": 80,
+     "duplicateFrames": 0,
+     "triplets": 60,
+     "oscMeanFrac": 0.0005176988451528953,
+     "oscP95Frac": 0.001042005530253741,
+     "oscMaxFrac": 0.0010674202992843201,
+     "hotPixels": 2810,
+     "hotFrac": 0.007141550097592713,
+     "popMeanFrac": 0.000973313040245376
+    },
+    {
+     "scenario": "ncorr-doors-walk",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      20.948442739582664,
+      18.199934014206548
+     ],
+     "room": "L1-NCORR",
+     "frames": 160,
+     "duplicateFrames": 1,
+     "triplets": 119,
+     "oscMeanFrac": 0.00003899778844524149,
+     "oscP95Frac": 0.00012199089134677944,
+     "oscMaxFrac": 0.00024398178269355888,
+     "hotPixels": 294,
+     "hotFrac": 0.0007471942094990241,
+     "popMeanFrac": 0.00005614848615112929
+    },
+    {
+     "scenario": "server-walk",
+     "profile": "phone",
+     "quality": "auto",
+     "endPos": [
+      26.410868318250362,
+      19.936177776433727
+     ],
+     "room": "L1-SERVER",
+     "frames": 128,
+     "duplicateFrames": 0,
+     "triplets": 96,
+     "oscMeanFrac": 0.00004484647785187594,
+     "oscP95Frac": 0.00011436646063760572,
+     "oscMaxFrac": 0.00018044486011711125,
+     "hotPixels": 272,
+     "hotFrac": 0.0006912817176317501,
+     "popMeanFrac": 0.00004347740844874059
+    }
+   ]
+  }
+ ]
+}

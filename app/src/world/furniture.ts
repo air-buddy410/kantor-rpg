@@ -7,7 +7,7 @@ import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeom
 import { ARTWORK, ENV } from './palette';
 import type { Fixture } from './types';
 
-export interface Part { geo: THREE.BufferGeometry; color: number; emissive?: boolean; glass?: boolean }
+export interface Part { geo: THREE.BufferGeometry; color: number; emissive?: boolean; glass?: boolean; offsetSteps?: number }
 
 const P: Part[] = [];
 
@@ -89,11 +89,12 @@ function panel(w: number, h: number, d: number, y: number, frame: number, face: 
   if (artwork && ARTWORK[artwork]) {
     const [a, b, c] = ARTWORK[artwork];
     // Simple original geometric composition: hill, sun disc and a stripe.
-    box(w * 0.88, h * 0.3, 0.012, 0, y + h * 0.08, d / 2 + 0.008, a, 0);
+    // Overlays are 4 mm narrower than the face so their sides never share its plane.
+    box(w * 0.88 - 0.004, h * 0.3, 0.012, 0, y + h * 0.08, d / 2 + 0.008, a, 0);
     const disc = new THREE.CircleGeometry(Math.min(w, h) * 0.16, 20);
     disc.translate(w * 0.18, y + h * 0.62, d / 2 + 0.012);
     push(disc, c);
-    box(w * 0.5, h * 0.05, 0.012, -w * 0.12, y + h * 0.45, d / 2 + 0.01, b, 0);
+    box(w * 0.5, h * 0.05, 0.014, -w * 0.12, y + h * 0.45, d / 2 + 0.01, b, 0);
   }
 }
 
@@ -169,7 +170,8 @@ export function buildFixture(fx: Fixture): Part[] {
       box(0.08, h - 0.07, d * 0.8, w / 2 - 0.15, 0, 0, ENV.woodDark, 0.02);
       break;
     case 'bookshelf': case 'model_shelf': case 'storage_shelf':
-      box(w, h, 0.04, 0, 0, -d / 2 + 0.02, ENV.woodDark, 0.01);
+      // Back panel sits between the sides (not under them): no shared side/top planes.
+      box(w - 0.082, h - 0.002, 0.04, 0, 0, -d / 2 + 0.02, ENV.woodDark, 0.01);
       box(0.04, h, d, -w / 2 + 0.02, 0, 0, ENV.wood, 0.01);
       box(0.04, h, d, w / 2 - 0.02, 0, 0, ENV.wood, 0.01);
       for (let r = 0; r <= 4; r++) box(w - 0.06, 0.03, d - 0.04, 0, (r * (h - 0.03)) / 4, 0, ENV.wood, 0.01);
@@ -266,7 +268,7 @@ export function buildFixture(fx: Fixture): Part[] {
       box(w * 0.8, 0.45, 0.02, 0, h * 0.58, d / 2 + 0.005, ENV.screenGlow, 0.01, { emissive: true });
       box(w * 0.9, 0.08, 0.25, 0, h * 0.48, d / 2, ENV.screen, 0.02);
       blob(0.03, -0.12, h * 0.53, d / 2 + 0.06, ENV.accent, 1, 1, 1, 1);
-      box(w, 0.14, d, 0, h - 0.14, 0, ENV.fabricMustard, 0.03);
+      box(w + 0.006, 0.143, d + 0.006, 0, h - 0.14, 0, ENV.fabricMustard, 0.03);
       break;
     case 'treadmill':
       box(w * 0.8, 0.18, d, 0, 0, 0, ENV.rubber, 0.04);
@@ -306,7 +308,7 @@ export function buildFixture(fx: Fixture): Part[] {
     case 'lift':
       box(w, h, d, 0, 0, 0, ENV.wallExterior, 0.04);
       box(w * 0.55, 2.1, 0.03, 0, 0, d / 2 + 0.01, ENV.metalLight, 0.01);
-      box(0.012, 2.1, 0.035, 0, 0, d / 2 + 0.012, ENV.metal, 0);
+      box(0.012, 2.096, 0.035, 0, 0.002, d / 2 + 0.012, ENV.metal, 0); // seam inside the door's top plane
       box(0.08, 0.14, 0.03, w * 0.38, 1.0, d / 2 + 0.01, ENV.accent, 0.01, { emissive: true });
       break;
     default:

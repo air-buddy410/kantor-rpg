@@ -19,7 +19,7 @@
    "LWPOLYLINE": 6
   },
   "ICT-ROUT": {
-   "LWPOLYLINE": 89
+   "LWPOLYLINE": 91
   },
   "ICT-RISR": {
    "HATCH": 2,
@@ -31,7 +31,7 @@
    "LWPOLYLINE": 2
   },
   "ICT-OUTL": {
-   "HATCH": 45
+   "HATCH": 46
   }
  },
  "paperspace": {
@@ -69,7 +69,7 @@
   }
  },
  "totals": {
-  "modelspace": 880,
+  "modelspace": 883,
   "paperspace": 77
  },
  "layers": [

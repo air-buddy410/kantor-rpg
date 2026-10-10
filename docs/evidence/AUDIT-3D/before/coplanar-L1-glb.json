@@ -1,0 +1,997 @@
+{
+ "floor": "L1",
+ "mode": "glb",
+ "gapM": 0.001,
+ "minAreaM2": 0.0001,
+ "triangles": 122822,
+ "meshes": 47,
+ "hits": 58,
+ "list": [
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -14.2,
+   "gapM": 0,
+   "areaM2": 3.19997,
+   "at": [
+    14.2,
+    0.06,
+    -12
+   ]
+  },
+  {
+   "a": "floor-L1#e2d3b6",
+   "b": "floor-L1#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 1.1325,
+   "at": [
+    7.52,
+    0,
+    0.05
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#c98a62",
+   "normal": [
+    0,
+    1,
+    0
+   ],
+   "planeD": 0.32,
+   "gapM": 0,
+   "areaM2": 0.88475,
+   "at": [
+    0.66,
+    0.32,
+    -0.5
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 16.8,
+   "gapM": 0,
+   "areaM2": 0.63996,
+   "at": [
+    16.8,
+    2.03,
+    -15
+   ]
+  },
+  {
+   "a": "fixtures-L1#1f2a2b",
+   "b": "fixtures-L1#5d625f",
+   "normal": [
+    0,
+    1,
+    0
+   ],
+   "planeD": 2,
+   "gapM": 0,
+   "areaM2": 0.25019,
+   "at": [
+    26.25,
+    2,
+    -22.53
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 0.19186,
+   "at": [
+    14.62,
+    0,
+    -12.09
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 0.17524,
+   "at": [
+    13.51,
+    0,
+    -4.62
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#c0643f",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -4.565,
+   "gapM": 0,
+   "areaM2": 0.13447,
+   "at": [
+    14.49,
+    0.37,
+    -4.57
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#eadfc8",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -4.565,
+   "gapM": 0,
+   "areaM2": 0.12588,
+   "at": [
+    14.49,
+    0.37,
+    -4.57
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#a7aca6",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -31.115,
+   "gapM": 0,
+   "areaM2": 0.12352,
+   "at": [
+    31.11,
+    0.67,
+    -11.83
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 15.1,
+   "gapM": 0,
+   "areaM2": 0.12191,
+   "at": [
+    14.62,
+    0.61,
+    -15.1
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#a7aca6",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -12.865,
+   "gapM": 0,
+   "areaM2": 0.06176,
+   "at": [
+    29.07,
+    0.67,
+    -12.86
+   ]
+  },
+  {
+   "a": "fixtures-L1#4f7a5f",
+   "b": "fixtures-L1#a7aca6",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -0.75,
+   "gapM": 0,
+   "areaM2": 0.032,
+   "at": [
+    3.3,
+    0.75,
+    -22.18
+   ]
+  },
+  {
+   "a": "fixtures-L1#b88a5d",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -11.9,
+   "gapM": 0,
+   "areaM2": 0.02198,
+   "at": [
+    15.03,
+    0.06,
+    -11.9
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -11.9,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.06,
+    -11.9
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -12.1909,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.11,
+    -12.19
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -12.4818,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.17,
+    -12.48
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -12.7727,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.22,
+    -12.77
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -13.0636,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.28,
+    -13.06
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -13.3545,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.33,
+    -13.35
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -13.9364,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.44,
+    -13.94
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -14.2273,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.5,
+    -14.23
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -14.8091,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.03,
+    0.61,
+    -14.81
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 14.8091,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    2.2,
+    -14.81
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 14.5182,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    2.37,
+    -14.52
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 13.9364,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    2.7,
+    -13.94
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 13.6455,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    2.87,
+    -13.65
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 13.0636,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    3.2,
+    -13.06
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 12.7727,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    3.37,
+    -12.77
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 12.1909,
+   "gapM": 0,
+   "areaM2": 0.01502,
+   "at": [
+    15.97,
+    3.7,
+    -12.19
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -13.6455,
+   "gapM": 0,
+   "areaM2": 0.01494,
+   "at": [
+    15.03,
+    0.39,
+    -13.65
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -14.5182,
+   "gapM": 0,
+   "areaM2": 0.01494,
+   "at": [
+    15.03,
+    0.56,
+    -14.52
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 15.1,
+   "gapM": 0,
+   "areaM2": 0.01494,
+   "at": [
+    15.97,
+    2.03,
+    -15.1
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 14.2273,
+   "gapM": 0,
+   "areaM2": 0.01494,
+   "at": [
+    15.97,
+    2.53,
+    -14.23
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 13.3545,
+   "gapM": 0,
+   "areaM2": 0.01494,
+   "at": [
+    15.97,
+    3.03,
+    -13.35
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 12.4818,
+   "gapM": 0,
+   "areaM2": 0.01494,
+   "at": [
+    15.97,
+    3.53,
+    -12.48
+   ]
+  },
+  {
+   "a": "fixtures-L1#a7aca6",
+   "b": "fixtures-L1#e2d3b6",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": 0,
+   "gapM": 0,
+   "areaM2": 0.01198,
+   "at": [
+    18.61,
+    0,
+    -15.62
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 16.8,
+   "gapM": 0,
+   "areaM2": 0.00811,
+   "at": [
+    16.8,
+    2.16,
+    -15.09
+   ]
+  },
+  {
+   "a": "fixtures-L1#a7aca6",
+   "b": "fixtures-L1#f7f3ea",
+   "normal": [
+    0,
+    1,
+    0
+   ],
+   "planeD": 0.8,
+   "gapM": 0,
+   "areaM2": 0.00754,
+   "at": [
+    31.71,
+    0.8,
+    -2.21
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -14.2,
+   "gapM": 0,
+   "areaM2": 0.00704,
+   "at": [
+    14.2,
+    0.16,
+    -11.91
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 15.45,
+   "gapM": 0,
+   "areaM2": 0.00528,
+   "at": [
+    15.45,
+    0.11,
+    -12
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -14.2,
+   "gapM": 0,
+   "areaM2": 0.00528,
+   "at": [
+    14.2,
+    0.06,
+    -12
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 16.8,
+   "gapM": 0,
+   "areaM2": 0.00528,
+   "at": [
+    16.8,
+    2.03,
+    -15
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -15.55,
+   "gapM": 0,
+   "areaM2": 0.00528,
+   "at": [
+    15.55,
+    2.1,
+    -15
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    0,
+    1,
+    0
+   ],
+   "planeD": 2,
+   "gapM": 0,
+   "areaM2": 0.00387,
+   "at": [
+    30.2,
+    2,
+    -23.68
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 23.85,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    30.2,
+    0.1,
+    -23.85
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -29.6,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    29.6,
+    0.1,
+    -23.52
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -23.35,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    30.8,
+    0.1,
+    -23.35
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 31.4,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    31.4,
+    0.1,
+    -23.68
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 31.85,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    31.85,
+    0.1,
+    -21.7
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 22.3,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    31.52,
+    0.1,
+    -22.3
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -31.35,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    31.35,
+    0.1,
+    -21.1
+   ]
+  },
+  {
+   "a": "fixtures-L1#5d625f",
+   "b": "fixtures-L1#d8b98f",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -20.5,
+   "gapM": 0,
+   "areaM2": 0.0033,
+   "at": [
+    31.68,
+    0.1,
+    -20.5
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    0,
+    0,
+    1
+   ],
+   "planeD": -11.9,
+   "gapM": 0,
+   "areaM2": 0.00276,
+   "at": [
+    15.03,
+    0.16,
+    -11.9
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    -1,
+    0,
+    0
+   ],
+   "planeD": -12.5,
+   "gapM": 0,
+   "areaM2": 0.0012,
+   "at": [
+    12.5,
+    0.37,
+    -4.62
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#b88a5d",
+   "normal": [
+    1,
+    0,
+    0
+   ],
+   "planeD": 15.5,
+   "gapM": 0,
+   "areaM2": 0.0012,
+   "at": [
+    15.5,
+    0.37,
+    -4.64
+   ]
+  },
+  {
+   "a": "fixtures-L1#7d5a3c",
+   "b": "fixtures-L1#f1e7d3",
+   "normal": [
+    0,
+    0,
+    -1
+   ],
+   "planeD": 15.1,
+   "gapM": 0,
+   "areaM2": 0.00096,
+   "at": [
+    15.97,
+    2.16,
+    -15.1
+   ]
+  },
+  {
+   "a": "fixtures-L1#c0643f",
+   "b": "fixtures-L1#f4eedf",
+   "normal": [
+    0,
+    0.157,
+    0.988
+   ],
+   "planeD": -19.5117,
+   "gapM": 0.00012,
+   "areaM2": 0.00014,
+   "at": [
+    19.46,
+    1.27,
+    -19.95
+   ]
+  }
+ ]
+}

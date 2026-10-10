@@ -7,9 +7,9 @@
  ],
  "cables": [
   {
-   "cable": "C-TO-L1-023-A",
-   "outletPort": "TO-L1-023-A",
-   "outlet": "TO-L1-023",
+   "cable": "C-TO-L1-024-A",
+   "outletPort": "TO-L1-024-A",
+   "outlet": "TO-L1-024",
    "floor": "L1",
    "room": "L1-LOBBY",
    "serves": "AP-L1-01",
@@ -73,6 +73,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -113,13 +118,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-01 > TO-L1-023-A",
-   "labelOutletEnd": "TO-L1-023-A > PP-01-01"
+   "labelRackEnd": "PP-01-01 > TO-L1-024-A",
+   "labelOutletEnd": "TO-L1-024-A > PP-01-01"
   },
   {
-   "cable": "C-TO-L1-024-A",
-   "outletPort": "TO-L1-024-A",
-   "outlet": "TO-L1-024",
+   "cable": "C-TO-L1-025-A",
+   "outletPort": "TO-L1-025-A",
+   "outlet": "TO-L1-025",
    "floor": "L1",
    "room": "L1-IMPL",
    "serves": "AP-L1-02",
@@ -183,6 +188,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -223,13 +233,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-02 > TO-L1-024-A",
-   "labelOutletEnd": "TO-L1-024-A > PP-01-02"
+   "labelRackEnd": "PP-01-02 > TO-L1-025-A",
+   "labelOutletEnd": "TO-L1-025-A > PP-01-02"
   },
   {
-   "cable": "C-TO-L1-025-A",
-   "outletPort": "TO-L1-025-A",
-   "outlet": "TO-L1-025",
+   "cable": "C-TO-L1-026-A",
+   "outletPort": "TO-L1-026-A",
+   "outlet": "TO-L1-026",
    "floor": "L1",
    "room": "L1-CORR",
    "serves": "AP-L1-03",
@@ -293,6 +303,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -333,13 +348,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-03 > TO-L1-025-A",
-   "labelOutletEnd": "TO-L1-025-A > PP-01-03"
+   "labelRackEnd": "PP-01-03 > TO-L1-026-A",
+   "labelOutletEnd": "TO-L1-026-A > PP-01-03"
   },
   {
-   "cable": "C-TO-L1-026-A",
-   "outletPort": "TO-L1-026-A",
-   "outlet": "TO-L1-026",
+   "cable": "C-TO-L1-027-A",
+   "outletPort": "TO-L1-027-A",
+   "outlet": "TO-L1-027",
    "floor": "L1",
    "room": "L1-NCORR",
    "serves": "AP-L1-04",
@@ -403,6 +418,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -453,13 +473,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-04 > TO-L1-026-A",
-   "labelOutletEnd": "TO-L1-026-A > PP-01-04"
+   "labelRackEnd": "PP-01-04 > TO-L1-027-A",
+   "labelOutletEnd": "TO-L1-027-A > PP-01-04"
   },
   {
-   "cable": "C-TO-L1-027-A",
-   "outletPort": "TO-L1-027-A",
-   "outlet": "TO-L1-027",
+   "cable": "C-TO-L1-028-A",
+   "outletPort": "TO-L1-028-A",
+   "outlet": "TO-L1-028",
    "floor": "L1",
    "room": "L1-NCORR",
    "serves": "AP-L1-05",
@@ -523,13 +543,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-05 > TO-L1-027-A",
-   "labelOutletEnd": "TO-L1-027-A > PP-01-05"
+   "labelRackEnd": "PP-01-05 > TO-L1-028-A",
+   "labelOutletEnd": "TO-L1-028-A > PP-01-05"
   },
   {
-   "cable": "C-TO-L1-028-A",
-   "outletPort": "TO-L1-028-A",
-   "outlet": "TO-L1-028",
+   "cable": "C-TO-L1-029-A",
+   "outletPort": "TO-L1-029-A",
+   "outlet": "TO-L1-029",
    "floor": "L1",
    "room": "L1-LOBBY",
    "serves": "CAM-L1-01",
@@ -593,6 +613,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -633,13 +658,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-06 > TO-L1-028-A",
-   "labelOutletEnd": "TO-L1-028-A > PP-01-06"
+   "labelRackEnd": "PP-01-06 > TO-L1-029-A",
+   "labelOutletEnd": "TO-L1-029-A > PP-01-06"
   },
   {
-   "cable": "C-TO-L1-029-A",
-   "outletPort": "TO-L1-029-A",
-   "outlet": "TO-L1-029",
+   "cable": "C-TO-L1-030-A",
+   "outletPort": "TO-L1-030-A",
+   "outlet": "TO-L1-030",
    "floor": "L1",
    "room": "L1-CORR",
    "serves": "CAM-L1-02",
@@ -703,6 +728,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -743,13 +773,13 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-07 > TO-L1-029-A",
-   "labelOutletEnd": "TO-L1-029-A > PP-01-07"
+   "labelRackEnd": "PP-01-07 > TO-L1-030-A",
+   "labelOutletEnd": "TO-L1-030-A > PP-01-07"
   },
   {
-   "cable": "C-TO-L1-030-A",
-   "outletPort": "TO-L1-030-A",
-   "outlet": "TO-L1-030",
+   "cable": "C-TO-L1-031-A",
+   "outletPort": "TO-L1-031-A",
+   "outlet": "TO-L1-031",
    "floor": "L1",
    "room": "L1-BRUNO",
    "serves": "CAM-L1-03",
@@ -803,8 +833,8 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-01-08 > TO-L1-030-A",
-   "labelOutletEnd": "TO-L1-030-A > PP-01-08"
+   "labelRackEnd": "PP-01-08 > TO-L1-031-A",
+   "labelOutletEnd": "TO-L1-031-A > PP-01-08"
   },
   {
    "cable": "C-TO-L2-008-A",
@@ -1663,6 +1693,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -1769,6 +1804,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -1883,6 +1923,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -1989,6 +2034,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -2103,6 +2153,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -2213,6 +2268,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -2319,6 +2379,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -2453,6 +2518,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -2528,8 +2598,8 @@
    "rack": "RK-L1-01",
    "patchPanel": "PP-02",
    "ppPort": 1,
-   "switch": "SW-ACC-02",
-   "switchPort": 1,
+   "switch": "SW-ACC-01",
+   "switchPort": 25,
    "poeClass": null,
    "length_m": 31.9,
    "horizontal_m": 24.47,
@@ -2579,6 +2649,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -2659,7 +2734,7 @@
    "patchPanel": "PP-02",
    "ppPort": 2,
    "switch": "SW-ACC-02",
-   "switchPort": 2,
+   "switchPort": 1,
    "poeClass": null,
    "length_m": 31.9,
    "horizontal_m": 24.47,
@@ -2709,6 +2784,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -2789,7 +2869,7 @@
    "patchPanel": "PP-02",
    "ppPort": 3,
    "switch": "SW-ACC-02",
-   "switchPort": 3,
+   "switchPort": 2,
    "poeClass": null,
    "length_m": 33.1,
    "horizontal_m": 25.62,
@@ -2839,6 +2919,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -2904,7 +2989,7 @@
    "patchPanel": "PP-02",
    "ppPort": 4,
    "switch": "SW-ACC-02",
-   "switchPort": 4,
+   "switchPort": 3,
    "poeClass": null,
    "length_m": 33.1,
    "horizontal_m": 25.62,
@@ -2954,6 +3039,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -3019,7 +3109,7 @@
    "patchPanel": "PP-02",
    "ppPort": 5,
    "switch": "SW-ACC-02",
-   "switchPort": 5,
+   "switchPort": 4,
    "poeClass": null,
    "length_m": 30.3,
    "horizontal_m": 22.87,
@@ -3069,6 +3159,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -3134,7 +3229,7 @@
    "patchPanel": "PP-02",
    "ppPort": 6,
    "switch": "SW-ACC-02",
-   "switchPort": 6,
+   "switchPort": 5,
    "poeClass": null,
    "length_m": 30.3,
    "horizontal_m": 22.87,
@@ -3184,6 +3279,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -3249,6 +3349,111 @@
    "patchPanel": "PP-02",
    "ppPort": 7,
    "switch": "SW-ACC-02",
+   "switchPort": 6,
+   "poeClass": null,
+   "length_m": 31.5,
+   "horizontal_m": 24.02,
+   "vertical_m": 4.1,
+   "slack_m": 3.3,
+   "tray": "TR-L1-N",
+   "route": [
+    [
+     26.7,
+     21.4,
+     "L1"
+    ],
+    [
+     27.0,
+     18.5,
+     "L1"
+    ],
+    [
+     27.0,
+     17.5,
+     "L1"
+    ],
+    [
+     26.6,
+     17.5,
+     "L1"
+    ],
+    [
+     24.5,
+     17.5,
+     "L1"
+    ],
+    [
+     24.4,
+     17.5,
+     "L1"
+    ],
+    [
+     23,
+     17.5,
+     "L1"
+    ],
+    [
+     22.4,
+     17.5,
+     "L1"
+    ],
+    [
+     21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
+     17.0,
+     17.5,
+     "L1"
+    ],
+    [
+     16.0,
+     17.5,
+     "L1"
+    ],
+    [
+     13.88,
+     17.5,
+     "L1"
+    ],
+    [
+     11.2,
+     17.5,
+     "L1"
+    ],
+    [
+     11.2,
+     13.2,
+     "L1"
+    ],
+    [
+     11.2,
+     13.2,
+     "L1"
+    ]
+   ],
+   "labelRackEnd": "PP-02-07 > TO-L1-009-A",
+   "labelOutletEnd": "TO-L1-009-A > PP-02-07"
+  },
+  {
+   "cable": "C-TO-L1-009-B",
+   "outletPort": "TO-L1-009-B",
+   "outlet": "TO-L1-009",
+   "floor": "L1",
+   "room": "L1-IMPL",
+   "serves": "FX-L1-061",
+   "endpoint": "phone_or_spare",
+   "domain": "NET-OFFICE",
+   "rack": "RK-L1-01",
+   "patchPanel": "PP-02",
+   "ppPort": 8,
+   "switch": "SW-ACC-02",
    "switchPort": 7,
    "poeClass": null,
    "length_m": 31.5,
@@ -3303,6 +3508,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -3333,26 +3543,26 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-02-07 > TO-L1-009-A",
-   "labelOutletEnd": "TO-L1-009-A > PP-02-07"
+   "labelRackEnd": "PP-02-08 > TO-L1-009-B",
+   "labelOutletEnd": "TO-L1-009-B > PP-02-08"
   },
   {
-   "cable": "C-TO-L1-009-B",
-   "outletPort": "TO-L1-009-B",
-   "outlet": "TO-L1-009",
+   "cable": "C-TO-L1-010-A",
+   "outletPort": "TO-L1-010-A",
+   "outlet": "TO-L1-010",
    "floor": "L1",
    "room": "L1-IMPL",
-   "serves": "FX-L1-061",
-   "endpoint": "phone_or_spare",
+   "serves": "FX-L1-063",
+   "endpoint": "workstation",
    "domain": "NET-OFFICE",
    "rack": "RK-L1-01",
    "patchPanel": "PP-02",
-   "ppPort": 8,
+   "ppPort": 9,
    "switch": "SW-ACC-02",
    "switchPort": 8,
    "poeClass": null,
-   "length_m": 31.5,
-   "horizontal_m": 24.02,
+   "length_m": 28.7,
+   "horizontal_m": 21.27,
    "vertical_m": 4.1,
    "slack_m": 3.3,
    "tray": "TR-L1-N",
@@ -3403,6 +3613,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -3424,30 +3639,30 @@
     ],
     [
      11.2,
-     13.2,
+     15.95,
      "L1"
     ],
     [
      11.2,
-     13.2,
+     15.95,
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-02-08 > TO-L1-009-B",
-   "labelOutletEnd": "TO-L1-009-B > PP-02-08"
+   "labelRackEnd": "PP-02-09 > TO-L1-010-A",
+   "labelOutletEnd": "TO-L1-010-A > PP-02-09"
   },
   {
-   "cable": "C-TO-L1-010-A",
-   "outletPort": "TO-L1-010-A",
+   "cable": "C-TO-L1-010-B",
+   "outletPort": "TO-L1-010-B",
    "outlet": "TO-L1-010",
    "floor": "L1",
    "room": "L1-IMPL",
    "serves": "FX-L1-063",
-   "endpoint": "workstation",
+   "endpoint": "phone_or_spare",
    "domain": "NET-OFFICE",
    "rack": "RK-L1-01",
    "patchPanel": "PP-02",
-   "ppPort": 9,
+   "ppPort": 10,
    "switch": "SW-ACC-02",
    "switchPort": 9,
    "poeClass": null,
@@ -3503,102 +3718,7 @@
      "L1"
     ],
     [
-     17.0,
-     17.5,
-     "L1"
-    ],
-    [
-     16.0,
-     17.5,
-     "L1"
-    ],
-    [
-     13.88,
-     17.5,
-     "L1"
-    ],
-    [
-     11.2,
-     17.5,
-     "L1"
-    ],
-    [
-     11.2,
-     15.95,
-     "L1"
-    ],
-    [
-     11.2,
-     15.95,
-     "L1"
-    ]
-   ],
-   "labelRackEnd": "PP-02-09 > TO-L1-010-A",
-   "labelOutletEnd": "TO-L1-010-A > PP-02-09"
-  },
-  {
-   "cable": "C-TO-L1-010-B",
-   "outletPort": "TO-L1-010-B",
-   "outlet": "TO-L1-010",
-   "floor": "L1",
-   "room": "L1-IMPL",
-   "serves": "FX-L1-063",
-   "endpoint": "phone_or_spare",
-   "domain": "NET-OFFICE",
-   "rack": "RK-L1-01",
-   "patchPanel": "PP-02",
-   "ppPort": 10,
-   "switch": "SW-ACC-02",
-   "switchPort": 10,
-   "poeClass": null,
-   "length_m": 28.7,
-   "horizontal_m": 21.27,
-   "vertical_m": 4.1,
-   "slack_m": 3.3,
-   "tray": "TR-L1-N",
-   "route": [
-    [
-     26.7,
-     21.4,
-     "L1"
-    ],
-    [
-     27.0,
-     18.5,
-     "L1"
-    ],
-    [
-     27.0,
-     17.5,
-     "L1"
-    ],
-    [
-     26.6,
-     17.5,
-     "L1"
-    ],
-    [
-     24.5,
-     17.5,
-     "L1"
-    ],
-    [
-     24.4,
-     17.5,
-     "L1"
-    ],
-    [
-     23,
-     17.5,
-     "L1"
-    ],
-    [
-     22.4,
-     17.5,
-     "L1"
-    ],
-    [
-     21.6,
+     18.4,
      17.5,
      "L1"
     ],
@@ -3649,7 +3769,7 @@
    "patchPanel": "PP-02",
    "ppPort": 11,
    "switch": "SW-ACC-02",
-   "switchPort": 11,
+   "switchPort": 10,
    "poeClass": null,
    "length_m": 27.5,
    "horizontal_m": 20.94,
@@ -3703,6 +3823,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -3744,7 +3869,7 @@
    "patchPanel": "PP-02",
    "ppPort": 12,
    "switch": "SW-ACC-02",
-   "switchPort": 12,
+   "switchPort": 11,
    "poeClass": null,
    "length_m": 18.3,
    "horizontal_m": 10.87,
@@ -3824,7 +3949,7 @@
    "patchPanel": "PP-02",
    "ppPort": 13,
    "switch": "SW-ACC-02",
-   "switchPort": 13,
+   "switchPort": 12,
    "poeClass": null,
    "length_m": 18.3,
    "horizontal_m": 10.87,
@@ -3904,7 +4029,7 @@
    "patchPanel": "PP-02",
    "ppPort": 14,
    "switch": "SW-ACC-02",
-   "switchPort": 14,
+   "switchPort": 13,
    "poeClass": null,
    "length_m": 15.5,
    "horizontal_m": 8.07,
@@ -3969,7 +4094,7 @@
    "patchPanel": "PP-02",
    "ppPort": 15,
    "switch": "SW-ACC-02",
-   "switchPort": 15,
+   "switchPort": 14,
    "poeClass": null,
    "length_m": 15.5,
    "horizontal_m": 8.07,
@@ -4034,7 +4159,7 @@
    "patchPanel": "PP-02",
    "ppPort": 16,
    "switch": "SW-ACC-02",
-   "switchPort": 16,
+   "switchPort": 15,
    "poeClass": null,
    "length_m": 20.8,
    "horizontal_m": 13.37,
@@ -4094,7 +4219,7 @@
    "patchPanel": "PP-02",
    "ppPort": 17,
    "switch": "SW-ACC-02",
-   "switchPort": 17,
+   "switchPort": 16,
    "poeClass": null,
    "length_m": 20.8,
    "horizontal_m": 13.37,
@@ -4154,7 +4279,7 @@
    "patchPanel": "PP-02",
    "ppPort": 18,
    "switch": "SW-ACC-02",
-   "switchPort": 18,
+   "switchPort": 17,
    "poeClass": null,
    "length_m": 20.8,
    "horizontal_m": 13.37,
@@ -4214,7 +4339,7 @@
    "patchPanel": "PP-02",
    "ppPort": 19,
    "switch": "SW-ACC-02",
-   "switchPort": 19,
+   "switchPort": 18,
    "poeClass": null,
    "length_m": 20.8,
    "horizontal_m": 13.37,
@@ -4274,7 +4399,7 @@
    "patchPanel": "PP-02",
    "ppPort": 20,
    "switch": "SW-ACC-02",
-   "switchPort": 20,
+   "switchPort": 19,
    "poeClass": null,
    "length_m": 18.7,
    "horizontal_m": 11.27,
@@ -4334,7 +4459,7 @@
    "patchPanel": "PP-02",
    "ppPort": 21,
    "switch": "SW-ACC-02",
-   "switchPort": 21,
+   "switchPort": 20,
    "poeClass": null,
    "length_m": 18.7,
    "horizontal_m": 11.27,
@@ -4394,7 +4519,7 @@
    "patchPanel": "PP-02",
    "ppPort": 22,
    "switch": "SW-ACC-02",
-   "switchPort": 22,
+   "switchPort": 21,
    "poeClass": null,
    "length_m": 18.7,
    "horizontal_m": 11.27,
@@ -4454,7 +4579,7 @@
    "patchPanel": "PP-02",
    "ppPort": 23,
    "switch": "SW-ACC-02",
-   "switchPort": 23,
+   "switchPort": 22,
    "poeClass": null,
    "length_m": 18.7,
    "horizontal_m": 11.27,
@@ -4514,7 +4639,7 @@
    "patchPanel": "PP-02",
    "ppPort": 24,
    "switch": "SW-ACC-02",
-   "switchPort": 24,
+   "switchPort": 23,
    "poeClass": null,
    "length_m": 17.1,
    "horizontal_m": 9.62,
@@ -4568,8 +4693,8 @@
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
    "ppPort": 1,
-   "switch": "SW-ACC-03",
-   "switchPort": 1,
+   "switch": "SW-ACC-02",
+   "switchPort": 24,
    "poeClass": null,
    "length_m": 17.1,
    "horizontal_m": 9.62,
@@ -4623,8 +4748,8 @@
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
    "ppPort": 2,
-   "switch": "SW-ACC-03",
-   "switchPort": 2,
+   "switch": "SW-ACC-02",
+   "switchPort": 25,
    "poeClass": null,
    "length_m": 17.1,
    "horizontal_m": 9.62,
@@ -4679,7 +4804,7 @@
    "patchPanel": "PP-03",
    "ppPort": 3,
    "switch": "SW-ACC-03",
-   "switchPort": 3,
+   "switchPort": 1,
    "poeClass": null,
    "length_m": 17.1,
    "horizontal_m": 9.62,
@@ -4734,7 +4859,7 @@
    "patchPanel": "PP-03",
    "ppPort": 4,
    "switch": "SW-ACC-03",
-   "switchPort": 4,
+   "switchPort": 2,
    "poeClass": null,
    "length_m": 13.4,
    "horizontal_m": 5.92,
@@ -4789,7 +4914,7 @@
    "patchPanel": "PP-03",
    "ppPort": 5,
    "switch": "SW-ACC-03",
-   "switchPort": 5,
+   "switchPort": 3,
    "poeClass": null,
    "length_m": 13.4,
    "horizontal_m": 5.92,
@@ -4844,7 +4969,7 @@
    "patchPanel": "PP-03",
    "ppPort": 6,
    "switch": "SW-ACC-03",
-   "switchPort": 6,
+   "switchPort": 4,
    "poeClass": null,
    "length_m": 39.6,
    "horizontal_m": 32.12,
@@ -4894,6 +5019,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -4979,7 +5109,7 @@
    "patchPanel": "PP-03",
    "ppPort": 7,
    "switch": "SW-ACC-03",
-   "switchPort": 7,
+   "switchPort": 5,
    "poeClass": null,
    "length_m": 39.6,
    "horizontal_m": 32.12,
@@ -5029,6 +5159,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -5114,7 +5249,7 @@
    "patchPanel": "PP-03",
    "ppPort": 8,
    "switch": "SW-ACC-03",
-   "switchPort": 8,
+   "switchPort": 6,
    "poeClass": null,
    "length_m": 35.7,
    "horizontal_m": 28.22,
@@ -5164,6 +5299,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -5239,7 +5379,7 @@
    "patchPanel": "PP-03",
    "ppPort": 9,
    "switch": "SW-ACC-03",
-   "switchPort": 9,
+   "switchPort": 7,
    "poeClass": null,
    "length_m": 35.7,
    "horizontal_m": 28.22,
@@ -5289,6 +5429,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -5364,7 +5509,7 @@
    "patchPanel": "PP-03",
    "ppPort": 10,
    "switch": "SW-ACC-03",
-   "switchPort": 10,
+   "switchPort": 8,
    "poeClass": null,
    "length_m": 33.9,
    "horizontal_m": 26.42,
@@ -5414,6 +5559,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -5469,7 +5619,7 @@
    "patchPanel": "PP-03",
    "ppPort": 11,
    "switch": "SW-ACC-03",
-   "switchPort": 11,
+   "switchPort": 9,
    "poeClass": null,
    "length_m": 33.9,
    "horizontal_m": 26.42,
@@ -5519,6 +5669,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -5574,7 +5729,7 @@
    "patchPanel": "PP-03",
    "ppPort": 12,
    "switch": "SW-ACC-03",
-   "switchPort": 12,
+   "switchPort": 10,
    "poeClass": null,
    "length_m": 28.3,
    "horizontal_m": 20.82,
@@ -5624,6 +5779,11 @@
     ],
     [
      21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
      17.5,
      "L1"
     ],
@@ -5664,7 +5824,7 @@
    "patchPanel": "PP-03",
    "ppPort": 13,
    "switch": "SW-ACC-03",
-   "switchPort": 13,
+   "switchPort": 11,
    "poeClass": null,
    "length_m": 28.3,
    "horizontal_m": 20.82,
@@ -5718,6 +5878,11 @@
      "L1"
     ],
     [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
      17.0,
      17.5,
      "L1"
@@ -5746,13 +5911,183 @@
    "outletPort": "TO-L1-022-A",
    "outlet": "TO-L1-022",
    "floor": "L1",
-   "room": "L1-BRUNO",
-   "serves": "FX-L1-101",
+   "room": "L1-KEVIN",
+   "serves": "FX-L1-098",
    "endpoint": "workstation",
    "domain": "NET-OFFICE",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
    "ppPort": 14,
+   "switch": "SW-ACC-03",
+   "switchPort": 12,
+   "poeClass": null,
+   "length_m": 25.9,
+   "horizontal_m": 18.42,
+   "vertical_m": 4.1,
+   "slack_m": 3.3,
+   "tray": "TR-L1-N",
+   "route": [
+    [
+     26.7,
+     21.4,
+     "L1"
+    ],
+    [
+     27.0,
+     18.5,
+     "L1"
+    ],
+    [
+     27.0,
+     17.5,
+     "L1"
+    ],
+    [
+     26.6,
+     17.5,
+     "L1"
+    ],
+    [
+     24.5,
+     17.5,
+     "L1"
+    ],
+    [
+     24.4,
+     17.5,
+     "L1"
+    ],
+    [
+     23,
+     17.5,
+     "L1"
+    ],
+    [
+     22.4,
+     17.5,
+     "L1"
+    ],
+    [
+     21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
+     23.4,
+     "L1"
+    ],
+    [
+     18.4,
+     23.4,
+     "L1"
+    ]
+   ],
+   "labelRackEnd": "PP-03-14 > TO-L1-022-A",
+   "labelOutletEnd": "TO-L1-022-A > PP-03-14"
+  },
+  {
+   "cable": "C-TO-L1-022-B",
+   "outletPort": "TO-L1-022-B",
+   "outlet": "TO-L1-022",
+   "floor": "L1",
+   "room": "L1-KEVIN",
+   "serves": "FX-L1-098",
+   "endpoint": "phone_or_spare",
+   "domain": "NET-OFFICE",
+   "rack": "RK-L1-01",
+   "patchPanel": "PP-03",
+   "ppPort": 15,
+   "switch": "SW-ACC-03",
+   "switchPort": 13,
+   "poeClass": null,
+   "length_m": 25.9,
+   "horizontal_m": 18.42,
+   "vertical_m": 4.1,
+   "slack_m": 3.3,
+   "tray": "TR-L1-N",
+   "route": [
+    [
+     26.7,
+     21.4,
+     "L1"
+    ],
+    [
+     27.0,
+     18.5,
+     "L1"
+    ],
+    [
+     27.0,
+     17.5,
+     "L1"
+    ],
+    [
+     26.6,
+     17.5,
+     "L1"
+    ],
+    [
+     24.5,
+     17.5,
+     "L1"
+    ],
+    [
+     24.4,
+     17.5,
+     "L1"
+    ],
+    [
+     23,
+     17.5,
+     "L1"
+    ],
+    [
+     22.4,
+     17.5,
+     "L1"
+    ],
+    [
+     21.6,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
+     17.5,
+     "L1"
+    ],
+    [
+     18.4,
+     23.4,
+     "L1"
+    ],
+    [
+     18.4,
+     23.4,
+     "L1"
+    ]
+   ],
+   "labelRackEnd": "PP-03-15 > TO-L1-022-B",
+   "labelOutletEnd": "TO-L1-022-B > PP-03-15"
+  },
+  {
+   "cable": "C-TO-L1-023-A",
+   "outletPort": "TO-L1-023-A",
+   "outlet": "TO-L1-023",
+   "floor": "L1",
+   "room": "L1-BRUNO",
+   "serves": "FX-L1-103",
+   "endpoint": "workstation",
+   "domain": "NET-OFFICE",
+   "rack": "RK-L1-01",
+   "patchPanel": "PP-03",
+   "ppPort": 16,
    "switch": "SW-ACC-03",
    "switchPort": 14,
    "poeClass": null,
@@ -5813,21 +6148,21 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-03-14 > TO-L1-022-A",
-   "labelOutletEnd": "TO-L1-022-A > PP-03-14"
+   "labelRackEnd": "PP-03-16 > TO-L1-023-A",
+   "labelOutletEnd": "TO-L1-023-A > PP-03-16"
   },
   {
-   "cable": "C-TO-L1-022-B",
-   "outletPort": "TO-L1-022-B",
-   "outlet": "TO-L1-022",
+   "cable": "C-TO-L1-023-B",
+   "outletPort": "TO-L1-023-B",
+   "outlet": "TO-L1-023",
    "floor": "L1",
    "room": "L1-BRUNO",
-   "serves": "FX-L1-101",
+   "serves": "FX-L1-103",
    "endpoint": "phone_or_spare",
    "domain": "NET-OFFICE",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 15,
+   "ppPort": 17,
    "switch": "SW-ACC-03",
    "switchPort": 15,
    "poeClass": null,
@@ -5888,8 +6223,8 @@
      "L1"
     ]
    ],
-   "labelRackEnd": "PP-03-15 > TO-L1-022-B",
-   "labelOutletEnd": "TO-L1-022-B > PP-03-15"
+   "labelRackEnd": "PP-03-17 > TO-L1-023-B",
+   "labelOutletEnd": "TO-L1-023-B > PP-03-17"
   },
   {
    "cable": "C-TO-L2-001-A",
@@ -5902,7 +6237,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 16,
+   "ppPort": 18,
    "switch": "SW-ACC-03",
    "switchPort": 16,
    "poeClass": null,
@@ -6003,8 +6338,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-16 > TO-L2-001-A",
-   "labelOutletEnd": "TO-L2-001-A > PP-03-16"
+   "labelRackEnd": "PP-03-18 > TO-L2-001-A",
+   "labelOutletEnd": "TO-L2-001-A > PP-03-18"
   },
   {
    "cable": "C-TO-L2-002-A",
@@ -6017,7 +6352,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 17,
+   "ppPort": 19,
    "switch": "SW-ACC-03",
    "switchPort": 17,
    "poeClass": null,
@@ -6083,8 +6418,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-17 > TO-L2-002-A",
-   "labelOutletEnd": "TO-L2-002-A > PP-03-17"
+   "labelRackEnd": "PP-03-19 > TO-L2-002-A",
+   "labelOutletEnd": "TO-L2-002-A > PP-03-19"
   },
   {
    "cable": "C-TO-L2-002-B",
@@ -6097,7 +6432,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 18,
+   "ppPort": 20,
    "switch": "SW-ACC-03",
    "switchPort": 18,
    "poeClass": null,
@@ -6163,8 +6498,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-18 > TO-L2-002-B",
-   "labelOutletEnd": "TO-L2-002-B > PP-03-18"
+   "labelRackEnd": "PP-03-20 > TO-L2-002-B",
+   "labelOutletEnd": "TO-L2-002-B > PP-03-20"
   },
   {
    "cable": "C-TO-L2-003-A",
@@ -6177,7 +6512,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 19,
+   "ppPort": 21,
    "switch": "SW-ACC-03",
    "switchPort": 19,
    "poeClass": null,
@@ -6233,8 +6568,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-19 > TO-L2-003-A",
-   "labelOutletEnd": "TO-L2-003-A > PP-03-19"
+   "labelRackEnd": "PP-03-21 > TO-L2-003-A",
+   "labelOutletEnd": "TO-L2-003-A > PP-03-21"
   },
   {
    "cable": "C-TO-L2-003-B",
@@ -6247,7 +6582,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 20,
+   "ppPort": 22,
    "switch": "SW-ACC-03",
    "switchPort": 20,
    "poeClass": null,
@@ -6303,8 +6638,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-20 > TO-L2-003-B",
-   "labelOutletEnd": "TO-L2-003-B > PP-03-20"
+   "labelRackEnd": "PP-03-22 > TO-L2-003-B",
+   "labelOutletEnd": "TO-L2-003-B > PP-03-22"
   },
   {
    "cable": "C-TO-L2-004-A",
@@ -6317,7 +6652,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 21,
+   "ppPort": 23,
    "switch": "SW-ACC-03",
    "switchPort": 21,
    "poeClass": null,
@@ -6378,8 +6713,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-21 > TO-L2-004-A",
-   "labelOutletEnd": "TO-L2-004-A > PP-03-21"
+   "labelRackEnd": "PP-03-23 > TO-L2-004-A",
+   "labelOutletEnd": "TO-L2-004-A > PP-03-23"
   },
   {
    "cable": "C-TO-L2-005-A",
@@ -6392,7 +6727,7 @@
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
    "patchPanel": "PP-03",
-   "ppPort": 22,
+   "ppPort": 24,
    "switch": "SW-ACC-03",
    "switchPort": 22,
    "poeClass": null,
@@ -6453,8 +6788,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-22 > TO-L2-005-A",
-   "labelOutletEnd": "TO-L2-005-A > PP-03-22"
+   "labelRackEnd": "PP-03-24 > TO-L2-005-A",
+   "labelOutletEnd": "TO-L2-005-A > PP-03-24"
   },
   {
    "cable": "C-TO-L2-006-A",
@@ -6466,8 +6801,8 @@
    "endpoint": "display",
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
-   "patchPanel": "PP-03",
-   "ppPort": 23,
+   "patchPanel": "PP-04",
+   "ppPort": 1,
    "switch": "SW-ACC-03",
    "switchPort": 23,
    "poeClass": null,
@@ -6558,8 +6893,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-23 > TO-L2-006-A",
-   "labelOutletEnd": "TO-L2-006-A > PP-03-23"
+   "labelRackEnd": "PP-04-01 > TO-L2-006-A",
+   "labelOutletEnd": "TO-L2-006-A > PP-04-01"
   },
   {
    "cable": "C-TO-L2-007-A",
@@ -6571,8 +6906,8 @@
    "endpoint": "display",
    "domain": "NET-DEMO",
    "rack": "RK-L1-01",
-   "patchPanel": "PP-03",
-   "ppPort": 24,
+   "patchPanel": "PP-04",
+   "ppPort": 2,
    "switch": "SW-ACC-03",
    "switchPort": 24,
    "poeClass": null,
@@ -6653,8 +6988,8 @@
      "L2"
     ]
    ],
-   "labelRackEnd": "PP-03-24 > TO-L2-007-A",
-   "labelOutletEnd": "TO-L2-007-A > PP-03-24"
+   "labelRackEnd": "PP-04-02 > TO-L2-007-A",
+   "labelOutletEnd": "TO-L2-007-A > PP-04-02"
   }
  ],
  "switches": [
@@ -6662,9 +6997,9 @@
    "switch": "SW-ACC-01",
    "ports": 48,
    "uplinksReserved": 4,
-   "used": 24,
-   "spare": 20,
-   "spareRatio": 0.455,
+   "used": 25,
+   "spare": 19,
+   "spareRatio": 0.432,
    "poeWorstCaseW": 407.0,
    "poeBudgetW": null,
    "poeStatus": "belum divalidasi: datasheet switch belum dipilih"
@@ -6673,9 +7008,9 @@
    "switch": "SW-ACC-02",
    "ports": 48,
    "uplinksReserved": 4,
-   "used": 24,
-   "spare": 20,
-   "spareRatio": 0.455,
+   "used": 25,
+   "spare": 19,
+   "spareRatio": 0.432,
    "poeWorstCaseW": 0,
    "poeBudgetW": null,
    "poeStatus": "belum divalidasi: datasheet switch belum dipilih"
@@ -6694,13 +7029,13 @@
  ],
  "poeTotalWorstCaseW": 407.0,
  "totals": {
-  "outlets": 45,
-  "ports": 72,
-  "cable_m": 2074.8,
+  "outlets": 46,
+  "ports": 74,
+  "cable_m": 2126.6,
   "max_length_m": 50.6,
   "min_length_m": 12.7,
   "patchPanelPorts": 96,
-  "patchPanelPortsUsed": 72
+  "patchPanelPortsUsed": 74
  },
  "bom": {
   "status": "jumlah turunan dari port map; tanpa harga (AS-ICT-05)",
@@ -6708,7 +7043,7 @@
    {
     "item": "Kabel tembaga horizontal (kategori TBD)",
     "unit": "m",
-    "qty": 2074.8
+    "qty": 2126.6
    },
    {
     "item": "Box kabel 305 m (pembulatan, belum termasuk waste)",
@@ -6718,7 +7053,7 @@
    {
     "item": "Keystone jack sisi outlet",
     "unit": "pcs",
-    "qty": 72
+    "qty": 74
    },
    {
     "item": "Faceplate 1 port",
@@ -6728,7 +7063,7 @@
    {
     "item": "Faceplate 2 port",
     "unit": "pcs",
-    "qty": 18
+    "qty": 19
    },
    {
     "item": "Faceplate 4 port",
@@ -6743,12 +7078,12 @@
    {
     "item": "Patch cord sisi rack (1 per port terpakai, asumsi)",
     "unit": "pcs",
-    "qty": 72
+    "qty": 74
    },
    {
     "item": "Patch cord sisi perangkat (1 per port terpakai, asumsi)",
     "unit": "pcs",
-    "qty": 72
+    "qty": 74
    },
    {
     "item": "Access switch 48 port PoE (kelas, model TBD)",

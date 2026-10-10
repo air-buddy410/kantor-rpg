@@ -1,0 +1,29 @@
+{
+ "floor": "L2",
+ "mode": "glb",
+ "doorsOpen": true,
+ "gapM": 0.002,
+ "minAreaM2": 0.0001,
+ "triangles": 100248,
+ "meshes": 56,
+ "hits": 1,
+ "list": [
+  {
+   "a": "floor-L2#e2d3b6",
+   "b": "floor-L2#f1e7d3",
+   "normal": [
+    0,
+    -1,
+    0
+   ],
+   "planeD": -4,
+   "gapM": 0,
+   "areaM2": 1.09875,
+   "at": [
+    30.33,
+    4,
+    -0.33
+   ]
+  }
+ ]
+}

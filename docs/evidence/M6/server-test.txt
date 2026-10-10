@@ -1,0 +1,24 @@
+✔ visitor tanpa login ditolak di semua API privat (AC-CMD-04, REQ-BOARD-04) (31.591959ms)
+✔ tanpa header proxy ditolak (backend tidak bisa diakses langsung) (1.13225ms)
+✔ login: sandi salah, kode salah, kode dipakai ulang, dan rate limit (335.354666ms)
+✔ CSRF dan origin asing ditolak untuk owner yang login (37.238666ms)
+✔ pesan manual sampai ke profil yang tepat, receipt + idempotensi (AC-CMD-01, AC-CMD-05, AC-MANUAL-01) (46.971084ms)
+✔ pilihan: dikirim sesuai ID turn, pilihan lama kedaluwarsa, ID palsu ditolak (AC-CHOICE-01) (42.821833ms)
+✔ aksi berisiko menunggu approval terpisah; ditolak/kedaluwarsa/replay tidak mengirim (AC-CMD-03) (166.214083ms)
+✔ rahasia di chat ditolak; gagal/offline jujur; cancel (REQ-CMD-02, REQ-CMD-05) (53.710458ms)
+✔ logout mematikan sesi (35.652583ms)
+✔ papan: handoff/pekerjaan/log sesuai sumber, tanpa rahasia/path, profil pribadi tersamar (REQ-BOARD-01..03) (57.527958ms)
+✔ sumber Kanban rusak tampil gagal, bukan kosong sukses (REQ-BOARD-05) (6.049375ms)
+✔ cache papan: viewer berulang dalam TTL tidak membaca sumber lagi (12.374084ms)
+✔ kebijakan: parseOptions tepat tiga, berbeda; scrub; deteksi risiko (0.279417ms)
+✔ setup owner: tautan sekali pakai, kode wajib benar, lalu tidak berlaku (99.76175ms)
+✔ presence: status nyata per agen untuk NPC (Kanban running = bekerja, profil pribadi tidak ada) (44.894417ms)
+✔ sync Telegram: transkrip DM nyata, kirim dari RPG melanjutkan sesi Telegram, balasan ikut ke Telegram (ADR-017) (194.79225ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1350.502917

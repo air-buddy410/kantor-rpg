@@ -10,6 +10,44 @@ import { showPersonaCard, showRoomCard } from './game/game';
 import type { StudioUI } from './studio/ui';
 import { AvatarStudio, availableHair, loadChoice, paletteColors } from './studio/avatar-studio';
 import { store } from './studio/layout';
+import type { PrivatePanel } from './private/panel';
+import { ACTOR_PROFILE } from './game/game';
+
+// Private panel (boards + agent commands) is fetched on first use.
+let panel: PrivatePanel | null = null;
+let onPresence: PrivatePanel['onPresence'] = null;
+const loadPanel = () => import('./private/panel').then((m) => {
+  if (!panel) {
+    panel = new m.PrivatePanel();
+    panel.onPresence = onPresence;
+    // Unread agent replies on the HUD "Chat agen" button, like a messaging app.
+    panel.onUnreadChange = () => {
+      const n = panel?.unreadTotal() ?? 0;
+      const btn = document.getElementById('btn-chat');
+      if (!btn) return;
+      let badge = btn.querySelector<HTMLElement>('.unread-badge');
+      if (!n) { badge?.remove(); btn.setAttribute('aria-label', 'Chat agen'); return; }
+      if (!badge) { badge = document.createElement('span'); badge.className = 'unread-badge'; badge.setAttribute('aria-hidden', 'true'); btn.append(badge); }
+      badge.textContent = n > 9 ? '9+' : String(n);
+      btn.setAttribute('aria-label', `Chat agen, ${n} pesan belum dibaca`);
+    };
+  }
+  return panel;
+});
+const openBoards = (tab: 'handoffs' | 'tasks' | 'log' = 'handoffs') => void loadPanel().then((p) => p.openBoards(tab, document.activeElement as HTMLElement));
+const openAgent = (profile: string) => void loadPanel().then((p) => p.openAgent(profile, document.activeElement as HTMLElement));
+const openPicker = () => void loadPanel().then((p) => p.openPicker(document.activeElement as HTMLElement));
+// A tapped notification opens that bot's chat (./?chat=<profile>), in this tab or a new one.
+const chatParam = new URLSearchParams(location.search).get('chat');
+if (chatParam && /^[\w-]{1,30}$/.test(chatParam)) {
+  history.replaceState(null, '', location.pathname);
+  window.setTimeout(() => openAgent(chatParam), 1500);
+}
+navigator.serviceWorker?.addEventListener('message', (e) => {
+  const u = typeof e.data?.url === 'string' ? new URL(e.data.url, location.href) : null;
+  const p = u?.searchParams.get('chat');
+  if (e.data?.type === 'open-chat' && p && /^[\w-]{1,30}$/.test(p)) openAgent(p);
+});
 
 const world = worldJson as unknown as World;
 const walls = wallsJson as unknown as DerivedWalls;
@@ -60,8 +98,11 @@ function enterFallback(reason: string) {
     go: () => {},
     showRoom: (r) => showRoomCard(world, r, !(settings.visitor && r.access === 'restricted')),
     showPersona: (id) => showPersonaCard(world, id),
+    command: openAgent,
+    profiles: ACTOR_PROFILE,
+    boards: openBoards,
   });
-  window.__kantor = { mode: 'fallback', reason };
+  window.__kantor = { mode: 'fallback', reason, openBoards, openAgent };
 }
 
 function wireSettings(game: Game | null, s: Settings) {
@@ -88,6 +129,7 @@ function wireSettings(game: Game | null, s: Settings) {
 }
 
 function wireCommon() {
+  $('btn-boards').addEventListener('click', () => openBoards());
   $('btn-help').addEventListener('click', (e) => openDialog($('dlg-help') as HTMLDialogElement, e.currentTarget as HTMLElement));
   $('directory-close').addEventListener('click', () => {
     $('directory-panel').hidden = true;
@@ -110,6 +152,7 @@ function boot() {
     enterFallback(reason);
     wireSettings(null, settings);
     $('btn-directory').addEventListener('click', showFallbackDirectory);
+    $('btn-chat').addEventListener('click', openPicker);
     return;
   }
   let game: Game;
@@ -143,8 +186,22 @@ function boot() {
   // is the whole UI then, so the button focuses it instead of toggling it away.
   $('btn-directory').addEventListener('click', () => ($('app').dataset.mode === 'fallback' ? showFallbackDirectory() : game.toggleDirectory()));
   window.addEventListener('kantor:fallback', (e) => enterFallback((e as CustomEvent<string>).detail));
+  game.onBoard = openBoards;
+  game.onAgent = openAgent;
+  game.onAgentPicker = openPicker;
+  $('btn-chat').addEventListener('click', openPicker);
+  onPresence = (list) => game.applyPresence(list);
+  // Owner already logged in (cookie): start real status without opening a panel.
+  void fetch('api/me', { credentials: 'same-origin', cache: 'no-store' })
+    .then((r) => (r.ok && (r.headers.get('content-type') ?? '').includes('json') ? r.json() : null))
+    .then((me: { authenticated?: boolean } | null) => { if (me?.authenticated) void loadPanel().then((p) => p.startPresence()); })
+    .catch(() => { /* no backend: simulation only */ });
+  game.renderDirectory();
   game.start();
   window.__kantor = {
+    openBoards,
+    openAgent,
+    openPicker,
     mode: 'world',
     state: () => ({ floor: game.player.floor, pos: game.player.pos, facing: game.player.facing, room: game.roomId, visitor: game.settings.visitor, avatarPlaceholder: game.player.avatar.isPlaceholder, clips: game.player.avatar.clipNames, recoveries: game.player.stuckRecoveries, floorSwitches: game.floorSwitches }),
     stats: () => game.stats(),
@@ -164,6 +221,8 @@ function boot() {
     reserveForTest: (slot: string, npc: string) => game.npcs.sim.reservations.set(slot, { npc, expires: game.npcs.sim.time + 600 }),
     reservations: () => [...game.npcs.sim.reservations.entries()].map(([k, r]) => [k, r.npc]),
     renderer: game.rendererName,
+    // Test helper: is there a walkable route from the CEO to (x, y) right now?
+    canReach: (x: number, y: number) => game.nav.findPath(game.player.pos, [x, y]) !== null,
     // Test/benchmark helper: drives the CEO with the normal movement code along
     // a navgrid path (no teleport). Resolves false when no path exists.
     walkTo: (x: number, y: number, timeoutMs = 90000) => new Promise<boolean>((resolve) => {

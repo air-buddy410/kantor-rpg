@@ -161,8 +161,8 @@
    "check": "nav_walkable_counts",
    "ok": true,
    "detail": {
-    "L1_staff": 48384,
-    "L1_visitor": 48241,
+    "L1_staff": 48192,
+    "L1_visitor": 48049,
     "L2_staff": 49821,
     "L2_visitor": 49741
    }

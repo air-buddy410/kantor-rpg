@@ -1,0 +1,12 @@
+[
+  {
+    "step": "furniture",
+    "exit": 0,
+    "seconds": 2.06
+  },
+  {
+    "step": "characters",
+    "exit": 1,
+    "seconds": 1.42
+  }
+]

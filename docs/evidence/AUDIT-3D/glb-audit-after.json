@@ -1,0 +1,1488 @@
+{
+ "tool": "tools/glb_audit.mjs",
+ "budget": {
+  "adr": "ADR-015",
+  "charactersTargetBytes": 4600000,
+  "runtimeGlbTargetBytes": 6000000
+ },
+ "totals": {
+  "byKind": {
+   "building": {
+    "files": 2,
+    "bytes": 677364,
+    "gzip6": 62722,
+    "triangles": 8192,
+    "primitives": 392
+   },
+   "characters": {
+    "files": 9,
+    "bytes": 4541776,
+    "gzip6": 1688850,
+    "triangles": 180252,
+    "primitives": 34
+   },
+   "furniture": {
+    "files": 54,
+    "bytes": 1380500,
+    "gzip6": 407184,
+    "triangles": 59130,
+    "primitives": 271
+   },
+   "signage": {
+    "files": 11,
+    "bytes": 126463,
+    "gzip6": 110087,
+    "triangles": 0,
+    "primitives": 0
+   }
+  },
+  "runtimeGlbBytes": 5922276,
+  "runtimeGlbGzip6": 2096034,
+  "allBytes": 6726103
+ },
+ "heaviest": [
+  "characters/ch-ceo.glb 620612",
+  "characters/ch-qa.glb 501396",
+  "characters/ch-assistant.glb 498604",
+  "characters/ch-supervisor.glb 498320",
+  "characters/ch-visual.glb 493900",
+  "characters/ch-designer.glb 492268",
+  "characters/ch-ictspec.glb 488336",
+  "characters/ch-netinstall.glb 479504",
+  "characters/ch-architect.glb 468836",
+  "building/building-L1.glb 370040",
+  "building/building-L2.glb 307324",
+  "furniture/rack_42u.glb 90724"
+ ],
+ "files": [
+  {
+   "kind": "building",
+   "file": "building-L1.glb",
+   "runtime": false,
+   "bytes": 370040,
+   "gzip6": 33817,
+   "triangles": 4446,
+   "primitives": 218,
+   "materials": 23,
+   "transparentMaterials": 2,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 26676,
+   "attributeBytes": {
+    "POSITION": 106680,
+    "NORMAL": 106680
+   }
+  },
+  {
+   "kind": "building",
+   "file": "building-L2.glb",
+   "runtime": false,
+   "bytes": 307324,
+   "gzip6": 28905,
+   "triangles": 3746,
+   "primitives": 174,
+   "materials": 23,
+   "transparentMaterials": 2,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 22476,
+   "attributeBytes": {
+    "POSITION": 89880,
+    "NORMAL": 89880
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-architect.glb",
+   "runtime": true,
+   "bytes": 468836,
+   "gzip6": 173551,
+   "triangles": 18171,
+   "primitives": 3,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 391
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 109026,
+   "attributeBytes": {
+    "JOINTS_0": 38388,
+    "POSITION": 57582,
+    "NORMAL": 28791,
+    "TEXCOORD_0": 38388,
+    "WEIGHTS_0": 38388,
+    "morph_POSITION": 161280
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-assistant.glb",
+   "runtime": true,
+   "bytes": 498604,
+   "gzip6": 186552,
+   "triangles": 19724,
+   "primitives": 4,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 391
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 118344,
+   "attributeBytes": {
+    "JOINTS_0": 41592,
+    "POSITION": 62388,
+    "NORMAL": 31194,
+    "TEXCOORD_0": 41592,
+    "WEIGHTS_0": 41592,
+    "morph_POSITION": 172920
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-ceo.glb",
+   "runtime": true,
+   "bytes": 620612,
+   "gzip6": 225594,
+   "triangles": 26268,
+   "primitives": 5,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 391
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 157608,
+   "attributeBytes": {
+    "JOINTS_0": 55120,
+    "POSITION": 82680,
+    "NORMAL": 41340,
+    "TEXCOORD_0": 55120,
+    "WEIGHTS_0": 55120,
+    "morph_POSITION": 172530
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-designer.glb",
+   "runtime": true,
+   "bytes": 492268,
+   "gzip6": 182381,
+   "triangles": 19395,
+   "primitives": 4,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 390
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 116370,
+   "attributeBytes": {
+    "JOINTS_0": 40868,
+    "POSITION": 61302,
+    "NORMAL": 30651,
+    "TEXCOORD_0": 40868,
+    "WEIGHTS_0": 40868,
+    "morph_POSITION": 173400
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-ictspec.glb",
+   "runtime": true,
+   "bytes": 488336,
+   "gzip6": 181218,
+   "triangles": 19164,
+   "primitives": 4,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 391
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 114984,
+   "attributeBytes": {
+    "JOINTS_0": 40444,
+    "POSITION": 60666,
+    "NORMAL": 30333,
+    "TEXCOORD_0": 40444,
+    "WEIGHTS_0": 40444,
+    "morph_POSITION": 161580
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-netinstall.glb",
+   "runtime": true,
+   "bytes": 479504,
+   "gzip6": 176382,
+   "triangles": 18607,
+   "primitives": 3,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 392
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 111642,
+   "attributeBytes": {
+    "JOINTS_0": 39728,
+    "POSITION": 59592,
+    "NORMAL": 29796,
+    "TEXCOORD_0": 39728,
+    "WEIGHTS_0": 39728,
+    "morph_POSITION": 185940
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-qa.glb",
+   "runtime": true,
+   "bytes": 501396,
+   "gzip6": 189751,
+   "triangles": 19783,
+   "primitives": 4,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 390
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 118698,
+   "attributeBytes": {
+    "JOINTS_0": 41996,
+    "POSITION": 62994,
+    "NORMAL": 31497,
+    "TEXCOORD_0": 41996,
+    "WEIGHTS_0": 41996,
+    "morph_POSITION": 173100
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-supervisor.glb",
+   "runtime": true,
+   "bytes": 498320,
+   "gzip6": 186639,
+   "triangles": 19756,
+   "primitives": 3,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 387
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 118536,
+   "attributeBytes": {
+    "JOINTS_0": 41716,
+    "POSITION": 62574,
+    "NORMAL": 31287,
+    "TEXCOORD_0": 41716,
+    "WEIGHTS_0": 41716,
+    "morph_POSITION": 183960
+   }
+  },
+  {
+   "kind": "characters",
+   "file": "ch-visual.glb",
+   "runtime": true,
+   "bytes": 493900,
+   "gzip6": 186782,
+   "triangles": 19384,
+   "primitives": 4,
+   "materials": 1,
+   "transparentMaterials": 0,
+   "textures": [
+    {
+     "mime": "image/png",
+     "size": [
+      32,
+      32
+     ],
+     "bytes": 391
+    }
+   ],
+   "animations": 13,
+   "animationBytes": 76028,
+   "indexBytes": 116304,
+   "attributeBytes": {
+    "JOINTS_0": 41148,
+    "POSITION": 61722,
+    "NORMAL": 30861,
+    "TEXCOORD_0": 41148,
+    "WEIGHTS_0": 41148,
+    "morph_POSITION": 168330
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "arcade_cabinet.glb",
+   "runtime": true,
+   "bytes": 27308,
+   "gzip6": 8184,
+   "triangles": 1020,
+   "primitives": 11,
+   "materials": 11,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6120,
+   "attributeBytes": {
+    "POSITION": 6768,
+    "NORMAL": 3384
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "armchair.glb",
+   "runtime": true,
+   "bytes": 25016,
+   "gzip6": 9098,
+   "triangles": 1536,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 9216,
+   "attributeBytes": {
+    "POSITION": 5736,
+    "NORMAL": 2868
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "beanbag.glb",
+   "runtime": true,
+   "bytes": 11272,
+   "gzip6": 5962,
+   "triangles": 712,
+   "primitives": 2,
+   "materials": 2,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 4272,
+   "attributeBytes": {
+    "POSITION": 2232,
+    "NORMAL": 1116
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "bench.glb",
+   "runtime": true,
+   "bytes": 15128,
+   "gzip6": 4606,
+   "triangles": 756,
+   "primitives": 2,
+   "materials": 2,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 4536,
+   "attributeBytes": {
+    "POSITION": 4032,
+    "NORMAL": 2016
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "billiard_table.glb",
+   "runtime": true,
+   "bytes": 59376,
+   "gzip6": 22228,
+   "triangles": 3532,
+   "primitives": 10,
+   "materials": 10,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 21192,
+   "attributeBytes": {
+    "POSITION": 16464,
+    "NORMAL": 8232
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "board_table.glb",
+   "runtime": true,
+   "bytes": 29784,
+   "gzip6": 8813,
+   "triangles": 1152,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6912,
+   "attributeBytes": {
+    "POSITION": 9672,
+    "NORMAL": 4836
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "bookshelf.glb",
+   "runtime": true,
+   "bytes": 57752,
+   "gzip6": 11916,
+   "triangles": 2048,
+   "primitives": 8,
+   "materials": 8,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 12288,
+   "attributeBytes": {
+    "POSITION": 18864,
+    "NORMAL": 9432
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "chair.glb",
+   "runtime": true,
+   "bytes": 25924,
+   "gzip6": 10239,
+   "triangles": 1312,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 7872,
+   "attributeBytes": {
+    "POSITION": 7320,
+    "NORMAL": 3660
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "chair_guest.glb",
+   "runtime": true,
+   "bytes": 17972,
+   "gzip6": 6074,
+   "triangles": 792,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 4752,
+   "attributeBytes": {
+    "POSITION": 4896,
+    "NORMAL": 2448
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "coffee_bar.glb",
+   "runtime": true,
+   "bytes": 42000,
+   "gzip6": 12562,
+   "triangles": 1894,
+   "primitives": 10,
+   "materials": 10,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 11364,
+   "attributeBytes": {
+    "POSITION": 11640,
+    "NORMAL": 5820
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "coffee_table.glb",
+   "runtime": true,
+   "bytes": 14888,
+   "gzip6": 4330,
+   "triangles": 492,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 2952,
+   "attributeBytes": {
+    "POSITION": 4320,
+    "NORMAL": 2160
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "cue_rack.glb",
+   "runtime": true,
+   "bytes": 18592,
+   "gzip6": 5161,
+   "triangles": 660,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3960,
+   "attributeBytes": {
+    "POSITION": 5184,
+    "NORMAL": 2592
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "desk.glb",
+   "runtime": true,
+   "bytes": 23908,
+   "gzip6": 6571,
+   "triangles": 976,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 5856,
+   "attributeBytes": {
+    "POSITION": 6912,
+    "NORMAL": 3456
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "desk_exec.glb",
+   "runtime": true,
+   "bytes": 34964,
+   "gzip6": 9228,
+   "triangles": 1476,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 8856,
+   "attributeBytes": {
+    "POSITION": 10944,
+    "NORMAL": 5472
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "dining_table.glb",
+   "runtime": true,
+   "bytes": 11504,
+   "gzip6": 4124,
+   "triangles": 452,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 2712,
+   "attributeBytes": {
+    "POSITION": 2688,
+    "NORMAL": 1344
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "directory_sign.glb",
+   "runtime": true,
+   "bytes": 18000,
+   "gzip6": 4246,
+   "triangles": 504,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3024,
+   "attributeBytes": {
+    "POSITION": 5760,
+    "NORMAL": 2880
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "drafting_table.glb",
+   "runtime": true,
+   "bytes": 17128,
+   "gzip6": 6024,
+   "triangles": 660,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3960,
+   "attributeBytes": {
+    "POSITION": 4896,
+    "NORMAL": 2448
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "dumbbell_rack.glb",
+   "runtime": true,
+   "bytes": 46224,
+   "gzip6": 13229,
+   "triangles": 2024,
+   "primitives": 7,
+   "materials": 7,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 12144,
+   "attributeBytes": {
+    "POSITION": 16704,
+    "NORMAL": 8352
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "easel.glb",
+   "runtime": true,
+   "bytes": 15024,
+   "gzip6": 5043,
+   "triangles": 448,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 2688,
+   "attributeBytes": {
+    "POSITION": 3552,
+    "NORMAL": 1776
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "exercise_bike.glb",
+   "runtime": true,
+   "bytes": 28068,
+   "gzip6": 8999,
+   "triangles": 1152,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6912,
+   "attributeBytes": {
+    "POSITION": 7512,
+    "NORMAL": 3756
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "exercise_mat.glb",
+   "runtime": true,
+   "bytes": 8216,
+   "gzip6": 2311,
+   "triangles": 176,
+   "primitives": 2,
+   "materials": 2,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 1056,
+   "attributeBytes": {
+    "POSITION": 2304,
+    "NORMAL": 1152
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "fridge.glb",
+   "runtime": true,
+   "bytes": 15004,
+   "gzip6": 4991,
+   "triangles": 596,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3576,
+   "attributeBytes": {
+    "POSITION": 4080,
+    "NORMAL": 2040
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "gallery_panel.glb",
+   "runtime": true,
+   "bytes": 13444,
+   "gzip6": 4035,
+   "triangles": 532,
+   "primitives": 7,
+   "materials": 7,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3192,
+   "attributeBytes": {
+    "POSITION": 3936,
+    "NORMAL": 1968
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "high_table.glb",
+   "runtime": true,
+   "bytes": 13060,
+   "gzip6": 5037,
+   "triangles": 552,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3312,
+   "attributeBytes": {
+    "POSITION": 3168,
+    "NORMAL": 1584
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "lab_bench.glb",
+   "runtime": true,
+   "bytes": 29964,
+   "gzip6": 6578,
+   "triangles": 1068,
+   "primitives": 8,
+   "materials": 8,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6408,
+   "attributeBytes": {
+    "POSITION": 9792,
+    "NORMAL": 4896
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "lab_rack_open.glb",
+   "runtime": true,
+   "bytes": 48008,
+   "gzip6": 10433,
+   "triangles": 1624,
+   "primitives": 7,
+   "materials": 7,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 9744,
+   "attributeBytes": {
+    "POSITION": 15624,
+    "NORMAL": 7812
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "lift.glb",
+   "runtime": true,
+   "bytes": 8184,
+   "gzip6": 2123,
+   "triangles": 154,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 924,
+   "attributeBytes": {
+    "POSITION": 1536,
+    "NORMAL": 768
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "locker.glb",
+   "runtime": true,
+   "bytes": 57884,
+   "gzip6": 13399,
+   "triangles": 2184,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 13104,
+   "attributeBytes": {
+    "POSITION": 21888,
+    "NORMAL": 10944
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "media_console.glb",
+   "runtime": true,
+   "bytes": 22824,
+   "gzip6": 6798,
+   "triangles": 1116,
+   "primitives": 10,
+   "materials": 10,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6696,
+   "attributeBytes": {
+    "POSITION": 6792,
+    "NORMAL": 3396
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "meeting_table.glb",
+   "runtime": true,
+   "bytes": 17904,
+   "gzip6": 6061,
+   "triangles": 768,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 4608,
+   "attributeBytes": {
+    "POSITION": 4992,
+    "NORMAL": 2496
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "model_shelf.glb",
+   "runtime": true,
+   "bytes": 40828,
+   "gzip6": 12648,
+   "triangles": 2000,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 12000,
+   "attributeBytes": {
+    "POSITION": 11856,
+    "NORMAL": 5928
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "pantry_counter.glb",
+   "runtime": true,
+   "bytes": 32612,
+   "gzip6": 7975,
+   "triangles": 1214,
+   "primitives": 7,
+   "materials": 7,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 7284,
+   "attributeBytes": {
+    "POSITION": 9240,
+    "NORMAL": 4620
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "partition.glb",
+   "runtime": true,
+   "bytes": 8064,
+   "gzip6": 2084,
+   "triangles": 176,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 1056,
+   "attributeBytes": {
+    "POSITION": 2304,
+    "NORMAL": 1152
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "plan_table.glb",
+   "runtime": true,
+   "bytes": 30500,
+   "gzip6": 7966,
+   "triangles": 1152,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6912,
+   "attributeBytes": {
+    "POSITION": 9216,
+    "NORMAL": 4608
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "plant_large.glb",
+   "runtime": true,
+   "bytes": 27684,
+   "gzip6": 10253,
+   "triangles": 1820,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 10920,
+   "attributeBytes": {
+    "POSITION": 6228,
+    "NORMAL": 3114
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "plant_small.glb",
+   "runtime": true,
+   "bytes": 20288,
+   "gzip6": 8380,
+   "triangles": 1048,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 6288,
+   "attributeBytes": {
+    "POSITION": 4848,
+    "NORMAL": 2424
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "planter_box.glb",
+   "runtime": true,
+   "bytes": 22692,
+   "gzip6": 7685,
+   "triangles": 1312,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 7872,
+   "attributeBytes": {
+    "POSITION": 5880,
+    "NORMAL": 2940
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "poster.glb",
+   "runtime": true,
+   "bytes": 10732,
+   "gzip6": 3449,
+   "triangles": 316,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 1896,
+   "attributeBytes": {
+    "POSITION": 2784,
+    "NORMAL": 1392
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "rack_42u.glb",
+   "runtime": true,
+   "bytes": 90724,
+   "gzip6": 14274,
+   "triangles": 2736,
+   "primitives": 7,
+   "materials": 7,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 16416,
+   "attributeBytes": {
+    "POSITION": 33696,
+    "NORMAL": 16848
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "reception_desk.glb",
+   "runtime": true,
+   "bytes": 30380,
+   "gzip6": 7829,
+   "triangles": 1216,
+   "primitives": 7,
+   "materials": 7,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 7296,
+   "attributeBytes": {
+    "POSITION": 9216,
+    "NORMAL": 4608
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "round_table.glb",
+   "runtime": true,
+   "bytes": 11544,
+   "gzip6": 5758,
+   "triangles": 620,
+   "primitives": 2,
+   "materials": 2,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3720,
+   "attributeBytes": {
+    "POSITION": 2640,
+    "NORMAL": 1320
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "shower_stall.glb",
+   "runtime": true,
+   "bytes": 16224,
+   "gzip6": 4834,
+   "triangles": 476,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 1,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 2856,
+   "attributeBytes": {
+    "POSITION": 4512,
+    "NORMAL": 2256
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "sink.glb",
+   "runtime": true,
+   "bytes": 10664,
+   "gzip6": 4252,
+   "triangles": 464,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 2784,
+   "attributeBytes": {
+    "POSITION": 2892,
+    "NORMAL": 1446
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "sofa.glb",
+   "runtime": true,
+   "bytes": 23044,
+   "gzip6": 9699,
+   "triangles": 1944,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 11664,
+   "attributeBytes": {
+    "POSITION": 6984,
+    "NORMAL": 3492
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "stair_u.glb",
+   "runtime": true,
+   "bytes": 20908,
+   "gzip6": 5199,
+   "triangles": 600,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3600,
+   "attributeBytes": {
+    "POSITION": 6960,
+    "NORMAL": 3480
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "stool.glb",
+   "runtime": true,
+   "bytes": 11972,
+   "gzip6": 5491,
+   "triangles": 516,
+   "primitives": 2,
+   "materials": 2,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3096,
+   "attributeBytes": {
+    "POSITION": 3168,
+    "NORMAL": 1584
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "storage_shelf.glb",
+   "runtime": true,
+   "bytes": 71220,
+   "gzip6": 18653,
+   "triangles": 3148,
+   "primitives": 5,
+   "materials": 5,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 18888,
+   "attributeBytes": {
+    "POSITION": 23616,
+    "NORMAL": 11808
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "tool_cabinet.glb",
+   "runtime": true,
+   "bytes": 30560,
+   "gzip6": 9054,
+   "triangles": 1208,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 7248,
+   "attributeBytes": {
+    "POSITION": 9504,
+    "NORMAL": 4752
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "treadmill.glb",
+   "runtime": true,
+   "bytes": 20900,
+   "gzip6": 6166,
+   "triangles": 864,
+   "primitives": 8,
+   "materials": 8,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 5184,
+   "attributeBytes": {
+    "POSITION": 5904,
+    "NORMAL": 2952
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "tree_planter.glb",
+   "runtime": true,
+   "bytes": 22968,
+   "gzip6": 9813,
+   "triangles": 1960,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 11760,
+   "attributeBytes": {
+    "POSITION": 6960,
+    "NORMAL": 3480
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "wall_display.glb",
+   "runtime": true,
+   "bytes": 8608,
+   "gzip6": 2793,
+   "triangles": 240,
+   "primitives": 4,
+   "materials": 4,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 1440,
+   "attributeBytes": {
+    "POSITION": 2304,
+    "NORMAL": 1152
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "wc.glb",
+   "runtime": true,
+   "bytes": 12352,
+   "gzip6": 5596,
+   "triangles": 560,
+   "primitives": 3,
+   "materials": 3,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3360,
+   "attributeBytes": {
+    "POSITION": 2808,
+    "NORMAL": 1404
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "whiteboard.glb",
+   "runtime": true,
+   "bytes": 17368,
+   "gzip6": 4144,
+   "triangles": 524,
+   "primitives": 6,
+   "materials": 6,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3144,
+   "attributeBytes": {
+    "POSITION": 5184,
+    "NORMAL": 2592
+   }
+  },
+  {
+   "kind": "furniture",
+   "file": "work_table.glb",
+   "runtime": true,
+   "bytes": 13340,
+   "gzip6": 4786,
+   "triangles": 648,
+   "primitives": 2,
+   "materials": 2,
+   "transparentMaterials": 0,
+   "textures": [],
+   "animations": 0,
+   "animationBytes": 0,
+   "indexBytes": 3888,
+   "attributeBytes": {
+    "POSITION": 3456,
+    "NORMAL": 1728
+   }
+  },
+  {
+   "kind": "signage",
+   "file": "ART-01.jpg",
+   "runtime": true,
+   "bytes": 8485,
+   "gzip6": 6976
+  },
+  {
+   "kind": "signage",
+   "file": "ART-02.jpg",
+   "runtime": true,
+   "bytes": 10967,
+   "gzip6": 9477
+  },
+  {
+   "kind": "signage",
+   "file": "ART-03.jpg",
+   "runtime": true,
+   "bytes": 11151,
+   "gzip6": 9616
+  },
+  {
+   "kind": "signage",
+   "file": "ART-04.jpg",
+   "runtime": true,
+   "bytes": 12206,
+   "gzip6": 10684
+  },
+  {
+   "kind": "signage",
+   "file": "ART-05.jpg",
+   "runtime": true,
+   "bytes": 11842,
+   "gzip6": 10451
+  },
+  {
+   "kind": "signage",
+   "file": "ART-06.jpg",
+   "runtime": true,
+   "bytes": 11999,
+   "gzip6": 10547
+  },
+  {
+   "kind": "signage",
+   "file": "ART-07.jpg",
+   "runtime": true,
+   "bytes": 11268,
+   "gzip6": 9867
+  },
+  {
+   "kind": "signage",
+   "file": "ART-08.jpg",
+   "runtime": true,
+   "bytes": 12082,
+   "gzip6": 10646
+  },
+  {
+   "kind": "signage",
+   "file": "ART-09.jpg",
+   "runtime": true,
+   "bytes": 11702,
+   "gzip6": 10160
+  },
+  {
+   "kind": "signage",
+   "file": "ART-10.jpg",
+   "runtime": true,
+   "bytes": 12450,
+   "gzip6": 10900
+  },
+  {
+   "kind": "signage",
+   "file": "ART-11.jpg",
+   "runtime": true,
+   "bytes": 12311,
+   "gzip6": 10763
+  }
+ ]
+}
