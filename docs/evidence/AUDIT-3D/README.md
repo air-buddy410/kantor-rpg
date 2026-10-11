@@ -1,4 +1,4 @@
-# AUDIT-3D — z-fighting / flicker audit (branch max/audit-3d)
+# AUDIT-3D: z-fighting / flicker audit (branch max/audit-3d)
 
 Trigger: Budi's phone video (live e480894) showed flicker on (1) the stair GLB
 divider wall, blue glass and white rail, (2) brown door frames in the corridor,

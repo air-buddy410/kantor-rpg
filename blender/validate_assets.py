@@ -678,7 +678,7 @@ def update_registry(results, data):
             "role": spec["role"],
             "actor": spec.get("actor"),
             "creator": "kantor-rpg procedural script (Claude Code)",
-            "license": "original, project license TBD by owner",
+            "license": "original, MIT (lihat LICENSE)",
             "source": SCRIPT,
             "sourceData": "design/characters.json",
             "blend": b.get("blend"),

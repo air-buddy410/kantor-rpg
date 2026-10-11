@@ -1,0 +1,9 @@
+kantor-rpg
+Copyright (c) 2026 Budi Prabhawa
+Licensed under the MIT License, see LICENSE.
+
+Third-party components shipped with the app keep their own licenses:
+
+- three.js, MIT License, see app/public/licenses/three-LICENSE.txt
+- Alegreya Sans font, SIL Open Font License 1.1, see
+  app/public/licenses/alegreya-sans-OFL.txt

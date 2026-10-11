@@ -372,7 +372,7 @@ def main():
         r = report["floors"][fid]
         entries.append({
             "id": f"BLD-{fid}", "kind": "building", "displayName": f["name"],
-            "creator": "kantor-rpg procedural script (Claude Code)", "license": "original, project license TBD by owner",
+            "creator": "kantor-rpg procedural script (Claude Code)", "license": "original, MIT (lihat LICENSE)",
             "source": "blender/building/build_building.py", "sourceData": "design/world.json + design/derived/walls.json",
             "blend": "blender/out/building.blend", "glb": r.get("glb"),
             "preview": f"assets/previews/building-{fid}-interior.png",

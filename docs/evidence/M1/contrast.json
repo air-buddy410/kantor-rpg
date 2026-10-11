@@ -325,6 +325,15 @@
    "need": 4.5,
    "what": "label ruang terkunci",
    "ok": true
+  },
+  {
+   "theme": "both",
+   "fg": "#fffaf0",
+   "bg": "#1f4d3a",
+   "ratio": 9.26,
+   "need": 4.5,
+   "what": "label NPC (latar hijau 92% opak)",
+   "ok": true
   }
  ],
  "mediaDarkMismatch": {}

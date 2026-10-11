@@ -24,6 +24,8 @@ SECRET_PATTERNS = {
     "generic_assign": re.compile(r"(?i)(api[_-]?key|secret|password|token)\s*[:=]\s*['\"][A-Za-z0-9/+_\-]{16,}['\"]"),
 }
 PRIVATE_IP = re.compile(r"\b(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3})\b")
+# Placeholder address used in docs and deploy script defaults; not a real host.
+EXAMPLE_IPS = {"192.168.1.10"}
 URL = re.compile(r"https?://[^\s'\"<>)]+")
 # Runtime code may only reference these hosts (none are fetched at runtime;
 # they appear in licence notices or docs links).
@@ -47,7 +49,7 @@ def main():
             for k in ("glb", "blend", "preview", "texture"):
                 if a.get(k):
                     registry_paths.add(a[k])
-    allowed_binary_dirs = ("PRD/", "drawings/", "cad/", "docs/evidence/", "design/derived/", "blender/out/", "app/public/assets/", "assets/")
+    allowed_binary_dirs = ("PRD/", "drawings/", "cad/", "docs/evidence/", "design/derived/", "blender/out/", "app/public/assets/", "assets/", "docs/img/", "docs/brand/")
     scanned = 0
     for rel in files():
         p = ROOT / rel
@@ -75,6 +77,8 @@ def main():
             for m in pat.finditer(text):
                 findings.append(f"{rel}: {name} pattern '{m.group(0)[:12]}...'")
         for m in PRIVATE_IP.finditer(text):
+            if m.group(0) in EXAMPLE_IPS:
+                continue
             findings.append(f"{rel}: private IP literal {m.group(0)}")
         if rel.startswith("app/src/") or rel.startswith("app/index.html"):
             for m in URL.finditer(text):

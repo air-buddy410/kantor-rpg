@@ -3,7 +3,7 @@
 Kantor RPG punya dua bagian:
 
 1. **App 3D** (`app/`): Vite + three.js, hasil build berupa file statis (`app/dist`). Bagian ini cukup untuk jalan-jalan di kantor, NPC simulasi, direktori, dan dokumen.
-2. **Backend privat** (`server/`): Node tanpa framework. Dipakai untuk chat agen yang tersambung ke Telegram/Hermes, push notifikasi, dan lampiran. Opsional; tanpa backend, app tetap jalan dalam mode simulasi.
+2. **Backend privat** (`server/`): Node tanpa framework. Dipakai untuk chat agen yang tersambung ke Telegram lewat Hermes Agent, push notifikasi, dan lampiran. Opsional; tanpa backend, app tetap jalan dalam mode simulasi.
 
 Ada tiga jalur: (A) coba di laptop, (B) pasang situs statis, (C) sambungkan backend privat.
 
@@ -98,7 +98,7 @@ Catatan:
 
 ## C. Backend privat (chat agen, push, lampiran)
 
-Backend membaca sesi Telegram Hermes di mesin tempat Hermes berjalan, jadi dipasang di mesin itu (di setup asli: Mac mini), lalu diproksikan oleh nginx situs.
+Backend membaca sesi Telegram Hermes di mesin tempat Hermes berjalan, jadi dipasang di mesin itu (misalnya Mac mini), lalu diproksikan oleh nginx situs.
 
 ### Jalankan manual
 
@@ -117,7 +117,7 @@ node main.mjs
 | `KANTOR_RPG_DATA` | `~/.hermes/kantor-rpg` | Folder data (mode 0700): sesi, `proxy-secret`, `vapid.json`, lampiran |
 | `KANTOR_RPG_PORT` | `3242` | Port HTTP |
 | `KANTOR_RPG_BIND` | `127.0.0.1` | Alamat bind; pakai IP Tailscale/LAN bila nginx di mesin lain |
-| `KANTOR_RPG_ORIGIN` | `https://employee-rpg.air-buddy.site` | Origin yang boleh POST (CSRF) |
+| `KANTOR_RPG_ORIGIN` | situs demo | Origin yang boleh POST (CSRF) |
 | `KANTOR_RPG_PROXY_SECRET` | isi berkas `proxy-secret` | Header wajib dari nginx; request tanpa header ini ditolak |
 
 Kunci VAPID untuk push dibuat otomatis sekali di folder data. Jangan commit folder data.
@@ -139,7 +139,7 @@ Log tersimpan di `~/.hermes/log/kantor-rpg-api.log`. Rollback: arahkan symlink `
 KANTOR_RPG_UPSTREAM=http://<ip-backend>:3242 server/deploy/sambung-nginx.sh
 ```
 
-Skrip ini menulis `/etc/nginx/snippets/kantor-rpg-api.conf` (0600, berisi header rahasia), menyisipkan `include` ke vhost, mencadangkan vhost, lalu menjalankan `nginx -t`. Bila gagal, vhost dikembalikan otomatis. Host dan path vhost dalam skrip (`webserver-101`, `employee-rpg.air-buddy.site`) mengikuti setup asli; ganti untuk server Anda.
+Skrip ini menulis `/etc/nginx/snippets/kantor-rpg-api.conf` (0600, berisi header rahasia), menyisipkan `include` ke vhost, mencadangkan vhost, lalu menjalankan `nginx -t`. Bila gagal, vhost dikembalikan otomatis. Nama host dan path vhost di bagian atas skrip mengikuti server demo; ganti untuk server Anda.
 
 Cek: `curl https://kantor.contoh.id/api/me` harus membalas 200.
 

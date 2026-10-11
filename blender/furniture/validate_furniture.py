@@ -158,7 +158,7 @@ def main():
         w, d, h = catalog[t]["size"]
         e = {"id": assets[t], "kind": "furniture", "catalogType": t, "displayName": catalog[t].get("label"),
              "family": catalog[t].get("family"),
-             "creator": "kantor-rpg procedural script (Claude Code)", "license": "original, project license TBD by owner",
+             "creator": "kantor-rpg procedural script (Claude Code)", "license": "original, MIT (lihat LICENSE)",
              "source": "blender/furniture/build_furniture.py", "sourceData": "design/world.json#catalog",
              "blend": "blender/out/furniture.blend", "glb": r["glb"], "preview": SHEET,
              "dimensions": r.get("dims"), "pivot": "footprint centre on the floor, front -Y (glTF +Z)",

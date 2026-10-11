@@ -34,6 +34,11 @@ def unknown_files(paths):
             ok = f.stem in art and f.suffix == ".jpg"
         elif rel.startswith("app/public/docs/"):
             ok = name in generated_pdfs or name == "manifest.json"
+        elif rel.startswith("app/public/assets/icons/"):
+            # rendered from the original SVGs in docs/brand/
+            ok = name in {"icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "badge-96.png"}
+        elif rel in {"app/public/manifest.webmanifest", "app/public/sw.js"}:
+            ok = True  # hand-written PWA manifest and service worker
         elif rel.startswith("app/public/licenses/"):
             ok = name in {"alegreya-sans-OFL.txt", "three-LICENSE.txt"}
         else:
