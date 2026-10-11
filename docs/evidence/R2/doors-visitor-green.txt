@@ -1,0 +1,8 @@
+# Green: CI browser steps run locally on eef87cc (walkTo backs out of one-agent passages). doors.spec alone: 12/12 over 6 repeats.
+world 3 viewports / desktop sets / tablet+mobile sets / desktop budget:
+  1 skipped
+  35 passed (6.3m)
+  1 skipped
+  40 passed (9.4m)
+  26 passed (6.2m)
+  1 passed (33.1s)
