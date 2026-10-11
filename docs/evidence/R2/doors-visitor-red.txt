@@ -1,0 +1,7 @@
+# Red: doors.spec visitor test x6 on 51c5e30 (main + R2), desktop. CEO stalls head-on with Leo/Kevin/Bruno in the 0.8 m passage x 17.0-17.7, y 14-16.5 (Leo added by 671accd)
+    Received: false
+    Received: false
+    Received: false
+    Received: false
+    Received: false
+  6 failed

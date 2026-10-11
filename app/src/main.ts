@@ -236,22 +236,49 @@ function boot() {
       // last metre (the CEO stops at their disc, as a player would).
       let lastPos = [...game.player.pos];
       let lastMove = performance.now();
+      // Head-on with personas in a one-agent-wide passage nobody can pass: they
+      // wait for the CEO, so the driver backs out along its own trail to wider
+      // floor and lets them through, as a player would.
+      const trail: Vec2[] = [[game.player.pos[0], game.player.pos[1]]];
+      let retreating = false;
+      let holdUntil = 0;
       const finish = (ok: boolean) => { game.autopilot = null; game.onFrame = null; resolve(ok); };
       game.onFrame = () => {
         const now = performance.now();
-        if (Math.hypot(game.player.pos[0] - lastPos[0], game.player.pos[1] - lastPos[1]) > 0.05) { lastPos = [...game.player.pos]; lastMove = now; }
+        const [px, py] = game.player.pos;
+        if (Math.hypot(px - lastPos[0], py - lastPos[1]) > 0.05) { lastPos = [px, py]; lastMove = now; }
+        const tail = trail[trail.length - 1];
+        if (!retreating && Math.hypot(px - tail[0], py - tail[1]) > 0.3) trail.push([px, py]);
+        if (now - t0 > timeoutMs) { finish(false); return; }
+        if (now < holdUntil) { game.autopilot = null; return; }
         if (now - lastMove > 1500) {
-          if (Math.hypot(x - game.player.pos[0], y - game.player.pos[1]) < 1.0) { finish(true); return; }
-          path = game.nav.findPath(game.player.pos, [x, y]) ?? path;
+          if (Math.hypot(x - px, y - py) < 1.0) { finish(true); return; }
+          const blocked = game.npcs.sim.npcs.some((n) => n.floor === game.player.floor && Math.hypot(n.pos[0] - px, n.pos[1] - py) < 1.2);
+          const back: Vec2[] = [];
+          for (let k = trail.length - 1, run = 0; blocked && k >= 0 && run < 2.5; k--) {
+            const prev = back.length ? back[back.length - 1] : [px, py];
+            run += Math.hypot(trail[k][0] - prev[0], trail[k][1] - prev[1]);
+            back.push(trail[k]);
+          }
+          if (back.length) { path = back; retreating = true; trail.length = Math.max(1, trail.length - back.length); }
+          else path = game.nav.findPath(game.player.pos, [x, y]) ?? path;
           i = 0;
           lastMove = now;
         }
         const tgt = path[Math.min(i, path.length - 1)];
-        const dx = tgt[0] - game.player.pos[0];
-        const dy = tgt[1] - game.player.pos[1];
+        const dx = tgt[0] - px;
+        const dy = tgt[1] - py;
         const d = Math.hypot(dx, dy);
         if (d < 0.2) i++;
-        if (i >= path.length || now - t0 > timeoutMs) { finish(i >= path.length); return; }
+        if (i >= path.length && retreating) {
+          retreating = false;
+          path = game.nav.findPath(game.player.pos, [x, y]) ?? path;
+          i = 0;
+          holdUntil = now + 2500;
+          lastMove = holdUntil;
+          return;
+        }
+        if (i >= path.length) { finish(true); return; }
         game.autopilot = d < 0.2 ? null : { dir: [dx / d, dy / d], run: true };
       };
     }),
