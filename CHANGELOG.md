@@ -4,7 +4,7 @@
 
 Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di [demo publik](https://employee-rpg.air-buddy.site) setelah tes dan CI lulus. Kode rilis adalah commit di `main`.
 
-## v2.7.1, 19 November 2026
+## v2.7.1, 19 November 2026 (rilis `d488398`)
 
 **Kontroler HP lebih gampang dipakai**
 
@@ -15,7 +15,7 @@ Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di 
 - Stik kiri mengikuti jempol: sentuh di mana saja di area kiri, stik muncul di situ.
 - HP Android bergetar pendek saat tombol ditekan.
 
-## v2.4 sampai v2.7, 19 November 2026
+## v2.4 sampai v2.7, 19 November 2026 (rilis `da54a01`)
 
 **Daftar game, biliar 2 pemain, HP jadi stik, 5 game multiplayer baru**
 
@@ -37,6 +37,8 @@ Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di 
   - Lomba 17-an: balap karung, makan kerupuk, tarik tambang, 1 sampai 4 pemain.
   - Hoki Meja: air hockey 1 lawan 1.
 - Angka di dalam game memakai angka tegak (0 tidak lagi terlihat seperti huruf o).
+- Chat agen: kolom Cari pesan yang sudah dibuka tidak lagi tertutup sendiri saat balasan baru masuk.
+- Total game multiplayer sekarang 9 dari 20 game.
 
 ## v2.3, 19 November 2026
 
