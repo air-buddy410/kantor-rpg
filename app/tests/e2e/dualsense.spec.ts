@@ -72,15 +72,19 @@ test.describe('DualSense layout', () => {
     await page.goto('/mg.html?game=biliar&seed=7');
     await expect(page.locator('#mg-host .mg-card button.primary')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('.mg-steps')).toContainText('R2');
-    await page.locator('#mg-host .mg-card button.primary').click();
-    await expect.poll(async () => (await mg(page))?.phase).toBe('play');
+    await expect(async () => {
+      if ((await mg(page))?.phase !== 'play') await page.locator('#mg-host .mg-card button.primary').click({ timeout: 2_000 });
+      expect((await mg(page))?.phase).toBe('play');
+    }).toPass({ timeout: 15_000 });
     const a0 = (await mg(page))!.snap!.aim as number;
     await axes(page, [0, 0, 0.9, 0]);
     await page.waitForTimeout(500);
+    // slow, not twitchy: half a second of near full tilt stays under 0.6 rad,
+    // and frame drops on a busy machine only make it slower
+    expect(Math.abs(((await mg(page))!.snap!.aim as number) - a0)).toBeLessThan(0.6);
+    // it does move: wait for game time to pass instead of wall time
+    await expect.poll(async () => Math.abs(((await mg(page))!.snap!.aim as number) - a0), { timeout: 10_000 }).toBeGreaterThan(0.05);
     await axes(page, [0, 0, 0, 0]);
-    const a1 = (await mg(page))!.snap!.aim as number;
-    expect(Math.abs(a1 - a0)).toBeGreaterThan(0.05);
-    expect(Math.abs(a1 - a0)).toBeLessThan(0.6);
     await shot(page, info, 'dualsense-biliar');
     await set(page, 7, 0.6);
     await expect.poll(async () => (await mg(page))!.snap!.trigger).toBe(true);
