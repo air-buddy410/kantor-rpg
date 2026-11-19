@@ -1,9 +1,9 @@
-// Game Station launcher (L2-GAME arcade cabinets and TV): ten slots, five
-// filled, each showing its best local score. Picking a slot hands over to the
-// mini game host; closing the game returns here.
+// Game Station launcher (L2-GAME arcade cabinets and TV): ten cabinets,
+// multiplayer first, each showing its player count and best local score.
+// Picking one hands over to the mini game host; closing the game returns here.
 import { t } from '../i18n';
 import { sound } from '../audio';
-import { ARCADE_INFO, ARCADE_SLOTS } from './registry';
+import { ARCADE_SLOTS, catalogGame } from './catalog';
 import { loadScores, openMiniGame, type HostOpts } from './host';
 import { PAD_PROFILES, faceButtons } from '../input/pad-profiles';
 import { PressEdges, isFreshKey, padButtons } from '../input/press-edges';
@@ -25,21 +25,32 @@ export function openArcade(opts: HostOpts): HTMLElement {
   const bar = el('div', { class: 'mg-bar' });
   const title = el('h2', { class: 'mg-title', id: 'arcade-title' }, t('Game Station'));
   const close = el('button', { type: 'button', class: 'btn mg-close' }, t('Keluar'));
-  bar.append(title, el('span', { class: 'mg-hud' }, t('{n} dari {m} slot terisi', { n: ARCADE_SLOTS.filter(Boolean).length, m: ARCADE_SLOTS.length })), close);
+  const phone = el('button', { type: 'button', class: 'btn', id: 'arcade-phone' }, t('Main pakai HP'));
+  // ?relay= points the panel at a test relay (E2E), like pad.html does
+  const relayUrl = new URLSearchParams(location.search).get('relay') ?? undefined;
+  phone.addEventListener('click', () => { void import('../pad/panel').then((m) => m.openPhonePanel(null, { padProfile: opts.padProfile, relayUrl: relayUrl ? `${relayUrl}?role=screen` : undefined, opener: phone })); });
+  bar.append(title, el('span', { class: 'mg-hud' }, t('{n} mesin', { n: ARCADE_SLOTS.length })), phone, close);
   const body = el('div', { class: 'mg-stage arcade-body' });
   const wrap = el('div', { class: 'mg-card arcade-card' });
   wrap.style.position = 'static';
   wrap.style.transform = 'none';
   wrap.style.width = 'min(860px, calc(100vw - 24px))';
-  const grid = el('div', { class: 'arcade-grid', role: 'list' });
   const scores = loadScores();
-  ARCADE_SLOTS.forEach((id, i) => {
-    const item = el('div', { role: 'listitem' });
-    const b = el('button', { type: 'button', class: 'arcade-slot', 'data-game': id ?? '' });
-    b.append(el('span', { class: 'num' }, String(i + 1).padStart(2, '0')));
-    if (id) {
-      const info = ARCADE_INFO[id];
+  const groups = el('div', { class: 'arcade-groups' });
+  const grid = groups;
+  let n = 0;
+  for (const [label, multi] of [['Multiplayer', true], ['Single player', false]] as const) {
+    const ids = ARCADE_SLOTS.filter((id) => ((catalogGame(id)?.players ?? 1) > 1) === multi);
+    if (!ids.length) continue;
+    const head = el('h3', { class: 'arcade-group' }, t(label));
+    const list = el('div', { class: 'arcade-grid', role: 'list', 'aria-label': t(label) });
+    for (const id of ids) {
+      const info = catalogGame(id)!;
+      const item = el('div', { role: 'listitem' });
+      const b = el('button', { type: 'button', class: 'arcade-slot', 'data-game': id });
+      b.append(el('span', { class: 'num' }, String(++n).padStart(2, '0')));
       b.append(el('strong', {}, t(info.title)), el('small', {}, t(info.blurb)));
+      b.append(el('span', { class: 'chip' }, info.players > 1 ? t('1 sampai {n} pemain', { n: info.players }) : t('1 pemain')));
       const best = scores[id]?.[0];
       b.append(el('small', {}, best ? t('Rekor: {name}', { name: best.name }) : t('Belum ada rekor')));
       b.addEventListener('click', () => {
@@ -47,14 +58,11 @@ export function openArcade(opts: HostOpts): HTMLElement {
         teardown(false);
         openMiniGame(id, { ...opts, onClose: () => openArcade(opts) });
       });
-    } else {
-      b.setAttribute('aria-disabled', 'true');
-      b.append(el('strong', {}, t('Segera hadir')), el('small', {}, t('Slot kosong untuk game berikutnya.')));
-      b.addEventListener('click', () => sound.sfx('back'));
+      item.append(b);
+      list.append(item);
     }
-    item.append(b);
-    grid.append(item);
-  });
+    groups.append(head, list);
+  }
   const help = el('p', { class: 'arcade-help' });
   const helpLine = () => {
     const d = currentDevice();
@@ -63,17 +71,33 @@ export function openArcade(opts: HostOpts): HTMLElement {
   };
   helpLine();
   window.addEventListener('kantor:device', helpLine);
-  wrap.append(help, grid);
+  wrap.append(help, groups);
   body.append(wrap);
   root.append(bar, body);
   document.body.append(root);
 
-  const buttons = () => [...grid.querySelectorAll<HTMLButtonElement>('button')];
-  const cols = () => {
+  const buttons = () => [...grid.querySelectorAll<HTMLButtonElement>('button.arcade-slot')];
+  // Up/down go to the cabinet straight above or below (the two groups have
+  // different row lengths, so a fixed column count jumped sideways).
+  const vertical = (d: 1 | -1) => {
     const bs = buttons();
-    if (bs.length < 2) return 1;
-    const top = bs[0].getBoundingClientRect().top;
-    return Math.max(1, bs.findIndex((b) => b.getBoundingClientRect().top > top + 4)) || bs.length;
+    const cur = document.activeElement as HTMLButtonElement;
+    const i = bs.indexOf(cur);
+    if (i < 0) { bs[0]?.focus(); return; }
+    const r = cur.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    let best: HTMLButtonElement | null = null;
+    let bd = Infinity;
+    for (const b of bs) {
+      const q = b.getBoundingClientRect();
+      const dy = (q.top - r.top) * d;
+      if (dy < 4) continue;
+      const score = dy * 4 + Math.abs(q.left + q.width / 2 - cx);
+      if (score < bd) { bd = score; best = b; }
+    }
+    best?.focus();
+    best?.scrollIntoView({ block: 'nearest' });
+    sound.sfx('ui');
   };
   const move = (d: number) => {
     const bs = buttons();
@@ -91,8 +115,8 @@ export function openArcade(opts: HostOpts): HTMLElement {
     if (k === 'Escape') { e.preventDefault(); teardown(true); return; }
     if (k === 'ArrowRight') { e.preventDefault(); move(1); }
     else if (k === 'ArrowLeft') { e.preventDefault(); move(-1); }
-    else if (k === 'ArrowDown') { e.preventDefault(); move(cols()); }
-    else if (k === 'ArrowUp') { e.preventDefault(); move(-cols()); }
+    else if (k === 'ArrowDown') { e.preventDefault(); vertical(1); }
+    else if (k === 'ArrowUp') { e.preventDefault(); vertical(-1); }
     else if (k.toLowerCase() === 'm') sound.with((en) => en.toggleMute());
   };
   // Gamepad: D-pad moves, A plays, B leaves. Polled here because the office pad
@@ -114,8 +138,8 @@ export function openArcade(opts: HostOpts): HTMLElement {
     const face = faceButtons(PAD_PROFILES[opts.padProfile()] ?? PAD_PROFILES.standar);
     if (hit(15)) move(1);
     if (hit(14)) move(-1);
-    if (hit(13)) move(cols());
-    if (hit(12)) move(-cols());
+    if (hit(13)) vertical(1);
+    if (hit(12)) vertical(-1);
     if (hit(face.A)) (document.activeElement as HTMLElement | null)?.click();
     if (hit(face.B) || hit(8)) teardown(true);
   };

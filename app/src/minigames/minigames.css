@@ -97,3 +97,22 @@
 .mg-tut-list dt kbd { margin-left: 0; }
 .arcade-help { margin: 0 0 8px; }
 @media (max-width: 560px) { .mg-legend { font-size: 0.8rem; gap: 3px 10px; } }
+
+/* Game Station groups (v2.4): multiplayer cabinets first. */
+.arcade-group { margin: 12px 0 0; font-size: 1rem; }
+.arcade-group:first-child { margin-top: 0; }
+.arcade-slot .chip, .game-row .chip {
+  display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 0.82rem; font-weight: 700;
+  background: var(--surface-2); color: var(--ink); border: 1px solid var(--control-border);
+}
+.arcade-body { overflow-y: auto; }
+.mg-hotseat { display: flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 700; }
+.mg-hotseat input { width: 22px; height: 22px; }
+/* cabinets in a row share one height; the chip and record line sit at the bottom */
+.arcade-grid { align-items: stretch; }
+.arcade-grid > [role='listitem'] { display: flex; }
+.arcade-slot { width: 100%; }
+.arcade-slot .chip { margin-top: auto; font-size: 0.85rem; }
+/* the station card scrolls inside the stage instead of being cut off */
+.arcade-body { place-items: start center; padding: 12px 6px 24px; }
+@media (max-width: 380px) { #arcade .mg-hud { display: none; } }

@@ -1,13 +1,17 @@
 // Biliar 8-Ball (billiard table, L2-BILLIARD). Top-down eight ball against a
-// CPU teammate.
+// CPU teammate, or two local players taking turns (v2.4).
 // Physics: every ball carries its linear velocity (vx, vy) and the surface
 // speed of its spin (wx, wy). While the two differ the ball slides and cloth
 // friction pulls them together (5/2 ratio of a solid sphere); once equal it
 // rolls with a small rolling resistance. Ball to ball contacts are frictionless
 // equal-mass impulses, so a stun shot stops dead and top/back spin makes the
-// cue ball follow or draw afterwards. At least 8 sub-steps per frame and never
-// more than 0.4 R of travel per sub-step, so nothing tunnels.
-import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
+// cue ball follow or draw afterwards. Side spin (english) is a separate scalar:
+// it throws the ball sideways off each cushion and fades while it runs.
+// At least 8 sub-steps per frame and never more than 0.4 R of travel per
+// sub-step, so nothing tunnels.
+// Rules: WPA eight ball, simplified. No safeties or push outs, the 8's pocket
+// is called automatically from the aim line, the break never assigns groups.
+import type { CastMember, GameCtx, GameInstance, GameModule, GameResult, InputState, LegendKey } from '../types';
 import { stick } from '../../input/pad-profiles';
 import { PAL, drawToken, roundRect, text } from '../cast';
 
@@ -33,24 +37,46 @@ export const SUBSTEPS = 8;
 export const MAX_SHOTS = 40;
 export const TIME_LIMIT = 600;
 const MEDIUM = 0.5;
-/** Camera stick at full tilt turns the cue this many rad/s (about 46 degrees). */
-export const PAD_TURN = 0.8;
+/** Camera stick at full tilt turns the cue this many rad/s (about 23 degrees). */
+export const PAD_TURN = 0.4;
+/** L2 held divides every pad turn rate by this. */
+export const PAD_FINE = 8;
+/** Tip offset limit in ball radii; further out a real cue miscues. */
+export const SPIN_MAX = 0.8;
+/** Spin dot speed at full stick tilt or a held arrow, ball radii per second. */
+export const SPIN_RATE = 1.6;
+/** Spin surface speed per unit of vertical tip offset, as a fraction of the cue speed. */
+export const SPIN_K = 1.05;
+/** Cue ball deflection (rad) at full side spin, away from the side the tip hit. */
+export const SQUIRT = 0.02;
+/** Tangential cushion kick at full side spin, as a fraction of the impact speed. */
+export const ENGLISH = 0.4;
+/** Side spin fades at this rate (1/s) while the ball runs. */
+const SIDE_DECAY = 0.5;
+/** Spin widget in the bottom bar: centre and radius (one ball radius on screen). */
+export const SPIN_UI = { x: 222, y: 378, r: 12 };
+/** Ball in hand moves this fast with the arrows or the stick. */
+const HAND_SPEED = 200;
 const STOP = 2;
 const FALL_T = 0.32;
 
 export type Group = 'solid' | 'stripe';
-export type Spin = 'none' | 'top' | 'back';
+/** Tip offset from the cue ball centre in ball radii: x to the shooter's right, y up (top spin). */
+export interface Spin { x: number; y: number }
+export const CENTER: Spin = { x: 0, y: 0 };
 export interface Ball {
   n: number; x: number; y: number; vx: number; vy: number;
   /** Surface speed of the spin; equals (vx, vy) when the ball rolls cleanly. */
   wx: number; wy: number;
+  /** Spin about the vertical axis, as the tip offset that made it (positive = right english). */
+  side: number;
   down: boolean;
   /** Body-fixed pole (unit vector) carrying the number spot and stripe caps; z points into the table. */
   px: number; py: number; pz: number;
   /** Seconds left of the drop-into-pocket animation. */
   fall: number;
 }
-export type PhysEvent = { kind: 'pocket'; n: number } | { kind: 'hit'; a: number; b: number; v: number } | { kind: 'rail'; n: number; v: number };
+export type PhysEvent = { kind: 'pocket'; n: number; p: number; v: number } | { kind: 'hit'; a: number; b: number; v: number } | { kind: 'rail'; n: number; v: number };
 export interface Rules { turn: 0 | 1; groups: (Group | null)[]; winner: 0 | 1 | null }
 
 export const groupOf = (n: number): Group | null => (n >= 1 && n <= 7 ? 'solid' : n >= 9 && n <= 15 ? 'stripe' : null);
@@ -58,9 +84,11 @@ const other = (gr: Group): Group => (gr === 'solid' ? 'stripe' : 'solid');
 const speedOf = (b: Ball) => Math.hypot(b.vx, b.vy);
 export const angDiff = (a: number, b: number) => { let d = (a - b) % (Math.PI * 2); if (d > Math.PI) d -= Math.PI * 2; if (d < -Math.PI) d += Math.PI * 2; return d; };
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+/** Keep a spin offset inside the legal tip circle. */
+export const clampSpin = (x: number, y: number): Spin => { const m = Math.hypot(x, y); const k = m > SPIN_MAX ? SPIN_MAX / m : 1; return { x: x * k, y: y * k }; };
 
 export function makeBall(n: number, x: number, y: number, vx = 0, vy = 0, rolling = false): Ball {
-  return { n, x, y, vx, vy, wx: rolling ? vx : 0, wy: rolling ? vy : 0, down: false, px: 0, py: 0, pz: -1, fall: 0 };
+  return { n, x, y, vx, vy, wx: rolling ? vx : 0, wy: rolling ? vy : 0, side: 0, down: false, px: 0, py: 0, pz: -1, fall: 0 };
 }
 
 /** Fresh rack: cue on the head spot, triangle apex on the foot spot. */
@@ -103,25 +131,30 @@ export function collide(a: Ball, b: Ball, e = E_BALL): number {
   return vrel;
 }
 
-/** Pocket that swallows this ball, or null. Past the cushion line the mouth is a little wider. */
+/** Index of the pocket that swallows this ball, or -1. Past the cushion line the mouth is a little wider. */
 function pocketAt(b: Ball) {
   const { x0, y0, x1, y1 } = TABLE;
   const beyond = b.x < x0 || b.x > x1 || b.y < y0 || b.y > y1;
-  for (const p of POCKETS) {
-    const d = Math.hypot(b.x - p.x, b.y - p.y);
-    if (d < p.r || (beyond && d < p.r + R * 0.9)) return p;
-  }
-  return null;
+  return POCKETS.findIndex((p) => { const d = Math.hypot(b.x - p.x, b.y - p.y); return d < p.r || (beyond && d < p.r + R * 0.9); });
 }
 const inMouth = (b: Ball) => POCKETS.some((p) => Math.hypot(b.x - p.x, b.y - p.y) < p.r + R * 0.9);
 
+/**
+ * Cushion contact. Side spin grips the rubber: the kick runs along the
+ * cushion, to the right of the approach for right english, so a ball that
+ * already runs that way speeds up (running) and one coming the other way
+ * checks up (reverse). The cushion takes half the side spin.
+ */
 function rail(b: Ball, axis: 'x' | 'y', wall: number, sign: 1 | -1, ev: PhysEvent[]) {
   const v = axis === 'x' ? b.vx : b.vy;
   if (axis === 'x') b.x = wall; else b.y = wall;
   if (v * sign <= 0) return;
   ev.push({ kind: 'rail', n: b.n, v: Math.abs(v) });
-  if (axis === 'x') { b.vx = -b.vx * E_RAIL; b.vy *= 0.96; b.wx = -b.wx * 0.4; }
-  else { b.vy = -b.vy * E_RAIL; b.vx *= 0.96; b.wy = -b.wy * 0.4; }
+  const kick = ((ENGLISH * b.side) / SPIN_MAX) * Math.abs(v);
+  // tangent (-ny, nx) of the outward normal: right of a ball heading into this cushion
+  if (axis === 'x') { b.vx = -b.vx * E_RAIL; b.vy = b.vy * 0.96 + sign * kick; b.wx = -b.wx * 0.4; b.wy += sign * kick; }
+  else { b.vy = -b.vy * E_RAIL; b.vx = b.vx * 0.96 - sign * kick; b.wy = -b.wy * 0.4; b.wx -= sign * kick; }
+  b.side *= 0.5;
 }
 
 export function physicsStep(balls: Ball[], dt: number, ev: PhysEvent[] = []) {
@@ -141,12 +174,14 @@ export function physicsStep(balls: Ball[], dt: number, ev: PhysEvent[] = []) {
       if (b.down || (b.vx === 0 && b.vy === 0)) continue;
       b.x += b.vx * h;
       b.y += b.vy * h;
-      const p = pocketAt(b);
-      if (p) {
+      const pi = pocketAt(b);
+      if (pi >= 0) {
+        const p = POCKETS[pi];
+        const v = speedOf(b);
         b.down = true; b.fall = FALL_T;
         b.vx = (p.x - b.x) / FALL_T + b.vx * 0.04; b.vy = (p.y - b.y) / FALL_T + b.vy * 0.04;
-        b.wx = 0; b.wy = 0;
-        ev.push({ kind: 'pocket', n: b.n });
+        b.wx = 0; b.wy = 0; b.side = 0;
+        ev.push({ kind: 'pocket', n: b.n, p: pi, v });
         continue;
       }
       if (inMouth(b)) continue;
@@ -182,7 +217,8 @@ export function physicsStep(balls: Ball[], dt: number, ev: PhysEvent[] = []) {
         b.vx = b.wx = rx * k;
         b.vy = b.wy = ry * k;
       }
-      if (Math.abs(b.vx) + Math.abs(b.vy) < STOP && Math.abs(b.wx) + Math.abs(b.wy) < STOP) { b.vx = b.vy = b.wx = b.wy = 0; }
+      if (b.side) b.side = Math.abs(b.side) < 1e-3 ? 0 : b.side * (1 - SIDE_DECAY * h);
+      if (Math.abs(b.vx) + Math.abs(b.vy) < STOP && Math.abs(b.wx) + Math.abs(b.wy) < STOP) { b.vx = b.vy = b.wx = b.wy = 0; b.side = 0; }
       // turn the body pole: omega = (wy, -wx, 0) / R with z into the table
       const ox = b.wy / R, oy = -b.wx / R;
       if (ox || oy) {
@@ -234,6 +270,27 @@ export function aimRay(balls: Ball[], angle: number, maxLen = 900, from?: { x: n
   return { x: c.x + dx * best, y: c.y + dy * best, hit, rail: railAxis };
 }
 
+/**
+ * Pocket called for the 8 on this aim: the one closest to the line the 8
+ * leaves along when the cue hits it straight, else the pocket nearest the 8.
+ */
+export function calledPocket(balls: Ball[], angle: number): number | null {
+  const e = balls.find((b) => b.n === 8 && !b.down);
+  if (!e) return null;
+  const near = () => POCKETS.reduce((bi, p, i) => (Math.hypot(p.x - e.x, p.y - e.y) < Math.hypot(POCKETS[bi].x - e.x, POCKETS[bi].y - e.y) ? i : bi), 0);
+  const ray = aimRay(balls, angle);
+  if (ray.hit !== e) return near();
+  const L = Math.hypot(e.x - ray.x, e.y - ray.y) || 1;
+  const ux = (e.x - ray.x) / L, uy = (e.y - ray.y) / L;
+  let best = -1, off = Infinity;
+  POCKETS.forEach((p, i) => {
+    const along = (p.x - e.x) * ux + (p.y - e.y) * uy;
+    const side = Math.abs((p.x - e.x) * uy - (p.y - e.y) * ux);
+    if (along > 0 && side < off) { off = side; best = i; }
+  });
+  return best >= 0 ? best : near();
+}
+
 function pathClear(balls: Ball[], ax: number, ay: number, bx: number, by: number, skip: number[]) {
   const vx = bx - ax, vy = by - ay;
   const L2 = vx * vx + vy * vy || 1;
@@ -246,23 +303,26 @@ function pathClear(balls: Ball[], ax: number, ay: number, bx: number, by: number
 }
 
 export const speedFor = (p: number) => MIN_SPEED + clamp(p, 0, 1) * (MAX_SPEED - MIN_SPEED);
-/** Spin surface speed as a fraction of the cue speed: top rolls on, back draws back. */
-export const SPIN_K: Record<Spin, number> = { none: 0, top: 0.75, back: -0.85 };
 
-/** Put the cue ball in motion: linear speed from power, spin from the english setting. */
-export function strike(c: Ball, angle: number, power: number, spin: Spin = 'none') {
+/**
+ * Put the cue ball in motion. Vertical tip offset becomes top or back spin,
+ * side offset becomes english and pushes the ball slightly the other way (squirt).
+ */
+export function strike(c: Ball, angle: number, power: number, spin: Spin = CENTER) {
   const v = speedFor(power);
-  c.vx = Math.cos(angle) * v; c.vy = Math.sin(angle) * v;
-  c.wx = c.vx * SPIN_K[spin]; c.wy = c.vy * SPIN_K[spin];
+  const a = angle - (spin.x / SPIN_MAX) * SQUIRT;
+  c.vx = Math.cos(a) * v; c.vy = Math.sin(a) * v;
+  c.wx = c.vx * spin.y * SPIN_K; c.wy = c.vy * spin.y * SPIN_K;
+  c.side = spin.x;
 }
 
 /** Play a shot on a copy of the table; returns the balls sunk in order. */
-export function simulate(balls: Ball[], angle: number, power: number, spin: Spin = 'none', maxT = 9): number[] {
+export function simulate(balls: Ball[], angle: number, power: number, spin: Spin = CENTER, maxT = 9): number[] {
   const copy = balls.map((b) => ({ ...b }));
   strike(copy[0], angle, power, spin);
   const ev: PhysEvent[] = [];
   for (let t = 0; t < maxT && moving(copy); t += 1 / 30) physicsStep(copy, 1 / 30, ev);
-  return ev.filter((e): e is { kind: 'pocket'; n: number } => e.kind === 'pocket').map((e) => e.n);
+  return ev.filter((e): e is Extract<PhysEvent, { kind: 'pocket' }> => e.kind === 'pocket').map((e) => e.n);
 }
 
 interface Cand { angle: number; power: number; target: number; score: number }
@@ -315,38 +375,101 @@ export function targetsFor(rules: Rules, s: 0 | 1, balls: Ball[]): number[] {
   return own.length ? own : [8];
 }
 
+/** What happened during one shot, collected from the physics events. */
+export interface Shot {
+  brk: boolean;
+  /** First ball the cue ball touched. */
+  first: number | null;
+  /** Some ball touched a cushion after that first contact. */
+  railAfter: boolean;
+  /** Object balls that touched a cushion (break rule). */
+  railBalls: number[];
+  /** Balls sunk, in order. */
+  pocketed: number[];
+  /** Pocket index the 8 dropped in, and the one called for it. */
+  eightPocket: number | null;
+  called: number | null;
+}
+export const newShot = (brk = false): Shot => ({ brk, first: null, railAfter: false, railBalls: [], pocketed: [], eightPocket: null, called: null });
+export type Foul = 'cue' | 'none' | 'wrong' | 'eight' | 'rail' | 'break';
+export interface Outcome {
+  foul: Foul | null;
+  keep: boolean;
+  assigned: Group | null;
+  /** The 8 went down: 'break' = respot and play on, the rest end the game. */
+  eight: 'win' | 'early' | 'foul' | 'pocket' | 'break' | null;
+}
+const offTable = (b: Ball) => !b.down && (b.x < TABLE.x0 || b.x > TABLE.x1 || b.y < TABLE.y0 || b.y > TABLE.y1);
+
 /**
- * House rules, applied once the balls stop. Mutates `rules`.
- * `pocketed` lists balls sunk on this shot in order; `balls` is the state after it.
+ * Eight ball rules, applied once the balls stop. Mutates `rules` (turn,
+ * groups, winner). `balls` is the state after the shot.
  */
-export function resolveShot(rules: Rules, pocketed: number[], balls: Ball[]): { foul: boolean; keep: boolean; assigned: Group | null; eight: boolean } {
+export function resolveShot(rules: Rules, shot: Shot, balls: Ball[]): Outcome {
   const s = rules.turn;
   const o = (1 - s) as 0 | 1;
-  const cue = pocketed.includes(0);
+  const { pocketed, first } = shot;
+  const gr = rules.groups[s];
+  // cleared before this shot: balls sunk on it still count as on the table
+  const cleared = !!gr && balls.every((b) => groupOf(b.n) !== gr || (b.down && !pocketed.includes(b.n)));
   const objs = pocketed.filter((n) => n !== 0 && n !== 8);
+  let foul: Foul | null = null;
+  if (pocketed.includes(0) || offTable(balls[0])) foul = 'cue';
+  else if (first === null) foul = 'none';
+  else if (shot.brk) { if (!pocketed.length && shot.railBalls.length < 4) foul = 'break'; }
+  else if (first === 8 && !cleared) foul = 'eight';
+  else if (gr && (cleared ? first !== 8 : groupOf(first) !== gr)) foul = 'wrong';
+  else if (!shot.railAfter && !pocketed.length) foul = 'rail';
+  let eight: Outcome['eight'] = null;
   if (pocketed.includes(8)) {
-    const gr = rules.groups[s];
-    // the group had to be cleared on earlier shots, not on this one
-    const cleared = !!gr && balls.every((b) => groupOf(b.n) !== gr || (b.down && !pocketed.includes(b.n)));
-    rules.winner = cleared && !cue ? s : o;
-    return { foul: cue, keep: false, assigned: null, eight: true };
+    if (shot.brk) eight = 'break';
+    else {
+      eight = !cleared ? 'early' : foul ? 'foul' : shot.eightPocket !== shot.called ? 'pocket' : 'win';
+      rules.winner = eight === 'win' ? s : o;
+      return { foul, keep: false, assigned: null, eight };
+    }
   }
   let assigned: Group | null = null;
-  if (!rules.groups[s] && objs.length && !cue) {
+  // the table stays open after the break; the first legal pot picks the groups
+  if (!foul && !shot.brk && !gr && objs.length) {
     assigned = groupOf(objs[0])!;
     rules.groups[s] = assigned;
     rules.groups[o] = other(assigned);
   }
-  const own = rules.groups[s] ? objs.filter((n) => groupOf(n) === rules.groups[s]).length : 0;
-  const keep = !cue && own > 0;
+  const mine = rules.groups[s];
+  const keep = !foul && (shot.brk ? pocketed.length > 0 : !!mine && objs.some((n) => groupOf(n) === mine));
   if (!keep) rules.turn = o;
-  return { foul: cue, keep, assigned, eight: false };
+  return { foul, keep, assigned, eight };
 }
 
-/** Ball in hand, simplified: the cue goes back to the head spot, or the nearest free spot. */
+/** A legal ball in hand spot: on the cloth, out of the pocket mouths, touching no ball. */
+export function handOk(balls: Ball[], x: number, y: number, behind: boolean): boolean {
+  const { x0, y0, x1, y1 } = TABLE;
+  if (x < x0 + R || x > (behind ? HEAD.x : x1 - R) || y < y0 + R || y > y1 - R) return false;
+  if (POCKETS.some((p) => Math.hypot(x - p.x, y - p.y) < p.r + R)) return false;
+  return balls.every((b) => b.n === 0 || b.down || Math.hypot(b.x - x, b.y - y) >= 2 * R);
+}
+
+/** Computer's ball in hand: the grid point that leaves the easiest pot. */
+export function bestSpot(balls: Ball[], targets: number[], behind: boolean): { x: number; y: number } | null {
+  const { x0, y0, x1, y1 } = TABLE;
+  let best: { x: number; y: number } | null = null;
+  let top = -Infinity;
+  for (let x = x0 + R + 6; x <= (behind ? HEAD.x : x1 - R); x += 22) {
+    for (let y = y0 + R + 6; y <= y1 - R; y += 22) {
+      if (!handOk(balls, x, y, behind)) continue;
+      const c = candidates([{ ...balls[0], x, y, down: false }, ...balls.slice(1)], targets)[0];
+      const sc = c ? c.score : -1;
+      if (sc > top) { top = sc; best = { x, y }; }
+    }
+  }
+  return best;
+}
+
+/** Cue back on the table at the head spot, or the nearest free spot behind it. */
 export function respotCue(balls: Ball[]) {
   const c = balls[0];
-  c.down = false; c.fall = 0; c.vx = c.vy = c.wx = c.wy = 0;
+  c.down = false; c.fall = 0; c.vx = c.vy = c.wx = c.wy = 0; c.side = 0;
   const free = (x: number, y: number) => balls.every((b) => b === c || b.down || Math.hypot(b.x - x, b.y - y) >= 2 * R + 1);
   for (let k = 0; k < 40; k++) {
     const dy = (k % 2 ? 1 : -1) * Math.ceil(k / 2) * (2 * R + 2);
@@ -356,8 +479,27 @@ export function respotCue(balls: Ball[]) {
   c.x = HEAD.x; c.y = HEAD.y;
 }
 
+/** 8 sunk on the break: back on the foot spot, or the nearest free point on the long string. */
+export function respotEight(balls: Ball[]) {
+  const e = balls.find((b) => b.n === 8)!;
+  e.down = false; e.fall = 0; e.vx = e.vy = e.wx = e.wy = 0; e.side = 0;
+  const free = (x: number) => balls.every((b) => b === e || b.down || Math.hypot(b.x - x, b.y - FOOT.y) >= 2 * R);
+  for (let k = 0; k < TABLE.x1 - TABLE.x0; k++) {
+    for (const x of [FOOT.x + k, FOOT.x - k]) {
+      if (x > TABLE.x0 + R && x < TABLE.x1 - R && free(x)) { e.x = x; e.y = FOOT.y; return; }
+    }
+  }
+}
+
 const COL = ['#fbf6ea', '#e8b923', '#2f5fa8', '#c23b2b', '#6a3f9a', '#e07a2b', '#2f7d4a', '#7d2a2a', '#1b1b1b'];
 const ballColor = (n: number) => COL[n <= 8 ? n : n - 8];
+/** HUD names for the spin dot, [vertical][horizontal] with bawah/tengah/atas and kiri/tengah/kanan. */
+const SPIN_NAMES = [
+  ['Efek: bawah kiri', 'Efek: bawah', 'Efek: bawah kanan'],
+  ['Efek: kiri', 'Efek: tengah', 'Efek: kanan'],
+  ['Efek: atas kiri', 'Efek: atas', 'Efek: atas kanan'],
+];
+export const spinName = (sp: Spin) => SPIN_NAMES[(sp.y > 0.15 ? 1 : sp.y < -0.15 ? -1 : 0) + 1][(sp.x > 0.15 ? 1 : sp.x < -0.15 ? -1 : 0) + 1];
 
 const meta: GameModule['meta'] = {
   id: 'biliar', title: 'Biliar 8-Ball', place: 'billiard_table', music: 'lounge',
@@ -365,20 +507,20 @@ const meta: GameModule['meta'] = {
   tutorial: [
     'Putar bidikan dengan {lr} (tahan = makin cepat), {ud} untuk putar halus.',
     'Tekan {a}: meter tenaga berayun. Tekan {a} lagi untuk pukul.',
-    '{x}: pukul tenaga sedang. {y}: ganti efek bola. Bola putih masuk = foul.',
+    'Tahan {y} lalu {arah} untuk geser titik efek. Ketuk {y}: efek ke tengah.',
   ],
-  legend: [['lr', 'Bidik'], ['ud', 'Bidik halus'], ['a', 'Tenaga / pukul'], ['x', 'Pukul sedang'], ['y', 'Efek'], ['b', 'Batal']],
-  // DualSense (Budi 2026-11-19): analog aim tuned for the pad, trigger for power.
+  legend: [['lr', 'Bidik'], ['ud', 'Bidik halus'], ['a', 'Tenaga / pukul'], ['x', 'Pukul sedang'], ['y', 'Atur efek'], ['b', 'Batal']],
+  // DualSense: analog aim tuned for the pad, trigger for power, Y + stick for spin.
   padTutorial: [
     'Arahkan {ls} ke tujuan untuk bidik kasar, lalu {rs} kiri/kanan untuk bidik halus.',
-    'Tahan {l2} supaya {rs} makin pelan dan presisi.',
+    'Tahan {l2}: {rs} 8 kali lebih pelan. Tahan {y} lalu geser {rs} untuk efek.',
     'Tarik {r2}: makin dalam makin kuat, lepas untuk pukul. Atau {a} untuk meter tenaga.',
   ],
-  padLegend: [['ls', 'Bidik'], ['rs', 'Bidik halus'], ['l2', 'Presisi'], ['r2', 'Tarik lalu lepas'], ['a', 'Meter tenaga'], ['y', 'Efek'], ['b', 'Batal']],
+  padLegend: [['ls', 'Bidik'], ['rs', 'Bidik halus'], ['l2', 'Presisi'], ['r2', 'Tarik lalu lepas'], ['a', 'Meter tenaga'], ['y', 'Atur efek'], ['b', 'Batal']],
   padActions: {
-    ls: 'Tunjuk arah bidikan',
-    rs: 'Putar bidikan halus (makin miring makin cepat)',
-    l2: 'Tahan: bidik presisi, 4 kali lebih pelan',
+    ls: 'Tunjuk arah bidikan. Bola di tangan: geser bola putih',
+    rs: 'Putar bidikan halus. Saat tombol efek ditahan: geser titik efek',
+    l2: 'Tahan: bidik presisi, 8 kali lebih pelan',
     r2: 'Tarik untuk tenaga, lepas untuk pukul',
   },
   actions: {
@@ -386,14 +528,17 @@ const meta: GameModule['meta'] = {
     right: 'Putar bidikan ke kanan (tahan = cepat)',
     up: 'Putar halus',
     down: 'Putar halus arah sebaliknya',
-    a: 'Mulai meter tenaga / pukul',
+    a: 'Meter tenaga, pukul, atau taruh bola putih',
     b: 'Batal pukul',
     x: 'Pukul tenaga sedang',
-    y: 'Ganti efek bola: atas, bawah, tengah',
+    y: 'Tahan lalu arah: geser titik efek. Ketuk: efek ke tengah',
   },
-  pointerHint: 'Ketuk satu titik untuk membidik ke situ. Seret menjauhi arah tembak untuk menarik tongkat (makin jauh makin kuat), lepas untuk pukul.',
+  pointerHint: 'Ketuk satu titik untuk membidik ke situ. Seret menjauhi arah tembak untuk menarik tongkat, lepas untuk pukul. Ketuk bola putih kecil di bawah untuk efek.',
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true },
   touch: ['left', 'right', 'up', 'down', 'a', 'b', 'x', 'y'],
+  players: 2,
+  playersHint: 'Bareng: 2 pemain bergantian. Tanpa Pemain 2 lawannya komputer.',
+  hotseat: true,
 };
 
 interface Spark { x: number; y: number; vx: number; vy: number; t: number; life: number; c: string }
@@ -401,13 +546,15 @@ interface Float { x: number; y: number; t: number; s: string; c: string }
 
 function create(ctx: GameCtx): GameInstance {
   const { g, w, h } = ctx;
+  // Two humans share the table; Pemain 2 reads input.players[1] (the same object on one device).
+  const versus = ctx.players >= 2;
   const me = ctx.cast.find((c) => c.id === ctx.playerId) ?? ctx.cast[0];
   const pool = ctx.cast.filter((c) => c.id !== 'CH-CEO');
   const foe: CastMember = pool[Math.floor(ctx.rand() * pool.length)] ?? me;
   const skill = 0.008 + ctx.rand() * 0.016;
   const balls = rack(ctx.rand);
   const rules: Rules = { turn: 0, groups: [null, null], winner: null };
-  let phase: 'aim' | 'roll' | 'pause' | 'over' = 'aim';
+  let phase: 'aim' | 'place' | 'roll' | 'pause' | 'over' = 'aim';
   let aim = 0;
   let power = 0;
   let powerDir = 1;
@@ -416,13 +563,20 @@ function create(ctx: GameCtx): GameInstance {
   let holdA = false;
   let chargeT = 0;
   let turnHold = 0;
-  let spin: Spin = 'none';
+  // each seat keeps its own tip position between turns
+  const spins: Spin[] = [{ ...CENTER }, { ...CENTER }];
+  let yHold: { t: number; moved: boolean } | null = null;
+  let spinDrag = false;
+  let handDrag = false;
+  let hand: { behind: boolean } | null = null;
+  let cpuPlace: { x: number; y: number; t: number } | null = null;
   let aBuf = 0;
   let drag: { sx: number; sy: number; maxL: number } | null = null;
   // R2 shot: power follows the trigger; releasing shoots with the strongest
   // pull of the last moment, so easing off on the way out does not weaken it.
   let trig = { on: false, peak: 0, hist: [] as number[], cancel: false };
   let prevPtrDown = false;
+  let sameDevice = true;
   let cpu = { angle: 0, power: 0.5, t: 0 };
   let hint = { angle: 0, power: 1 };
   let shots = 0;
@@ -430,19 +584,33 @@ function create(ctx: GameCtx): GameInstance {
   let pauseT = 0;
   let overT = 0;
   let ended = false;
-  let pocketedNow: number[] = [];
+  let shot: Shot = newShot(true);
+  let lastFoul: Foul | null = null;
   let msg = '';
   let banner = '';
-  let sfxGap = 0;
+  let notice = { s: '', t: 0 };
+  const gap: Record<string, number> = {};
   let fouls = 0;
   let shake = 0;
   let stroke: { x: number; y: number; a: number; pull: number; t: number } | null = null;
   const sparks: Spark[] = [];
   const floats: Float[] = [];
-  let result = { score: 0, summary: '', won: false };
-  const nameOf = (s: 0 | 1) => (s === 0 ? ctx.t('Kamu') : foe.name);
+  let result: GameResult = { score: 0, summary: '', won: false };
+  const cpuTurn = () => !versus && rules.turn === 1;
+  const nameOf = (s: 0 | 1) => (versus ? (s === 0 ? ctx.t('Pemain 1') : ctx.t('Pemain 2')) : s === 0 ? ctx.t('Kamu') : foe.name);
+  // Pemain 2 on a pad of their own sees pad glyphs; on one shared device the key of that device
+  const key = (k: LegendKey) => ctx.key(k, versus && rules.turn === 1 && !sameDevice);
   const downOf = (gr: Group | null) => (gr ? balls.filter((b) => b.down && groupOf(b.n) === gr).length : 0);
-  const hud = () => ctx.setHud(ctx.t('Kamu {a} · {name} {b} · Giliran {n}/40', { a: downOf(rules.groups[0]), name: foe.name, b: downOf(rules.groups[1]), n: Math.min(MAX_SHOTS, shots + 1) }));
+  const onEight = (s: 0 | 1) => { const gr = rules.groups[s]; return !!gr && balls.every((b) => groupOf(b.n) !== gr || b.down); };
+  const hud = () => ctx.setHud(ctx.t('{p1} {a} · {p2} {b} · Giliran {n}/40', { p1: nameOf(0), a: downOf(rules.groups[0]), p2: nameOf(1), b: downOf(rules.groups[1]), n: Math.min(MAX_SHOTS, shots + 1) }));
+
+  /** Impact sounds: louder and brighter with speed, at most one of each name per 30 ms. */
+  const sound = (name: string, v: number) => {
+    if ((gap[name] ?? 0) > 0) return;
+    gap[name] = 0.03;
+    const k = Math.min(1, v / 900);
+    ctx.sfx(name, { gain: 0.2 + 0.8 * k, rate: 0.9 + 0.25 * k });
+  };
 
   const burst = (x: number, y: number, n: number, c: string, sp: number) => {
     if (ctx.reducedMotion) return;
@@ -465,56 +633,87 @@ function create(ctx: GameCtx): GameInstance {
     return near ? { angle: Math.atan2(near.y - c.y, near.x - c.x), power: 0.5 } : { angle: aim, power: 0.4 };
   };
 
-  const startTurn = () => {
+  const beginAim = () => {
     phase = 'aim';
-    power = 0; charging = false; latched = false; holdA = false; chargeT = 0; drag = null;
-    // R2 counts only after it was seen released this turn: a trigger still
-    // held from the last shot (or pulled during the roll) never fires at once
-    trig = { on: false, peak: 0, hist: [], cancel: true };
     const p = shotPlan(rules.turn);
     hint = { angle: p.angle, power: p.power };
-    if (rules.turn === 1) {
+    if (cpuTurn()) {
       const errA = (ctx.rand() + ctx.rand() - 1) * skill * 2;
       cpu = { angle: p.angle + errA, power: clamp(p.power * (0.94 + ctx.rand() * 0.14), 0.15, 1), t: 0 };
       msg = ctx.t('{name} membidik...', { name: foe.name });
     } else {
-      if (!msg) msg = ctx.t('Giliranmu. Bidik lalu pukul.');
+      if (!msg) msg = versus ? ctx.t('Giliran {name}.', { name: nameOf(rules.turn) }) : ctx.t('Giliranmu. Bidik lalu pukul.');
       // A pressed just before the turn opened: start the swinging meter right away
       if (aBuf > 0) { charging = true; latched = true; powerDir = 1; aBuf = 0; }
     }
     hud();
   };
 
+  const startTurn = () => {
+    power = 0; charging = false; latched = false; holdA = false; chargeT = 0; drag = null; yHold = null; spinDrag = false; handDrag = false;
+    // R2 counts only after it was seen released this turn: a trigger still
+    // held from the last shot (or pulled during the roll) never fires at once
+    trig = { on: false, peak: 0, hist: [], cancel: true };
+    if (!hand) { beginAim(); return; }
+    phase = 'place';
+    if (cpuTurn()) {
+      const spot = bestSpot(balls, targetsFor(rules, 1, balls), hand.behind) ?? { x: balls[0].x, y: balls[0].y };
+      cpuPlace = { ...spot, t: 0 };
+      msg = ctx.t('{name} menaruh bola putih...', { name: foe.name });
+    } else msg = ctx.t('{name}: bola di tangan. Geser, lalu {a}.', { name: nameOf(rules.turn), a: key('a') });
+    hud();
+  };
+
+  /** Ball in hand confirmed: only on a legal spot. */
+  const confirmPlace = (): boolean => {
+    const c = balls[0];
+    if (!hand || !handOk(balls, c.x, c.y, hand.behind)) { msg = ctx.t('Tidak bisa ditaruh di sini.'); ctx.sfx('wrong'); return false; }
+    hand = null;
+    msg = '';
+    ctx.sfx('click');
+    beginAim();
+    return true;
+  };
+
   const shoot = (angle: number, p: number) => {
     const c = balls[0];
     const pw = clamp(p, 0.02, 1);
-    strike(c, angle, pw, rules.turn === 0 ? spin : 'none');
+    const human = !cpuTurn();
+    shot = newShot(shots === 0);
+    shot.called = onEight(rules.turn) ? calledPocket(balls, angle) : null;
+    strike(c, angle, pw, human ? spins[rules.turn] : CENTER);
     stroke = { x: c.x, y: c.y, a: angle, pull: 8 + pw * 46, t: 0 };
     aim = angle;
     shots++;
-    pocketedNow = [];
     phase = 'roll';
-    charging = false; latched = false; holdA = false; drag = null;
+    charging = false; latched = false; holdA = false; drag = null; yHold = null;
     power = pw;
     msg = '';
     ctx.sfx('clack', { gain: 0.35 + pw * 0.65, rate: 0.9 + pw * 0.25 });
+    gap.clack = 0.03;
     burst(c.x - Math.cos(angle) * R, c.y - Math.sin(angle) * R, 5, '#9fc6e8', 50);
     if (pw > 0.85 && !ctx.reducedMotion) shake = 0.12;
-    if (rules.turn === 0) ctx.rumble(0.25 + pw * 0.75, 70 + pw * 90);
+    // rumble reaches Pemain 1's pad only, which Pemain 2 also holds on one device
+    if (human && (rules.turn === 0 || sameDevice)) ctx.rumble(0.25 + pw * 0.75, 70 + pw * 90);
   };
 
   const finish = (won: boolean | null, reason: string) => {
-    const mine = downOf(rules.groups[0]);
-    const score = mine * 100 + (won ? 1000 : 0);
-    const summary = won ? ctx.t('Menang melawan {name}! {n} bola masuk.', { name: foe.name, n: mine })
-      : won === null ? ctx.t('Seri melawan {name}. {n} bola masuk.', { name: foe.name, n: mine })
-        : ctx.t('Kalah dari {name}. {n} bola masuk.', { name: foe.name, n: mine });
-    result = { score, summary, won: !!won };
+    const a = downOf(rules.groups[0]), b = downOf(rules.groups[1]);
+    if (versus) {
+      const summary = won === null ? ctx.t('Seri. Bola masuk {a} lawan {b}.', { a, b })
+        : ctx.t('{name} menang. Bola masuk {a} lawan {b}.', { name: nameOf(won ? 0 : 1), a, b });
+      result = { score: 0, versus: true, won: !!won, summary };
+    } else {
+      const summary = won ? ctx.t('Menang melawan {name}! {n} bola masuk.', { name: foe.name, n: a })
+        : won === null ? ctx.t('Seri melawan {name}. {n} bola masuk.', { name: foe.name, n: a })
+          : ctx.t('Kalah dari {name}. {n} bola masuk.', { name: foe.name, n: a });
+      result = { score: a * 100 + (won ? 1000 : 0), summary, won: !!won };
+    }
     banner = reason;
-    msg = summary;
+    msg = result.summary ?? '';
     phase = 'over';
     overT = 1.8;
-    ctx.sfx(won ? 'win' : 'lose');
+    ctx.sfx(won || versus ? 'win' : 'lose');
     hud();
   };
 
@@ -523,28 +722,41 @@ function create(ctx: GameCtx): GameInstance {
     finish(a > b ? true : a < b ? false : null, ctx.t('Batas tercapai: dinilai dari sisa bola'));
   };
 
+  const foulText = (f: Foul) => (f === 'cue' ? ctx.t('Foul: bola putih masuk.')
+    : f === 'none' ? ctx.t('Foul: tidak ada bola yang kena.')
+      : f === 'wrong' ? ctx.t('Foul: bola lawan kena duluan.')
+        : f === 'eight' ? ctx.t('Foul: bola 8 kena duluan.')
+          : f === 'rail' ? ctx.t('Foul: tidak ada bola menyentuh bantalan.')
+            : ctx.t('Foul: break kurang dari 4 bola ke bantalan.'));
+
   const resolve = () => {
     const s = rules.turn;
-    const out = resolveShot(rules, pocketedNow, balls);
+    const out = resolveShot(rules, shot, balls);
+    lastFoul = out.foul;
     if (rules.winner !== null) {
-      const shooterWon = rules.winner === s;
-      const why = shooterWon
-        ? (s === 0 ? ctx.t('Bola 8 masuk. Kamu menang!') : ctx.t('{name} memasukkan bola 8', { name: foe.name }))
-        : out.foul
-          ? (s === 0 ? ctx.t('Bola putih ikut masuk bersama bola 8') : ctx.t('{name} memasukkan bola putih bersama bola 8', { name: foe.name }))
-          : (s === 0 ? ctx.t('Bola 8 masuk terlalu awal') : ctx.t('{name} memasukkan bola 8 terlalu awal', { name: foe.name }));
+      const name = nameOf(s);
+      const why = out.eight === 'win' ? ctx.t('{name} memasukkan bola 8 dan menang.', { name })
+        : out.eight === 'early' ? ctx.t('{name} memasukkan bola 8 terlalu awal', { name })
+          : out.eight === 'foul' ? ctx.t('{name} foul saat bola 8 masuk', { name })
+            : ctx.t('{name}: bola 8 masuk lubang lain', { name });
+      if (out.foul) notice = { s: foulText(out.foul), t: 2.4 };
       finish(rules.winner === 0, why);
       return;
     }
+    if (out.eight === 'break') respotEight(balls);
     if (out.foul) {
       fouls++;
-      respotCue(balls);
-      msg = ctx.t('Foul! Bola putih masuk. {name} dapat bola di tangan.', { name: nameOf(rules.turn) });
+      const behind = shot.brk;
+      if (balls[0].down || !handOk(balls, balls[0].x, balls[0].y, behind)) respotCue(balls);
+      hand = { behind };
+      notice = { s: foulText(out.foul), t: 2.4 };
+      msg = ctx.t('{name} dapat bola di tangan.', { name: nameOf(rules.turn) });
       ctx.sfx('wrong');
     } else if (out.assigned) {
-      msg = rules.groups[0] === 'solid' ? ctx.t('Kamu main bola penuh (1-7).') : ctx.t('Kamu main bola belang (9-15).');
+      msg = out.assigned === 'solid' ? ctx.t('{name} main bola penuh (1-7).', { name: nameOf(s) }) : ctx.t('{name} main bola belang (9-15).', { name: nameOf(s) });
       ctx.sfx('right');
-    } else if (out.keep) msg = ctx.t('Masuk! {name} lanjut.', { name: nameOf(s) });
+    } else if (out.eight === 'break') msg = ctx.t('Bola 8 masuk saat break, ditaruh lagi. {name} lanjut.', { name: nameOf(s) });
+    else if (out.keep) msg = ctx.t('Masuk! {name} lanjut.', { name: nameOf(s) });
     else msg = ctx.t('Giliran {name}.', { name: nameOf(rules.turn) });
     if (shots >= MAX_SHOTS || time >= TIME_LIMIT) { judge(); return; }
     phase = 'pause';
@@ -558,6 +770,7 @@ function create(ctx: GameCtx): GameInstance {
     tickFalls(balls, dt);
     if (stroke) { stroke.t += dt; if (stroke.t > 0.45) stroke = null; }
     shake = Math.max(0, shake - dt);
+    notice.t = Math.max(0, notice.t - dt);
     for (let i = sparks.length - 1; i >= 0; i--) {
       const s = sparks[i];
       s.t += dt; s.x += s.vx * dt; s.y += s.vy * dt; s.vx *= 0.9; s.vy *= 0.9;
@@ -571,18 +784,85 @@ function create(ctx: GameCtx): GameInstance {
     if (Math.hypot(x - c.x, y - c.y) > R * 0.5) { aim = Math.atan2(y - c.y, x - c.x); ctx.sfx('tick'); }
   };
 
+  // a little larger than the drawing for fingers, but clear of the table frame above it
+  const onWidget = (x: number, y: number) => Math.hypot(x - SPIN_UI.x, y - SPIN_UI.y) < SPIN_UI.r * 1.5;
+  const spinAt = (x: number, y: number) => { spins[rules.turn] = clampSpin((x - SPIN_UI.x) / SPIN_UI.r, -(y - SPIN_UI.y) / SPIN_UI.r); };
+
+  /**
+   * Y held: the arrows or the camera stick move the tip, speed by tilt, and
+   * the aim stays put. A short tap with no movement puts the tip back in the
+   * centre. Returns true while Y is held.
+   */
+  const spinInput = (dt: number, inp: InputState): boolean => {
+    if (!inp.down.y) {
+      if (yHold && yHold.t < 0.25 && !yHold.moved) { spins[rules.turn] = { ...CENTER }; ctx.sfx('click'); }
+      yHold = null;
+      return false;
+    }
+    if (!yHold) {
+      yHold = { t: 0, moved: false };
+      // a trigger pull in progress must not fire once Y is let go
+      if (trig.on) { trig = { on: false, peak: 0, hist: [], cancel: true }; power = 0; }
+    }
+    yHold.t += dt;
+    let dx = (inp.down.right ? 1 : 0) - (inp.down.left ? 1 : 0);
+    let dy = (inp.down.up ? 1 : 0) - (inp.down.down ? 1 : 0);
+    if (inp.pad) {
+      const [rx, ry] = stick(inp.pad.look[0], inp.pad.look[1], inp.pad.dead);
+      dx = clamp(dx + rx, -1, 1); dy = clamp(dy - ry, -1, 1);
+    }
+    if (dx || dy) {
+      const sp = spins[rules.turn];
+      spins[rules.turn] = clampSpin(sp.x + dx * SPIN_RATE * dt, sp.y + dy * SPIN_RATE * dt);
+      yHold.moved = true;
+    }
+    return true;
+  };
+
+  /** Ball in hand: arrows or the stick slide the cue ball, a pointer drags it; A or release confirms. */
+  const placeInput = (dt: number, inp: InputState) => {
+    const c = balls[0];
+    const { x0, y0, x1, y1 } = TABLE;
+    const maxX = hand!.behind ? HEAD.x : x1 - R;
+    const put = (x: number, y: number) => { c.x = clamp(x, x0 + R, maxX); c.y = clamp(y, y0 + R, y1 - R); };
+    const near = (y: number) => y > y0 - 20 && y < y1 + 20;
+    // ax/ay already merge arrows, D-pad and the walking stick
+    const ax = Math.abs(inp.ax) > 0.2 ? inp.ax : 0, ay = Math.abs(inp.ay) > 0.2 ? inp.ay : 0;
+    if (ax || ay) put(c.x + ax * HAND_SPEED * dt, c.y + ay * HAND_SPEED * dt);
+    const ptr = inp.ptr ?? null;
+    let release = false;
+    // only a press that started on the table drags the ball; letting go places it
+    if (ptr?.down && !prevPtrDown && near(ptr.y)) handDrag = true;
+    if (ptr?.down && handDrag) put(ptr.x, ptr.y);
+    if (handDrag && !ptr?.down) { handDrag = false; release = true; }
+    prevPtrDown = !!ptr?.down;
+    if (inp.tap && !ptr?.down && near(inp.tap.y)) { put(inp.tap.x, inp.tap.y); release = true; }
+    if (inp.hit.a || release) confirmPlace();
+  };
+
+  const cpuPlaceStep = (dt: number) => {
+    const c = balls[0], p = cpuPlace!;
+    p.t += dt;
+    const k = Math.min(1, dt * 8);
+    c.x += (p.x - c.x) * k; c.y += (p.y - c.y) * k;
+    if (p.t < 0.7) return;
+    c.x = p.x; c.y = p.y;
+    cpuPlace = null;
+    if (!confirmPlace()) { respotCue(balls); hand = null; msg = ''; beginAim(); }
+  };
+
   /**
    * Gamepad aim. Walking stick: point at the target, coarse. Camera stick:
    * turn the cue, rate rising with the square of the tilt so a small push
-   * moves a fraction of a degree; L2 held slows it four times more. Dead zones
-   * come from the controller profile and Santai lowers the speed (aimScale).
-   * The D-pad still turns and nudges like the arrow keys.
+   * moves a fraction of a degree; L2 held slows it eight times more. Dead
+   * zones come from the controller profile; pad.aim carries the profile and
+   * the user's speed setting. The D-pad still turns like the arrow keys.
    */
   const padAim = (dt: number, inp: InputState) => {
     const pad = inp.pad!;
     const [mx, my] = stick(pad.move[0], pad.move[1], pad.dead);
     const mm = Math.hypot(mx, my);
-    const fine = pad.l2 > 0.3 ? 0.25 : 1;
+    const fine = pad.l2 > 0.3 ? 1 / PAD_FINE : 1;
     if (Math.hypot(pad.move[0], pad.move[1]) > 0.5 && mm > 0) {
       // smoothing (time constant ~60 ms) keeps stick noise from shaking the cue
       aim += angDiff(Math.atan2(my, mx), aim) * Math.min(1, dt * 16 * mm * pad.aim);
@@ -610,7 +890,7 @@ function create(ctx: GameCtx): GameInstance {
     if (!trig.on) {
       if (r2 < 0.08) return false;
       trig = { on: true, peak: 0, hist: [], cancel: false };
-      msg = ctx.t('Lepas {r2} untuk memukul.', { r2: ctx.key('r2') });
+      msg = ctx.t('Lepas {r2} untuk memukul.', { r2: key('r2') });
     }
     trig.hist.push(r2);
     // last 0.12 s of pull at 60 Hz
@@ -626,14 +906,14 @@ function create(ctx: GameCtx): GameInstance {
   };
 
   const playerAim = (dt: number, inp: InputState) => {
-    if (inp.hit.y) {
-      spin = spin === 'none' ? 'top' : spin === 'top' ? 'back' : 'none';
-      ctx.sfx('click');
-    }
-    // pointer: drag away from the shot to pull the cue back, release to strike; a plain tap aims there
+    if (spinInput(dt, inp)) return;
+    // pointer: drag away from the shot to pull the cue back, release to strike; a plain tap aims there.
+    // A press on the spin widget moves the tip instead.
     const ptr = inp.ptr ?? null;
+    let spinEnd = false;
     if (ptr) {
-      if (ptr.down && !prevPtrDown) drag = { sx: ptr.x, sy: ptr.y, maxL: 0 };
+      if (ptr.down && !prevPtrDown) { if (onWidget(ptr.x, ptr.y)) spinDrag = true; else drag = { sx: ptr.x, sy: ptr.y, maxL: 0 }; }
+      if (spinDrag) { if (ptr.down) spinAt(ptr.x, ptr.y); else { spinDrag = false; spinEnd = true; } }
       if (drag && ptr.down) {
         const dx = ptr.x - drag.sx, dy = ptr.y - drag.sy, L = Math.hypot(dx, dy);
         drag.maxL = Math.max(drag.maxL, L);
@@ -652,10 +932,13 @@ function create(ctx: GameCtx): GameInstance {
       prevPtrDown = ptr.down;
     } else {
       if (drag) { drag = null; power = 0; }
+      spinDrag = false;
       prevPtrDown = false;
     }
     // a tap that started and ended between two frames never shows ptr.down
-    if (inp.tap && !drag && !(ptr && ptr.down)) aimAt(inp.tap.x, inp.tap.y);
+    if (inp.tap && !drag && !spinDrag && !spinEnd && !(ptr && ptr.down)) {
+      if (onWidget(inp.tap.x, inp.tap.y)) { spinAt(inp.tap.x, inp.tap.y); ctx.sfx('click'); } else aimAt(inp.tap.x, inp.tap.y);
+    }
     const pad = inp.pad;
     if (!drag && pad) {
       padAim(dt, inp);
@@ -693,7 +976,7 @@ function create(ctx: GameCtx): GameInstance {
     if (pad && !charging && triggerShot(dt, pad.r2)) return;
     if (trig.on) return;
     if (!charging) {
-      if (inp.hit.a) { charging = true; holdA = true; latched = false; chargeT = 0; power = 0; powerDir = 1; ctx.sfx('tick'); msg = ctx.t('Tekan {a} lagi untuk memukul.', { a: ctx.key('a') }); }
+      if (inp.hit.a) { charging = true; holdA = true; latched = false; chargeT = 0; power = 0; powerDir = 1; ctx.sfx('tick'); msg = ctx.t('Tekan {a} lagi untuk memukul.', { a: key('a') }); }
       return;
     }
     chargeT += dt;
@@ -708,6 +991,30 @@ function create(ctx: GameCtx): GameInstance {
     }
   };
 
+  const roll = (dt: number) => {
+    const ev: PhysEvent[] = [];
+    physicsStep(balls, dt, ev);
+    for (const e of ev) {
+      if (e.kind === 'pocket') {
+        shot.pocketed.push(e.n);
+        if (e.n === 8) shot.eightPocket = e.p;
+        sound('pocket', e.v);
+        ctx.rumble(e.n === 0 ? 0.6 : 0.3, e.n === 0 ? 160 : 60);
+        const b = balls.find((q) => q.n === e.n)!;
+        if (e.n !== 0) floats.push({ x: b.x, y: b.y - 10, t: 0, s: e.n === 8 ? '8!' : '+1', c: PAL.gold });
+        burst(b.x, b.y, 8, e.n === 0 ? '#ffffff' : ballColor(e.n), 70);
+      } else if (e.kind === 'hit') {
+        if (shot.first === null && (e.a === 0 || e.b === 0)) shot.first = e.a === 0 ? e.b : e.a;
+        if (e.v > 20) sound('clack', e.v);
+      } else {
+        if (shot.first !== null) shot.railAfter = true;
+        if (e.n !== 0 && !shot.railBalls.includes(e.n)) shot.railBalls.push(e.n);
+        if (e.v > 60) sound('thud', e.v);
+      }
+    }
+    if (!moving(balls)) resolve();
+  };
+
   const update = (dt: number, inp: InputState) => {
     tickFx(dt);
     if (phase === 'over') {
@@ -716,33 +1023,25 @@ function create(ctx: GameCtx): GameInstance {
       return;
     }
     time += dt;
-    sfxGap = Math.max(0, sfxGap - dt);
+    for (const k in gap) gap[k] = Math.max(0, gap[k] - dt);
+    sameDevice = !inp.players || inp.players[1] === inp.players[0];
+    // whoever is at the table reads their own input
+    const pin = versus ? (inp.players?.[rules.turn] ?? inp) : inp;
     aBuf = Math.max(0, aBuf - dt);
-    if (phase !== 'aim' && inp.hit.a) aBuf = 0.15;
-    if (phase === 'aim' && time >= TIME_LIMIT) { judge(); return; }
+    if (!versus && (phase === 'roll' || phase === 'pause') && inp.hit.a) aBuf = 0.15;
+    if ((phase === 'aim' || phase === 'place') && time >= TIME_LIMIT) { judge(); return; }
     if (phase === 'pause') {
       pauseT -= dt;
       if (pauseT <= 0) startTurn();
       return;
     }
-    if (phase === 'roll') {
-      const ev: PhysEvent[] = [];
-      physicsStep(balls, dt, ev);
-      for (const e of ev) {
-        if (e.kind === 'pocket') {
-          pocketedNow.push(e.n);
-          ctx.sfx('pocket');
-          ctx.rumble(e.n === 0 ? 0.6 : 0.3, e.n === 0 ? 160 : 60);
-          const b = balls.find((q) => q.n === e.n)!;
-          if (e.n !== 0) floats.push({ x: b.x, y: b.y - 10, t: 0, s: e.n === 8 ? '8!' : '+1', c: PAL.gold });
-          burst(b.x, b.y, 8, e.n === 0 ? '#ffffff' : ballColor(e.n), 70);
-        } else if (e.kind === 'hit' && sfxGap <= 0 && e.v > 20) { ctx.sfx('ball', { gain: Math.min(1, e.v / 600), rate: 0.9 + Math.min(0.3, e.v / 3000) }); sfxGap = 0.03; }
-        else if (e.kind === 'rail' && sfxGap <= 0 && e.v > 120) { ctx.sfx('thud', { gain: Math.min(0.5, e.v / 1500), rate: 1.6 }); sfxGap = 0.03; }
-      }
-      if (!moving(balls)) resolve();
+    if (phase === 'roll') { roll(dt); return; }
+    if (phase === 'place') {
+      if (cpuTurn()) cpuPlaceStep(dt);
+      else placeInput(dt, pin);
       return;
     }
-    if (rules.turn === 1) {
+    if (cpuTurn()) {
       cpu.t += dt;
       const d = angDiff(cpu.angle, aim);
       const stepA = 2.4 * dt;
@@ -754,7 +1053,7 @@ function create(ctx: GameCtx): GameInstance {
       }
       return;
     }
-    playerAim(dt, inp);
+    playerAim(dt, pin);
   };
 
   // ---------- drawing ----------
@@ -852,7 +1151,7 @@ function create(ctx: GameCtx): GameInstance {
     g.fillStyle = PAL.surface;
     roundRect(g, x, 6, 230, 50, 10);
     drawToken(g, s === 0 ? me : foe, x + 24, 32, 15, time, active);
-    text(g, s === 0 ? ctx.t('Kamu') : foe.name, x + 46, 21, 16, PAL.ink, 'left');
+    text(g, nameOf(s), x + 46, 21, 16, PAL.ink, 'left');
     const gr = rules.groups[s];
     const label = gr === 'solid' ? ctx.t('Penuh (1-7)') : gr === 'stripe' ? ctx.t('Belang (9-15)') : ctx.t('Meja terbuka');
     text(g, label, x + 46, 42, 12, PAL.ink2, 'left', 600);
@@ -951,7 +1250,8 @@ function create(ctx: GameCtx): GameInstance {
 
   const drawAim = () => {
     const c = balls[0];
-    const mine = rules.turn === 0;
+    const mine = !cpuTurn();
+    const sp = spins[rules.turn];
     const ray = aimRay(balls, aim);
     g.strokeStyle = mine ? 'rgba(255,250,240,0.9)' : 'rgba(255,250,240,0.4)';
     g.lineWidth = 1.5;
@@ -971,7 +1271,7 @@ function create(ctx: GameCtx): GameInstance {
       const oL = 18 + 70 * cos;
       g.beginPath(); g.moveTo(ray.hit.x, ray.hit.y); g.lineTo(ray.hit.x + ux * oL, ray.hit.y + uy * oL); g.stroke();
       let tx = dx - cos * ux, ty = dy - cos * uy;
-      const k = mine ? SPIN_K[spin] : 0;
+      const k = mine ? sp.y * SPIN_K : 0;
       tx += ux * cos * k * 0.8; ty += uy * cos * k * 0.8;
       const tl = Math.hypot(tx, ty);
       if (tl > 0.02) {
@@ -991,6 +1291,33 @@ function create(ctx: GameCtx): GameInstance {
       g.setLineDash([]);
       g.beginPath(); g.arc(ray.x, ray.y, R, 0, Math.PI * 2); g.stroke();
     }
+    // the pocket called for the 8
+    if (onEight(rules.turn)) {
+      const cp = calledPocket(balls, aim);
+      if (cp !== null) {
+        const p = POCKETS[cp];
+        g.strokeStyle = PAL.gold;
+        g.lineWidth = 2.5;
+        g.beginPath(); g.arc(p.x, p.y, p.r + 4, 0, Math.PI * 2); g.stroke();
+      }
+    }
+  };
+
+  const drawSpin = () => {
+    const { x, y, r } = SPIN_UI;
+    const sp = spins[rules.turn];
+    g.fillStyle = '#fbf6ea';
+    g.strokeStyle = PAL.ink2;
+    g.lineWidth = 1;
+    g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); g.stroke();
+    // legal tip area and cross hair
+    g.strokeStyle = 'rgba(75,90,81,0.35)';
+    g.beginPath(); g.arc(x, y, r * SPIN_MAX, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.moveTo(x - r, y); g.lineTo(x + r, y); g.moveTo(x, y - r); g.lineTo(x, y + r); g.stroke();
+    g.fillStyle = PAL.red;
+    g.beginPath(); g.arc(x + sp.x * r, y - sp.y * r, 2.8, 0, Math.PI * 2); g.fill();
+    if (yHold || spinDrag) { g.strokeStyle = PAL.gold; g.lineWidth = 2; g.beginPath(); g.arc(x, y, r + 2.5, 0, Math.PI * 2); g.stroke(); }
+    text(g, ctx.t(spinName(sp)), x + r + 6, y, 12, PAL.ink2, 'left', 600);
   };
 
   const render = () => {
@@ -1004,6 +1331,12 @@ function create(ctx: GameCtx): GameInstance {
     g.save();
     if (shake > 0) g.translate(Math.sin(time * 90) * shake * 12, Math.cos(time * 77) * shake * 8);
     drawTable();
+    if (phase === 'place' && hand) {
+      // where the cue ball may go
+      const { x0, y0, x1, y1 } = TABLE;
+      g.fillStyle = 'rgba(255,250,240,0.08)';
+      g.fillRect(x0, y0, (hand.behind ? HEAD.x : x1) - x0, y1 - y0);
+    }
     for (const b of balls) {
       if (!b.down || b.fall <= 0) continue;
       const k = b.fall / FALL_T;
@@ -1013,6 +1346,14 @@ function create(ctx: GameCtx): GameInstance {
     }
     for (const b of balls) if (!b.down) drawBall(b);
     const c = balls[0];
+    if (phase === 'place' && !c.down) {
+      const ok = !!hand && handOk(balls, c.x, c.y, hand.behind);
+      g.strokeStyle = ok ? PAL.gold : PAL.red;
+      g.lineWidth = 2;
+      g.setLineDash([3, 3]);
+      g.beginPath(); g.arc(c.x, c.y, R + 4, 0, Math.PI * 2); g.stroke();
+      g.setLineDash([]);
+    }
     if (phase === 'aim' && !c.down) {
       drawAim();
       drawCue(c.x, c.y, aim, 4 + power * 46);
@@ -1035,35 +1376,33 @@ function create(ctx: GameCtx): GameInstance {
     }
     g.globalAlpha = 1;
     g.restore();
+    if (notice.t > 0) {
+      g.fillStyle = 'rgba(184,69,46,0.92)';
+      roundRect(g, 170, 66, 300, 22, 8);
+      fit(notice.s, w / 2, 77, 13, 290, '#fffaf0');
+    }
     // footer: power meter, english, message
     g.fillStyle = PAL.surface;
     roundRect(g, 8, 362, 624, 32, 10);
     text(g, ctx.t('Tenaga'), 20, 378, 14, PAL.ink, 'left');
     g.fillStyle = PAL.sand;
-    roundRect(g, 72, 371, 130, 14, 7);
+    roundRect(g, 72, 371, 120, 14, 7);
     if (power > 0) {
-      const pg = g.createLinearGradient(72, 0, 202, 0);
+      const pg = g.createLinearGradient(72, 0, 192, 0);
       pg.addColorStop(0, PAL.green); pg.addColorStop(0.55, PAL.gold); pg.addColorStop(1, PAL.red);
       g.fillStyle = pg;
-      roundRect(g, 72, 371, Math.max(14, 130 * power), 14, 7);
+      roundRect(g, 72, 371, Math.max(14, 120 * power), 14, 7);
     }
     g.fillStyle = 'rgba(29,42,35,0.4)';
-    g.fillRect(72 + 130 * MEDIUM - 0.5, 369, 1, 18);
-    const ix = 222, iy = 378;
-    g.fillStyle = '#fbf6ea';
-    g.strokeStyle = PAL.ink2;
-    g.lineWidth = 1;
-    g.beginPath(); g.arc(ix, iy, 9, 0, Math.PI * 2); g.fill(); g.stroke();
-    g.fillStyle = PAL.red;
-    g.beginPath(); g.arc(ix, iy + (spin === 'top' ? -5 : spin === 'back' ? 5 : 0), 2.6, 0, Math.PI * 2); g.fill();
-    const spinLabel = spin === 'top' ? ctx.t('Efek: atas') : spin === 'back' ? ctx.t('Efek: bawah') : ctx.t('Efek: tengah');
-    text(g, spinLabel, 236, 378, 12, PAL.ink2, 'left', 600);
-    if (msg) fit(msg, 472, 378, 14, 300, phase === 'over' ? PAL.accent : PAL.ink);
+    g.fillRect(72 + 120 * MEDIUM - 0.5, 369, 1, 18);
+    drawSpin();
+    if (msg) fit(msg, 490, 378, 14, 270, phase === 'over' ? PAL.accent : PAL.ink);
     if (phase === 'over') {
       g.fillStyle = 'rgba(29,42,35,0.82)';
       roundRect(g, 130, 168, 380, 84, 14);
       fit(banner, w / 2, 196, 18, 350, '#fffaf0');
-      text(g, ctx.t('Skor: {n} poin', { n: result.score }), w / 2, 226, 16, PAL.gold);
+      if (versus) fit(result.summary ?? '', w / 2, 226, 16, 350, PAL.gold);
+      else text(g, ctx.t('Skor: {n} poin', { n: result.score }), w / 2, 226, 16, PAL.gold);
     }
   };
 
@@ -1071,8 +1410,10 @@ function create(ctx: GameCtx): GameInstance {
     update,
     render,
     snapshot: () => ({
-      phase, turn: rules.turn, shots, time: Math.round(time * 100) / 100, groups: [...rules.groups], winner: rules.winner,
-      aim, power, powerDir, charging, latched, dragging: !!drag, trigger: trig.on, spin, hint: { ...hint }, foe: foe.name, fouls,
+      phase, turn: rules.turn, shots, time: Math.round(time * 100) / 100, groups: [...rules.groups], winner: rules.winner, versus,
+      aim, power, powerDir, charging, latched, dragging: !!drag, trigger: trig.on, spin: { ...spins[rules.turn] }, spinHeld: !!yHold,
+      hint: { ...hint }, foe: foe.name, fouls, foul: lastFoul, notice: notice.t > 0 ? notice.s : '', hand: hand ? { ...hand } : null,
+      called: phase === 'aim' && onEight(rules.turn) ? calledPocket(balls, aim) : null,
       cue: { x: balls[0].x, y: balls[0].y, vx: balls[0].vx, vy: balls[0].vy },
       mine: downOf(rules.groups[0]), theirs: downOf(rules.groups[1]),
       down: balls.filter((b) => b.down).map((b) => b.n), score: result.score,

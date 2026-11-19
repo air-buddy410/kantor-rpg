@@ -87,6 +87,7 @@ export class Game {
   onAgent: ((profile: string) => void) | null = null;
   onAgentPicker: (() => void) | null = null;
   onMap: (() => void) | null = null;
+  onGames: (() => void) | null = null;
   /** True while the owner is logged in and real presence drives the NPCs. */
   livePresence = false;
 
@@ -330,6 +331,7 @@ export class Game {
       else if (k === 'h') openDialog($('dlg-help') as HTMLDialogElement);
       else if (k === 'b') this.onBoard?.('handoffs');
       else if (k === 'p') this.onMap?.();
+      else if (k === 'g') this.onGames?.();
       else if (k === 'c') this.onAgentPicker?.();
       else if (k === 'v') sound.with((en) => toast(en.toggleMute() ? t('Suara dimatikan (V untuk menyalakan).') : t('Suara dinyalakan.'), 1400));
       else if (k === 'escape' && this.activity) this.endActivity(true);
@@ -430,10 +432,37 @@ export class Game {
   miniGame: string | null = null;
 
   /**
+   * Daftar game (Budi 2026-11-19): walk to the fixture that hosts the game and
+   * open it there, so the room's seats are taken like on a walk-up. Game
+   * Station games open straight on a cabinet, not via the launcher.
+   */
+  playAt(fixture: Fixture, game: string): boolean {
+    if (this.miniGame || this.transitioning) return false;
+    const room = this.world.rooms.find((r) => r.id === fixture.room);
+    if (room && this.settings.visitor && room.access === 'restricted') { toast(t('Akses terbatas (mode visitor)')); return false; }
+    const fr = this.floors.get(fixture.floor);
+    const spot = fr?.nav[this.mode].nearestWalkable(fixture.pos, 1.6, fr.reach[this.mode]);
+    if (!spot) { toast(t('{room} tidak dapat dicapai pada mode ini.', { room: room?.name ?? fixture.room })); return false; }
+    this.toggleDirectory(false);
+    this.transition(() => {
+      this.player.floor = fixture.floor;
+      this.player.pos = spot;
+      this.applyFloorVisibility();
+      // the 3D loop pauses under the game: name the new room now (HUD, state)
+      this.updateRoom();
+      // From the list the game always opens: a seat in use (Hugo at his
+      // drafting table) only means the CEO plays standing beside it.
+      const slots = this.facilitySlots(fixture, game);
+      this.openFacilityGame(fixture, game, slots.find((sl) => !this.slotTakenBy(sl.id)), true);
+    });
+    return true;
+  }
+
+  /**
    * Walk-up use of a facility: hold a free slot (NPCs see it taken), then open
    * the game. The arcade cabinet and TV open the Game Station launcher.
    */
-  openFacilityGame(fx: Fixture, game: string, slot?: ActivitySlot) {
+  openFacilityGame(fx: Fixture, game: string, slot?: ActivitySlot, evenIfBusy = false) {
     if (this.miniGame) return;
     const slots = slot ? [slot] : this.facilitySlots(fx, game);
     // Take the free seat nearest the CEO, not the first one in the list (at
@@ -442,7 +471,7 @@ export class Game {
     const free = slots.filter((sl) => !this.slotTakenBy(sl.id) && sl.floor === this.player.floor)
       .sort((a, b) => Math.hypot(a.pos[0] - me[0], a.pos[1] - me[1]) - Math.hypot(b.pos[0] - me[0], b.pos[1] - me[1]))[0]
       ?? slots.find((sl) => !this.slotTakenBy(sl.id));
-    if (slots.length && !free) { toast(t('Sedang dipakai {name}. Coba lagi nanti.', { name: this.slotTakenBy(slots[0].id) ?? '' })); return; }
+    if (slots.length && !free && !evenIfBusy) { toast(t('Sedang dipakai {name}. Coba lagi nanti.', { name: this.slotTakenBy(slots[0].id) ?? '' })); return; }
     if (this.activity) this.endActivity(false);
     if (free) {
       const fr = this.floors.get(free.floor)!;
@@ -462,7 +491,7 @@ export class Game {
       if (back?.isConnected) back.focus({ preventScroll: true });
     };
     toast(t('Membuka {game}...', { game: t(FACILITY_TITLE[game] ?? game) }), 1200);
-    const common = { reducedMotion: this.settings.reducedMotion, padProfile: () => this.settings.padProfile, playerName: this.playerName };
+    const common = { reducedMotion: this.settings.reducedMotion, padProfile: () => this.settings.padProfile, aimSpeed: () => this.settings.aimSpeed, playerName: this.playerName };
     if (game === 'arcade') {
       void import('../minigames/arcade').then((m) => m.openArcade({ ...common, onClose: done })).catch(() => { done(); toast(t('Permainan gagal dimuat.')); });
     } else {

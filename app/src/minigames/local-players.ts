@@ -2,16 +2,16 @@
 // the intro card and each gets its own input, with the same press queue as
 // Pemain 1 (no press lost on 120 Hz screens, a held button never fires the
 // next screen). Pemain 1 stays keyboard + touch + the first pad.
-import { BTNS, type Btn, type InputState } from './types';
+import { BTNS, type Btn, type InputState, type PadAnalog } from './types';
 import { PAD_PROFILES, faceButtons, stickAxes, type PadProfile } from '../input/pad-profiles';
 import type { PadProfileId } from '../ui/settings';
 
-export interface PadRead { down: Record<Btn, boolean>; ax: number; ay: number; raw: boolean[] }
+export interface PadRead { down: Record<Btn, boolean>; ax: number; ay: number; raw: boolean[]; analog?: PadAnalog }
 
 const NONE = (): Record<Btn, boolean> => Object.fromEntries(BTNS.map((b) => [b, false])) as Record<Btn, boolean>;
 
 /** One pad's buttons and stick, mapped through the controller profile. */
-export function readPadState(p: Gamepad | null | undefined, prof: PadProfile): PadRead {
+export function readPadState(p: Gamepad | null | undefined, prof: PadProfile, aimSpeed = 1): PadRead {
   if (!p || !p.connected) return { down: NONE(), ax: 0, ay: 0, raw: [] };
   const f = faceButtons(prof);
   const ax = stickAxes(prof);
@@ -28,8 +28,17 @@ export function readPadState(p: Gamepad | null | undefined, prof: PadProfile): P
     ax: raw[14] ? -1 : raw[15] ? 1 : lx,
     ay: raw[12] ? -1 : raw[13] ? 1 : ly,
     raw,
+    // Sticks and triggers for analog games (billiards aims with Pemain 2's pad too).
+    analog: {
+      move: [sx, sy], look: [p.axes[ax.look[0]] ?? 0, p.axes[ax.look[1]] ?? 0],
+      l2: p.buttons[6]?.value ?? 0, r2: p.buttons[7]?.value ?? 0, l1: !!raw[4], r1: !!raw[5],
+      dead: prof.dead, aim: prof.aimScale * aimSpeed,
+    },
   };
 }
+
+/** Phones from "Main pakai HP" (pad/virtual-pads.ts): they join as Pemain 2 and up, never as Pemain 1. */
+export const isPhonePad = (p: Gamepad | null | undefined) => !!p && p.id.startsWith('HP PerumNet');
 
 export function connectedPads(): Gamepad[] {
   return [...(navigator.getGamepads?.() ?? [])].filter((g): g is Gamepad => !!g && g.connected);
@@ -48,14 +57,14 @@ export class PadPlayer {
   edge = NONE();
   private last: PadRead = { down: NONE(), ax: 0, ay: 0, raw: [] };
 
-  constructor(readonly index: number, private profile: () => PadProfileId) {
+  constructor(readonly index: number, private profile: () => PadProfileId, private aimSpeed: () => number = () => 100) {
     // the A that joined this player is still held: it must not count in play
     this.prev = { ...this.read().down };
   }
 
   private read(): PadRead {
     const p = navigator.getGamepads?.()[this.index] ?? null;
-    return readPadState(p, PAD_PROFILES[this.profile()] ?? PAD_PROFILES.standar);
+    return readPadState(p, PAD_PROFILES[this.profile()] ?? PAD_PROFILES.standar, this.aimSpeed() / 100);
   }
 
   get connected(): boolean { return !!navigator.getGamepads?.()[this.index]?.connected; }
@@ -84,7 +93,7 @@ export class PadPlayer {
       if (hit[b]) { this.queued[b]--; this.delivered++; }
       down[b] = this.last.down[b] || hit[b];
     }
-    return { down, hit, ax: this.last.ax, ay: this.last.ay, tap: null, ptr: null };
+    return { down, hit, ax: this.last.ax, ay: this.last.ay, tap: null, ptr: null, ...(this.last.analog ? { pad: this.last.analog } : {}) };
   }
 
   clear() { for (const b of BTNS) this.queued[b] = 0; }

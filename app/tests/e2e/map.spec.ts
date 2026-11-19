@@ -87,7 +87,7 @@ test.describe('phone HUD folds', () => {
     const fold = page.locator('#minimap-fold');
     await expect(toggle).toHaveAttribute('aria-expanded', 'true');
     await expectTapTargets(page, '.hud-actions .btn, #btn-hud-toggle, #minimap-fold, .touch-btn');
-    // Seven menu buttons fit one row of icon buttons.
+    // Eight menu buttons (v2.4 added Game) fit one row of icon buttons on a 390 px phone.
     const tops = await page.locator('.hud-actions .btn').evaluateAll((els) => [...new Set(els.map((e) => Math.round(e.getBoundingClientRect().top)))]);
     expect(tops).toHaveLength(1);
     await toggle.click();

@@ -107,6 +107,12 @@ export interface GameMeta {
   players?: number;
   /** Lobby line for multiplayer games, e.g. what Pemain 2 controls (Indonesian source). */
   playersHint?: string;
+  /**
+   * Turn-based game that two people can play on one device by passing it:
+   * the intro card offers "Gantian satu perangkat" and the host then sends
+   * Pemain 1's input as Pemain 2 too.
+   */
+  hotseat?: boolean;
 }
 
 /** Everything the host gives a running game. */

@@ -30,6 +30,7 @@
       <button type="button" class="btn hud-toggle" id="btn-hud-toggle" aria-controls="hud-menu" aria-expanded="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="ico-open" d="M18 6L6 18M6 6l12 12"/><path class="ico-closed" d="M4 6h16M4 12h16M4 18h16"/></svg><span class="visually-hidden" id="hud-toggle-label">Sembunyikan menu</span></button>
       <nav class="hud-actions" id="hud-menu" aria-label="Menu">
         <button type="button" class="btn" id="btn-directory" aria-controls="directory-panel" aria-expanded="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2m1-17.87a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></svg><span class="lbl">Direktori</span><kbd>M</kbd></button>
+        <button type="button" class="btn" id="btn-games" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 11h4M8 9v4m7-1h.01M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59l-.704 6.57A2.5 2.5 0 0 0 4.5 18c.8 0 1.5-.4 2-1l1.2-1.5h8.6L17.5 17c.5.6 1.2 1 2 1a2.5 2.5 0 0 0 2.5-2.84l-.704-6.57A4 4 0 0 0 17.32 5"/></svg><span class="lbl">Game</span><kbd>G</kbd></button>
         <button type="button" class="btn" id="btn-studio" aria-controls="studio-panel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h4L20 8a1.5 1.5 0 0 0-4-4L3 17zM14.5 5.5l4 4"/><path d="M12 8L7 3L3 7l5 5M7 8L5.5 9.5M16 12l5 5l-4 4l-5-5m4 1l-1.5 1.5"/></svg><span class="lbl">Studio</span></button>
         <button type="button" class="btn" id="btn-avatar" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/></svg><span class="lbl">Avatar</span></button>
         <button type="button" class="btn" id="btn-chat" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 20l1.3-3.9C1.976 12.663 2.874 8.228 6.4 5.726c3.526-2.501 8.59-2.296 11.845.48c3.255 2.777 3.695 7.266 1.029 10.501S11.659 20.922 7.7 19z"/></svg><span class="lbl">Chat agen</span><kbd>C</kbd></button>
@@ -93,6 +94,7 @@
       <dt><kbd>B</kbd></dt><dd>Papan kerja tim</dd>
       <dt><kbd>V</kbd></dt><dd>Suara: nyalakan atau bisukan musik dan efek</dd>
       <dt><kbd>P</kbd></dt><dd>Peta kantor: lokasi semua persona di tiap lantai</dd>
+      <dt><kbd>G</kbd></dt><dd>Daftar game: semua game di kantor, multiplayer dan single player</dd>
       <dt><kbd>Esc</kbd></dt><dd>Tutup dialog atau panel</dd>
       <dt>Sentuh</dt><dd>Joystick kiri untuk berjalan, tombol Aksi di kanan, seret sisi kanan untuk kamera</dd>
     </dl>
@@ -131,6 +133,8 @@
           <label><input type="radio" name="padProfile" value="santai" /> Santai (kamera pelan)</label>
           <label><input type="radio" name="padProfile" value="terbalik" /> Tombol terbalik (gaya Jepang)</label>
         </div>
+        <label class="audio-row"><span>Kecepatan bidik stik</span><input type="range" name="aimSpeed" min="25" max="200" step="5" /><output name="aimSpeedOut"></output></label>
+        <p class="muted small">Untuk bidikan di mini game seperti biliar. Kecil = lebih pelan dan presisi.</p>
         <div id="pad-settings"></div>
       </fieldset>
       <fieldset class="audio-fieldset">

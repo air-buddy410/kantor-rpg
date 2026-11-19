@@ -160,6 +160,8 @@ function wireSettings(game: Game | null, s: Settings) {
     (form.elements.namedItem('reducedMotion') as HTMLInputElement).checked = s.reducedMotion;
     (form.elements.namedItem('visitor') as HTMLInputElement).checked = s.visitor;
     (form.elements.namedItem('padProfile') as RadioNodeList).value = s.padProfile;
+    (form.elements.namedItem('aimSpeed') as HTMLInputElement).value = String(s.aimSpeed);
+    (form.elements.namedItem('aimSpeedOut') as HTMLOutputElement).value = `${s.aimSpeed}%`;
     syncAudioForm(form);
     void padLoad().then((v) => { v.setProfile(s.padProfile); v.start(); });
     $('settings-renderer').textContent = game ? t('Renderer: {name}. Kualitas aktif: {quality}. Perubahan kualitas berlaku setelah muat ulang.', { name: game.rendererName, quality: game.lowQuality ? t('ringan') : t('tinggi') }) : t('Mode direktori: renderer 3D tidak aktif.');
@@ -172,6 +174,11 @@ function wireSettings(game: Game | null, s: Settings) {
   form.addEventListener('input', (e) => {
     const n = (e.target as HTMLInputElement).name;
     if (n?.startsWith('audio')) readAudioForm(form);
+    if (n === 'aimSpeed') {
+      s.aimSpeed = Number((form.elements.namedItem('aimSpeed') as HTMLInputElement).value) || 100;
+      (form.elements.namedItem('aimSpeedOut') as HTMLOutputElement).value = `${s.aimSpeed}%`;
+      saveSettings(s);
+    }
   });
   form.addEventListener('change', () => {
     const l = (form.elements.namedItem('lang') as RadioNodeList).value;
@@ -276,6 +283,15 @@ function boot() {
   const mapLoad = () => import('./ui/map').then((m) => (map ??= new m.MapUI(world, { snapshot: () => game.mapSnapshot(), meet: (id) => game.meet(id) })));
   void mapLoad();
   game.onMap = () => void mapLoad().then((m) => (m.isOpen ? m.close() : m.open()));
+  const openGames = (opener?: HTMLElement | null) => {
+    if (document.getElementById('dlg-games')) return;
+    void import('./ui/game-list').then((m) => m.openGameList({
+      world, play: (s) => game.playAt(s.fixture, s.game),
+      phones: () => void import('./pad/panel').then((p) => p.openPhonePanel(null, { padProfile: () => settings.padProfile })),
+    }, opener));
+  };
+  game.onGames = () => openGames();
+  $('btn-games').addEventListener('click', (e) => openGames(e.currentTarget as HTMLElement));
   window.__kantor = {
     openBoards,
     openAgent,

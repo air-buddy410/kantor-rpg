@@ -169,6 +169,8 @@ export const PAL = {
 
 export function text(g: CanvasRenderingContext2D, s: string, x: number, y: number, size: number, color = PAL.ink, align: CanvasTextAlign = 'center', weight = 700) {
   g.font = `${weight} ${size}px 'Alegreya Sans', system-ui, sans-serif`;
+  // Alegreya draws old-style figures: a score of 0 read as the letter o
+  if ('fontVariantNumeric' in g) (g as unknown as { fontVariantNumeric: string }).fontVariantNumeric = 'lining-nums tabular-nums';
   g.fillStyle = color;
   g.textAlign = align;
   g.textBaseline = 'middle';

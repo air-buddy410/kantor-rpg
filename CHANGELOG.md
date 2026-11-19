@@ -4,6 +4,29 @@
 
 Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di [demo publik](https://employee-rpg.air-buddy.site) setelah tes dan CI lulus. Kode rilis adalah commit di `main`.
 
+## v2.4 sampai v2.7, 19 November 2026
+
+**Daftar game, biliar 2 pemain, HP jadi stik, 5 game multiplayer baru**
+
+- Daftar game (tombol Game di HUD, tombol G): semua 20 game di kantor dalam dua tab, Multiplayer dan Single player. Tiap game menyebut jumlah pemain serta ruang dan lantainya. Tekan Main: avatar pindah ke ruang itu dan game langsung terbuka, termasuk game di Lantai 1 dari Lantai 2.
+- Game Station: 10 mesin, semuanya bisa dimainkan. Multiplayer di atas, Single player di bawah, jumlah pemain tertulis di tiap mesin.
+- Biliar:
+  - Bidik stik kanan dua kali lebih pelan dari v2.3. Tahan L2: 8 kali lebih halus.
+  - Pengaturan > Kontroler punya slider Kecepatan bidik stik (25% sampai 200%).
+  - Titik merah efek bisa ditaruh di mana saja di bola putih: tahan Segitiga lalu geser stik kanan (keyboard: tahan C lalu panah, mouse: klik di gambar bola). Ketuk Segitiga untuk kembali ke tengah.
+  - Efek samping membelokkan pantulan bola putih di bantalan.
+  - 2 pemain bergantian: pakai stik kedua atau HP, atau centang "Gantian satu perangkat".
+  - Aturan 8-ball: break sah, foul bola lawan kena duluan, foul tanpa bantalan, bola di tangan di mana saja setelah foul, lubang bola 8 ditandai otomatis.
+  - Suara benturan ikut kerasnya pukulan.
+- Main pakai HP: layar menampilkan QR untuk membuka stik di HP. HP jadi Pemain 2 sampai 5 tanpa memasang aplikasi. Jalur langsung (WebRTC) bila satu jaringan, lewat server bila tidak. QR WiFi tamu tampil bila SSID dan sandi diisi di panel itu; sandi hanya tersimpan di PC tersebut.
+- 5 game multiplayer baru di Game Station:
+  - Bola Meja: futsal 2 lawan 2, 1 sampai 4 pemain.
+  - Ular Kabel: tarik kabel fiber, jangan menabrak, 1 sampai 4 pemain.
+  - Teknisi Kilat: kerja sama memperbaiki gangguan pelanggan sebelum SLA habis, 1 sampai 4 pemain.
+  - Lomba 17-an: balap karung, makan kerupuk, tarik tambang, 1 sampai 4 pemain.
+  - Hoki Meja: air hockey 1 lawan 1.
+- Angka di dalam game memakai angka tegak (0 tidak lagi terlihat seperti huruf o).
+
 ## v2.3, 19 November 2026
 
 **Ramah stik DualSense**

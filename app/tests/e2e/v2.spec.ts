@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { boot, shot, state } from './helpers';
 
 // PRD v2.0: facility mini games, Game Station, sound settings and reprimand.
-const GAMES = ['balap-drone', 'tarung-kantor', 'lompat-lantai', 'sambung-kabel', 'arena-bom', 'lari-pagi', 'angkat-beban', 'peregangan', 'biliar', 'barista', 'server-down', 'susun-denah', 'desain-poster', 'kuis-perpustakaan'];
+const GAMES = ['balap-drone', 'tarung-kantor', 'lompat-lantai', 'sambung-kabel', 'arena-bom', 'lari-pagi', 'angkat-beban', 'peregangan', 'biliar', 'barista', 'server-down', 'susun-denah', 'desain-poster', 'kuis-perpustakaan', 'bola-meja', 'ular-kabel', 'teknisi-kilat', 'lomba-17an', 'hoki-meja'];
 
 type MgState = { phase: string; game: string; frames: number } | null;
 
@@ -87,12 +87,12 @@ test.describe('v2.0 office integration', () => {
     expect(errors).toEqual([]);
   });
 
-  test('Game Station shows 10 slots, 5 playable, and opens a game', async ({ page }, info) => {
+  test('Game Station shows 10 playable cabinets (v2.4) and opens a game', async ({ page }, info) => {
     const errors = await boot(page);
     await page.evaluate(() => (window.__kantor!.useInteractable as (x: string) => void)('FX-L2-061'));
     await expect(page.locator('#arcade')).toBeVisible({ timeout: 15_000 });
     await expect(page.locator('.arcade-slot')).toHaveCount(10);
-    await expect(page.locator('.arcade-slot[aria-disabled="true"]')).toHaveCount(5);
+    await expect(page.locator('.arcade-slot[aria-disabled="true"]')).toHaveCount(0);
     await shot(page, info, 'v2-game-station');
     await page.locator('.arcade-slot[data-game="sambung-kabel"]').click();
     await expect(page.locator('#mg-title')).toHaveText('Sambung Kabel');

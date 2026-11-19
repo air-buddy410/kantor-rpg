@@ -46,8 +46,8 @@ describe('English dictionary', () => {
   });
 
   it('translates every Game Station card and facility title', async () => {
-    const { ARCADE_INFO, FACILITY_TITLE } = await import('../../src/minigames/registry');
-    const s = [...Object.values(ARCADE_INFO).flatMap((i) => [i.title, i.blurb]), ...Object.values(FACILITY_TITLE)];
+    const { CATALOG, FACILITY_TITLE } = await import('../../src/minigames/registry');
+    const s = [...CATALOG.flatMap((i) => [i.title, i.blurb]), ...Object.values(FACILITY_TITLE)];
     expect(s.filter((n) => !(n in EN))).toEqual([]);
   });
 
