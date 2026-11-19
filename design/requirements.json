@@ -1308,7 +1308,7 @@
    ]
   },
   {
-   "id": "REQ-BIL-10",
+   "id": "REQ-BIL-01",
    "milestone": "M9",
    "story": "Biliar v2.4: bidik lambat + L2 8x, slider kecepatan bidik, efek bebas 2D, efek samping, 2 pemain, aturan 8-ball, bola di tangan, lubang bola 8, suara ikut benturan.",
    "ac": "PRD-v2.4 REQ-BIL-01 sampai 09.",

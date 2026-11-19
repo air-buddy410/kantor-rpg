@@ -1,6 +1,6 @@
 # Matriks requirement
 
-Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 114d9cc; evidence menunjuk file di repo).
+Dibuat dari `design/requirements.json` oleh `tools/req_matrix.py` (basis commit 5912764; evidence menunjuk file di repo).
 Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi pada commit tercatat. Evidence kosong = belum diuji.
 
 | REQ | Milestone | Bagian | Test | Evidence | Status |
@@ -82,7 +82,7 @@ Status hanya 'terverifikasi' bila bagian itu punya evidence file hasil eksekusi 
 | REQ-PAD-02 | M8 | Empat profil, gambar DualSense yang menyala, Kidal menukar stik, Tombol terbalik menukar tombol muka, pilihan tersimpan. | app/tests/unit/pad-profiles.test.ts<br>app/tests/e2e/gamepad.spec.ts | - | belum diuji |
 | REQ-PAD-03 | M8 | Pergantian HUD, glyph per profil, biliar analog + R2, tutorial dan legenda 15 game. | app/tests/unit/pad-glyphs.test.ts<br>app/tests/unit/mg-biliar.test.ts<br>app/tests/e2e/dualsense.spec.ts | - | belum diuji |
 | REQ-GL-01 | M9 | Daftar game di HUD: semua game, tab Multiplayer/Single player, ruang dan lantai, Main membawa avatar ke ruang itu. | app/tests/unit/v2-office.test.ts<br>app/tests/e2e/game-list.spec.ts | - | belum diuji |
-| REQ-BIL-10 | M9 | Biliar v2.4: bidik lambat + L2 8x, slider kecepatan bidik, efek bebas 2D, efek samping, 2 pemain, aturan 8-ball, bola di tangan, lubang bola 8, suara ikut benturan. | app/tests/unit/mg-biliar.test.ts<br>app/tests/e2e/dualsense.spec.ts | - | belum diuji |
+| REQ-BIL-01 | M9 | Biliar v2.4: bidik lambat + L2 8x, slider kecepatan bidik, efek bebas 2D, efek samping, 2 pemain, aturan 8-ball, bola di tangan, lubang bola 8, suara ikut benturan. | app/tests/unit/mg-biliar.test.ts<br>app/tests/e2e/dualsense.spec.ts | - | belum diuji |
 | REQ-HP-01 | M9 | HP jadi stik: QR kontroler + QR WiFi tamu, relay WebSocket + WebRTC, HP jadi Gamepad virtual Pemain 2 sampai 5. | app/tests/unit/pad-qr.test.ts<br>app/tests/unit/pad-virtual.test.ts<br>server/test/pad-relay.test.mjs | - | belum diuji |
 | REQ-MP-01 | M9 | Lima game multiplayer baru di Game Station slot 6 sampai 10. | app/tests/unit/mg-bola-meja.test.ts<br>app/tests/unit/mg-ular-kabel.test.ts<br>app/tests/unit/mg-teknisi-kilat.test.ts<br>app/tests/unit/mg-lomba-17an.test.ts<br>app/tests/unit/mg-hoki-meja.test.ts | - | belum diuji |
 | REQ-MOVE-01 | M8 | Dorong 2 detik menembus, lari langsung menembus, dorongan singkat tidak, dinding tetap menahan. | app/tests/unit/collision.test.ts<br>app/tests/e2e/npc-push.spec.ts | - | belum diuji |
@@ -403,7 +403,7 @@ Dialog Daftar game (G) berisi 20 game tanpa duplikat; ruang dari world.json; Mai
 
 Failure: lihat PRD-v2.4. Boundary: lihat PRD-v2.4 bagian 7.
 
-### REQ-BIL-10 (M9)
+### REQ-BIL-01 (M9)
 
 Biliar v2.4: bidik lambat + L2 8x, slider kecepatan bidik, efek bebas 2D, efek samping, 2 pemain, aturan 8-ball, bola di tangan, lubang bola 8, suara ikut benturan.
 

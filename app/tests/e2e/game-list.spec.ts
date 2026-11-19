@@ -53,4 +53,15 @@ test.describe('Daftar game', () => {
     await expect(station.locator('.arcade-slot[data-game="bola-meja"] .chip')).toContainText('4 pemain');
     await expect(station.locator('#arcade-phone')).toBeVisible();
   });
+
+  test('Pengaturan: stick aim speed slider is saved and read by the games', async ({ page }) => {
+    await boot(page);
+    await page.locator('#btn-settings').click();
+    const slider = page.locator('#dlg-settings input[name="aimSpeed"]');
+    await expect(slider).toHaveValue('100');
+    await slider.fill('50');
+    await expect(page.locator('#dlg-settings output[name="aimSpeedOut"]')).toHaveText('50%');
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('kantor-rpg.settings.v1') ?? '{}').aimSpeed);
+    expect(saved).toBe(50);
+  });
 });
