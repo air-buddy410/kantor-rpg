@@ -50,3 +50,54 @@ for (const mode of ['langsung', 'relay'] as const) {
     await pc.close();
   });
 }
+
+// Budi 2026-11-19 (iPhone screenshot): the pad overflowed upright and could be zoomed.
+// Upright it is turned 90° and fits; landscape fits; pinch does not zoom; the
+// left stick follows the thumb and reads in the pad's own frame when turned.
+for (const [name, vp] of [['upright', { width: 390, height: 664 }], ['landscape', { width: 750, height: 342 }]] as const) {
+  test(`phone pad fits the screen and does not zoom (${name})`, async ({ browser }, info) => {
+    test.skip(info.project.name !== 'desktop', 'own phone viewports');
+    const pc = await (await browser.newContext()).newPage();
+    await pc.goto(`/mg.html?game=arcade&relay=${encodeURIComponent(RELAY)}`);
+    await pc.locator('#arcade-phone').click();
+    const code = (await pc.locator('.pp-code').textContent({ timeout: 10_000 }))!;
+    const ctx = await browser.newContext({ viewport: vp, hasTouch: true, isMobile: true });
+    const phone = await ctx.newPage();
+    await phone.goto(`/pad.html?relay=${encodeURIComponent(RELAY)}#${code}`);
+    await expect(phone.locator('body')).toHaveAttribute('data-phase', /seat|joined/, { timeout: 15_000 });
+    await expect(phone.locator('body')).toHaveAttribute('data-rot', name === 'upright' ? '90' : '0');
+    // every control on screen, at least 44 px, none on top of another
+    const bad = await phone.evaluate(() => {
+      const W = innerWidth, H = innerHeight, out: string[] = [];
+      const els = [...document.querySelectorAll<HTMLElement>('.hp-btn, .hp-arm, .hp-stick, .hp-trig')];
+      for (const el of els) {
+        const b = el.getBoundingClientRect();
+        if (b.left < -1 || b.top < -1 || b.right > W + 1 || b.bottom > H + 1) out.push(`out ${el.getAttribute('aria-label')}`);
+        if (Math.min(b.width, b.height) < 43.5) out.push(`small ${el.getAttribute('aria-label')}`);
+      }
+      const big = [...document.querySelectorAll<HTMLElement>('.hp-btn, .hp-dpad, .hp-stick, .hp-trig')].filter((e) => !e.closest('.hp-face')).concat([...document.querySelectorAll<HTMLElement>('.hp-face')]);
+      for (let i = 0; i < big.length; i++) for (let j = i + 1; j < big.length; j++) {
+        const A = big[i].getBoundingClientRect(), C = big[j].getBoundingClientRect();
+        if (Math.min(A.right, C.right) - Math.max(A.left, C.left) > 2 && Math.min(A.bottom, C.bottom) - Math.max(A.top, C.top) > 2) out.push(`overlap ${big[i].className} / ${big[j].className}`);
+      }
+      return out;
+    });
+    expect(bad).toEqual([]);
+    // pinch out on the pad: the page stays at scale 1
+    const cdp = await ctx.newCDPSession(phone);
+    await cdp.send('Input.synthesizePinchGesture', { x: vp.width / 2, y: vp.height / 2, scaleFactor: 2.5, relativeSpeed: 800, gestureSourceType: 'touch' });
+    expect(await phone.evaluate(() => window.visualViewport?.scale ?? 1)).toBe(1);
+    // left stick: touch inside its zone, drag toward the pad's right; the PC reads +x
+    const zone = (await phone.locator('.hp-left').boundingBox())!;
+    const x0 = zone.x + zone.width / 2, y0 = zone.y + zone.height / 2;
+    const [dx, dy] = name === 'upright' ? [0, 60] : [60, 0]; // turned 90° clockwise: pad right is screen down
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: x0, y: y0 }] });
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x0 + dx, y: y0 + dy }] });
+    await expect.poll(() => pc.evaluate(() => navigator.getGamepads()[4]?.axes[0] ?? 0), { timeout: 5_000 }).toBeGreaterThan(0.6);
+    expect(Math.abs(await pc.evaluate(() => navigator.getGamepads()[4]?.axes[1] ?? 0))).toBeLessThan(0.3);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await expect.poll(() => pc.evaluate(() => navigator.getGamepads()[4]?.axes[0] ?? 1), { timeout: 5_000 }).toBe(0);
+    await phone.close(); await pc.close();
+  });
+}
+

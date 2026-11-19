@@ -4,6 +4,17 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
+## v2.7.1, 19 November 2026
+
+**Easier phone controller**
+
+- Always landscape: an upright phone shows the pad already turned, just tilt the phone left. On Android the first touch goes full screen and locks landscape.
+- No zoom: pinch, double tap and drag no longer zoom the page on iPhone.
+- A DualSense layout that fits every phone: L1 over the D-pad and left stick, R1 over the action buttons and right stick, Create and Options in the middle.
+- New right stick, for fine billiards aim and spin.
+- The left stick follows the thumb: touch anywhere in the left area and the stick appears there.
+- Android phones give a short buzz on each press.
+
 ## v2.4 to v2.7, 19 November 2026
 
 **Game list, two-player billiards, phones as pads, 5 new multiplayer games**
