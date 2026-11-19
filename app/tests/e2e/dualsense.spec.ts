@@ -56,7 +56,7 @@ test.describe('DualSense layout', () => {
 
   test('every mini game shows tutorial steps and a legend in DualSense glyphs', async ({ page }, info) => {
     test.skip(info.project.name !== 'desktop', 'content check, one viewport');
-    const ids = ['balap-drone', 'tarung-kantor', 'lompat-lantai', 'sambung-kabel', 'arena-bom', 'lari-pagi', 'angkat-beban', 'peregangan', 'biliar', 'barista', 'server-down', 'susun-denah', 'desain-poster', 'kuis-perpustakaan', 'catur'];
+    const ids = ['balap-drone', 'tarung-kantor', 'lompat-lantai', 'sambung-kabel', 'arena-bom', 'lari-pagi', 'angkat-beban', 'peregangan', 'biliar', 'barista', 'server-down', 'susun-denah', 'desain-poster', 'kuis-perpustakaan', 'catur', 'bola-meja', 'ular-kabel', 'teknisi-kilat', 'lomba-17an', 'hoki-meja'];
     for (const id of ids) {
       await page.goto(`/mg.html?game=${id}&seed=7`);
       await expect(page.locator('#mg-host .mg-card .mg-steps li').first(), id).toBeVisible({ timeout: 20_000 });

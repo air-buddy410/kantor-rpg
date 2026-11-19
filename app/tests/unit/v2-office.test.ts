@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import worldJson from '@design/world.json';
 import type { World } from '../../src/world/types';
 import { FACILITY_GAMES, facilityGame } from '../../src/minigames/facility';
-import { ARCADE_SLOTS, ARCADE_INFO, GAMES } from '../../src/minigames/registry';
+import { ARCADE_SLOTS, CATALOG, GAMES, catalogGame } from '../../src/minigames/registry';
+import { gameSpots } from '../../src/minigames/catalog';
 import { crossfade } from '../../src/game/avatar';
 import { trackForRoom } from '../../src/audio/rooms';
 import { SCOLD_LINES } from '../../src/game/scold';
@@ -48,14 +49,31 @@ describe('v2.0 facilities and Game Station', () => {
     expect(ARCADE_SLOTS).not.toContain('catur');
   });
 
-  it('Game Station has 10 slots, 5 filled, all loadable and described', () => {
+  it('Game Station has 10 cabinets, multiplayer first, all loadable and described (v2.4)', () => {
     expect(ARCADE_SLOTS).toHaveLength(10);
-    const filled = ARCADE_SLOTS.filter(Boolean) as string[];
-    expect(filled).toHaveLength(5);
-    for (const id of filled) {
+    expect(new Set(ARCADE_SLOTS).size).toBe(10);
+    const multi = ARCADE_SLOTS.map((id) => (catalogGame(id)?.players ?? 1) > 1);
+    expect(multi.indexOf(false)).toBeGreaterThan(0);
+    expect(multi.slice(multi.indexOf(false))).not.toContain(true);
+    for (const id of ARCADE_SLOTS) {
       expect(GAMES[id]).toBeTypeOf('function');
-      expect(ARCADE_INFO[id].title).toBeTruthy();
+      expect(catalogGame(id)?.title).toBeTruthy();
     }
+  });
+
+  it('game catalog: every game once, players match the module, every game has a room (v2.4)', async () => {
+    expect(CATALOG.map((g) => g.id).sort()).toEqual(Object.keys(GAMES).sort());
+    const spots = gameSpots(world);
+    for (const g of CATALOG) {
+      const m = (await GAMES[g.id]()).default.meta;
+      expect(m.players ?? 1, g.id).toBe(g.players);
+      expect(m.title, g.id).toBe(g.title);
+      expect(spots.get(g.id)?.length, g.id).toBeGreaterThan(0);
+    }
+    expect(spots.get('biliar')![0].room.id).toBe('L2-BILLIARD');
+    expect(spots.get('server-down')![0].room.id).toBe('L1-SERVER');
+    expect(spots.get('bola-meja')![0].room.id).toBe('L2-GAME');
+    expect(spots.get('catur')![0].room.id).toBe('L2-GAME');
   });
 
   it('every game module loads and its meta matches its id', async () => {

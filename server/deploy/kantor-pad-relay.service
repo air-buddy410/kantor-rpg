@@ -1,0 +1,35 @@
+# kantor-rpg phone controller relay (REQ-HP-06). Install:
+#   sudo install -D -m 0644 server/pad-relay.mjs /opt/kantor-pad-relay/pad-relay.mjs
+#   sudo install -m 0644 server/deploy/kantor-pad-relay.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now kantor-pad-relay
+#   curl -s http://127.0.0.1:8791/pad-relay/health
+[Unit]
+Description=kantor-rpg pad relay (phone controller WebSocket rooms)
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+ExecStart=/usr/bin/node /opt/kantor-pad-relay/pad-relay.mjs
+Environment=PAD_RELAY_PORT=8791
+Environment=PAD_RELAY_ORIGINS=https://employee-rpg.air-buddy.site
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+MemoryMax=128M
+TasksMax=64
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target

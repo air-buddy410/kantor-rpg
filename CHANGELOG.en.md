@@ -4,6 +4,29 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
+## v2.4 to v2.7, 19 November 2026
+
+**Game list, two-player billiards, phones as pads, 5 new multiplayer games**
+
+- Game list (Games button in the HUD, key G): all 20 games in the office in two tabs, Multiplayer and Single player, with players, room and floor. Play takes the avatar to that room and opens the game, including Floor 1 games from Floor 2.
+- Game Station: 10 cabinets, all playable. Multiplayer on top, single player below, player count on each cabinet.
+- Billiards:
+  - Right stick aim is half the v2.3 speed. Hold L2: 8 times finer.
+  - Settings > Controller has a Stick aim speed slider (25% to 200%).
+  - The red spin dot goes anywhere on the cue ball: hold Triangle and move the right stick (keyboard: hold C and the arrows, mouse: click on the ball picture). Tap Triangle to centre it.
+  - Side spin bends the cue ball off the cushion.
+  - Two players take turns: a second pad or phone, or tick "Take turns on one device".
+  - 8-ball rules: legal break, foul for hitting the rival's ball first, foul without a cushion, ball in hand anywhere after a foul, the 8-ball pocket is marked automatically.
+  - Impact sounds follow how hard the balls hit.
+- Play with a phone: the screen shows a QR code that opens a pad on the phone. Phones are Players 2 to 5, no app to install. Direct link (WebRTC) on the same network, through the server otherwise. A guest WiFi QR shows when an SSID and password are saved in that panel; the password stays on that PC only.
+- 5 new multiplayer games in the Game Station:
+  - Table Football: 2 against 2 futsal, 1 to 4 players.
+  - Cable Snake: pull a fibre cable, do not crash, 1 to 4 players.
+  - Flash Technician: co-op, fix customer outages before the SLA runs out, 1 to 4 players.
+  - 17 August Games: sack race, cracker eating, tug of war, 1 to 4 players.
+  - Table Hockey: air hockey, one against one.
+- Numbers in the games use lining figures (0 no longer looks like the letter o).
+
 ## v2.3, 19 November 2026
 
 **DualSense friendly**

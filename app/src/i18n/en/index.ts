@@ -10,8 +10,9 @@ import { EN_UI } from './ui';
 import { EN_WORLD } from './world';
 import { EN_MG } from './mg';
 import { EN_PAD } from './pad';
+import { EN_PAD_PHONE } from './pad-phone';
 
-export const EN: Record<string, string> = { ...EN_CONTENT, ...EN_WORLD, ...EN_HTML, ...EN_GAME, ...EN_PRIVATE, ...EN_STUDIO, ...EN_UI, ...EN_MG, ...EN_PAD };
+export const EN: Record<string, string> = { ...EN_CONTENT, ...EN_WORLD, ...EN_HTML, ...EN_GAME, ...EN_PRIVATE, ...EN_STUDIO, ...EN_UI, ...EN_MG, ...EN_PAD, ...EN_PAD_PHONE };
 
 const ATTRS = ['aria-label', 'title', 'placeholder', 'alt'];
 

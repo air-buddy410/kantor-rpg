@@ -12,11 +12,13 @@ import { PAD_PROFILES, faceButtons, stickAxes, type PadProfile } from '../input/
 import { PadActivity, currentDevice, currentPadKind, setDevice, trackDevices, type Device } from '../input/mode';
 import { keyChips, keyText, renderLegend, richLine } from '../input/legend';
 import type { PadProfileId } from '../ui/settings';
-import { PLAYER_COLORS, PadPlayer, connectedPads } from './local-players';
+import { PLAYER_COLORS, PadPlayer, connectedPads, isPhonePad } from './local-players';
 
 export interface HostOpts {
   reducedMotion: boolean;
   padProfile: () => PadProfileId;
+  /** Stick aim speed in percent from Settings (default 100). */
+  aimSpeed?: () => number;
   playerName: string;
   /** Called after the layer closes (the office resumes). */
   onClose: (r: GameResult | null) => void;
@@ -190,7 +192,7 @@ export class MiniGameHost {
     if (best) lines.push(t('Skor terbaik: {score} ({name})', { score: formatScore(m, best.score), name: best.name }));
     let extra: HTMLElement = this.tutorial();
     if ((m.players ?? 1) > 1) {
-      if (this.p1Pad === null) this.p1Pad = connectedPads()[0]?.index ?? -1;
+      if (this.p1Pad === null) this.p1Pad = connectedPads().find((q) => !isPhonePad(q))?.index ?? -1;
       this.lobbyEl = el('div', { class: 'mg-lobby', 'aria-live': 'polite' });
       this.renderLobby();
       const wrap = el('div');
@@ -209,6 +211,9 @@ export class MiniGameHost {
   }
 
   private maxPlayers(): number { return this.mod?.meta.players ?? 1; }
+  /** "Gantian satu perangkat" ticked on the intro card (hot-seat games only). */
+  private hotseat = false;
+  private humans(): number { return 1 + this.extras.length + (this.hotseat && !this.extras.length ? 1 : 0); }
 
   /** Lobby rows: who plays, and how the next player joins. */
   private renderLobby() {
@@ -236,6 +241,14 @@ export class MiniGameHost {
     else note.textContent = t('Semua tempat pemain sudah terisi.');
     box.append(note);
     if (m.playersHint) box.append(el('p', { class: 'mg-lobby-note' }, t(m.playersHint)));
+    if (m.hotseat && !this.extras.length) {
+      const lab = el('label', { class: 'mg-hotseat' });
+      const cb = el('input', { type: 'checkbox', id: 'mg-hotseat' });
+      cb.checked = this.hotseat;
+      cb.addEventListener('change', () => { this.hotseat = cb.checked; });
+      lab.append(cb, ` ${t('Gantian satu perangkat (2 pemain)')}`);
+      box.append(lab);
+    }
   }
 
   /** Intro card: pads that are not playing yet join with a fresh A; a joined Pemain 2+ leaves with B. */
@@ -254,9 +267,11 @@ export class MiniGameHost {
       const was = this.lobbyPrev.get(p.index) ?? true;
       this.lobbyPrev.set(p.index, a);
       if (!a || was) continue;
-      if (this.p1Pad === -1 && !this.localUsed) { this.p1Pad = p.index; changed = true; continue; }
+      if (this.p1Pad === -1 && !this.localUsed && !isPhonePad(p)) { this.p1Pad = p.index; changed = true; continue; }
       if (this.extras.length < this.maxPlayers() - 1) {
-        this.extras.push(new PadPlayer(p.index, this.opts.padProfile));
+        this.extras.push(new PadPlayer(p.index, this.opts.padProfile, () => this.opts.aimSpeed?.() ?? 100));
+        // a phone shows the seat it got ("Pemain 3"), not its join order
+        if (isPhonePad(p)) void import('../pad/virtual-pads').then((m) => m.currentPhoneLink()?.setSeat(p.index, this.extras.length + 1));
         sound.sfx('confirm');
         changed = true;
       }
@@ -351,7 +366,7 @@ export class MiniGameHost {
       t: (s, v) => t(s, v), sfx: (n, o) => sound.sfx(n, o), reducedMotion: this.opts.reducedMotion,
       key: (k, pad) => keyText(k, pad ? 'pad' : currentDevice(), this.prof(), currentPadKind()),
       rumble: (strength, ms) => this.rumble(strength, ms),
-      cast: buildCast(), playerId: 'CH-CEO', players: 1 + this.extras.length,
+      cast: buildCast(), playerId: 'CH-CEO', players: this.humans(),
       end: (r) => { if (!this.result) { this.result = r; this.finish(r); } },
       setHud: (s) => { if (s !== this.hudText) { this.hudText = s; this.hudEl.textContent = s; } },
     });
@@ -545,7 +560,7 @@ export class MiniGameHost {
       analog: {
         move: [sx, sy], look: [p.axes[ax.look[0]] ?? 0, p.axes[ax.look[1]] ?? 0],
         l2: p.buttons[6]?.value ?? 0, r2: p.buttons[7]?.value ?? 0, l1: !!raw[4], r1: !!raw[5],
-        dead: dz, aim: prof.aimScale,
+        dead: dz, aim: prof.aimScale * ((this.opts.aimSpeed?.() ?? 100) / 100),
       },
     };
   }
@@ -625,6 +640,7 @@ export class MiniGameHost {
         this.tap = null;
         const p1: InputState = { ...input, hit, tap };
         if (this.extras.length) p1.players = [p1, ...this.extras.map((x) => x.step())];
+        else if (this.humans() === 2) p1.players = [p1, p1];
         this.inst.update(1 / 60, p1);
         this.acc -= 1 / 60;
         n++;
@@ -637,7 +653,7 @@ export class MiniGameHost {
   };
 
   /** Test hook: game snapshot plus host phase. */
-  state() { return { phase: this.phase, game: this.gameId, frames: this.frames, delivered: { ...this.delivered }, players: 1 + this.extras.length, pads: { p1: this.p1Pad, extra: this.extras.map((x) => x.index) }, hud: this.hudText, result: this.result, snap: this.inst?.snapshot?.() ?? null }; }
+  state() { return { phase: this.phase, game: this.gameId, frames: this.frames, delivered: { ...this.delivered }, players: this.humans(), pads: { p1: this.p1Pad, extra: this.extras.map((x) => x.index) }, hud: this.hudText, result: this.result, snap: this.inst?.snapshot?.() ?? null }; }
 }
 
 let current: MiniGameHost | null = null;

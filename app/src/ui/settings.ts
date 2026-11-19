@@ -3,7 +3,11 @@
 export type Theme = 'system' | 'light' | 'dark';
 export type Quality = 'auto' | 'low' | 'high';
 export type PadProfileId = 'standar' | 'kidal' | 'santai' | 'terbalik';
-export interface Settings { theme: Theme; quality: Quality; reducedMotion: boolean; visitor: boolean; padProfile: PadProfileId }
+export interface Settings {
+  theme: Theme; quality: Quality; reducedMotion: boolean; visitor: boolean; padProfile: PadProfileId;
+  /** Stick aim speed in mini games, percent (25..200), on top of the profile (Budi 2026-11-19). */
+  aimSpeed: number;
+}
 
 const KEY = 'kantor-rpg.settings.v1';
 
@@ -12,7 +16,7 @@ export function systemReducedMotion(): boolean {
 }
 
 export function loadSettings(): Settings {
-  const base: Settings = { theme: 'system', quality: 'auto', reducedMotion: systemReducedMotion(), visitor: false, padProfile: 'standar' };
+  const base: Settings = { theme: 'system', quality: 'auto', reducedMotion: systemReducedMotion(), visitor: false, padProfile: 'standar', aimSpeed: 100 };
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return base;
@@ -23,6 +27,7 @@ export function loadSettings(): Settings {
       reducedMotion: typeof v.reducedMotion === 'boolean' ? v.reducedMotion : base.reducedMotion,
       visitor: v.visitor === true,
       padProfile: v.padProfile === 'kidal' || v.padProfile === 'santai' || v.padProfile === 'terbalik' ? v.padProfile : 'standar',
+      aimSpeed: typeof v.aimSpeed === 'number' && Number.isFinite(v.aimSpeed) ? Math.min(200, Math.max(25, Math.round(v.aimSpeed))) : 100,
     };
   } catch {
     return base;

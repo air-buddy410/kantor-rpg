@@ -15,7 +15,7 @@ export default defineConfig({
     // default instead of being raised to hide the size (R2).
     rolldownOptions: {
       // mg.html: stand-alone page for one mini game (direct links, E2E per game).
-      input: { index: fileURLToPath(new URL('./index.html', import.meta.url)), mg: fileURLToPath(new URL('./mg.html', import.meta.url)) },
+      input: { index: fileURLToPath(new URL('./index.html', import.meta.url)), mg: fileURLToPath(new URL('./mg.html', import.meta.url)), pad: fileURLToPath(new URL('./pad.html', import.meta.url)) },
       output: {
         codeSplitting: { groups: [{ name: 'three', test: /[\\/]node_modules[\\/]three[\\/]/ }, { name: 'studio', test: /[\\/]src[\\/]studio[\\/](ui|editor|validate)\.ts$/, includeDependenciesRecursively: false }] },
       },

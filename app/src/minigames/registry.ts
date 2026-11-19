@@ -5,7 +5,12 @@ import type { GameModule } from './types';
 type Loader = () => Promise<{ default: GameModule }>;
 
 export const GAMES: Record<string, Loader> = {
-  // Game Station (L2-GAME), slots 1 to 5
+  // Game Station (L2-GAME); cabinet order lives in catalog.ts
+  'bola-meja': () => import('./games/bola-meja'),
+  'ular-kabel': () => import('./games/ular-kabel'),
+  'teknisi-kilat': () => import('./games/teknisi-kilat'),
+  'lomba-17an': () => import('./games/lomba-17an'),
+  'hoki-meja': () => import('./games/hoki-meja'),
   'balap-drone': () => import('./games/balap-drone'),
   'tarung-kantor': () => import('./games/tarung-kantor'),
   'lompat-lantai': () => import('./games/lompat-lantai'),
@@ -24,17 +29,5 @@ export const GAMES: Record<string, Loader> = {
   'kuis-perpustakaan': () => import('./games/kuis-perpustakaan'),
 };
 
-/** Game Station cabinet order. null = empty slot ("segera hadir"). */
-export const ARCADE_SLOTS: (string | null)[] = ['balap-drone', 'tarung-kantor', 'lompat-lantai', 'sambung-kabel', 'arena-bom', null, null, null, null, null];
-
-/** Launcher card text for the Game Station, kept here so the launcher does not load every game. */
-export const ARCADE_INFO: Record<string, { title: string; blurb: string }> = {
-  'balap-drone': { title: 'Balap Drone', blurb: 'Balap tampak atas di sirkuit sekitar kantor. 3 putaran.' },
-  'tarung-kantor': { title: 'Tarung Kantor', blurb: 'Satu lawan satu dengan karakter tim. Kalahkan 3 lawan berturut-turut.' },
-  'lompat-lantai': { title: 'Lompat Lantai', blurb: 'Platformer 2D: kumpulkan dokumen, hindari kabel kusut.' },
-  'sambung-kabel': { title: 'Sambung Kabel', blurb: 'Putar ubin, sambungkan OLT ke setiap rumah.' },
-  'arena-bom': { title: 'Arena Bom', blurb: 'Pasang bom, buka jalan, kalahkan 3 lawan.' },
-  'catur': { title: 'Catur Kantor', blurb: 'Catur lawan rekan tim, tiga tingkat kesulitan.' },
-};
-
 export { FACILITY_GAMES, FACILITY_TITLE, facilityGame } from './facility';
+export { ARCADE_SLOTS, CATALOG, catalogGame } from './catalog';

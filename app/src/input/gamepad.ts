@@ -131,7 +131,8 @@ export class GamepadControl {
   }
 
   private pad(): Gamepad | null {
-    for (const p of navigator.getGamepads?.() ?? []) if (p && p.connected) return p;
+    // Phone controllers are extra players in mini games, they do not walk the CEO.
+    for (const p of navigator.getGamepads?.() ?? []) if (p && p.connected && !p.id.startsWith('HP PerumNet')) return p;
     return null;
   }
 
