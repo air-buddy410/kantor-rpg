@@ -4,6 +4,17 @@
 
 Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di [demo publik](https://employee-rpg.air-buddy.site) setelah tes dan CI lulus. Kode rilis adalah commit di `main`.
 
+## v2.7.1, 19 November 2026
+
+**Kontroler HP lebih gampang dipakai**
+
+- Selalu mendatar: HP yang dipegang tegak menampilkan stik sudah diputar, cukup miringkan HP ke kiri. Di Android, sentuhan pertama membuka layar penuh dan mengunci posisi mendatar.
+- Tidak bisa ter-zoom: cubit, dobel ketuk, dan geser tidak lagi memperbesar halaman di iPhone.
+- Tata letak DualSense yang muat di semua HP: L1 di atas D-pad dan stik kiri, R1 di atas tombol aksi dan stik kanan, Create dan Options di tengah.
+- Stik kanan baru, untuk bidik halus biliar dan efek bola.
+- Stik kiri mengikuti jempol: sentuh di mana saja di area kiri, stik muncul di situ.
+- HP Android bergetar pendek saat tombol ditekan.
+
 ## v2.4 sampai v2.7, 19 November 2026
 
 **Daftar game, biliar 2 pemain, HP jadi stik, 5 game multiplayer baru**

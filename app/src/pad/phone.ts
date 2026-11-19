@@ -29,10 +29,24 @@ function icon(paths: string, fill = false): SVGSVGElement {
 }
 
 /** Pointer captured by the element: multi-touch works because each finger owns its control. */
+/** 90 while the controller is turned by CSS on an upright phone (iPhone cannot lock orientation). */
+let rot = 0;
+/** Pointer position in px from the element's centre, in the element's own (unrotated) frame. */
+function local(ev: PointerEvent, el: HTMLElement) {
+  const r = el.getBoundingClientRect();
+  const dx = ev.clientX - (r.left + r.width / 2), dy = ev.clientY - (r.top + r.height / 2);
+  return rot ? { x: dy, y: -dx } : { x: dx, y: dy };
+}
+
+/** Short tick on press where the browser allows it (Android); there is no feel of a real button. */
+const buzz = () => { try { navigator.vibrate?.(8); } catch { /* not allowed yet */ } };
+
 function track(e: HTMLElement, on: { down?: (ev: PointerEvent) => void; move?: (ev: PointerEvent) => void; up: () => void }) {
   let id = -1;
   e.addEventListener('pointerdown', (ev) => {
     ev.preventDefault();
+    // a button inside the stick zone keeps its finger; the zone must not capture it too
+    ev.stopPropagation();
     if (id !== -1) return;
     id = ev.pointerId;
     try { e.setPointerCapture(id); } catch { /* pointer already gone */ }
@@ -48,7 +62,7 @@ function track(e: HTMLElement, on: { down?: (ev: PointerEvent) => void; move?: (
 function button(i: number, cls: string, label: string, content: Node | string) {
   const b = h('button', { type: 'button', class: `hp-btn ${cls}`, 'aria-label': label, 'data-b': String(i) });
   b.append(content);
-  track(b, { down: () => { set(i, 1); b.classList.add('on'); }, up: () => { set(i, 0); b.classList.remove('on'); } });
+  track(b, { down: () => { set(i, 1); b.classList.add('on'); buzz(); }, up: () => { set(i, 0); b.classList.remove('on'); } });
   return b;
 }
 
@@ -90,35 +104,56 @@ function dpad(): HTMLElement {
       if (a > s && a < 7 * s) on.add(13);
       if (a < -s && a > -7 * s) on.add(12);
     }
-    for (const [i, el] of arms) { set(i, on.has(i) ? 1 : 0); el.classList.toggle('on', on.has(i)); }
+    for (const [i, el] of arms) {
+      if (on.has(i) && !state.buttons[i]) buzz();
+      set(i, on.has(i) ? 1 : 0); el.classList.toggle('on', on.has(i));
+    }
   };
   track(pad, {
-    move: (ev) => { const r = pad.getBoundingClientRect(); apply((ev.clientX - r.left) / r.width * 2 - 1, (ev.clientY - r.top) / r.height * 2 - 1); },
+    move: (ev) => { const p = local(ev, pad); apply(p.x / (pad.offsetWidth / 2), p.y / (pad.offsetHeight / 2)); },
     up: () => apply(0, 0),
   });
   return pad;
 }
 
-function stick(): HTMLElement {
-  const base = h('div', { class: 'hp-stick', role: 'img', 'aria-label': t('Stik kiri') });
+/**
+ * Analog stick on axes ax, ax+1. With a zone the stick floats: its base jumps to
+ * where the thumb lands (clamped inside the zone) and returns home on release,
+ * so a thumb that drifts without a physical edge still hits it.
+ */
+function stick(ax: 0 | 2, label: string, zone?: HTMLElement): HTMLElement {
+  const base = h('div', { class: `hp-stick ${ax ? 'rs' : 'ls'}`, role: 'img', 'aria-label': label });
   const knob = h('span', { class: 'hp-knob' });
   base.append(knob);
+  let ox = 0, oy = 0;
   const put = (x: number, y: number) => {
-    state.axes[0] = x; state.axes[1] = y;
-    const r = base.clientWidth / 2 - knob.clientWidth / 2;
+    state.axes[ax] = x; state.axes[ax + 1] = y;
+    const r = base.offsetWidth / 2 - knob.offsetWidth / 2;
     knob.style.transform = `translate(${x * r}px, ${y * r}px)`;
     changed();
   };
-  track(base, {
+  const home = () => { for (const k of ['left', 'top', 'right', 'bottom']) base.style.removeProperty(k); base.classList.remove('float'); };
+  const area = zone ?? base;
+  track(area, {
+    down: (ev) => {
+      if (!zone) { ox = oy = 0; return; }
+      const p = local(ev, zone), R = base.offsetWidth / 2;
+      const hw = zone.offsetWidth / 2 - R, hh = zone.offsetHeight / 2 - R;
+      ox = Math.max(-hw, Math.min(hw, p.x)); oy = Math.max(-hh, Math.min(hh, p.y));
+      Object.assign(base.style, { left: `${ox + hw}px`, top: `${oy + hh}px`, right: 'auto', bottom: 'auto' });
+      base.classList.add('float');
+    },
     move: (ev) => {
-      const b = base.getBoundingClientRect();
-      const r = b.width / 2 - knob.clientWidth / 4;
-      let x = (ev.clientX - b.left - b.width / 2) / r, y = (ev.clientY - b.top - b.height / 2) / r;
+      const p = local(ev, area);
+      // a fixed stick is measured from its own centre, a floating one from where it landed
+      const cx = zone ? ox : 0, cy = zone ? oy : 0;
+      const r = base.offsetWidth / 2 - knob.offsetWidth / 4;
+      let x = (p.x - cx) / r, y = (p.y - cy) / r;
       const len = Math.hypot(x, y);
       if (len > 1) { x /= len; y /= len; } // radius normalisation: full tilt on the rim, same in every direction
       put(Math.round(x * 100) / 100, Math.round(y * 100) / 100);
     },
-    up: () => put(0, 0),
+    up: () => { put(0, 0); if (zone) home(); },
   });
   return base;
 }
@@ -134,7 +169,7 @@ function trigger(i: 6 | 7, label: string): HTMLElement {
     set(i, v);
   };
   track(tr, {
-    move: (ev) => { const r = tr.getBoundingClientRect(); put(Math.round(Math.max(0.15, Math.min(1, (ev.clientY - r.top) / r.height)) * 100) / 100); },
+    move: (ev) => { const p = local(ev, tr); put(Math.round(Math.max(0.15, Math.min(1, p.y / tr.offsetHeight + 0.5)) * 100) / 100); },
     up: () => put(0),
   });
   return tr;
@@ -169,7 +204,7 @@ setInterval(() => {
 function releaseAll() {
   state.buttons.fill(0); state.axes.fill(0);
   document.querySelectorAll('.on').forEach((e) => e.classList.remove('on'));
-  document.querySelector<HTMLElement>('.hp-knob')?.style.removeProperty('transform');
+  document.querySelectorAll<HTMLElement>('.hp-knob').forEach((e) => e.style.removeProperty('transform'));
   document.querySelectorAll<HTMLElement>('.hp-trig-fill').forEach((e) => e.style.removeProperty('transform'));
   flush();
 }
@@ -269,7 +304,6 @@ function rumble(ms: number, k: number) {
 // ---- page ----
 const statusText = h('p', { class: 'hp-status', role: 'status', 'aria-live': 'polite' });
 const hint = h('p', { class: 'hp-hint' });
-const rotate = h('p', { class: 'hp-rotate' });
 
 function ui() {
   const ph = net.phase;
@@ -279,7 +313,7 @@ function ui() {
     statusText.textContent = t('Pemain {n}', { n: seat });
     document.body.style.setProperty('--seat', PLAYER_COLORS[Math.max(0, Math.min(PLAYER_COLORS.length - 1, seat - 1))]);
   } else document.body.style.removeProperty('--seat');
-  if (ph === 'connecting') statusText.textContent = t('Menyambung...');
+  if (ph === 'connecting') statusText.textContent = t('Menyambung');
   if (ph === 'joined') statusText.textContent = t('Tersambung');
   if (ph === 'nocode') statusText.textContent = t('Kode tidak ada atau salah.');
   if (ph === 'bye') statusText.textContent = t('Layar menutup sambungan.');
@@ -289,6 +323,48 @@ function ui() {
     : ph === 'connecting' && net.fails() >= 3 ? t('Belum tersambung. Pastikan HP memakai WiFi kantor, mencoba lagi...') : '';
 }
 
+/** Android: full screen plus a landscape lock on the first touch. iPhone has neither, it gets the CSS turn. */
+function landscape() {
+  const o = screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> };
+  const root = document.documentElement;
+  if (!o?.lock || !root.requestFullscreen) return;
+  const lock = () => o.lock!('landscape').catch(() => {});
+  if (document.fullscreenElement) void lock();
+  else root.requestFullscreen({ navigationUI: 'hide' }).then(lock).catch(() => {});
+}
+
+/** Size from the short side, turn the controller when the phone stands upright. */
+function layout() {
+  const w = window.innerWidth, hgt = window.innerHeight;
+  rot = hgt > w ? 90 : 0;
+  const st = document.documentElement.style;
+  st.setProperty('--L', `${Math.max(w, hgt)}px`);
+  st.setProperty('--S', `${Math.min(w, hgt)}px`);
+  document.body.dataset.rot = String(rot);
+}
+
+// iOS Safari ignores user-scalable=no since iOS 10 (WebKit blog), so the zoom
+// gestures themselves are cancelled: pinch (gesture*), drag-zoom and pan
+// (touchmove), double-tap (a second touchend within 350 ms).
+function noZoom() {
+  const stop = (e: Event) => e.preventDefault();
+  for (const n of ['gesturestart', 'gesturechange', 'gestureend', 'dblclick']) document.addEventListener(n, stop, { passive: false });
+  document.addEventListener('touchmove', stop, { passive: false });
+  let lastEnd = 0;
+  document.addEventListener('touchend', (e) => { if (e.timeStamp - lastEnd < 350) e.preventDefault(); lastEnd = e.timeStamp; }, { passive: false });
+  // a zoom that still got through is undone: rewriting the viewport tag makes Safari rescale to 1
+  // ponytail: not provable without a real iPhone; the gesture blocks above are the main guard
+  const vv = window.visualViewport;
+  vv?.addEventListener('resize', () => {
+    if (vv.scale <= 1.01) return;
+    const m = document.querySelector('meta[name="viewport"]');
+    const c = m?.getAttribute('content');
+    if (!m || !c) return;
+    m.setAttribute('content', `${c}, minimum-scale=1`);
+    requestAnimationFrame(() => m.setAttribute('content', c));
+  });
+}
+
 async function wake() {
   try { await (navigator as Navigator & { wakeLock?: { request(t: 'screen'): Promise<unknown> } }).wakeLock?.request('screen'); } catch { /* not allowed now, retried on next visibility change */ }
 }
@@ -296,35 +372,35 @@ async function wake() {
 void initLang().then(() => {
   document.title = t('Kontroler HP');
   const app = h('main', { class: 'hp' });
-  const top = h('div', { class: 'hp-top' });
   const mid = h('div', { class: 'hp-mid' });
   mid.append(statusText, hint);
   const small = h('div', { class: 'hp-small' });
   small.append(button(8, 'hp-s', 'Create', 'Create'), button(9, 'hp-s', 'Options', 'Options'));
-  const root = document.documentElement as HTMLElement & { webkitRequestFullscreen?: () => void };
-  if (root.requestFullscreen || root.webkitRequestFullscreen) {
+  // iPhone Safari has no full screen for pages, so the button only shows where it works
+  if ('requestFullscreen' in document.documentElement) {
     const fs = h('button', { type: 'button', class: 'hp-btn hp-s hp-fs', 'aria-label': t('Layar penuh') });
     fs.append(icon('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>'));
-    fs.addEventListener('click', () => {
-      if (document.fullscreenElement) { void document.exitFullscreen?.(); return; }
-      Promise.resolve(root.requestFullscreen ? root.requestFullscreen({ navigationUI: 'hide' }) : root.webkitRequestFullscreen?.())
-        .then(() => (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> }).lock?.('landscape')).catch(() => {});
-    });
+    fs.addEventListener('click', () => { if (document.fullscreenElement) void document.exitFullscreen?.(); else landscape(); });
     small.append(fs);
   }
   mid.append(small);
-  top.append(button(4, 'hp-sh l1', 'L1', 'L1'), mid, button(5, 'hp-sh r1', 'R1', 'R1'));
+  // DualSense order: shoulders on top, D-pad and left stick under the left thumb,
+  // action buttons and right stick under the right thumb, rare buttons in the middle.
   const left = h('div', { class: 'hp-left' });
-  left.append(dpad(), stick());
+  left.append(dpad(), stick(0, t('Stik kiri'), left));
   const right = h('div', { class: 'hp-right' });
-  right.append(faceButtons());
-  rotate.textContent = t('Putar HP ke posisi mendatar');
-  app.append(trigger(6, 'L2'), top, left, right, trigger(7, 'R2'), rotate);
+  right.append(faceButtons(), stick(2, t('Stik kanan')));
+  app.append(trigger(6, 'L2'), button(4, 'hp-sh l1', 'L1', 'L1'), mid, button(5, 'hp-sh r1', 'R1', 'R1'), trigger(7, 'R2'), left, right);
   document.body.append(app);
+  noZoom();
+  layout();
+  window.addEventListener('resize', layout);
+  window.addEventListener('orientationchange', layout);
   document.addEventListener('contextmenu', (e) => e.preventDefault());
   // A locked or backgrounded phone must not leave the player running.
   document.addEventListener('visibilitychange', () => { if (document.hidden) releaseAll(); else void wake(); });
-  window.addEventListener('pointerdown', () => void wake(), { once: true });
+  // capture phase: controls stop propagation of their own presses
+  window.addEventListener('pointerdown', () => { void wake(); landscape(); }, { once: true, capture: true });
   window.addEventListener('hashchange', () => location.reload());
   void wake();
   ui();

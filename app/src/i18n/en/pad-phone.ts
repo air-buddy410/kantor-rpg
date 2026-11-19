@@ -35,7 +35,7 @@ export const EN_PAD_PHONE: Record<string, string> = {
   'Sandi hanya disimpan di browser PC ini, tidak dikirim ke server.': 'The password is stored only in this PC browser and never sent to a server.',
   // phone page
   'Kontroler HP': 'Phone controller',
-  'Menyambung...': 'Connecting...',
+  'Menyambung': 'Connecting',
   'Tersambung': 'Connected',
   'Pemain {n}': 'Player {n}',
   'Jalur langsung': 'Direct link',
@@ -46,7 +46,6 @@ export const EN_PAD_PHONE: Record<string, string> = {
   'Server kontroler sedang penuh.': 'The controller server is full right now.',
   'Layar menutup sambungan.': 'The screen closed the connection.',
   'Scan ulang QR di layar.': 'Scan the QR on the screen again.',
-  'Putar HP ke posisi mendatar': 'Turn the phone sideways',
   'Layar penuh': 'Full screen',
   'Tombol aksi': 'Action buttons',
   'Silang': 'Cross',
@@ -61,4 +60,5 @@ export const EN_PAD_PHONE: Record<string, string> = {
   'Stik kiri': 'Left stick',
   '{tombol}, geser ke bawah': '{tombol}, slide down',
   'Belum tersambung. Pastikan HP memakai WiFi kantor, mencoba lagi...': 'Not connected yet. Make sure the phone is on the office WiFi, trying again...',
+  'Stik kanan': 'Right stick',
 };
