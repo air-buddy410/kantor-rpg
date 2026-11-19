@@ -462,6 +462,12 @@ Permintaan pemilik: harus bisa melihat posisi setiap persona tanpa berkeliling g
   - Gambar dan teks profil adalah chunk terpisah yang dimuat saat Pengaturan dibuka, sehingga entry chunk tidak bertambah berarti.
 - Failure: nilai profil di storage rusak/tidak dikenal → kembali ke Standar.
 - Batas: mengetik teks tetap memakai keyboard atau keyboard layar. Tombol dengan pemetaan non-standar tidak dipetakan ulang.
+- REQ-PAD-03 (perintah Budi 2026-11-19): Sebagai pemain DualSense, saya ingin layar memakai tombol stik saya, biliar enak dimainkan dengan analog, dan setiap mini game menjelaskan tombolnya. AC:
+  - Saat stik tersambung atau ditekan, HUD memakai simbol tombol stik: bentuk PlayStation (Silang, Lingkaran, Kotak, Segitiga, L1/R1/L2/R2, Options, Create) untuk DualSense/DualShock (vendor 054c), huruf Xbox untuk stik lain. Strip tombol muncul di kanan bawah, petunjuk aksi memakai simbol tombol interaksi, kontrol sentuh disembunyikan. Keyboard, mouse atau sentuhan mengembalikan HUD; tekan stik berikutnya memindahkannya lagi. Profil Tombol terbalik dan Kidal ikut.
+  - Biliar dengan stik: stik jalan menunjuk arah (bidik kasar), stik kamera memutar bidikan halus dengan kurva kuadrat (penuh 0,8 rad/s), L2 ditahan membuat 4x lebih halus, R2 ditarik = tenaga dan dilepas = pukul (puncak tarikan 0,12 dtk terakhir; tarikan < 15% batal; R2 yang masih tertahan dari giliran sebelumnya diabaikan sampai dilepas). Zona mati dari profil, Santai 0,6x. Getar singkat saat memukul dan bola masuk (bila browser mendukung, mati saat Kurangi gerak).
+  - Semua mini game: kartu pembuka berisi tutorial singkat 2-3 langkah dan daftar tombol per perangkat; legenda tombol di bawah kanvas selama main; teks petunjuk di kanvas memakai tombol perangkat yang dipakai.
+- Failure: stik tanpa pemetaan standar tetap memakai huruf; browser tanpa getar diam saja.
+- Batas: tidak membaca touchpad, sensor gerak atau trigger adaptif DualSense (tidak tersedia di Gamepad API web).
 
 ## 23. Menembus NPC (permintaan Budi 2026-10-13)
 

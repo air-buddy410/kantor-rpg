@@ -4,6 +4,20 @@
 
 Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di [demo publik](https://employee-rpg.air-buddy.site) setelah tes dan CI lulus. Kode rilis adalah commit di `main`.
 
+## v2.3, 19 November 2026
+
+**Ramah stik DualSense**
+
+- Begitu stik tersambung atau ditekan, semua petunjuk tombol di layar memakai tombol stik itu. DualSense dan DualShock memakai simbol PlayStation (Silang, Lingkaran, Kotak, Segitiga, L1/R1, L2/R2, Options, Create); stik lain memakai huruf A/B/X/Y. Pakai keyboard, mouse atau layar sentuh lagi, petunjuknya ikut kembali.
+- Kantor: strip tombol stik di kanan bawah (jalan, kamera, interaksi, kembali, lari, zoom, peta, pengaturan), petunjuk aksi seperti "Silang Sapa", joystick layar disembunyikan, dan dialog Kontrol berisi daftar tombol stik. Profil Tombol terbalik dan Kidal ikut terbaca.
+- Biliar dengan stik:
+  - Stik kiri menunjuk arah bidikan, stik kanan memutar bidikan halus (dorongan kecil bergerak sangat pelan, makin miring makin cepat).
+  - Tahan L2 untuk bidik presisi, empat kali lebih pelan.
+  - Tarik R2 untuk tenaga, makin dalam makin kuat, lepas untuk memukul. Tarikan terlalu pelan dibatalkan, Lingkaran membatalkan tarikan.
+  - Getar singkat saat memukul dan saat bola masuk (Chrome dan Edge; mati bila Kurangi gerak dinyalakan).
+  - Profil Santai membuat bidikan lebih pelan.
+- Semua 15 mini game: kartu pembuka berisi tutorial singkat 2 sampai 3 langkah dan daftar tombol untuk keyboard, stik dan layar sentuh. Selama main, legenda tombol tampil di bawah layar game. Petunjuk di dalam game (misalnya "Silang: ANGKAT!") ikut tombol perangkat yang dipakai.
+
 ## v2.2, 14 Oktober 2026
 
 **Main bareng dengan beberapa stik (multiplayer lokal)**

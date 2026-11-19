@@ -12,7 +12,9 @@
 // dead zone, slow the camera and turn off running at full tilt.
 import { toast } from '../ui/dom';
 import { t } from '../i18n';
-import { PAD_PROFILES, faceButtons, stickAxes, type PadProfileId } from './pad-profiles';
+import { PAD_PROFILES, faceButtons, stick as radial, stickAxes, type PadProfileId } from './pad-profiles';
+import { PadActivity, setDevice } from './mode';
+import { connectedText } from '../ui/pad-hud';
 
 /** What the pad drives in the 3D world. Absent in the no-WebGL fallback. */
 export interface PadWorld {
@@ -33,13 +35,7 @@ const REPEAT_FIRST = 380;
 const REPEAT_NEXT = 130;
 const FOCUSABLE = 'button, a[href], input:not([type="hidden"]), select, textarea, summary, [tabindex]:not([tabindex="-1"])';
 
-/** Radial dead zone, rescaled so motion starts at 0 just past the zone. */
-export function stick(x: number, y: number, dead = DEAD): [number, number] {
-  const m = Math.hypot(x, y);
-  if (m < dead) return [0, 0];
-  const k = Math.min(1, (m - dead) / (1 - dead)) / m;
-  return [x * k, y * k];
-}
+export const stick = (x: number, y: number, dead = DEAD) => radial(x, y, dead);
 
 /** On-screen box used for spatial navigation; tiny inputs borrow their label's box. */
 function box(e: HTMLElement): DOMRect | null {
@@ -124,6 +120,7 @@ export class GamepadControl {
   /** True once the pad has moved focus; cleared by B or by mouse/touch. */
   private navigating = false;
   private nudgeAt = 0;
+  private seen = new PadActivity();
 
   constructor(private target: () => PadWorld | null, private profile: () => PadProfileId = () => 'standar') {
     track();
@@ -141,7 +138,7 @@ export class GamepadControl {
   private connected() {
     if (!this.pad()) return;
     if (!this.raf) {
-      toast(t('Stik terhubung. D-pad untuk menu, Start untuk Pengaturan, tombol Kontrol untuk daftar tombol.'), 4200);
+      toast(connectedText(), 4200);
       this.last = performance.now();
       this.raf = requestAnimationFrame(() => this.tick());
     }
@@ -160,6 +157,8 @@ export class GamepadControl {
   private poll(p: Gamepad, now: number, dt: number) {
     const prof = PAD_PROFILES[this.profile()] ?? PAD_PROFILES.standar;
     const raw = p.buttons.map((b) => b.pressed || b.value > 0.5);
+    // Any fresh press or push switches the HUD to pad glyphs (mini games do the same in host.ts).
+    if (this.seen.seen(p)) setDevice('pad', p);
     // A mini game reads the pad itself (minigames/host.ts); the world and the
     // menus must not also react to the same presses.
     if (document.documentElement.hasAttribute('data-minigame')) { this.target()?.setMove(null); this.prev = raw; return; }

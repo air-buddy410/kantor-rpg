@@ -6,6 +6,7 @@ import wallsJson from '@design/derived/walls.json';
 import { Game } from './game/game';
 import { initLang, lang, setLang, t } from './i18n';
 import { initHudMenu } from './ui/hud-prefs';
+import { initPadHud } from './ui/pad-hud';
 import { renderDirectory } from './ui/directory';
 import { $, openDialog, toast } from './ui/dom';
 import { applyTheme, loadSettings, saveSettings, type Settings } from './ui/settings';
@@ -183,12 +184,14 @@ function wireSettings(game: Game | null, s: Settings) {
     if (game && visitor !== s.visitor) game.setVisitor(visitor);
     s.visitor = visitor;
     const pad = (form.elements.namedItem('padProfile') as RadioNodeList).value;
-    if (pad === 'standar' || pad === 'kidal' || pad === 'santai' || pad === 'terbalik') { s.padProfile = pad; padView?.setProfile(pad); }
+    if (pad === 'standar' || pad === 'kidal' || pad === 'santai' || pad === 'terbalik') { s.padProfile = pad; padView?.setProfile(pad); refreshPadHud(); }
     saveSettings(s);
   });
 }
 
+let refreshPadHud: () => void = () => {};
 function wireCommon() {
+  refreshPadHud = initPadHud(settings);
   $('btn-boards').addEventListener('click', () => openBoards());
   $('btn-help').addEventListener('click', (e) => openDialog($('dlg-help') as HTMLDialogElement, e.currentTarget as HTMLElement));
   $('directory-close').addEventListener('click', () => {

@@ -577,3 +577,44 @@ p.warn { color: var(--accent-ink); font-weight: 600; }
    mini game card (the toast is a top-layer popover). The layer shows its own
    loading card, so office toasts wait until it closes. */
 :root[data-minigame] #toast { visibility: hidden; }
+
+/* Gamepad glyphs (input/glyphs.ts). Monochrome ink chips like the printed
+   marks on a DualSense: the shape carries the meaning, colour stays the one
+   accent rule of the HUD. ink on surface is a checked contrast pair. */
+.glyph {
+  display: inline-grid; place-items: center; min-width: 1.7em; height: 1.7em; padding: 0 0.35em;
+  border-radius: 6px; background: var(--ink); color: var(--surface);
+  font: 700 0.82em/1 var(--font); vertical-align: middle; white-space: nowrap;
+}
+.glyph.face, .glyph.stick { width: 1.7em; padding: 0; border-radius: 50%; }
+.glyph.stick { box-shadow: inset 0 0 0 0.2em var(--ink), inset 0 0 0 0.32em var(--surface); }
+.glyph svg { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.glyph.dpad { background: none; color: var(--ink); padding: 0; width: 1.7em; }
+.glyph.dpad svg { width: 1.6em; height: 1.6em; stroke-width: 1.2; }
+.glyph.dpad svg .arm { fill: currentColor; stroke: none; }
+.key-group { display: inline-flex; gap: 0.2em; vertical-align: middle; }
+kbd.touch-key { border-radius: 999px; }
+.prompt .glyph { margin-right: 0.15em; }
+
+/* Pad active (html[data-device='pad'], input/mode.ts): pad glyphs replace key
+   caps, the touch overlay goes away, a legend strip names the buttons. */
+.pad-hint { display: none; }
+html[data-device='pad'] .touch { display: none !important; }
+html[data-device='pad'] .hud-actions .btn kbd, html[data-device='pad'] #activity-end kbd { display: none; }
+html[data-device='pad'] #activity-end .pad-hint { display: inline-flex; margin-left: 0.35em; }
+@media (min-width: 960px) { html[data-device='pad'] .hud-actions .pad-hint { display: inline-flex; margin-left: 0.35em; } }
+/* Bottom right: the minimap owns bottom left and the action prompt the centre. */
+.pad-legend {
+  position: absolute; right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); z-index: 5;
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px 12px; margin: 0; padding: 6px 12px;
+  max-width: min(920px, calc(100vw - 280px)); list-style: none;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--control-border); border-radius: 12px; box-shadow: var(--shadow);
+  font-size: 0.88rem; font-weight: 700;
+}
+.pad-legend li, .mg-legend li { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+:root[data-minigame] .pad-legend { visibility: hidden; }
+@media (max-width: 599px) {
+  .pad-legend { left: max(8px, env(safe-area-inset-left)); right: max(8px, env(safe-area-inset-right)); max-width: none; justify-content: center; font-size: 0.8rem; gap: 4px 10px; }
+}
+.keys-title { font-size: 1.05rem; margin: 6px 0 2px; }
+.keys-pad dt { display: flex; gap: 4px; align-items: center; }

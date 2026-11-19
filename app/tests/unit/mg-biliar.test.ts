@@ -372,3 +372,104 @@ describe('mini game: biliar full match', () => {
     expect(a.snap()).toEqual(b.snap());
   });
 });
+
+describe('mini game: biliar on a DualSense (v2.3)', () => {
+  type Pad = { move?: [number, number]; look?: [number, number]; l2?: number; r2?: number; aim?: number; dead?: number };
+  const NONE = { left: false, right: false, up: false, down: false, a: false, b: false, x: false, y: false };
+  /** A game fed frame by frame with an analog pad (the shared harness has no pad field). */
+  function padGame(seed = 5) {
+    const r = run(biliar, seed);
+    const g = biliar.create(r.ctx);
+    const S = () => g.snapshot!() as unknown as Snap & { trigger: boolean };
+    const feed = (n: number, p: Pad, hit: Partial<typeof NONE> = {}) => {
+      for (let i = 0; i < n; i++) {
+        g.update(1 / 60, {
+          down: { ...NONE }, hit: { ...NONE, ...(i === 0 ? hit : {}) }, ax: 0, ay: 0, tap: null, ptr: null,
+          pad: { move: p.move ?? [0, 0], look: p.look ?? [0, 0], l2: p.l2 ?? 0, r2: p.r2 ?? 0, l1: false, r1: false, dead: p.dead ?? 0.22, aim: p.aim ?? 1 },
+        });
+      }
+    };
+    return { r, S, feed };
+  }
+
+  it('right stick turns the cue slowly: a light push moves under two degrees per second', () => {
+    const { S, feed } = padGame();
+    const a0 = S().aim;
+    feed(60, { look: [0.35, 0] });
+    const light = Math.abs(angDiff(S().aim, a0));
+    expect(light).toBeGreaterThan(0);
+    expect(light).toBeLessThan((2 * Math.PI) / 180);
+    const a1 = S().aim;
+    feed(60, { look: [1, 0] });
+    const full = Math.abs(angDiff(S().aim, a1));
+    expect(full).toBeGreaterThan(light * 10);
+    expect(full).toBeLessThan(1);
+  });
+
+  it('L2 held makes the right stick four times finer', () => {
+    const a = padGame(), b = padGame();
+    const a0 = a.S().aim, b0 = b.S().aim;
+    a.feed(30, { look: [0.8, 0] });
+    b.feed(30, { look: [0.8, 0], l2: 1 });
+    expect(Math.abs(angDiff(b.S().aim, b0)) * 4).toBeCloseTo(Math.abs(angDiff(a.S().aim, a0)), 6);
+  });
+
+  it('stick drift inside the dead zone does not move the cue; the Santai profile turns slower', () => {
+    const { S, feed } = padGame();
+    const a0 = S().aim;
+    feed(120, { look: [0.18, 0.1], move: [0.1, -0.15] });
+    expect(S().aim).toBe(a0);
+    const std = padGame(), san = padGame();
+    std.feed(30, { look: [0.9, 0] });
+    san.feed(30, { look: [0.9, 0], aim: 0.6, dead: 0.32 });
+    const dStd = Math.abs(angDiff(std.S().aim, padGame().S().aim));
+    const dSan = Math.abs(angDiff(san.S().aim, padGame().S().aim));
+    expect(dSan).toBeLessThan(dStd);
+  });
+
+  it('left stick points the cue at a direction', () => {
+    const { S, feed } = padGame();
+    feed(40, { move: [-0.7, 0.7] });
+    expect(Math.abs(angDiff(S().aim, Math.atan2(0.7, -0.7)))).toBeLessThan(0.01);
+  });
+
+  it('R2: power follows the pull, release shoots with the peak of the last moment, a soft pull cancels', () => {
+    const { r, S, feed } = padGame();
+    feed(2, {});
+    feed(20, { r2: 0.7 });
+    expect(S().trigger).toBe(true);
+    expect(S().power).toBeCloseTo(0.7, 6);
+    feed(1, { r2: 0.4 });
+    feed(1, { r2: 0 });
+    expect(S().phase).toBe('roll');
+    expect(S().power).toBeCloseTo(0.7, 6);
+    expect(r.rumbles.length).toBeGreaterThan(0);
+    const soft = padGame();
+    soft.feed(2, {});
+    soft.feed(10, { r2: 0.1 });
+    soft.feed(1, { r2: 0 });
+    expect(soft.S().phase).toBe('aim');
+    expect(soft.S().power).toBe(0);
+  });
+
+  it('a trigger held into the turn must be released first; B cancels a pull', () => {
+    const { S, feed } = padGame();
+    feed(30, { r2: 0.9 });
+    expect(S().trigger).toBe(false);
+    feed(1, { r2: 0 });
+    feed(10, { r2: 0.6 });
+    expect(S().trigger).toBe(true);
+    feed(1, { r2: 0.6 }, { b: true });
+    expect(S().trigger).toBe(false);
+    feed(5, { r2: 0.6 });
+    expect(S().trigger).toBe(false);
+    feed(1, { r2: 0 });
+    expect(S().phase).toBe('aim');
+  });
+
+  it('meta has a pad tutorial and a pad legend with sticks and triggers', () => {
+    expect(biliar.meta.padTutorial?.length).toBeGreaterThan(1);
+    const keys = (biliar.meta.padLegend ?? []).flatMap(([k]) => (Array.isArray(k) ? k : [k]));
+    expect(keys).toEqual(expect.arrayContaining(['ls', 'rs', 'l2', 'r2']));
+  });
+});

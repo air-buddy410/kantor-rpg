@@ -20,8 +20,13 @@ export const showStep = (len: number) => Math.max(0.36, 0.62 - (len - 2) * 0.025
 const meta: GameModule['meta'] = {
   id: 'peregangan', title: 'Peregangan', place: 'exercise_mat', music: 'calm',
   blurb: 'Lihat urutan gerakan, lalu ulangi. Tiap ronde bertambah satu gerakan.',
-  controls: ['Panah atau D-pad: pilih gerakan', 'Tiga kali salah, sesi selesai', 'Ulangi 12 gerakan untuk menang'],
   view: { w: 640, h: 400 }, score: { unit: 'gerakan', higherIsBetter: true }, touch: ['left', 'up', 'down', 'right'],
+  tutorial: [
+    'Perhatikan urutan gerakan pelatih.',
+    'Saat giliranmu, ulangi urutannya dengan {arah}.',
+    'Tiap ronde bertambah satu gerakan. Tiga kali salah, sesi selesai.',
+  ],
+  legend: [['arah', 'Ulangi gerakan']],
   actions: { arah: 'Ulangi gerakan pelatih' },
   pointerHint: 'Ketuk panah di tengah layar untuk mengulang gerakan',
 };

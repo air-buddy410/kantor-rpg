@@ -45,8 +45,6 @@ export const EN_HTML: Record<string, string> = {
   "Peta kantor: lokasi semua persona di tiap lantai": "Office map: location of every persona on each floor",
   "Tutup dialog atau panel": "Close dialog or panel",
   "Sentuh": "Touch",
-  "Stik (Xbox, PlayStation, Bluetooth)": "Gamepad (Xbox, PlayStation, Bluetooth)",
-  "Stik kiri berjalan (dorong penuh untuk lari), stik kanan kamera, A interaksi, B kembali, X lari, Y luruskan kamera, LB/RB zoom, Select peta, Start Pengaturan. Di menu: D-pad pindah tombol, A pilih, B tutup.": "Left stick walks (full tilt to run), right stick camera, A interact, B back, X run, Y straighten camera, LB/RB zoom, Select map, Start Settings. In menus: D-pad moves between buttons, A selects, B closes.",
   "Joystick kiri untuk berjalan, tombol Aksi di kanan, seret sisi kanan untuk kamera": "Left joystick to walk, Action button on the right, drag the right side for camera",
   "Mengerti": "Got it",
   "Tema": "Theme",

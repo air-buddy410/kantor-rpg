@@ -7,6 +7,8 @@ import { ARCADE_INFO, ARCADE_SLOTS } from './registry';
 import { loadScores, openMiniGame, type HostOpts } from './host';
 import { PAD_PROFILES, faceButtons } from '../input/pad-profiles';
 import { PressEdges, isFreshKey, padButtons } from '../input/press-edges';
+import { PadActivity, currentDevice, currentPadKind, setDevice, trackDevices } from '../input/mode';
+import { richLine } from '../input/legend';
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, attrs: Record<string, string> = {}, text?: string): HTMLElementTagNameMap[K] {
   const e = document.createElement(tag);
@@ -53,7 +55,15 @@ export function openArcade(opts: HostOpts): HTMLElement {
     item.append(b);
     grid.append(item);
   });
-  wrap.append(el('p', {}, t('Pilih mesin. Panah atau D-pad untuk pindah, Enter atau A untuk main.')), grid);
+  const help = el('p', { class: 'arcade-help' });
+  const helpLine = () => {
+    const d = currentDevice();
+    const prof = PAD_PROFILES[opts.padProfile()] ?? PAD_PROFILES.standar;
+    help.replaceChildren(...richLine(d === 'pad' ? t('Pilih mesin dengan {arah}, tekan {a} untuk main, {b} untuk keluar.') : d === 'touch' ? t('Ketuk mesin untuk main.') : t('Pilih mesin dengan panah, Enter untuk main, Esc untuk keluar.'), d, prof, currentPadKind()));
+  };
+  helpLine();
+  window.addEventListener('kantor:device', helpLine);
+  wrap.append(help, grid);
   body.append(wrap);
   root.append(bar, body);
   document.body.append(root);
@@ -91,11 +101,15 @@ export function openArcade(opts: HostOpts): HTMLElement {
   // game's Keluar that returned here) must be released first, otherwise they
   // launch slot 01 at once. A/B follow the chosen profile (Japanese layout).
   const edges = new PressEdges(padButtons(navigator.getGamepads?.()));
+  const seen = new PadActivity();
+  trackDevices();
   let raf = 0;
   const poll = () => {
     raf = requestAnimationFrame(poll);
     const raw = padButtons(navigator.getGamepads?.());
     if (!raw.length) return;
+    const first = [...(navigator.getGamepads?.() ?? [])].find((q) => q && q.connected);
+    if (first && seen.seen(first)) setDevice('pad', first);
     const hit = edges.next(raw);
     const face = faceButtons(PAD_PROFILES[opts.padProfile()] ?? PAD_PROFILES.standar);
     if (hit(15)) move(1);
@@ -111,6 +125,7 @@ export function openArcade(opts: HostOpts): HTMLElement {
   function teardown(done: boolean) {
     cancelAnimationFrame(raf);
     window.removeEventListener('keydown', onKey, true);
+    window.removeEventListener('kantor:device', helpLine);
     root.remove();
     if (done) {
       document.documentElement.removeAttribute('data-minigame');

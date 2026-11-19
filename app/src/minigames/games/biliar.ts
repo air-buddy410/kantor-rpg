@@ -8,6 +8,7 @@
 // cue ball follow or draw afterwards. At least 8 sub-steps per frame and never
 // more than 0.4 R of travel per sub-step, so nothing tunnels.
 import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
+import { stick } from '../../input/pad-profiles';
 import { PAL, drawToken, roundRect, text } from '../cast';
 
 export const R = 8;
@@ -32,6 +33,8 @@ export const SUBSTEPS = 8;
 export const MAX_SHOTS = 40;
 export const TIME_LIMIT = 600;
 const MEDIUM = 0.5;
+/** Camera stick at full tilt turns the cue this many rad/s (about 46 degrees). */
+export const PAD_TURN = 0.8;
 const STOP = 2;
 const FALL_T = 0.32;
 
@@ -359,13 +362,25 @@ const ballColor = (n: number) => COL[n <= 8 ? n : n - 8];
 const meta: GameModule['meta'] = {
   id: 'biliar', title: 'Biliar 8-Ball', place: 'billiard_table', music: 'lounge',
   blurb: '8-ball tampak atas melawan rekan tim. Masukkan semua bolamu, lalu bola 8.',
-  controls: [
-    'Stik analog: tunjuk arah bidikan langsung',
-    'Kiri/kanan: putar bidikan (tahan = makin cepat), atas/bawah: putar halus',
-    'A: meter tenaga berayun, ketuk A lagi untuk pukul (atau tahan lalu lepas)',
-    'X: pukul langsung tenaga sedang. Y: ganti efek atas/bawah/tengah',
-    'B: batal. Bola putih masuk = foul',
+  tutorial: [
+    'Putar bidikan dengan {lr} (tahan = makin cepat), {ud} untuk putar halus.',
+    'Tekan {a}: meter tenaga berayun. Tekan {a} lagi untuk pukul.',
+    '{x}: pukul tenaga sedang. {y}: ganti efek bola. Bola putih masuk = foul.',
   ],
+  legend: [['lr', 'Bidik'], ['ud', 'Bidik halus'], ['a', 'Tenaga / pukul'], ['x', 'Pukul sedang'], ['y', 'Efek'], ['b', 'Batal']],
+  // DualSense (Budi 2026-11-19): analog aim tuned for the pad, trigger for power.
+  padTutorial: [
+    'Arahkan {ls} ke tujuan untuk bidik kasar, lalu {rs} kiri/kanan untuk bidik halus.',
+    'Tahan {l2} supaya {rs} makin pelan dan presisi.',
+    'Tarik {r2}: makin dalam makin kuat, lepas untuk pukul. Atau {a} untuk meter tenaga.',
+  ],
+  padLegend: [['ls', 'Bidik'], ['rs', 'Bidik halus'], ['l2', 'Presisi'], ['r2', 'Tarik lalu lepas'], ['a', 'Meter tenaga'], ['y', 'Efek'], ['b', 'Batal']],
+  padActions: {
+    ls: 'Tunjuk arah bidikan',
+    rs: 'Putar bidikan halus (makin miring makin cepat)',
+    l2: 'Tahan: bidik presisi, 4 kali lebih pelan',
+    r2: 'Tarik untuk tenaga, lepas untuk pukul',
+  },
   actions: {
     left: 'Putar bidikan ke kiri (tahan = cepat)',
     right: 'Putar bidikan ke kanan (tahan = cepat)',
@@ -404,6 +419,9 @@ function create(ctx: GameCtx): GameInstance {
   let spin: Spin = 'none';
   let aBuf = 0;
   let drag: { sx: number; sy: number; maxL: number } | null = null;
+  // R2 shot: power follows the trigger; releasing shoots with the strongest
+  // pull of the last moment, so easing off on the way out does not weaken it.
+  let trig = { on: false, peak: 0, hist: [] as number[], cancel: false };
   let prevPtrDown = false;
   let cpu = { angle: 0, power: 0.5, t: 0 };
   let hint = { angle: 0, power: 1 };
@@ -450,6 +468,9 @@ function create(ctx: GameCtx): GameInstance {
   const startTurn = () => {
     phase = 'aim';
     power = 0; charging = false; latched = false; holdA = false; chargeT = 0; drag = null;
+    // R2 counts only after it was seen released this turn: a trigger still
+    // held from the last shot (or pulled during the roll) never fires at once
+    trig = { on: false, peak: 0, hist: [], cancel: true };
     const p = shotPlan(rules.turn);
     hint = { angle: p.angle, power: p.power };
     if (rules.turn === 1) {
@@ -479,6 +500,7 @@ function create(ctx: GameCtx): GameInstance {
     ctx.sfx('clack', { gain: 0.35 + pw * 0.65, rate: 0.9 + pw * 0.25 });
     burst(c.x - Math.cos(angle) * R, c.y - Math.sin(angle) * R, 5, '#9fc6e8', 50);
     if (pw > 0.85 && !ctx.reducedMotion) shake = 0.12;
+    if (rules.turn === 0) ctx.rumble(0.25 + pw * 0.75, 70 + pw * 90);
   };
 
   const finish = (won: boolean | null, reason: string) => {
@@ -549,6 +571,60 @@ function create(ctx: GameCtx): GameInstance {
     if (Math.hypot(x - c.x, y - c.y) > R * 0.5) { aim = Math.atan2(y - c.y, x - c.x); ctx.sfx('tick'); }
   };
 
+  /**
+   * Gamepad aim. Walking stick: point at the target, coarse. Camera stick:
+   * turn the cue, rate rising with the square of the tilt so a small push
+   * moves a fraction of a degree; L2 held slows it four times more. Dead zones
+   * come from the controller profile and Santai lowers the speed (aimScale).
+   * The D-pad still turns and nudges like the arrow keys.
+   */
+  const padAim = (dt: number, inp: InputState) => {
+    const pad = inp.pad!;
+    const [mx, my] = stick(pad.move[0], pad.move[1], pad.dead);
+    const mm = Math.hypot(mx, my);
+    const fine = pad.l2 > 0.3 ? 0.25 : 1;
+    if (Math.hypot(pad.move[0], pad.move[1]) > 0.5 && mm > 0) {
+      // smoothing (time constant ~60 ms) keeps stick noise from shaking the cue
+      aim += angDiff(Math.atan2(my, mx), aim) * Math.min(1, dt * 16 * mm * pad.aim);
+      turnHold = 0;
+      return;
+    }
+    const [rx] = stick(pad.look[0], 0, pad.dead);
+    if (rx) aim += Math.sign(rx) * rx * rx * PAD_TURN * pad.aim * fine * dt;
+    const turn = (inp.down.right ? 1 : 0) - (inp.down.left ? 1 : 0);
+    if (turn && !rx) {
+      turnHold += dt;
+      const k = Math.min(1, turnHold / 0.9);
+      aim += turn * (0.25 + 2.6 * k * k) * fine * dt;
+      if (inp.hit.right || inp.hit.left) aim += turn * 0.004;
+    } else turnHold = 0;
+    const nudge = (inp.down.down ? 1 : 0) - (inp.down.up ? 1 : 0);
+    aim += nudge * 0.07 * fine * dt;
+    if (inp.hit.down) aim += 0.0015;
+    if (inp.hit.up) aim -= 0.0015;
+  };
+
+  /** R2 pulled: the meter shows the pull; true once released and shot. */
+  const triggerShot = (dt: number, r2: number): boolean => {
+    if (trig.cancel) { if (r2 < 0.05) trig.cancel = false; return false; }
+    if (!trig.on) {
+      if (r2 < 0.08) return false;
+      trig = { on: true, peak: 0, hist: [], cancel: false };
+      msg = ctx.t('Lepas {r2} untuk memukul.', { r2: ctx.key('r2') });
+    }
+    trig.hist.push(r2);
+    // last 0.12 s of pull at 60 Hz
+    if (trig.hist.length > Math.max(1, Math.round(0.12 / Math.max(dt, 1 / 240)))) trig.hist.shift();
+    trig.peak = Math.max(...trig.hist);
+    power = clamp(r2, 0, 1);
+    if (r2 >= 0.05) return false;
+    const p = trig.peak;
+    trig = { on: false, peak: 0, hist: [], cancel: false };
+    if (p < 0.15) { power = 0; msg = ctx.t('Tarikan terlalu pelan, pukulan batal.'); return false; }
+    shoot(aim, p);
+    return true;
+  };
+
   const playerAim = (dt: number, inp: InputState) => {
     if (inp.hit.y) {
       spin = spin === 'none' ? 'top' : spin === 'top' ? 'back' : 'none';
@@ -580,7 +656,10 @@ function create(ctx: GameCtx): GameInstance {
     }
     // a tap that started and ended between two frames never shows ptr.down
     if (inp.tap && !drag && !(ptr && ptr.down)) aimAt(inp.tap.x, inp.tap.y);
-    if (!drag) {
+    const pad = inp.pad;
+    if (!drag && pad) {
+      padAim(dt, inp);
+    } else if (!drag) {
       const mag = Math.hypot(inp.ax, inp.ay);
       const digital = (inp.ax === 0 || Math.abs(inp.ax) === 1) && (inp.ay === 0 || Math.abs(inp.ay) === 1);
       if (!digital && mag > 0.45) {
@@ -604,11 +683,17 @@ function create(ctx: GameCtx): GameInstance {
       }
     }
     aim = angDiff(aim, 0);
-    if (inp.hit.b && (charging || drag)) { charging = false; latched = false; holdA = false; drag = null; power = 0; msg = ctx.t('Pukulan dibatalkan.'); ctx.sfx('back'); return; }
+    if (inp.hit.b && (charging || drag || trig.on)) {
+      charging = false; latched = false; holdA = false; drag = null; power = 0;
+      if (trig.on) trig = { on: false, peak: 0, hist: [], cancel: true };
+      msg = ctx.t('Pukulan dibatalkan.'); ctx.sfx('back'); return;
+    }
     if (inp.hit.x && !drag) { shoot(aim, MEDIUM); return; }
     if (drag) return;
+    if (pad && !charging && triggerShot(dt, pad.r2)) return;
+    if (trig.on) return;
     if (!charging) {
-      if (inp.hit.a) { charging = true; holdA = true; latched = false; chargeT = 0; power = 0; powerDir = 1; ctx.sfx('tick'); msg = ctx.t('Ketuk A lagi untuk memukul.'); }
+      if (inp.hit.a) { charging = true; holdA = true; latched = false; chargeT = 0; power = 0; powerDir = 1; ctx.sfx('tick'); msg = ctx.t('Tekan {a} lagi untuk memukul.', { a: ctx.key('a') }); }
       return;
     }
     chargeT += dt;
@@ -647,6 +732,7 @@ function create(ctx: GameCtx): GameInstance {
         if (e.kind === 'pocket') {
           pocketedNow.push(e.n);
           ctx.sfx('pocket');
+          ctx.rumble(e.n === 0 ? 0.6 : 0.3, e.n === 0 ? 160 : 60);
           const b = balls.find((q) => q.n === e.n)!;
           if (e.n !== 0) floats.push({ x: b.x, y: b.y - 10, t: 0, s: e.n === 8 ? '8!' : '+1', c: PAL.gold });
           burst(b.x, b.y, 8, e.n === 0 ? '#ffffff' : ballColor(e.n), 70);
@@ -986,7 +1072,7 @@ function create(ctx: GameCtx): GameInstance {
     render,
     snapshot: () => ({
       phase, turn: rules.turn, shots, time: Math.round(time * 100) / 100, groups: [...rules.groups], winner: rules.winner,
-      aim, power, powerDir, charging, latched, dragging: !!drag, spin, hint: { ...hint }, foe: foe.name, fouls,
+      aim, power, powerDir, charging, latched, dragging: !!drag, trigger: trig.on, spin, hint: { ...hint }, foe: foe.name, fouls,
       cue: { x: balls[0].x, y: balls[0].y, vx: balls[0].vx, vy: balls[0].vy },
       mine: downOf(rules.groups[0]), theirs: downOf(rules.groups[1]),
       down: balls.filter((b) => b.down).map((b) => b.n), score: result.score,

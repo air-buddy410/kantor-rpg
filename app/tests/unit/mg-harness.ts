@@ -24,6 +24,8 @@ function fakeContext(): CanvasRenderingContext2D {
 export interface Run {
   ctx: GameCtx;
   result: GameResult | null;
+  /** Rumble requests the game made: [strength, ms]. */
+  rumbles: [number, number][];
   hud: string;
   sfx: string[];
   /** Advance n frames (1/60 s each) holding `held` buttons; `press` is a one-frame hit. */
@@ -50,7 +52,7 @@ export function run(mod: GameModule, seed = 20261013, players = 1): Run {
   const g = fakeContext();
   const rand = mulberry(seed);
   const r: Run = {
-    result: null, hud: '', sfx: [],
+    result: null, hud: '', sfx: [], rumbles: [],
     ctx: null as unknown as GameCtx,
     step(n = 1, held = [], press = [], axis, tap = null) {
       for (let i = 0; i < n && !r.result; i++) {
@@ -90,6 +92,8 @@ export function run(mod: GameModule, seed = 20261013, players = 1): Run {
     canvas, g, w: mod.meta.view.w, h: mod.meta.view.h, rand, seed,
     t: (s, vars) => (vars ? s.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? String(vars[k]) : m)) : s),
     sfx: (name) => { r.sfx.push(name); },
+    key: (k) => `[${k}]`,
+    rumble: (s, ms) => { r.rumbles.push([s, ms]); },
     reducedMotion: false,
     cast: buildCast(),
     playerId: 'CH-CEO',

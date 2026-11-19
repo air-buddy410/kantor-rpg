@@ -436,8 +436,13 @@ export const RESIGN_BTN = { x: PANEL.x + 10, y: PANEL.y + PANEL.h - 50, w: PANEL
 const meta: GameModule['meta'] = {
   id: 'catur', title: 'Catur Kantor', place: 'arcade', music: 'calm',
   blurb: 'Catur lawan rekan tim, tiga tingkat kesulitan.',
-  controls: ['Panah atau D-pad: gerakkan kursor', 'A: pilih bidak lalu taruh, B: batal', 'Y: tahan 1 detik atau tekan 2 kali untuk menyerah'],
   view: { w: 640, h: 480 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'up', 'down', 'right', 'a', 'b', 'y'],
+  tutorial: [
+    'Pilih tingkat lawan, lalu gerakkan kursor dengan {arah}.',
+    'Tekan {a} pada bidak, lalu {a} lagi di petak tujuan. {b} untuk batal.',
+    'Titik hijau menandai langkah yang sah. Tahan {y} untuk menyerah.',
+  ],
+  legend: [['arah', 'Kursor'], ['a', 'Pilih / taruh'], ['b', 'Batal'], ['y', 'Menyerah']],
   actions: { arah: 'Gerakkan kursor', a: 'Pilih / taruh bidak', b: 'Batal', y: 'Menyerah (tahan atau 2x)' },
   pointerHint: 'Ketuk bidak lalu ketuk petak tujuan, atau seret bidak ke petak tujuan',
   players: 2,
@@ -991,7 +996,7 @@ function create(ctx: GameCtx): GameInstance {
     const lx = right ? b0.x + b0.w + 12 : b0.x - 12;
     const al: CanvasTextAlign = right ? 'left' : 'right';
     text(g, ctx.t('Promosi: pilih bidak'), lx, b0.y + 26, 18, PAL.surface, al, 800);
-    text(g, ctx.t('A pilih, B batal'), lx, b0.y + 50, 15, '#e7dccb', al, 700);
+    text(g, ctx.t('{a} pilih, {b} batal', { a: ctx.key('a'), b: ctx.key('b') }), lx, b0.y + 50, 15, '#e7dccb', al, 700);
   }
 
   function drawOver() {
@@ -1010,7 +1015,7 @@ function create(ctx: GameCtx): GameInstance {
     text(g, fit(result.msg, 360, 28), 0, -48, 28, result.won ? PAL.green : result.draw ? PAL.blue : PAL.red, 'center', 800);
     if (result.sub) text(g, fit(result.sub, 360, 17), 0, -14, 17, PAL.ink2, 'center', 700);
     text(g, ctx.t('{n} poin', { n: result.score }), 0, 24, 28, PAL.ink, 'center', 800);
-    text(g, ctx.t('Tekan A untuk lanjut'), 0, 62, 15, PAL.ink2, 'center', 700);
+    text(g, ctx.t('Tekan {a} untuk lanjut', { a: ctx.key('a') }), 0, 62, 15, PAL.ink2, 'center', 700);
     g.restore();
   }
 }

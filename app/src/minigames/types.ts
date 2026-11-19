@@ -4,6 +4,33 @@
 
 export type Btn = 'left' | 'right' | 'up' | 'down' | 'a' | 'b' | 'x' | 'y';
 export const BTNS: Btn[] = ['left', 'right', 'up', 'down', 'a', 'b', 'x', 'y'];
+/**
+ * Pad-only controls a game may read from InputState.pad: the walking stick
+ * ('ls'), the camera stick ('rs') and the triggers. The left-handed profile
+ * swaps which physical stick is which, the legend follows.
+ */
+export type PadExtra = 'ls' | 'rs' | 'l1' | 'r1' | 'l2' | 'r2' | 'options' | 'create' | 'dpad';
+/** Legend and tutorial keys: a button, the four directions ('arah'), one axis ('lr', 'ud') or a pad-only control. */
+export type LegendKey = Btn | 'arah' | 'lr' | 'ud' | PadExtra;
+/** One legend entry: the key (or keys that do the same thing) and a one to three word label. */
+export type LegendEntry = [LegendKey | LegendKey[], string];
+
+/** Raw analog state of Pemain 1's pad, mapped through the controller profile. */
+export interface PadAnalog {
+  /** Walking stick and camera stick (swapped by the left-handed profile), -1..1, no dead zone applied. */
+  move: [number, number];
+  look: [number, number];
+  /** Trigger travel 0..1. */
+  l2: number;
+  r2: number;
+  /** Shoulder buttons held. */
+  l1: boolean;
+  r1: boolean;
+  /** Profile dead zone, for games that apply their own curve. */
+  dead: number;
+  /** Aim speed multiplier from the controller profile (Santai turns slower). */
+  aim: number;
+}
 
 /** Input snapshot for one frame. `down` is held, `hit` is pressed this frame. */
 export interface InputState {
@@ -25,6 +52,8 @@ export interface InputState {
    * state as the fields above). Present only when more than one player joined.
    */
   players?: InputState[];
+  /** Present while Pemain 1 has a gamepad: sticks and triggers for analog controls. */
+  pad?: PadAnalog;
 }
 
 export interface GameResult {
@@ -43,8 +72,6 @@ export interface GameMeta {
   title: string;
   /** One line under the title in the launcher and the help card. */
   blurb: string;
-  /** Lines for the controls card (Indonesian source). */
-  controls: string[];
   /** Logical canvas size in game units; the host letterboxes it. */
   view: { w: number; h: number };
   score: { unit: string; higherIsBetter: boolean; time?: boolean };
@@ -62,6 +89,20 @@ export interface GameMeta {
   actions?: Partial<Record<Btn | 'arah', string>>;
   /** Extra tutorial line for touch/mouse players (drag or tap controls). */
   pointerHint?: string;
+  /**
+   * Short tutorial on the intro card: two or three steps (Indonesian source).
+   * {a}, {arah}, {lr} and the other LegendKey names become the key of the
+   * device in use (Spasi on a keyboard, the Cross glyph on a DualSense).
+   */
+  tutorial: string[];
+  /** Tutorial for gamepad players when the pad plays differently (analog aim, triggers). */
+  padTutorial?: string[];
+  /** Legend bar under the running game. Pad-only keys are left out on other devices. */
+  legend: LegendEntry[];
+  /** Legend for gamepad players when the pad plays differently (replaces `legend` on a pad). */
+  padLegend?: LegendEntry[];
+  /** Rows in the button list that exist only on a gamepad (sticks, triggers). */
+  padActions?: Partial<Record<PadExtra, string>>;
   /** Local multiplayer: how many players may join on one screen (default 1). */
   players?: number;
   /** Lobby line for multiplayer games, e.g. what Pemain 2 controls (Indonesian source). */
@@ -79,6 +120,13 @@ export interface GameCtx {
   readonly seed: number;
   /** Translate an Indonesian UI string. */
   t(s: string, vars?: Record<string, string | number>): string;
+  /**
+   * What to press on the device in use, for canvas text: Spasi on a keyboard,
+   * ✕ on a DualSense. `pad` asks for the gamepad key (Pemain 2 always plays on a pad).
+   */
+  key(k: LegendKey, pad?: boolean): string;
+  /** Short rumble on Pemain 1's gamepad (0..1 strength); nothing without a pad. */
+  rumble(strength: number, ms: number): void;
   sfx(name: string, opts?: { pan?: number; rate?: number; gain?: number }): void;
   readonly reducedMotion: boolean;
   /** Player avatar colours and the cast, for drawing characters. */

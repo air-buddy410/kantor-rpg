@@ -41,8 +41,13 @@ export function pickRack(rand: () => number): { pp: PortCable[]; swPorts: number
 const meta: GameModule['meta'] = {
   id: 'server-down', title: 'Server Down', place: 'rack_42u', music: 'puzzle',
   blurb: 'Tiket insiden masuk bergiliran. Pindahkan kabel patch ke port switch yang benar sebelum SLA habis.',
-  controls: ['Kiri/kanan: pilih port, atas/bawah: patch panel atau switch', 'A: ambil kabel, A lagi: tancapkan', 'B: lepas kabel yang dipegang'],
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'right', 'up', 'down', 'a', 'b'],
+  tutorial: [
+    'Baca tiket: layanan yang mati dan port switch tujuannya.',
+    'Pilih port dengan {lr}, pindah antara patch panel dan switch dengan {ud}.',
+    'Tekan {a} untuk ambil kabel, {a} lagi untuk menancapkan. {b} melepas kabel.',
+  ],
+  legend: [['lr', 'Pilih port'], ['ud', 'Panel / switch'], ['a', 'Ambil / tancap'], ['b', 'Lepas']],
   actions: { left: 'Port sebelumnya', right: 'Port berikutnya', up: 'Ke patch panel', down: 'Ke switch', a: 'Ambil / tancapkan kabel', b: 'Lepas kabel' },
   pointerHint: 'Ketuk tiket atau port patch panel untuk ambil kabel, lalu ketuk port switch untuk menancapkan',
 };
@@ -335,7 +340,7 @@ function create(ctx: GameCtx): GameInstance {
 
       g.fillStyle = msgBad ? '#f6d9cf' : '#e6efe0';
       roundRect(g, RX + 30, 320, RW - 60, 32, 6);
-      text(g, msgT > 0 || held !== null ? msg : ctx.t('Panah: pilih port · A: ambil/tancap'), RX + RW / 2, 336, 13, msgBad ? PAL.red : PAL.green);
+      text(g, msgT > 0 || held !== null ? msg : ctx.t('{arah}: pilih port · {a}: ambil/tancap', { arah: ctx.key('arah'), a: ctx.key('a') }), RX + RW / 2, 336, 13, msgBad ? PAL.red : PAL.green);
     },
     snapshot: () => ({
       time: Math.round(time * 100) / 100,

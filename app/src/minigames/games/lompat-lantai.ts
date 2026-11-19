@@ -150,8 +150,13 @@ const LIVES = 3;
 const meta: GameModule['meta'] = {
   id: 'lompat-lantai', title: 'Lompat Lantai', place: 'arcade', music: 'platform',
   blurb: 'Platformer 2D: kumpulkan dokumen, hindari kabel kusut.',
-  controls: ['Kiri/kanan: jalan', 'A: lompat (tahan untuk lebih tinggi)', 'Injak printer dari atas untuk mengalahkannya', 'Bawah: turun dari rak'],
   view: { w: 640, h: 360 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'right', 'down', 'a'],
+  tutorial: [
+    'Jalan dengan {lr}, lompat dengan {a}. Tahan {a} untuk lompat lebih tinggi.',
+    'Kumpulkan dokumen, hindari kabel kusut. Injak printer dari atas.',
+    'Tekan {down} untuk turun dari rak. Pintu keluar ada di ujung kanan.',
+  ],
+  legend: [['lr', 'Jalan'], ['a', 'Lompat'], ['down', 'Turun rak']],
   actions: {
     left: 'Jalan ke kiri',
     right: 'Jalan ke kanan',

@@ -43,14 +43,13 @@ const CPU_IDS = ['CH-SUPERVISOR', 'CH-NETINSTALL', 'CH-ICTSPEC'];
 const meta: GameModule['meta'] = {
   id: 'balap-drone', title: 'Balap Drone', place: 'arcade', music: 'race',
   blurb: 'Balap tampak atas di sirkuit sekitar kantor. 3 putaran.',
-  controls: [
-    'Kiri/kanan: setir',
-    'A: gas, B: rem atau mundur',
-    'Tahan B sambil belok kencang: drift, lepas untuk boost kecil',
-    'X: turbo (3 kali), Y: gas otomatis nyala/mati',
-    'Lewati semua gerbang emas berurutan agar putaran dihitung',
-  ],
   view: { w: 640, h: 400 }, score: { unit: 'detik', higherIsBetter: false, time: true }, touch: ['left', 'right', 'a', 'b', 'x', 'y'],
+  tutorial: [
+    'Tahan {a} untuk gas, {lr} untuk setir, {b} untuk rem.',
+    'Tahan {b} sambil belok kencang untuk drift, lepas untuk boost.',
+    'Lewati gerbang emas berurutan. {x}: turbo (3 kali), {y}: gas otomatis.',
+  ],
+  legend: [['lr', 'Setir'], ['a', 'Gas'], ['b', 'Rem / drift'], ['x', 'Turbo'], ['y', 'Gas otomatis']],
   actions: {
     left: 'Setir kiri',
     right: 'Setir kanan',
@@ -616,7 +615,7 @@ function create(ctx: GameCtx): GameInstance {
     else if (phase === 'done') banner(msg, 34);
     else {
       if (msg && msgT < 1.2) banner(msg, 34);
-      if (p.drift) bottom(p.driftCharge >= DRIFT_TIERS[1] ? ctx.t('Drift! Lepas B: boost besar') : p.driftCharge >= DRIFT_TIERS[0] ? ctx.t('Drift! Lepas B: boost') : ctx.t('Drift...'), PAL.blue);
+      if (p.drift) bottom(p.driftCharge >= DRIFT_TIERS[1] ? ctx.t('Drift! Lepas {b}: boost besar', { b: ctx.key('b') }) : p.driftCharge >= DRIFT_TIERS[0] ? ctx.t('Drift! Lepas {b}: boost', { b: ctx.key('b') }) : ctx.t('Drift...'), PAL.blue);
       else if (!p.onRoad) bottom(ctx.t('Rumput! Kembali ke aspal'), PAL.red);
       else if (raceT < 8) bottom(ctx.t('Lewati gerbang emas berurutan'), PAL.ink);
       else if (LIMIT - raceT < 30) bottom(ctx.t('Sisa waktu {s} detik', { s: Math.ceil(LIMIT - raceT) }), PAL.red);
@@ -664,7 +663,7 @@ function create(ctx: GameCtx): GameInstance {
     g.restore();
     text(g, `◀  ${ctx.t(t0.name)}  ▶`, w / 2, by + bh + 30, 22, PAL.ink, 'center', 800);
     text(g, ctx.t('{n} gerbang · 3 putaran · {i}/{m}', { n: t0.pts.length, i: sel + 1, m: TRACKS.length }), w / 2, by + bh + 54, 15, PAL.ink2);
-    text(g, ctx.t('Kiri/kanan: ganti lintasan · A: mulai'), w / 2, h - 18, 15, PAL.accent);
+    text(g, ctx.t('{lr}: ganti lintasan · {a}: mulai', { lr: ctx.key('lr'), a: ctx.key('a') }), w / 2, h - 18, 15, PAL.accent);
   }
 }
 
