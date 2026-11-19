@@ -37,8 +37,9 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
       - run: npm ci
+      # server deps first: pad-qr.test.ts checks the QR encoder against server/node_modules/qrcode
       - name: Unit tests
-        run: npx vitest run
+        run: (cd ../server && npm ci) && npx vitest run
       - name: Build
         run: npm run build
       - name: Install Chromium for Playwright

@@ -52,7 +52,7 @@
 
 ## 6. Lima game multiplayer baru (v2.7, REQ-MP)
 
-Semua di Game Station slot 6 sampai 10, 1 sampai 4 pemain kecuali disebut lain, kursi kosong diisi komputer, tutorial + legenda seperti game lain, deterministik dengan seed, modul terpisah maks 150 kB gzip.
+REQ-MP-01: semua di Game Station slot 6 sampai 10, 1 sampai 4 pemain kecuali disebut lain, kursi kosong diisi komputer, tutorial + legenda seperti game lain, deterministik dengan seed, modul terpisah maks 150 kB gzip.
 
 | Slot | Game | Isi |
 |---|---|---|

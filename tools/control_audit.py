@@ -59,6 +59,8 @@ INVENTORY = [
     ("Profil kontroler Kidal", "html:padProfile=kidal", ["hasText: 'Kidal'"]),
     ("Profil kontroler Santai", "html:padProfile=santai", ["hasText: 'Santai'"]),
     ("Profil kontroler Tombol terbalik", "html:padProfile=terbalik", ["hasText: 'Tombol terbalik'"]),
+    ("Kecepatan bidik stik (v2.4)", "html:aimSpeed", ["name=\"aimSpeed\""]),
+    ("Daftar game (v2.4)", "html:btn-games", ["#btn-games"]),
     ("Mode visitor", "html:visitor", ["Mode visitor"]),
     ("Lipat menu HUD (HP)", "html:btn-hud-toggle", ["#btn-hud-toggle"]),
     ("Lipat minimap", "src:minimap-fold", ["#minimap-fold"]),
