@@ -4,7 +4,7 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
-## v2.7.1, 19 November 2026
+## v2.7.1, 19 November 2026 (release `d488398`)
 
 **Easier phone controller**
 
@@ -15,7 +15,7 @@ All notable changes to kantor-rpg, newest first. Each release goes to the [publi
 - The left stick follows the thumb: touch anywhere in the left area and the stick appears there.
 - Android phones give a short buzz on each press.
 
-## v2.4 to v2.7, 19 November 2026
+## v2.4 to v2.7, 19 November 2026 (release `da54a01`)
 
 **Game list, two-player billiards, phones as pads, 5 new multiplayer games**
 
@@ -37,6 +37,8 @@ All notable changes to kantor-rpg, newest first. Each release goes to the [publi
   - 17 August Games: sack race, cracker eating, tug of war, 1 to 4 players.
   - Table Hockey: air hockey, one against one.
 - Numbers in the games use lining figures (0 no longer looks like the letter o).
+- Agent chat: an open Search messages box no longer closes by itself when a new reply arrives.
+- 9 of the 20 games are now multiplayer.
 
 ## v2.3, 19 November 2026
 
