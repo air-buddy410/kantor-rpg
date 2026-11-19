@@ -92,6 +92,8 @@ export class PrivatePanel {
   private commandNote: { text: string; at: number } | null = null;
   private slashIndex = 0;
   private searchTerm = '';
+  /** The search box stays open across re-renders (agent replies, polling) once opened. */
+  private searchOpen = false;
 
   /**
    * Agent replies Budi has not seen yet. The first time a profile shows up in
@@ -862,7 +864,8 @@ export class PrivatePanel {
   private searchBox(): HTMLElement {
     const c = this.conv!;
     const wrap = el('details', { class: 'chat-search' });
-    if (this.searchTerm) wrap.setAttribute('open', '');
+    if (this.searchTerm || this.searchOpen) wrap.setAttribute('open', '');
+    wrap.addEventListener('toggle', () => { this.searchOpen = wrap.open; });
     wrap.append(el('summary', {}, `🔍 ${t('Cari pesan')}`));
     const form = el('form', { class: 'row', role: 'search' });
     const input = el('input', { type: 'search', id: 'agent-search', 'aria-label': t('Cari di chat {agent}', { agent: c.agent ?? '' }), placeholder: t('Kata yang dicari'), maxlength: '60' });
