@@ -26,8 +26,13 @@ const END_DELAY = 0.7;
 const meta: GameModule['meta'] = {
   id: 'angkat-beban', title: 'Angkat Beban', place: 'dumbbell_rack', music: 'gym',
   blurb: 'Tekan A saat penanda di zona hijau: sekali untuk angkat, sekali untuk turunkan. 10 repetisi.',
-  controls: ['Kiri/kanan: pilih berat (5, 10, 15 kg)', 'A: angkat lalu turunkan saat penanda di zona hijau', 'Beban berat mengalikan skor tapi penanda lebih cepat', 'Tepat beruntun menambah bonus combo'],
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'right', 'a'],
+  tutorial: [
+    'Pilih berat dengan {lr}, lalu tekan {a} untuk mulai.',
+    'Tekan {a} saat penanda ada di zona hijau: sekali untuk angkat, sekali untuk turunkan.',
+    'Beban berat memberi skor lebih besar, tapi penanda bergerak lebih cepat.',
+  ],
+  legend: [['lr', 'Pilih berat'], ['a', 'Angkat / turunkan']],
   actions: { left: 'Beban lebih ringan', right: 'Beban lebih berat', a: 'Mulai / angkat / turunkan' },
   pointerHint: 'Ketuk kartu berat untuk memilih, lalu ketuk layar saat penanda di zona hijau',
 };
@@ -305,7 +310,7 @@ function create(ctx: GameCtx): GameInstance {
       if (streak >= 2) text(g, ctx.t('Combo x{n}', { n: streak }), 476, 84, 17, PAL.accent);
 
       if (phase === 'swing') {
-        const cue = half === 0 ? ctx.t('A: ANGKAT!') : ctx.t('A: TURUNKAN!');
+        const cue = half === 0 ? ctx.t('{a}: ANGKAT!', { a: ctx.key('a') }) : ctx.t('{a}: TURUNKAN!', { a: ctx.key('a') });
         g.fillStyle = 'rgba(255,250,240,0.9)';
         roundRect(g, 140, 50, 160, 30, 10);
         text(g, cue, 220, 65, 17, half === 0 ? PAL.green : PAL.blue, 'center', 800);
@@ -353,7 +358,7 @@ function create(ctx: GameCtx): GameInstance {
     text(g, ctx.t('Skor x{m}, penanda x{s}', { m: kg, s: SPEED_MUL[kg].toFixed(1) }), 320, 224, 15, PAL.ink2, 'center', 600);
     g.fillStyle = PAL.accent;
     roundRect(g, 230, 240, 180, 34, 10);
-    text(g, ctx.t('A atau ketuk: mulai'), 320, 257, 16, PAL.surface);
+    text(g, ctx.t('{a} atau ketuk: mulai', { a: ctx.key('a') }), 320, 257, 16, PAL.surface);
   }
 }
 

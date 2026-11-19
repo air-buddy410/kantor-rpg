@@ -10,14 +10,14 @@ import { PAL, drawChar, roundRect, text } from '../cast';
 const meta: GameModule['meta'] = {
   id: 'tarung-kantor', title: 'Tarung Kantor', place: 'arcade', music: 'fight',
   blurb: 'Satu lawan satu dengan karakter tim. Kalahkan 3 lawan berturut-turut.',
-  controls: [
-    'Kiri/Kanan: jalan, Atas: lompat, Bawah: jongkok',
-    'Tahan arah menjauhi lawan atau Y: blok',
-    'A: pukul, B: tendang, X: jurus khas (meter penuh)',
-    'Pukulan yang kena bisa langsung disambung tendangan atau jurus',
-  ],
   view: { w: 640, h: 360 }, score: { unit: 'poin', higherIsBetter: true },
   touch: ['left', 'right', 'up', 'down', 'a', 'b', 'x', 'y'],
+  tutorial: [
+    'Pilih karakter dengan {lr}, konfirmasi dengan {a}.',
+    '{a}: pukul, {b}: tendang, {up}: lompat, {down}: jongkok.',
+    'Tahan arah menjauhi lawan atau {y} untuk blok. Meter penuh: {x} untuk jurus khas.',
+  ],
+  legend: [['lr', 'Jalan'], ['a', 'Pukul'], ['b', 'Tendang'], ['y', 'Blok'], ['x', 'Jurus']],
   actions: {
     left: 'Jalan / blok bila menjauhi lawan',
     right: 'Jalan / blok bila menjauhi lawan',
@@ -922,7 +922,7 @@ function create(ctx: GameCtx): GameInstance {
     const sp = SP[SPECIAL_OF[c.id] ?? 'dasi'];
     text(g, ctx.t('Jurus khas: {n}', { n: sp.name }), 290, 152, 18, PAL.accent, 'left', 800);
     text(g, sp.desc, 290, 178, 15, PAL.ink, 'left', 600);
-    text(g, ctx.t('Kiri/Kanan: pilih · A: konfirmasi'), 290, 222, 15, PAL.ink2, 'left', 600);
+    text(g, ctx.t('{lr}: pilih · {a}: konfirmasi', { lr: ctx.key('lr'), a: ctx.key('a') }), 290, 222, 15, PAL.ink2, 'left', 600);
     for (let i = 0; i < cast.length; i++) {
       const x = 8 + i * 70;
       g.fillStyle = i === sel ? PAL.accent : 'rgba(29,42,35,0.18)';
@@ -961,7 +961,7 @@ function create(ctx: GameCtx): GameInstance {
       text(g, clip(c.name, 132, 22, 800), x0 + 150, 112, 22, PAL.ink, 'left', 800);
       text(g, clip(ctx.t(c.role), 132, 13), x0 + 150, 136, 13, PAL.ink2, 'left', 600);
       text(g, clip(SP[SPECIAL_OF[c.id] ?? 'dasi'].name, 132, 13, 800), x0 + 150, 162, 13, PAL.accent, 'left', 800);
-      text(g, ready[k] ? ctx.t('Siap! (B: ganti)') : ctx.t('Kiri/Kanan, lalu A'), x0 + 150, 226, 14, ready[k] ? PLAYER_COLORS[k] : PAL.ink2, 'left', 800);
+      text(g, ready[k] ? ctx.t('Siap! ({b}: ganti)', { b: ctx.key('b', k > 0) }) : ctx.t('{lr}, lalu {a}', { lr: ctx.key('lr', k > 0), a: ctx.key('a', k > 0) }), x0 + 150, 226, 14, ready[k] ? PLAYER_COLORS[k] : PAL.ink2, 'left', 800);
     };
     side(0); side(1);
     for (let i = 0; i < cast.length; i++) {
@@ -1043,8 +1043,8 @@ function create(ctx: GameCtx): GameInstance {
     };
     bar(14, P, false);
     bar(366, C, true);
-    if (P.meter >= 100) text(g, ctx.t('Jurus siap (X)'), 14, h - 28, 13, PAL.ink, 'left', 800);
-    if (C.meter >= 100) text(g, versus ? ctx.t('Jurus siap (X)') : ctx.t('Jurus siap'), 626, h - 28, 13, PAL.ink, 'right', 800);
+    if (P.meter >= 100) text(g, ctx.t('Jurus siap ({x})', { x: ctx.key('x') }), 14, h - 28, 13, PAL.ink, 'left', 800);
+    if (C.meter >= 100) text(g, versus ? ctx.t('Jurus siap ({x})', { x: ctx.key('x', true) }) : ctx.t('Jurus siap'), 626, h - 28, 13, PAL.ink, 'right', 800);
     g.fillStyle = PAL.green;
     roundRect(g, 296, 6, 48, 40, 8);
     text(g, String(Math.ceil(clock)), 320, 27, 22, PAL.surface, 'center', 800);

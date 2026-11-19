@@ -70,8 +70,13 @@ export function blast(grid: ArrayLike<number>, bombs: BombLite[], first: number)
 const meta: GameModule['meta'] = {
   id: 'arena-bom', title: 'Arena Bom', place: 'arcade', music: 'bomb',
   blurb: 'Pasang bom, buka jalan, kalahkan 3 lawan.',
-  controls: ['Panah atau D-pad: jalan', 'A: pasang bom', 'Ledakan menghancurkan lemari arsip; ambil power-up yang jatuh', 'Menang 2 dari 3 ronde. Setelah 120 detik arena menyempit'],
   view: { w: GW * T, h: GH * T + TOP }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'up', 'down', 'right', 'a'],
+  tutorial: [
+    'Jalan dengan {arah}, tekan {a} untuk pasang bom.',
+    'Ledakan menghancurkan lemari arsip. Ambil power-up yang jatuh.',
+    'Menang 2 dari 3 ronde. Setelah 2 menit arena menyempit.',
+  ],
+  legend: [['arah', 'Jalan'], ['a', 'Pasang bom']],
   actions: { arah: 'Jalan (tahan untuk terus jalan)', a: 'Pasang bom' },
   players: 4,
   playersHint: 'Bareng: sampai 4 pemain, sudut yang kosong diisi komputer. Yang terakhir bertahan menang ronde.',

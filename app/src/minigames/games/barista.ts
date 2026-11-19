@@ -62,12 +62,13 @@ const DIRS: Btn[] = ['up', 'down', 'left', 'right'];
 const meta: GameModule['meta'] = {
   id: 'barista', title: 'Barista', place: 'coffee_bar', music: 'cafe',
   blurb: 'Buat 5 pesanan kopi untuk rekan tim. Tepat waktu, tepat takaran.',
-  controls: [
-    'Giling: tekan A berulang sampai takaran pas, B untuk selesai',
-    'Ekstraksi, susu, air, gula aren: tahan A, lepas di zona hijau',
-    'Latte art: ikuti arah panah dengan D-pad',
-  ],
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'up', 'down', 'right', 'a', 'b'],
+  tutorial: [
+    'Giling: tekan {a} berulang sampai takaran pas, lalu {b}.',
+    'Ekstraksi, susu, air, gula aren: tahan {a}, lepas di zona hijau.',
+    'Latte art: tekan arah panah yang muncul dengan {arah}.',
+  ],
+  legend: [['a', 'Giling / tuang'], ['b', 'Selesai giling'], ['arah', 'Latte art']],
   actions: { arah: 'Latte art: ikuti panah', a: 'Giling / tuang (tahan, atau ketuk mulai lalu ketuk stop)', b: 'Selesai menggiling' },
   pointerHint: 'Ketuk atau tahan meja kerja sebagai tombol A; latte art: ketuk sisi cangkir sesuai panah',
 };
@@ -446,7 +447,7 @@ function create(ctx: GameCtx): GameInstance {
     text(g, title, 428, 124, 20, PAL.ink);
     let hint = '';
     if (k === 'grind') {
-      hint = started ? ctx.t('Tekan A lagi, atau B bila sudah pas') : ctx.t('Tekan A berulang untuk menggiling');
+      hint = started ? ctx.t('Tekan {a} lagi, atau {b} bila sudah pas', { a: ctx.key('a'), b: ctx.key('b') }) : ctx.t('Tekan {a} berulang untuk menggiling', { a: ctx.key('a') });
       const q = squish > 0 && !ctx.reducedMotion ? Math.sin((squish / 0.1) * Math.PI) * 0.08 : 0;
       g.save(); g.translate(285, 220); g.scale(1 + q, 1 - q); g.translate(-285, -220);
       g.fillStyle = '#3a2a20'; roundRect(g, 260, 150, 50, 70, 8);
@@ -454,7 +455,7 @@ function create(ctx: GameCtx): GameInstance {
       g.restore();
       if (started) {
         g.fillStyle = PAL.green; roundRect(g, DONE_BTN.x, DONE_BTN.y, DONE_BTN.w, DONE_BTN.h, 10);
-        text(g, ctx.t('Selesai (B)'), DONE_BTN.x + DONE_BTN.w / 2, DONE_BTN.y + DONE_BTN.h / 2 + 1, 14, '#fffaf0');
+        text(g, ctx.t('Selesai ({b})', { b: ctx.key('b') }), DONE_BTN.x + DONE_BTN.w / 2, DONE_BTN.y + DONE_BTN.h / 2 + 1, 14, '#fffaf0');
       }
       g.fillStyle = '#5a3a24'; g.beginPath(); g.ellipse(285, 230, 22, 6 + Math.min(1, value / GRIND.max) * 6, 0, 0, Math.PI * 2); g.fill();
       gaugeBar(340, 160, 260, value, GRIND.lo, GRIND.hi, 0, GRIND.max, ctx.t('Takaran {v} g (target 18 g)', { v: value.toFixed(1) }));
@@ -479,7 +480,7 @@ function create(ctx: GameCtx): GameInstance {
       g.fillStyle = PAL.accent; roundRect(g, 362, 262, Math.max(6, 220 * Math.max(0, artT / ART_TIME)), 6, 3);
     } else {
       const gg = gauge(k);
-      hint = !started ? ctx.t('Tahan A, atau ketuk A untuk mulai') : latched ? ctx.t('Ketuk A di zona hijau') : ctx.t('Lepas A di zona hijau');
+      hint = !started ? ctx.t('Tahan {a}, atau ketuk {a} untuk mulai', { a: ctx.key('a') }) : latched ? ctx.t('Ketuk {a} di zona hijau', { a: ctx.key('a') }) : ctx.t('Lepas {a} di zona hijau', { a: ctx.key('a') });
       const f = (value - gg.start) / (gg.max - gg.start);
       if (k === 'extract') {
         g.fillStyle = '#4b5a51'; roundRect(g, 262, 136, 76, 26, 6);

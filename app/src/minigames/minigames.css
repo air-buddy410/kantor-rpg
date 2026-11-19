@@ -81,3 +81,19 @@
 .mg-lobby-list li { display: flex; gap: 10px; align-items: baseline; padding: 6px 10px; border-radius: 8px; border-left: 6px solid var(--pc, var(--accent)); background: var(--surface-2, rgba(0, 0, 0, 0.04)); }
 .mg-lobby-list b { min-width: 5.5em; }
 .mg-lobby-note { font-size: 0.92rem; color: var(--ink-2) !important; }
+
+/* Legend bar under the canvas and the tutorial steps (host.ts, input/legend.ts). */
+.mg-host { grid-template-rows: auto minmax(0, 1fr) auto auto; }
+.mg-legend {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; margin: 0; padding: 6px 12px;
+  list-style: none; font-size: 0.95rem; font-weight: 700; color: var(--ink); border-top: 1px solid var(--control-border); background: var(--surface);
+}
+.mg-legend:empty { display: none; }
+.mg-legend kbd { margin-left: 0; }
+.mg-steps { margin: 0 0 6px; padding-left: 1.3em; display: grid; gap: 4px; }
+.mg-steps li { line-height: 1.45; }
+.mg-tut-sub { margin-top: 10px !important; }
+.mg-tut-list dt { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.mg-tut-list dt kbd { margin-left: 0; }
+.arcade-help { margin: 0 0 8px; }
+@media (max-width: 560px) { .mg-legend { font-size: 0.8rem; gap: 3px 10px; } }

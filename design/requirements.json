@@ -1269,6 +1269,26 @@
    ]
   },
   {
+   "id": "REQ-PAD-03",
+   "milestone": "M8",
+   "story": "Sebagai pemain DualSense, HUD memakai tombol stik, biliar enak dengan analog, dan tiap mini game menjelaskan tombolnya.",
+   "ac": "HUD berganti ke simbol PlayStation (atau huruf Xbox) saat stik dipakai dan kembali saat keyboard/sentuh dipakai; biliar: stik bidik kasar, stik kamera bidik halus, L2 presisi, R2 tarik-lepas; 15 mini game punya tutorial 2-3 langkah, daftar tombol per perangkat dan legenda di bawah kanvas.",
+   "failure": "stik non-standar tetap huruf; tanpa dukungan getar diam",
+   "boundary": "tanpa touchpad, sensor gerak, trigger adaptif",
+   "parts": [
+    {
+     "scope": "Pergantian HUD, glyph per profil, biliar analog + R2, tutorial dan legenda 15 game.",
+     "tests": [
+      "app/tests/unit/pad-glyphs.test.ts",
+      "app/tests/unit/mg-biliar.test.ts",
+      "app/tests/e2e/dualsense.spec.ts"
+     ],
+     "evidence": [],
+     "status": "belum diuji"
+    }
+   ]
+  },
+  {
    "id": "REQ-MOVE-01",
    "milestone": "M8",
    "story": "Sebagai CEO, jangan tertahan NPC yang berdiri di jalan.",

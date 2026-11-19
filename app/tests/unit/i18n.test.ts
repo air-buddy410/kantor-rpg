@@ -53,11 +53,13 @@ describe('English dictionary', () => {
 
   it('translates every mini game title, blurb, tutorial row and button name', async () => {
     const { GAMES } = await import('../../src/minigames/registry');
-    const { TUTORIAL_NAMES } = await import('../../src/minigames/host');
-    const s: string[] = [...TUTORIAL_NAMES];
+    const { KEY_WORDS, OFFICE_PAD_LEGEND } = await import('../../src/input/legend');
+    const { GLYPH_NAMES } = await import('../../src/input/glyphs');
+    const s: string[] = [...KEY_WORDS, ...GLYPH_NAMES, ...OFFICE_PAD_LEGEND.map((e) => e[1])];
     for (const load of Object.values(GAMES)) {
       const m = (await load()).default.meta;
-      s.push(m.title, m.blurb, m.score.unit, ...m.controls, ...Object.values(m.actions ?? {}) as string[], ...(m.pointerHint ? [m.pointerHint] : []));
+      s.push(m.title, m.blurb, m.score.unit, ...m.tutorial, ...(m.padTutorial ?? []), ...[...m.legend, ...(m.padLegend ?? [])].map((e) => e[1]),
+        ...Object.values(m.actions ?? {}) as string[], ...Object.values(m.padActions ?? {}) as string[], ...(m.pointerHint ? [m.pointerHint] : []));
     }
     expect(s.filter((n) => !(n in EN))).toEqual([]);
   });

@@ -140,8 +140,13 @@ const REVEAL_GUARD = 0.3;
 const meta: GameModule['meta'] = {
   id: 'kuis-perpustakaan', title: 'Kuis Perpustakaan', place: 'bookshelf', music: 'calm',
   blurb: 'Lima soal tentang kantor ini dan dunia ICT/ISP. 15 detik per soal.',
-  controls: ['Panah atau D-pad: pilih jawaban', 'A: kunci jawaban, A lagi: soal berikutnya', 'Atau ketuk jawabannya'],
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'right', 'up', 'down', 'a'],
+  tutorial: [
+    'Baca soal, pilih jawaban dengan {arah}.',
+    'Tekan {a} untuk mengunci jawaban. Waktunya 15 detik per soal.',
+    'Jawaban cepat dapat bonus. Tekan {a} lagi untuk soal berikutnya.',
+  ],
+  legend: [['arah', 'Pilih jawaban'], ['a', 'Kunci / lanjut']],
   actions: { arah: 'Pilih jawaban', a: 'Kunci jawaban / soal berikutnya' },
   pointerHint: 'Ketuk jawaban untuk menguncinya, ketuk lagi untuk soal berikutnya',
 };
@@ -315,7 +320,7 @@ function create(ctx: GameCtx): GameInstance {
         roundRect(g, 12, py, w - 24, 58, 10);
         const ok = picked === q.answer;
         text(g, picked === null ? ctx.t('Waktu habis!') : ok ? ctx.t('Benar!') : ctx.t('Kurang tepat'), 28, py + 16, 15, ok ? '#9be37a' : '#ffb39e', 'left');
-        if (revealT < REVEAL - REVEAL_GUARD) text(g, idx + 1 < PER_SESSION ? ctx.t('A atau ketuk: lanjut') : ctx.t('A atau ketuk: lihat hasil'), w - 28, py + 16, 12, '#d9e4dc', 'right', 400);
+        if (revealT < REVEAL - REVEAL_GUARD) text(g, idx + 1 < PER_SESSION ? ctx.t('{a} atau ketuk: lanjut', { a: ctx.key('a') }) : ctx.t('{a} atau ketuk: lihat hasil', { a: ctx.key('a') }), w - 28, py + 16, 12, '#d9e4dc', 'right', 400);
         wrapText(q.why, 28, py + 38, w - 60, 13, 15, '#fffaf0', 2);
       }
     },

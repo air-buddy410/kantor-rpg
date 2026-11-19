@@ -4,6 +4,20 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
+## v2.3, 19 November 2026
+
+**DualSense friendly**
+
+- As soon as a gamepad connects or is pressed, every button hint on screen uses that pad's buttons. DualSense and DualShock get PlayStation shapes (Cross, Circle, Square, Triangle, L1/R1, L2/R2, Options, Create); other pads get A/B/X/Y. Use the keyboard, mouse or touch screen again and the hints follow.
+- Office: a pad legend at the bottom right (walk, camera, interact, back, run, zoom, map, settings), action prompts like "Cross Greet", the on-screen joystick hidden, and the Controls dialog lists the pad buttons. The Reversed and Left-handed profiles are reflected.
+- Billiards on a pad:
+  - Left stick points the aim, right stick turns it finely (a small push moves very slowly, more tilt turns faster).
+  - Hold L2 for precise aim, four times slower.
+  - Pull R2 for power, deeper is harder, release to shoot. A pull that is too soft is cancelled, Circle cancels a pull.
+  - Short rumble on a shot and when a ball drops (Chrome and Edge; off with Reduce motion).
+  - The Relaxed profile turns the aim slower.
+- All 15 mini games: the intro card has a short 2 to 3 step tutorial and a button list for keyboard, gamepad and touch screen. While playing, a button legend sits under the game. Hints inside the game (for example "Cross: LIFT!") follow the device in use.
+
 ## v2.2, 14 October 2026
 
 **Play together with several gamepads (local multiplayer)**

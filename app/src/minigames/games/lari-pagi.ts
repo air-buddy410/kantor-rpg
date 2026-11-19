@@ -31,8 +31,13 @@ export const FLOW_BONUS = 1.1;
 const meta: GameModule['meta'] = {
   id: 'lari-pagi', title: 'Lari Pagi', place: 'treadmill', music: 'gym',
   blurb: 'Lari 60 detik di treadmill. Melangkah mengikuti ketukan, kiri dan kanan bergantian.',
-  controls: ['Kiri dan kanan bergantian: langkah', 'A atau B: langkah dengan kaki berikutnya', 'Tekan saat lingkaran ritme penuh untuk menambah kecepatan', 'Terlalu cepat menguras stamina'],
   view: { w: 640, h: 400 }, score: { unit: 'meter', higherIsBetter: true }, touch: ['left', 'right', 'a'],
+  tutorial: [
+    'Tekan {left} dan {right} bergantian mengikuti ketukan.',
+    'Atau tekan {a} saja: kaki berganti otomatis.',
+    'Langkah tepat ketukan menambah kecepatan. Terlalu cepat menguras stamina.',
+  ],
+  legend: [['left', 'Kaki kiri'], ['right', 'Kaki kanan'], ['a', 'Langkah']],
   actions: { left: 'Langkah kaki kiri', right: 'Langkah kaki kanan', a: 'Langkah (kaki berikutnya)', b: 'Langkah (kaki berikutnya)' },
   pointerHint: 'Ketuk layar mengikuti ketukan untuk melangkah; kaki bergantian otomatis',
 };

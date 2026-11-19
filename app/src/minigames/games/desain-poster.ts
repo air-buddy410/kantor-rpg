@@ -97,8 +97,13 @@ const REVIEW_GUARD = 0.35;
 const meta: GameModule['meta'] = {
   id: 'desain-poster', title: 'Desain Poster', place: 'easel', music: 'lounge',
   blurb: 'Susun poster sesuai brief. Kevin menilai kontras, kecocokan brief dan hierarki judul.',
-  controls: ['Atas/bawah: pilih properti', 'Kiri/kanan: ganti nilai', 'A: selesai dan minta penilaian Kevin'],
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'right', 'up', 'down', 'a'],
+  tutorial: [
+    'Baca brief di atas poster.',
+    'Pilih baris dengan {ud}, ganti nilainya dengan {lr}.',
+    'Tekan {a} kalau sudah pas. Kevin menilai kontras, brief, dan judul.',
+  ],
+  legend: [['ud', 'Pilih baris'], ['lr', 'Ganti nilai'], ['a', 'Minta penilaian']],
   actions: { up: 'Properti sebelumnya', down: 'Properti berikutnya', left: 'Nilai sebelumnya', right: 'Nilai berikutnya', a: 'Selesai, minta penilaian / lanjut' },
   pointerHint: 'Ketuk ◀ atau ▶ di tiap baris untuk ganti nilai, seret judul di poster ke atas atau bawah untuk tata letak',
 };
@@ -329,7 +334,7 @@ function create(ctx: GameCtx): GameInstance {
         const by = RY + ROWS * RH + 6;
         g.fillStyle = PAL.green;
         roundRect(g, PX, by, PW, 40, 10);
-        fitLine(ctx.t('A: Selesai, minta penilaian'), PX + PW / 2, by + 20, PW - 20, 16, '#ffffff', 'center');
+        fitLine(ctx.t('{a}: Selesai, minta penilaian', { a: ctx.key('a') }), PX + PW / 2, by + 20, PW - 20, 16, '#ffffff', 'center');
 
       } else if (last) {
         g.fillStyle = PAL.surface;
@@ -357,7 +362,7 @@ function create(ctx: GameCtx): GameInstance {
           text(g, `${Math.round(v * e)}/${max}`, PX + PW - 14, y + 14, 12, PAL.ink2, 'right');
           g.globalAlpha = 1;
         });
-        text(g, reviewT < REVIEW_TIME - REVIEW_GUARD ? (idx + 1 < SESSION_BRIEFS ? ctx.t('A atau ketuk: brief berikutnya') : ctx.t('A atau ketuk: lihat hasil')) : '', PX + PW / 2, RY + 240, 13, PAL.ink2);
+        text(g, reviewT < REVIEW_TIME - REVIEW_GUARD ? (idx + 1 < SESSION_BRIEFS ? ctx.t('{a} atau ketuk: brief berikutnya', { a: ctx.key('a') }) : ctx.t('{a} atau ketuk: lihat hasil', { a: ctx.key('a') })) : '', PX + PW / 2, RY + 240, 13, PAL.ink2);
         // stamp with the total, squashes in on submit
         const sc = ctx.reducedMotion ? 1 : 1 + bump * 0.5;
         g.save();

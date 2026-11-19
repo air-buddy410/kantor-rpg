@@ -146,8 +146,13 @@ export function turnsNeeded(L: Level, i: number): number {
 const meta: GameModule['meta'] = {
   id: 'sambung-kabel', title: 'Sambung Kabel', place: 'arcade', music: 'puzzle',
   blurb: 'Putar ubin, sambungkan OLT ke setiap rumah.',
-  controls: ['Panah atau D-pad: pilih ubin', 'A atau ketuk ubin: putar searah jarum jam', 'B: putar berlawanan arah jarum jam', 'Nyalakan semua rumah sebelum waktu habis, 20 level'],
   view: { w: 640, h: 480 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'up', 'down', 'right', 'a', 'b'],
+  tutorial: [
+    'Pilih ubin dengan {arah}.',
+    'Tekan {a} untuk memutar searah jarum jam, {b} untuk berlawanan.',
+    'Sambungkan kabel dari OLT sampai semua rumah menyala sebelum waktu habis.',
+  ],
+  legend: [['arah', 'Pilih ubin'], ['a', 'Putar kanan'], ['b', 'Putar kiri']],
   actions: { arah: 'Pilih ubin', a: 'Putar searah jarum jam', b: 'Putar berlawanan arah' },
   pointerHint: 'Ketuk ubin untuk memutarnya searah jarum jam',
 };
@@ -304,8 +309,8 @@ function create(ctx: GameCtx): GameInstance {
       text(g, `${housesLit()}/${L.houses.length}`, 96, 226, 26, PAL.ink);
       text(g, ctx.t('Skor'), 96, 262, 16, PAL.ink2);
       text(g, `${score}`, 96, 288, 26, PAL.accent);
-      text(g, ctx.t('A atau ketuk: putar kanan'), 96, h - 82, 15, PAL.ink2);
-      text(g, ctx.t('B: putar kiri'), 96, h - 58, 15, PAL.ink2);
+      text(g, ctx.t('{a} atau ketuk: putar kanan', { a: ctx.key('a') }), 96, h - 82, 15, PAL.ink2);
+      text(g, ctx.t('{b}: putar kiri', { b: ctx.key('b') }), 96, h - 58, 15, PAL.ink2);
       text(g, ctx.t('Panah: pindah ubin'), 96, h - 34, 15, PAL.ink2);
 
       // trunk from the panel to the OLT

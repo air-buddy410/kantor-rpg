@@ -35,8 +35,13 @@ export function floorCells(floor: string) {
 const meta: GameModule['meta'] = {
   id: 'susun-denah', title: 'Susun Denah', place: 'drafting_table', music: 'puzzle',
   blurb: 'Potongan ruang lepas dari denah kantor. Kembalikan tiap ruang ke tempatnya sebelum waktu habis.',
-  controls: ['Panah atau D-pad: pilih potongan, lalu geser', 'A: ambil potongan, A lagi: taruh', 'B: kembalikan potongan ke baki', 'Seret potongan ke denah, atau ketuk potongan lalu ketuk posisinya'],
   view: { w: 640, h: 400 }, score: { unit: 'poin', higherIsBetter: true }, touch: ['left', 'right', 'up', 'down', 'a', 'b'],
+  tutorial: [
+    'Pilih potongan ruang di baki dengan {arah}, tekan {a} untuk ambil.',
+    'Geser ke garis putus-putus yang cocok, lalu {a} untuk taruh.',
+    '{b} mengembalikan potongan ke baki. Tiap denah 60 detik.',
+  ],
+  legend: [['arah', 'Pilih / geser'], ['a', 'Ambil / taruh'], ['b', 'Kembalikan']],
   actions: { arah: 'Pilih potongan / geser di denah', a: 'Ambil / taruh potongan', b: 'Kembalikan ke baki' },
   pointerHint: 'Seret potongan dari baki ke garis putus-putus yang cocok, lalu lepas',
 };
@@ -403,7 +408,7 @@ function create(ctx: GameCtx): GameInstance {
         roundRect(g, TX + 8, TY + TH - 42, TW - 16, 28, 6);
         fitLine(msg, TX + TW / 2, TY + TH - 28, TW - 28, 13, msgBad ? PAL.red : PAL.green);
       } else {
-        fitLine(holding ? ctx.t('Geser dengan panah, A: taruh') : ctx.t('Pilih potongan, A: ambil'), TX + TW / 2, TY + TH - 28, TW - 24, 12, PAL.ink);
+        fitLine(holding ? ctx.t('Geser dengan {arah}, {a}: taruh', { arah: ctx.key('arah'), a: ctx.key('a') }) : ctx.t('Pilih potongan, {a}: ambil', { a: ctx.key('a') }), TX + TW / 2, TY + TH - 28, TW - 24, 12, PAL.ink);
       }
     },
     snapshot: () => ({

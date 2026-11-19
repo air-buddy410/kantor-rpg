@@ -7,8 +7,10 @@ import { t } from '../i18n';
 import { sound } from '../audio';
 import { buildCast } from './cast';
 import { GAMES } from './registry';
-import { BTNS, type Btn, type GameInstance, type GameMeta, type GameModule, type GameResult, type InputState } from './types';
-import { PAD_PROFILES, faceButtons, stickAxes } from '../input/pad-profiles';
+import { BTNS, type Btn, type GameInstance, type GameMeta, type GameModule, type GameResult, type InputState, type LegendKey, type PadAnalog } from './types';
+import { PAD_PROFILES, faceButtons, stickAxes, type PadProfile } from '../input/pad-profiles';
+import { PadActivity, currentDevice, currentPadKind, setDevice, trackDevices, type Device } from '../input/mode';
+import { keyChips, keyText, renderLegend, richLine } from '../input/legend';
 import type { PadProfileId } from '../ui/settings';
 import { PLAYER_COLORS, PadPlayer, connectedPads } from './local-players';
 
@@ -66,28 +68,10 @@ const KEYMAP: Record<string, Btn> = {
 const BTN_LABEL: Record<Btn, string> = { left: '◀', right: '▶', up: '▲', down: '▼', a: 'A', b: 'B', x: 'X', y: 'Y' };
 
 type Phase = 'loading' | 'intro' | 'play' | 'pause' | 'result' | 'error';
-type Device = 'keyboard' | 'pad' | 'touch';
 
-// Tutorial rows: what to press on each device for a logical button. Keyboard
-// keys mirror KEYMAP; pad labels follow the chosen profile (Japanese layout
-// swaps Cross and Circle), touch labels are the on-screen buttons.
-const KEY_NAMES: Record<Btn | 'arah', string> = {
-  arah: 'Panah / WASD', left: 'Panah kiri / A', right: 'Panah kanan / D', up: 'Panah atas / W', down: 'Panah bawah / S',
-  a: 'Spasi / Enter / J', b: 'K / Shift', x: 'L / X', y: 'I / C',
-};
-function padNames(swapFace: boolean): Record<Btn | 'arah', string> {
-  return {
-    arah: 'Stik kiri / D-pad', left: 'D-pad kiri', right: 'D-pad kanan', up: 'D-pad atas', down: 'D-pad bawah',
-    a: swapFace ? 'Lingkaran' : 'Silang', b: swapFace ? 'Silang' : 'Lingkaran', x: swapFace ? 'Segitiga' : 'Kotak', y: swapFace ? 'Kotak' : 'Segitiga',
-  };
-}
-const TOUCH_NAMES: Record<Btn | 'arah', string> = {
-  arah: 'Tombol ◀ ▶ ▲ ▼', left: 'Tombol ◀', right: 'Tombol ▶', up: 'Tombol ▲', down: 'Tombol ▼',
-  a: 'Tombol A', b: 'Tombol B', x: 'Tombol X', y: 'Tombol Y',
-};
-/** Every device button name, for the i18n test (names are passed to t() by variable). */
-export const TUTORIAL_NAMES: string[] = [...new Set([...Object.values(KEY_NAMES), ...Object.values(padNames(false)), ...Object.values(TOUCH_NAMES)])];
-const ACTION_ORDER: (Btn | 'arah')[] = ['arah', 'left', 'right', 'up', 'down', 'a', 'b', 'x', 'y'];
+// Button list order in the tutorial; pad-only rows (sticks, triggers) follow on a pad.
+const ACTION_ORDER: LegendKey[] = ['arah', 'lr', 'ud', 'left', 'right', 'up', 'down', 'a', 'b', 'x', 'y'];
+const PAD_ORDER: LegendKey[] = ['ls', 'rs', 'l1', 'r1', 'l2', 'r2'];
 
 export class MiniGameHost {
   readonly root: HTMLElement;
@@ -98,6 +82,11 @@ export class MiniGameHost {
   private titleEl = el('h2', { class: 'mg-title', id: 'mg-title' });
   private card = el('div', { class: 'mg-card', role: 'dialog', 'aria-modal': 'false', 'aria-labelledby': 'mg-card-title' });
   private touch = el('div', { class: 'mg-touch' });
+  /** Button legend under the canvas, in the glyphs of the device in use. */
+  private legend = el('ul', { class: 'mg-legend', 'aria-label': t('Tombol game') });
+  private padSeen = new PadActivity();
+  /** Redraws the open card's tutorial when the device changes; null when no tutorial is shown. */
+  private tutRefresh: (() => void) | null = null;
   private muteBtn = el('button', { type: 'button', class: 'btn mg-mute', 'aria-pressed': 'false' });
   private mod: GameModule | null = null;
   private inst: GameInstance | null = null;
@@ -148,7 +137,8 @@ export class MiniGameHost {
     this.bar.append(this.titleEl, this.hudEl, this.muteBtn, pause, close);
     const stage = el('div', { class: 'mg-stage' });
     stage.append(this.canvas, this.card);
-    this.root.append(this.bar, stage, this.touch);
+    this.root.append(this.bar, stage, this.legend, this.touch);
+    trackDevices();
     this.canvas.addEventListener('pointerdown', (e) => { this.onTap(e); this.onPtr(e, true); if (this.phase === 'play') this.canvas.setPointerCapture?.(e.pointerId); });
     this.canvas.addEventListener('pointermove', (e) => this.onPtr(e, this.ptr?.down ?? false));
     this.canvas.addEventListener('pointerup', (e) => this.onPtr(e, false));
@@ -168,6 +158,7 @@ export class MiniGameHost {
     window.addEventListener('keyup', this.onKeyUp, true);
     window.addEventListener('resize', this.fit);
     window.addEventListener('blur', this.onBlur);
+    window.addEventListener('kantor:device', this.onDevice);
     this.showCard(t('Memuat permainan...'), [], []);
     const loader = GAMES[this.gameId];
     try {
@@ -184,7 +175,7 @@ export class MiniGameHost {
     this.canvas.width = m.view.w;
     this.canvas.height = m.view.h;
     this.buildTouch(m);
-    this.fit();
+    this.renderLegend();
     sound.music(m.music);
     this.intro();
     this.last = performance.now();
@@ -233,14 +224,17 @@ export class MiniGameHost {
     this.extras.forEach((_x, i) => {
       const li = el('li', { 'data-p': String(i + 2) });
       li.style.setProperty('--pc', PLAYER_COLORS[i + 1]);
-      li.append(el('b', {}, t('Pemain {n}', { n: i + 2 })), el('span', {}, t('Stik {n} · B untuk batal', { n: i + 2 })));
+      const s = el('span');
+      s.append(...this.padLine(t('Stik {n} · {b} untuk batal', { n: i + 2 })));
+      li.append(el('b', {}, t('Pemain {n}', { n: i + 2 })), s);
       list.append(li);
     });
     box.append(list);
     const free = this.maxPlayers() - 1 - this.extras.length;
-    box.append(el('p', { class: 'mg-lobby-note' }, free > 0
-      ? t('Mau main bareng? Sambungkan stik lain lalu tekan A untuk ikut (sampai {n} pemain).', { n: this.maxPlayers() })
-      : t('Semua tempat pemain sudah terisi.')));
+    const note = el('p', { class: 'mg-lobby-note' });
+    if (free > 0) note.append(...this.padLine(t('Mau main bareng? Sambungkan stik lain lalu tekan {a} untuk ikut (sampai {n} pemain).', { n: this.maxPlayers() })));
+    else note.textContent = t('Semua tempat pemain sudah terisi.');
+    box.append(note);
     if (m.playersHint) box.append(el('p', { class: 'mg-lobby-note' }, t(m.playersHint)));
   }
 
@@ -270,36 +264,69 @@ export class MiniGameHost {
     if (changed) this.renderLobby();
   }
 
-  private detectDevice(): Device {
-    for (const q of navigator.getGamepads?.() ?? []) if (q && q.connected) return 'pad';
-    return matchMedia('(pointer: coarse)').matches ? 'touch' : 'keyboard';
+  private prof(): PadProfile { return PAD_PROFILES[this.opts.padProfile()] ?? PAD_PROFILES.standar; }
+
+  /** A translated line with {a}, {b}... as gamepad glyphs (Pemain 2+ always play on a pad). */
+  private padLine(s: string): (Node | string)[] { return richLine(s, 'pad', this.prof(), currentPadKind()); }
+
+  /** Legend bar under the canvas: this game's buttons for the device in use, plus pause. */
+  private renderLegend() {
+    const m = this.mod?.meta;
+    if (!m) return;
+    const d = currentDevice();
+    const prof = this.prof();
+    const kind = currentPadKind();
+    renderLegend(this.legend, d === 'pad' && m.padLegend ? m.padLegend : m.legend, d, prof, kind);
+    if (d !== 'touch') {
+      const li = el('li', { class: 'mg-legend-pause' });
+      li.append(...(d === 'pad' ? keyChips('options', d, prof, kind) : [el('kbd', {}, 'Esc')]), el('span', {}, t('Jeda')));
+      this.legend.append(li);
+    }
+    this.fit();
   }
 
-  /** Tutorial block: device tabs plus "button: what it does" rows for this game. */
+  /** Device changed (pad pressed, key typed, screen touched): legend, tutorial and touch buttons follow. */
+  private onDevice = () => {
+    this.renderLegend();
+    this.touch.hidden = currentDevice() === 'pad' || !this.coarse();
+    if (this.tutRefresh) { this.device = currentDevice(); this.tutRefresh(); }
+    this.fit();
+  };
+
+  private coarse() { return matchMedia('(pointer: coarse)').matches || matchMedia('(any-pointer: coarse)').matches; }
+
+  /** Tutorial block: short steps, device tabs, then "button: what it does" rows for this game. */
   private tutorial(): HTMLElement {
     const m = this.mod!.meta;
-    this.device = this.detectDevice();
+    this.device = currentDevice();
     const box = el('div', { class: 'mg-tut' });
-    const tabs = el('div', { class: 'mg-tut-tabs', role: 'group', 'aria-label': t('Cara main') });
+    const steps = el('ol', { class: 'mg-steps' });
+    const tabs = el('div', { class: 'mg-tut-tabs', role: 'group', 'aria-label': t('Tombol untuk perangkat') });
     const list = el('dl', { class: 'mg-tut-list' });
     const note = el('p', { class: 'mg-tut-note' });
     const devs: [Device, string][] = [['keyboard', t('Keyboard')], ['pad', t('Stik game')], ['touch', t('Layar sentuh')]];
     const render = () => {
-      const prof = PAD_PROFILES[this.opts.padProfile()] ?? PAD_PROFILES.standar;
-      const names = this.device === 'keyboard' ? KEY_NAMES : this.device === 'pad' ? padNames(prof.swapFace) : TOUCH_NAMES;
-      list.replaceChildren();
-      if (m.actions) {
-        for (const k of ACTION_ORDER) {
-          const what = m.actions[k];
-          if (!what) continue;
-          list.append(el('dt', {}, t(names[k])), el('dd', {}, t(what)));
-        }
-      } else {
-        for (const c of m.controls) list.append(el('dd', { class: 'wide' }, t(c)));
+      const d = this.device;
+      const prof = this.prof();
+      const kind = currentPadKind();
+      steps.replaceChildren();
+      for (const line of d === 'pad' && m.padTutorial ? m.padTutorial : m.tutorial) {
+        const li = el('li');
+        li.append(...richLine(t(line), d, prof, kind));
+        steps.append(li);
       }
-      const extra = this.device === 'keyboard' ? t('Esc atau P: jeda. M: suara.') : this.device === 'pad' ? t('Options/Start: jeda. Share/Select: keluar dari kartu.') : (m.pointerHint ? t(m.pointerHint) : t('Tombol Jeda ada di bilah atas.'));
-      note.textContent = extra;
-      for (const b of tabs.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.dev === this.device));
+      list.replaceChildren();
+      const rows: [LegendKey, string][] = ACTION_ORDER.flatMap((k) => (m.actions?.[k as Btn | 'arah'] ? [[k, m.actions[k as Btn | 'arah']!] as [LegendKey, string]] : []));
+      if (d === 'pad') for (const k of PAD_ORDER) { const v = m.padActions?.[k as keyof typeof m.padActions]; if (v) rows.push([k, v]); }
+      for (const [k, what] of rows) {
+        const dt = el('dt');
+        dt.append(...keyChips(k, d, prof, kind, true));
+        list.append(dt, el('dd', {}, t(what)));
+      }
+      note.replaceChildren(...(d === 'keyboard' ? [t('Esc atau P: jeda. M: suara.')]
+        : d === 'pad' ? richLine(t('{options}: jeda. {create}: keluar dari kartu.'), d, prof, kind)
+          : [m.pointerHint ? t(m.pointerHint) : t('Tombol Jeda ada di bilah atas.')]));
+      for (const b of tabs.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.dev === d));
     };
     for (const [d, label] of devs) {
       const b = el('button', { type: 'button', class: 'btn mg-tut-tab', 'data-dev': d }, label);
@@ -307,7 +334,8 @@ export class MiniGameHost {
       tabs.append(b);
     }
     render();
-    box.append(el('h4', {}, t('Cara main')), tabs, list, note);
+    this.tutRefresh = render;
+    box.append(el('h4', {}, t('Cara main')), steps, el('h4', { class: 'mg-tut-sub' }, t('Tombol')), tabs, list, note);
     return box;
   }
 
@@ -321,6 +349,8 @@ export class MiniGameHost {
     this.inst = m.create({
       canvas: this.canvas, g: this.g, w: m.meta.view.w, h: m.meta.view.h, rand, seed,
       t: (s, v) => t(s, v), sfx: (n, o) => sound.sfx(n, o), reducedMotion: this.opts.reducedMotion,
+      key: (k, pad) => keyText(k, pad ? 'pad' : currentDevice(), this.prof(), currentPadKind()),
+      rumble: (strength, ms) => this.rumble(strength, ms),
       cast: buildCast(), playerId: 'CH-CEO', players: 1 + this.extras.length,
       end: (r) => { if (!this.result) { this.result = r; this.finish(r); } },
       setHud: (s) => { if (s !== this.hudText) { this.hudText = s; this.hudEl.textContent = s; } },
@@ -369,6 +399,7 @@ export class MiniGameHost {
     window.removeEventListener('keyup', this.onKeyUp, true);
     window.removeEventListener('resize', this.fit);
     window.removeEventListener('blur', this.onBlur);
+    window.removeEventListener('kantor:device', this.onDevice);
     document.documentElement.removeAttribute('data-minigame');
     this.root.remove();
     sound.sfx('back');
@@ -385,6 +416,8 @@ export class MiniGameHost {
       b.addEventListener('click', () => { sound.sfx('confirm'); fn(); });
       row.append(b);
     });
+    // A card without a tutorial (loading, result) must not keep redrawing an old one.
+    if (!extra?.querySelector('.mg-steps')) this.tutRefresh = null;
     this.card.replaceChildren(h, ...body, ...(extra ? [extra] : []), row);
     this.card.hidden = false;
     (row.querySelector('button') as HTMLButtonElement | null)?.focus();
@@ -411,8 +444,8 @@ export class MiniGameHost {
   };
 
   private buildTouch(m: GameMeta) {
-    const coarse = matchMedia('(pointer: coarse)').matches || matchMedia('(any-pointer: coarse)').matches;
-    this.touch.hidden = !coarse;
+    // A pad in hand (iPad or phone with a DualSense) does not need on-screen buttons.
+    this.touch.hidden = !this.coarse() || currentDevice() === 'pad';
     this.touch.replaceChildren();
     const pad = el('div', { class: 'mg-dpad' });
     const btns = el('div', { class: 'mg-btns' });
@@ -483,14 +516,15 @@ export class MiniGameHost {
     this.tap = { x: ((e.clientX - r.left) / r.width) * this.mod.meta.view.w, y: ((e.clientY - r.top) / r.height) * this.mod.meta.view.h };
   }
 
-  private readPad(): { down: Partial<Record<Btn, boolean>>; ax: number; ay: number; start: boolean; select: boolean } {
+  private readPad(): { down: Partial<Record<Btn, boolean>>; ax: number; ay: number; start: boolean; select: boolean; analog?: PadAnalog } {
     const none = { down: {}, ax: 0, ay: 0, start: false, select: false };
     let p: Gamepad | null = null;
     if (this.p1Pad === -1) return none;
     if (this.p1Pad !== null) p = navigator.getGamepads?.()[this.p1Pad] ?? null;
     else for (const q of navigator.getGamepads?.() ?? []) if (q && q.connected && !this.extras.some((x) => x.index === q.index)) { p = q; break; }
     if (!p || !p.connected) return none;
-    const prof = PAD_PROFILES[this.opts.padProfile()] ?? PAD_PROFILES.standar;
+    if (this.padSeen.seen(p)) setDevice('pad', p);
+    const prof = this.prof();
     const f = faceButtons(prof);
     const ax = stickAxes(prof);
     const raw = p.buttons.map((b) => b.pressed || b.value > 0.5);
@@ -508,6 +542,11 @@ export class MiniGameHost {
         left: raw[14] || lx < -0.5, right: raw[15] || lx > 0.5, up: raw[12] || ly < -0.5, down: raw[13] || ly > 0.5,
       },
       ax: raw[14] ? -1 : raw[15] ? 1 : lx, ay: raw[12] ? -1 : raw[13] ? 1 : ly, start, select,
+      analog: {
+        move: [sx, sy], look: [p.axes[ax.look[0]] ?? 0, p.axes[ax.look[1]] ?? 0],
+        l2: p.buttons[6]?.value ?? 0, r2: p.buttons[7]?.value ?? 0, l1: !!raw[4], r1: !!raw[5],
+        dead: dz, aim: prof.aimScale,
+      },
     };
   }
 
@@ -547,7 +586,16 @@ export class MiniGameHost {
     ax = Math.max(-1, Math.min(1, ax));
     ay = Math.max(-1, Math.min(1, ay));
     if (!playing) this.tap = null;
-    return { down, hit, ax, ay, tap: null, ptr: this.ptr ? { ...this.ptr } : null };
+    return { down, hit, ax, ay, tap: null, ptr: this.ptr ? { ...this.ptr } : null, ...(pad.analog ? { pad: pad.analog } : {}) };
+  }
+
+  /** DualSense/Xbox rumble through the Gamepad API (Chrome, Edge); silently absent elsewhere or with reduced motion. */
+  private rumble(strength: number, ms: number) {
+    if (this.opts.reducedMotion || this.p1Pad === -1 || currentDevice() !== 'pad') return;
+    const p = this.p1Pad !== null ? navigator.getGamepads?.()[this.p1Pad] : connectedPads()[0];
+    const v = (p as (Gamepad & { vibrationActuator?: { playEffect?: (t: string, o: object) => Promise<unknown> } }) | null | undefined)?.vibrationActuator;
+    const k = Math.max(0, Math.min(1, strength));
+    void v?.playEffect?.('dual-rumble', { duration: ms, strongMagnitude: k, weakMagnitude: Math.min(1, k * 1.4) })?.catch(() => {});
   }
 
   private moveCardFocus(d: number) {

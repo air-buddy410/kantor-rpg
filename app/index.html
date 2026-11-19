@@ -34,7 +34,7 @@
         <button type="button" class="btn" id="btn-avatar" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/></svg><span class="lbl">Avatar</span></button>
         <button type="button" class="btn" id="btn-chat" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 20l1.3-3.9C1.976 12.663 2.874 8.228 6.4 5.726c3.526-2.501 8.59-2.296 11.845.48c3.255 2.777 3.695 7.266 1.029 10.501S11.659 20.922 7.7 19z"/></svg><span class="lbl">Chat agen</span><kbd>C</kbd></button>
         <button type="button" class="btn" id="btn-boards" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6m4 0h6M4 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm10 0a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg><span class="lbl">Papan kerja</span><kbd>B</kbd></button>
-        <button type="button" class="btn" id="btn-settings" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></svg><span class="lbl">Pengaturan</span></button>
+        <button type="button" class="btn" id="btn-settings" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></svg><span class="lbl">Pengaturan</span><span class="pad-hint" data-pad-hint="options"></span></button>
         <button type="button" class="btn" id="btn-help" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0m9 5v.01"/><path d="M12 13.5a1.5 1.5 0 0 1 1-1.5a2.6 2.6 0 1 0-3-4"/></svg><span class="lbl">Kontrol</span><kbd>H</kbd></button>
       </nav>
     </header>
@@ -43,7 +43,7 @@
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <div class="activity-chip" id="activity" role="status" hidden>
       <span id="activity-text"></span>
-      <button type="button" class="btn" id="activity-end">Selesai <kbd>Esc</kbd></button>
+      <button type="button" class="btn" id="activity-end">Selesai <kbd>Esc</kbd><span class="pad-hint" data-pad-hint="b"></span></button>
     </div>
     <div class="fade" id="fade" aria-hidden="true"></div>
 
@@ -95,8 +95,10 @@
       <dt><kbd>P</kbd></dt><dd>Peta kantor: lokasi semua persona di tiap lantai</dd>
       <dt><kbd>Esc</kbd></dt><dd>Tutup dialog atau panel</dd>
       <dt>Sentuh</dt><dd>Joystick kiri untuk berjalan, tombol Aksi di kanan, seret sisi kanan untuk kamera</dd>
-      <dt>Stik (Xbox, PlayStation, Bluetooth)</dt><dd>Stik kiri berjalan (dorong penuh untuk lari), stik kanan kamera, A interaksi, B kembali, X lari, Y luruskan kamera, LB/RB zoom, Select peta, Start Pengaturan. Di menu: D-pad pindah tombol, A pilih, B tutup.</dd>
     </dl>
+    <h3 class="keys-title" id="help-pad-title">Stik game</h3>
+    <p class="muted small">Tombol menyesuaikan stik yang tersambung dan profil di Pengaturan &gt; Kontroler.</p>
+    <dl class="keys keys-pad" id="help-pad"></dl>
     <form method="dialog" class="dialog-foot"><button class="btn primary" value="close">Mengerti</button></form>
   </dialog>
 

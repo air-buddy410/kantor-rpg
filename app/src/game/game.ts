@@ -8,6 +8,9 @@ import { withFixtures } from '../world/slots';
 import { NavGrid } from '../world/navgrid';
 import type { AccessMode, ActivitySlot, DerivedWalls, Fixture, FloorId, Room, Vec2, VerticalLink, World } from '../world/types';
 import { $, anyDialogOpen, el, openDialog, toast } from '../ui/dom';
+import { currentDevice, currentPadKind } from '../input/mode';
+import { facePart, glyph } from '../input/glyphs';
+import { PAD_PROFILES } from '../input/pad-profiles';
 import { renderDirectory } from '../ui/directory';
 import type { Settings } from '../ui/settings';
 import { CameraRig } from './camera';
@@ -61,6 +64,8 @@ export class Game {
   private timer = new THREE.Timer();
   private interactables: Interactable[] = [];
   private focusTarget: Interactable | null = null;
+  /** What the prompt shows now (device + label), so it is rebuilt only when that changes. */
+  private promptSig = '';
   private labels = new Map<string, HTMLElement>();
   private marker: THREE.Mesh;
   private transitioning = false;
@@ -927,7 +932,7 @@ export class Game {
     this.followSun(pv);
     // Seated CEO (activity) is not in the way; standing or walking CEO is.
     this.npcs.sim.setPlayer(this.activity ? null : this.player.floor, this.player.pos);
-    const labelBlockers = [...document.querySelectorAll('.hud-top, .joystick, .touch-btn, #prompt, .activity-chip, .minimap')]
+    const labelBlockers = [...document.querySelectorAll('.hud-top, .joystick, .touch-btn, #prompt, .activity-chip, .minimap, #pad-legend')]
       .map(el => el.getBoundingClientRect()).filter(r => r.width > 0 && r.height > 0);
     this.npcs.update(frozen ? 0 : dt, this.player.floor, this.rig.camera, this.stage.clientWidth, this.stage.clientHeight, this.settings.reducedMotion, this.player.pos, labelBlockers);
     const agents = [{ floor: this.player.floor, pos: this.player.pos }, ...this.npcs.sim.npcs.map((n) => ({ floor: n.floor, pos: n.pos }))];
@@ -942,13 +947,23 @@ export class Game {
     this.renderer.render(this.scene, this.rig.camera);
   }
 
+  /** "E: Sapa" on a keyboard, "Aksi: Sapa" on touch, the Cross glyph and "Sapa" on a DualSense. */
+  private setPrompt(prompt: HTMLElement, label: string) {
+    const d = currentDevice();
+    const prof = PAD_PROFILES[this.settings.padProfile] ?? PAD_PROFILES.standar;
+    const sig = `${d}|${currentPadKind()}|${prof.swapFace}|${label}`;
+    if (sig === this.promptSig) return;
+    this.promptSig = sig;
+    if (d === 'pad') prompt.replaceChildren(glyph(facePart('a', prof.swapFace), currentPadKind()), ` ${label}`);
+    else prompt.textContent = `${d === 'touch' ? t('Aksi') : 'E'}: ${label}`;
+  }
+
   private updateFocus(dt: number) {
     const prompt = $('prompt');
     if (this.studioOpen) { prompt.hidden = true; this.marker.visible = false; this.focusTarget = null; return; }
     if (this.activity) {
       const act = this.activity.slot.activity;
-      const key = matchMedia('(pointer: coarse)').matches ? t('Aksi') : 'E';
-      prompt.textContent = `${key}: ${act === 'billiards' ? t('Pukul bola') : act === 'game' ? t('Main ronde berikut') : t('Selesai')}`;
+      this.setPrompt(prompt, act === 'billiards' ? t('Pukul bola') : act === 'game' ? t('Main ronde berikut') : t('Selesai'));
       prompt.hidden = false;
       this.focusTarget = null;
       this.marker.visible = false;
@@ -957,11 +972,10 @@ export class Game {
     const it = this.nearestInteractable();
     if (it !== this.focusTarget || prompt.hidden === !!it) {
       this.focusTarget = it;
-      if (it) {
-        prompt.textContent = `${matchMedia('(pointer: coarse)').matches ? t('Aksi') : 'E'}: ${it.label}`;
-        prompt.hidden = false;
-      } else prompt.hidden = true;
+      if (it) prompt.hidden = false;
+      else prompt.hidden = true;
     }
+    if (it) this.setPrompt(prompt, it.label);
     if (it) {
       const elev = this.world.floors.find((f) => f.id === it.floor)!.elevation;
       this.marker.visible = true;
