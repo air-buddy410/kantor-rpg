@@ -4,7 +4,7 @@
 // tambang (pull on the beat, Merah = seats 1 and 3, Putih = seats 2 and 4).
 // Places score 3/2/1/0; the tug winners score 3 each. Most points after three
 // events is juara umum. Up to four local players; empty seats are CPU.
-import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
+import type { CastMember, GameCtx, GameInstance, GameModule, InputState, LegendEntry } from '../types';
 import { PLAYER_COLORS, seatLook } from '../local-players';
 import { PAL, drawChar, roundRect, seatTag, text, type Pose } from '../cast';
 
@@ -73,6 +73,13 @@ const meta: GameModule['meta'] = {
   players: 4,
   playersHint: 'Bareng: sampai 4 pemain. Tarik tambang: Pemain 1 dan 3 tim Merah, 2 dan 4 tim Putih.',
 };
+
+/** The legend under the canvas follows the event: each one uses its own buttons. */
+const EVENT_LEGEND: LegendEntry[][] = [
+  [[['left', 'right'], 'Lompat (gantian)']],
+  [['a', 'Gigit saat kerupuk di mulut']],
+  [['a', 'Tarik tepat pada ketukan']],
+];
 
 const NO_INPUT: InputState = {
   down: { left: false, right: false, up: false, down: false, a: false, b: false, x: false, y: false },
@@ -143,6 +150,7 @@ function create(ctx: GameCtx): GameInstance {
   const placeOf = (i: number) => seats.filter((s, k) => s.doneT >= 0 && (s.doneT < seats[i].doneT || (s.doneT === seats[i].doneT && k < i))).length + 1;
 
   function startEvent() {
+    ctx.setLegend(EVENT_LEGEND[ev]);
     for (const s of seats) {
       Object.assign(s, {
         doneT: -1, cpuT: 0.12 + ctx.rand() * 0.15, planned: false, msgT: 0,

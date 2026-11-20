@@ -4,6 +4,11 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
+## v2.7.3, 20 November 2026
+
+- Arena Bom: a wider board (19 x 11 tiles, was 15 x 13) that fills a TV, with tiles about 17% bigger. Rounds won show on each player's card.
+- 17 August Games: the button list under the game shows only the buttons of the event being played.
+
 ## v2.7.2, 20 November 2026
 
 **Clearer multiplayer, Arena Bom with 4 players fixed**
