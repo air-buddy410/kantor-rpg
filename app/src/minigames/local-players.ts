@@ -100,4 +100,14 @@ export class PadPlayer {
 }
 
 /** Player colours for cursors, labels and markers (P1..P4). */
-export const PLAYER_COLORS = ['#d9573b', '#2f7fc1', '#3f9a54', '#c99a1e'];
+// white text passes 4.5:1 on the first three; yellow (5.8:1 with dark ink) takes dark text (cast.ts onSeat)
+export const PLAYER_COLORS = ['#c4462b', '#2a74b5', '#2e8546', '#c99a1e'];
+const SEAT_DARK = ['#8a2e1b', '#1b4f7c', '#1f5c30', '#8a6a10'];
+
+/**
+ * A cast member dressed in the seat colour. With 4 people on one screen the
+ * shirt is what eyes track; Budi's green shirt read as Pemain 3 (green).
+ */
+export function seatLook<T extends { main: string; accent: string }>(c: T, seat: number): T {
+  return { ...c, main: PLAYER_COLORS[seat], accent: SEAT_DARK[seat] };
+}

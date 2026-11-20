@@ -5,8 +5,8 @@
 // Places score 3/2/1/0; the tug winners score 3 each. Most points after three
 // events is juara umum. Up to four local players; empty seats are CPU.
 import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
-import { PLAYER_COLORS } from '../local-players';
-import { PAL, drawChar, roundRect, text, type Pose } from '../cast';
+import { PLAYER_COLORS, seatLook } from '../local-players';
+import { PAL, drawChar, roundRect, seatTag, text, type Pose } from '../cast';
 
 export const TITLE_T = 2;
 export const COUNT_T = 3;
@@ -131,6 +131,8 @@ function create(ctx: GameCtx): GameInstance {
   const total = (i: number) => points[i] * 100 + bonus[i];
   const standings = () => [0, 1, 2, 3].sort((a, b) => total(b) - total(a) || a - b);
   const label = (i: number) => (versus ? (i < humans ? `P${i + 1} ${seats[i].c.name}` : seats[i].c.name) : i === 0 ? ctx.t('Kamu') : seats[i].c.name);
+  /** Human seats wear their seat colour in versus, so each player tracks their own shirt. */
+  const dressed = (i: number) => (versus && i < humans ? seatLook(seats[i].c, i) : seats[i].c);
   const colorOf = (i: number) => (versus ? (i < humans ? PLAYER_COLORS[i] : PAL.ink2) : i === 0 ? PAL.accent : PAL.ink2);
   const hud = () => ctx.setHud(versus
     ? ctx.t('Lomba {n}/3 · {list}', { n: ev + 1, list: points.slice(0, humans).map((p, i) => `P${i + 1} ${p}`).join(' · ') })
@@ -461,6 +463,16 @@ function create(ctx: GameCtx): GameInstance {
     });
   }
 
+  /** Lane name on a light pill with the seat colour on its left edge (coloured text on grass was unreadable). */
+  function laneLabel(s: string, x: number, y: number, seat: string | null) {
+    g.font = "800 12px 'Alegreya Sans', system-ui, sans-serif";
+    const tw = g.measureText(s).width;
+    g.fillStyle = 'rgba(255,250,240,0.92)';
+    roundRect(g, x, y - 10, tw + (seat ? 18 : 12), 20, 10);
+    if (seat) { g.fillStyle = seat; roundRect(g, x, y - 10, 7, 20, 3.5); }
+    text(g, s, x + (seat ? 12 : 6), y, 12, PAL.ink, 'left', 800);
+  }
+
   function badge(i: number, x: number, y: number) {
     const s = seats[i];
     if (s.msgT > 0) {
@@ -493,14 +505,14 @@ function create(ctx: GameCtx): GameInstance {
       const feet = 68 + i * 82 + 74;
       const px = START + (Math.min(s.x, TRACK + 1.5) / TRACK) * (FIN - START);
       const air = s.hopT > 0 ? Math.sin(Math.PI * (1 - s.hopT / HOP_T)) * (s.hopD === HOP_D ? 16 : 10) : 0;
-      text(g, label(i), 8, feet - 60, 12, colorOf(i), 'left', 800);
+      laneLabel(label(i), 8, feet - 60, versus && i < humans ? PLAYER_COLORS[i] : null);
       g.fillStyle = 'rgba(0,0,0,0.2)';
       g.beginPath(); g.ellipse(px + 2, feet + 1, 16 - air * 0.4, 4, 0, 0, Math.PI * 2); g.fill();
       const pose: Pose = s.stumble > 0 ? 'hurt' : s.doneT >= 0 && s.hopT <= 0 ? 'win' : s.hopT > 0 ? 'jump' : 'idle';
       g.save();
       g.translate(px, feet - air);
       if (s.stumble > 0) g.rotate(0.35);
-      drawChar(g, s.c, 0, 0, 60, 1, pose, time);
+      drawChar(g, dressed(i), 0, 0, 60, 1, pose, time);
       // the sack covers legs and hips
       g.fillStyle = SACK;
       roundRect(g, -13, -30, 28, 32, 5);
@@ -508,7 +520,8 @@ function create(ctx: GameCtx): GameInstance {
       g.fillRect(-13, -27, 28, 2);
       g.fillRect(-13, -14, 28, 1.5);
       g.restore();
-      if (!s.cpu || versus) {
+      if (versus && i < humans) seatTag(g, `P${i + 1}`, px + 26, feet - air - 46, PLAYER_COLORS[i]);
+      else if (!s.cpu) {
         g.fillStyle = colorOf(i);
         g.beginPath(); g.moveTo(px - 5, feet - air - 72); g.lineTo(px + 5, feet - air - 72); g.lineTo(px, feet - air - 66); g.closePath(); g.fill();
       }
@@ -535,7 +548,7 @@ function create(ctx: GameCtx): GameInstance {
       roundRect(g, mx - ZONE * AMP - 3, POLE + LEN - 34, ZONE * AMP * 2 + 6, 66, 8);
       g.fillStyle = 'rgba(0,0,0,0.2)';
       g.beginPath(); g.ellipse(cx + 2, FEET + 1, 26, 5, 0, 0, Math.PI * 2); g.fill();
-      drawChar(g, s.c, cx, FEET, 118, 1, s.choke > 0 ? 'hurt' : s.doneT >= 0 ? 'win' : 'idle', time);
+      drawChar(g, dressed(i), cx, FEET, 118, 1, s.choke > 0 ? 'hurt' : s.doneT >= 0 ? 'win' : 'idle', time);
       g.strokeStyle = '#6b5a48';
       g.lineWidth = 1.2;
       g.beginPath(); g.moveTo(mx, POLE); g.lineTo(kx, ky); g.stroke();
@@ -552,7 +565,9 @@ function create(ctx: GameCtx): GameInstance {
         g.fillStyle = '#d8c08a';
         for (let k = 0; k < 4; k++) { g.beginPath(); g.arc(kx + Math.cos(k * 1.7) * r * 0.5, ky + Math.sin(k * 1.7) * r * 0.5, 1.8, 0, Math.PI * 2); g.fill(); }
       }
-      text(g, `${s.bites}/${BITES}`, cx, FEET + 16, 13, colorOf(i), 'center', 800);
+      // kerupuk: who stands where, under the feet (the head is busy with the cracker)
+      if (versus && i < humans) seatTag(g, `P${i + 1} · ${s.bites}/${BITES}`, cx, FEET + 18, PLAYER_COLORS[i], 12);
+      else text(g, `${s.bites}/${BITES}`, cx, FEET + 16, 13, colorOf(i), 'center', 800);
       if (s.choke > 0) {
         g.fillStyle = 'rgba(184,69,46,0.25)';
         roundRect(g, cx - 36, POLE + 16, 72, 6, 3);
@@ -587,9 +602,10 @@ function create(ctx: GameCtx): GameInstance {
       g.save();
       g.translate(x, FEET);
       g.rotate(-face * (0.22 + (s.pullT > 0 ? 0.2 * (s.pullT / 0.3) : 0)));
-      drawChar(g, s.c, 0, 0, 96, face, 'punch', time);
+      drawChar(g, dressed(i), 0, 0, 96, face, 'punch', time);
       g.restore();
-      if (!s.cpu || versus) {
+      if (versus && i < humans) seatTag(g, `P${i + 1}`, x, FEET - 122, PLAYER_COLORS[i]);
+      else if (!s.cpu) {
         g.fillStyle = colorOf(i);
         g.beginPath(); g.moveTo(x - 5, FEET - 118); g.lineTo(x + 5, FEET - 118); g.lineTo(x, FEET - 112); g.closePath(); g.fill();
       }

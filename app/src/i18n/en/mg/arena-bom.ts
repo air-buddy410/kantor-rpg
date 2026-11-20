@@ -14,6 +14,7 @@ export const EN_ARENA_BOM: Record<string, string> = {
   'Ronde {r} · {w}-{l}': 'Round {r} · {w}-{l}',
   'Ronde {r}': 'Round {r}',
   'Bersiap...': 'Get ready...',
+  'Cari tanda P di atas kepalamu': 'Find the P tag over your head',
   'Mulai!': 'Go!',
   'Kamu menang ronde ini!': 'You won this round!',
   'Kamu tersingkir': 'You are out',
@@ -26,5 +27,5 @@ export const EN_ARENA_BOM: Record<string, string> = {
   'Seri, tidak ada pemenang': 'Draw, no winner',
   'Pemain {n} menang ronde!': 'Player {n} wins the round!',
   'Komputer bertahan terakhir': 'A computer player lasted longest',
-  'Bareng: sampai 4 pemain, sudut yang kosong diisi komputer. Yang terakhir bertahan menang ronde.': 'Together: up to 4 players, empty corners go to the computer. Last one standing wins the round.',
+  'Bareng: sampai 4 pemain. P1 kiri atas, P2 kanan atas, P3 kanan bawah, P4 kiri bawah; sudut kosong diisi komputer. Yang terakhir bertahan menang ronde.': 'Together: up to 4 players. P1 top left, P2 top right, P3 bottom right, P4 bottom left; empty corners are played by the computer. Last one standing wins the round.',
 };

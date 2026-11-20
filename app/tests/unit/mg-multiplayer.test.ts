@@ -61,12 +61,36 @@ describe('local multiplayer: each player moves with their own pad', () => {
     expect(s.phase).toBe('play');
     expect(s.humans).toBe(2);
     const p2 = s.players[1];
-    r.stepPlayers(30, [{}, { held: ['up'] }]);
+    // Pemain 2 starts top right (clockwise spawns), so it walks down the edge lane
+    r.stepPlayers(30, [{}, { held: ['down'] }]);
     s = r.snap() as Snap;
-    expect(s.players[1].y).toBeLessThan(p2.y - 0.5);
+    expect(s.players[1].y).toBeGreaterThan(p2.y + 0.5);
     // Pemain 2 drops its own bomb
     r.stepPlayers(1, [{}, { press: ['a'] }]);
     expect((r.snap() as Snap).bombs).toBeGreaterThanOrEqual(1);
+  });
+
+  it('Arena Bom 4 players: no seat is driven by the computer (Budi 2026-11-20: 4P game was a mess)', () => {
+    const r = run(arena, 11, 4);
+    r.stepPlayers(110, [{}, {}, {}, {}]);
+    const a = (r.snap() as Snap).players.map((p: { x: number; y: number }) => [p.x, p.y]);
+    r.stepPlayers(240, [{}, {}, {}, {}]);
+    const s = r.snap() as Snap;
+    // nobody touches a stick: every player stays on its spawn and drops no bomb
+    expect(s.players.map((p: { x: number; y: number }) => [p.x, p.y])).toEqual(a);
+    expect(s.bombs).toBe(0);
+    // spawns go round the board clockwise, in the order of the top bar
+    expect(a).toEqual([[1, 1], [13, 1], [13, 11], [1, 11]]);
+  });
+
+  it('Arena Bom 2 players: Pemain 2 is not steered by the computer, the empty corners are', () => {
+    const r = run(arena, 11, 2);
+    r.stepPlayers(110, [{}, {}]);
+    const a = (r.snap() as Snap).players.map((p: { x: number; y: number }) => [p.x, p.y]);
+    r.stepPlayers(240, [{}, {}]);
+    const s = (r.snap() as Snap).players.map((p: { x: number; y: number }) => [p.x, p.y]);
+    expect(s.slice(0, 2)).toEqual(a.slice(0, 2));
+    expect(s.slice(2)).not.toEqual(a.slice(2));
   });
 
   it('Arena Bom versus: the match result names the winning player and saves no score', () => {

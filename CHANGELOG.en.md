@@ -4,6 +4,17 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
+## v2.7.2, 20 November 2026
+
+**Clearer multiplayer, Arena Bom with 4 players fixed**
+
+- Arena Bom: Players 2 to 4 are no longer also moved by the computer. Before, the player's pad and the computer both steered the same character, so it walked and dropped bombs by itself.
+- Arena Bom: start corners go clockwise in the order of the top cards (P1 top left, P2 top right, P3 bottom right, P4 bottom left), also written on the intro screen.
+- Every multiplayer game (Arena Bom, Table Football, Cable Snake, Flash Technician, 17 August Games, Table Hockey): player characters wear their player colour (red, blue, green, yellow), with a coloured P1 to P4 tag over the head and a colour ring at the feet.
+- Player colours are a little darker so white text on them is readable.
+- 17 August Games: each lane name sits on a light label (it was green text on grass).
+- Table Hockey: the centre line is neutral, no longer red like Player 1.
+
 ## v2.7.1, 19 November 2026 (release `d488398`)
 
 **Easier phone controller**
