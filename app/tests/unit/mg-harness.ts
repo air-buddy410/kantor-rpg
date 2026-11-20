@@ -27,6 +27,7 @@ export interface Run {
   /** Rumble requests the game made: [strength, ms]. */
   rumbles: [number, number][];
   hud: string;
+  legend: unknown;
   sfx: string[];
   /** Advance n frames (1/60 s each) holding `held` buttons; `press` is a one-frame hit. */
   step(n?: number, held?: Btn[], press?: Btn[], axis?: { x: number; y: number }, tap?: { x: number; y: number } | null): void;
@@ -52,7 +53,7 @@ export function run(mod: GameModule, seed = 20261013, players = 1): Run {
   const g = fakeContext();
   const rand = mulberry(seed);
   const r: Run = {
-    result: null, hud: '', sfx: [], rumbles: [],
+    result: null, hud: '', legend: null, sfx: [], rumbles: [],
     ctx: null as unknown as GameCtx,
     step(n = 1, held = [], press = [], axis, tap = null) {
       for (let i = 0; i < n && !r.result; i++) {
@@ -100,6 +101,7 @@ export function run(mod: GameModule, seed = 20261013, players = 1): Run {
     players,
     end: (res) => { if (!r.result) r.result = res; },
     setHud: (s) => { r.hud = s; },
+    setLegend: (e) => { r.legend = e; },
   };
   const inst = mod.create(r.ctx);
   return r;

@@ -80,7 +80,7 @@ describe('local multiplayer: each player moves with their own pad', () => {
     expect(s.players.map((p: { x: number; y: number }) => [p.x, p.y])).toEqual(a);
     expect(s.bombs).toBe(0);
     // spawns go round the board clockwise, in the order of the top bar
-    expect(a).toEqual([[1, 1], [13, 1], [13, 11], [1, 11]]);
+    expect(a).toEqual([[1, 1], [17, 1], [17, 9], [1, 9]]);
   });
 
   it('Arena Bom 2 players: Pemain 2 is not steered by the computer, the empty corners are', () => {

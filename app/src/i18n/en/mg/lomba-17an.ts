@@ -7,6 +7,8 @@ export const EN_LOMBA_17AN: Record<string, string> = {
   'Tarik tambang: tekan {a} tepat pada ketukan untuk tarikan kuat.': 'Tug of war: press {a} right on the beat for a strong pull.',
   'Lompat (gantian)': 'Hop (alternate)',
   'Gigit / tarik': 'Bite / pull',
+  'Gigit saat kerupuk di mulut': 'Bite when the cracker is at your mouth',
+  'Tarik tepat pada ketukan': 'Pull on the beat',
   'Lompat, gantian dengan kanan': 'Hop, alternate with right',
   'Lompat, gantian dengan kiri': 'Hop, alternate with left',
   'Lompat pelan, gigit kerupuk, tarik tambang': 'Slow hop, bite the cracker, pull the rope',

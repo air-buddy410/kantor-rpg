@@ -184,4 +184,13 @@ describe('mini game: lomba-17an', () => {
     expect(a.snap()).toEqual(b.snap());
     expect(a.sfx).toEqual(b.sfx);
   });
+  it('the legend under the game follows the event (Budi 2026-11-20: all three showed at once)', () => {
+    const r = run(lomba, 5, 1);
+    const keys = () => JSON.stringify((r.legend as [unknown, string][] | null)?.map((e) => e[0]));
+    expect(keys()).toBe(JSON.stringify([['left', 'right']]));
+    const ev = () => (r.snap() as { ev: number }).ev;
+    for (let f = 0; f < 60 * 240 && ev() === 0; f++) r.step(1, f % 2 ? ['left'] : ['right']);
+    expect(ev()).toBe(1);
+    expect(keys()).toBe(JSON.stringify(['a']));
+  });
 });

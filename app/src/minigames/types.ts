@@ -144,6 +144,8 @@ export interface GameCtx {
   end(r: GameResult): void;
   /** Live score shown in the host bar. */
   setHud(text: string): void;
+  /** Swap the button legend under the canvas mid-game (one game, several events); null = back to meta. */
+  setLegend(entries: LegendEntry[] | null): void;
 }
 
 export interface CastMember {

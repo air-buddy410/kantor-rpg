@@ -8,8 +8,10 @@ import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '
 import { PLAYER_COLORS, seatLook } from '../local-players';
 import { PAL, drawToken, roundRect, seatRing, seatTag, text } from '../cast';
 
-export const GW = 15;
-export const GH = 13;
+// 19x11 (was 15x13): about as many cells, but the board fills a 16:9 TV, so tiles
+// are ~17% bigger from the sofa (Budi 2026-11-20: 4P on the TV was too small)
+export const GW = 19;
+export const GH = 11;
 export const FLOOR = 0;
 export const WALL = 1;
 export const BOX = 2;
@@ -670,16 +672,18 @@ function create(ctx: GameCtx): GameInstance {
       // top bar
       const left = Math.max(0, ROUND_T - roundT);
       cast.forEach((c, i) => {
-        const x = 8 + i * 118;
+        const x = 8 + i * 148;
         const p = players[i];
         g.fillStyle = p.alive ? (i === 0 && !versus ? '#e7efe0' : '#f2e8d6') : '#e2dcd2';
-        roundRect(g, x, 5, 112, 30, 8);
+        roundRect(g, x, 5, 142, 30, 8);
         if (versus && i < humans) { g.fillStyle = PLAYER_COLORS[i]; roundRect(g, x, 5, 6, 30, 3); }
         g.globalAlpha = p.alive ? 1 : 0.4;
         drawToken(g, look(i), x + 17, 19, 10, time, false);
         g.globalAlpha = 1;
-        if (versus && i < humans) { g.fillStyle = PLAYER_COLORS[i]; roundRect(g, x, 31, 112, 4, 2); }
+        if (versus && i < humans) { g.fillStyle = PLAYER_COLORS[i]; roundRect(g, x, 31, 142, 4, 2); }
         text(g, versus ? (i < humans ? `P${i + 1} ${c.name}` : c.name) : i === 0 ? ctx.t('Kamu') : c.name, x + 34, 20, 13, p.alive ? PAL.ink : PAL.ink2, 'left');
+        // rounds won, on the card itself: easier to follow than the header line
+        if (versus) text(g, `${winsBy[i]}`, x + 132, 20, 16, PAL.ink, 'right', 800);
       });
       text(g, roundT >= ROUND_T ? ctx.t('Menyempit!') : `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`, w - 64, 13, 15, roundT >= ROUND_T ? PAL.red : PAL.ink);
       text(g, versus ? ctx.t('Ronde {r}', { r: round }) : ctx.t('Ronde {r} · {w}-{l}', { r: round, w: wins, l: losses }), w - 64, 30, 12, PAL.ink2);

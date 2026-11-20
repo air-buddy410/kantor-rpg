@@ -7,7 +7,7 @@ import { t } from '../i18n';
 import { sound } from '../audio';
 import { buildCast } from './cast';
 import { GAMES } from './registry';
-import { BTNS, type Btn, type GameInstance, type GameMeta, type GameModule, type GameResult, type InputState, type LegendKey, type PadAnalog } from './types';
+import { BTNS, type Btn, type GameInstance, type GameMeta, type GameModule, type GameResult, type InputState, type LegendEntry, type LegendKey, type PadAnalog } from './types';
 import { PAD_PROFILES, faceButtons, stickAxes, type PadProfile } from '../input/pad-profiles';
 import { PadActivity, currentDevice, currentPadKind, setDevice, trackDevices, type Device } from '../input/mode';
 import { keyChips, keyText, renderLegend, richLine } from '../input/legend';
@@ -112,6 +112,8 @@ export class MiniGameHost {
   private seed: number;
   private runs = 0;
   private hudText = '';
+  /** Legend the running game asked for (Lomba 17-an: one per event). */
+  private legendOverride: LegendEntry[] | null = null;
   private escHeld = false;
   /** Last frame state for tests (window.__kantor.minigame()). */
   frames = 0;
@@ -291,7 +293,7 @@ export class MiniGameHost {
     const d = currentDevice();
     const prof = this.prof();
     const kind = currentPadKind();
-    renderLegend(this.legend, d === 'pad' && m.padLegend ? m.padLegend : m.legend, d, prof, kind);
+    renderLegend(this.legend, this.legendOverride ?? (d === 'pad' && m.padLegend ? m.padLegend : m.legend), d, prof, kind);
     if (d !== 'touch') {
       const li = el('li', { class: 'mg-legend-pause' });
       li.append(...(d === 'pad' ? keyChips('options', d, prof, kind) : [el('kbd', {}, 'Esc')]), el('span', {}, t('Jeda')));
@@ -361,6 +363,7 @@ export class MiniGameHost {
     this.result = null;
     this.inst?.dispose?.();
     const rand = mulberry32(seed);
+    if (this.legendOverride) { this.legendOverride = null; this.renderLegend(); }
     this.inst = m.create({
       canvas: this.canvas, g: this.g, w: m.meta.view.w, h: m.meta.view.h, rand, seed,
       t: (s, v) => t(s, v), sfx: (n, o) => sound.sfx(n, o), reducedMotion: this.opts.reducedMotion,
@@ -369,6 +372,7 @@ export class MiniGameHost {
       cast: buildCast(), playerId: 'CH-CEO', players: this.humans(),
       end: (r) => { if (!this.result) { this.result = r; this.finish(r); } },
       setHud: (s) => { if (s !== this.hudText) { this.hudText = s; this.hudEl.textContent = s; } },
+      setLegend: (e) => { this.legendOverride = e; this.renderLegend(); },
     });
     this.hideCard();
     this.phase = 'play';
