@@ -3,8 +3,8 @@
 // ends their round. Last one running wins the round, first to 3 rounds wins.
 // Up to four local players take the corners; empty corners are CPU.
 import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
-import { PLAYER_COLORS } from '../local-players';
-import { PAL, drawToken, roundRect, text } from '../cast';
+import { PLAYER_COLORS, seatLook } from '../local-players';
+import { PAL, drawToken, roundRect, seatTag, text } from '../cast';
 
 export const GW = 64;
 export const GH = 40;
@@ -335,7 +335,7 @@ function create(ctx: GameCtx): GameInstance {
         g.fillStyle = PLAYER_COLORS[i];
         roundRect(g, x, 5, 6, 34, 3);
         g.globalAlpha = r.alive ? 1 : 0.45;
-        drawToken(g, r.c, x + 22, 20, 10, time, false);
+        drawToken(g, versus && i < humans ? seatLook(r.c, i) : r.c, x + 22, 20, 10, time, false);
         g.globalAlpha = 1;
         text(g, versus && i < humans ? `P${i + 1} ${r.c.name}` : i === 0 ? ctx.t('Kamu') : r.c.name, x + 38, 15, 13, r.alive ? PAL.ink : PAL.ink2, 'left');
         for (let k = 0; k < BOOSTS; k++) {
@@ -411,7 +411,7 @@ function create(ctx: GameCtx): GameInstance {
         const cx = (hx + 0.5) * T, cy = (hy + 0.5) * T;
         g.fillStyle = PLAYER_COLORS[i];
         g.beginPath(); g.arc(cx, cy, r.boostT > 0 ? 11.5 : 9, 0, Math.PI * 2); g.fill();
-        drawToken(g, r.c, cx, cy - 1, 7.5, time, phase === 'play' && !ctx.reducedMotion);
+        drawToken(g, versus && i < humans ? seatLook(r.c, i) : r.c, cx, cy - 1, 7.5, time, phase === 'play' && !ctx.reducedMotion);
         if (phase === 'count') {
           // heading arrow, plus a name tag on human seats so each player finds their corner
           const d = r.queue[0] ?? r.dir;
@@ -422,8 +422,10 @@ function create(ctx: GameCtx): GameInstance {
           g.lineTo(tx - DX[d] * 9 - DY[d] * 6, ty - DY[d] * 9 + DX[d] * 6);
           g.lineTo(tx - DX[d] * 9 + DY[d] * 6, ty - DY[d] * 9 - DX[d] * 6);
           g.closePath(); g.fill();
-          if (i < humans) text(g, tag(i), cx, cy + (r.y < GH / 2 ? 22 : -22), 13, PLAYER_COLORS[i]);
+          if (i < humans && !versus) text(g, tag(i), cx, cy + (r.y < GH / 2 ? 22 : -22), 13, PLAYER_COLORS[i]);
         }
+        // versus: the P tag rides with the head the whole round, on the side away from the wall
+        if (versus && i < humans) seatTag(g, tag(i), cx, cy + (hy < GH / 2 ? 24 : -24), PLAYER_COLORS[i], 12);
       });
       g.restore();
 

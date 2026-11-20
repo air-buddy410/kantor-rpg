@@ -150,6 +150,40 @@ export function drawToken(g: CanvasRenderingContext2D, c: CastMember, x: number,
   g.restore();
 }
 
+/**
+ * Seat marker for local multiplayer: a ring on the floor under the player in
+ * its seat colour, with a dark outline so it shows on any floor or shirt.
+ */
+export function seatRing(g: CanvasRenderingContext2D, x: number, y: number, r: number, color: string) {
+  g.save();
+  g.lineWidth = 6; g.strokeStyle = 'rgba(29,42,35,0.55)';
+  g.beginPath(); g.ellipse(x, y, r, r * 0.42, 0, 0, Math.PI * 2); g.stroke();
+  g.lineWidth = 3.5; g.strokeStyle = color;
+  g.beginPath(); g.ellipse(x, y, r, r * 0.42, 0, 0, Math.PI * 2); g.stroke();
+  g.restore();
+}
+
+/** "P2" on a pill in the seat colour, white text, for over a player's head. */
+export function seatTag(g: CanvasRenderingContext2D, label: string, x: number, y: number, color: string, size = 13) {
+  g.save();
+  g.font = `800 ${size}px 'Alegreya Sans', system-ui, sans-serif`;
+  const w = g.measureText(label).width + size * 0.9, h = size + 7;
+  g.fillStyle = 'rgba(29,42,35,0.6)';
+  roundRect(g, x - w / 2 - 1.5, y - h / 2 - 1.5, w + 3, h + 3, h / 2 + 1.5);
+  g.fillStyle = color;
+  roundRect(g, x - w / 2, y - h / 2, w, h, h / 2);
+  g.beginPath(); g.moveTo(x - 4, y + h / 2 - 0.5); g.lineTo(x + 4, y + h / 2 - 0.5); g.lineTo(x, y + h / 2 + 5); g.closePath(); g.fill();
+  g.restore();
+  text(g, label, x, y + 0.5, size, onSeat(color), 'center', 800);
+}
+
+/** Text colour on a seat colour: white, or dark ink on the light yellow seat. */
+export function onSeat(color: string): string {
+  const n = parseInt(color.slice(1), 16);
+  const lum = (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  return lum > 0.55 ? '#1d2a23' : '#ffffff';
+}
+
 export function roundRect(g: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   g.beginPath();
   g.moveTo(x + r, y);

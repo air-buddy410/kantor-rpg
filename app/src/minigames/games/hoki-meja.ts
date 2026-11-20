@@ -6,7 +6,7 @@
 // frame is split into sub-steps of at most half a puck radius of relative
 // travel, so a fast puck never tunnels through a mallet or a rail.
 import type { CastMember, GameCtx, GameInstance, GameModule } from '../types';
-import { PLAYER_COLORS } from '../local-players';
+import { PLAYER_COLORS, seatLook } from '../local-players';
 import { PAL, drawToken, roundRect, text } from '../cast';
 
 export const TABLE = { x0: 40, y0: 64, x1: 920, y1: 544 };
@@ -499,7 +499,8 @@ function create(ctx: GameCtx): GameInstance {
     // air holes
     g.fillStyle = 'rgba(47,90,120,0.16)';
     for (let x = x0 + 20; x < x1; x += 28) for (let y = y0 + 20; y < y1; y += 28) g.fillRect(x - 1, y - 1, 2, 2);
-    g.strokeStyle = PAL.red;
+    // centre line and circle stay neutral: red read as Pemain 1's line
+    g.strokeStyle = 'rgba(29,42,35,0.35)';
     g.lineWidth = 4;
     g.beginPath(); g.moveTo(MIDX, y0); g.lineTo(MIDX, y1); g.stroke();
     g.lineWidth = 3;
@@ -552,7 +553,7 @@ function create(ctx: GameCtx): GameInstance {
     for (const k of [0, 1] as const) {
       const left = k === 0;
       const tx = left ? 30 : w - 30;
-      drawToken(g, who[k], tx, 24, 13, time, false);
+      drawToken(g, versus ? seatLook(who[k], k) : who[k], tx, 24, 13, time, false);
       text(g, label(k), left ? 52 : w - 52, 16, 15, PLAYER_COLORS[k], left ? 'left' : 'right', 800);
       text(g, who[k].name, left ? 52 : w - 52, 34, 13, PAL.sand, left ? 'left' : 'right', 600);
     }

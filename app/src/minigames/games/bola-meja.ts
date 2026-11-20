@@ -5,7 +5,7 @@
 // teammate against two CPU rivals.
 import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
 import { PLAYER_COLORS } from '../local-players';
-import { PAL, drawToken, roundRect, text } from '../cast';
+import { PAL, drawToken, roundRect, seatTag, text } from '../cast';
 
 export const FW = 960;
 export const FH = 600;
@@ -564,9 +564,12 @@ function create(ctx: GameCtx): GameInstance {
     g.beginPath(); g.arc(p.x, p.y, PR, 0, Math.PI * 2); g.fill();
     g.globalAlpha = 1;
     if (!p.cpu) {
+      g.strokeStyle = 'rgba(29,42,35,0.6)';
+      g.lineWidth = 7;
+      g.beginPath(); g.arc(p.x, p.y, PR + 4, 0, Math.PI * 2); g.stroke();
       g.strokeStyle = PLAYER_COLORS[p.seat];
-      g.lineWidth = 3;
-      g.beginPath(); g.arc(p.x, p.y, PR + 3, 0, Math.PI * 2); g.stroke();
+      g.lineWidth = 4;
+      g.beginPath(); g.arc(p.x, p.y, PR + 4, 0, Math.PI * 2); g.stroke();
     }
     // facing tick: where a kick goes when no direction is held
     const tx = p.x + p.fx * (PR + 8), ty = p.y + p.fy * (PR + 8);
@@ -582,15 +585,8 @@ function create(ctx: GameCtx): GameInstance {
     }
     drawToken(g, p.look, p.x, p.y - 6, 16, time + p.seat, Math.hypot(p.vx, p.vy) > 30);
     if (p.cpu) return;
-    // name tag on a dark pill: player colours alone were unreadable on the grass
-    const tag = label(p);
-    g.font = "700 13px 'Alegreya Sans', system-ui, sans-serif";
-    const tw = g.measureText(tag).width + 12;
-    g.fillStyle = 'rgba(29,42,35,0.82)';
-    roundRect(g, p.x - tw / 2, p.y - PR - 30, tw, 19, 9);
-    g.fillStyle = PLAYER_COLORS[p.seat];
-    roundRect(g, p.x - tw / 2, p.y - PR - 30, 4, 19, 2);
-    text(g, tag, p.x + 2, p.y - PR - 20, 13, '#fffaf0');
+    // name tag in the seat colour: the same pill every multiplayer game uses
+    seatTag(g, label(p), p.x, p.y - PR - 22, PLAYER_COLORS[p.seat]);
     g.fillStyle = 'rgba(0,0,0,0.35)';
     roundRect(g, p.x - 16, p.y + PR + 6, 32, 5, 2);
     g.fillStyle = p.tired ? PAL.red : '#f2d16b';

@@ -4,6 +4,17 @@
 
 Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di [demo publik](https://employee-rpg.air-buddy.site) setelah tes dan CI lulus. Kode rilis adalah commit di `main`.
 
+## v2.7.2, 20 November 2026
+
+**Multiplayer lebih jelas, Arena Bom 4 pemain diperbaiki**
+
+- Arena Bom: Pemain 2 sampai 4 tidak lagi ikut digerakkan komputer. Sebelumnya stik pemain dan komputer berebut menyetir karakter yang sama, jadi karakter jalan dan pasang bom sendiri.
+- Arena Bom: posisi awal searah jarum jam sesuai urutan kartu di atas (P1 kiri atas, P2 kanan atas, P3 kanan bawah, P4 kiri bawah), tertulis juga di layar pembuka.
+- Semua game multiplayer (Arena Bom, Bola Meja, Ular Kabel, Teknisi Kilat, Lomba 17-an, Hoki Meja): baju karakter pemain memakai warna pemainnya (merah, biru, hijau, kuning), plus label P1 sampai P4 berwarna di atas kepala dan cincin warna di kaki.
+- Warna pemain sedikit lebih gelap supaya tulisan putih di atasnya terbaca.
+- Lomba 17-an: nama tiap jalur di atas label terang (sebelumnya tulisan hijau di atas rumput).
+- Hoki Meja: garis tengah netral, tidak lagi merah seperti warna Pemain 1.
+
 ## v2.7.1, 19 November 2026 (rilis `d488398`)
 
 **Kontroler HP lebih gampang dipakai**

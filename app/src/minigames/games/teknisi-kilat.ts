@@ -5,8 +5,8 @@
 // No CPU players: every technician is a human, and more humans means more
 // tickets, so the shift stays busy at any table size.
 import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
-import { PLAYER_COLORS } from '../local-players';
-import { PAL, drawToken, roundRect, text } from '../cast';
+import { PLAYER_COLORS, seatLook } from '../local-players';
+import { PAL, drawToken, roundRect, seatRing, seatTag, text } from '../cast';
 
 export type Tool = 'ont' | 'kabel' | 'konektor' | 'splitter';
 export const TOOLS: Tool[] = ['ont', 'kabel', 'konektor', 'splitter'];
@@ -369,11 +369,9 @@ function create(ctx: GameCtx): GameInstance {
 
   function drawTech(i: number) {
     const p = techs[i];
-    g.strokeStyle = PLAYER_COLORS[i];
-    g.lineWidth = 3;
-    g.beginPath(); g.ellipse(p.x, p.y + 12, 15, 6, 0, 0, Math.PI * 2); g.stroke();
-    drawToken(g, p.c, p.x, p.y - 4, 14, time, p.moving && !ctx.reducedMotion);
-    if (humans > 1) text(g, `P${i + 1}`, p.x, p.y - 30, 11, PLAYER_COLORS[i]);
+    seatRing(g, p.x, p.y + 12, 16, PLAYER_COLORS[i]);
+    drawToken(g, humans > 1 ? seatLook(p.c, i) : p.c, p.x, p.y - 4, 14, time, p.moving && !ctx.reducedMotion);
+    if (humans > 1) seatTag(g, `P${i + 1}`, p.x, p.y - 32, PLAYER_COLORS[i]);
     if (p.carry) drawTool(p.carry, p.x + 17, p.y - 20, 9);
     const k = ctx.key('a', i > 0);
     let msg = p.sayT > 0 ? p.say : '';
@@ -396,7 +394,7 @@ function create(ctx: GameCtx): GameInstance {
       roundRect(g, x, 5, 142, 30, 8);
       g.fillStyle = PLAYER_COLORS[i];
       roundRect(g, x, 31, 142, 4, 2);
-      drawToken(g, p.c, x + 17, 19, 10, time, false);
+      drawToken(g, humans > 1 ? seatLook(p.c, i) : p.c, x + 17, 19, 10, time, false);
       text(g, `P${i + 1} ${p.c.name}`, x + 34, 20, 13, PAL.ink, 'left');
       if (p.carry) drawTool(p.carry, x + 128, 19, 8);
     });

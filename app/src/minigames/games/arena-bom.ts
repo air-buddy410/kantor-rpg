@@ -5,8 +5,8 @@
 // Local multiplayer: up to four players on gamepads take the corners; the rest
 // stay CPU. Last one standing wins the round, first to two rounds wins.
 import type { CastMember, GameCtx, GameInstance, GameModule, InputState } from '../types';
-import { PLAYER_COLORS } from '../local-players';
-import { PAL, drawToken, roundRect, text } from '../cast';
+import { PLAYER_COLORS, seatLook } from '../local-players';
+import { PAL, drawToken, roundRect, seatRing, seatTag, text } from '../cast';
 
 export const GW = 15;
 export const GH = 13;
@@ -22,7 +22,8 @@ const SHRINK_STEP = 0.32;
 const T = 40;
 const TOP = 40;
 const NCELL = GW * GH;
-const CORNERS: [number, number][] = [[1, 1], [GW - 2, GH - 2], [GW - 2, 1], [1, GH - 2]];
+/** Clockwise from top left, the order of the top bar, so P2 starts next to P1's card side. */
+const CORNERS: [number, number][] = [[1, 1], [GW - 2, 1], [GW - 2, GH - 2], [1, GH - 2]];
 
 export type Item = 'bomb' | 'range' | 'speed';
 export interface BombLite { x: number; y: number; range: number }
@@ -79,7 +80,7 @@ const meta: GameModule['meta'] = {
   legend: [['arah', 'Jalan'], ['a', 'Pasang bom']],
   actions: { arah: 'Jalan (tahan untuk terus jalan)', a: 'Pasang bom' },
   players: 4,
-  playersHint: 'Bareng: sampai 4 pemain, sudut yang kosong diisi komputer. Yang terakhir bertahan menang ronde.',
+  playersHint: 'Bareng: sampai 4 pemain. P1 kiri atas, P2 kanan atas, P3 kanan bawah, P4 kiri bawah; sudut kosong diisi komputer. Yang terakhir bertahan menang ronde.',
 };
 
 const NO_INPUT: InputState = {
@@ -156,6 +157,8 @@ function create(ctx: GameCtx): GameInstance {
   let squash = 0;
 
   const score = () => boxesBroken * 10 + kills * 300 + wins * 500;
+  /** Human seats wear their seat colour in versus; computer seats keep their own clothes. */
+  const look = (i: number) => (versus && i < humans ? seatLook(cast[i], i) : cast[i]);
   const hud = () => ctx.setHud(versus
     ? ctx.t('Ronde {r} · {list}', { r: round, list: winsBy.slice(0, humans).map((n, i) => `P${i + 1} ${n}`).join(' · ') })
     : ctx.t('Ronde {r} · Menang {w} · Skor {s}', { r: round, w: wins, s: score() }));
@@ -605,7 +608,8 @@ function create(ctx: GameCtx): GameInstance {
         save(hi);
       }
       danger = computeDanger();
-      for (let i = 1; i < players.length; i++) if (players[i].alive) ai(i, dt);
+      // only empty seats think: a human seat moves on its own pad alone
+      for (let i = 1; i < players.length; i++) if (players[i].alive && players[i].cpu) ai(i, dt);
       for (const b of bombs) {
         for (const qi of [...b.pass]) {
           const q = players[qi];
@@ -668,10 +672,11 @@ function create(ctx: GameCtx): GameInstance {
       cast.forEach((c, i) => {
         const x = 8 + i * 118;
         const p = players[i];
-        g.fillStyle = p.alive ? (i === 0 ? '#e7efe0' : '#f2e8d6') : '#e2dcd2';
+        g.fillStyle = p.alive ? (i === 0 && !versus ? '#e7efe0' : '#f2e8d6') : '#e2dcd2';
         roundRect(g, x, 5, 112, 30, 8);
+        if (versus && i < humans) { g.fillStyle = PLAYER_COLORS[i]; roundRect(g, x, 5, 6, 30, 3); }
         g.globalAlpha = p.alive ? 1 : 0.4;
-        drawToken(g, c, x + 17, 19, 10, time, false);
+        drawToken(g, look(i), x + 17, 19, 10, time, false);
         g.globalAlpha = 1;
         if (versus && i < humans) { g.fillStyle = PLAYER_COLORS[i]; roundRect(g, x, 31, 112, 4, 2); }
         text(g, versus ? (i < humans ? `P${i + 1} ${c.name}` : c.name) : i === 0 ? ctx.t('Kamu') : c.name, x + 34, 20, 13, p.alive ? PAL.ink : PAL.ink2, 'left');
@@ -724,21 +729,25 @@ function create(ctx: GameCtx): GameInstance {
         const p = players[i];
         if (!p.alive && p.deathT > 1.2) continue;
         g.globalAlpha = p.alive ? 1 : Math.max(0, 1 - p.deathT / 1.2);
+        if (versus && i < humans && p.alive) seatRing(g, p.x * T + T / 2, p.y * T + T / 2 + 11, 17, PLAYER_COLORS[i]);
         const sq = i < humans ? walks[i].squash : 0;
         if (sq > 0 && !ctx.reducedMotion) {
           // squash on dropping a bomb
           const k = Math.sin((sq / 0.12) * Math.PI) * 0.18;
           const bx = p.x * T + T / 2, by = p.y * T + T / 2 + 10;
           g.save(); g.translate(bx, by); g.scale(1 + k, 1 - k); g.translate(-bx, -by);
-          drawToken(g, p.c, p.x * T + T / 2, p.y * T + T / 2 - 4, 15, time, p.moving);
+          drawToken(g, look(i), p.x * T + T / 2, p.y * T + T / 2 - 4, 15, time, p.moving);
           g.restore();
-        } else drawToken(g, p.c, p.x * T + T / 2, p.y * T + T / 2 - 4, 15, time, p.moving);
+        } else drawToken(g, look(i), p.x * T + T / 2, p.y * T + T / 2 - 4, 15, time, p.moving);
         g.globalAlpha = 1;
         if (i < humans && p.alive) {
-          g.fillStyle = versus ? PLAYER_COLORS[i] : PAL.accent;
-          g.beginPath();
-          const ax = p.x * T + T / 2, ay = p.y * T - 12;
-          g.moveTo(ax - 5, ay - 6); g.lineTo(ax + 5, ay - 6); g.lineTo(ax, ay); g.closePath(); g.fill();
+          if (versus) seatTag(g, `P${i + 1}`, p.x * T + T / 2, p.y * T - 14, PLAYER_COLORS[i]);
+          else {
+            g.fillStyle = PAL.accent;
+            g.beginPath();
+            const ax = p.x * T + T / 2, ay = p.y * T - 12;
+            g.moveTo(ax - 5, ay - 6); g.lineTo(ax + 5, ay - 6); g.lineTo(ax, ay); g.closePath(); g.fill();
+          }
         }
       }
       g.restore();
@@ -748,7 +757,7 @@ function create(ctx: GameCtx): GameInstance {
         roundRect(g, w / 2 - 170, TOP + GH * T / 2 - 44, 340, 88, 16);
         if (phase === 'intro') {
           text(g, ctx.t('Ronde {r}', { r: round }), w / 2, TOP + GH * T / 2 - 12, 28, PAL.green);
-          text(g, ctx.t('Bersiap...'), w / 2, TOP + GH * T / 2 + 20, 18, PAL.ink2);
+          text(g, versus ? ctx.t('Cari tanda P di atas kepalamu') : ctx.t('Bersiap...'), w / 2, TOP + GH * T / 2 + 20, 18, PAL.ink2);
         } else {
           if (versus) {
             const msg = roundWinner >= 0 && roundWinner < humans ? ctx.t('Pemain {n} menang ronde!', { n: roundWinner + 1 }) : roundWinner >= 0 ? ctx.t('Komputer bertahan terakhir') : ctx.t('Seri');
