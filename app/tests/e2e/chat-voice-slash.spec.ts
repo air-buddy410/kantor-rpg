@@ -258,6 +258,9 @@ test('perintah slash: ketik / memunculkan menu, dipilih keyboard/klik, dijalanka
   await ta.fill('buat 3 opsi poster');
   await dlg.locator('#agent-send').click();
   await expect.poll(() => calls.length, { timeout: 15_000 }).toBe(n0 + 1);
+  // The runner starts before the send answers; typing /stop before that answer is
+  // rendered lands in the old textarea, which the render then replaces (CI flake).
+  await expect(dlg.locator('#agent-body .chat li', { hasText: 'buat 3 opsi poster' })).toBeVisible();
   if (await dlg.locator('#agent-manual').isHidden()) await dlg.locator('#agent-manual-toggle').click();
   await dlg.locator('#agent-manual-text').fill('/stop');
   await dlg.locator('#agent-send').click();
