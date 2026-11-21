@@ -131,11 +131,11 @@ export function openPhonePanel(host: HTMLElement | null, opts: PhonePanelOpts = 
     list.replaceChildren(...link.phones.map((p) => {
       const li = el('li');
       const dot = el('span', { class: 'pp-dot', 'aria-hidden': 'true' });
-      dot.style.background = colour(p.seat);
+      dot.style.background = p.seat ? colour(p.seat) : '#66716b';
       const path = p.transport === 'langsung' ? t('langsung') : t('relay');
-      const txt = !p.connected ? t('Pemain {n} · terputus', { n: p.seat })
-        : p.latency === null ? t('Pemain {n} · {jalur}', { n: p.seat, jalur: path })
-          : t('Pemain {n} · {jalur} · {ms} ms', { n: p.seat, jalur: path, ms: p.latency });
+      const hp = t('HP {n}', { n: p.index - 3 });
+      const assignment = p.seat ? t('Pemain {n}', { n: p.seat }) : t('Belum ikut main');
+      const txt = `${hp} · ${assignment} · ${!p.connected ? t('Terputus') : path}${p.connected && p.latency !== null ? ` · ${p.latency} ms` : ''}`;
       li.append(dot, el('span', {}, txt));
       return li;
     }));

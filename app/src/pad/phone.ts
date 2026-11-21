@@ -262,10 +262,12 @@ const net = (() => {
 
   function on(m: Wire) {
     switch (m.t) {
-      case 'joined': backoff = 500; fails = 0; api.phase = api.seat ? 'seat' : 'joined'; relay({ t: 'hello' }); ui(); break;
+      case 'joined': backoff = 500; fails = 0; api.seat = 0; api.phase = 'joined'; relay({ t: 'hello' }); ui(); break;
       case 'refused': stop = true; api.phase = 'refused'; api.reason = m.reason; ui(); break;
       case 'bye': stop = true; api.phase = 'bye'; dropRtc(); ui(); break;
-      case 'seat': api.seat = m.n; api.phase = 'seat'; ui(); break;
+      case 'seat':
+        if (!Number.isInteger(m.n) || m.n < 0 || m.n > 5) break;
+        api.seat = m.n; api.phase = m.n ? 'seat' : 'joined'; ui(); break;
       case 'ping': reply({ t: 'pong', ts: m.ts }); break;
       case 'rumble': rumble(m.ms, Math.max(m.strong, m.weak)); break;
       case 'offer': answer(m.sdp); break;
@@ -319,7 +321,7 @@ function ui() {
   if (ph === 'bye') statusText.textContent = t('Layar menutup sambungan.');
   if (ph === 'refused') statusText.textContent = net.reason === 'full' ? t('Layar ini sudah penuh (4 HP).') : net.reason === 'busy' ? t('Server kontroler sedang penuh.') : t('Kode sudah tidak berlaku.');
   const dead = ph === 'nocode' || ph === 'bye' || ph === 'refused';
-  hint.textContent = dead ? t('Scan ulang QR di layar.') : ph === 'seat' || ph === 'joined' ? (net.path === 'langsung' ? t('Jalur langsung') : t('Jalur relay'))
+  hint.textContent = dead ? t('Scan ulang QR di layar.') : ph === 'joined' ? t('Tekan ✕ di lobi untuk ikut main') : ph === 'seat' ? (net.path === 'langsung' ? t('Jalur langsung') : t('Jalur relay'))
     : ph === 'connecting' && net.fails() >= 3 ? t('Belum tersambung. Pastikan HP memakai WiFi kantor, mencoba lagi...') : '';
 }
 

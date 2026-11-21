@@ -13,6 +13,7 @@ import { PadActivity, currentDevice, currentPadKind, setDevice, trackDevices, ty
 import { keyChips, keyText, renderLegend, richLine } from '../input/legend';
 import type { PadProfileId } from '../ui/settings';
 import { PLAYER_COLORS, PadPlayer, connectedPads, isPhonePad } from './local-players';
+import { currentPhoneLink } from '../pad/virtual-pads';
 
 export interface HostOpts {
   reducedMotion: boolean;
@@ -222,17 +223,25 @@ export class MiniGameHost {
     const box = this.lobbyEl;
     const m = this.mod?.meta;
     if (!box || !m) return;
+    const link = currentPhoneLink();
+    for (const phone of link?.phones ?? []) {
+      const seat = this.extras.findIndex((x) => x.index === phone.index);
+      link?.setSeat(phone.index, seat < 0 ? 0 : seat + 2);
+    }
     box.replaceChildren(el('h4', {}, t('Pemain')));
     const list = el('ol', { class: 'mg-lobby-list' });
     const p1 = el('li', { 'data-p': '1' });
     p1.style.setProperty('--pc', PLAYER_COLORS[0]);
     p1.append(el('b', {}, t('Pemain {n}', { n: 1 })), el('span', {}, this.p1Pad !== null && this.p1Pad >= 0 ? t('Keyboard, layar sentuh, atau stik 1') : t('Keyboard atau layar sentuh')));
     list.append(p1);
-    this.extras.forEach((_x, i) => {
+    this.extras.forEach((x, i) => {
       const li = el('li', { 'data-p': String(i + 2) });
       li.style.setProperty('--pc', PLAYER_COLORS[i + 1]);
       const s = el('span');
-      s.append(...this.padLine(t('Stik {n} · {b} untuk batal', { n: i + 2 })));
+      const phone = link?.phones.find((p) => p.index === x.index);
+      s.append(...this.padLine(phone
+        ? t('HP {n} · {b} untuk batal', { n: phone.index - 3 })
+        : t('Stik {n} · {b} untuk batal', { n: x.index + 1 })));
       li.append(el('b', {}, t('Pemain {n}', { n: i + 2 })), s);
       list.append(li);
     });
@@ -272,8 +281,7 @@ export class MiniGameHost {
       if (this.p1Pad === -1 && !this.localUsed && !isPhonePad(p)) { this.p1Pad = p.index; changed = true; continue; }
       if (this.extras.length < this.maxPlayers() - 1) {
         this.extras.push(new PadPlayer(p.index, this.opts.padProfile, () => this.opts.aimSpeed?.() ?? 100));
-        // a phone shows the seat it got ("Pemain 3"), not its join order
-        if (isPhonePad(p)) void import('../pad/virtual-pads').then((m) => m.currentPhoneLink()?.setSeat(p.index, this.extras.length + 1));
+
         sound.sfx('confirm');
         changed = true;
       }
@@ -413,6 +421,8 @@ export class MiniGameHost {
 
   close(r: GameResult | null = this.result) {
     cancelAnimationFrame(this.raf);
+    const link = currentPhoneLink();
+    for (const x of this.extras) link?.setSeat(x.index, 0);
     this.inst?.dispose?.();
     window.removeEventListener('keydown', this.onKeyDown, true);
     window.removeEventListener('keyup', this.onKeyUp, true);

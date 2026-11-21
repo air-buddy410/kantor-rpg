@@ -48,10 +48,10 @@ describe('virtual phone pads', () => {
     expect(list[0]).toBe(real);
     expect(list.slice(4, 8).map((p) => p?.index)).toEqual([4, 5, 6, 7]);
     expect(list[4]!.id).toBe(mod.PAD_ID);
-    expect(link.phones.map((p) => p.seat)).toEqual([2, 3, 4, 5]);
+    expect(link.phones.map((p) => p.seat)).toEqual([0, 0, 0, 0]);
     expect(events).toEqual([4, 5, 6, 7].map((index) => ({ type: 'gamepadconnected', index })));
     // each phone was told its player number through the relay
-    expect(FakeWS.last.sent.filter((m) => m.t === 'seat').map((m) => [m.to, m.n])).toEqual([['pa', 2], ['pb', 3], ['pc', 4], ['pd', 5]]);
+    expect(FakeWS.last.sent.filter((m) => m.t === 'seat').map((m) => [m.to, m.n])).toEqual([['pa', 0], ['pb', 0], ['pc', 0], ['pd', 0]]);
     FakeWS.last.push({ t: 'phone-leave', from: 'pb' });
     expect(pads()[5]).toBeNull();
     expect(events.at(-1)).toEqual({ type: 'gamepaddisconnected', index: 5 });
@@ -105,12 +105,22 @@ describe('virtual phone pads', () => {
     expect(FakeWS.last.sent.at(-1)).toEqual({ t: 'rumble', ms: 120, strong: 0.8, weak: 1, to: 'pb' });
   });
 
+  it('assigns after lobby join, resends on hello, clears on leave', () => {
+    FakeWS.last.push({ t: 'phone-join', from: 'pa' });
+    link.setSeat(4, 3);
+    expect(link.phones[0].seat).toBe(3);
+    FakeWS.last.push({ t: 'hello', from: 'pa' });
+    expect(FakeWS.last.sent.at(-1)).toEqual({ t: 'seat', n: 3, to: 'pa' });
+    link.setSeat(4, 0);
+    expect(link.phones[0].seat).toBe(0);
+  });
+
   it('keeps the relay room alive while a phone is connected', () => {
     FakeWS.last.push({ t: 'phone-join', from: 'pa' });
     const seats = () => FakeWS.last.sent.filter((m) => m.t === 'seat').length;
     const before = seats();
     for (let i = 0; i < 61; i++) { FakeWS.last.push({ t: 'pong', ts: 0, from: 'pa' }); vi.advanceTimersByTime(1000); }
-    expect(seats()).toBe(before + 1);
+    expect(seats()).toBe(before + 62);
   });
 
   it('measures latency from ping/pong and marks the relay down on close', () => {

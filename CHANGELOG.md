@@ -4,6 +4,12 @@
 
 Semua perubahan penting kantor-rpg, dari yang terbaru. Setiap rilis dipasang di [demo publik](https://employee-rpg.air-buddy.site) setelah tes dan CI lulus. Kode rilis adalah commit di `main`.
 
+## v2.7.4, 20 November 2026
+
+- Kontroler HP: nomor pemain baru muncul setelah ikut lobi, sesuai karakter yang dikendalikan. Sebelum ikut, tampil petunjuk tekan ✕.
+- Daftar sambungan PC membedakan nomor HP dan nomor pemain. Lobi menyebut HP yang dipakai.
+- Nomor pemain disinkronkan ulang saat pemain keluar lobi atau game ditutup, serta dikirim ulang tiap detik agar pesan yang terlewat pulih.
+
 ## v2.7.3, 20 November 2026
 
 - Arena Bom: papan lebih lebar (19 x 11 petak, sebelumnya 15 x 13), jadi memenuhi layar TV dan tiap petak sekitar 17% lebih besar. Jumlah ronde kemenangan tampil di kartu tiap pemain.
