@@ -4,6 +4,12 @@
 
 All notable changes to kantor-rpg, newest first. Each release goes to the [public demo](https://employee-rpg.air-buddy.site) after the tests and CI pass. The release code is the commit on `main`.
 
+## v2.7.4, 20 November 2026
+
+- Phone controller: player numbers appear only after joining the lobby and match the controlled character. Before joining, a prompt explains pressing ✕.
+- The PC connection list separates phone numbers from player numbers. Lobby rows identify the phone.
+- Seats resync when players leave the lobby or close the game, and repeat every second to recover missed messages.
+
 ## v2.7.3, 20 November 2026
 
 - Arena Bom: a wider board (19 x 11 tiles, was 15 x 13) that fills a TV, with tiles about 17% bigger. Rounds won show on each player's card.

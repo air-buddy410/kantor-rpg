@@ -22,7 +22,7 @@ export type Msg =
   | { t: 'phone-leave'; from: string } // relay -> screen
   | { t: 'refused'; reason: 'full' | 'no-room' | 'bad-code' | 'busy' } // relay -> phone
   | { t: 'hello'; name?: string }
-  | { t: 'seat'; n: number } // PC -> phone (player number, 2..5)
+  | { t: 'seat'; n: number } // PC -> phone (0 = waiting in lobby, 2..5 = game seat)
   | { t: 'ping'; ts: number }
   | { t: 'pong'; ts: number }
   | { t: 'rumble'; ms: number; strong: number; weak: number }

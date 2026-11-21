@@ -102,7 +102,7 @@ class Link implements PhoneLink {
   }
 
   get phones(): PhoneInfo[] {
-    return slots.filter((s): s is Slot => !!s).sort((a, b) => a.seat - b.seat)
+    return slots.filter((s): s is Slot => !!s).sort((a, b) => a.index - b.index)
       .map((s) => ({ id: s.id, index: s.index, seat: s.seat, transport: s.transport, latency: s.latency, connected: s.pad.connected }));
   }
 
@@ -111,7 +111,7 @@ class Link implements PhoneLink {
 
   setSeat(index: number, n: number) {
     const s = slots[index - FIRST_INDEX];
-    if (!s || s.seat === n) return;
+    if (!s || !Number.isInteger(n) || n < 0 || n > 5 || s.seat === n) return;
     s.seat = n;
     this.relay({ t: 'seat', n, to: s.id });
     this.emit();
@@ -170,7 +170,7 @@ class Link implements PhoneLink {
     const i = slots.findIndex((s) => !s);
     if (i < 0 || slots.some((s) => s?.id === id)) return;
     const index = FIRST_INDEX + i;
-    const s: Slot = { id, index, seat: i + 2, pad: this.makePad(index, () => s), seq: -1, seen: Date.now(), transport: 'relay', latency: null, chain: Promise.resolve() };
+    const s: Slot = { id, index, seat: 0, pad: this.makePad(index, () => s), seq: -1, seen: Date.now(), transport: 'relay', latency: null, chain: Promise.resolve() };
     slots[i] = s;
     this.relay({ t: 'seat', n: s.seat, to: id });
     this.rtc(s);
@@ -198,6 +198,7 @@ class Link implements PhoneLink {
     s.seen = Date.now();
     if (Array.isArray(m)) { this.input(s, m); return; }
     switch (m.t) {
+      case 'hello': this.relay({ t: 'seat', n: s.seat, to: s.id }); break;
       case 'input': this.input(s, m.p); break;
       case 'ping': this.toPhone(s, { t: 'pong', ts: m.ts }); break;
       case 'pong':
@@ -249,7 +250,10 @@ class Link implements PhoneLink {
         fire('gamepaddisconnected', s.pad);
         this.emit();
       }
-      if (ping) this.toPhone(s, { t: 'ping', ts: performance.now() });
+      if (ping) {
+        this.toPhone(s, { t: 'ping', ts: performance.now() });
+        this.toPhone(s, { t: 'seat', n: s.seat });
+      }
       if (keep && s.pad.connected) this.relay({ t: 'seat', n: s.seat, to: s.id });
     }
   }

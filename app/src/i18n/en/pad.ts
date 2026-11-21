@@ -35,6 +35,7 @@ export const EN_PAD: Record<string, string> = {
   'Jurus siap ({x})': 'Move ready ({x})',
   'Tombol game': 'Game buttons',
   'Stik {n} · {b} untuk batal': 'Pad {n} · {b} to leave',
+  'HP {n} · {b} untuk batal': 'Phone {n} · {b} to leave',
   'Mau main bareng? Sambungkan stik lain lalu tekan {a} untuk ikut (sampai {n} pemain).': 'Playing together? Connect another pad and press {a} to join (up to {n} players).',
   'Tombol untuk perangkat': 'Buttons for device',
   '{options}: jeda. {create}: keluar dari kartu.': '{options}: pause. {create}: leave from a card.',
